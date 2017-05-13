@@ -59,7 +59,7 @@ echo "<p>Stop Spammers has prevented $spmcount spammers from registering or leav
 echo"</p>";
 } 
 if (count($wlrequests)==1) {
-echo "<p>".count($wlreq)." user</a> has been denied access and requested that you add them to the Allow List.</p>";
+echo "<p>".count($wlrequests)." user</a> has been denied access and requested that you add them to the Allow List.</p>";
 } else if (count($wlrequests)>0) {
 echo "<p>".count($wlrequests)." users</a> have been denied access and requested that you add them to the Allow List.</p>";
 }
