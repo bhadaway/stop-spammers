@@ -1,4 +1,4 @@
-<?PHP
+<?php
 if (!defined('ABSPATH')) exit;
 function ss_notify_admin_action($user_login, $user) {
 // notify admin when someone logs in

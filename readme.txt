@@ -31,6 +31,12 @@ OR
 
 == Changelog ==
 
+= 7.0.1 =
+* continued general cleanup
+* continued design improvements
+* a few small fixes
+* better menu icon
+
 = 7.0 =
 * general cleanup
 * design improvements
