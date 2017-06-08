@@ -21,7 +21,7 @@ In cases where spam is detected, users are offered a second chance to post their
 
 *Maintained (because I love this plugin and want to keep it alive) by Bryan Hadaway (since 2017).*
 
-* **If you also love this plugin and want to see it live on, you can help me maintain it [on GitHub](https://github.com/bhadaway/stop-spammers).** *
+***If you also love this plugin and want to see it live on, you can help me maintain it [on GitHub](https://github.com/bhadaway/stop-spammers).***
 
 == Installation ==
 
