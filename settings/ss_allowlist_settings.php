@@ -7,7 +7,7 @@ ss_fix_post_vars();
 $now=date('Y/m/d H:i:s',time() + ( get_option( 'gmt_offset' ) * 3600 ));
 $options=ss_get_options();
 extract($options);
-$chkcloudflare='Y'; // force back to on - always fix cloudflare if the plugin is not present and cloudflare detected
+$chkcloudflare='Y'; // force back to on - always fix Cloudflare if the plugin is not present and Cloudflare detected
 $nonce='';
 if (array_key_exists('ss_stop_spammers_control',$_POST)) $nonce=$_POST['ss_stop_spammers_control'];
 if (!empty($nonce) && wp_verify_nonce($nonce,'ss_stopspam_update')) { 

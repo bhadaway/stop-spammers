@@ -1,5 +1,5 @@
 <?php
-// this does the get for the tbody in allow requests
+// this does the get for the tbody in Allow Requests
 if (!defined('ABSPATH')) exit;
 class ss_get_alreq { 
 public function process($ip,&$stats=array(),&$options=array(),&$post=array()) {

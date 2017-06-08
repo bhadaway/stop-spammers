@@ -337,7 +337,7 @@ User Message: ". $km ."
 
 Please be aware that the user has been recognized as a potential spammer.
 
-Some spam robots are already filling out the request form with a fale explanation.
+Some spam robots fill out the request form with a fake explanation.
 
 — Stop Spammers";
 $message=wordwrap($message, 70, "\r\n");

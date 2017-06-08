@@ -84,7 +84,7 @@ function sfs_ErrorHandler($errno, $errmsg, $filename, $linenum, $vars) {
 // write the answers to the file
 // we are only concerned with the errors and warnings, not the notices
 // if ($errno==E_NOTICE || $errno==E_WARNING) return false;
-// if ($errno==2048) return; // wordpress throws deprecated all over the place
+// if ($errno==2048) return; // WordPress throws deprecated all over the place
 $serrno="";
 if (
 (strpos($filename,'ss')===false)

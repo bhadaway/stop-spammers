@@ -2,8 +2,8 @@
 if (!defined('ABSPATH')) exit;
 class chkbbcode { // change name
 public function process($ip,&$stats=array(),&$options=array(),&$post=array()) {
-// searches for bbcodes in post data
-// BBCodes are the tool of stupid spammers
+// searches for BBCodes in post data
+// BBCodes is the tool of common spammers
 $bbcodes=array(
 '[php','[url','[link','[img','[include','[script'
 );

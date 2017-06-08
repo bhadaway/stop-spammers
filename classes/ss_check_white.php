@@ -22,7 +22,7 @@ if (!empty($add)&&is_array($add)) {
 $reason=be_load($add);
 if ($reason!==false) {
 // need to log a passed hit on post here
-ss_log_good(ss_get_ip(),$reason,$add[1],$add); // aded get IP because it might be altered				
+ss_log_good(ss_get_ip(),$reason,$add[1],$add); // added get IP because it might be altered				
 return $reason;
 }
 }

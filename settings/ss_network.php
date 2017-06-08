@@ -33,7 +33,7 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 <fieldset>
 <legend><span style="font-weight:bold;font-size:1.2em">Network Blog Option</span></legend>
 <p>Networked ON: <input name="muswitch" type="radio" value='Y'  <?php if ($muswitch=='Y') echo "checked=\"true\""; ?> /><br />
-Networked OFF:<input name="muswitch" type="radio" value='N' <?php if ($muswitch!='Y') echo "checked=\"true\""; ?> /><br />
+Networked OFF: <input name="muswitch" type="radio" value='N' <?php if ($muswitch!='Y') echo "checked=\"true\""; ?> /><br />
 If you are running WPMU and want to control options and history through the main login admin panel, select ON. If you select OFF, each blog will have to configure the plugin separately, and each blog will have a separte history.</p>
 <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
 </fieldset>

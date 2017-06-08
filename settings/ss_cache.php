@@ -87,7 +87,7 @@ Good Cache Size:
 <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
 </form>
 <?php
-if (count($badips)==0&&count($goodips)==0) echo "Nothing in the cache";
+if (count($badips)==0&&count($goodips)==0) echo "Nothing in the cache.";
 else {
 ?>
 <h2>Cached Values</h2>

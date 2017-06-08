@@ -126,7 +126,7 @@ incidents.</td>
 <br />
 <fieldset>
 <legend><span style="font-weight:bold;font-size:1.2em">Check Against DNSBL Lists Such as Spamhaus.org</span></legend>
-<input name="chkdnsbl" type="checkbox" value="Y" <?php if ($chkdnsbl=='Y') echo "checked=\"checked\""; ?> />	Checks the IP on Spamhaus.org. This is primarily used for email spam, but the same bots sending out email spam are probably running comment spam and other exploits.
+<input name="chkdnsbl" type="checkbox" value="Y" <?php if ($chkdnsbl=='Y') echo "checked=\"checked\""; ?> /> Checks the IP on Spamhaus.org. This is primarily used for email spam, but the same bots sending out email spam are probably running comment spam and other exploits.
 </fieldset>
 <br />
 <fieldset>

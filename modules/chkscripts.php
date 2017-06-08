@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) exit;
 class chkscripts extends be_module { 
-// some scripts need to be Allow Listed - so far wp_cron.php, but maybe some others - ajax?
+// some scripts need to be Allow Listed - so far wp_cron.php, but maybe some others - AJAX?
 public function process($ip,&$stats=array(),&$options=array(),&$post=array()) {
 $sname=$this->getSname();
 if(strpos($sname,'wp-cron.php')!==false) return "allow wp-cron";

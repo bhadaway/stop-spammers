@@ -10,7 +10,7 @@ foreach($post as $key=>$data) {
 if (!empty($data)) {
 foreach($spamwords as $sw) {
 if (stripos($data,$sw)!==false) {
-return "Spam word: $sw in $key";
+return "Spam Word: $sw in $key";
 }
 }
 }

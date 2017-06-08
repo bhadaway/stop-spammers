@@ -33,7 +33,7 @@ $row[1]++;
 $multi[$ip]=$row;
 $stats['multi']=$multi;
 ss_set_stats($stats);
-if ($row[1]>=$multicnt) return "$row[1] Hits  in last 3 minutes";
+if ($row[1]>=$multicnt) return "$row[1] Hits in last 3 minutes";
 return false;
 }
 }

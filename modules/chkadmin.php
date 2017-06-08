@@ -16,7 +16,7 @@ foreach($blogusers as $u) {
 if ($u->user_login==$login) return false; // false alarm - really is a person admin
 }
 // this may cause problems when a legitimate new user wants to include the string admin in their username
-return "Admin login/registration attempt: $login";
+return "Admin Login or Registration Attempt: $login";
 }
 }
 ?>

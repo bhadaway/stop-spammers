@@ -4,6 +4,8 @@
 
 #ss-plugin textarea, #ss-plugin input[type="text"]{width:100%;max-width:500px}
 
+#ss-plugin img{margin-right:5px}
+
 #ss-plugin input[type="text"]{max-width:400px}
 
 #ss-plugin fieldset{width:100%;padding:15px;border:1px solid #4aa863;margin:30px 0 0}

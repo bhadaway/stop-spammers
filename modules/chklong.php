@@ -7,7 +7,7 @@ if (array_key_exists('email',$post)) {
 $email=$post['email'];
 if (!empty($email)) {
 if (strlen($email)>64) {
-return "Email too long:$email";
+return "Email Too Long: $email";
 }
 }
 }
@@ -15,7 +15,7 @@ if (array_key_exists('author',$post)) {
 if (!empty($post['author'])) {
 $author=$post['author'];
 if (strlen($post['author'])>64) {
-return "Author too long:$author";
+return "Author Too Long: $author";
 }
 }
 }
@@ -23,7 +23,7 @@ if (array_key_exists('psw',$post)) {
 if (!empty($post['psw'])) {
 $psw=$post['psw'];
 if (strlen($post['psw'])>32) {
-return "Password too long: $psw";
+return "Password Too Long: $psw";
 }
 }
 }

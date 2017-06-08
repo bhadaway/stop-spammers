@@ -3,12 +3,13 @@
 Plugin Name: Stop Spammers Spam Control
 Plugin URI: https://wordpress.org/plugins/stop-spammer-registrations-plugin/
 Description: The Stop Spammers plugin blocks spammers from leaving comments or logging in. It protects sites from robot registrations and malicious attacks.
-Author: Keith P. Graham
-Version: 7.0.1
+Author: Bryan Hadaway
+Author URI: https://calmestghost.com/
+Version: 7.0.2
 License: https://www.gnu.org/licenses/gpl.html
 */
 // networking requires a couple of globals
-define('SS_VERSION', '7.0.1');
+define('SS_VERSION', '7.0.2');
 define('SS_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 define('SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ));
 define('SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ).'data/');
@@ -500,7 +501,7 @@ return $config;
 function ss_caught_action($ip='',$post=array()) {
 // this is hit on spam detect for addons - added this for a template for testing - not needed
 // $post has all the standardized post variables plus reason and the chk that found the problem
-// good addon would be a plugin to manage an SQL table where this stuff is stored
+// good add-on would be a plugin to manage an SQL table where this stuff is stored
 }
 function ss_stop_spam_OK($ip='',$post=array()) {
 // dummy function for testing
@@ -567,7 +568,7 @@ remove_filter( 'pre_user_login', ss_user_reg_filter, 1);
 sfs_errorsonoff('off');
 return $user_login;
 }
-// if the suspect is already in the bad cache he does not get a second chance?
+// if the suspect is already in the Bad Cache he does not get a second chance?
 // prevents looping	
 $reason=be_load('chkbcache',ss_get_ip(),$stats,$options,$post);
 sfs_errorsonoff();

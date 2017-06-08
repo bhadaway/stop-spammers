@@ -4,8 +4,8 @@ if (!current_user_can('manage_options')) {
 die('Access Denied');
 }
 if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
-echo "<div>JetPack Protect has been detected. Stop Spammers has disabled itself.<br />
-Please turn off JetPack Protect or uninstall Stop Spammers.</div>";
+echo "<div>Jetpack Protect has been detected. Stop Spammers has disabled itself.<br />
+Please turn off Jetpack Protect or uninstall Stop Spammers.</div>";
 return;
 }
 ss_fix_post_vars();
@@ -213,7 +213,7 @@ $stats[$v1]=0;
 }	
 $addonstats=array();
 $stats['addonstats']=$addonstats;
-$msg='<span style="color:#4aa863">Summary Cleared</span>';
+$msg='<p class="notice notice-success">Summary Cleared</p>';
 ss_set_stats($stats);
 extract($stats); // extract again to get the new options
 }
@@ -228,7 +228,7 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Summary</h1>
-<p>Version <?php echo SS_VERSION;?></p>
+<p>Version <?php echo SS_VERSION; ?></p>
 <?php
 if (!empty($msg)) echo "<h2>$msg</h2>";
 $current_user_name=wp_get_current_user()->user_login;
@@ -344,19 +344,25 @@ $sname=$_SERVER["SCRIPT_NAME"];
 }
 if (strpos($sname,'?')!==false) $sname=substr($sname,0,strpos($sname,'?'));
 ?>
-<h2>Support</h2>
-<p>Please post all issues, bugs, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
+<h2>Support and Help Improve Stop Spammers</h2>
+<p>Please post all issues, bugs, typos, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
 <h2>Plugin Options</h2>
-<ol>
+<ul>
 <li><a href="?page=stop_spammers">Summary</a>: This checks to see if there may be problems from your current incoming IP address and displays a summary of events.</li>
-<li><a href="?page=ss_allowrequests">Allow Requests</a>: Displays users who were denied and filled out the form requesting access to your site.</li>
-<li><a href="?page=ss_reports">Log Report</a>: Shows details of the most recent events detected by Stop Spammers.</li>
-<li><a href="?page=ss_cache">Cache</a>: Shows the cache of recently detected events.</li>
 <li><a href="?page=ss_options">Protection Options</a>: This has all the options for checking for spam and logins. You can also block whole countries.</li>
 <li><a href="?page=ss_allow_list">Allow Lists</a>: Here you can set up your Allow List to allow IP addresses to login and leave comments on your site, without being checked for spam. It also sets up the options which you can use to allow certain kinds of users into your site, even though they may trigger spam detection.</li>
 <li><a href="?page=ss_deny_list">Block Lists</a>: This is where you set up your Deny List for IPs and email. It also allows you to enter spam words and phrases that trigger spam.</li>
+<li><a href="?page=ss_challenge">Challenge &amp; Deny</a>: This sets up CAPTCHA and notification options. You can give users who trigger the plugin a second chance to use a CAPTCHA. Supports Google ReCaptcha and Solve Media CAPTCHA.</li>
+<li><a href="?page=ss_allowrequests">Allow Requests</a>: Displays users who were denied and filled out the form requesting access to your site.</li>
 <li><a href="?page=ss_webservices_settings">Web Services</a>: This is where you enter the API keys for StopForumSpam.com and other web checking services. You don't need to have these set for the plugin to work, but if you do, you will have better protection and the ability to report spam.</li>
-<li><a href="?page=ss_challenge">Challenge and Deny</a>: This sets up CAPTCHA and notification options. You can give users who trigger the plugin a second chance to use a CAPTCHA. Supports Google ReCaptcha and Solve Media CAPTCHA.</li>
+<li><a href="?page=ss_cache">Cache</a>: Shows the cache of recently detected events.</li>
+<li><a href="?page=ss_reports">Log Report</a>: Shows details of the most recent events detected by Stop Spammers.</li>
 <li><a href="?page=ss_diagnostics">Diagnostics</a>: You can use this to test an IP, email or, comment against all of the options. This can tell you more about why an IP address might fail. It will also show you any options that might crash the plugin on your site due to system settings.</li>
-</ol>
+</ul>
+<h2>Beta Options</h2>
+<p class="notice notice-warning">These features are to be considered experimental. Use with caution and at your own risk.</p>
+<ul>
+<li><a href="?page=ss_option_maint">DB Cleanup</a>: Delete leftover options from deleted plugins or anything that appears suspicious.</li>
+<li><a href="?page=ss_threat_scan">Threat Scan</a>: A simple scan to find possibly malicious code.</li>
+</ul>
 </div>

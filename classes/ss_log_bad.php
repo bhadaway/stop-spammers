@@ -36,7 +36,7 @@ $blog=$blog_id;
 // 
 $ss_sp_hist=$options['ss_sp_hist'];
 while (count($hist)>$ss_sp_hist) array_shift($hist);
-// if (!empty($pwd)) $author=$author.'/'.$pwd; // show bad passwwords????
+// if (!empty($pwd)) $author=$author.'/'.$pwd; // show bad passwords?
 $hist[$now]=array($ip,$email,$author,$sname,$reason,$blog);
 $stats['hist']=$hist;
 if (array_key_exists('addon',$post)) {

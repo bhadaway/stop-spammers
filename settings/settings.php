@@ -13,7 +13,7 @@ add_menu_page(
 'ss_summary', // $function
 $iconpng, // $icon_url,
 78.92   // $position 
-);	
+);
 if (class_exists('Jetpack') && Jetpack::is_module_active('protect')) {
 return;
 }
@@ -24,41 +24,7 @@ add_submenu_page(
 'manage_options', // $capability,
 'stop_spammers', // $menu_slug,
 'ss_summary' // $function
-);	
-add_submenu_page(
-'stop_spammers', // plugins parent
-"Allow Requests — Stop Spammers", // $page_title,
-"Allow Requests", // $menu_title,
-'manage_options', // $capability,
-'ss_allowrequests', // $menu_slug,
-'ss_allowreq' // $function
-);	
-add_submenu_page(
-'stop_spammers', // plugins parent
-"Log Report — Stop Spammers", // $page_title,
-'Log Report', // $menu_title,
-'manage_options', // $capability,
-'ss_reports', // $menu_slug,
-'ss_reports' // function
-);	
-add_submenu_page(
-'stop_spammers', // plugins parent
-"Cache — Stop Spammers", // $page_title,
-'Cache', // $menu_title,
-'manage_options', // $capability,
-'ss_cache', // $menu_slug,
-'ss_cache' // function
-);	
-if (function_exists('is_multisite') && is_multisite()) {
-add_submenu_page(
-'stop_spammers', // plugins parent
-"Multisite — Stop Spammers", // $page_title,
-'Network', // $menu_title,
-'manage_options', // $capability,
-'ss_network', // $menu_slug,
-'ss_network'
-);	
-}
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
 "Protection Options — Stop Spammers", // $page_title,
@@ -66,7 +32,7 @@ add_submenu_page(
 'manage_options', // $capability,
 'ss_options', // $menu_slug,
 'ss_options' // function
-);	
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
 "Allow Lists — Stop Spammers", // $page_title,
@@ -74,7 +40,7 @@ add_submenu_page(
 'manage_options', // $capability,
 'ss_allow_list', // $menu_slug,
 'ss_allowlist_settings' // function
-);	
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
 "Block Lists — Stop Spammers", // $page_title,
@@ -82,15 +48,7 @@ add_submenu_page(
 'manage_options', // $capability,
 'ss_deny_list', // $menu_slug,
 'ss_denylist_settings' // function
-);	
-add_submenu_page(
-'stop_spammers', // plugins parent
-"Web Services — Stop Spammers", // $page_title,
-'Web Services', // $menu_title,
-'manage_options', // $capability,
-'ss_webservices_settings', // $menu_slug,
-'ss_webservices_settings'
-);	
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
 "Challenge and Deny — Stop Spammers", // $page_title,
@@ -98,27 +56,39 @@ add_submenu_page(
 'manage_options', // $capability,
 'ss_challenge', // $menu_slug,
 'ss_challenges' // function
-);	
-/*
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
-"Threat Scan — Stop Spammers", // $page_title,
-'Threat Scan', // $menu_title,
+"Allow Requests — Stop Spammers", // $page_title,
+"Allow Requests", // $menu_title,
 'manage_options', // $capability,
-'ss_threat_scan', // $menu_slug,
-'ss_threat_scan' // function
-);	
-*/
-/*
+'ss_allowrequests', // $menu_slug,
+'ss_allowreq' // $function
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
-"Maintenance — Stop Spammers", // $page_title,
-'Maintenance', // $menu_title,
+"Web Services — Stop Spammers", // $page_title,
+'Web Services', // $menu_title,
 'manage_options', // $capability,
-'ss_option_maint', // $menu_slug,
-'ss_option_maint' // function
-);	
-*/
+'ss_webservices_settings', // $menu_slug,
+'ss_webservices_settings'
+);
+add_submenu_page(
+'stop_spammers', // plugins parent
+"Cache — Stop Spammers", // $page_title,
+'Cache', // $menu_title,
+'manage_options', // $capability,
+'ss_cache', // $menu_slug,
+'ss_cache' // function
+);
+add_submenu_page(
+'stop_spammers', // plugins parent
+"Log Report — Stop Spammers", // $page_title,
+'Log Report', // $menu_title,
+'manage_options', // $capability,
+'ss_reports', // $menu_slug,
+'ss_reports' // function
+);
 add_submenu_page(
 'stop_spammers', // plugins parent
 "Diagnostics — Stop Spammers", // $page_title,
@@ -129,12 +99,30 @@ add_submenu_page(
 );
 add_submenu_page(
 'stop_spammers', // plugins parent
-"Add-ons — Stop Spammers", // $page_title,
-'Add-ons', // $menu_title,
+"Beta: DB Cleanup — Stop Spammers", // $page_title,
+'Beta: DB Cleanup', // $menu_title,
 'manage_options', // $capability,
-'ss_addons', // $menu_slug,
-'ss_addons' // function
+'ss_option_maint', // $menu_slug,
+'ss_option_maint' // function
 );
+add_submenu_page(
+'stop_spammers', // plugins parent
+"Beta: Threat Scan — Stop Spammers", // $page_title,
+'Beta: Threat Scan', // $menu_title,
+'manage_options', // $capability,
+'ss_threat_scan', // $menu_slug,
+'ss_threat_scan' // function
+);
+if (function_exists('is_multisite') && is_multisite()) {
+add_submenu_page(
+'stop_spammers', // plugins parent
+"Multisite — Stop Spammers", // $page_title,
+'Network', // $menu_title,
+'manage_options', // $capability,
+'ss_network', // $menu_slug,
+'ss_network'
+);
+}
 }
 function ss_summary() {
 include_setting("ss_summary.php");
@@ -180,9 +168,6 @@ include_setting("ss_contribute.php");
 }
 function ss_diagnostics() {
 include_setting("ss_diagnostics.php");
-}
-function ss_addons() {
-include_setting("ss_addons.php");
 }
 function ss_allowreq() {
 include_setting("ss_allowreq.php");

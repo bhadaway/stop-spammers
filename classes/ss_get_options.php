@@ -70,7 +70,7 @@ $defaultsCTRL=array(
 'chkxff'=>'N', // ????
 'notify'=>'Y',
 'chkspoof'=>'N', // ???
-'filterregistrations'=>'Y' // filter registration attempts, even if not from post.
+'filterregistrations'=>'Y' // filter registration attempts - even if not from post
 );
 $defaultARRAY=array(
 'badagents'=>array(
@@ -428,10 +428,9 @@ $defaults=array(
 'ss_sp_cache_em'=>4,
 'redirurl'=>'', 
 'logfilesize'=>0,
-'rejectmessage'=>"Access Denied<br/>
-This site is protected by the Stop Spammer Registrations Plugin.<br/>"
+'rejectmessage'=>"Access Denied<br/>"
 );
-$defaultCOUNTRY=array( // all Yes!!!!! - changed to no (coward)
+$defaultCOUNTRY=array( // all yes - changed to no
 'chkAD'=>'N',
 'chkAE'=>'N',
 'chkAF'=>'N',

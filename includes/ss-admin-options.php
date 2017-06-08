@@ -235,7 +235,7 @@ if (substr($check,0,4)=="ERR:") {
 echo "Access to the Stop Forum Spam Database shows errors\r\n";
 echo "response was $check\r\n";
 }
-// Access to the Stop Forum Spam Database is working
+// access to the Stop Forum Spam database is working
 $n=strpos($check,'<response success="true">');
 if ($n===false) {
 echo "Access to the Stop Forum Spam Database is not working\r\n";

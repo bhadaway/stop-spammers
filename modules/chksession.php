@@ -24,7 +24,7 @@ $sname=$sname;
 } else if (array_key_exists("PHP_SELF",$_SERVER)) {
 $sname=substr($_SERVER['PHP_SELF'],1 );
 }
-//echo "Testing session '$sname'<br />";
+// echo "Testing Session '$sname'<br />";
 if (empty($sname)) 	return false;
 $sesstime=2; // nobody can do it in 3 seconds
 if (!defined("WP_CACHE")||(!WP_CACHE)) { 
