@@ -270,6 +270,7 @@ $whois=SS_PLUGIN_URL.'images/whois.png'; // fix this
 $ip=$_GET['ip'];
 $container=$_GET['cont'];
 $func=$_GET['func'];
+$email=$_GET['email'];
 // echo "error $ip, $func, $container,".print_r($_GET,true);exit();
 // container is blank, goodips, badips or log
 // func is add_black, add_white, delete_gcache or delete_bcache
@@ -313,6 +314,10 @@ be_load('ss_remove_bcache',$ip,$stats,$options);
 be_load('ss_remove_gcache',$ip,$stats,$options);
 }
 be_load('ss_addtoallowlist',$ip,$stats,$options);
+if ($container=='wlreq'){
+$emails=array($email);
+be_load('ss_emailnotify',$func,$emails,$options);
+}
 // if it is not good or bad IP we don't need the container as it is the log
 break;
 case 'delete_wl_row': // this is from the Allow Requests list
