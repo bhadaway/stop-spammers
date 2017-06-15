@@ -1,12 +1,13 @@
 var sfs_ajax_who="";
-function sfs_ajax_process(sip,contx,sfunc,url) {
+function sfs_ajax_process(sip,contx,sfunc,url,email) {
 sfs_ajax_who=contx;
 var data= {
 action: 'sfs_process',
 ip:sip,
 cont: contx, 
 func: sfunc, 
-ajax_url: url
+ajax_url: url,
+email: email
 }
 jQuery.get(ajaxurl, data, sfs_ajax_return_process);
 }
