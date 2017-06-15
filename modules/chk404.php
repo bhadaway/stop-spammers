@@ -103,7 +103,7 @@ $sname=$this->getSname();
 // ss_cd_write_file("debug.txt","check 404 '$hit'");
 foreach($expl as $bad) {
 if (stripos($sname,$bad)!==false) {
-return "404 on exploit attempt $sname $bad";
+return "404 on Exploit Attempt $sname $bad";
 } else {
 // echo "$sname, $bad<br />";
 }

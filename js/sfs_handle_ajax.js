@@ -52,8 +52,8 @@ sfs_ajax_who.style.color="brown";
 sfs_ajax_who.style.fontWeight="bolder";
 return false;
 }
-sfs_ajax_who.innerHTML="Error Reporting Spam:"+response;
-sfs_ajax_who.style.color="red";
+sfs_ajax_who.innerHTML="Status: "+response;
+sfs_ajax_who.style.color="black";
 sfs_ajax_who.style.fontWeight="bolder";
 alert(response);
 return false;

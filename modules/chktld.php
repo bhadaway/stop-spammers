@@ -23,7 +23,7 @@ if ($dlvl==0) continue;
 $t=explode('.',$value);			
 $tt=implode(array_slice($t,count($t)-$dlvl,$dlvl), '.');
 $tt='.'.trim(strtolower($tt));
-if ($ft==$tt) return "TLD Blocked: $key:$value:$ft";
+if ($ft==$tt) return "TLD Blocked: $key: $value: $ft";
 }
 }
 return false;

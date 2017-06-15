@@ -12,7 +12,7 @@ $pwd=$post['pwd'];
 if (empty($log)||empty($pwd)) return false;
 $user=@wp_authenticate($log,$pwd);
 if (!is_wp_error($user)) { // user login is good
-return 'authenticated user login';
+return 'Authenticated User Login';
 }
 return false;
 }

@@ -1,14 +1,17 @@
 <?php
-// this is a version of my Options Optimizer plugin - it works better in this context
 if (!defined('ABSPATH')) exit; // just in case
-if(!current_user_can('manage_options')) {
-die('Access Denied');
+if (!current_user_can('manage_options')) {
+die ('Access Denied');
+$msg='<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 ss_fix_post_vars();
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — DB Cleanup</h1>
-<p class="notice notice-warning">This feature is to be considered experimental. Use with caution and at your own risk.</p>
+<?php if (!empty($msg)) echo "$msg"; ?>
+<div class="notice notice-warning">
+<p>This feature is to be considered experimental. Use with caution and at your own risk.</p>
+</div>
 <p>Plugins often don't clean up their mess when they are uninstalled. Some malicious themes and plugins use WordPress options to store some information.</p>
 <p>This function allows you inspect and delete orphan or suspicious options and to change plugin options so that they don&acute;t autoload. </p>
 <p>In WordPress, some options are loaded whenever WordPress loads a page. These are marked as autoload options. This is done to speed up WordPress and prevent the programs from hitting the database every time some plugin needs to look up an option. Automatic loading of options at startup makes WordPress fast, but it can also use up memory for options that will seldom or never be used.</p>
@@ -117,7 +120,7 @@ $nonce=wp_create_nonce('ss_update');
 ?>
 <form method="POST" name="DOIT2" action="">
 <input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
-<table bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
+<table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
 <thead>
 <tr bgcolor="#fff">
 <th>Option</th>

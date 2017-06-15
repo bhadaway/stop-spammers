@@ -16,7 +16,7 @@ if (stripos($agent,'//www.google.com/bot.html)')!==false) return false; // fix t
 if (stripos($agent,'bingbot)')!==false) return false; // fix this?
 foreach ($badagents as $a) {
 if (stripos($agent,$a)!==false) {
-return 'Deny List User Agent:'.$a;
+return 'Deny List User Agent: '.$a;
 }
 }
 return false;

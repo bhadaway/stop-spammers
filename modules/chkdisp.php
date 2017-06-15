@@ -107,7 +107,7 @@ $emdomain=explode('@',$options['em']);
 if (count($emdomain)==2&&in_array(strtolower($emdomain[1]),$disposables)) {
 // the email is a disposable email address
 // do you really want this guy?
-return 'Disposable em:'.$options['em'];
+return 'Disposable Email: '.$options['em'];
 }
 return false;
 }

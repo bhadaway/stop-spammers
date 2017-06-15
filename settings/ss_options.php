@@ -68,11 +68,13 @@ $options['multicnt']=$multicnt;
 }
 ss_set_options($options);
 extract($options); // extract again to get the new options
+$msg='<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Protection Options</h1>
+<?php if (!empty($msg)) echo "$msg"; ?>
 <form method="post" action="" name="ss">
 <input type="hidden" name="action" value="update" />
 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce;?>" />

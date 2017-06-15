@@ -25,11 +25,13 @@ $wlrequests=array();
 $stats['wlrequests']=$wlrequests;
 ss_set_stats($stats);
 }
+$msg='<div class="notice notice-success"><p>Requests Cleared</p></div>';
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Allow Requests</h1>
+<?php if (!empty($msg)) echo "$msg"; ?>
 <p>When users are blocked they can fill out a form asking to be added to the allow list. Any users that have filled out the form will appear below. Some spam robots fill in any form that they find so their may be some garbage here.</p>
 <?php
 if (count($wlrequests)==0) {
@@ -45,7 +47,7 @@ else {
 </form>  
 <?php
 ?>
-<table style="background-color:#eee" cellspacing="2">
+<table width="100%" style="background-color:#eee" cellspacing="2">
 <thead>
 <tr style="background-color:ivory;text-align:center"><th>Time</th><th>IP</th><th>Email</th><th>Reason</th><th>URL</th></tr>
 </thead>
@@ -54,8 +56,8 @@ else {
 $show='';
 $cont='wlreqs';
 // wlrequs has an array of arrays
-// time,ip,email,author,reasion,info,sname
-// time,ip,email,author,reasion,info,sname
+// time,ip,email,author,reason,info,sname
+// time,ip,email,author,reason,info,sname
 // use the be_load to get badips
 $options=ss_get_options();
 $stats=ss_get_stats();

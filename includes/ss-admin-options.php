@@ -55,13 +55,13 @@ $options=ss_get_options();
 if ($spmcount>0) {
 // steal the Akismet stats CSS format 
 // get the path to the plugin
-echo "<p>Stop Spammers has prevented $spmcount spammers from registering or leaving comments.";
+echo "<p>Stop Spammers has prevented <strong>$spmcount</strong> spammers from registering or leaving comments.";
 echo"</p>";
 } 
 if (count($wlrequests)==1) {
-echo "<p>".count($wlrequests)." user</a> has been denied access and requested that you add them to the Allow List.</p>";
+echo "<p><strong>".count($wlrequests)."</strong> user</a> has been denied access and requested that you add them to the Allow List.</p>";
 } else if (count($wlrequests)>0) {
-echo "<p>".count($wlrequests)." users</a> have been denied access and requested that you add them to the Allow List.</p>";
+echo "<p><strong>".count($wlrequests)."</strong> users</a> have been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
 }
 }
 function ss_row($actions,$comment) {
@@ -73,10 +73,10 @@ $action="";
 // $action.="|";
 // $action.="<a title=\"Check Project HoneyPot\" target=\"_stopspam\" href=\"http://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
 // add the network check
-$whois=SS_PLUGIN_URL.'images/whois.png'; // fix this
-$who="<a title=\"Check WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\"/></a>";
+$whois=SS_PLUGIN_URL.'images/whois.png';
+$who="<a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\"/></a>";
 $stophand=SS_PLUGIN_URL.'images/stop.png';
-$stop="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\"/></a>";
+$stop="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\"/> </a>";
 $action.=" $who $stop";
 // now add the report function
 $email=urlencode($comment->comment_author_email);
@@ -116,7 +116,7 @@ $onclick="onclick=\"sfs_ajax_report_spam(this,'$ID','$blog','$ajaxurl');return f
 }
 if (!empty($email)) {
 $action.="|";
-$action.="<a $exst title=\"Report to Stop Forum Spam (SFS)\" $target $href $onclick class='delete:the-comment-list:comment-$ID::delete=1 delete vim-d vim-destructive'>Report to SFS</a>";
+$action.="<a $exst title=\"Report to Stop Forum Spam (SFS)\" $target $href $onclick class='delete:the-comment-list:comment-$ID::delete=1 delete vim-d vim-destructive'> Report to SFS</a>";
 }
 $actions['check_spam']=$action;
 return $actions;
@@ -193,12 +193,12 @@ exit();
 $hget="http://www.stopforumspam.com/add.php?ip_addr=$ip_addr&api_key=$apikey&email=$email&username=$uname&evidence=$evidence";
 // echo $hget;
 $ret=ss_read_file($hget);
-if (stripos($ret,'data submitted successfully')!==false) {
+if (stripos($ret,'Data Submitted Successfully')!==false) {
 echo $ret;
-} else if (stripos($ret,'recent duplicate entry')!==false) {
-echo ' recent duplicate entry ';
+} else if (stripos($ret,'Recent Duplicate Entry')!==false) {
+echo ' Recent Duplicate Entry ';
 } else {
-echo 'returning from ajax';
+echo 'Returning from AJAX';
 }
 exit();
 }
@@ -232,8 +232,8 @@ if (!empty($check)) {
 $check=trim($check);
 $check=trim($check,'0');
 if (substr($check,0,4)=="ERR:") {
-echo "Access to the Stop Forum Spam Database shows errors\r\n";
-echo "response was $check\r\n";
+echo "Access to the Stop Forum Spam Database Shows Errors\r\n";
+echo "Response Was: $check\r\n";
 }
 // access to the Stop Forum Spam database is working
 $n=strpos($check,'<response success="true">');
@@ -379,7 +379,7 @@ $username=$user_info->display_name;
 $stopper="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" height=\"16px\"/></a>";
 $honeysearch="<a title=\"Check Project HoneyPot\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" height=\"16px\"/></a>";
 $botsearch="<a title=\"Check BotScout\" target=\"_stopspam\" href=\"http://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" height=\"16px\"/></a>";
-$who="<a title=\"WHOIS Lookup\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$signup_ip\"><img src=\"$whois\" height=\"16px\"/></a>";
+$who="<br /><a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$signup_ip\"><img src=\"$whois\" height=\"16px\"/></a>";
 $action=" $who $stopper $honeysearch $botsearch";
 $options=ss_get_options();
 $apikey=$options['apikey'];

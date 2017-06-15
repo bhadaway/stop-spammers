@@ -213,7 +213,7 @@ $stats[$v1]=0;
 }	
 $addonstats=array();
 $stats['addonstats']=$addonstats;
-$msg='<p class="notice notice-success">Summary Cleared</p>';
+$msg='<div class="notice notice-success"><p>Summary Cleared</p></div>';
 ss_set_stats($stats);
 extract($stats); // extract again to get the new options
 }
@@ -228,9 +228,9 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Summary</h1>
-<p>Version <?php echo SS_VERSION; ?></p>
+<p>Version <span class="green"><?php echo SS_VERSION; ?></span></p>
 <?php
-if (!empty($msg)) echo "<h2>$msg</h2>";
+if (!empty($msg)) echo "$msg";
 $current_user_name=wp_get_current_user()->user_login;
 if ($current_user_name=='admin') {
 echo "<p style=\"color:red;font-style::italic;\">You are using the admin id \"admin\". This is 
@@ -242,7 +242,7 @@ Here is discussion on WordPress.org:
 $showcf=false; // hide this for now
 if ($showcf && array_key_exists('HTTP_CF_CONNECTING_IP',$_SERVER)&& !function_exists( 'cloudflare_init' ) &&!defined('W3TC') ){
 echo "<p style=\"color:red;font-style::italic;\">
-Cloudflare Remote IP address detected. Please install the <a href=\"http://wordpress.org/plugins/cloudflare/\" target=\"_blank\">Cloudflare Plugin</a>.
+Cloudflare Remote IP address detected. Please install the <a href=\"https://wordpress.org/plugins/cloudflare/\" target=\"_blank\">Cloudflare Plugin</a>.
 This plugin works best with the Cloudflare plugin when yout website is using Cloudflare.
 </p>";
 }
@@ -255,15 +255,15 @@ el.style.display="block";
 return false;
 }
 </script>
-<h2>Stop Spammers in total has stopped <a style="text-decoration:none;color:black;" href="" onclick="showcheat();return false;"><?php echo $spmcount; ?></a> spammers since <?php echo $spmdate; ?>.</h2>
-<div id="cheater" style="display:none;">
+<p>Stop Spammers in total has stopped <a href="" onclick="showcheat();return false;" class="green"><?php echo $spmcount; ?></a> spammers since <?php echo $spmdate; ?>.</p>
+<div id="cheater" style="display:none">
 This is cheating! Enter a new Total Spam Count:<br />
 <form method="post" action="">
 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce;?>" />
-<input type="hidden" name="update_total" value="update total" />
-Count:<input type="text" name="spmcount" value="<?php echo $spmcount;?>" /><br />
-Date: <input type="text" name="spmdate" value="<?php echo $spmdate;?>" /><br />
-<p class="submit" style="clear:both;"><input class="button-primary" value="update total spam" type="submit" /></p>
+<input type="hidden" name="update_total" value="Update Total" />
+Count:<input type="text" name="spmcount" value="<?php echo $spmcount; ?>" /><br />
+Date: <input type="text" name="spmdate" value="<?php echo $spmdate; ?>" /><br />
+<p class="submit" style="clear:both"><input class="button-primary" value="Update Total Spam" type="submit" /></p>
 </form>
 </p>
 </div>
@@ -271,7 +271,7 @@ Date: <input type="text" name="spmdate" value="<?php echo $spmdate;?>" /><br />
 }
 if ($spcount>0) {
 ?>
-<h2>Stop Spammers has stopped <?php echo $spcount; ?> spammers since <?php echo $spdate; ?>.</h2>
+<p>Stop Spammers has stopped <span class="green"><?php echo $spcount; ?></span> spammers since <?php echo $spdate; ?>.</p>
 <?php 
 }
 $num_comm = wp_count_comments( );
@@ -303,23 +303,11 @@ $summry.= "<div class='stat-box'>$key: ".$data[0]."</div>";
 }
 if (!empty($summry)) {
 ?>
-<hr />
-<fieldset>
-<legend><span style="font-weight:bold;font-size:1.2em">Summary of Spam</span></legend>
-<?php
-echo $summry;
-?>
-<form method="post" action="">
-<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce;?>" />
-<input type="hidden" name="clear" value="clear summary" />
-<p class="submit" style="clear:both"><input class="button-primary" value="Clear Summary" type="submit" /></p>
-</form>
-</fieldset>
 <?php
 }
 $ip =ss_get_ip();
 ?>
-<p>Your current IP address is: <span style="font-weight:bold;font-size:1.1em"><?php echo $ip;?></span><p>
+<p>Your current IP address is: <span class="green"><?php echo $ip; ?></span><p>
 <?php
 // check the IP to see if we are local
 $ansa=be_load('chkvalidip',ss_get_ip());
@@ -344,7 +332,18 @@ $sname=$_SERVER["SCRIPT_NAME"];
 }
 if (strpos($sname,'?')!==false) $sname=substr($sname,0,strpos($sname,'?'));
 ?>
-<h2>Support and Help Improve Stop Spammers</h2>
+<fieldset>
+<legend><span style="font-weight:bold;font-size:1.2em">Summary of Spam</span></legend>
+<?php
+echo $summry;
+?>
+<form method="post" action="">
+<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+<input type="hidden" name="clear" value="clear summary" />
+<p class="submit" style="clear:both"><input class="button-primary" value="Clear Summary" type="submit" /></p>
+</form>
+</fieldset>
+<h2>Get Support and Help Improve Stop Spammers</h2>
 <p>Please post all issues, bugs, typos, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
 <h2>Plugin Options</h2>
 <ul>
@@ -360,7 +359,9 @@ if (strpos($sname,'?')!==false) $sname=substr($sname,0,strpos($sname,'?'));
 <li><a href="?page=ss_diagnostics">Diagnostics</a>: You can use this to test an IP, email or, comment against all of the options. This can tell you more about why an IP address might fail. It will also show you any options that might crash the plugin on your site due to system settings.</li>
 </ul>
 <h2>Beta Options</h2>
-<p class="notice notice-warning">These features are to be considered experimental. Use with caution and at your own risk.</p>
+<span class="notice notice-warning" style="display:block">
+<p>These features are to be considered experimental. Use with caution and at your own risk.</p>
+</span>
 <ul>
 <li><a href="?page=ss_option_maint">DB Cleanup</a>: Delete leftover options from deleted plugins or anything that appears suspicious.</li>
 <li><a href="?page=ss_threat_scan">Threat Scan</a>: A simple scan to find possibly malicious code.</li>

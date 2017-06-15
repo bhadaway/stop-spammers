@@ -11,7 +11,7 @@ foreach($post as $key=>$data) {
 foreach($bbcodes as $bb) {
 // sfs_debug_msg("looking for $key - $bb in $data");
 if (stripos($data,$bb)!==false) {
-return "bbcode $bb in $key";
+return "BBCode $bb in $key";
 }
 }
 }

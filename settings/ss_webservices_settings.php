@@ -62,11 +62,13 @@ $options[$check]=$v;
 ss_set_options($options);
 extract($options); // extract again to get the new options
 }
+$msg='<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Web Services</h1>
+<?php if (!empty($msg)) echo "$msg"; ?>
 <p>There are many services that can be used to check for spam or protect your website against spammers. Most require a key so that only registered users can use their services. All of the services here can be used by Stop Spammers and all are free.</p>
 <form method="post" action="">
 <input type="hidden" name="action" value="update" />

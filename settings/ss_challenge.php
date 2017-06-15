@@ -69,15 +69,15 @@ $msg="You cannot use Solve Media CAPTCHA unless you have entered an API key";
 }
 ss_set_options($options);
 extract($options); // extract again to get the new options
-} 
+}
+$update='<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Challenge and Deny</h1>
-<?php
-if (!empty($msg)) echo "<span style=\"color:red;size=2em;\">$msg</span>";
-?>
+<?php if (!empty($update)) echo "$update"; ?>
+<?php if (!empty($msg)) echo "<span style=\"color:red;size=2em;\">$msg</span>"; ?>
 <form method="post" action="">
 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce;?>" />
 <input type="hidden" name="action" value="update challenge" />

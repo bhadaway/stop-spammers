@@ -32,7 +32,7 @@ $query="https://sb-ssl.google.com/safebrowsing/api/lookup?client=stop-spammer-pl
 $r=$this->getafile($query);
 if (!empty($r)) {
 if (strpos($r,'phishing')!==false||strpos($r,'malware')!==false) {
-return 'Google Safe:'.$r;
+return 'Google Safe: '.$r;
 }
 }
 }

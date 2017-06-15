@@ -36,6 +36,12 @@ OR
 
 == Changelog ==
 
+= 7.0.3 =
+* continued general cleanup
+* continued design improvements
+* fixed SFS report messages
+* removed email notifications for admin logins
+
 = 7.0.2 =
 * continued general cleanup
 * continued design improvements

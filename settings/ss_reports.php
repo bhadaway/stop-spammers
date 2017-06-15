@@ -35,30 +35,20 @@ $spdate=$now;
 $stats['spdate']=$spdate;
 ss_set_stats($stats);
 extract($stats); // extract again to get the new options
-$msg="History Log Cleared";
+$msg="<div class='notice notice-success'><p>Activity Log Cleared</p></div>";
 }
 if (array_key_exists('ss_stop_update_log_size',$_POST)) {
 // update log size
 if (array_key_exists('ss_sp_hist',$_POST)){
 $ss_sp_hist=stripslashes($_POST['ss_sp_hist']);
 $options['ss_sp_hist']=$ss_sp_hist;
-$msg="Log size updated";
+$msg="<div class='notice notice-success'><p>Options Updated</p></div>";
 // update the options
 ss_set_options($options);
 }
 }
 }
-if (!empty($msg)) echo "<h3>$msg</h3>";
-if ($spmcount>0) {
-?>
-<h2>Stop Spammers has stopped <?php echo $spmcount; ?> spammers since <?php echo $spmdate; ?>.</h2>
-<?php 
-}
-if ($spcount>0) {
-?>
-<h2>Stop Spammers has stopped <?php echo $spcount; ?> spammers since <?php echo $spdate; ?>.</h2>
-<?php 
-}
+if (!empty($msg)) echo "$msg";
 $num_comm = wp_count_comments( );
 $num = number_format_i18n($num_comm->spam);
 if ($num_comm->spam>0 && SS_MU!='Y') {	
@@ -75,8 +65,6 @@ if ($num_comm->moderated>0 && SS_MU!='Y') {
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
-<hr />
-<h2>Recent Activity</h2>
 <script>
 // setTimeout(function(){
 // window.location.reload(1);
@@ -109,7 +97,7 @@ Select the number of items to save in the History. Keep this small.<br />
 </p>
 <?php
 if (empty($hist)) {
-echo "<p>Nothing in Logs</p>";
+echo "<p>Nothing in logs.</p>";
 } else {
 ?>
 <table style="width:100%;background-color:#eee" cellspacing="2">
@@ -130,7 +118,7 @@ if (function_exists('is_multisite') && is_multisite()) {
 ?>
 </tr>
 <?php
-// sort hist by date descending
+// sort list by date descending
 krsort($hist);
 foreach($hist as $key=>$data) {
 // $hist[$now]=array($ip,$email,$author,$sname,'begin');
@@ -150,7 +138,7 @@ $reason="passed";
 $stopper="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\" /></a>";
 $honeysearch="<a title=\"Check project HoneyPot\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$ip\"><img src=\"$search\" height=\"16px\" /></a>";
 $botsearch="<a title=\"Check BotScout\" target=\"_stopspam\" href=\"http://botscout.com/search.htm?stype=q&sterm=$ip\"><img src=\"$search\" height=\"16px\" /></a>";
-$who="<br /><a title=\"WHOIS Lookup\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
+$who="<br /><a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
 echo "<tr style=\"background-color:white\">
 <td>$dt</td>
 <td>$em</td>

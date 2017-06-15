@@ -34,7 +34,7 @@ $stime=$_COOKIE['ss_stop_spammers_time'];
 $tm=strtotime("now")-$stime;
 if ($tm>0&&$tm<=$sesstime) { // zero seconds is wrong, too - it means that session was set somewhere
 // takes longer than 2 seconds to really type a comment
-return "session speed - $tm seconds";
+return "Session Speed - $tm seconds";
 } 
 }
 }

@@ -19,7 +19,9 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Threat Scan</h1>
-<p class="notice notice-warning">This feature is to be considered experimental. Use with caution and at your own risk.</p>
+<div class="notice notice-warning">
+<p>This feature is to be considered experimental. Use with caution and at your own risk.</p>
+</div>
 <p>This is a very simple threat scan that looks for things out of place in the content directory as well as the database.</p>
 <p>The process searches PHP files for the occurrence of the eval() function, which, although a valuable part of PHP is also the door that hackers use in order to infect systems. The eval() function is avoided by many programmers unless there is a real need. It is often used by hackers to hide their malicious code or to inject future threats into infected systems. If you find a theme or a plugin that uses the eval() function it is safer to delete it and ask the author to provide a new version that does not use this function.</p>
 <p>The scan can take a few seconds and on larger or slower systems can time-out.</p>

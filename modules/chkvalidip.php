@@ -14,7 +14,7 @@ return 'Invalid IP: '.$ip;
 }
 // check IPv4 for local private IP addresses
 if ($ip=='127.0.0.1') {
-return 'Accessing site through localhost';
+return 'Accessing Site Through localhost';
 }
 $priv=array(
 array('100000000000','100255255255'),
@@ -39,28 +39,28 @@ return $e;
 */
 // check for IPv6
 $lip="127.0.0.1";
-if (substr($ip,0,2)=='FB'||substr($ip,0,2)=='fb') 'Local IP Address:'.$ip;
+if (substr($ip,0,2)=='FB'||substr($ip,0,2)=='fb') 'Local IP Address: '.$ip;
 // see if server and browser are running on same server
 if (array_key_exists('SERVER_ADDR',$_SERVER)) {
 $lip=$_SERVER["SERVER_ADDR"];
-if ($ip==$lip) return 'IP same as server:'.$ip;
+if ($ip==$lip) return 'IP Same as Server: '.$ip;
 } else if (array_key_exists('LOCAL_ADDR',$_SERVER)) { // IIS 7?
 $lip=$_SERVER["LOCAL_ADDR"];
-if ($ip==$lip) return 'IP same as server:'.$ip;
+if ($ip==$lip) return 'IP Same as Server: '.$ip;
 } else  { // IIS 6 no server address use a gethost by name? hope we never get here
 try {
 $lip=@gethostbyname($_SERVER['SERVER_NAME']);
-if ($ip==$lip) return 'IP same as server:'.$ip;
+if ($ip==$lip) return 'IP Same as Server: '.$ip;
 } catch (Exception $e) {
 // can't make this work - ignore
 }
 } 			
-// we can do this with ip4 addresses - check if same /24 subnet
+// we can do this with IPv4 addresses - check if same /24 subnet
 $j=strrpos($ip,'.');
 if ($j===false) return false;
 $k=strrpos($lip,'.');
 if ($k===false) return false;
-if (substr($ip,0,$j)==substr($lip,0,$k)) return 'IP same /24 subnet as server'.$ip;
+if (substr($ip,0,$j)==substr($lip,0,$k)) return 'IP same /24 subnet as server '.$ip;
 return false;
 }
 // borrowed this code - not sure of how good it is or even what it does.

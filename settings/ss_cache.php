@@ -40,13 +40,15 @@ $goodips=array();
 $stats['badips']=$badips;
 $stats['goodips']=$goodips;
 ss_set_stats($stats);
-echo "<h2>Cache Cleared</h2>";
-}	
+echo "<div class='notice notice-success'><p>Cache Cleared</p></div>";
+}
+$msg='<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Cache</h1>
+<?php if (!empty($msg)) echo "$msg"; ?>
 <p>Whenever a user tries to leave a comment, register, or login, they are recorded in the Good Cache if they pass or the Bad Cache if they fail. If a user is blocked from access, they are added to the Bad Cache. You can see the caches here. The caches clear themselves over time, but if you are getting lots of spam it is a good idea to clear these out manually by pressing the "Clear Cache" button.</p>
 <form method="post" action="">
 <input type="hidden" name="update_options" value="update" />
@@ -135,7 +137,7 @@ $onclick="onclick=\"sfs_ajax_process('$key','$cont','add_black','$ajaxurl');retu
 $show.=" <a href=\"\" $onclick title=\"Add to $key Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a> ";
 $onclick="onclick=\"sfs_ajax_process('$key','$cont','add_white','$ajaxurl');return false;\"";
 $show.=" <a href=\"\" $onclick title=\"Add to $key Allow List\" alt=\"Add to Allow List\" ><img src=\"$tup\" height=\"16px\" /></a> ";
-$who="<a title=\"whois\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a> ";
+$who="<a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a> ";
 $show.=$who;
 $show.="<br />";
 }

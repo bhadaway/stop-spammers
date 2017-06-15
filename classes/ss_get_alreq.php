@@ -7,8 +7,8 @@ extract($stats);
 extract($options);
 $trash=SS_PLUGIN_URL.'images/trash.png';
 $tdown=SS_PLUGIN_URL.'images/tdown.png';
-$tup=SS_PLUGIN_URL.'images/tup.png'; // fix this
-$whois=SS_PLUGIN_URL.'images/whois.png'; // fix this
+$tup=SS_PLUGIN_URL.'images/tup.png';
+$whois=SS_PLUGIN_URL.'images/whois.png';
 $ajaxurl=admin_url('admin-ajax.php');
 $show='';
 $nwlrequests=array();
@@ -37,7 +37,7 @@ $trsh="<a href=\"\" onclick=\"sfs_ajax_process('$key','wlreq','delete_wl_row','$
 $addtodeny="<a href=\"\"onclick=\"sfs_ajax_process('$value[0]','$container','add_black','$ajaxurl');return false;\" title=\"Add $value[0] to Deny List\" alt=\"Add $value[0] to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a>";
 $addtoallow="<a href=\"\"onclick=\"sfs_ajax_process('$value[0]','$container','add_white','$ajaxurl');return false;\" title=\"Add $value[0] to Allow List\" alt=\"Add $value[0] to Allow List\" ><img src=\"$tup\" height=\"16px\" /></a>";
 $show.="<td>$key $trsh $addtodeny $addtoallow</td>";
-$who="<a title=\"whois\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$value[0]\"><img src=\"$whois\" height=\"16px\"/></a> ";
+$who="<br /><a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$value[0]\"><img src=\"$whois\" height=\"16px\"/></a> ";
 $trsh="<a href=\"\" onclick=\"sfs_ajax_process('$value[0]','wlreq','delete_wlip','$ajaxurl');return false;\" title=\"Delete all $value[0]\" alt=\"Delete all $value[0]\" ><img src=\"$trash\" height=\"16px\" /></a>";
 $show.="<td>$value[0] $who $trsh</td>";
 $trsh="<a href=\"\" onclick=\"sfs_ajax_process('$value[1]','wlreq','delete_wlem','$ajaxurl');return false;\" title=\"Delete all $value[1]\" alt=\"Delete all $value[1]\" ><img src=\"$trash\" height=\"16px\" /></a>";

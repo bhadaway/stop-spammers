@@ -428,7 +428,7 @@ $defaults=array(
 'ss_sp_cache_em'=>4,
 'redirurl'=>'', 
 'logfilesize'=>0,
-'rejectmessage'=>"Access Denied<br/>"
+'rejectmessage'=>"Access Denied<br />"
 );
 $defaultCOUNTRY=array( // all yes - changed to no
 'chkAD'=>'N',
