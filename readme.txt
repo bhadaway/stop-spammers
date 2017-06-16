@@ -36,6 +36,9 @@ OR
 
 == Changelog ==
 
+= 7.0.4 =
+* fixed login issue
+
 = 7.0.3 =
 * continued general cleanup
 * continued design improvements
