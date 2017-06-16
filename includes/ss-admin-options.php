@@ -56,12 +56,12 @@ if ($spmcount>0) {
 // steal the Akismet stats CSS format 
 // get the path to the plugin
 echo "<p>Stop Spammers has prevented <strong>$spmcount</strong> spammers from registering or leaving comments.";
-echo"</p>";
+echo "</p>";
 } 
 if (count($wlrequests)==1) {
-echo "<p><strong>".count($wlrequests)."</strong> user</a> has been denied access and requested that you add them to the Allow List.</p>";
+echo "<p><strong>".count($wlrequests)."</strong> user has been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
 } else if (count($wlrequests)>0) {
-echo "<p><strong>".count($wlrequests)."</strong> users</a> have been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
+echo "<p><strong>".count($wlrequests)."</strong> users have been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
 }
 }
 function ss_row($actions,$comment) {
@@ -76,7 +76,7 @@ $action="";
 $whois=SS_PLUGIN_URL.'images/whois.png';
 $who="<a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\"/></a>";
 $stophand=SS_PLUGIN_URL.'images/stop.png';
-$stop="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\"/> </a>";
+$stop="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\"/> </a>";
 $action.=" $who $stop";
 // now add the report function
 $email=urlencode($comment->comment_author_email);
@@ -100,7 +100,7 @@ if (is_array($urls3)) $evidence.="\r\n".implode("\r\n",$urls3);
 $evidence=urlencode(trim($evidence,"\r\n"));
 if (strlen($evidence)>128) $evidence=substr($evidence,0,125).'...';
 $target=" target=\"_blank\" ";
-$href="href=\"http://www.stopforumspam.com/add.php?username=$uname&email=$email&ip_addr=$ip&evidence=$evidence&api_key=$apikey\" ";
+$href="href=\"https://www.stopforumspam.com/add.php?username=$uname&email=$email&ip_addr=$ip&evidence=$evidence&api_key=$apikey\" ";
 $onclick='';
 $blog=1;
 global $blog_id;
@@ -141,7 +141,7 @@ if(!current_user_can('manage_options')) return;
 // get the configuration items
 $options=get_option('ss_stop_sp_reg_options'); // for some reason the main call is not available?
 if (empty($options)) { // can't happen?
-echo "No Options set";
+echo " No Options Set";
 exit();
 }
 // print_r($options);
@@ -149,7 +149,7 @@ extract($options);
 // get the comment_id parameter	
 $comment_id=urlencode($_GET['comment_id']);
 if (empty($comment_id)) {
-echo "No comment id found";
+echo " No Comment ID Found";
 exit();
 }
 // need to pass the blog id also
@@ -161,7 +161,7 @@ if (function_exists('switch_to_blog')) switch_to_blog($blog);
 // get the comment
 $comment=get_comment( $comment_id, ARRAY_A );
 if (empty($comment)) {
-echo "No comment found for $comment_id";
+echo " No Comment Found for $comment_id";
 exit();
 }
 // print_r($comment);
@@ -190,15 +190,15 @@ if (empty($apikey)) {
 echo "Cannot Report Spam without API Key";
 exit();
 }
-$hget="http://www.stopforumspam.com/add.php?ip_addr=$ip_addr&api_key=$apikey&email=$email&username=$uname&evidence=$evidence";
+$hget="https://www.stopforumspam.com/add.php?ip_addr=$ip_addr&api_key=$apikey&email=$email&username=$uname&evidence=$evidence";
 // echo $hget;
 $ret=ss_read_file($hget);
-if (stripos($ret,'Data Submitted Successfully')!==false) {
+if (stripos($ret,'data submitted successfully')!==false) {
 echo $ret;
-} else if (stripos($ret,'Recent Duplicate Entry')!==false) {
+} else if (stripos($ret,'recent duplicate entry')!==false) {
 echo ' Recent Duplicate Entry ';
 } else {
-echo 'Returning from AJAX';
+echo ' Returning from AJAX';
 }
 exit();
 }
@@ -208,7 +208,7 @@ $urls1=array();
 $urls2=array();
 $urls3=array();
 if (is_array($post)&&is_array($post[1])) $urls1 = array_unique($post[1]); else $urls1 = array(); 
-// bbcode
+// BBCode
 preg_match_all('/\[url=(.+)\]/iU', $content, $post, PREG_PATTERN_ORDER);
 if (is_array($post)&&is_array($post[0])) $urls2 = array_unique($post[0]); else $urls2 = array(); 
 $urls3=array_merge($urls1,$urls2);
@@ -220,31 +220,31 @@ return $urls3;
 }
 function sfs_handle_ajax_check($data) {
 if (!ipChkk()) {
-echo "not enabled";
+echo " Not Enabled";
 exit();
 }
 // this does a call to the SFS site to check a known spammer
 // returns success or not
-$query="http://www.stopforumspam.com/api?ip=91.186.18.61";
+$query="https://www.stopforumspam.com/api?ip=91.186.18.61";
 $check='';
 $check=ss_sfs_reg_getafile($query);
 if (!empty($check)) {
 $check=trim($check);
 $check=trim($check,'0');
 if (substr($check,0,4)=="ERR:") {
-echo "Access to the Stop Forum Spam Database Shows Errors\r\n";
-echo "Response Was: $check\r\n";
+echo " Access to the Stop Forum Spam Database Shows Errors\r\n";
+echo " Response Was: $check\r\n";
 }
 // access to the Stop Forum Spam database is working
 $n=strpos($check,'<response success="true">');
 if ($n===false) {
-echo "Access to the Stop Forum Spam Database is not working\r\n";
-echo "response was\r\n $check\r\n";
+echo " Access to the Stop Forum Spam Database is Not Working\r\n";
+echo " Response was\r\n $check\r\n";
 } else {
-echo "Access to the Stop Forum Spam Database is working";
+echo " Access to the Stop Forum Spam Database is Working";
 }
 } else {
-echo "No response from the Stop Forum Spam API Call\r\n";
+echo " No Response from the Stop Forum Spam API Call\r\n";
 }
 return;
 }
@@ -260,7 +260,7 @@ function sfs_handle_ajax_sfs_process_watch($data) {
 // get the things out of the get
 // check for valid get
 if (!array_key_exists('func',$_GET)) {
-echo "func not found";
+echo " Function Not Found";
 exit();
 }
 $trash=SS_PLUGIN_URL.'images/trash.png';
@@ -376,7 +376,7 @@ $user_info = get_userdata($user_id);
 $useremail=urlencode($user_info->user_email); // for reporting
 $userurl=urlencode($user_info->user_url); 
 $username=$user_info->display_name; 
-$stopper="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" height=\"16px\"/></a>";
+$stopper="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" height=\"16px\"/></a>";
 $honeysearch="<a title=\"Check Project HoneyPot\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" height=\"16px\"/></a>";
 $botsearch="<a title=\"Check BotScout\" target=\"_stopspam\" href=\"http://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" height=\"16px\"/></a>";
 $who="<br /><a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$signup_ip\"><img src=\"$whois\" height=\"16px\"/></a>";
@@ -384,7 +384,7 @@ $action=" $who $stopper $honeysearch $botsearch";
 $options=ss_get_options();
 $apikey=$options['apikey'];
 if (!empty($apikey)) {
-$report="<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"http://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\"/></a>";
+$report="<a title=\"Report to SFS\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\"/></a>";
 $action.=$report;
 }
 return $ipline.$action;

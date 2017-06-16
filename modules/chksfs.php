@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) exit;
 class chksfs extends be_module {
 public function process($ip,&$stats=array(),&$options=array(),&$post=array()) {
 // only do this with posts that have an email or login
-$query="http://www.stopforumspam.com/api?ip=$ip";
+$query="https://www.stopforumspam.com/api?ip=$ip";
 $check='';
 $check=$this->getafile($query,'GET');
 if (empty($check)) return false;

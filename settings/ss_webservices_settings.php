@@ -78,7 +78,7 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 <input size="32" name="apikey" type="text" value="<?php echo $apikey; ?>" /><br />
 <p>Enable Stop Forum Spam Lookups: <input name="chksfs" type="checkbox" value="Y" <?php if ($chksfs=='Y') echo "checked=\"checked\""; ?> /> Check to enable SFS lookups<br />
 You do not need an API key to check the Stop Forum Spam database, but if you want to report any
-spam that you find, you need to provide it here. You can register and get an API key at <a href="http://www.stopforumspam.com/keys" target="_blank">stopforumspam.com</a>.<br />
+spam that you find, you need to provide it here. You can register and get an API key at <a href="https://www.stopforumspam.com/keys" target="_blank">stopforumspam.com</a>.<br />
 You can set the minimum settings to allow possible spammers to use your site.<br />
 You may wish to forgive spammers with few incidents or no recent activity. I would recommend that to be on the safe side, you should block users who appear on the spam database unless they specifically ask to be Allow Listed.<br />
 Allowed values are 0 to 9999. Only numbers are accepted.</p>

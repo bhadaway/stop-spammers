@@ -5,11 +5,11 @@ Plugin URI: https://wordpress.org/plugins/stop-spammer-registrations-plugin/
 Description: The Stop Spammers plugin blocks spammers from leaving comments or logging in. It protects sites from robot registrations and malicious attacks.
 Author: Bryan Hadaway
 Author URI: https://calmestghost.com/
-Version: 7.0.4
+Version: 7.0.5
 License: https://www.gnu.org/licenses/gpl.html
 */
 // networking requires a couple of globals
-define('SS_VERSION', '7.0.4');
+define('SS_VERSION', '7.0.5');
 define('SS_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 define('SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ));
 define('SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ).'data/');

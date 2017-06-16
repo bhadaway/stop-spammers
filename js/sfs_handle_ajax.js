@@ -40,19 +40,19 @@ ajax_url: url
 jQuery.get(ajaxurl, data, sfs_ajax_return_spam);
 }
 function sfs_ajax_return_spam(response) {
-sfs_ajax_who.innerHTML="Spam Reported";
+sfs_ajax_who.innerHTML=" Spam Reported";
 sfs_ajax_who.style.color="green";
 sfs_ajax_who.style.fontWeight="bolder";
-if (response.indexOf('Data submitted successfully.')>0) {
+if (response.indexOf('data submitted successfully')>0) {
 return false;
 }
-if (response.indexOf('Recent duplicate entry.')>0) {
-sfs_ajax_who.innerHTML="Spam Already Reported";
-sfs_ajax_who.style.color="brown";
+if (response.indexOf('recent duplicate entry')>0) {
+sfs_ajax_who.innerHTML=" Spam Already Reported";
+sfs_ajax_who.style.color="yellow";
 sfs_ajax_who.style.fontWeight="bolder";
 return false;
 }
-sfs_ajax_who.innerHTML="Status: "+response;
+sfs_ajax_who.innerHTML=" Status: "+response;
 sfs_ajax_who.style.color="black";
 sfs_ajax_who.style.fontWeight="bolder";
 alert(response);

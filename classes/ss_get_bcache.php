@@ -16,7 +16,7 @@ $ajaxurl=admin_url('admin-ajax.php');
 $show='';
 foreach ($badips as $key => $value) {
 $who="<a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"http://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\"/></a>";
-$show.="<a href=\"http://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
+$show.="<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
 // try AJAX on the delete from bad cache
 $onclick="onclick=\"sfs_ajax_process('$key','$container','$cachedel','$ajaxurl');return false;\"";
 $show.=" <a href=\"\" $onclick title=\"Delete $key from Cache\" alt=\"Delete $key from Cache\" ><img src=\"$trash\" height=\"16px\" /></a> ";			

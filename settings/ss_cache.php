@@ -129,7 +129,7 @@ $show=be_load('ss_get_bcache','x',$stats,$options);
 $show='';
 $cont='badips';
 foreach ($badips as $key => $value) {
-$show.="<a href=\"http://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
+$show.="<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
 // try ajax on the delete from bad cache
 $onclick="onclick=\"sfs_ajax_process('$key','$cont','delete_bcache','$ajaxurl');return false;\"";
 $show.=" <a href=\"\" $onclick title=\"Delete $key from Cache\" alt=\"Delete $key from Cache\" ><img src=\"$trash\" height=\"16px\" /></a> ";			
@@ -159,7 +159,7 @@ $show=be_load('ss_get_gcache','x',$stats,$options);
 /*$show='';
 $cont='goodips';
 foreach ($goodips as $key => $value) {
-$show.="<a href=\"http://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
+$show.="<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
 // try ajax on the delete from bad cache
 $onclick="onclick=\"sfs_ajax_process('$key','$cont','delete_gcache','$ajaxurl');return false;\"";
 $show.=" <a href=\"\" $onclick title=\"Delete $key from Cache\" alt=\"Delete $key from Cache\" ><img src=\"$trash\" height=\"16px\" /></a> ";			
