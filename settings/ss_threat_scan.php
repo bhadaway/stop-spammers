@@ -19,6 +19,9 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 ?>
 <div id="ss-plugin" class="wrap">
 <h1>Stop Spammers — Threat Scan</h1>
+<div class="notice notice-warning">
+<p>This feature is to be considered experimental. Use with caution and at your own risk.</p>
+</div>
 <p>This is a very simple threat scan that looks for things out of place in the content directory as well as the database.</p>
 <p>The process searches PHP files for the occurrence of the eval() function, which, although a valuable part of PHP is also the door that hackers use in order to infect systems. The eval() function is avoided by many programmers unless there is a real need. It is often used by hackers to hide their malicious code or to inject future threats into infected systems. If you find a theme or a plugin that uses the eval() function it is safer to delete it and ask the author to provide a new version that does not use this function.</p>
 <p>The scan can take a few seconds and on larger or slower systems can time-out.</p>
@@ -64,14 +67,12 @@ INSTR(LCASE(post_author), 'eval (') +
 INSTR(LCASE(post_title), 'eval (') +
 INSTR(LCASE(post_name), 'eval (') +
 INSTR(LCASE(guid), 'eval (') +
-IINSTR(LCASE(post_content), 'eval (') +
+INSTR(LCASE(post_content), 'eval (') +
 INSTR(LCASE(post_content), 'document.write(unescape(') +
 INSTR(LCASE(post_content), 'try{window.onload') +
 INSTR(LCASE(post_content), 'setAttribute(\'src\'') +
-INSTR(LCASE(post_mime_type), 'script') +
-INSTR(LCASE(document.write(string.fromcharcode), 'script')) >0
+INSTR(LCASE(post_mime_type), 'script') > 0
 ";
-// echo " <br /> $sql <br />";
 flush();
 $myrows = $wpdb->get_results( $sql );
 if ($myrows) {
@@ -279,7 +280,7 @@ $badguys=array(
 '(gz'.'inflate'=>'gzip inflate often used to hide code',
 'UA-27917097-1'=>'Bogus Google Analytics code',
 'w.wpquery.o'=>'Malicious jquery in bootleg plugin or theme',
-"<scr'+"=>'Obfuscated script tag, usually in bootleg plugin or theme'
+'<scr\\\'+'=>'Obfuscated script tag, usually in bootleg plugin or theme'
 );
 $sql="select option_id,option_value,option_name
 from $ptab where
