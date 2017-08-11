@@ -1,6 +1,6 @@
 .green{color:#4aa863}
 
-#toplevel_page_stop_spammers .wp-menu-image img{max-height:20px;padding:7px 0 0}
+#toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image{max-height:20px;padding:7px 0 0}
 
 #ss-plugin *{box-sizing:border-box}
 
@@ -11,6 +11,8 @@
 #ss-plugin input[type="text"]{max-width:400px}
 
 #ss-plugin fieldset{width:100%;padding:15px;border:1px solid #4aa863;margin:30px 0 0}
+
+#ss-plugin .phpinfodisplay table{width:100%}
 
 #ss-plugin td{padding:10px}
 

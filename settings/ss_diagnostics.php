@@ -164,6 +164,7 @@ echo "<br />Memory used, peak: $m1, $m2<br />";
 }
 ?>
 </fieldset>
+<br />
 <div style="width:50%;float:left">
 <h2>Display All Options</h2>
 <p>You can dump all options here (useful for debugging): </p>
@@ -236,30 +237,11 @@ $to=get_option('admin_email');
 $f=file_get_contents($dfile);
 $ff=wordwrap($f,70,"\r\n");
 ?>
-<p>The plugin displays a log of errors that it has found. 
-It appears that you have generated some errors. 
-You can use this to debug problems or notify the plugin author that the plugin has problems on your system.</p>
-<fieldset>
-<legend><span style="font-weight:bold;font-size:1.2em">Send Debug Report</span></legend>
-<p>This is an email form and should bring up your email client when clicked. If it doesn't you can copy the report
-information and paste it into an email message and send to bhadaway@gmail.com. This form will not work
-with all browsers and configurations.</p>
-<form method="get" target="_blank" action="mailto:bhadaway@gmail.com">
-<input type="hidden" name="subject" value="Debug Report">
-<table>
-<tr><td>From:</td><td><input type="text" name="from" value="<?php echo $to; ?>"></td></tr>
-<tr><td>Log File:</td><td><textarea rows="12" cols="71" name="body"><?php echo $ff; ?></textarea></td></tr>
-</table>
-<input type="submit" value="Send"><br />
-<p><em>(If pressing enter does nothing, either your email client cannot handle the form submit, or the log file is too big. If
-this is the case, you will have to copy the log file and paste it into an email to bhadaway@gmail.com.)</em></p>
-</form> 
-</fieldset>
 <?php
 if (array_key_exists('ss_stop_spammers_control',$_POST)) $nonce=$_POST['ss_stop_spammers_control'];
 if (!empty($nonce) && wp_verify_nonce($nonce,'ss_stopspam_update')) { 
 if (array_key_exists('showdebug',$_POST)) {
-echo "<h3>debug output</h3><pre>$f</pre><h3>end of file</h3>";
+echo "<p><strong>Debug Output:</strong></p><pre>$f</pre><p><strong>end of file (if empty, there are no errors to display)</p></strong>";
 }
 }
 $nonce=wp_create_nonce('ss_stopspam_update');
@@ -278,7 +260,7 @@ $nonce=wp_create_nonce('ss_stopspam_update');
 <p class="submit"><input class="button-primary" name="killdebug" value="Delete Debug File" type="submit" /></p>
 </form>
 </div>
-<br style="clear:both" />
+<br style="clear:both" /><br />
 <?php	    
 }
 $ini='';
@@ -292,7 +274,7 @@ $pinf=false;
 } 
 if ($pinf) {
 ?>
-<a href="" onclick="document.getElementById('shpinf').style.display='block';return false;">Show phpinfo</a>
+<a href="" onclick="document.getElementById('shpinf').style.display='block';return false;" class="button-primary">Show PHP Info</a>
 <?php
 ob_start();
 phpinfo();
