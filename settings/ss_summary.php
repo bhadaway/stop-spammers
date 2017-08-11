@@ -344,7 +344,7 @@ echo $summry;
 </form>
 </fieldset>
 <h2>Get Support and Help Improve Stop Spammers</h2>
-<p>Please post all issues, bugs, typos, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
+<p>First, <a href="https://github.com/bhadaway/stop-spammers/wiki/faqs" target="_blank">read the FAQs page</a>. Then, please post all issues, bugs, typos, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
 <h2>Plugin Options</h2>
 <ul>
 <li><a href="?page=stop_spammers">Summary</a>: This checks to see if there may be problems from your current incoming IP address and displays a summary of events.</li>
