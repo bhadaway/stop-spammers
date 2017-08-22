@@ -10,11 +10,7 @@ if (stripos($login,'admin')===false) return false;
 // no users or authors named admin 
 // do a look up to see if there is an author named admin
 if (!function_exists('get_users')) return false; // non-WP?
-$blogusers = get_users();
-if (empty($blogusers)) return false;
-foreach($blogusers as $u) {
-if ($u->user_login==$login) return false; // false alarm - really is a person admin
-}
+if (get_user_by('login',$login)) return false; // false alarm - really is a person admin
 // this may cause problems when a legitimate new user wants to include the string admin in their username
 return "Admin Login or Registration Attempt: $login";
 }
