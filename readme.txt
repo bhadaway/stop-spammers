@@ -38,6 +38,10 @@ OR
 
 == Changelog ==
 
+= 7.0.7 =
+* less memory used for wp-login.php checks (thanks https://github.com/stodorovic)
+* fixed MySQL errors for threat scan (thanks https://github.com/stodorovic)
+
 = 7.0.6 =
 * fixed issue with menu icon
 * removed debug submission form (not needed)
