@@ -67,14 +67,12 @@ INSTR(LCASE(post_author), 'eval (') +
 INSTR(LCASE(post_title), 'eval (') +
 INSTR(LCASE(post_name), 'eval (') +
 INSTR(LCASE(guid), 'eval (') +
-IINSTR(LCASE(post_content), 'eval (') +
+INSTR(LCASE(post_content), 'eval (') +
 INSTR(LCASE(post_content), 'document.write(unescape(') +
 INSTR(LCASE(post_content), 'try{window.onload') +
 INSTR(LCASE(post_content), 'setAttribute(\'src\'') +
-INSTR(LCASE(post_mime_type), 'script') +
-INSTR(LCASE(document.write(string.fromcharcode), 'script')) >0
+INSTR(LCASE(post_mime_type), 'script') > 0
 ";
-// echo " <br /> $sql <br />";
 flush();
 $myrows = $wpdb->get_results( $sql );
 if ($myrows) {
@@ -282,7 +280,7 @@ $badguys=array(
 '(gz'.'inflate'=>'gzip inflate often used to hide code',
 'UA-27917097-1'=>'Bogus Google Analytics code',
 'w.wpquery.o'=>'Malicious jquery in bootleg plugin or theme',
-"<scr'+"=>'Obfuscated script tag, usually in bootleg plugin or theme'
+'<scr\\\'+'=>'Obfuscated script tag, usually in bootleg plugin or theme'
 );
 $sql="select option_id,option_value,option_name
 from $ptab where
