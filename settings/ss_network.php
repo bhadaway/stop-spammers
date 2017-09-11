@@ -9,8 +9,8 @@ ss_fix_post_vars();
 <h1>Stop Spammers — Multisite</h1>
 <?php
 $now=date('Y/m/d H:i:s',time() + ( get_option( 'gmt_offset' ) * 3600 ));
-// $ip=ss_get_ip();
-$ip=$_SERVER['REMOTE_ADDR'];
+//$ip=$_SERVER['REMOTE_ADDR'];
+$ip=ss_get_ip();
 $nonce='';
 $muswitch=get_option('ss_muswitch');
 if (empty($muswitch)) $muswitch='N';
