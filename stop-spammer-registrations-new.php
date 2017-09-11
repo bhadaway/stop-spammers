@@ -258,8 +258,38 @@ function ss_set_options($options) {
 update_option('ss_stop_sp_reg_options',$options);
 }
 function ss_get_ip() {
-$ip=$_SERVER['REMOTE_ADDR'];
-return $ip;
+    $ip=$_SERVER['REMOTE_ADDR'];
+    // Opera turbo? ["HTTP_X_FORWARDED_FOR"]
+    if (array_key_exists('HTTP_X_FORWARDED_FOR',$_SERVER)) {
+        $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }  else if (array_key_exists('X_FORWARDED_FOR',$_SERVER)) {
+        $ip=$_SERVER['X_FORWARDED_FOR'];
+    }  else if (array_key_exists('HTTP-X-FORWARDED-FOR',$_SERVER)) {
+        $ip=$_SERVER['HTTP-X-FORWARDED-FOR'];
+    } else if (array_key_exists('X-FORWARDED-FOR',$_SERVER)) {
+        $ip=$_SERVER['X-FORWARDED-FOR'];
+    } else {
+        // search for lower case versions
+        if (function_exists('getallheaders')) {
+            $hlist=getallheaders();
+            foreach ($hlist as $key => $data) {
+                // can be X-FORWARDED-FOR or HTTP-X-FORWARDED-FOR upper or lower case
+                if (strpos(strtoupper($key),'X-FORWARDED-FOR')!==false) {
+                    $ip=$data;
+                    break;
+                }
+            }
+        }
+    }
+    // some of these return a list of ips with commas - check for a list
+    $ip=trim($ip);
+    $ip=trim($ip,',');
+    if (strpos($ip,',')!==false) {
+        $ips=explode(',',$ip);
+        $ip=trim($ips[count($ips)-1]); // gets the last ip - most likely to be spoofed?
+    }
+    if (empty($ip)) $ip=$_SERVER['REMOTE_ADDR']; // in case I screwed it up
+    return $ip;
 }
 function ss_admin_menu() {
 if (!function_exists('ss_admin_menu_l')) ss_sp_require('settings/settings.php');
@@ -540,8 +570,9 @@ if (empty($user_login)) return;
 // add the user's IP to new users
 if (!isset($user->ID)) return;
 $user_id=$user->ID;
-// $ip=ss_get_ip();
-$ip=$_SERVER['REMOTE_ADDR'];
+//$ip=$_SERVER['REMOTE_ADDR'];
+$ip=ss_get_ip();
+
 $oldip=get_user_meta($user_id,  'signup_ip', true );
 if (empty($oldip) || $ip!=$oldip) {
 update_user_meta($user_id, 'signup_ip', $ip);
