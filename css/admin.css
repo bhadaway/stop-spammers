@@ -1,19 +1,47 @@
-.green{color:#4aa863}
+.green {
+    color: #4aa863
+}
 
-#toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image{max-height:20px;padding:7px 0 0}
+#toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image {
+    max-height: 20px;
+    padding: 7px 0 0
+}
 
-#ss-plugin *{box-sizing:border-box}
+#ss-plugin * {
+    box-sizing: border-box
+}
 
-#ss-plugin textarea, #ss-plugin input[type="text"]{width:100%;max-width:500px}
+#ss-plugin textarea, #ss-plugin input[type="text"] {
+    width: 100%;
+    max-width: 500px
+}
 
-#ss-plugin img{margin-right:5px}
+#ss-plugin img {
+    margin-right: 5px
+}
 
-#ss-plugin input[type="text"]{max-width:400px}
+#ss-plugin input[type="text"] {
+    max-width: 400px
+}
 
-#ss-plugin fieldset{width:100%;padding:15px;border:1px solid #4aa863;margin:30px 0 0}
+#ss-plugin fieldset {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #4aa863;
+    margin: 30px 0 0
+}
 
-#ss-plugin .phpinfodisplay table{width:100%}
+#ss-plugin .phpinfodisplay table {
+    width: 100%
+}
 
-#ss-plugin td{padding:10px}
+#ss-plugin td {
+    padding: 10px
+}
 
-#ss-plugin .stat-box{padding:5px 10px;border:1px solid #4aa863;margin:5px;float:left}
+#ss-plugin .stat-box {
+    padding: 5px 10px;
+    border: 1px solid #4aa863;
+    margin: 5px;
+    float: left
+}

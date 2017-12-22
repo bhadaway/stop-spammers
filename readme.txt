@@ -3,7 +3,7 @@
 Contributors: bhadaway, Keith Graham
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTRTUYSPKJN8N
 Tags: spam, antispam, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, contact, contact form, contact forms, form, forms, login, multisite, protection, register, registration, security, signup, trackback, trackbacks, user registration spam, widget
-Tested up to: 4.8
+Tested up to: 4.9
 Stable tag: trunk
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -37,6 +37,9 @@ OR
 4. Under the settings, review options that are enabled. The plugin will operate very well straight out of the box. However, you may wish to update Web Service APIs for reporting spam and change the CAPTCHA settings from the default.  
 
 == Changelog ==
+
+= 7.0.8 =
+* formatted code according to WP PHP coding standards (https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/) — it's no where near perfect, but it's a step in the right direction
 
 = 7.0.7 =
 * less memory used for wp-login.php checks (thanks https://github.com/stodorovic)
