@@ -276,10 +276,10 @@ message <!-- not email -->:<br /><textarea name=\"km\"></textarea>
 				$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
 				$cap                    = "
 <script type=\"text/javascript\"
-src=\"http://api.solvemedia.com/papi/challenge.script?k=$solvmediaapivchallenge\">
+src=\"https://api-secure.solvemedia.com/papi/challenge.script?k=$solvmediaapivchallenge\">
 </script>
 <noscript>
-<iframe src=\"http://api.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge\"
+<iframe src=\"https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge\"
 height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 <textarea name=\"adcopy_challenge\" rows=\"3\" cols=\"40\">
 </textarea>

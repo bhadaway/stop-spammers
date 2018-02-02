@@ -38,6 +38,9 @@ OR
 
 == Changelog ==
 
+= 7.0.9 =
+* encrypted all external links
+
 = 7.0.8 =
 * formatted code according to WP PHP coding standards (https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/) — it's no where near perfect, but it's a step in the right direction
 

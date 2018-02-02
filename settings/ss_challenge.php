@@ -217,7 +217,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			if ( ! empty( $solvmediaapivchallenge ) ) {
 				?>
                 <script type="text/javascript"
-                        src="//api.solvemedia.com/papi/challenge.script?k=<?php echo $solvmediaapivchallenge; ?>">
+                        src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo $solvmediaapivchallenge; ?>">
                 </script>
                 <p>If the CAPTCHA form looks good you need to enable the CAPTCHA on the Challenge &amp; Deny options
                     page. (see left)

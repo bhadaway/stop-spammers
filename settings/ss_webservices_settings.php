@@ -136,7 +136,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>"/><br />
             <p>This API key is used for querying the BotScout database. It is required if you want to
                 check IP addresses against the botscout.com database. You can register and get an API key at <a
-                        href="http://botscout.com/getkey.htm" target="_blank">botscout.com</a>.<br />
+                        href="https://botscout.com/getkey.htm" target="_blank">botscout.com</a>.<br />
                 Allowed values are 0 to 9999. Only numbers are accepted.<br />
                 <em>Please note that BotScout is disabled in this release because of policy changes at
                     botscout.com.</em></p>

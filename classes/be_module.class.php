@@ -351,7 +351,7 @@ class be_module {
 	}
 	/**************************************************
 	 * check if an IP is in a CIDR range
-	 * From http://php.net/manual/en/ref.network.php
+	 * From https://secure.php.net/manual/en/ref.network.php
 	 ***************************************************/
 }
 

@@ -23,7 +23,7 @@ class chkbotscout extends be_module {
 			return false;
 		}
 		$botfreq = $options['botfreq'];
-		$query   = "http://botscout.com/test/?ip=$ip&key=$apikey";
+		$query   = "https://botscout.com/test/?ip=$ip&key=$apikey";
 		$check   = $this->getafile( $query, 'GET' );
 		if ( ! empty( $check ) ) {
 			if ( substr( $check, 0, 4 ) == "ERR:" ) {
