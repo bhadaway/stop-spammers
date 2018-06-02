@@ -174,8 +174,19 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 <td>$dt</td>
 <td>$em</td>
 <td>$ip $who $stopper $honeysearch $botsearch";
-				if ( strpos( $reason, 'passed' ) !== false && ( $id == '/' || strpos( $id, 'login' ) !== false ) && ! in_array( $ip, $blist ) && ! in_array( $ip, $wlist ) ) {
-					echo "<a href=\"\" onclick=\"return addblack('$ip');\" title=\"Add to Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a>";
+				if ( stripos( $reason, 'passed' ) !== false && ( $id == '/' || strpos( $id, 'login' ) !== false || strpos( $id, 'register' ) !== false ) ) && ! in_array( $ip, $blist ) && ! in_array( $ip, $wlist ) ) {
+					$ajaxurl = admin_url( 'admin-ajax.php' );
+					echo "<a href=\"\" onclick=\"sfs_ajax_process( '$ip','log','add_black','$ajaxurl' );return false;\" title=\"Add to Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a>";
+					$options = get_option( 'ss_stop_sp_reg_options' );
+					$apikey = $options['apikey'];
+					if ( !empty( $apikey ) ) {
+						$href="href=\"#\"";
+						$onclick="onclick=\"sfs_ajax_report_spam(this, 'registration', '$blog', '$ajaxurl', '$em', '$ip', '$au');return false;\"";
+					}
+					if ( !empty( $em ) ) {
+						echo "|";
+						echo "<a title=\"Report to Stop Forum Spam (SFS)\" $href $onclick class='delete:the-comment-list:comment-$id::delete=1 delete vim-d vim-destructive'>Report to SFS</a>";
+					}
 				}
 				echo "</td><td>$au</td>
 <td>$id</td>

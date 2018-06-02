@@ -32,13 +32,16 @@ function sfs_ajax_return_process(response) {
     return false;
 }
 
-function sfs_ajax_report_spam(t, id, blog, url) {
+function sfs_ajax_report_spam(t, id, blog, url, email, ip, user) {
     sfs_ajax_who = t;
     var data = {
         action: 'sfs_sub',
         blog_id: blog,
         comment_id: id,
-        ajax_url: url
+        ajax_url: url,
+        email: email,
+        ip: ip,
+        user: user
     }
     jQuery.get(ajaxurl, data, sfs_ajax_return_spam);
 }
