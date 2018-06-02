@@ -240,7 +240,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	$current_user_name = wp_get_current_user()->user_login;
 	if ( $current_user_name == 'admin' ) {
-		echo "<p style=\"color:red;font-style::italic;\">You are using the admin id \"admin\". This is 
+		echo "<p style=\"color:red;font-style::italic;\">You are using the admin ID \"admin\". This is 
 an invitation to hackers to try and guess your password. Please change this.<br />
 Here is discussion on WordPress.org:
 <a href=\"https://wordpress.org/support/topic/how-to-change-admin-username?replies=4\" target=\"_blank\">How to Change Admin Username</a>
@@ -372,14 +372,14 @@ if ( strpos( $sname, '?' ) !== false ) {
     <ul>
         <li><a href="?page=stop_spammers">Summary</a>: This checks to see if there may be problems from your current incoming IP address and displays a summary of events.</li>
         <li><a href="?page=ss_options">Protection Options</a>: This has all the options for checking for spam and logins. You can also block whole countries.</li>
-        <li><a href="?page=ss_allow_list">Allow Lists</a>: Here you can set up your Allow List to allow IP addresses to login and leave comments on your site, without being checked for spam. It also sets up the options which you can use to allow certain kinds of users into your site, even though they may trigger spam detection.</li>
-        <li><a href="?page=ss_deny_list">Block Lists</a>: This is where you set up your Deny List for IPs and email. It also allows you to enter spam words and phrases that trigger spam.</li>
+        <li><a href="?page=ss_allow_list">Allow Lists</a>: Here you can set up your Allow List to allow IP addresses to log in and leave comments on your site, without being checked for spam. It also sets up the options which you can use to allow certain kinds of users into your site, even though they may trigger spam detection.</li>
+        <li><a href="?page=ss_deny_list">Block Lists</a>: This is where you set up your Deny List for IPs and emails. It also allows you to enter spam words and phrases that trigger spam.</li>
         <li><a href="?page=ss_challenge">Challenge &amp; Deny</a>: This sets up CAPTCHA and notification options. You can give users who trigger the plugin a second chance to use a CAPTCHA. Supports Google reCAPTCHA and Solve Media CAPTCHA.</li>
         <li><a href="?page=ss_allowrequests">Allow Requests</a>: Displays users who were denied and filled out the form requesting access to your site.</li>
         <li><a href="?page=ss_webservices_settings">Web Services</a>: This is where you enter the API keys for StopForumSpam.com and other web checking services. You don't need to have these set for the plugin to work, but if you do, you will have better protection and the ability to report spam.</li>
         <li><a href="?page=ss_cache">Cache</a>: Shows the cache of recently detected events.</li>
         <li><a href="?page=ss_reports">Log Report</a>: Shows details of the most recent events detected by Stop Spammers.</li>
-        <li><a href="?page=ss_diagnostics">Diagnostics</a>: You can use this to test an IP, email or, comment against all of the options. This can tell you more about why an IP address might fail. It will also show you any options that might crash the plugin on your site due to system settings.</li>
+        <li><a href="?page=ss_diagnostics">Diagnostics</a>: You can use this to test an IP, email, or comment against all of the options. This can tell you more about why an IP address might fail. It will also show you any options that might crash the plugin on your site due to system settings.</li>
     </ul>
     <h2>Beta Options</h2>
     <span class="notice notice-warning" style="display:block">

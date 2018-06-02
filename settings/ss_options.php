@@ -240,12 +240,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 option
                 if you are running an ecommerce site or a specialized site that has forms that are blocked by Stop
                 Spammers.
-                This is a new option and is off by default.</p>
+                For the most protection, this option is off by default (recommended).</p>
         </fieldset>
         <fieldset>
             <legend><span style="font-weight:bold;font-size:1.5em">Prevent Lockouts</span></legend>
             <p>This plugin aggressively checks for spammers and is unforgiving to the point where even you may get
-                locked out of your own blog when you log off and try to log back in. There are two options which help
+                locked out of your own website when you log off and try to log back in. There are two options which help
                 prevent this, but these options can make it easier for a spammer to hack your site.<br />
                 When you are confident that the plugin is working you can uncheck these boxes.</p>
             <fieldset>
@@ -267,8 +267,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						echo "checked=\"checked\"";
 					} ?> />
                     Normally the plugin checks for spammers before WordPress can try to log in a user.
-                    If you check this box, every attempt to login will be tested for a valid user.
-                    This may allow a hacker to guess your user id and password by making thousands of attempts to login.
+                    If you check this box, every attempt to log in will be tested for a valid user.
+                    This may allow a hacker to guess your user ID and password by making thousands of attempts to login.
                     This is turned on initially to prevent you from being locked out of your own blog,
                     but should be unchecked after you verify that the plugin does not think you are a spammer.</p>
             </fieldset>
@@ -276,7 +276,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <br />
         <fieldset>
             <legend><span style="font-weight:bold;font-size:1.5em">Validate Requests</span></legend>
-            <p>Spam robots do not always follow rules. They don't provide the proper request headers or are too quick.
+            <p>Spam bots do not always follow rules. They don't provide the proper request headers or are too quick.
                 These items can be quickly checked. These rules are the most economical way of detecting spammers.</p>
             <fieldset>
                 <legend><span style="font-weight:bold;font-size:1.2em">Block Spam Missing the HTTP_ACCEPT Header</span>
@@ -285,7 +285,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						echo "checked=\"checked\"";
 					} ?> />
                     Blocks users who have a missing or incomplete HTTP_ACCEPT header. All browsers provide this header.
-                    If a hit on your site is missing the HTTP_ACCEPT header it is because a poorly written robot is
+                    If a hit on your site is missing the HTTP_ACCEPT header it is because a poorly written bot is
                     trying access your site.</p>
             </fieldset>
             <br />
@@ -295,8 +295,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						echo "checked=\"checked\"";
 					} ?> />
                     When you submit a form, all browsers provide the web page that submitted the form. If this referring
-                    page is missing or does not match your website then the submit is probably from a program accessing
-                    your site. Some cell phone apps try to log in without the correct header. You may want to disable
+                    page is missing or does not match your website then the submission is probably from a program accessing
+                    your site. Some phone apps try to log in without the correct header. You may want to disable
                     this function if you log into your website from your mobile device. Test it first - the better
                     written apps provide the referring page.</p>
             </fieldset>
@@ -319,7 +319,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <p><input name="chklong" type="checkbox" value="Y" <?php if ( $chklong == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
-                    Spammers can't resist using very long names and emails. This rejects these if the are over 64
+                    Spammers can't resist using very long names and emails. This rejects these if they are over 64
                     characters in length.</p>
             </fieldset>
             <fieldset>
@@ -352,13 +352,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     <em>(disabled if caching is active)</em> The plugin will drop a cookie with the current time in it.
                     When the user enters a comment or tries to log into the system, the time is checked. If the user
                     responds too fast, he is a spammer. If cookies are not supported, this is disabled. Use the timeout
-                    value below to control the speed. (Stops the most spammers of all the methods listed here.)<br />
+                    value below to control the speed (stops the most spammers of all the methods listed here).<br />
                     Response Timeout Value:
                     <input name="sesstime" type="text" value="<?php echo $sesstime; ?>" size="2"/>
                     This is the time used to determine if a spammer has filled out a form too quickly. Humans take more
                     than 10 seconds, at least, to fill out forms. The default is 4 seconds. If a user takes 4 seconds or
                     less to fill out a form they are not human and are denied. Users who use automatic passwords may
-                    show up as false positives so keep this low.</p>
+                    show up as false positives, so keep this low.</p>
             </fieldset>
             <br />
             <fieldset>
@@ -366,7 +366,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <p><input name="chk404" type="checkbox" value="Y" <?php if ( $chk404 == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
-                    Robots often search your site for exploitable files. If there is a match to a known exploit URL,
+                    Bots often search your site for exploitable files. If there is a match to a known exploit URL,
                     this will automatically add the IP address to the Deny List.</p>
             </fieldset>
             <br />
@@ -375,9 +375,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <p><input name="chkakismet" type="checkbox" value="Y" <?php if ( $chkakismet == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
-                    Akismet does a good job detecting spam. If Akismet catches a spammer then the IP address should be
+                    Akismet does a good job detecting spam. If Akismet catches a spammer, then the IP address should be
                     added to the bad IP cache. Akismet will continue to block comment spam, but if there is a login or
-                    registration attempt from the same IP it will be blocked.</p>
+                    registration attempt from the same IP, it will be blocked.</p>
             </fieldset>
             <br />
             <fieldset>
@@ -396,14 +396,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <p><input name="chkadmin" type="checkbox" value="Y" <?php if ( $chkadmin == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
-                    When a spammer starts hitting the login page with 'admin' anywhere in the login id and there is no
+                    When a spammer starts hitting the login page with 'admin' anywhere in the login ID and there is no
                     matching user,
                     then it is a spammer trying to figure out your password.
-                    Deny List immediately. This only works if you do not have any users with 'admin' in their login id.
-                    It is dangerous to have a username 'admin'!
-                    My sites get thousands of hits from robots trying to guess my admin password.
-                    This has the side effect of preventing users from registering with a user id with the word admin in
-                    their username.
+                    Deny List immediately. This only works if you do not have any users with 'admin' in their username.
+                    It is dangerous to have a username 'admin.'
+                    Sites get thousands of hits from bots trying to guess the admin password.
+                    This has the side effect of preventing users from registering a username with the word admin in it.
                     Users cannot register with 'admin2' or 'superadmin' or 'Administrator.'</p>
             </fieldset>
             <br />
@@ -413,7 +412,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <p><input name="chkubiquity" type="checkbox" value="Y" <?php if ( $chkubiquity == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
-                    I have a list of hosting companies who tolerate spammers. They are the source of much comment spam
+                    A list of hosting companies who tolerate spammers. They are the source of many comment spam
                     and login attempts. This blocks many of them.</p>
             </fieldset>
             <br />
@@ -542,9 +541,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <fieldset>
                 <legend><span style="font-weight:bold;font-size:1.2em">Block Countries</span></legend>
                 <p><strong>This does not block the whole country. It only blocks spam sources in a country.</strong></p>
-                <p>Blocking countries only blocks the known spam blocks from those countries. I make an attempt to not
-                    block residential ISPs in countries
-                    where spammers are quickly shut down. <em><strong>Blocking US will not block Cox, Verizon, AT&amp;T,
+                <p>Blocking countries only blocks the known spam blocks from those countries. Blocking residential ISPs in countries
+                    where spammers are quickly shut down is avoided. <em><strong>Blocking the US will not block Cox, Verizon, AT&amp;T,
                             etc. It will block
                             hosting companies that send out spam that are located in the US.</strong></em></p>
                 <p>Blocking RU will, however, block most of Russia, because Russian ISPs do not shut down zombie
@@ -557,9 +555,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     Indonesia (in that order)
                     are the sources of most spam, but they also take up to a half a meg of memory to load. This may slow
                     things a little
-                    and in some cases might shut down your blog. I run all of them on SiteGround.com without any issues,
-                    but if
-                    you are using a free or low-budget site to run your blog, there could be a problem.</p>
+                    and in some cases might shut down your site. If you are using a free or low-budget host to run your site,
+                    there could be a problem.</p>
                 <p>Check all:
                     <input type="checkbox" name="ss_set" value="1"
                            onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>

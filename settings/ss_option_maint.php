@@ -28,7 +28,7 @@ ss_fix_post_vars();
             happen is that the page will paint a little slower because the option is retrieved separately from other
             options. The best thing that can happen is there is a lower demand on memory because the unused options are
             not loaded when WordPress starts loading a page.</p>
-        <p>When plugins are uninstalled they are supposed to clean up their options. Many options do not do any clean-up
+        <p>When plugins are uninstalled they are supposed to clean up their options. Many plugins do not do any cleanup
             during uninstall. It is quite possible that you have many orphan options from plugins that you deleted long
             ago. These are autoloaded on every page, slowing down your pages and eating up memory. These options can be
             safely marked so that they will not autoload. If you are sure they are not needed you can delete them.</p>
@@ -297,7 +297,8 @@ ss_fix_post_vars();
 				}
 				?>
             </table>
-            <p class="submit"><input class="button-primary" value="Update" type="submit" onclick="return confirm('Are you sure? There is not undo for this.');"></p>
+            <p class="submit"><input class="button-primary" value="Update" type="submit"
+                                     onclick="return confirm('Are you sure? There is not undo for this.');"></p>
         </form>
 		<?php
 		$m1 = memory_get_usage();
@@ -309,7 +310,7 @@ ss_fix_post_vars();
 		$showtransients = false; // change to true to clean up transients
 		if ( $showtransients && countTransients() > 0 ) { // personal use - probably too dangerous for casual users.
 			?>
-            <hr />
+            <hr/>
             <p>WordPress creates temporary objects in the database called transients.<br />
                 WordPress is not good about cleaning them up afterwards. You can clean these up safely and it might
                 speed things up.</p>

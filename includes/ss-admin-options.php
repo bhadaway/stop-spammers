@@ -183,7 +183,7 @@ function sfs_handle_ajax_sub( $data ) {
 		echo " No Comment ID Found";
 		exit();
 	}
-// need to pass the blog id also
+// need to pass the blog ID also
 	$blog = '';
 	$blog = $_GET['blog_id'];
 	if ( $blog != '' ) {
@@ -193,20 +193,20 @@ function sfs_handle_ajax_sub( $data ) {
 	}
 // get the comment
 	$comment = get_comment( $comment_id, ARRAY_A );
-  if ( $comment_id == 'registration' ) {
-    $comment = array(
-      'comment_author_email' => $_GET['email'],
-      'comment_author' => $_GET['user'],
-      'comment_author_IP' => $_GET['ip'],
-      'comment_content' => 'registration',
-      'comment_author_url' => ''
-    );
-  } else {
-	  if ( empty( $comment ) ) {
-		  echo " No Comment Found for $comment_id";
-		  exit();
-	  }
-  }
+	if ( $comment_id == 'registration' ) {
+		$comment = array(
+			'comment_author_email' => $_GET['email'],
+			'comment_author'       => $_GET['user'],
+			'comment_author_IP'    => $_GET['ip'],
+			'comment_content'      => 'registration',
+			'comment_author_url'   => ''
+		);
+	} else {
+		if ( empty( $comment ) ) {
+			echo " No Comment Found for $comment_id";
+			exit();
+		}
+	}
 // print_r($comment);
 	$email   = urlencode( $comment['comment_author_email'] );
 	$uname   = urlencode( $comment['comment_author'] );

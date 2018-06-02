@@ -381,10 +381,9 @@ User Message: " . $km . "
 
 Please be aware that the user has been recognized as a potential spammer.
 
-Some spam robots fill out the request form with a fake explanation.
+Some spam bots fill out the request form with a fake explanation.
 
 — Stop Spammers";
-			$message = wordwrap( $message, 70, "\r\n" );
 			$headers = 'From: ' . get_option( 'admin_email' ) . "\r\n";
 			wp_mail( $to, $subject, $message, $headers );
 			$rejectmessage = "<h2>Email sent. Thank you.</h2>";

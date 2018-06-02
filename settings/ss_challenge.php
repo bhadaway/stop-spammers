@@ -109,7 +109,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			} ?> />
             <br />
             <p>If you want you can send the spammer to a web page. This can be a custom page explaining terms of
-                service, or a nasty message.</p>
+                service for example.</p>
             Redirect URL:
             <input size="77" name="redirurl" type="text" value="<?php echo $redirurl; ?>"/>
         </fieldset>
@@ -119,14 +119,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             </legend>
             <p>Users can see the form to add themselves to the request list, but lots of spammers fill it out randomly.
                 This hides the request form.</p>
-            Blocked users see the Allow request form:
+            Blocked users see the Allow Request form:
             <input type="checkbox" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
 				echo "checked=\"checked\"";
 			} ?> />
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Notify Webmaster When a User Requests to be Added to the Allow List</span>
+            <legend><span
+                        style="font-weight:bold;font-size:1.2em">Notify Webmaster When a User Requests to be Added to the Allow List</span>
             </legend>
             <p>Blocked users can add their email addresses to the the Allow List request. This will also send you an
                 email notification.</p>
@@ -150,9 +151,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 give users a second chance by displaying a CAPTCHA image and asking them to type in the letters that
                 they see. This prevents lockouts.<br />
                 This option will override the email notification option above.<br />
-                By default the plugin will support the arithmetic question which is OK. For better results, I have
-                included the ability to use Google's reCAPTCHA, or you can try SolveMedia's CAPTCHA using ads which can
-                provide a revenue stream.<br />
+                By default, the plugin will support the arithmetic question, which is okay. For better results,
+                use Google's reCAPTCHA, or you can try SolveMedia's CAPTCHA<br />
                 <input type="radio" value="N" name="chkcaptcha" <?php if ( $chkcaptcha == 'N' ) {
 					echo "checked=\"checked\"";
 				} ?>/>
@@ -168,7 +168,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <input type="radio" value="A" name="chkcaptcha" <?php if ( $chkcaptcha == 'A' ) {
 					echo "checked=\"checked\"";
 				} ?>/>
-                Really stupid arithmetic question</p>
+                Arithmetic Question</p>
             <p>In order to use Solve Media or Google reCAPTCHA you will need to get an API key. Open CAPTCHA is no
                 longer supported so the arithmetic question will be used for those that had it set.</p>
         </fieldset>
@@ -206,12 +206,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>"/>
             <br />
             <p>This API key is used for displaying a Solve Media CAPTCHA on your site.
-                This CAPTCHA has the added advantage that you can make a little money by having your CAPTCHA also be an
-                ad.
-                (It is unlikely that spammers will click through on an ad, but hey, you never know!)
                 You can display the CAPTCHA in case a real user is blocked, so they can still leave a comment.
                 You can register and get an API key at <a href="https://portal.solvemedia.com/portal/public/signup"
-                                                          target="_blank">portal.solvemedia.com/portal/public/signup</a>.
+                                                          target="_blank">https://portal.solvemedia.com/portal/public/signup</a>.
                 If the keys are correct you should see the CAPTCHA here:</p>
 			<?php
 			if ( ! empty( $solvmediaapivchallenge ) ) {
@@ -219,10 +216,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <script type="text/javascript"
                         src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo $solvmediaapivchallenge; ?>">
                 </script>
-                <p>If the CAPTCHA form looks good you need to enable the CAPTCHA on the Challenge &amp; Deny options
-                    page. (see left)
-                    (Solve Media has a plugin that can be used for registrations and logins that you could use as a
-                    revenue stream.)</p>
+                <p>If the CAPTCHA form looks good, you need to enable the CAPTCHA on the Challenge &amp; Deny options
+                    page. (see left)</p>
 				<?php
 			}
 			?>

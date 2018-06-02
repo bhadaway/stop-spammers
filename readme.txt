@@ -38,6 +38,13 @@ OR
 
 == Changelog ==
 
+= 7.1 =
+* fixed IP blacklisting (thanks https://github.com/peterjanes)
+* added SFS reporting from the log page (thanks https://github.com/peterjanes)
+* cleaned up a few typos
+* removed automatic migration of settings from old versions prior to 7.0 (if upgrading from 6.x, start with 7.0.9 — then upgrade to the very latest version)
+* removed whitespace from textareas
+
 = 7.0.9 =
 * encrypted all external links
 
@@ -45,13 +52,13 @@ OR
 * formatted code according to WP PHP coding standards (https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/) — it's no where near perfect, but it's a step in the right direction
 
 = 7.0.7 =
-* less memory used for wp-login.php checks (thanks https://github.com/stodorovic)
 * fixed MySQL errors for threat scan (thanks https://github.com/stodorovic)
+* less memory used for wp-login.php checks (thanks https://github.com/stodorovic)
 
 = 7.0.6 =
 * fixed issue with menu icon
-* removed debug submission form (not needed)
 * added link to new FAQs (https://github.com/bhadaway/stop-spammers/wiki/faqs)
+* removed debug submission form (not needed)
 
 = 7.0.5 =
 * fixed SFS reporting
@@ -60,9 +67,9 @@ OR
 * fixed login issue
 
 = 7.0.3 =
+* fixed SFS report messages
 * continued general cleanup
 * continued design improvements
-* fixed SFS report messages
 * removed email notifications for admin logins
 
 = 7.0.2 =
@@ -79,7 +86,7 @@ OR
 * better menu icon
 
 = 7.0 =
+* fixed XSS error
 * general cleanup
 * design improvements
-* fixed XSS error
 * transferred control to new developer

@@ -114,12 +114,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
         <fieldset>
             <legend><span style="font-weight:bold;font-size:1.2em">Block List</span></legend>
-            <p>Put IP addresses or emails here that you want blocked. One email or IP to a line.<br />
-                You can mix email addresses and IP numbers. You can use IPV4 or IPV6 numbers. You can use CIDR format to
-                block a range (e.g. 1.2.3.4/16) or you can use wild cards (e.g. spammer@spam.* or 1.2.3.*).<br />
-                You can also use this to deny user ids. This is usually not useful as spammers can change the user id
+            <p>Put IP addresses or emails here that you want blocked. One email or IP to a line.
+                You can mix email addresses and IP numbers. You can use IPv4 or IPv6 numbers. You can use CIDR format to
+                block a range (e.g. 1.2.3.4/16) or you can use wild cards (e.g. spammer@spam.* or 1.2.3.*).
+                You can also use this to deny user IDs. This is usually not useful as spammers can change the user ID
                 that they use.<br />
-                To block userids in this list, check this box.
+                To block usernames in this list, check this box.
                 <input name="chkbluserid" type="checkbox" value="Y" <?php if ( $chkbluserid == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /></p>
@@ -128,8 +128,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				foreach ( $blist as $p ) {
 					echo $p . "\r\n";
 				}
-				?>
-            </textarea>
+            ?></textarea>
         </fieldset>
         <br />
         <fieldset>
@@ -145,8 +144,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				foreach ( $spamwords as $p ) {
 					echo $p . "\r\n";
 				}
-				?>
-            </textarea>
+            ?></textarea>
         </fieldset>
         <br />
         <fieldset>
@@ -163,8 +161,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				foreach ( $badagents as $p ) {
 					echo $p . "\r\n";
 				}
-				?>
-            </textarea>
+            ?></textarea>
             <br />
             <p>This is a string search so that all you have to enter is enough of the agent to match. Telesoft matches
                 Telesoft Spider or Telesoft 3.2.</p>
@@ -184,8 +181,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				foreach ( $badTLDs as $p ) {
 					echo $p . "\r\n";
 				}
-				?>
-            </textarea><br />
+            ?></textarea><br />
             <p>A TLD is the last part of a domain like .COM or .NET. You can block emails from various countries this
                 way by adding a TLD such as .CN or .RU (these will block Russia and China). It will not block the whole
                 country.<br />

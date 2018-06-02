@@ -5,12 +5,12 @@ Plugin URI: https://wordpress.org/plugins/stop-spammer-registrations-plugin/
 Description: The Stop Spammers plugin blocks spammers from leaving comments or logging in. It protects sites from robot registrations and malicious attacks.
 Author: Bryan Hadaway
 Author URI: https://calmestghost.com/
-Version: 7.0.9
+Version: 7.1
 License: https://www.gnu.org/licenses/gpl.html
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '7.0.9' );
+define( 'SS_VERSION', '7.1' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -24,20 +24,6 @@ function ss_styles() {
 }
 
 add_action( 'admin_print_styles', 'ss_styles' );
-
-// restore settings from versions previous to 7.0
-if ( get_option( 'kpg_stop_sp_reg_options' ) !== false ) {
-	update_option( 'ss_stop_sp_reg_options', get_option( 'kpg_stop_sp_reg_options' ) );
-	delete_option( 'kpg_stop_sp_reg_options' );
-}
-if ( get_option( 'kpg_stop_sp_reg_stats' ) !== false ) {
-	update_option( 'ss_stop_sp_reg_stats', get_option( 'kpg_stop_sp_reg_stats' ) );
-	delete_option( 'kpg_stop_sp_reg_stats' );
-}
-if ( get_option( 'kpg_muswitch' ) !== false ) {
-	update_option( 'ss_muswitch', get_option( 'kpg_muswitch' ) );
-	delete_option( 'kpg_muswitch' );
-}
 
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );

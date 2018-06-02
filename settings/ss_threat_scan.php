@@ -66,7 +66,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <p>You probably do not have a backup to your blog, so if this scan shows you are clean, your next step is to
             install one of the plugins that does regular backups of your system. Next, make sure you have the latest
             WordPress version.</p>
-        <p>If you think you have problems, the first thing to do is change your user id and password. Next make a backup
+        <p>If you think you have problems, the first thing to do is change your user ID and password. Next make a backup
             of the infected system. Any repairs to WordPress might delete important data so you might lose posts, and
             the backup will help you recover missing posts.</p>
         <p>The next step is to install the latest version of WordPress. The new versions usually have fixes for older
@@ -75,7 +75,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             old posts.</p>
         <p>If this doesn't work it is time to get a pro involved.</p>
         <h2>A clean scan does not mean you are safe. Please do backups and keep your installation up-to-date!</h2>
-        <hr />
+        <hr/>
 		<?php
 		$disp = false;
 		flush();

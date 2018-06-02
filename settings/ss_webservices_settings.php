@@ -94,7 +94,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				} ?> /> Check to enable SFS lookups<br />
                 You do not need an API key to check the Stop Forum Spam database, but if you want to report any
                 spam that you find, you need to provide it here. You can register and get an API key at <a
-                        href="https://www.stopforumspam.com/keys" target="_blank">stopforumspam.com</a>.<br />
+                        href="https://www.stopforumspam.com/keys" target="_blank">https://www.stopforumspam.com/keys</a>.<br />
                 You can set the minimum settings to allow possible spammers to use your site.<br />
                 You may wish to forgive spammers with few incidents or no recent activity. I would recommend that to be
                 on the safe side, you should block users who appear on the spam database unless they specifically ask to
@@ -117,7 +117,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>"/><br />
             <p>This API key is used for querying the Project Honeypot Deny List. It is required if you want to
                 check IP addresses against the Project Honeypot database. You can register and get an API key at <a
-                        href="https://www.projecthoneypot.org/account_login.php" target="_blank">projecthoneypot.com</a>.<br />
+                        href="http://www.projecthoneypot.org/account_login.php" target="_blank">http://www.projecthoneypot.org/account_login.php</a>.<br />
                 Allowed values are 0 to 9999. Only numbers are accepted.</p>
             <table align="center" cellspacing="1" style="background-color:#ccc;font-size:0.9em">
                 <tr bgcolor="white">
@@ -136,7 +136,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>"/><br />
             <p>This API key is used for querying the BotScout database. It is required if you want to
                 check IP addresses against the botscout.com database. You can register and get an API key at <a
-                        href="https://botscout.com/getkey.htm" target="_blank">botscout.com</a>.<br />
+                        href="https://botscout.com/getkey.htm" target="_blank">https://botscout.com/getkey.htm</a>.<br />
                 Allowed values are 0 to 9999. Only numbers are accepted.<br />
                 <em>Please note that BotScout is disabled in this release because of policy changes at
                     botscout.com.</em></p>
