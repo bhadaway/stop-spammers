@@ -462,10 +462,9 @@ echo "\r\n";
 		echo "<div class='phpinfodisplay' id=\"shpinf\" style=\"display:none;\"><style type='text/css'>\n",
 		join( "\n",
 			array_map(
-				create_function(
-					'$i',
-					'return ".phpinfodisplay " . preg_replace( "/,/", ",.phpinfodisplay ", $i );'
-				),
+				function($i) {
+					return ".phpinfodisplay " . preg_replace( "/,/", ",.phpinfodisplay ", $i );
+				},
 				preg_split( '/\n/', $matches[1] )
 			)
 		),

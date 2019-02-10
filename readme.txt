@@ -3,7 +3,7 @@
 Contributors: bhadaway, Keith Graham
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTRTUYSPKJN8N
 Tags: spam, antispam, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, contact, contact form, contact forms, form, forms, login, multisite, protection, register, registration, security, signup, trackback, trackbacks, user registration spam, widget
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: trunk
 License: https://www.gnu.org/licenses/gpl.html
 
