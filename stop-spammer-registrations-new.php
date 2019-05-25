@@ -1,16 +1,16 @@
 <?php
 /*
 Plugin Name: Stop Spammers
-Plugin URI: https://wordpress.org/plugins/stop-spammer-registrations-plugin/
-Description: The Stop Spammers plugin blocks spammers from leaving comments or logging in. It protects sites from robot registrations and malicious attacks.
+Plugin URI: https://stopspammers.io/
+Description: Stop WordPress Spam
 Author: Bryan Hadaway
 Author URI: https://calmestghost.com/
-Version: 7.1
+Version: 2019
 License: https://www.gnu.org/licenses/gpl.html
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '7.1' );
+define( 'SS_VERSION', '2019' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
