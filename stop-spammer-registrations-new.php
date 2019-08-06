@@ -5,12 +5,12 @@ Plugin URI: https://stopspammers.io/
 Description: Stop WordPress Spam
 Author: Bryan Hadaway
 Author URI: https://calmestghost.com/
-Version: 2019
+Version: 2019.1
 License: https://www.gnu.org/licenses/gpl.html
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2019' );
+define( 'SS_VERSION', '2019.1' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -155,7 +155,7 @@ function ss_init() {
 		}
 		$post = get_post_variables();
 		if ( ! empty( $post['email'] ) || ! empty( $post['author'] ) || ! empty( $post['comment'] ) ) { // must be a login or a comment which require minimum stuff 
-// remove_filter( 'pre_user_login', ss_user_reg_filter, 1);
+// remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 // sfs_debug_msg('email or author '.print_r($post,true));
 			$reason = ss_check_white();
 			if ( $reason !== false ) {
@@ -184,7 +184,7 @@ function ss_init() {
 					$reason  = be_load( $add, ss_get_ip(), $stats, $options );
 					if ( $reason !== false ) {
 // need to log a passed hit on post here
-						remove_filter( 'pre_user_login', ss_user_reg_filter, 1 );
+						remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 						ss_log_bad( ss_get_ip(), $reason, $add[1], $add );
 
 						return;
@@ -657,7 +657,7 @@ function ss_user_reg_filter( $user_login ) {
 	$post['author'] = $user_login;
 	$post['addon']  = 'chkRegister'; // not really an add-on - but may be moved out when working
 	if ( $options['filterregistrations'] != 'Y' ) {
-		remove_filter( 'pre_user_login', ss_user_reg_filter, 1 );
+		remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 		sfs_errorsonoff( 'off' );
 
 		return $user_login;
