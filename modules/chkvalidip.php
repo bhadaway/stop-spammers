@@ -21,8 +21,8 @@ class chkvalidip {
 		/* Remote Host */
 		$host_by_ip = gethostbyaddr( $client_ip );
 		/* IPv6 special */
-		if ( $this->_is_ipv6( $client_ip ) ) {
-			if ( $this->_is_ipv6( $host_by_ip ) && inet_pton( $client_ip ) === inet_pton( $host_by_ip ) ) {
+		if ( self::_is_ipv6( $client_ip ) ) {
+			if ( self::_is_ipv6( $host_by_ip ) && inet_pton( $client_ip ) === inet_pton( $host_by_ip ) ) {
 // no domain
 				return false;
 			} else {

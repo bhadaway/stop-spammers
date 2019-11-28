@@ -3,7 +3,7 @@
 Contributors: bhadaway, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Tested up to: 5.2
+Tested up to: 5.3
 Stable tag: trunk
 License: https://www.gnu.org/licenses/gpl.html
 
