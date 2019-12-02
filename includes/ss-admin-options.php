@@ -3,7 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $options = ss_get_options();
-$options = ss_get_options();
 if ( $options['addtoallowlist'] == 'Y' ) {
 	ss_sfs_check_admin(); // adds user to Allow List
 }
