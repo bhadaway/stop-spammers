@@ -4,7 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // just in case
 if ( ! current_user_can( 'manage_options' ) ) {
 	die ( 'Access Denied' );
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 ss_fix_post_vars();
 ?>
