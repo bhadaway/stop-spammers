@@ -160,13 +160,7 @@ Memory Used, Peak: $m1, $m2
 ---------------------
 ";
 // write out the error
-	$f = '';
-	$f = @fopen( SS_PLUGIN_DATA . ".sfs_debug_output.txt", 'a' );
-	if ( empty( $f ) ) {
-		return false;
-	}
-	@fwrite( $f, $msg );
-	@fclose( $f );
+	@file_put_contents(SS_PLUGIN_DATA . '.sfs_debug_output.txt', $msg, FILE_APPEND);
 
 	return false;
 }
