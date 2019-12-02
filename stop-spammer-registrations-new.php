@@ -80,15 +80,8 @@ function ss_init() {
 	add_action( 'akismet_spam_caught', 'ss_log_akismet' ); // hook Akismet spam
 	$muswitch = 'N';
 	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-		$muswitch = 'Y';
-// check the MU switch option
-		$muswitch = 'Y';
 		switch_to_blog( 1 );
-// get the MU option
 		$muswitch = get_option( 'ss_muswitch' );
-		if ( empty( $muswitch ) ) {
-			$muswitch = 'Y';
-		} // by default we operate in network mode with blog(1) being the main
 		if ( $muswitch != 'N' ) {
 			$muswitch = 'Y';
 		}
