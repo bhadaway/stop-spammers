@@ -20,9 +20,8 @@ class ss_addto_gcache {
 		}
 		$stats['goodips'] = $goodips;
 // if we add to Good Cache we need to delete from Bad Cache
-		if ( array_key_exists( $ip, $goodips ) ) {
-			unset( $goodips[ $ip ] );
-			$stats['goodips'] = $goodips;
+		if ( array_key_exists( $ip, $stats['badips'] ) ) {
+			unset( $stats['badips'] );
 		}
 		ss_set_stats( $stats );
 
