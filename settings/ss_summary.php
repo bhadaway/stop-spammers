@@ -240,7 +240,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	$current_user_name = wp_get_current_user()->user_login;
 	if ( $current_user_name == 'admin' ) {
-		echo "<p style=\"color:red;font-style::italic;\">You are using the admin ID \"admin\". This is 
+		echo "<p style=\"color:red;font-style:italic;\">You are using the admin ID \"admin\". This is 
 an invitation to hackers to try and guess your password. Please change this.<br />
 Here is discussion on WordPress.org:
 <a href=\"https://wordpress.org/support/topic/how-to-change-admin-username?replies=4\" target=\"_blank\">How to Change Admin Username</a>
@@ -248,7 +248,7 @@ Here is discussion on WordPress.org:
 	}
 	$showcf = false; // hide this for now
 	if ( $showcf && array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER ) && ! function_exists( 'cloudflare_init' ) && ! defined( 'W3TC' ) ) {
-		echo "<p style=\"color:red;font-style::italic;\">
+		echo "<p style=\"color:red;font-style:italic;\">
 Cloudflare Remote IP address detected. Please install the <a href=\"https://wordpress.org/plugins/cloudflare/\" target=\"_blank\">Cloudflare Plugin</a>.
 This plugin works best with the Cloudflare plugin when yout website is using Cloudflare.
 </p>";
