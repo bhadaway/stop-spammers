@@ -12,10 +12,7 @@ extract( $stats );
 $now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
-$trash   = SS_PLUGIN_URL . 'images/trash.png';
-$tdown   = SS_PLUGIN_URL . 'images/tdown.png';
-$tup     = SS_PLUGIN_URL . 'images/tup.png'; // fix this
-$whois   = SS_PLUGIN_URL . 'images/whois.png'; // fix this
+// temp: not used in file
 $nonce   = "";
 $ajaxurl = admin_url( 'admin-ajax.php' );
 
@@ -212,29 +209,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					?>
                     <td valign="top" id="badips"><?php
 						// use the be_load to get badips
-						$options = ss_get_options();
-						$stats   = ss_get_stats();
 						$show    = be_load( 'ss_get_bcache', 'x', $stats, $options );
-						/*
-						$show='';
-						$cont='badips';
-						foreach ( $badips as $key => $value ) {
-						$show.="<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
-						
-						// try ajax on the delete from bad cache
-						
-						$onclick="onclick=\"sfs_ajax_process( '$key','$cont','delete_bcache','$ajaxurl' );return false;\"";
-						$show.=" <a href=\"\" $onclick title=\"Delete $key from Cache\" alt=\"Delete $key from Cache\" ><img src=\"$trash\" height=\"16px\" /></a> ";
-						$onclick="onclick=\"sfs_ajax_process( '$key','$cont','add_black','$ajaxurl' );return false;\"";
-						$show.=" <a href=\"\" $onclick title=\"Add to $key Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a> ";
-						$onclick="onclick=\"sfs_ajax_process( '$key','$cont','add_white','$ajaxurl' );return false;\"";
-						$show.=" <a href=\"\" $onclick title=\"Add to $key Allow List\" alt=\"Add to Allow List\" ><img src=\"$tup\" height=\"16px\" /></a> ";
-						$who="<a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a> ";
-						$show.=$who;
-						$show.="<br />";
-						}
-						
-						*/
 						echo $show;
 						?></td>
 					<?php
@@ -247,26 +222,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					?>
                     <td valign="top" id="goodips"><?php
 						// use the be_load to get badips
-						$options = ss_get_options();
-						$stats   = ss_get_stats();
 						$show    = be_load( 'ss_get_gcache', 'x', $stats, $options );
-						/*$show='';
-						$cont='goodips';
-						foreach ( $goodips as $key => $value ) {
-						$show.="<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
-						
-						// try ajax on the delete from bad cache
-						
-						$onclick="onclick=\"sfs_ajax_process( '$key','$cont','delete_gcache','$ajaxurl' );return false;\"";
-						$show.=" <a href=\"\" $onclick title=\"Delete $key from Cache\" alt=\"Delete $key from Cache\" ><img src=\"$trash\" height=\"16px\" /></a> ";
-						$onclick="onclick=\"sfs_ajax_process( '$key','$cont','add_black','$ajaxurl' );return false;\"";
-						$show.=" <a href=\"\" $onclick title=\"Add to $key Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a> ";
-						$onclick="onclick=\"sfs_ajax_process( '$key','$cont','add_white','$ajaxurl' );return false;\"";
-						$show.=" <a href=\"\" $onclick title=\"Add to $key Allow List\" alt=\"Add to Allow List\" ><img src=\"$tup\" height=\"16px\" /></a> ";
-						$show.="<br />";
-						}
-						
-						*/
 						echo $show;
 						?></td>
 					<?php
