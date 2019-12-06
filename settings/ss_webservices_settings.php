@@ -9,10 +9,6 @@ ss_fix_post_vars();
 $now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
-$wordpress_api_key = get_option( 'wordpress_api_key' );
-if ( empty( $wordpress_api_key ) ) {
-	$wordpress_api_key = '';
-}
 $nonce = '';
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
@@ -100,7 +96,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 on the safe side, you should block users who appear on the spam database unless they specifically ask to
                 be Allow Listed.<br />
                 Allowed values are 0 to 9999. Only numbers are accepted.</p>
-            <table align="center" cellspacing="1" style="background-color:#ccc;font-size:0.9em">
+            <table align="center" cellspacing="1" style="background-color:#ccc;font-size:0.9em;">
                 <tr bgcolor="white">
                     <td valign="top">Deny spammers found on Stop Forum Spam with more than
                         <input size="3" name="sfsfreq" type="text" value="<?php echo $sfsfreq; ?>"/>
@@ -113,7 +109,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Project Honeypot API Key</span></legend>
+            <legend><span style="font-weight:bold;font-size:1.2em;">Project Honeypot API Key</span></legend>
             <input size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>"/><br />
             <p>This API key is used for querying the Project Honeypot Deny List. It is required if you want to
                 check IP addresses against the Project Honeypot database. You can register and get an API key at <a
@@ -132,7 +128,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">BotScout API Key</span></legend>
+            <legend><span style="font-weight:bold;font-size:1.2em;">BotScout API Key</span></legend>
             <input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>"/><br />
             <p>This API key is used for querying the BotScout database. It is required if you want to
                 check IP addresses against the botscout.com database. You can register and get an API key at <a
@@ -151,7 +147,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Check Against DNSBL Lists Such as Spamhaus.org</span>
+            <legend><span style="font-weight:bold;font-size:1.2em;">Check Against DNSBL Lists Such as Spamhaus.org</span>
             </legend>
             <input name="chkdnsbl" type="checkbox" value="Y" <?php if ( $chkdnsbl == 'Y' ) {
 				echo "checked=\"checked\"";
