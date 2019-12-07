@@ -35,7 +35,8 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'chkhosting',
 		'chkakismet',
 		'filterregistrations',
-		'chkform'
+		'chkform',
+		'chkubiquity',
 	);
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
