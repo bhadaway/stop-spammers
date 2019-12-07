@@ -98,17 +98,13 @@ function sfs_debug_msg( $msg ) {
 	}
 	$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 // get the program that is running
-	$sname = $_SERVER["REQUEST_URI"];
-	if ( empty( $sname ) ) {
-		$sname = $_SERVER["SCRIPT_NAME"];
-	}
-	$f = '';
-	$f = @fopen( SS_PLUGIN_DATA . ".sfs_debug_output.txt", 'a' );
-	if ( empty( $f ) ) {
-		return false;
-	}
-	@fwrite( $f, $now . ": " . $sname . ", " . $msg . ", " . $ip . "\r\n" );
-	@fclose( $f );
+	$sname = (!empty($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:$_SERVER['SCRIPT_NAME']);
+
+	@file_put_contents( SS_PLUGIN_DATA . ".sfs_debug_output.txt"
+		, "$now : $sname , $msg  ,  $ip \r\n" 
+		, FILE_APPEND
+		);
+
 }
 
 function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
