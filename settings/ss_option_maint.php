@@ -4,15 +4,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // just in case
 if ( ! current_user_can( 'manage_options' ) ) {
 	die ( 'Access Denied' );
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
 }
 ss_fix_post_vars();
 ?>
     <div id="ss-plugin" class="wrap">
         <h1>Stop Spammers — DB Cleanup</h1>
-		<?php if ( ! empty( $msg ) ) {
-			echo "$msg";
-		} ?>
+	<?php	if (array_key_exists('autol',$_POST) || array_key_exists('delo',$_POST)){
+			echo '<div class="notice notice-success"><p>Options Updated</p></div>';
+		}
+	?>
         <div class="notice notice-warning">
             <p>This feature is to be considered experimental. Use with caution and at your own risk.</p>
         </div>
@@ -225,7 +225,24 @@ ss_fix_post_vars();
 			'nav_menu_options',
 			'auto_core_update_notified',
 			'link_manager_enabled',
-			'WPLANG'
+			'WPLANG',
+//add by jetsam -------------------------------------------
+			'ss_stop_sp_reg_options',	// not for all
+			'ss_stop_sp_reg_stats',		// not for all
+			// wp opts			
+			'blacklist_keys',
+			'comment_whitelist',
+			'customize_stashed_theme_mods',
+			'finished_splitting_shared_terms',
+			'fresh_site',
+			'recovery_keys',
+			'recovery_mode_email_last_sent',
+			'show_comments_cookies_opt_in',
+			'site_icon',
+			'theme_switch_menu_locations',
+			'wp_page_for_privacy_policy',
+// ----------------------------------------------------------
+			
 		);
 		global $wpdb;
 		// global $wp_query;
