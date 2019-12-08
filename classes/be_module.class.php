@@ -74,7 +74,8 @@ class be_module {
 		return long2ip( $ipl );
 	}
 
-	public function searchList( $needle, &$haystack ) { // array in haystack is time=>reason
+	public function searchList( $needle, &$haystack
+	) { // array in haystack is time=>reason
 // searches an array for an IP or an email
 // simple search array no key
 		$searchname = $this->searchname;
@@ -85,30 +86,36 @@ class be_module {
 		if ( empty( $needle ) ) {
 			return false;
 		}
-		foreach ( $haystack as $search ) { // haystack is a list of names or emails, possibly with wildcards
+		foreach ( $haystack as $search )
+		{ // haystack is a list of names or emails, possibly with wildcards
 			$search = trim( strtolower( $search ) );
 			$reason = $search;
 			if ( empty( $search ) ) {
 				continue;
 			} // in case there is a null in the list
 			if ( $needle == $search ) {
-				return "$searchname:$needle";
+				return "$searchname: $needle";
 			}
 // four kinds of search, looking for an IP, cidr, wildcard or an email
-			if ( substr_count( $needle, '.' ) == 3 && strpos( $search, '.' ) !== false && strpos( $search, '/' ) !== false ) {
+			if ( substr_count( $needle, '.' ) == 3
+			     && strpos( $search, '.' ) !== false
+			     && strpos( $search, '/' ) !== false
+			) {
 // searching for an cidr in the list
 				list( $subnet, $mask ) = explode( '/', $search );
 				$x2 = ip2long( $needle ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
 				$x3 = ip2long( $subnet ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
 				if ( $x2 == $x3 ) {
-					return "$searchname:$reason";
+					return "$searchname: $reason";
 				}
 			}
 // check for wildcard - both email and IP
-			if ( strpos( $search, '*' ) !== false || strpos( $search, '?' ) !== false ) {
+			if ( strpos( $search, '*' ) !== false
+			     || strpos( $search, '?' ) !== false
+			) {
 // new wildcard search
 				if ( be_module::wildcard_match( $search, $needle ) ) {
-					return "$searchname:$reason:$needle";
+					return "$searchname: $reason: $needle";
 				}
 				continue;
 			}
@@ -116,7 +123,7 @@ class be_module {
 			if ( strlen( $needle ) > strlen( $search ) ) {
 				$n = substr( $needle, 0, strlen( $search ) );
 				if ( $n == $search ) {
-					return "$searchname:$reason";
+					return "$searchname: $reason";
 				}
 			}
 		}
@@ -165,7 +172,8 @@ class be_module {
 		return preg_match( $pattern, $value );
 	}
 
-	public function searchcache( $needle, &$haystack ) { // array in haystack is ip=>reason
+	public function searchcache( $needle, &$haystack
+	) { // array in haystack is ip=>reason
 // searches an array for an IP or an email - uses wildcards, short instances and cidrs
 // the wlist array is of the form $time->ip
 		$searchname = $this->searchname;
@@ -179,13 +187,15 @@ class be_module {
 				continue;
 			} // in case there is a null in the list
 			if ( $needle == $search ) {
-				return "$searchname:$needle";
+				return "$searchname: $needle";
 			}
 // four kinds of search, looking for an IP, cidr, wildcard or an email
 // check for wildcard - both email and IP
-			if ( strpos( $search, '*' ) !== false || strpos( $search, '?' ) !== false ) {
+			if ( strpos( $search, '*' ) !== false
+			     || strpos( $search, '?' ) !== false
+			) {
 				if ( be_module::wildcard_match( $search, $needle ) ) {
-					return "$searchname:$reason:$needle";
+					return "$searchname: $reason: $needle";
 				}
 // $search=substr($search,0,strpos($search,'*'));
 // if ($search=substr($needle,0,strlen($search))) return "$searchname:$reason";
@@ -194,16 +204,18 @@ class be_module {
 			if ( strlen( $needle ) > strlen( $search ) ) {
 				$n = substr( $needle, 0, strlen( $search ) );
 				if ( $n == $search ) {
-					return "$searchname:$reason";
+					return "$searchname: $reason";
 				}
 			}
-			if ( substr_count( $needle, '.' ) == 3 && strpos( $search, '/' ) !== false ) {
+			if ( substr_count( $needle, '.' ) == 3
+			     && strpos( $search, '/' ) !== false
+			) {
 // searching for an cidr in the list
 				list( $subnet, $mask ) = explode( '/', $search );
 				$x2 = ip2long( $needle ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
 				$x3 = ip2long( $subnet ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
 				if ( $x2 == $x3 ) {
-					return "$searchname:$reason";
+					return "$searchname: $reason";
 				}
 			}
 		}
@@ -211,10 +223,11 @@ class be_module {
 		return false;
 	}
 
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		return be_module::ipListMatch( $ip );
 	}
-// borrowed from andrewtch at
 // https://github.com/andrewtch/phpwildcard/blob/master/wildcard_match.php
 
 	public function ipListMatch( $ip ) {
@@ -238,7 +251,9 @@ class be_module {
 			}
 			if ( is_array( $c ) ) {
 				list( $ips, $ipe ) = $c;
-				if ( strpos( $ips, '.' ) === false && strpos( $ips, ':' ) === false ) { // new numstr format
+				if ( strpos( $ips, '.' ) === false
+				     && strpos( $ips, ':' ) === false
+				) { // new numstr format
 					if ( $ipt < $ips ) {
 						return false;
 					}
@@ -254,7 +269,8 @@ class be_module {
 					$ipe = be_module::ip2numstr( $ipe );
 					if ( $ipt >= $ips && $ipt <= $ipe ) {
 						if ( is_array( $ip ) ) {
-							echo "array in ip: " . print_r( $ip, true ) . "<br />";
+							echo "array in ip: " . print_r( $ip, true )
+							     . "<br />";
 							$ip = $ip[0];
 						}
 
@@ -343,7 +359,8 @@ class be_module {
 // echo decbin($ipl).'<br />';
 		$z = pow( 2, 33 ) - 1;
 // echo 'z'.decbin($z).'<br />';
-		$z = $num ^ $z; // 10000000000000000000000000000 xor 0000000000000000000011111 = 011111111111111111111111100000
+		$z = $num
+		     ^ $z; // 10000000000000000000000000000 xor 0000000000000000000011111 = 011111111111111111111111100000
 // echo 'z2'.decbin($z).'<br />';
 		$ipl = $ipl & $z;
 

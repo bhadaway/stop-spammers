@@ -8,8 +8,8 @@ if ( ! current_user_can( 'manage_options' ) ) {
 }
 
 ss_fix_post_vars();
-$now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-$options = ss_get_options();
+$now           = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+$options       = ss_get_options();
 extract( $options );
 $chkcloudflare = 'Y'; // force back to on - always fix Cloudflare if the plugin is not present and Cloudflare detected
 $nonce         = '';
@@ -63,17 +63,23 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		echo "$msg";
 	} ?>
     <form method="post" action="">
-        <input type="hidden" name="action" value="update"/>
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
+		<input type="hidden" name="action" value="update"/>
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Allow List</span></legend>
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Allow List</span>
+            </legend>
             <p>Put IP addresses or emails here that you don't want blocked.
-                One email or IP to a line. You can use wild cards here for emails.</p>
-            <p>You may put user IDs here, but this is dangerous because spammers can easily find a user's ID from
+                One email or IP to a line. You can use wild cards here for
+                emails.</p>
+            <p>You may put user IDs here, but this is dangerous because spammers
+                can easily find a user's ID from
                 previous comments, and add comments using it.
-                I don't recommend using this. Normally user ID checking is turned off so you must check this box to use
+                I don't recommend using this. Normally user ID checking is
+                turned off so you must check this box to use
                 it.
-                <input name="chkwluserid" type="checkbox" value="Y" <?php if ( $chkwluserid == 'Y' ) {
+                <input name="chkwluserid" type="checkbox"
+                       value="Y" <?php if ( $chkwluserid == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /></p>
             <p>These are checked first so they override any blocking.</p>
@@ -81,72 +87,102 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				for ( $k = 0; $k < count( $wlist ); $k ++ ) {
 					echo $wlist[ $k ] . "\r\n";
 				}
-            ?></textarea>
+				?></textarea>
         </fieldset>
-        <br />
+        <br/>
         <h2>Allow Options</h2>
-        <p>These options will be checked first and will allow some users to continue without being checked further.<br />
-            You can prevent Google, PayPal, and other services from ever being blocked.</p>
+        <p>These options will be checked first and will allow some users to
+            continue without being checked further.<br/>
+            You can prevent Google, PayPal, and other services from ever being
+            blocked.</p>
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Google</span></legend>
-            <p><input name="chkgoogle" type="checkbox" value="Y" <?php if ( $chkgoogle == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Google</span>
+            </legend>
+            <p><input name="chkgoogle" type="checkbox"
+                      value="Y" <?php if ( $chkgoogle == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                <strong>DON'T TOUCH.</strong> Google is very important to most websites. This prevents Google from being
+                <strong>DON'T TOUCH.</strong> Google is very important to most
+                websites. This prevents Google from being
                 blocked.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Generated Allow List</span></legend>
-            <p><input name="chkgenallowlist" type="checkbox" value="Y" <?php if ( $chkgenallowlist == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Generated Allow List</span>
+            </legend>
+            <p><input name="chkgenallowlist" type="checkbox"
+                      value="Y" <?php if ( $chkgenallowlist == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                An Allow List of well-behaved and responsible IP blocks in North America, Western Europe, and
+                An Allow List of well-behaved and responsible IP blocks in North
+                America, Western Europe, and
                 Australia.
-                These are a major source of spam, but also a major source of paying customers.
-                Checking this will let in some spam, but will not block residential ISP customers from
+                These are a major source of spam, but also a major source of
+                paying customers.
+                Checking this will let in some spam, but will not block
+                residential ISP customers from
                 industrialized countries.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Other Allow Lists</span></legend>
-            <p><input name="chkmiscallowlist" type="checkbox" value="Y" <?php if ( $chkmiscallowlist == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Other Allow Lists</span>
+            </legend>
+            <p><input name="chkmiscallowlist" type="checkbox"
+                      value="Y" <?php if ( $chkmiscallowlist == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                A list of small web service providers that can be accidentally blocked as bad actors.
+                A list of small web service providers that can be accidentally
+                blocked as bad actors.
                 Currently on the list: VaultPress.
                 Request other services be added to this whitelist
-				<a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>.</p>
+                <a href="https://github.com/bhadaway/stop-spammers/issues"
+                   target="_blank">on GitHub</a>.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Allow PayPal</span></legend>
-            <p><input name="chkpaypal" type="checkbox" value="Y" <?php if ( $chkpaypal == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Allow PayPal</span>
+            </legend>
+            <p><input name="chkpaypal" type="checkbox"
+                      value="Y" <?php if ( $chkpaypal == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
                 If you accept payment through PayPal, keep this box checked.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Allow Yahoo Merchant Services</span></legend>
-            <p><input name="chkyahoomerchant" type="checkbox" value="Y" <?php if ( $chkyahoomerchant == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Allow Yahoo Merchant Services</span>
+            </legend>
+            <p><input name="chkyahoomerchant" type="checkbox"
+                      value="Y" <?php if ( $chkyahoomerchant == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
                 If you use Yahoo Merchant Services, keep this box checked.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Allow Amazon Cloud</span></legend>
-            <p><input name="chkaws" type="checkbox" value="Y" <?php if ( $chkaws == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Allow Amazon Cloud</span>
+            </legend>
+            <p><input name="chkaws" type="checkbox" value="Y" <?php if ( $chkaws
+			                                                             == 'Y'
+				) {
 					echo "checked=\"checked\"";
 				} ?> />
-                The Amazon Cloud is the source of occasional spam, but they shut it down right away. Lots of startup web
+                The Amazon Cloud is the source of occasional spam, but they shut
+                it down right away. Lots of startup web
                 services use
-                Amazon Cloud Servers to host their services. If you use a service to check your site, share on Facebook,
+                Amazon Cloud Servers to host their services. If you use a
+                service to check your site, share on Facebook,
                 or cross post from Twitter,
-                it may be using Amazon's cloud services. Check this if you want to always allow Amazon AWS.</p>
+                it may be using Amazon's cloud services. Check this if you want
+                to always allow Amazon AWS.</p>
         </fieldset>
         <br />
-        <p class="submit"><input class="button-primary" value="Save Changes" type="submit"/></p>
+        <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>
 </div>

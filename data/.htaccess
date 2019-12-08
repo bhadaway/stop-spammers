@@ -1,5 +1,1 @@
-# -------------------- block access to the folder using the web server
-
-deny from All
-
-# --------------------
+deny from all

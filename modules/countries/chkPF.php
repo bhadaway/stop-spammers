@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkPF extends be_module {
 	public $searchname = 'French Polynesia';
 	public $searchlist = array(
-		array( '123050064000', '123050128000' ),
-		array( '202090064000', '202090096000' )
-	);
+			array( '123050064000', '123050128000' ),
+			array( '202090064000', '202090096000' )
+		);
 }
 
 ?>

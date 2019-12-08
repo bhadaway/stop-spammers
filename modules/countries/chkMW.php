@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkMW extends be_module {
 	public $searchname = 'Malawi';
 	public $searchlist = array(
-		array( '105234128000', '105235000000' )
-	);
+			array( '105234128000', '105235000000' )
+		);
 }
 
 ?>

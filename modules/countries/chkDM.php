@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkDM extends be_module {
 	public $searchname = 'Dominica';
 	public $searchlist = array(
-		array( '199127196000', '199127200000' )
-	);
+			array( '199127196000', '199127200000' )
+		);
 }
 
 ?>

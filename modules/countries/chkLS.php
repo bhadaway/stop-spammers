@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkLS extends be_module {
 	public $searchname = 'Lesotho';
 	public $searchlist = array(
-		array( '197155194000', '197155195000' )
-	);
+			array( '197155194000', '197155195000' )
+		);
 }
 
 ?>

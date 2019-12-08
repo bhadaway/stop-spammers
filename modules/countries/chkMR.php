@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkMR extends be_module {
 	public $searchname = 'Mauritania';
 	public $searchlist = array(
-		array( '197231000000', '197231032000' )
-	);
+			array( '197231000000', '197231032000' )
+		);
 }
 
 ?>

@@ -5,9 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chk404 extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // following strings are possibly exploits - it may be a malicious robot is searching for an exploitable program
-		$expl  = array(
+		$expl = array(
 			'/administrator/',
 			'/doc-ready/doc-ready',
 			'/eventEmitter/EventEmitter',

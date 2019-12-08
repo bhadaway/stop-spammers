@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkGH extends be_module {
 	public $searchname = 'Ghana';
 	public $searchlist = array(
-		array( '197251128000', '197251224000' )
-	);
+			array( '197251128000', '197251224000' )
+		);
 }
 
 ?>

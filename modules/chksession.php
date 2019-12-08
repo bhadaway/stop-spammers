@@ -6,12 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chksession {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // this uses cookies - it may break programs that need to get to cookies first
 // move this to main line
 		if ( ! isset( $_POST ) || empty( $_POST ) ) { // no post defined
 			if ( ! isset( $_COOKIE['ss_protection_time'] ) ) { // if previous set do not reset
-				setcookie( 'ss_protection_time', strtotime( "now" ), strtotime( '+1 min' ) );
+				setcookie( 'ss_protection_time', strtotime( "now" ),
+					strtotime( '+1 min' ) );
 			}
 
 			return false;
@@ -36,11 +39,15 @@ class chksession {
 		}
 		$sesstime = 2; // nobody can do it in 3 seconds
 		if ( ! defined( "WP_CACHE" ) || ( ! WP_CACHE ) ) {
-			if ( strpos( $sname, 'wp-login.php' ) === false ) {  // don't check for logins - too many failures
+			if ( strpos( $sname, 'wp-login.php' )
+			     === false
+			) {  // don't check for logins - too many failures
 				if ( isset( $_COOKIE['ss_stop_spammers_time'] ) ) {
 					$stime = $_COOKIE['ss_stop_spammers_time'];
 					$tm    = strtotime( "now" ) - $stime;
-					if ( $tm > 0 && $tm <= $sesstime ) { // zero seconds is wrong, too - it means that session was set somewhere
+					if ( $tm > 0
+					     && $tm <= $sesstime
+					) { // zero seconds is wrong, too - it means that session was set somewhere
 // takes longer than 2 seconds to really type a comment
 						return "Session Speed - $tm seconds";
 					}

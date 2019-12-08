@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkSC extends be_module {
 	public $searchname = 'Seychelles';
 	public $searchlist = array(
-		array( '193107017000', '193107018000' ),
-		array( '193107019000', '193107020000' )
-	);
+			array( '193107017000', '193107018000' ),
+			array( '193107019000', '193107020000' )
+		);
 }
 
 ?>

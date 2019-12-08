@@ -198,7 +198,7 @@ function include_setting( $file ) {
 	if ( file_exists( $ppath . $file ) ) {
 		require_once( $ppath . $file );
 	} else {
-		echo "<br />Missing file:$ppath $file <br />";
+		echo "<br />Missing file: $ppath $file <br />";
 	}
 	sfs_errorsonoff( 'off' );
 }

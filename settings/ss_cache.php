@@ -7,7 +7,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 }
 
 ss_fix_post_vars();
-$stats = ss_get_stats();
+$stats   = ss_get_stats();
 extract( $stats );
 $now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
@@ -65,13 +65,24 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	if ( ! empty( $msg ) ) {
 		echo "$msg";
 	} ?>
-    <p>Whenever a user tries to leave a comment, register, or login, they are recorded in the Good Cache if they pass or the Bad Cache if they fail. If a user is blocked from access, they are added to the Bad Cache. You can see the caches here. The caches clear themselves over time, but if you are getting lots of spam it is a good idea to clear these out manually by pressing the "Clear Cache" button.</p>
+    <p>Whenever a user tries to leave a comment, register, or login, they are
+        recorded in the Good Cache if they pass or the Bad Cache if they fail.
+        If a user is blocked from access, they are added to the Bad Cache. You
+        can see the caches here. The caches clear themselves over time, but if
+        you are getting lots of spam it is a good idea to clear these out
+        manually by pressing the "Clear Cache" button.</p>
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update"/>
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
+        <input type="hidden" name="ss_stop_spammers_control"
+               value="<?php echo $nonce; ?>"/>
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Bad Cache Size</span></legend>
-            <p>You can change the number of entries to keep in your history and cache. The size of these items is an issue and will cause problems with some WordPress installations. It is best to keep these small.</p>
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Bad Cache Size</span>
+            </legend>
+            <p>You can change the number of entries to keep in your history and
+                cache. The size of these items is an issue and will cause
+                problems with some WordPress installations. It is best to keep
+                these small.</p>
             Bad IP Cache Size: <select name="ss_sp_cache">
                 <option value="0" <?php
 				if ( $ss_sp_cache == '0' ) {
@@ -109,12 +120,20 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				} ?>>200
                 </option>
             </select>
-            <p>Select the number of items to save in the bad IP cache. Avoid making this too big as it can cause the plugin to run out of memory.</p>
+            <p>Select the number of items to save in the bad IP cache. Avoid
+                making this too big as it can cause the plugin to run out of
+                memory.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Good Cache Size</span></legend>
-            <p>The good cache should be set to just a few entries. The first time a spammer hits your site he may not be well-known and once he gets in the Good Cache he can hit your site without being checked again. Increasing the size of the cache means a spammer has more opportunities to hit your site without a new check.</p>
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Good Cache Size</span>
+            </legend>
+            <p>The good cache should be set to just a few entries. The first
+                time a spammer hits your site he may not be well-known and once
+                he gets in the Good Cache he can hit your site without being
+                checked again. Increasing the size of the cache means a spammer
+                has more opportunities to hit your site without a new check.</p>
             Good Cache Size:
             <select name="ss_sp_good">
                 <option value="1" <?php
@@ -170,7 +189,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             </select>
         </fieldset>
         <br />
-        <p class="submit"><input class="button-primary" value="Save Changes" type="submit"/></p>
+        <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>
 	<?php
 	if ( count( $badips ) == 0 && count( $goodips ) == 0 ) {
@@ -179,9 +198,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?>
         <h2>Cached Values</h2>
         <form method="post" action="">
-            <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
-            <input type="hidden" name="ss_stop_clear_cache" value="true"/>
-            <p class="submit"><input class="button-primary" value="Clear the Cache" type="submit"/></p>
+            <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+            <input type="hidden" name="ss_stop_clear_cache" value="true" />
+            <p class="submit"><input class="button-primary" value="Clear the Cache" type="submit" /></p>
         </form>
         <table>
             <tr>
@@ -209,7 +228,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					?>
                     <td valign="top" id="badips"><?php
 						// use the be_load to get badips
-						$show    = be_load( 'ss_get_bcache', 'x', $stats, $options );
+						$show = be_load( 'ss_get_bcache', 'x', $stats,
+							$options );
 						echo $show;
 						?></td>
 					<?php
@@ -222,7 +242,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					?>
                     <td valign="top" id="goodips"><?php
 						// use the be_load to get badips
-						$show    = be_load( 'ss_get_gcache', 'x', $stats, $options );
+						$show = be_load( 'ss_get_gcache', 'x', $stats,
+							$options );
 						echo $show;
 						?></td>
 					<?php

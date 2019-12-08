@@ -9,7 +9,7 @@ ss_fix_post_vars();
 $now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
-$nonce = '';
+$nonce   = '';
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
@@ -110,33 +110,47 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		echo "$msg";
 	} ?>
     <form method="post" action="">
-        <input type="hidden" name="action" value="update"/>
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
+        <input type="hidden" name="action" value="update" />
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Block List</span></legend>
-            <p>Put IP addresses or emails here that you want blocked. One email or IP to a line.
-                You can mix email addresses and IP numbers. You can use IPv4 or IPv6 numbers. You can use CIDR format to
-                block a range (e.g. 1.2.3.4/16) or you can use wild cards (e.g. spammer@spam.* or 1.2.3.*).
-                You can also use this to deny user IDs. This is usually not useful as spammers can change the user ID
-                that they use.<br />
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Block List</span>
+            </legend>
+            <p>Put IP addresses or emails here that you want blocked. One email
+                or IP to a line.
+                You can mix email addresses and IP numbers. You can use IPv4 or
+                IPv6 numbers. You can use CIDR format to
+                block a range (e.g. 1.2.3.4/16) or you can use wild cards (e.g.
+                spammer@spam.* or 1.2.3.*).
+                You can also use this to deny user IDs. This is usually not
+                useful as spammers can change the user ID
+                that they use.<br/>
                 To block usernames in this list, check this box.
-                <input name="chkbluserid" type="checkbox" value="Y" <?php if ( $chkbluserid == 'Y' ) {
+                <input name="chkbluserid" type="checkbox"
+                       value="Y" <?php if ( $chkbluserid == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /></p>
-            <p>These are checked after the Allow List so the Allow List overrides any blocking.</p>
+            <p>These are checked after the Allow List so the Allow List
+                overrides any blocking.</p>
             <textarea name="blist" cols="40" rows="8"><?php
 				foreach ( $blist as $p ) {
 					echo $p . "\r\n";
 				}
-            ?></textarea>
+				?></textarea>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Spam Words List</span></legend>
-            <p>Use the spam words list to check comment body, email, and author fields. If a word here shows up in an
-                email address or author field then block the comment. (wild cards do not work here)<br />
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Spam Words List</span>
+            </legend>
+            <p>Use the spam words list to check comment body, email, and author
+                fields. If a word here shows up in an
+                email address or author field then block the comment. (wild
+                cards do not work here)<br />
                 Check Spam Words: <input name="chkspamwords" type="checkbox"
-                                         value="Y" <?php if ( $chkspamwords == 'Y' ) {
+                                         value="Y" <?php if ( $chkspamwords
+				                                              == 'Y'
+				) {
 					echo "checked=\"checked\"";
 				} ?> /><br />
                 Add or delete spam words (one word per line):</p>
@@ -144,16 +158,23 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				foreach ( $spamwords as $p ) {
 					echo $p . "\r\n";
 				}
-            ?></textarea>
+				?></textarea>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Bad User Agents List</span></legend>
-            <p>Browsers always include a user agent string when they access a site. A missing user agent is usually a
-                spammer using poorly written software or a leech who is stealing the pages from your site. This option
-                checks for a variety of user agents such as WGET and PHP, Java, or Ruby language standard agents. It
-                also checks for known abusive robots that sometimes submit forms.<br />
-                Check Agents: <input name="chkagent" type="checkbox" value="Y" <?php if ( $chkagent == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Bad User Agents List</span>
+            </legend>
+            <p>Browsers always include a user agent string when they access a
+                site. A missing user agent is usually a
+                spammer using poorly written software or a leech who is stealing
+                the pages from your site. This option
+                checks for a variety of user agents such as WGET and PHP, Java,
+                or Ruby language standard agents. It
+                also checks for known abusive robots that sometimes submit
+                forms.<br />
+                Check Agents: <input name="chkagent" type="checkbox"
+                                     value="Y" <?php if ( $chkagent == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><br />
                 Add or delete agent strings (one word per line):</p>
@@ -161,34 +182,44 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				foreach ( $badagents as $p ) {
 					echo $p . "\r\n";
 				}
-            ?></textarea>
+				?></textarea>
             <br />
-            <p>This is a string search so that all you have to enter is enough of the agent to match. Telesoft matches
+            <p>This is a string search so that all you have to enter is enough
+                of the agent to match. Telesoft matches
                 Telesoft Spider or Telesoft 3.2.</p>
         </fieldset>
         <br />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Blocked TLDs</span></legend>
-            <p>Enter the TLD name including the '.' e.g. .XXX<br />
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Blocked TLDs</span>
+            </legend>
+            <p>Enter the TLD name including the '.' e.g. .XXX<br/>
                 <strong>This only works for email addresses entered by the user.</strong><br />
-                This will block all comments and registrations that use this TLD in domains for emails.<br />
-                If you have a problem with a more complex sub-domains you can also use this to check anything after the
+                This will block all comments and registrations that use this TLD
+                in domains for emails.<br />
+                If you have a problem with a more complex sub-domains you can
+                also use this to check anything after the
                 first period.
-                This is not for stopping domains, though. Entering '.xxx.ru' will stop 'user@mail.xxx.ru',
+                This is not for stopping domains, though. Entering '.xxx.ru'
+                will stop 'user@mail.xxx.ru',
                 but it will not stop 'user@xxx.ru'.
                 Blocked TLDs (One TLD per line not case sensitive):</p>
             <textarea name="badTLDs" cols="40" rows="8"><?php
 				foreach ( $badTLDs as $p ) {
 					echo $p . "\r\n";
 				}
-            ?></textarea><br />
-            <p>A TLD is the last part of a domain like .COM or .NET. You can block emails from various countries this
-                way by adding a TLD such as .CN or .RU (these will block Russia and China). It will not block the whole
+				?></textarea><br />
+            <p>A TLD is the last part of a domain like .COM or .NET. You can
+                block emails from various countries this
+                way by adding a TLD such as .CN or .RU (these will block Russia
+                and China). It will not block the whole
                 country.<br />
-                A list of TLDs can be found at <a href="https://wikipedia.org/wiki/List_of_Internet_top-level_domains"
-                                                  target="_blank">Wikipedia list of internet top-level domains</a>.</p>
+                A list of TLDs can be found at <a
+                        href="https://wikipedia.org/wiki/List_of_Internet_top-level_domains"
+                        target="_blank">Wikipedia list of internet top-level
+                    domains</a>.</p>
         </fieldset>
         <br />
-        <p class="submit"><input class="button-primary" value="Save Changes" type="submit"/></p>
+        <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>
 </div>

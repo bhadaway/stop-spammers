@@ -7,10 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkCM extends be_module {
 	public $searchname = 'Cameroon';
 	public $searchlist = array(
-		array( '169255004000', '169255008000' ),
-		array( '195024192000', '195024224000' ),
-		array( '197159000000', '197159032000' )
-	);
+			array( '169255004000', '169255008000' ),
+			array( '195024192000', '195024224000' ),
+			array( '197159000000', '197159032000' )
+		);
 }
 
 ?>

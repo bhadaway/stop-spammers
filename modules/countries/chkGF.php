@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkGF extends be_module {
 	public $searchname = 'French Guiana';
 	public $searchlist = array(
-		array( '161022064000', '161022128000' )
-	);
+			array( '161022064000', '161022128000' )
+		);
 }
 
 ?>

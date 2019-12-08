@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkAW extends be_module {
 	public $searchname = 'Aruba';
 	public $searchlist = array(
-		array( '201229000000', '201229128000' )
-	);
+			array( '201229000000', '201229128000' )
+		);
 }
 
 ?>

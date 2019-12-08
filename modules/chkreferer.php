@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chkreferer extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		$this->searchname = 'HTTP_REFERER check';
 // only check this on posts, but we can double check
 		if ( ! $_SERVER['REQUEST_METHOD'] === 'POST' ) {
@@ -20,7 +22,9 @@ class chkreferer extends be_module {
 			$ua = $_SERVER['HTTP_USER_AGENT'];
 		}
 		$a = array( false, '' );
-		if ( strpos( strtolower( $ua ), 'iphone' ) === false && strpos( strtolower( $ua ), 'ipad' ) === false ) {
+		if ( strpos( strtolower( $ua ), 'iphone' ) === false
+		     && strpos( strtolower( $ua ), 'ipad' ) === false
+		) {
 			return false;
 		}
 // require the referer

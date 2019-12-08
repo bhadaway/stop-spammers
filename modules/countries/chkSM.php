@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkSM extends be_module {
 	public $searchname = 'San Marino';
 	public $searchlist = array(
-		array( '079099192000', '079099200000' )
-	);
+			array( '079099192000', '079099200000' )
+		);
 }
 
 ?>

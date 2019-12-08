@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkMQ extends be_module {
 	public $searchname = 'Martinique';
 	public $searchlist = array(
-		array( '095138000000', '095138128000' )
-	);
+			array( '095138000000', '095138128000' )
+		);
 }
 
 ?>

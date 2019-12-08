@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkBI extends be_module {
 	public $searchname = 'Burundi';
 	public $searchlist = array(
-		array( '197231248000', '197231252000' )
-	);
+			array( '197231248000', '197231252000' )
+		);
 }
 
 ?>

@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkLY extends be_module {
 	public $searchname = 'Libya';
 	public $searchlist = array(
-		array( '005063000000', '005063004000' ),
-		array( '062068032000', '062068064000' )
-	);
+			array( '005063000000', '005063004000' ),
+			array( '062068032000', '062068064000' )
+		);
 }
 
 ?>

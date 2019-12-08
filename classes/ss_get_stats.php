@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ss_get_stats {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // gets the stats when reset or new version
 		$stats = get_option( 'ss_stop_sp_reg_stats' );
 		if ( empty( $stats ) || ! is_array( $stats ) ) {
@@ -35,7 +37,7 @@ class ss_get_stats {
 			'cntchkyahoomerchant' => 0
 		);
 // Deny List Y/N settings
-		$defaultsBL        = array(
+		$defaultsBL = array(
 			'cntchk404'        => 0,
 			'cntchkaccept'     => 0,
 			'cntchkadmin'      => 0,
@@ -66,14 +68,16 @@ class ss_get_stats {
 			'cntchkubiquity'   => 0,
 			'cntchkmulti'      => 0
 		);
-		$defaultsTOTALS    = array(
+		$defaultsTOTALS = array(
 			'spcount'  => 0,
 			'spmcount' => 0,
 			'cntcap'   => 0, // CAPTCHA success
 			'cntncap'  => 0, // CAPTCHA not success
 			'cntpass'  => 0, // passed
-			'spmdate'  => date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) ),
-			'spdate'   => date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) )
+			'spmdate'  => date( 'Y/m/d',
+				time() + ( get_option( 'gmt_offset' ) * 3600 ) ),
+			'spdate'   => date( 'Y/m/d',
+				time() + ( get_option( 'gmt_offset' ) * 3600 ) )
 		);
 		$defaultsCountries = array(
 			'cntchkAD' => 0,
@@ -217,7 +221,8 @@ class ss_get_stats {
 			'cntchkVN' => 0,
 			'cntchkYE' => 0
 		);
-		$ansa              = array_merge( $defaults, $defaultsWL, $defaultsTOTALS, $defaultsBL, $defaultsCountries );
+		$ansa = array_merge( $defaults, $defaultsWL,
+			$defaultsTOTALS, $defaultsBL, $defaultsCountries );
 // get rid of old values no longer used in this version_compare
 		foreach ( $ansa as $key => $val ) {
 			if ( array_key_exists( $key, $stats ) ) {
@@ -246,10 +251,12 @@ class ss_get_stats {
 			$ansa['spmcount'] = 0;
 		}
 		if ( $ansa['spcount'] == 0 ) {
-			$ansa['spdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+			$ansa['spdate'] = date( 'Y/m/d',
+				time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		}
 		if ( $ansa['spmcount'] == 0 ) {
-			$ansa['spmdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+			$ansa['spmdate'] = date( 'Y/m/d',
+				time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		}
 		$ansa['version'] = SS_VERSION;
 		ss_set_stats( $ansa );

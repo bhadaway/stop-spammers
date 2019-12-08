@@ -1,12 +1,14 @@
 <?php
 // changed to look for the ending tld in all fields
-// thanks to Johan Schiff for hacking up some cool improvements to this module
+// thanks to Johan Schiff
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class chktld { // change name
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // this checks the .xxx or .ru, etc in emails - only works if there is an email
 		$tld = $options['badTLDs'];
 // sfs_debug_msg('chktlds post '.print_r($post,true));
@@ -32,7 +34,8 @@ class chktld { // change name
 // if (empty($ft)) continue;
 // echo "2 $key, $value, $ft<br />";
 				$t  = explode( '.', $value );
-				$tt = implode( array_slice( $t, count( $t ) - $dlvl, $dlvl ), '.' );
+				$tt = implode( array_slice( $t, count( $t ) - $dlvl, $dlvl ),
+					'.' );
 				$tt = '.' . trim( strtolower( $tt ) );
 				if ( $ft == $tt ) {
 					return "TLD Blocked: $key: $value: $ft";

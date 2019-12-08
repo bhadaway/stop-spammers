@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkZW extends be_module {
 	public $searchname = 'Zimbabwe';
 	public $searchlist = array(
-		array( '197211208000', '197211216000' )
-	);
+			array( '197211208000', '197211216000' )
+		);
 }
 
 ?>

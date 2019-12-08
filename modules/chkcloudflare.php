@@ -10,7 +10,9 @@ class chkcloudflare extends be_module {
 // no longer returns anything but false - if we detect cloudflare we fix it
 // if we detect Cloudflare and can't fix it we can't really do anything about it - just block it
 // Cloudflare will be whitelisted in the generated whitelist
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // return false;
 		if ( function_exists( 'cloudflare_init' ) ) {
 			return false;
@@ -47,10 +49,10 @@ class chkcloudflare extends be_module {
 			$ipl = ip2long( $ip );
 			foreach ( $ip4ranges as $ip4 ) {
 				list( $range, $bits ) = explode( '/', $ip4, 2 );
-				$ipr  = ip2long( $range );
+				$ipr = ip2long( $range );
 				$mask = - 1 << ( 32 - $bits );
-				$ipt  = $ipl & $mask;
-				$ipr  = $ipr & $mask;
+				$ipt = $ipl & $mask;
+				$ipr = $ipr & $mask;
 // echo "$ipr - $ipl <br />";
 				if ( $ipt == $ipr ) {
 // goto is not supported in older versions of PHP

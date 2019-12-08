@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkGQ extends be_module {
 	public $searchname = 'Equatorial Guinea';
 	public $searchlist = array(
-		array( '105235224000', '105235240000' ),
-		array( '197214064000', '197214080000' )
-	);
+			array( '105235224000', '105235240000' ),
+			array( '197214064000', '197214080000' )
+		);
 }
 
 ?>

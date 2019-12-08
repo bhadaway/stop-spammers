@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ss_get_options {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // Y/N options
 		$options = get_option( 'ss_stop_sp_reg_options' );
 // Allow List Y/N options
@@ -61,19 +63,22 @@ class ss_get_options {
 		$defaultsCTRL   = array(
 			'chkemail'            => 'Y',
 			'chkip'               => 'Y',
-			'chkcomments'         => 'Y', // ????
-			'chksignup'           => 'Y', // ????
-			'chkxmlrpc'           => 'Y', // ????
+			'chkcomments'         => 'Y',
+			'chksignup'           => 'Y',
+			'chkxmlrpc'           => 'Y',
 			'chkwpmail'           => 'Y',
 			'addtoallowlist'      => 'Y',
-			'wlreqmail'           => '', // email where the request go to
-			'wlreq'               => 'Y', // using this to see if we display the notify form
+			'wlreqmail'           => '',
+			// email where the request go to
+			'wlreq'               => 'Y',
+			// using this to see if we display the notify form
 			'redir'               => 'N',
 			'chkcaptcha'          => 'A',
-			'chkxff'              => 'N', // ????
+			'chkxff'              => 'N',
 			'notify'              => 'Y',
-			'chkspoof'            => 'N', // ???
-			'filterregistrations' => 'Y' // filter registration attempts - even if not from post
+			'chkspoof'            => 'N',
+			'filterregistrations' => 'Y'
+			// filter registration attempts - even if not from post
 		);
 		$defaultARRAY   = array(
 			'badagents'  => array(
@@ -575,7 +580,8 @@ class ss_get_options {
 			'chkVN' => 'N',
 			'chkYE' => 'N'
 		);
-		$ansa           = array_merge( $defaultWL, $defaultsCTRL, $defaultBL, $defaultARRAY, $defaultSVC, $defaultCOUNTRY, $defaults );
+		$ansa           = array_merge( $defaultWL, $defaultsCTRL, $defaultBL,
+			$defaultARRAY, $defaultSVC, $defaultCOUNTRY, $defaults );
 // to keep from getting option creep we then set the options from opts back into the ansa
 // had to do this to get rid of obsolete or mistaken options
 		if ( empty( $options ) || ! is_array( $options ) ) {

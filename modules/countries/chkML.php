@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkML extends be_module {
 	public $searchname = 'Mali';
 	public $searchlist = array(
-		array( '197155152000', '197155160000' )
-	);
+			array( '197155152000', '197155160000' )
+		);
 }
 
 ?>

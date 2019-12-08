@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkLI extends be_module {
 	public $searchname = 'Liechtenstein';
 	public $searchlist = array(
-		array( '089248144000', '089248160000' ),
-		array( '217173224000', '217173240000' )
-	);
+			array( '089248144000', '089248160000' ),
+			array( '217173224000', '217173240000' )
+		);
 }
 
 ?>

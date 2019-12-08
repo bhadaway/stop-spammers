@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkPW extends be_module {
 	public $searchname = 'Palau';
 	public $searchlist = array(
-		array( '103251132000', '103251134000' )
-	);
+			array( '103251132000', '103251134000' )
+		);
 }
 
 ?>

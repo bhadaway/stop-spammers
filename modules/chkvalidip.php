@@ -8,13 +8,13 @@ class chkvalidip {
 	/**
 	 * Check for a fake IP
 	 *
+	 * @param string $ip Client IP
+	 * @param string $host Client Host [optional]
+	 *
+	 * @return  boolean         TRUE if fake IP
 	 * @since   2.0
 	 * @change  2.6.2
 	 *
-	 * @param   string $ip Client IP
-	 * @param   string $host Client Host [optional]
-	 *
-	 * @return  boolean         TRUE if fake IP
 	 */
 	private static function _is_fake_ip( $client_ip ) {
 		$client_host = "";
@@ -22,7 +22,9 @@ class chkvalidip {
 		$host_by_ip = gethostbyaddr( $client_ip );
 		/* IPv6 special */
 		if ( self::_is_ipv6( $client_ip ) ) {
-			if ( self::_is_ipv6( $host_by_ip ) && inet_pton( $client_ip ) === inet_pton( $host_by_ip ) ) {
+			if ( self::_is_ipv6( $host_by_ip )
+			     && inet_pton( $client_ip ) === inet_pton( $host_by_ip )
+			) {
 // no domain
 				return false;
 			} else {
@@ -32,7 +34,8 @@ class chkvalidip {
 // no reverse entry
 					return true;
 				} else {
-					return inet_pton( $client_ip ) !== inet_pton( $record[0]['ipv6'] );
+					return inet_pton( $client_ip )
+					       !== inet_pton( $record[0]['ipv6'] );
 				}
 			}
 		}
@@ -55,40 +58,43 @@ class chkvalidip {
 
 		return false;
 	}
-// borrowed this code - not sure of how good it is or even what it does.
-// it says it checks for fake ip, but how can the ip be fake?
+// checking for fake IP
 
 	/**
 	 * Check for an IPv6 address
 	 *
+	 * @param string $ip IP to validate
+	 *
+	 * @return  boolean       TRUE if IPv6
 	 * @since   2.6.2
 	 * @change  2.6.2
 	 *
-	 * @param   string $ip IP to validate
-	 *
-	 * @return  boolean       TRUE if IPv6
 	 */
 	private static function _is_ipv6( $ip ) {
 //return ! $this->_is_ipv4($ip);
-		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) !== false;
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 )
+		       !== false;
 	}
 
 	/**
 	 * Check for an IPv4 address
 	 *
+	 * @param string $ip IP to validate
+	 *
+	 * @return  integer       TRUE if IPv4
 	 * @since   2.4
 	 * @change  2.6.2
 	 *
-	 * @param   string $ip IP to validate
-	 *
-	 * @return  integer       TRUE if IPv4
 	 */
 	private static function _is_ipv4( $ip ) {
 //return preg_match('/^\d{1,3}(\.\d{1,3}){3,3}$/', $ip);
-		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) !== false;
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 )
+		       !== false;
 	}
 
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		if ( empty( $ip ) ) {
 			return 'Invalid IP: ' . $ip;
 		}
@@ -126,10 +132,10 @@ class chkvalidip {
 // doesn't work on older PHPs or some servers without IPv6 support enables
 		/*
 		try {
-		if ($this->_is_fake_ip($ip)) {
+		if ( $this->_is_fake_ip( $ip ) ) {
 		return "Fake IP (experimental) $ip";
 		}
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 		return $e;
 		}
 		*/

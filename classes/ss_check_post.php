@@ -4,11 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ss_check_post extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // does all of the post checks
 // these are the deny before addons
 // returns array 
-// [0]=class location,[1]=class name (also used as counter),[2]=addon name,
+// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 // [3]=addon author, [4]=addon description
 // if already in Good Cache then exit quick - prevents looking when good checking has already been done
 		$reason = be_load( 'chkgcache', ss_get_ip(), $stats, $options, $post );
@@ -20,7 +22,8 @@ class ss_check_post extends be_module {
 		if ( ! empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
 				if ( ! empty( $add ) && is_array( $add ) ) {
-					$reason = be_load( $add, ss_get_ip(), $stats, $options, $post );
+					$reason = be_load( $add, ss_get_ip(), $stats, $options,
+						$post );
 					if ( $reason !== false ) {
 // need to log a passed hit on post here
 						ss_log_bad( ss_get_ip(), $reason, $add[1], $add );
@@ -214,7 +217,8 @@ class ss_check_post extends be_module {
 		}
 		if ( $reason === false ) {
 // check for a valid IP - if IP is valid we can do the IP checks
-			$actionvalid = array( 'chkvalidip' ); // took out the Cloudflare exclusion
+			$actionvalid
+				= array( 'chkvalidip' ); // took out the Cloudflare exclusion
 			foreach ( $actionvalid as $chk ) {
 				$reason = be_load( $chk, ss_get_ip(), $stats, $options, $post );
 				if ( $reason !== false ) {
@@ -230,7 +234,8 @@ class ss_check_post extends be_module {
 		if ( $reason === false ) {
 			foreach ( $actions as $chk ) {
 				if ( $options[ $chk ] == 'Y' ) {
-					$reason = be_load( $chk, ss_get_ip(), $stats, $options, $post );
+					$reason = be_load( $chk, ss_get_ip(), $stats, $options,
+						$post );
 					if ( $reason !== false ) {
 						break;
 					}
@@ -239,7 +244,9 @@ class ss_check_post extends be_module {
 		}
 // sfs_debug_msg("check post $ip, ".print_r($post,true));
 // for testing the cache without doing spam
-		if ( array_key_exists( 'email', $post ) && $post['email'] == 'tester@tester.com' ) {
+		if ( array_key_exists( 'email', $post )
+		     && $post['email'] == 'tester@tester.com'
+		) {
 			$post['reason'] = "testing IP - will always be blocked"; // use to test plugin
 			be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
 
@@ -247,7 +254,7 @@ class ss_check_post extends be_module {
 		}
 // these are the deny after addons
 // returns array 
-// [0]=class location,[1]=class name (also used as counter),[2]=addon name,
+// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 // [3]=addon author, [4]=addon description
 		if ( $reason === false ) {
 			return false;

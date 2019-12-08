@@ -7,11 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkCD extends be_module {
 	public $searchname = 'Democratic Republic of the Congo';
 	public $searchlist = array(
-		array( '083229064000', '083229128000' ),
-		array( '193110104000', '193110106000' ),
-		array( '217171084000', '217171085000' ),
-		array( '217171087000', '217171088000' )
-	);
+			array( '083229064000', '083229128000' ),
+			array( '193110104000', '193110106000' ),
+			array( '217171084000', '217171085000' ),
+			array( '217171087000', '217171088000' )
+		);
 }
 
 ?>

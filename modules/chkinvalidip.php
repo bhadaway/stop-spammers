@@ -5,7 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chkinvalidip {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		if ( strpos( $ip, '.' ) === false && strpos( $ip, ':' ) === false ) {
 			return 'Invalid IP: ' . $ip;
 		}

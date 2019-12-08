@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkUG extends be_module {
 	public $searchname = 'Uganda';
 	public $searchlist = array(
-		array( '197157000000', '197157064000' ),
-		array( '197239000000', '197239064000' )
-	);
+			array( '197157000000', '197157064000' ),
+			array( '197239000000', '197239064000' )
+		);
 }
 
 ?>

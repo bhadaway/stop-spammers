@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkCK extends be_module {
 	public $searchname = 'Cook Islands';
 	public $searchlist = array(
-		array( '202065032000', '202065064000' )
-	);
+			array( '202065032000', '202065064000' )
+		);
 }
 
 ?>

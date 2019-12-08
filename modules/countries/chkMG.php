@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkMG extends be_module {
 	public $searchname = 'Madagascar';
 	public $searchlist = array(
-		array( '197149000000', '197149064000' ),
-		array( '197158064000', '197158128000' )
-	);
+			array( '197149000000', '197149064000' ),
+			array( '197158064000', '197158128000' )
+		);
 }
 
 ?>

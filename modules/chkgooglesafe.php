@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chkgooglesafe extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		if ( empty( $stats ) ) {
 			return false;
 		}
@@ -17,7 +19,8 @@ class chkgooglesafe extends be_module {
 		$googleapi = $stats['googleapi'];
 		$content   = $stats['content'];
 		$post      = array();
-		preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@', $content, $post, PREG_PATTERN_ORDER );
+		preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@',
+			$content, $post, PREG_PATTERN_ORDER );
 		$urls1 = array();
 		$urls2 = array();
 		$urls3 = array();
@@ -27,7 +30,8 @@ class chkgooglesafe extends be_module {
 			$urls1 = array();
 		}
 // BBCode
-		preg_match_all( '/\[url=(.+)\]/iU', $content, $post, PREG_PATTERN_ORDER );
+		preg_match_all( '/\[url=(.+)\]/iU', $content, $post,
+			PREG_PATTERN_ORDER );
 		if ( is_array( $post ) && is_array( $post[0] ) ) {
 			$urls2 = array_unique( $post[0] );
 		} else {
@@ -50,9 +54,11 @@ class chkgooglesafe extends be_module {
 			if ( ! empty( $url ) ) {
 				$query = "https://sb-ssl.google.com/safebrowsing/api/lookup?client=stop-spammer-plugin&apikey=$googleapi&appver=9.3&pver=3.0&url=$url";
 // using file get contents or get using the https lookup?
-				$r = $this->getafile( $query );
+				$r     = $this->getafile( $query );
 				if ( ! empty( $r ) ) {
-					if ( strpos( $r, 'phishing' ) !== false || strpos( $r, 'malware' ) !== false ) {
+					if ( strpos( $r, 'phishing' ) !== false
+					     || strpos( $r, 'malware' ) !== false
+					) {
 						return 'Google Safe: ' . $r;
 					}
 				}

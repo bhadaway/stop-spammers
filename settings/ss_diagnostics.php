@@ -46,30 +46,38 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
     <h1>Stop Spammers — Diagnostics</h1>
     <p>This allows you to test the plugin against an IP address.</p>
     <form method="post" action="">
-        <input type="hidden" name="action" value="update"/>
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
+        <input type="hidden" name="action" value="update" />
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Option Testing</span></legend>
-            IP Address:<br /><input name="ip" type="text" value="<?php echo $ip; ?>"> (Your server address
-            is <?php echo $hip; ?>)<br /><br />
-            Email:<br /><input name="email" type="text" value="<?php echo $email; ?>"><br /><br />
-            Author/User:<br /><input name="author" type="text" value="<?php echo $author; ?>"><br /><br />
-            Subject:<br /><input name="subject" type="text" value="<?php echo $subject; ?>"><br /><br />
-            Comment:<br /><textarea name="body"><?php echo $body; ?></textarea><br />
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Option Testing</span>
+            </legend>
+            IP Address:<br />
+			<input name="ip" type="text" value="<?php echo $ip; ?>">
+			(Your server address is <?php echo $hip; ?>)<br /><br />
+            Email:<br/>
+			<input name="email" type="text" value="<?php echo $email; ?>" /><br /><br />
+            Author/User:<br />
+			<input name="author" type="text" value="<?php echo $author; ?>" /><br /><br />
+            Subject:<br />
+			<input name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
+            Comment:<br />
+			<textarea name="body"><?php echo $body; ?></textarea><br />
             <div style="width:50%;float:left">
-                <p class="submit"><input name="testopt" class="button-primary" value="Test Options" type="submit"/></p>
+                <p class="submit"><input name="testopt" class="button-primary" value="Test Options" type="submit" /></p>
             </div>
             <div style="width:50%;float:right">
-                <p class="submit"><input name="testcountry" class="button-primary" value="Test Countries"
-                                         type="submit"/></p>
+                <p class="submit"><input name="testcountry" class="button-primary" value="Test Countries" type="submit" /></p>
             </div>
-            <br style="clear:both"/>
+            <br style="clear:both" />
 			<?php
 			$nonce = '';
 			if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 				$nonce = $_POST['ss_stop_spammers_control'];
 			}
-			if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+			if ( ! empty( $nonce )
+			     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
+			) {
 				$post = get_post_variables();
 				if ( array_key_exists( 'testopt', $_POST ) ) {
 // do the test
@@ -144,14 +152,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					}
 					echo "</ul>";
 					$optionlist = array();
-					$a1         = apply_filters( 'ss_addons_allow', $optionlist );
-					$a3         = apply_filters( 'ss_addons_deny', $optionlist );
+					$a1         = apply_filters( 'ss_addons_allow',
+						$optionlist );
+					$a3         = apply_filters( 'ss_addons_deny',
+						$optionlist );
 					$a5         = apply_filters( 'ss_addons_get', $optionlist );
 					$optionlist = array_merge( $a1, $a3, $a5 );
 					if ( ! empty( $optionlist ) ) {
 						echo "<ul>Add-on Checks<br />";
 						foreach ( $optionlist as $chk ) {
-							$ansa = be_load( $chk, $ip, $stats, $options, $post );
+							$ansa = be_load( $chk, $ip, $stats, $options,
+								$post );
 							if ( empty( $ansa ) ) {
 								$ansa = 'OK';
 							}
@@ -327,23 +338,25 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			}
 			?>
         </fieldset>
-        <br />
+        <br/>
         <div style="width:50%;float:left">
             <h2>Display All Options</h2>
-            <p>You can dump all options here (useful for debugging): </p>
-            <p class="submit"><input name="dumpoptions" class="button-primary" value="Dump Options" type="submit"/></p>
+            <p>You can dump all options here (useful for debugging):</p>
+            <p class="submit"><input name="dumpoptions" class="button-primary" value="Dump Options" type="submit" /></p>
         </div>
         <div style="width:50%;float:right">
             <h2>Display All Stats</h2>
             <p>You can dump all stats here: </p>
-            <p class="submit"><input name="dumpstats" class="button-primary" value="Dump Stats" type="submit"/></p>
+            <p class="submit"><input name="dumpstats" class="button-primary" value="Dump Stats" type="submit" /></p>
         </div>
-        <br style="clear:both"/>
+        <br style="clear:both" />
 		<?php
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+		if ( ! empty( $nonce )
+		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
+		) {
 			if ( array_key_exists( 'dumpoptions', $_POST ) ) {
 				?>
                 <pre>
@@ -367,7 +380,9 @@ echo "\r\n";
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+		if ( ! empty( $nonce )
+		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
+		) {
 			if ( array_key_exists( 'dumpstats', $_POST ) ) {
 				?>
                 <pre>
@@ -396,7 +411,9 @@ echo "\r\n";
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+		if ( ! empty( $nonce )
+		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
+		) {
 			if ( array_key_exists( 'killdebug', $_POST ) ) {
 				$f = unlink( $dfile );
 				echo "<p>File deleted.<p>";
@@ -414,7 +431,9 @@ echo "\r\n";
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+		if ( ! empty( $nonce )
+		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
+		) {
 			if ( array_key_exists( 'showdebug', $_POST ) ) {
 				echo "<p><strong>Debug Output:</strong></p><pre>$f</pre><p><strong>end of file (if empty, there are no errors to display)</p></strong>";
 			}
@@ -423,21 +442,20 @@ echo "\r\n";
 		?>
         <div style="width:50%;float:left">
             <form method="post" action="">
-                <input type="hidden" name="update_options" value="update"/>
-                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
-                <p class="submit"><input class="button-primary" name="showdebug" value="Show Debug File" type="submit"/>
+                <input type="hidden" name="update_options" value="update" />
+                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+                <p class="submit"><input class="button-primary" name="showdebug" value="Show Debug File" type="submit" />
                 </p>
             </form>
         </div>
         <div style="width:50%;float:right">
             <form method="post" action="">
-                <input type="hidden" name="update_options" value="update"/>
-                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
-                <p class="submit"><input class="button-primary" name="killdebug" value="Delete Debug File"
-                                         type="submit"/></p>
+                <input type="hidden" name="update_options" value="update" />
+                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+                <p class="submit"><input class="button-primary" name="killdebug" value="Delete Debug File" type="submit" /></p>
             </form>
         </div>
-        <br style="clear:both"/><br />
+        <br style="clear:both" /><br />
 		<?php
 	}
 	$ini  = '';

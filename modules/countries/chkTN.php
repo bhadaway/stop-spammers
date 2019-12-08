@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkTN extends be_module {
 	public $searchname = 'Tunisia';
 	public $searchlist = array(
-		array( '197000000000', '197008000000' ),
-		array( '213150186000', '213150188000' )
-	);
+			array( '197000000000', '197008000000' ),
+			array( '213150186000', '213150188000' )
+		);
 }
 
 ?>

@@ -7,10 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkTZ extends be_module {
 	public $searchname = 'Tanzania';
 	public $searchlist = array(
-		array( '156156000000', '156158000000' ),
-		array( '188164032000', '188164064000' ),
-		array( '197250000000', '197251000000' )
-	);
+			array( '156156000000', '156158000000' ),
+			array( '188164032000', '188164064000' ),
+			array( '197250000000', '197251000000' )
+		);
 }
 
 ?>

@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkBF extends be_module {
 	public $searchname = 'Burkina Faso';
 	public $searchlist = array(
-		array( '212052137000', '212052137064' )
-	);
+			array( '212052137000', '212052137064' )
+		);
 }
 
 ?>

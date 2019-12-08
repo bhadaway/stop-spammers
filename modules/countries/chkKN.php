@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkKN extends be_module {
 	public $searchname = 'Saint Kitts and Nevis';
 	public $searchlist = array(
-		array( '199021164000', '199021168000' )
-	);
+			array( '199021164000', '199021168000' )
+		);
 }
 
 ?>

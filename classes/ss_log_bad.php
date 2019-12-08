@@ -5,12 +5,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ss_log_bad extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		$chk = 'error';
 		extract( $stats );
 		extract( $post );
 		$sname = $this->getSname();
-		$now   = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$now   = date( 'Y/m/d H:i:s',
+			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 // updates counters - adds to log list - adds to Bad Cache - then updates stats when done
 // start with the counters - does some extra checks in case the stats file gets corrupted
 		if ( array_key_exists( 'spcount', $stats ) ) {
@@ -35,7 +38,8 @@ class ss_log_bad extends be_module {
 		while ( count( $badips ) > $ss_sp_cache ) {
 			array_shift( $badips );
 		}
-		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$nowtimeout = date( 'Y/m/d H:i:s',
+			time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $badips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
 				unset( $badips[ $key ] );
@@ -64,7 +68,8 @@ class ss_log_bad extends be_module {
 			ss_set_stats( $stats );
 		}
 // we can report the spam to add-ons here
-		do_action( 'ss_stop_spam_caught', $ip, $post ); // post has the chk and reason in the array plus all the other info
+		do_action( 'ss_stop_spam_caught', $ip,
+			$post ); // post has the chk and reason in the array plus all the other info
 		be_load( 'ss_challenge', $ip, $stats, $options, $post );
 		exit();
 	}

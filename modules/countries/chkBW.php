@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkBW extends be_module {
 	public $searchname = 'Botswana';
 	public $searchlist = array(
-		array( '083143024000', '083143032000' ),
-		array( '168167000000', '168168000000' )
-	);
+			array( '083143024000', '083143032000' ),
+			array( '168167000000', '168168000000' )
+		);
 }
 
 ?>

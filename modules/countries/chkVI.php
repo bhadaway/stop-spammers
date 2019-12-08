@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkVI extends be_module {
 	public $searchname = 'U.S. Virgin Islands';
 	public $searchlist = array(
-		array( '208084192000', '208084200000' )
-	);
+			array( '208084192000', '208084200000' )
+		);
 }
 
 ?>

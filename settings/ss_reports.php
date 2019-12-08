@@ -39,7 +39,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 			$stats['spdate']  = $spdate;
 			ss_set_stats( $stats );
 			extract( $stats ); // extract again to get the new options
-			$msg = "<div class='notice notice-success'><p>Activity Log Cleared</p></div>";
+			$msg              = "<div class='notice notice-success'><p>Activity Log Cleared</p></div>";
 		}
 		if ( array_key_exists( 'ss_stop_update_log_size', $_POST ) ) {
 // update log size
@@ -59,7 +59,8 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	$num      = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
-        <p>There are <a href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a> spam comments waiting for
+        <p>There are <a href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a>
+            spam comments waiting for
             you to report them.</p>
 		<?php
 	}
@@ -67,7 +68,8 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	$num      = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
-        <p>There are <a href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a> comments waiting to be
+        <p>There are <a href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a>
+            comments waiting to be
             moderated.</p>
 		<?php
 	}
@@ -79,11 +81,13 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
         // }, 10000);
     </script>
     <form method="post" action="">
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
-        <input type="hidden" name="ss_stop_update_log_size" value="true"/>
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+        <input type="hidden" name="ss_stop_update_log_size" value="true" />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">History Size</span></legend>
-            Select the number of items to save in the History. Keep this small.<br />
+            <legend><span style="font-weight:bold;font-size:1.2em">History Size</span>
+            </legend>
+            Select the number of items to save in the History. Keep this
+            small.<br />
             <select name="ss_sp_hist">
                 <option value="10" <?php if ( $ss_sp_hist == '10' ) {
 					echo "selected=\"true\"";
@@ -106,15 +110,17 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 				} ?>>100
                 </option>
             </select>
-            <p class="submit"><input class="button-primary" value="Update Log Size" type="submit"/></p>
+            <p class="submit"><input class="button-primary" value="Update Log Size" type="submit" /></p>
     </form>
     </fieldset>
     <fieldset>
-        <legend><span style="font-weight:bold;font-size:1.2em">Clear Activity</span></legend>
+        <legend>
+			<span style="font-weight:bold;font-size:1.2em">Clear Activity</span>
+        </legend>
         <form method="post" action="">
-            <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
-            <input type="hidden" name="ss_stop_clear_hist" value="true"/>
-            <p class="submit"><input class="button-primary" value="Clear Recent Activity" type="submit"/></p>
+            <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+            <input type="hidden" name="ss_stop_clear_hist" value="true" />
+            <p class="submit"><input class="button-primary" value="Clear Recent Activity" type="submit" /></p>
         </form>
     </fieldset>
 	<?php
@@ -170,18 +176,25 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 				$honeysearch = "<a title=\"Check project HoneyPot\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$ip\"><img src=\"$search\" height=\"16px\" /></a>";
 				$botsearch   = "<a title=\"Check BotScout\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$ip\"><img src=\"$search\" height=\"16px\" /></a>";
 				$who         = "<br /><a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
-				echo "<tr style=\"background-color:white\">
+				echo           "<tr style=\"background-color:white\">
 <td>$dt</td>
 <td>$em</td>
 <td>$ip $who $stopper $honeysearch $botsearch";
-				if ( stripos( $reason, 'passed' ) !== false && ( $id == '/' || strpos( $id, 'login' ) ) !== false || strpos( $id, 'register' ) !== false && ! in_array( $ip, $blist ) && ! in_array( $ip, $wlist ) ) {
+				if ( stripos( $reason, 'passed' ) !== false
+				     && ( $id == '/'
+				          || strpos( $id, 'login' ) ) !== false
+				     || strpos( $id, 'register' ) !== false
+				        && ! in_array( $ip, $blist )
+				        && ! in_array( $ip, $wlist )
+				) {
 					$ajaxurl = admin_url( 'admin-ajax.php' );
 					echo "<a href=\"\" onclick=\"sfs_ajax_process( '$ip','log','add_black','$ajaxurl' );return false;\" title=\"Add to Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a>";
 					$options = get_option( 'ss_stop_sp_reg_options' );
 					$apikey  = $options['apikey'];
 					if ( ! empty( $apikey ) ) {
-						$href    = "href=\"#\"";
-						$onclick = "onclick=\"sfs_ajax_report_spam(this, 'registration', '$blog', '$ajaxurl', '$em', '$ip', '$au');return false;\"";
+						$href = "href=\"#\"";
+						$onclick
+						      = "onclick=\"sfs_ajax_report_spam(this, 'registration', '$blog', '$ajaxurl', '$em', '$ip', '$au');return false;\"";
 					}
 					if ( ! empty( $em ) ) {
 						echo "|";

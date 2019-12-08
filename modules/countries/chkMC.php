@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkMC extends be_module {
 	public $searchname = 'Monaco';
 	public $searchlist = array(
-		array( '082113000000', '082113032000' ),
-		array( '088209064000', '088209128000' )
-	);
+			array( '082113000000', '082113032000' ),
+			array( '088209064000', '088209128000' )
+		);
 }
 
 ?>

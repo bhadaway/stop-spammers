@@ -6,7 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chkadmin extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		$login = $post['author']; // sticks login name into author
 		$pwd   = $post['pwd'];
 		if ( stripos( $login, 'admin' ) === false ) {

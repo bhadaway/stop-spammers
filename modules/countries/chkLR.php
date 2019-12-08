@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkLR extends be_module {
 	public $searchname = 'Liberia';
 	public $searchlist = array(
-		array( '197231221000', '197231222000' )
-	);
+			array( '197231221000', '197231222000' )
+		);
 }
 
 ?>

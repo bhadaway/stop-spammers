@@ -6,7 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ss_check_404s {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 // load the chk404 module
 		if ( $options['chk404'] !== 'Y' ) {
 			return false;
@@ -19,7 +21,8 @@ class ss_check_404s {
 		ss_log_bad( $ip, $reason, 'chk404' );
 // need to deny access
 		$rejectmessage = $options['rejectmessage'];
-		wp_die( "$rejectmessage", "Login Access Denied", array( 'response' => 403 ) );
+		wp_die( "$rejectmessage", "Login Access Denied",
+			array( 'response' => 403 ) );
 		exit();
 	}
 }

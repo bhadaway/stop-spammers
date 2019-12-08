@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkCF extends be_module {
 	public $searchname = 'Central African Republic';
 	public $searchlist = array(
-		array( '193251128000', '193251160000' )
-	);
+			array( '193251128000', '193251160000' )
+		);
 }
 
 ?>

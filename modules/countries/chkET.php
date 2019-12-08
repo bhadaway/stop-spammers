@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkET extends be_module {
 	public $searchname = 'Ethiopia';
 	public $searchlist = array(
-		array( '197156067000', '197156068000' )
-	);
+			array( '197156067000', '197156068000' )
+		);
 }
 
 ?>

@@ -35,4 +35,4 @@ Either way, Stop Spammers works right out-of-the-box, without needing to adjust 
 
 == Changelog ==
 
-[View Changes](https://plugins.trac.wordpress.org/log/stop-spammer-registrations-plugin/)
+[WordPress Changelog](https://plugins.trac.wordpress.org/log/stop-spammer-registrations-plugin/) | [GitHub Changelog](https://github.com/bhadaway/stop-spammers/commits)

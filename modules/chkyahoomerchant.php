@@ -4,8 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chkyahoomerchant extends be_module {
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
-		$yahoo            = array(
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
+		$yahoo = array(
 			'66.218.72.0/24',
 			'98.139.190.128/25',
 			'67.195.95.0/23',

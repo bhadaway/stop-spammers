@@ -10,7 +10,7 @@ ss_fix_post_vars();
 <div id="ss-plugin" class="wrap">
     <h1>Stop Spammers — Multisite</h1>
 	<?php
-	$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+	$now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	// $ip=ss_get_ip();
 	$ip       = $_SERVER['REMOTE_ADDR'];
 	$nonce    = '';
@@ -41,20 +41,26 @@ ss_fix_post_vars();
 	$nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
     <form method="post" action="">
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
-        <input type="hidden" name="action" value="update mu settings"/>
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+        <input type="hidden" name="action" value="update mu settings" />
         <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Network Blog Option</span></legend>
-            <p>Networked ON: <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
+            <legend>
+				<span style="font-weight:bold;font-size:1.2em">Network Blog Option</span>
+            </legend>
+            <p>Networked ON: <input name="muswitch" type="radio"
+                                    value='Y' <?php if ( $muswitch == 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                Networked OFF: <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
+                Networked OFF: <input name="muswitch" type="radio"
+                                      value='N' <?php if ( $muswitch != 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                If you are running WPMU and want to control options and history through the main login admin panel,
-                select ON. If you select OFF, each blog will have to configure the plugin separately, and each blog will
+                If you are running WPMU and want to control options and history
+                through the main login admin panel,
+                select ON. If you select OFF, each blog will have to configure
+                the plugin separately, and each blog will
                 have a separte history.</p>
-            <p class="submit"><input class="button-primary" value="Save Changes" type="submit"/></p>
+            <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
         </fieldset>
     </form>
 </div>

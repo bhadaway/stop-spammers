@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkGD extends be_module {
 	public $searchname = 'Grenada';
 	public $searchlist = array(
-		array( '074117084000', '074117088000' ),
-		array( '162245152000', '162245156000' )
-	);
+			array( '074117084000', '074117088000' ),
+			array( '162245152000', '162245156000' )
+		);
 }
 
 ?>

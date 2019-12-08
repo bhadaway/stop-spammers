@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkGL extends be_module {
 	public $searchname = 'Greenland';
 	public $searchlist = array(
-		array( '088083000000', '088083032000' )
-	);
+			array( '088083000000', '088083032000' )
+		);
 }
 
 ?>

@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkBQ extends be_module {
 	public $searchname = 'Bonaire';
 	public $searchlist = array(
-		array( '190107248000', '190108000000' )
-	);
+			array( '190107248000', '190108000000' )
+		);
 }
 
 ?>

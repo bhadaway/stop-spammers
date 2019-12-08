@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class chkshort { // change name
-	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+	public function process(
+		$ip, &$stats = array(), &$options = array(), &$post = array()
+	) {
 		$this->searchname = 'Email/Author Too Short';
 		if ( array_key_exists( 'email', $post ) ) {
 			$email = $post['email'];

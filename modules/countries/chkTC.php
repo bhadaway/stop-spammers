@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class chkTC extends be_module {
 	public $searchname = 'Turks and Caicos Islands';
 	public $searchlist = array(
-		array( '199182192000', '199182196000' )
-	);
+			array( '199182192000', '199182196000' )
+		);
 }
 
 ?>
