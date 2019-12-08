@@ -233,8 +233,8 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ) ?></h1>
-    <p><?php _e( 'Version', 'stop-spammers' ) ?> <span class="green"><?php echo SS_VERSION; ?></span></p>
+    <h1><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1>
+    <p><?php _e( 'Version', 'stop-spammers' ); ?> <span class="green"><?php echo SS_VERSION; ?></span></p>
 	<?php
 	if ( ! empty( $msg ) ) {
 		echo "$msg";
