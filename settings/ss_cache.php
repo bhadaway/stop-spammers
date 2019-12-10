@@ -13,49 +13,47 @@ $now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) )
 $options = ss_get_options();
 extract( $options );
 // temp: not used in file
-$nonce   = "";
 $ajaxurl = admin_url( 'admin-ajax.php' );
-
-// update options
-if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
-	$nonce = $_POST['ss_stop_spammers_control'];
-}
+$nonce = ( array_key_exists( 'ss_stop_spammers_control', $_POST )?$_POST['ss_stop_spammers_control']:'');
 
 if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'update_options', $_POST ) ) {
+		$UpdateNeeded = false;
+		
 		if ( array_key_exists( 'ss_sp_cache', $_POST ) ) {
 			$ss_sp_cache            = stripslashes( $_POST['ss_sp_cache'] );
-			$options['ss_sp_cache'] = $ss_sp_cache;
+			if($options['ss_sp_cache'] != $ss_sp_cache){
+				$options['ss_sp_cache'] = $ss_sp_cache;
+				$UpdateNeeded = true;
+			}
 		}
 
 		if ( array_key_exists( 'ss_sp_good', $_POST ) ) {
 			$ss_sp_good            = stripslashes( $_POST['ss_sp_good'] );
-			$options['ss_sp_good'] = $ss_sp_good;
+			if($options['ss_sp_good'] != $ss_sp_good){
+				$options['ss_sp_good'] = $ss_sp_good;
+				$UpdateNeeded = true;
+			}
 		}
 
-		ss_set_options( $options );
-	}
-}
+		if($UpdateNeeded){
+			ss_set_options( $options );
+			$msg = '<div class="notice notice-success"><p>'.__('Options Updated').'</p></div>';
+		}else{
+			$msg = '<div class="notice notice-info"><p>'.__('Options have not changed').'</p></div>';
+		}
 
-// clear the cache
-if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
-	$nonce = $_POST['ss_stop_spammers_control'];
-}
-
-if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
-	if ( array_key_exists( 'ss_stop_clear_cache', $_POST ) ) {
+	}elseif ( array_key_exists( 'ss_stop_clear_cache', $_POST ) ) {
 
 		// clear the cache
-		$badips           = array();
-		$goodips          = array();
-		$stats['badips']  = $badips;
-		$stats['goodips'] = $goodips;
+		$stats['badips']  = $badips	= [];
+		$stats['goodips'] = $goodips	= [];
 		ss_set_stats( $stats );
-		echo "<div class='notice notice-success'><p>Cache Cleared</p></div>";
-	}
+		echo '<div class="notice notice-success"><p>'.__('Cache Cleared',SFS_TXTDOMAIN).'</p></div>';
 
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	}
 }
+
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
