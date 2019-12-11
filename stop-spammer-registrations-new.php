@@ -307,11 +307,25 @@ function ss_set_options( $options ) {
 	update_option( 'ss_stop_sp_reg_options', $options );
 }
 
+/*
+	настраивать под хостинг (в случае frontend+backend)! заголовки могут быть подделаны.
+	edit for your hosting (if nginx+apache or others )! fields in header may be set by scam/fraud
+*/
 function ss_get_ip() {
-	$ip = $_SERVER['REMOTE_ADDR'];
 
-	return $ip;
+	if(!empty($_SERVER['HTTP_X_REAL_IP'])){			return $_SERVER['HTTP_X_REAL_IP'];	//nginx+apache	
+	}elseif(!empty($_SERVER['HTTP_CLIENT_IP'])){		return $_SERVER['HTTP_CLIENT_IP'];	//nginx+apache
+
+// warning! this fld may be fraud if no frontend server: -----------
+	}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){	return $_SERVER['HTTP_X_FORWARDED_FOR'];	//squish
+	}elseif(!empty($_SERVER['HTTP_X_FORWARDED'])){		return $_SERVER['HTTP_X_FORWARDED'];
+	}elseif(!empty($_SERVER['HTTP_FORWARDED'])){		return $_SERVER['HTTP_FORWARDED']; 
+// -----------------------------------------------------------------
+	/* exotics mixed: 'HTTP_X_CLUSTER_CLIENT_IP','HTTP_CF_CONNECTING_IP',... */
+	}elseif(!empty($_SERVER['REMOTE_ADDR'])){		return $_SERVER['REMOTE_ADDR']; }
+	return ''; // invalid
 }
+
 
 function ss_admin_menu() {
 	if ( ! function_exists( 'ss_admin_menu_l' ) ) {
