@@ -21,6 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function ssr_plugin_settings_link($links) { 
+  $settings_link = '<a href="admin.php?page=ss_options">'.esc_html__( 'Settings').'</a>'; 
+  array_unshift($links, $settings_link); 
+  return $links; 
+}
+add_filter('plugin_action_links_'.plugin_basename(__FILE__), 'ssr_plugin_settings_link');
+
 // making translation-ready
 function ss_load_plugin_textdomain() {
     load_plugin_textdomain( 'stop-spammers', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
