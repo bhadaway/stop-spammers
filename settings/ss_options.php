@@ -678,10 +678,23 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     and in some cases might shut down your site. If you are
                     using a free or low-budget host to run your site,
                     there could be a problem.</p>
-                <p>Check all:
-                    <input type="checkbox" name="ss_set" value="1"
-                           onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>
+                <p>Check all:&nbsp;<input type="checkbox" name="ss_set" value="1" onclick='var t=ss.ss_set.checked;
+var els=(document.getElementById("CountryBlockList")).getElementsByTagName("INPUT");
+for (index = 0; index < els.length; ++index){
+	if (els[index].type=="checkbox"){
+		els[index].checked=t;
+	}
+};' />
+		Inverse all:&nbsp;<input type="checkbox" name="ss_inverse" value="1" onclick='
+var els=(document.getElementById("CountryBlockList")).getElementsByTagName("INPUT");
+for (index = 0; index < els.length; ++index){
+	if (els[index].type=="checkbox"){
+		els[index].checked=!els[index].checked;
+	}
+};' />
+			
                 </p>
+<div id="CountryBlockList">		    
                 <div class="stat-box"><input name="chkAD" type="checkbox"
                                              value="Y" <?php if ( $chkAD
 				                                                  == "Y"
@@ -1662,6 +1675,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						echo "checked=\"checked\"";
 					} ?> />Yemen
                 </div>
+</div>
             </fieldset>
         </fieldset>
         <br />
