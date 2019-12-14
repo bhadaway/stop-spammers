@@ -55,8 +55,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$options['recaptchaapisite'] = $recaptchaapisite;
 		}
 		if ( array_key_exists( 'solvmediaapivchallenge', $_POST ) ) {
-			$solvmediaapivchallenge
-				                               = stripslashes( $_POST['solvmediaapivchallenge'] );
+			$solvmediaapivchallenge            = stripslashes( $_POST['solvmediaapivchallenge'] );
 			$options['solvmediaapivchallenge'] = $solvmediaapivchallenge;
 		}
 		if ( array_key_exists( 'solvmediaapiverify', $_POST ) ) {
@@ -79,13 +78,12 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		) {
 			$chkcaptcha            = 'Y';
 			$options['chkcaptcha'] = $chkcaptcha;
-			$msg
-			                       = "You cannot use Solve Media CAPTCHA unless you have entered an API key";
+			$msg                   = "You cannot use Solve Media CAPTCHA unless you have entered an API key";
 		}
 		ss_set_options( $options );
 		extract( $options ); // extract again to get the new options
 	}
-	$update = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	$update = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
@@ -140,9 +138,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 lots of spammers fill it out randomly.
                 This hides the request form.</p>
             Blocked users see the Allow Request form:
-            <input type="checkbox" name="wlreq" value="Y" <?php if ( $wlreq
-			                                                         == 'Y'
-			) {
+            <input type="checkbox" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
 				echo "checked=\"checked\"";
 			} ?> />
         </fieldset>
@@ -155,9 +151,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 request. This will also send you an
                 email notification.</p>
             Enable email request:
-            <input type="checkbox" name="notify" value="Y" <?php if ( $notify
-			                                                          == 'Y'
-			) {
+            <input type="checkbox" name="notify" value="Y" <?php if ( $notify == 'Y' ) {
 				echo "checked=\"checked\"";
 			} ?> />
             <br />
@@ -183,22 +177,22 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 above.<br/>
                 By default, the plugin will support the arithmetic question,
                 which is okay. For better results,
-                use Google's reCAPTCHA, or you can try SolveMedia's CAPTCHA<br/>
+                use Google's reCAPTCHA, or you can try SolveMedia's CAPTCHA<br />
                 <input type="radio" value="N"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'N' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                No CAPTCHA (default)<br/>
+                No CAPTCHA (default)<br />
                 <input type="radio" value="G"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'G' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                Google reCAPTCHA<br/>
+                Google reCAPTCHA<br />
                 <input type="radio" value="S"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'S' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                Solve Media CAPTCHA<br/>
+                Solve Media CAPTCHA<br />
                 <input type="radio" value="A"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'A' ) {
 					echo "checked=\"checked\"";

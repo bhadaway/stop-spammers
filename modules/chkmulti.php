@@ -33,8 +33,7 @@ class chkmulti extends be_module {
 		$now        = date( 'Y/m/d H:i:s',
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$nowtimeout = date( 'Y/m/d H:i:s',
-			time() - ( 60 * $multitime ) + ( get_option( 'gmt_offset' )
-			                                 * 3600 ) );
+			time() - ( 60 * $multitime ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $multi as $key => $data )
 		{ // key is IP, data is array of time and count
 			if ( $data[0] < $nowtimeout ) {

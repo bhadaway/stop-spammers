@@ -53,7 +53,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
@@ -168,9 +168,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Allow Amazon Cloud</span>
             </legend>
-            <p><input name="chkaws" type="checkbox" value="Y" <?php if ( $chkaws
-			                                                             == 'Y'
-				) {
+            <p><input name="chkaws" type="checkbox" value="Y" <?php if ( $chkaws == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
                 The Amazon Cloud is the source of occasional spam, but they shut

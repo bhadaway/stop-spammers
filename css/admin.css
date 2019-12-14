@@ -11,7 +11,7 @@
     box-sizing: border-box
 }
 
-#ss-plugin textarea, #ss-plugin input[type="text"] {
+#ss-plugin textarea, #ss-plugin input[type="text"]:not(.small-text) {
     width: 100%;
     max-width: 500px
 }

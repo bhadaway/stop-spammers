@@ -13,6 +13,8 @@ Stop WordPress Spam
 
 Stop spam emails, spam comments, spam registration, and spam bots in general.
 
+**NEW!** — [Upgrade for Pro Support](https://stopspammers.io/pro)
+
 *Created with a lot of hard work and maintained by Keith P. Graham (from 2010-2017). Thank you Keith.*
 
 *Maintained (because I love this plugin and want to keep it alive) by myself, Bryan Hadaway (since 2017).*

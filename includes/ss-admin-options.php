@@ -9,15 +9,13 @@ if ( $options['addtoallowlist'] == 'Y' ) {
 // admin vs mu admin
 if ( SS_MU == 'Y' ) {
 	add_action( 'mu_rightnow_end', 'ss_sp_rightnow' );
-	add_filter( 'network_admin_plugin_action_links_'
-	            . plugin_basename( __FILE__ ), 'ss_sp_plugin_action_links' );
+	add_filter( 'network_admin_plugin_action_links_' . plugin_basename( __FILE__ ), 'ss_sp_plugin_action_links' );
 	add_filter( 'plugin_row_meta', 'ss_sp_plugin_action_links', 10, 2 );
 	add_filter( 'wpmu_users_columns', 'ss_sfs_ip_column_head' );
 } else {
 	add_action( 'admin_menu', 'ss_admin_menu' );
 	add_action( 'rightnow_end', 'ss_sp_rightnow' );
-	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ),
-		'ss_sp_plugin_action_links' );
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'ss_sp_plugin_action_links' );
 	add_filter( 'manage_users_columns', 'ss_sfs_ip_column_head' );
 }
 add_action( 'network_admin_menu', 'ss_admin_menu' );
@@ -46,12 +44,9 @@ function ss_sp_plugin_action_links( $links, $file ) {
 		return $links;
 	}
 	if ( SS_MU == 'Y' ) {
-		$link = '<a href="'
-		        . admin_url( 'network/admin.php?page=stop_spammers' )
-		        . '">Settings</a>';
+		$link = '<a href="' . admin_url( 'network/admin.php?page=stop_spammers' ) . '">Settings</a>';
 	} else {
-		$link = '<a href="' . admin_url( 'admin.php?page=stop_spammers' )
-		        . '">Settings</a>';
+		$link = '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">Settings</a>';
 	}
 // check to see if we are in network
 // to-do
@@ -69,11 +64,9 @@ function ss_sp_rightnow() {
 		echo "<p>Stop Spammers has prevented <strong>$spmcount</strong> spammers from registering or leaving comments.</p>";
 	}
 	if ( count( $wlrequests ) == 1 ) {
-		echo "<p><strong>" . count( $wlrequests )
-		     . "</strong> user has been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
+		echo "<p><strong>" . count( $wlrequests ) . "</strong> user has been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
 	} else if ( count( $wlrequests ) > 0 ) {
-		echo "<p><strong>" . count( $wlrequests )
-		     . "</strong> users have been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
+		echo "<p><strong>" . count( $wlrequests ) . "</strong> users have been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
 	}
 }
 
@@ -181,7 +174,7 @@ function sfs_handle_ajax_sub( $data ) {
 		echo " No Options Set";
 		exit();
 	}
-// print_r($options);
+// print_r( $options );
 	extract( $options );
 // get the comment_id parameter	
 	$comment_id = urlencode( $_GET['comment_id'] );
@@ -213,7 +206,7 @@ function sfs_handle_ajax_sub( $data ) {
 			exit();
 		}
 	}
-// print_r($comment);
+// print_r( $comment );
 	$email    = urlencode( $comment['comment_author_email'] );
 	$uname    = urlencode( $comment['comment_author'] );
 	$ip_addr  = $comment['comment_author_IP'];
@@ -357,12 +350,12 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 	$ip        = $_GET['ip'];
 	$container = $_GET['cont'];
 	$func      = $_GET['func'];
-// echo "error $ip, $func, $container,".print_r($_GET,true);exit();
+// echo "error $ip, $func, $container," . print_r( $_GET, true ) ;exit();
 // container is blank, goodips, badips or log
 // func is add_black, add_white, delete_gcache or delete_bcache
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-// $stats,$options);
+// $stats, $options );
 	$ansa    = array();
 	switch ( $func ) {
 		case 'delete_gcache':
@@ -473,7 +466,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 			$options     = ss_get_options();
 			$apikey      = $options['apikey'];
 			if ( ! empty( $apikey ) ) {
-				$report  = "<a title=\"Report to SFS\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\"/></a>";
+				$report  = "<a title=\"Report to SFS\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\" /></a>";
 				$action .= $report;
 			}
 

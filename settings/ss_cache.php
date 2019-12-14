@@ -54,7 +54,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		echo "<div class='notice notice-success'><p>Cache Cleared</p></div>";
 	}
 
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
@@ -72,9 +72,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         you are getting lots of spam it is a good idea to clear these out
         manually by pressing the "Clear Cache" button.</p>
     <form method="post" action="">
-        <input type="hidden" name="update_options" value="update"/>
-        <input type="hidden" name="ss_stop_spammers_control"
-               value="<?php echo $nonce; ?>"/>
+        <input type="hidden" name="update_options" value="update" />
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Bad Cache Size</span>

@@ -24,8 +24,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 <div id="ss-plugin" class="wrap">
     <h1>Stop Spammers — Threat Scan</h1>
     <div class="notice notice-warning">
-        <p>This feature is to be considered experimental. Use with caution and
-            at your own risk.</p>
+        <p>This feature is to be considered experimental. Use with caution and at your own risk.</p>
     </div>
     <p>This is a very simple threat scan that looks for things out of place in
         the content directory as well as the
@@ -44,8 +43,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         time-out.</p>
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update" />
-        <input type="hidden" name="ss_stop_spammers_control"
-               value="<?php echo $nonce; ?>" />
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <p class="submit"><input class="button-primary" value="Run Scan" type="submit" /></p>
     </form>
 	<?php
@@ -486,11 +484,11 @@ INSTR(LCASE(link_url), 'javascript:') >0
 			echo "<br />Nothing found in links.<br />";
 		}
 		echo "<hr />";
-// users: ID: user_login,user_nicename, user_email, user_url, display_name
+// users: ID: user_login, user_nicename, user_email, user_url, display_name
 		$ptab = $pre . 'users';
 		echo "<br /><br />Testing Users<br />";
 		flush();
-		$sql    = "select ID,user_login,user_nicename,user_email,user_url,display_name 
+		$sql  = "select ID,user_login,user_nicename,user_email,user_url,display_name 
 from $ptab where 
 INSTR(LCASE(user_login), '<script') +
 INSTR(LCASE(user_nicename), '<script') +
@@ -621,10 +619,8 @@ INSTR(LCASE(user_email), 'javascript:')>0
 			'escape(document['                   => 'javascript checking document array',
 			'escape(navigator['                  => 'javascript checking navigator',
 			'document.write(string.fromcharcode' => 'obsfucated javascript write',
-			'(base64'
-			. '_decode'                          => 'base64 decode to hide code',
-			'(gz'
-			. 'inflate'                          => 'gzip inflate often used to hide code',
+			'(base64' . '_decode'                => 'base64 decode to hide code',
+			'(gz' . 'inflate'                    => 'gzip inflate often used to hide code',
 			'UA-27917097-1'                      => 'Bogus Google Analytics code',
 			'w.wpquery.o'                        => 'Malicious jquery in bootleg plugin or theme',
 			'<scr\\\'+'                          => 'Obfuscated script tag, usually in bootleg plugin or theme'

@@ -187,14 +187,13 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 				        && ! in_array( $ip, $blist )
 				        && ! in_array( $ip, $wlist )
 				) {
-					$ajaxurl = admin_url( 'admin-ajax.php' );
+					$ajaxurl     = admin_url( 'admin-ajax.php' );
 					echo "<a href=\"\" onclick=\"sfs_ajax_process( '$ip','log','add_black','$ajaxurl' );return false;\" title=\"Add to Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a>";
-					$options = get_option( 'ss_stop_sp_reg_options' );
-					$apikey  = $options['apikey'];
+					$options     = get_option( 'ss_stop_sp_reg_options' );
+					$apikey      = $options['apikey'];
 					if ( ! empty( $apikey ) ) {
-						$href = "href=\"#\"";
-						$onclick
-						      = "onclick=\"sfs_ajax_report_spam(this, 'registration', '$blog', '$ajaxurl', '$em', '$ip', '$au');return false;\"";
+						$href    = "href=\"#\"";
+						$onclick = "onclick=\"sfs_ajax_report_spam(this, 'registration', '$blog', '$ajaxurl', '$em', '$ip', '$au');return false;\"";
 					}
 					if ( ! empty( $em ) ) {
 						echo "|";

@@ -197,8 +197,8 @@ class be_module {
 				if ( be_module::wildcard_match( $search, $needle ) ) {
 					return "$searchname: $reason: $needle";
 				}
-// $search=substr($search,0,strpos($search,'*'));
-// if ($search=substr($needle,0,strlen($search))) return "$searchname:$reason";
+// $search=substr( $search, 0, strpos( $search, '*' ) );
+// if ( $search = substr( $needle, 0, strlen( $search ) ) ) return "$searchname: $reason";
 			}
 // check for partial both email and IP
 			if ( strlen( $needle ) > strlen( $search ) ) {
@@ -354,14 +354,14 @@ class be_module {
 		$ipl = ip2long( $ipl );
 		$ipl = sprintf( "%u", $ipl );
 		$num = pow( 2, 32 - $bits ) - 1;
-// echo decbin($num).'<br />';
+// echo decbin( $num ) . '<br />';
 		$ipl = $ipl + 0;
-// echo decbin($ipl).'<br />';
+// echo decbin( $ipl ) . '<br />';
 		$z = pow( 2, 33 ) - 1;
-// echo 'z'.decbin($z).'<br />';
+// echo 'z' . decbin( $z ) . '<br />';
 		$z = $num
 		     ^ $z; // 10000000000000000000000000000 xor 0000000000000000000011111 = 011111111111111111111111100000
-// echo 'z2'.decbin($z).'<br />';
+// echo 'z2' . decbin( $z ) . '<br />';
 		$ipl = $ipl & $z;
 
 		return long2ip( $ipl );

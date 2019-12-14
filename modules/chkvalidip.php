@@ -65,13 +65,13 @@ class chkvalidip {
 	 *
 	 * @param string $ip IP to validate
 	 *
-	 * @return  boolean       TRUE if IPv6
+	 * @return  boolean  TRUE if IPv6
 	 * @since   2.6.2
 	 * @change  2.6.2
 	 *
 	 */
 	private static function _is_ipv6( $ip ) {
-//return ! $this->_is_ipv4($ip);
+//return ! $this->_is_ipv4( $ip );
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 )
 		       !== false;
 	}
@@ -81,13 +81,13 @@ class chkvalidip {
 	 *
 	 * @param string $ip IP to validate
 	 *
-	 * @return  integer       TRUE if IPv4
+	 * @return  integer  TRUE if IPv4
 	 * @since   2.4
 	 * @change  2.6.2
 	 *
 	 */
 	private static function _is_ipv4( $ip ) {
-//return preg_match('/^\d{1,3}(\.\d{1,3}){3,3}$/', $ip);
+//return preg_match( '/^\d{1,3}( \.\d{1,3} ){3,3}$/', $ip );
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 )
 		       !== false;
 	}

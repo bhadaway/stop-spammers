@@ -6,8 +6,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	die( 'Access Denied' );
 }
 ss_fix_post_vars();
-$now     = date( 'Y/m/d H:i:s',
-	time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+$now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
 // checks
@@ -217,7 +216,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
@@ -233,8 +232,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Only Use the Plugin for Standard WordPress Forms</span>
             </legend>
-            <p><input name="chkform" type="checkbox"
-                      value="Y" <?php if ( $chkform == 'Y' ) {
+            <p><input name="chkform" type="checkbox" value="Y" <?php if ( $chkform == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> />
                 Stop Spammers normally kicks off whenever someone fills out a
@@ -266,8 +264,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Automatically Add Admins to Allow List</span>
                 </legend>
-                <p><input name="addtoallowlist" type="checkbox"
-                          value="Y" <?php if ( $addtoallowlist == 'Y' ) {
+                <p><input name="addtoallowlist" type="checkbox" value="Y" <?php if ( $addtoallowlist == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Whenever an administrative user logs in, the IP address is
@@ -283,8 +280,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check Credentials on All Login Attempts</span>
                 </legend>
-                <p><input name="chkadminlog" type="checkbox"
-                          value="Y" <?php if ( $chkadminlog == 'Y' ) {
+                <p><input name="chkadminlog" type="checkbox" value="Y" <?php if ( $chkadminlog == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Normally the plugin checks for spammers before WordPress can
@@ -312,8 +308,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Block Spam Missing the HTTP_ACCEPT Header</span>
                 </legend>
-                <p><input name="chkaccept" type="checkbox"
-                          value="Y" <?php if ( $chkaccept == 'Y' ) {
+                <p><input name="chkaccept" type="checkbox" value="Y" <?php if ( $chkaccept == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Blocks users who have a missing or incomplete HTTP_ACCEPT
@@ -327,8 +322,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Block Invalid HTTP_REFERER</span>
                 </legend>
-                <p><input name="chkreferer" type="checkbox"
-                          value="Y" <?php if ( $chkreferer == 'Y' ) {
+                <p><input name="chkreferer" type="checkbox" value="Y" <?php if ( $chkreferer == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     When you submit a form, all browsers provide the web page
@@ -346,8 +340,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Deny Disposable Email Addresses</span>
                 </legend>
-                <p><input name="chkdisp" type="checkbox"
-                          value="Y" <?php if ( $chkdisp == 'Y' ) {
+                <p><input name="chkdisp" type="checkbox" value="Y" <?php if ( $chkdisp == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Spammers who want to hide their true identities use
@@ -363,8 +356,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Long Emails, Author Name, or Password</span>
                 </legend>
-                <p><input name="chklong" type="checkbox"
-                          value="Y" <?php if ( $chklong == 'Y' ) {
+                <p><input name="chklong" type="checkbox" value="Y" <?php if ( $chklong == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Spammers can't resist using very long names and emails. This
@@ -375,8 +367,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Short Emails or Author Name</span>
                 </legend>
-                <p><input name="chkshort" type="checkbox"
-                          value="Y" <?php if ( $chkshort == 'Y' ) {
+                <p><input name="chkshort" type="checkbox" value="Y" <?php if ( $chkshort == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Spammers sometimes use blank usernames or author names. If
@@ -390,8 +381,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for BBCodes</span>
                 </legend>
-                <p><input name="chkbbcode" type="checkbox"
-                          value="Y" <?php if ( $chkbbcode == 'Y' ) {
+                <p><input name="chkbbcode" type="checkbox" value="Y" <?php if ( $chkbbcode == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     BBCodes are codes like [url] that spammers like to place in
@@ -406,8 +396,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Quick Responses</span>
                 </legend>
-                <p><input name="chksession" type="checkbox"
-                          value="Y" <?php if ( $chksession == 'Y' ) {
+                <p><input name="chksession" type="checkbox" value="Y" <?php if ( $chksession == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     <em>(disabled if caching is active)</em> The plugin will
@@ -433,8 +422,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Deny 404 Exploit Probing</span>
                 </legend>
-                <p><input name="chk404" type="checkbox"
-                          value="Y" <?php if ( $chk404 == 'Y' ) {
+                <p><input name="chk404" type="checkbox" value="Y" <?php if ( $chk404 == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Bots often search your site for exploitable files. If there
@@ -447,8 +435,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Deny IPs Detected by Akismet</span>
                 </legend>
-                <p><input name="chkakismet" type="checkbox"
-                          value="Y" <?php if ( $chkakismet == 'Y' ) {
+                <p><input name="chkakismet" type="checkbox" value="Y" <?php if ( $chkakismet == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Akismet does a good job detecting spam. If Akismet catches a
@@ -463,8 +450,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Exploits</span>
                 </legend>
-                <p><input name="chkexploits" type="checkbox"
-                          value="Y" <?php if ( $chkexploits == 'Y' ) {
+                <p><input name="chkexploits" type="checkbox" value="Y" <?php if ( $chkexploits == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     This checks for the PHP eval function and typical SQL
@@ -477,8 +463,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Deny Login Attempts Using 'admin' in Username</span>
                 </legend>
-                <p><input name="chkadmin" type="checkbox"
-                          value="Y" <?php if ( $chkadmin == 'Y' ) {
+                <p><input name="chkadmin" type="checkbox" value="Y" <?php if ( $chkadmin == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     When a spammer starts hitting the login page with 'admin'
@@ -500,8 +485,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check Against List of Ubiquity-Nobis and Other Spam Server IPs</span>
                 </legend>
-                <p><input name="chkubiquity" type="checkbox"
-                          value="Y" <?php if ( $chkubiquity == 'Y' ) {
+                <p><input name="chkubiquity" type="checkbox" value="Y" <?php if ( $chkubiquity == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     A list of hosting companies who tolerate spammers. They are
@@ -513,8 +497,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Major Hosting Companies and Cloud Services</span>
                 </legend>
-                <p><input name="chkhosting" type="checkbox"
-                          value="Y" <?php if ( $chkhosting == 'Y' ) {
+                <p><input name="chkhosting" type="checkbox" value="Y" <?php if ( $chkhosting == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Your users should come from ISPs only. If a request comes
@@ -528,8 +511,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Many Hits in a Short Time</span>
                 </legend>
-                <p><input name="chkmulti" type="checkbox"
-                          value="Y" <?php if ( $chkmulti == 'Y' ) {
+                <p><input name="chkmulti" type="checkbox" value="Y" <?php if ( $chkmulti == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Deny access when there are
@@ -618,8 +600,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Check for Amazon Cloud</span>
                 </legend>
-                <p><input name="chkamazon" type="checkbox"
-                          value="Y" <?php if ( $chkamazon == 'Y' ) {
+                <p><input name="chkamazon" type="checkbox" value="Y" <?php if ( $chkamazon == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     You can block comments and logins from Amazon Cloud Servers
@@ -635,8 +616,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <legend>
 					<span style="font-weight:bold;font-size:1.2em">Filter Login Requests</span>
                 </legend>
-                <p><input name="filterregistrations" type="checkbox"
-                          value="Y" <?php if ( $filterregistrations == 'Y' ) {
+                <p><input name="filterregistrations" type="checkbox" value="Y" <?php if ( $filterregistrations == 'Y' ) {
 						echo "checked=\"checked\"";
 					} ?> />
                     Some plugins and themes bypass the standard registration
@@ -679,8 +659,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     using a free or low-budget host to run your site,
                     there could be a problem.</p>
                 <p>Check all:
-                    <input type="checkbox" name="ss_set" value="1"
-                           onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>
+                    <input type="checkbox" name="ss_set" value="1" onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>
                 </p>
                 <div class="stat-box"><input name="chkAD" type="checkbox"
                                              value="Y" <?php if ( $chkAD

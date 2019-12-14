@@ -12,7 +12,7 @@ class chkscripts extends be_module {
 		if ( strpos( $sname, 'wp-cron.php' ) !== false ) {
 			return "allow wp-cron";
 		}
-// if( strpos( $sname,'admin.php?' ) !== false ) return "allow admin.php?";
+// if( strpos( $sname, 'admin.php?' ) !== false ) return "allow admin.php?";
 		if ( strpos( $sname, 'admin-ajax.php' ) !== false ) {
 			return "allow admin-ajax.php";
 		} // necessary?

@@ -47,12 +47,10 @@ ss_fix_post_vars();
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Network Blog Option</span>
             </legend>
-            <p>Networked ON: <input name="muswitch" type="radio"
-                                    value='Y' <?php if ( $muswitch == 'Y' ) {
+            <p>Networked ON: <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                Networked OFF: <input name="muswitch" type="radio"
-                                      value='N' <?php if ( $muswitch != 'Y' ) {
+                Networked OFF: <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
                 If you are running WPMU and want to control options and history

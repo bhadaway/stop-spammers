@@ -8,8 +8,8 @@ class ss_check_white extends be_module {
 		$ip, &$stats = array(), &$options = array(), &$post = array()
 	) {
 		$email = $post['email'];
-// $p=print_r($post,true);
-// if ($post['email']=='tester@tester.com') {
+// $p=print_r( $post,true );
+// if ( $post['email']=='tester@tester.com' ) {
 // return false; // use to test plugin
 // }
 // can't ever block local server because of cron jobs
@@ -19,7 +19,7 @@ class ss_check_white extends be_module {
 		$addons = apply_filters( 'ss_addons_allow', $addons );
 // these are the allow before addons
 // returns array 
-// [0]=class location,[1]=class name (also used as counter),[2]=addon name,
+// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 // [3]=addon author, [4]=addon description
 		if ( ! empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
@@ -71,7 +71,7 @@ class ss_check_white extends be_module {
 		}
 // these are the allow after addons
 // returns array 
-// [0]=class location,[1]=class name (also used as counter),[2]=addon name,
+// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 // [3]=addon author, [4]=addon description
 		return false;
 	}

@@ -33,7 +33,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_stats( $stats );
 	}
 
-	$msg = '<div class="notice notice-success"><p>Requests Cleared</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Requests Cleared</p></div>';
 }
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
@@ -55,9 +55,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?>
         <h2>Allow List Requests</h2>
         <form method="post" action="">
-            <input type="hidden" name="ss_stop_spammers_control"
-                   value="<?php echo $nonce; ?>"/>
-            <input type="hidden" name="ss_stop_clear_wlreq" value="true"/>
+            <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+            <input type="hidden" name="ss_stop_clear_wlreq" value="true" />
             <p class="submit"><input class="button-primary" value="Clear the Requests" type="submit" /></p>
         </form>
 		<?php
@@ -76,7 +75,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php
 			$show = '';
 			$cont = 'wlreqs';
-
 			// wlrequs has an array of arrays
 			// time,ip,email,author,reason,info,sname
 			// time,ip,email,author,reason,info,sname

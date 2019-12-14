@@ -16,13 +16,11 @@ class chkdnsbl {
 		);
 		foreach ( $iplist as $data ) {
 // only works for IPv4
-			$lookup = implode( '.', array_reverse( explode( '.', $ip ) ) )
-			          . $data;
+			$lookup = implode( '.', array_reverse( explode( '.', $ip ) ) ) . $data;
 			$result = explode( '.', gethostbyname( $lookup ) );
 			$retip  = $ip;
 			if ( count( $result ) == 4 ) {
-				$retip = $result[3] . '.' . $result[2] . '.' . $result[1] . '.'
-				         . $result[0];
+				$retip = $result[3] . '.' . $result[2] . '.' . $result[1] . '.' . $result[0];
 			}
 			if ( count( $result ) == 4 && $retip != $ip ) {
 				if ( $result[0] == 127 ) {

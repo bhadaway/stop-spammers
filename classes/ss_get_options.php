@@ -580,7 +580,7 @@ class ss_get_options {
 			'chkVN' => 'N',
 			'chkYE' => 'N'
 		);
-		$ansa           = array_merge( $defaultWL, $defaultsCTRL, $defaultBL,
+		$ansa = array_merge( $defaultWL, $defaultsCTRL, $defaultBL,
 			$defaultARRAY, $defaultSVC, $defaultCOUNTRY, $defaults );
 // to keep from getting option creep we then set the options from opts back into the ansa
 // had to do this to get rid of obsolete or mistaken options

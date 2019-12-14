@@ -10,10 +10,10 @@ if ( ! current_user_can( 'manage_options' ) ) {
 ss_fix_post_vars();
 $now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 // for session speed checks
-// if(!isset($_POST)||empty($_POST)) { // no post defined
-// $_SESSION['ss_stop_spammers_time']=time();
-// if (! isset($_COOKIE['ss_stop_spammers_time'])) { // if previous set do not reset
-// setcookie( 'ss_stop_spammers_time', strtotime("now"), strtotime('+1 min'));
+// if( !isset( $_POST ) || empty( $_POST ) ) { // no post defined
+// $_SESSION['ss_stop_spammers_time'] = time();
+// if ( !isset( $_COOKIE['ss_stop_spammers_time'] ) ) { // if previous set do not reset
+// setcookie( 'ss_stop_spammers_time', strtotime( "now" ), strtotime( '+1 min' ) );
 // }
 // }
 $ip  = ss_get_ip();
@@ -469,8 +469,7 @@ echo "\r\n";
 	}
 	if ( $pinf ) {
 		?>
-        <a href="" onclick="document.getElementById('shpinf').style.display='block';return false;"
-           class="button-primary">Show PHP Info</a>
+        <a href="" onclick="document.getElementById('shpinf').style.display='block';return false;" class="button-primary">Show PHP Info</a>
 		<?php
 		ob_start();
 		phpinfo();

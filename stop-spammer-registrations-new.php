@@ -35,6 +35,25 @@ function ss_styles() {
 
 add_action( 'admin_print_styles', 'ss_styles' );
 
+// admin notice for users
+function ss_admin_notice() {
+    $user_id = get_current_user_id();
+    if ( !get_user_meta( $user_id, 'ss_notice_dismissed' ) && current_user_can( 'manage_options' ) )
+        echo '<div class="notice notice-info"><p>' . __( '<big><strong>NEW!</strong> — <em><a href="https://stopspammers.io/pro" target="_blank">Upgrade to Stop Spammers Pro</a></em></big>', 'stop-spammers' ) . '<a href="?ss-dismissed" class="alignright">Dismiss</a></p></div>';
+}
+
+add_action( 'admin_notices', 'ss_admin_notice' );
+
+// dismiss admin notice for users
+function ss_notice_dismissed() {
+    $user_id = get_current_user_id();
+    if ( isset( $_GET['ss-dismissed'] ) )
+        add_user_meta( $user_id, 'ss_notice_dismissed', 'true', true );
+}
+
+add_action( 'admin_init', 'ss_notice_dismissed' );
+
+
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );
 
@@ -186,7 +205,7 @@ function ss_init() {
 		$addons = apply_filters( 'ss_addons_get', $addons );
 // these are the allow before addons
 // returns array 
-// [0]=class location,[1]=class name (also used as counter),[2]=addon name,
+// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 // [3]=addon author, [4]=addon description
 		if ( ! empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
@@ -437,7 +456,7 @@ function be_load(
 	if ( ! class_exists( 'be_module' ) ) {
 		require_once( 'classes/be_module.class.php' );
 	}
-// if ($ip==null) $ip=ss_get_ip();
+// if ( $ip == null ) $ip = ss_get_ip();
 // for some loads we use an absolute path
 // if it is an addon, it has the absolute path to the be_module
 	if ( is_array( $file ) ) { // add-ons pass their array
@@ -447,13 +466,13 @@ function be_load(
 
 			return false;
 		}
-// require_once($file[0]);
+// require_once( $file[0] );
 // this loads a be_module class
 		$class  = new $file[1]();
 		$result = $class->process( $ip, $stats, $options, $post );
 		$class  = null;
 		unset( $class ); // doesn't do anything
-// memory_get_usage(true); // force a garage collection
+// memory_get_usage( true ); // force a garage collection
 		return $result;
 	}
 	$ppath = plugin_dir_path( __FILE__ ) . 'classes/';
@@ -477,7 +496,7 @@ function be_load(
 	}
 	require_once( $fd );
 // this loads a be_module class
-// sfs_debug_msg("loading $fd");
+// sfs_debug_msg( "loading $fd" );
 	$class  = new $file();
 	$result = $class->process( $ip, $stats, $options, $post );
 	$class  = null;
@@ -583,8 +602,7 @@ function get_post_variables() {
 // sanitize input - some of this is stored in history and needs to be cleaned up
 	foreach ( $ansa as $key => $value ) {
 // clean the variables even more
-		$ansa[ $key ]
-			= sanitize_text_field( $value ); // really clean gets rid of high value characters
+		$ansa[ $key ] = sanitize_text_field( $value ); // really clean gets rid of high value characters
 	}
 	if ( strlen( $ansa['email'] ) > 80 ) {
 		$ansa['email'] = substr( $ansa['email'], 0, 77 ) . '...';
@@ -653,7 +671,7 @@ function load_be_module() {
 function ss_new_user_ip( $user_id ) {
 	$x  = $_SERVER['REQUEST_URI'];
 	$ip = ss_get_ip();
-// sfs_debug_msg( "Checking reg filter login $x (ss_user_ip) = ".$ip.", method = ".$_SERVER['REQUEST_METHOD'].", request = ".print_r($_REQUEST, true ) );
+// sfs_debug_msg( "Checking reg filter login $x ( ss_user_ip ) = " . $ip . ", method = " . $_SERVER['REQUEST_METHOD'] . ", request = " . print_r( $_REQUEST, true ) );
 // check to see if the user is OK
 // add the users IP to new users
 	update_user_meta( $user_id, 'signup_ip', $ip );
@@ -694,13 +712,12 @@ function ss_user_reg_filter( $user_login ) {
 // the plugin should be all initialized
 // check the IP, etc.
 	sfs_errorsonoff();
-	$options = ss_get_options();
-	$stats   = ss_get_stats();
+	$options        = ss_get_options();
+	$stats          = ss_get_stats();
 // fake out the post variables
 	$post           = get_post_variables();
 	$post['author'] = $user_login;
-	$post['addon']
-	                = 'chkRegister'; // not really an add-on - but may be moved out when working
+	$post['addon']  = 'chkRegister'; // not really an add-on - but may be moved out when working
 	if ( $options['filterregistrations'] != 'Y' ) {
 		remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 		sfs_errorsonoff( 'off' );

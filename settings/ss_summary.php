@@ -6,8 +6,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	die( 'Access Denied' );
 }
 if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
-	echo "<div>Jetpack Protect has been detected. Stop Spammers has disabled itself.<br />
-Please turn off Jetpack Protect or uninstall Stop Spammers.</div>";
+	echo "<div>Jetpack Protect has been detected. Stop Spammers has disabled itself.<br />Please turn off Jetpack Protect or uninstall Stop Spammers.</div>";
 
 	return;
 }
@@ -218,8 +217,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		}
 		$addonstats          = array();
 		$stats['addonstats'] = $addonstats;
-		$msg
-		                     = '<div class="notice notice-success"><p>Summary Cleared</p></div>';
+		$msg                 = '<div class="notice notice-success is-dismissible"><p>Summary Cleared</p></div>';
 		ss_set_stats( $stats );
 		extract( $stats ); // extract again to get the new options
 	}
@@ -259,27 +257,21 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 	}
 	if ( $spmcount > 0 ) {
 		?>
-        <script type="text/javascript">
+        <script>
             function showcheat() {
                 var el = document.getElementById("cheater");
                 el.style.display = "block";
                 return false;
             }
         </script>
-        <p>Stop Spammers in total has stopped <a href=""
-                                                 onclick="showcheat();return false;"
-                                                 class="green"><?php echo $spmcount; ?></a>
-            spammers since <?php echo $spmdate; ?>.</p>
+        <p>Stop Spammers in total has stopped <a href="" onclick="showcheat();return false;" class="green"><?php echo $spmcount; ?></a> spammers since <?php echo $spmdate; ?>.</p>
         <div id="cheater" style="display:none">
             Enter a new Total Spam Count:<br />
             <form method="post" action="">
-                <input type="hidden" name="ss_stop_spammers_control"
-                       value="<?php echo $nonce; ?>" />
+                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
                 <input type="hidden" name="update_total" value="Update Total" />
-                Count:<input type="text" name="spmcount"
-                             value="<?php echo $spmcount; ?>" /><br />
-                Date: <input type="text" name="spmdate"
-                             value="<?php echo $spmdate; ?>" /><br />
+                Count: <input type="text" name="spmcount" value="<?php echo $spmcount; ?>" /><br />
+                Date: <input type="text" name="spmdate" value="<?php echo $spmdate; ?>" /><br />
                 <p class="submit" style="clear:both"><input class="button-primary" value="Update Total Spam" type="submit" /></p>
             </form>
         </div>
@@ -287,29 +279,21 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 	}
 	if ( $spcount > 0 ) {
 		?>
-        <p>Stop Spammers has stopped <span
-                    class="green"><?php echo $spcount; ?></span> spammers
-            since <?php echo $spdate; ?>.</p>
+        <p>Stop Spammers has stopped <span class="green"><?php echo $spcount; ?></span> spammers since <?php echo $spdate; ?>.</p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
-        <p>There are <a
-                    href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a>
-            spam comments waiting for
-            you to report them.</p>
+        <p>There are <a href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a> spam comments waiting for you to report them.</p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
-        <p>There are <a
-                    href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a>
-            comments waiting to be
-            moderated.</p>
+        <p>There are <a href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a> comments waiting to be moderated.</p>
 		<?php
 	}
 	$summry = '';
@@ -331,8 +315,7 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 	}
 	$ip = ss_get_ip();
 	?>
-    <p>Your current IP address is: <span class="green"><?php echo $ip; ?></span>
-    </p>
+    <p>Your current IP address is: <span class="green"><?php echo $ip; ?></span></p>
 	<?php
 	// check the IP to see if we are local
 	$ansa = be_load( 'chkvalidip', ss_get_ip() );
@@ -384,24 +367,16 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 		echo $summry;
 		?>
         <form method="post" action="">
-            <input type="hidden" name="ss_stop_spammers_control"
-                   value="<?php echo $nonce; ?>" />
+            <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
             <input type="hidden" name="clear" value="clear summary" />
             <p class="submit" style="clear:both"><input class="button-primary" value="Clear Summary" type="submit" /></p>
         </form>
     </fieldset>
     <h2>Get Support and Help Improve Stop Spammers</h2>
     <h3>Free Support</h3>
-    <p>First, <a href="https://github.com/bhadaway/stop-spammers/wiki/faqs"
-                 target="_blank">read the FAQs page</a>. Then, please post all
-        issues, bugs, typos, questions, suggestions, requests, and complaints <a
-                href="https://github.com/bhadaway/stop-spammers/issues"
-                target="_blank">on GitHub</a>. Thank you.</p>
+    <p>First, <a href="https://github.com/bhadaway/stop-spammers/wiki/faqs" target="_blank">read the FAQs page</a>. Then, please post all issues, bugs, typos, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
     <h3>Paid Support</h3>
-    <p>If you need more advanced help securing your site or other web services,
-        and are interested in hiring me, please <a
-                href="mailto:bhadaway@gmail.com">email me</a>. — <em>Bryan</em>
-    </p>
+    <p>If you need more advanced support, consider <a href="https://stopspammers.io/pro" target="_blank">upgrading for pro support</a>.</p>
     <h2>Plugin Options</h2>
     <ul>
         <li><a href="?page=stop_spammers">Summary</a>: This checks to see if

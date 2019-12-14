@@ -100,7 +100,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	ss_set_options( $options );
 	extract( $options );
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
@@ -147,10 +147,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 fields. If a word here shows up in an
                 email address or author field then block the comment. (wild
                 cards do not work here)<br />
-                Check Spam Words: <input name="chkspamwords" type="checkbox"
-                                         value="Y" <?php if ( $chkspamwords
-				                                              == 'Y'
-				) {
+                Check Spam Words: <input name="chkspamwords" type="checkbox" value="Y" <?php if ( $chkspamwords == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><br />
                 Add or delete spam words (one word per line):</p>
@@ -173,8 +170,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 or Ruby language standard agents. It
                 also checks for known abusive robots that sometimes submit
                 forms.<br />
-                Check Agents: <input name="chkagent" type="checkbox"
-                                     value="Y" <?php if ( $chkagent == 'Y' ) {
+                Check Agents: <input name="chkagent" type="checkbox" value="Y" <?php if ( $chkagent == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><br />
                 Add or delete agent strings (one word per line):</p>

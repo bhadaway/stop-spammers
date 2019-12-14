@@ -6,8 +6,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	die( 'Access Denied' );
 }
 ss_fix_post_vars();
-$now     = date( 'Y/m/d H:i:s',
-	time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+$now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
 $nonce = '';
@@ -67,7 +66,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_options( $options );
 		extract( $options ); // extract again to get the new options
 	}
-	$msg = '<div class="notice notice-success"><p>Options Updated</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
@@ -83,18 +82,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         Spammers and all are free.</p>
     <form method="post" action="">
         <input type="hidden" name="action" value="update" />
-        <input type="hidden" name="ss_stop_spammers_control"
-               value="<?php echo $nonce; ?>" />
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">StopForumSpam.com API Key</span>
             </legend>
             <input size="32" name="apikey" type="text" value="<?php echo $apikey; ?>" /><br />
-            <p>Enable Stop Forum Spam Lookups: <input name="chksfs"
-                                                      type="checkbox"
-                                                      value="Y" <?php if ( $chksfs
-			                                                               == 'Y'
-				) {
+            <p>Enable Stop Forum Spam Lookups: <input name="chksfs" type="checkbox" value="Y" <?php if ( $chksfs == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /> Check to enable SFS lookups<br />
                 You do not need an API key to check the Stop Forum Spam
@@ -111,16 +105,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 database unless they specifically ask to
                 be Allow Listed.<br />
                 Allowed values are 0 to 9999. Only numbers are accepted.</p>
-            <table align="center" cellspacing="1"
-                   style="background-color:#ccc;font-size:0.9em">
+            <table align="center" cellspacing="1" style="background-color:#ccc;font-size:0.9em">
                 <tr bgcolor="white">
                     <td valign="top">Deny spammers found on Stop Forum Spam with
                         more than
-                        <input size="3" name="sfsfreq" type="text"
-                               value="<?php echo $sfsfreq; ?>" />
+                        <input size="3" name="sfsfreq" type="text" class="small-text" value="<?php echo $sfsfreq; ?>" />
                         incidents, and occurring less than
-                        <input size="4" name="sfsage" type="text"
-                               value="<?php echo $sfsage; ?>" />
+                        <input size="4" name="sfsage" type="text" class="small-text" value="<?php echo $sfsage; ?>" />
                         days ago.
                     </td>
                 </tr>
@@ -131,8 +122,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Project Honeypot API Key</span>
             </legend>
-            <input size="32" name="honeyapi" type="text"
-                   value="<?php echo $honeyapi; ?>"/><br />
+            <input size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>" /><br />
             <p>This API key is used for querying the Project Honeypot Deny List.
                 It is required if you want to
                 check IP addresses against the Project Honeypot database. You
@@ -140,16 +130,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                         href="https://www.projecthoneypot.org/account_login.php"
                         target="_blank">https://www.projecthoneypot.org/account_login.php</a>.<br />
                 Allowed values are 0 to 9999. Only numbers are accepted.</p>
-            <table align="center" cellspacing="1"
-                   style="background-color:#ccc;font-size:0.9em">
+            <table align="center" cellspacing="1" style="background-color:#ccc;font-size:0.9em">
                 <tr bgcolor="white">
                     <td valign="top">Deny spammers found on Project HoneyPot
                         with incidents less than
-                        <input size="3" name="hnyage" type="text"
-                               value="<?php echo $hnyage; ?>" />
+                        <input size="3" name="hnyage" type="text" class="small-text" value="<?php echo $hnyage; ?>" />
                         days ago, and with more than
-                        <input size="4" name="hnylevel" type="text"
-                               value="<?php echo $hnylevel; ?>" />
+                        <input size="4" name="hnylevel" type="text" class="small-text" value="<?php echo $hnylevel; ?>" />
                         threat level. (25 threat level is average, threat level
                         5 is fairly low.)
                     </td>
@@ -161,8 +148,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">BotScout API Key</span>
             </legend>
-            <input size="32" name="botscoutapi" type="text"
-                   value="<?php echo $botscoutapi; ?>" /><br />
+            <input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>" /><br />
             <p>This API key is used for querying the BotScout database. It is
                 required if you want to
                 check IP addresses against the botscout.com database. You can
@@ -172,13 +158,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 <em>Please note that BotScout is disabled in this release
                     because of policy changes at
                     botscout.com.</em></p>
-            <table align="center" cellspacing="1"
-                   style="background-color:#ccc;font-size:0.9em">
+            <table align="center" cellspacing="1" style="background-color:#ccc;font-size:0.9em">
                 <tr bgcolor="white">
                     <td valign="top">Deny spammers found on BotScout with more
                         than
-                        <input size="3" name="botfreq" type="text"
-                               value="<?php echo $botfreq; ?>"/>
+                        <input size="3" name="botfreq" type="text" class="small-text" value="<?php echo $botfreq; ?>" />
                         incidents.
                     </td>
                 </tr>
@@ -189,8 +173,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em;">Check Against DNSBL Lists Such as Spamhaus.org</span>
             </legend>
-            <input name="chkdnsbl" type="checkbox"
-                   value="Y" <?php if ( $chkdnsbl == 'Y' ) {
+            <input name="chkdnsbl" type="checkbox" value="Y" <?php if ( $chkdnsbl == 'Y' ) {
 				echo "checked=\"checked\"";
 			} ?> /> Checks the IP on Spamhaus.org. This is primarily used for
             email spam, but the same bots sending out
@@ -201,13 +184,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Google Safe Browsing API Key</span>
             </legend>
-            <input size="32" name="googleapi" type="text"
-                   value="<?php echo $googleapi; ?>"/><br />
-            <a href="https://developers.google.com/safe-browsing/key_signup"
+            <input size="32" name="googleapi" type="text" value="<?php echo $googleapi; ?>" /><br />
+            <p><a href="https://developers.google.com/safe-browsing/key_signup"
                target="_blank">Sign up for a Google Safe
                 Browsing API Key</a> If this API key is present, URLs found in
             comments will be checked for phishing or
-            malware sites and if found, will be rejected.
+            malware sites and if found, will be rejected.</p>
         </fieldset>
         <br />
         <br />

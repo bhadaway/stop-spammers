@@ -12,7 +12,7 @@ ss_fix_post_vars();
 	<?php if ( array_key_exists( 'autol', $_POST )
 	           || array_key_exists( 'delo', $_POST )
 	) {
-		echo '<div class="notice notice-success"><p>Options Updated</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 	}
 	?>
     <div class="notice notice-warning">
@@ -272,7 +272,7 @@ ss_fix_post_vars();
 	$sql   = "SELECT * from $ptab order by autoload,option_name";
 	$arows = $wpdb->get_results( $sql, ARRAY_A );
 	// filter out the ones we don't like
-	// echo "<br /> $sql : size of options array ".$ptab ." = ".count($arows)."<br />";
+	// echo "<br /> $sql : size of options array " . $ptab . " = " . count( $arows ) . "<br />";
 	$rows = array();
 	foreach ( $arows as $row ) {
 		$uop  = true;
@@ -298,8 +298,7 @@ ss_fix_post_vars();
 	$nonce = wp_create_nonce( 'ss_update' );
 	?>
     <form method="POST" name="DOIT2" action="">
-        <input type="hidden" name="ss_opt_control"
-               value="<?php echo $nonce; ?>"/>
+        <input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
         <table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
             <thead>
             <tr bgcolor="#fff">
@@ -323,26 +322,15 @@ ss_fix_post_vars();
                     <td align="center"><?php echo $option_name; ?></td>
                     <td align="center"><?php echo $autoload; ?></td>
                     <td align="center"><?php echo $sz; ?></td>
-                    <td align="center"><input type="checkbox"
-                                              value="<?php echo $autoload . '_'
-					                                            . $option_name; ?>"
-                                              name="autol[]">
-                        &nbsp;<?php echo $autoload; ?></td>
-                    <td align="center"><input type="checkbox"
-                                              value="<?php echo $option_name; ?>"
-                                              name="delo[]">
-                    </td>
-                    <td>
-                        <button type="submit" name="view"
-                                value="<?php echo $option_name; ?>">view
-                        </button>
-                    </td>
+                    <td align="center"><input type="checkbox" value="<?php echo $autoload . '_' . $option_name; ?>" name="autol[]">&nbsp;<?php echo $autoload; ?></td>
+                    <td align="center"><input type="checkbox" value="<?php echo $option_name; ?>" name="delo[]"></td>
+                    <td><button type="submit" name="view" value="<?php echo $option_name; ?>">view</button></td>
                 </tr>
 				<?php
 			}
 			?>
         </table>
-        <p class="submit"><input class="button-primary" value="Update" type="submit" onclick="return confirm('Are you sure? There is not undo for this.');"></p>
+        <p class="submit"><input class="button-primary" value="Update" type="submit" onclick="return confirm('Are you sure? These changes are permenant.');"></p>
     </form>
 	<?php
 	$m1 = memory_get_usage();

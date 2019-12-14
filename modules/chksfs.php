@@ -48,7 +48,7 @@ class chksfs extends be_module {
 			$maxtime = 99;
 			$sfsfreq = $options['sfsfreq'];
 			$sfsage  = $options['sfsage'];
-// if (!empty($frequency) && !empty($lastseen) && ($frequency!=255) && ($frequency>=$freq) && (strtotime($lastseen)>(time()-(60*60*24*$maxtime))) ) { 
+// if ( !empty( $frequency ) && !empty( $lastseen ) && ( $frequency != 255 ) && ( $frequency >= $freq ) && ( strtotime( $lastseen ) > ( time() - ( 60*60*24*$maxtime ) ) ) ) { 
 			if ( ( $frequency >= $sfsfreq )
 			     && ( strtotime( $lastseen ) > ( time() - ( 60 * 60 * 24
 			                                                * $sfsage ) ) )

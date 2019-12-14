@@ -11,8 +11,8 @@ class chktld { // change name
 	) {
 // this checks the .xxx or .ru, etc in emails - only works if there is an email
 		$tld = $options['badTLDs'];
-// sfs_debug_msg('chktlds post '.print_r($post,true));
-// sfs_debug_msg('chktlds tlds '.print_r($tld,true));
+// sfs_debug_msg( 'chktlds post ' . print_r( $post, true ) );
+// sfs_debug_msg( 'chktlds tlds ' . print_r( $tld, true ) );
 		if ( empty( $tld ) ) {
 			return false;
 		}
@@ -31,7 +31,7 @@ class chktld { // change name
 				if ( $dlvl == 0 ) {
 					continue;
 				}
-// if (empty($ft)) continue;
+// if ( empty( $ft ) ) continue;
 // echo "2 $key, $value, $ft<br />";
 				$t  = explode( '.', $value );
 				$tt = implode( array_slice( $t, count( $t ) - $dlvl, $dlvl ),

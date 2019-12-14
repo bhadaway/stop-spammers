@@ -53,10 +53,8 @@ class chkakismet {
 		           '&permalink=' . urlencode( $data['permalink'] ) .
 		           '&comment_type=' . urlencode( $data['comment_type'] ) .
 		           '&comment_author=' . urlencode( $data['comment_author'] ) .
-		           '&comment_author_email='
-		           . urlencode( $data['comment_author_email'] ) .
-		           '&comment_author_url='
-		           . urlencode( $data['comment_author_url'] ) .
+		           '&comment_author_email=' . urlencode( $data['comment_author_email'] ) .
+		           '&comment_author_url=' . urlencode( $data['comment_author_url'] ) .
 		           '&comment_content=' . urlencode( $data['comment_content'] );
 		$host    = $http_host = $key . '.rest.akismet.com';
 		$path    = '/1.1/comment-check';
@@ -73,8 +71,7 @@ class chkakismet {
 		$http_request  .= "\r\n";
 		$http_request  .= $request;
 		$response       = '';
-		if ( false != ( $fs = @fsockopen( $http_host, $port, $errno, $errstr,
-				10 ) )
+		if ( false != ( $fs = @fsockopen( $http_host, $port, $errno, $errstr, 10 ) )
 		) {
 			fwrite( $fs, $http_request );
 			while ( ! feof( $fs ) ) {
