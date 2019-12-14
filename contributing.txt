@@ -1,0 +1,3 @@
+Please follow WordPress Coding Standards:
+
+https://make.wordpress.org/core/handbook/best-practices/coding-standards/
