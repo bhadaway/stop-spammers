@@ -94,8 +94,7 @@ ss_fix_post_vars();
 				}
 				$name = substr( $name, strpos( $name, '_' ) + 1 );
 				echo "changing $name autoload to $au<br />";
-				$sql
-					= "update $ptab set autoload='$au' where option_name='$name'";
+				$sql  = "update $ptab set autoload='$au' where option_name='$name'";
 				$wpdb->query( $sql );
 			}
 		}

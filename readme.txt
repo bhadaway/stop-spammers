@@ -11,17 +11,11 @@ Stop WordPress Spam
 
 == Description ==
 
-Stop spam emails, spam comments, spam registration, and spam bots in general.
+Stop spam emails, spam comments, spam registration, and spam bots and spammers in general.
 
-**NEW!** — [Upgrade for Pro Support](https://stopspammers.io/pro)
+**IMPORTANT** — Help [keep the project alive](https://stopspammers.io/sustain).
 
-*Created with a lot of hard work and maintained by Keith P. Graham (from 2010-2017). Thank you Keith.*
-
-*Maintained (because I love this plugin and want to keep it alive) by myself, Bryan Hadaway (since 2017).*
-
-***♥ this plugin too? You can help me [maintain it](https://github.com/bhadaway/stop-spammers) or by [making a donation](https://stopspammers.io/donate).***
-
-***Need help? Read the [FAQs page](https://github.com/bhadaway/stop-spammers/wiki/faqs) first, then post on [GitHub issues](https://github.com/bhadaway/stop-spammers/issues).***
+[Make a Donation](https://stopspammers.io/donate) | [Get Support](https://github.com/bhadaway/stop-spammers/issues) ([FAQs](https://github.com/bhadaway/stop-spammers/wiki/faqs))
 
 == Installation ==
 
@@ -38,3 +32,6 @@ Either way, Stop Spammers works right out-of-the-box, without needing to adjust 
 == Changelog ==
 
 [WordPress Changelog](https://plugins.trac.wordpress.org/log/stop-spammer-registrations-plugin/) | [GitHub Changelog](https://github.com/bhadaway/stop-spammers/commits)
+
+= 2019.5 =
+* Help [keep the project alive](https://stopspammers.io/sustain)
