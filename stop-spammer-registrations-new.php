@@ -3,16 +3,16 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Stop WordPress Spam
-Version: 2019.5
-Author: Bryan Hadaway
-Author URI: https://calmestghost.com/
+Version: 2019.6
+Author: Trumani
+Author URI: https://trumani.com/
 License: https://www.gnu.org/licenses/gpl.html
 Domain Path: /languages
 Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2019.5' );
+define( 'SS_VERSION', '2019.6' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -36,23 +36,22 @@ function ss_styles() {
 add_action( 'admin_print_styles', 'ss_styles' );
 
 // admin notice for users
-function ss_admin_notice() {
-    $user_id = get_current_user_id();
-    if ( !get_user_meta( $user_id, 'ss_notice_dismissed2' ) && current_user_can( 'manage_options' ) )
-        echo '<div class="notice notice-info"><p>' . __( '<big><strong>IMPORTANT</strong> — If Stop Spammers is a vital tool for your website(s), please help <a href="https://stopspammers.io/sustain" target="_blank">keep the project alive</a>.</big>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
-}
-
-add_action( 'admin_notices', 'ss_admin_notice' );
-
+//function ss_admin_notice() {
+//    $user_id = get_current_user_id();
+//    if ( !get_user_meta( $user_id, 'ss_notice_dismissed2' ) && current_user_can( 'manage_options' ) )
+//        echo '<div class="notice notice-info"><p>' . __( '<big><strong>UPDATE</strong> — Blah blah blah. <a href="https://stopspammers.io/" target="_blank">Check it out</a>.</big>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
+//}
+//
+//add_action( 'admin_notices', 'ss_admin_notice' );
+//
 // dismiss admin notice for users
-function ss_notice_dismissed() {
-    $user_id = get_current_user_id();
-    if ( isset( $_GET['ss-dismiss'] ) )
-        add_user_meta( $user_id, 'ss_notice_dismissed2', 'true', true );
-}
-
-add_action( 'admin_init', 'ss_notice_dismissed' );
-
+//function ss_notice_dismissed() {
+//    $user_id = get_current_user_id();
+//    if ( isset( $_GET['ss-dismiss'] ) )
+//        add_user_meta( $user_id, 'ss_notice_dismissed2', 'true', true );
+//}
+//
+//add_action( 'admin_init', 'ss_notice_dismissed' );
 
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );

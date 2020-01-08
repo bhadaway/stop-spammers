@@ -372,11 +372,6 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
             <p class="submit" style="clear:both"><input class="button-primary" value="Clear Summary" type="submit" /></p>
         </form>
     </fieldset>
-    <h2>Get Support and Help Improve Stop Spammers</h2>
-    <h3>Free Support</h3>
-    <p>First, <a href="https://github.com/bhadaway/stop-spammers/wiki/faqs" target="_blank">read the FAQs page</a>. Then, please post all issues, bugs, typos, questions, suggestions, requests, and complaints <a href="https://github.com/bhadaway/stop-spammers/issues" target="_blank">on GitHub</a>. Thank you.</p>
-    <h3>Paid Support</h3>
-    <p>If you need more advanced support, consider <a href="https://stopspammers.io/pro" target="_blank">upgrading for pro support</a>.</p>
     <h2>Plugin Options</h2>
     <ul>
         <li><a href="?page=stop_spammers">Summary</a>: This checks to see if

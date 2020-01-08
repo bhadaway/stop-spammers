@@ -1,7 +1,6 @@
 === Stop Spammers ===
 
-Contributors: bhadaway, Keith Graham
-Donate link: https://stopspammers.io/donate
+Contributors: trumani, bhadaway, Keith Graham
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Tested up to: 5.3
 Stable tag: trunk
@@ -12,10 +11,6 @@ Stop WordPress Spam
 == Description ==
 
 Stop spam emails, spam comments, spam registration, and spam bots and spammers in general.
-
-**IMPORTANT** — Help [keep the project alive](https://stopspammers.io/sustain).
-
-[Make a Donation](https://stopspammers.io/donate) | [Get Support](https://github.com/bhadaway/stop-spammers/issues) ([FAQs](https://github.com/bhadaway/stop-spammers/wiki/faqs))
 
 == Installation ==
 
@@ -33,5 +28,5 @@ Either way, Stop Spammers works right out-of-the-box, without needing to adjust 
 
 [WordPress Changelog](https://plugins.trac.wordpress.org/log/stop-spammer-registrations-plugin/) | [GitHub Changelog](https://github.com/bhadaway/stop-spammers/commits)
 
-= 2019.5 =
-* Help [keep the project alive](https://stopspammers.io/sustain)
+= 2019.6 =
+* [New owner](https://github.com/Trumani/stop-spammers/issues/145)
