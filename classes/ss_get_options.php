@@ -275,7 +275,6 @@ class ss_get_options {
 				'fioricet',
 				'flowers-leading-site',
 				'freenet-shopping',
-				'freenet',
 				'gambling-',
 				'hair-loss',
 				'health-insurancedeals',
