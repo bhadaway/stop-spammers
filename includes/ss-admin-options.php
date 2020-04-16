@@ -64,9 +64,9 @@ function ss_sp_rightnow() {
 		echo "<p>Stop Spammers has prevented <strong>$spmcount</strong> spammers from registering or leaving comments.</p>";
 	}
 	if ( count( $wlrequests ) == 1 ) {
-		echo "<p><strong>" . count( $wlrequests ) . "</strong> user has been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
+		echo "<p><strong>" . count( $wlrequests ) . "</strong> user has been denied access and <a href='admin.php?page=ss_allow_list'>requested</a> that you add them to the Allow List.</p>";
 	} else if ( count( $wlrequests ) > 0 ) {
-		echo "<p><strong>" . count( $wlrequests ) . "</strong> users have been denied access and <a href='admin.php?page=ss_allowrequests'>requested</a> that you add them to the Allow List.</p>";
+		echo "<p><strong>" . count( $wlrequests ) . "</strong> users have been denied access and <a href='admin.php?page=ss_allow_list'>requested</a> that you add them to the Allow List.</p>";
 	}
 }
 

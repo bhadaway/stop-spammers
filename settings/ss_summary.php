@@ -231,91 +231,16 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1>
-    <p><?php _e( 'Version', 'stop-spammers' ); ?> <span class="green"><?php echo SS_VERSION; ?></span></p>
-	<?php
-	if ( ! empty( $msg ) ) {
-		echo "$msg";
-	}
-	$current_user_name = wp_get_current_user()->user_login;
-	if ( $current_user_name == 'admin' ) {
-		echo "<p style=\"color:red;font-style:italic\">You are using the admin ID \"admin\". This is 
-an invitation to hackers to try and guess your password. Please change this.<br />
-Here is discussion on WordPress.org:
-<a href=\"https://wordpress.org/support/topic/how-to-change-admin-username?replies=4\" target=\"_blank\">How to Change Admin Username</a>
-</p>";
-	}
-	$showcf = false; // hide this for now
-	if ( $showcf && array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER )
-	     && ! function_exists( 'cloudflare_init' )
-	     && ! defined( 'W3TC' )
-	) {
-		echo "<p style=\"color:red;font-style:italic\">
-Cloudflare Remote IP address detected. Please install the <a href=\"https://wordpress.org/plugins/cloudflare/\" target=\"_blank\">Cloudflare Plugin</a>.
-This plugin works best with the Cloudflare plugin when yout website is using Cloudflare.
-</p>";
-	}
-	if ( $spmcount > 0 ) {
-		?>
-        <script>
-            function showcheat() {
-                var el = document.getElementById("cheater");
-                el.style.display = "block";
-                return false;
-            }
-        </script>
-        <p>Stop Spammers in total has stopped <a href="" onclick="showcheat();return false;" class="green"><?php echo $spmcount; ?></a> spammers since <?php echo $spmdate; ?>.</p>
-        <div id="cheater" style="display:none">
-            Enter a new Total Spam Count:<br />
-            <form method="post" action="">
-                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-                <input type="hidden" name="update_total" value="Update Total" />
-                Count: <input type="text" name="spmcount" value="<?php echo $spmcount; ?>" /><br />
-                Date: <input type="text" name="spmdate" value="<?php echo $spmdate; ?>" /><br />
-                <p class="submit" style="clear:both"><input class="button-primary" value="Update Total Spam" type="submit" /></p>
-            </form>
-        </div>
+    <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop spammers icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
+    <?php _e( 'Version', 'stop-spammers' ); ?> <span class="green"><?php echo SS_VERSION; ?></span>
 		<?php
-	}
-	if ( $spcount > 0 ) {
-		?>
-        <p>Stop Spammers has stopped <span class="green"><?php echo $spcount; ?></span> spammers since <?php echo $spdate; ?>.</p>
-		<?php
-	}
-	$num_comm = wp_count_comments();
-	$num      = number_format_i18n( $num_comm->spam );
-	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
-		?>
-        <p>There are <a href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a> spam comments waiting for you to report them.</p>
-		<?php
-	}
-	$num_comm = wp_count_comments();
-	$num      = number_format_i18n( $num_comm->moderated );
-	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
-		?>
-        <p>There are <a href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a> comments waiting to be moderated.</p>
-		<?php
-	}
-	$summry = '';
-	foreach ( $counters as $v1 => $v2 ) {
-		if ( ! empty( $stats[ $v1 ] ) ) {
-			$summry .= "<div class='stat-box'>$v2: " . $stats[ $v1 ] . "</div>";
-		} else {
-// echo "  $v1 - $v2 , ";
-		}
-	}
-	$addonstats = $stats['addonstats'];
-	foreach ( $addonstats as $key => $data ) {
-// count is in data[0] and use the plugin name
-		$summry .= "<div class='stat-box'>$key: " . $data[0] . "</div>";
-	}
 	if ( ! empty( $summry ) ) {
 		?>
 		<?php
 	}
 	$ip = ss_get_ip();
 	?>
-    <p>Your current IP address is: <span class="green"><?php echo $ip; ?></span></p>
+	| Your current IP address is: <span class="green"><?php echo $ip; ?> | <strong><a style="color:#67aeca;text-decoration: none;" href="https://trumani.com/downloads/stop-spammers-premium/">GET PREMIUM OPTIONS</a></strong></span>
 	<?php
 	// check the IP to see if we are local
 	$ansa = be_load( 'chkvalidip', ss_get_ip() );
@@ -344,7 +269,7 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
             you use Cloudflare to protect and speed up your site then you MUST
             install the Cloudflare plugin. This plugin
             will be crippled until you install it.</p>
-		<?php
+	<?php
 	}
 	// need the current guy
 	$sname = '';
@@ -358,11 +283,94 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 	if ( strpos( $sname, '?' ) !== false ) {
 		$sname = substr( $sname, 0, strpos( $sname, '?' ) );
 	}
+	
+	if ( ! empty( $msg ) ) {
+		echo "$msg";
+	}
+	$current_user_name = wp_get_current_user()->user_login;
+	
+	if ( $current_user_name == 'admin' ) {
+		echo "<span class=\"notice notice-warning\" style=\"display:block\">SECURITY RISK: You are using the admin ID \"admin\". This is 
+an invitation to hackers to try and guess your password. Please change this.<br />
+Here is discussion on WordPress.org:
+<a href=\"https://wordpress.org/support/topic/how-to-change-admin-username?replies=4\" target=\"_blank\">How to Change Admin Username</a>
+</span>";
+	}
+	$showcf = false; // hide this for now
+	if ( $showcf && array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER )
+	     && ! function_exists( 'cloudflare_init' )
+	     && ! defined( 'W3TC' )
+	) {
+		echo "<span class=\"notice notice-warning\" style=\"display:block\">
+WARNING: Cloudflare Remote IP address detected. Please install the <a href=\"https://wordpress.org/plugins/cloudflare/\" target=\"_blank\">Cloudflare Plugin</a>.
+This plugin works best with the Cloudflare plugin when yout website is using Cloudflare.
+</span>";
+	}
 	?>
-    <fieldset>
-        <legend>
-			<span style="font-weight:bold;font-size:1.2em">Summary of Spam</span>
-        </legend>
+
+<?php	
+	/* if ( $spmcount > 0 ) {
+		?>
+        <script>
+            function showcheat() {
+                var el = document.getElementById("cheater");
+                el.style.display = "block";
+                return false;
+            }
+        </script>
+        <p>Stop Spammers in total has stopped <a href="" onclick="showcheat();return false;" class="green"><?php echo $spmcount; ?></a> spammers since <?php echo $spmdate; ?>.</p>
+        <div id="cheater" style="display:none">
+            Enter a new Total Spam Count:<br />
+            <form method="post" action="">
+                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+                <input type="hidden" name="update_total" value="Update Total" />
+                Count: <input type="text" name="spmcount" value="<?php echo $spmcount; ?>" /><br />
+                Date: <input type="text" name="spmdate" value="<?php echo $spmdate; ?>" /><br />
+                <p class="submit" style="clear:both"><input class="button-primary" value="Update Total Spam" type="submit" /></p>
+            </form>
+        </div>
+		<?php
+	} */
+?>	
+
+			<h2>Summary of Spam</h2>
+        
+<div class="main-stats" style="width:95%;">
+<?php
+	 if ( $spcount > 0 ) {
+		?>
+        <p>Stop Spammers has stopped <span class="green"><?php echo $spcount; ?></span> spammers since <?php echo $spdate; ?>.</p>
+		<?php
+	}
+	$num_comm = wp_count_comments();
+	$num      = number_format_i18n( $num_comm->spam );
+	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
+		?>
+        <p>There are <a href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a> spam comments waiting for you to report them.</p>
+		<?php
+	}
+	$num_comm = wp_count_comments();
+	$num      = number_format_i18n( $num_comm->moderated );
+	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
+		?>
+        <p>There are <a href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a> comments waiting to be moderated.</p></div>
+		<?php
+	}
+	$summry = '';
+	foreach ( $counters as $v1 => $v2 ) {
+		if ( ! empty( $stats[ $v1 ] ) ) {
+			$summry .= "<div class='stat-box'>$v2: " . $stats[ $v1 ] . "</div>";
+		} else {
+// echo "  $v1 - $v2 , ";
+		}
+	}
+	$addonstats = $stats['addonstats'];
+	foreach ( $addonstats as $key => $data ) {
+// count is in data[0] and use the plugin name
+		$summry .= "<div class='stat-box'>$key: " . $data[0] . "</div>";
+	} ?>
+
+
 		<?php
 		echo $summry;
 		?>
@@ -371,65 +379,153 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
             <input type="hidden" name="clear" value="clear summary" />
             <p class="submit" style="clear:both"><input class="button-primary" value="Clear Summary" type="submit" /></p>
         </form>
-    </fieldset>
-    <h2>Plugin Options</h2>
-    <ul>
-        <li><a href="?page=stop_spammers">Summary</a>: This checks to see if
-            there may be problems from your current incoming IP address and
-            displays a summary of events.
-        </li>
-        <li><a href="?page=ss_options">Protection Options</a>: This has all the
-            options for checking for spam and logins. You can also block whole
-            countries.
-        </li>
-        <li><a href="?page=ss_allow_list">Allow Lists</a>: Here you can set up
-            your Allow List to allow IP addresses to log in and leave comments
-            on your site, without being checked for spam. It also sets up the
-            options which you can use to allow certain kinds of users into your
-            site, even though they may trigger spam detection.
-        </li>
-        <li><a href="?page=ss_deny_list">Block Lists</a>: This is where you set
-            up your Deny List for IPs and emails. It also allows you to enter
-            spam words and phrases that trigger spam.
-        </li>
-        <li><a href="?page=ss_challenge">Challenge &amp; Deny</a>: This sets up
-            CAPTCHA and notification options. You can give users who trigger the
-            plugin a second chance to use a CAPTCHA. Supports Google reCAPTCHA
-            and Solve Media CAPTCHA.
-        </li>
-        <li><a href="?page=ss_allowrequests">Allow Requests</a>: Displays users
-            who were denied and filled out the form requesting access to your
-            site.
-        </li>
-        <li><a href="?page=ss_webservices_settings">Web Services</a>: This is
-            where you enter the API keys for StopForumSpam.com and other web
-            checking services. You don't need to have these set for the plugin
-            to work, but if you do, you will have better protection and the
-            ability to report spam.
-        </li>
-        <li><a href="?page=ss_cache">Cache</a>: Shows the cache of recently
-            detected events.
-        </li>
-        <li><a href="?page=ss_reports">Log Report</a>: Shows details of the most
-            recent events detected by Stop Spammers.
-        </li>
-        <li><a href="?page=ss_diagnostics">Diagnostics</a>: You can use this to
-            test an IP, email, or comment against all of the options. This can
-            tell you more about why an IP address might fail. It will also show
-            you any options that might crash the plugin on your site due to
-            system settings.
-        </li>
-    </ul>
-    <h2>Beta Options</h2>
+<?php
+
+function ss_control()  {
+	// this is the display of information about the page.
+
+	if (array_key_exists('resetOptions',$_POST)) {
+		ss_force_reset_options();
+	}
+	$ip=astound_get_ip();
+	$nonce=wp_create_nonce('ss_options');
+
+	$options=ss_get_options();
+	extract($options);
+}
+	
+function ss_force_reset_options() {
+	$ss_opt=$_POST['ss_opt'];
+	$ss_opt=sanitize_text_field($ss_opt);
+	if (!wp_verify_nonce($ss_opt,'ss_options')) {	
+		echo "Session timeout, please refresh the page";
+		exit;
+	}
+	if (!function_exists('ss_reset_options')) {
+		ss_require('includes/ss-init-options.php');
+	}
+
+	ss_reset_options();
+	// clear the cache
+	delete_option('ss_cache');
+} ?>
+</div>
+    <h2>Free Options</h2>
+
+<div class="ss_admin_info_boxes_3row" >
+  <div class="ss_admin_info_boxes_3col" >		
+<h3>PROTECTION OPTIONS</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" >
+
+All options related to checking spam and logins. You can also block whole countries.
+<div class="ss_admin_button">
+    <a href="?page=ss_options">Protection</a>
+</div>
+		</div>
+		<div class="ss_admin_info_boxes_3col" >
+		<h3>ALLOW LISTS</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb" >
+        Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.
+		<div class="ss_admin_button">
+    <a href="?page=ss_allow_list">Allow</a>
+</div>
+		</div>
+		<div class="ss_admin_info_boxes_3col" >
+		<h3>BLOCK LISTS</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb" >
+        Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.
+		<div class="ss_admin_button">
+    <a href="?page=ss_deny_list">Block</a>
+</div>
+		</div>
+	</div>
+<div class="ss_admin_info_boxes_3row" >
+  <div class="ss_admin_info_boxes_3col" >		
+<h3>CHALLENGE &amp; DENY</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb" >
+        Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.
+<div class="ss_admin_button">
+    <a href="?page=ss_challenge">Challenges</a>
+</div>
+		</div>        
+<div class="ss_admin_info_boxes_3col" >		
+<h3>APPROVE REQUESTS</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb" >
+		Review and approve or deny users who were blocked and filled out the form requesting access to your site.
+<div class="ss_admin_button">
+    <a href="?page=ss_allow_list">Approve</a>
+</div>
+</div> 
+
+<div class="ss_admin_info_boxes_3col" >		
+<h3>WEB SERVICES</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb" >
+        Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.
+<div class="ss_admin_button">
+    <a href="?page=ss_webservices_settings">Web Services</a>
+</div>
+</div>   
+</div>
+<div class="ss_admin_info_boxes_3row" >
+  <div class="ss_admin_info_boxes_3col" >		
+<h3>CACHE</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb" >      
+        Shows the cache of recently detected events.
+<div class="ss_admin_button">
+    <a href="?page=ss_cache">Cache</a>
+</div>
+</div>
+<div class="ss_admin_info_boxes_3col" >		
+<h3>LOG REPORT</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb" >          
+        Details the most recent events detected by Stop Spammers.
+<div class="ss_admin_button">
+    <a href="?page=ss_reports">Log Report</a>
+</div>
+</div> 
+<div class="ss_admin_info_boxes_3col" >		
+<h3>DIAGNOSTICS</h3>
+<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb" >     
+    Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.
+<div class="ss_admin_button">
+    <a href="?page=ss_diagnostics">Diagnostics</a>
+</div>
+</div>
+</div>
+<h2>Premium Options</h2>
+<div class="ss_admin_info_boxes_1row" >
+  <div class="ss_admin_info_boxes_1col" >
+    <h3>Add even more options, including export log to excel, restore options, and transfer configurations.</h3>
+	 <div class="ss_admin_button">
+    <a href="https://trumani.com/downloads/stop-spammers-premium/">Go Premium</a>
+</div>
+	</div>
+	</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h2>Beta Options</h2>
     <span class="notice notice-warning" style="display:block">
         <p>These features are to be considered experimental. Use with caution and at your own risk.</p>
     </span>
-    <ul>
-        <li><a href="?page=ss_option_maint">DB Cleanup</a>: Delete leftover
-            options from deleted plugins or anything that appears suspicious.
-        </li>
-        <li><a href="?page=ss_threat_scan">Threat Scan</a>: A simple scan to
-            find possibly malicious code.
-        </li>
-    </ul>
+<div class="ss_admin_info_boxes_2row" >
+  <div class="ss_admin_info_boxes_2col" >
+    <h3>Database Cleanup</h3>
+    <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/database-cleanup.png'; ?>" class="center_thumb" >    
+        Delete leftover options from deleted plugins or anything that appears suspicious.
+ <div class="ss_admin_button">
+    <a href="?page=ss_option_maint">Cleanup</a>
+</div>
+</div>       
+  <div class="ss_admin_info_boxes_2col" >
+    <h3>Threat Scan</h3>
+    <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/threat-scan.png'; ?>" class="center_thumb" >           
+		A simple scan to find possibly malicious code.
+ <div class="ss_admin_button">
+    <a href="?page=ss_diagnostics">Scan</a>
+</div>
+</div>   
 </div>

@@ -23,6 +23,8 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'chkadmin',
 		'chkaccept',
 		'chkbbcode',
+		'chkperiods',
+		'chkhyphens',
 		'chkreferer',
 		'chkdisp',
 		'chklong',
@@ -33,6 +35,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'chkexploits',
 		'chkadminlog',
 		'chkhosting',
+		'chktor',
 		'chkakismet',
 		'filterregistrations',
 		'chkform',
@@ -216,75 +219,77 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
-	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
+	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated! Need to Export/Import Your Personalized Settings to other Sites? <strong><a href="/wp-admin/admin.php?page=ss_premium">Try Premium</a></strong></p></div>';
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
+
+
 <div id="ss-plugin" class="wrap">
-    <h1>Stop Spammers — Protection Options</h1>
+    <h1 class="ss_head">Stop Spammers — Protection Options</h1>
+	<br></br>
 	<?php if ( ! empty( $msg ) ) {
 		echo "$msg";
 	} ?>
-    <form method="post" action="" name="ss">
+<br />
+	<form method="post" action="" name="ss">
         <input type="hidden" name="action" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Only Use the Plugin for Standard WordPress Forms</span>
-            </legend>
-            <p><input name="chkform" type="checkbox" value="Y" <?php if ( $chkform == 'Y' ) {
+ 
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="chkform">
+            <input class"ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) {
 					echo "checked=\"checked\"";
-				} ?> />
-                Stop Spammers normally kicks off whenever someone fills out a
-                form and presses submit. This means it
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Only Use the Plugin for Standard WordPress Forms (not recommended) </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+                Stop Spammers kicks off whenever someone fills out a
+                form and presses submit. It
                 checks all the forms on a website, not just comments and logins.
                 This option will limit the plugin to
                 wp-comments-post.php and wp-login.php. WooCommerce and other
-                plugins will not be checked. Use this
-                option
-                if you are running an ecommerce site or a specialized site that
-                has forms that are blocked by Stop
-                Spammers.
-                For the most protection, this option is off by default
-                (recommended).</p>
-        </fieldset>
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Prevent Lockouts</span>
-            </legend>
+                plugins will not be checked. Enable
+                if you run an ecommerce site or a specialized site that
+                has forms that are blocked.</span></i></div>
+        <br />
+			<span style="font-weight:bold;font-size:18px;">Prevent Lockouts</span>
+           
             <p>This plugin aggressively checks for spammers and is unforgiving
                 to the point where even you may get
                 locked out of your own website when you log off and try to log
                 back in. There are two options which help
                 prevent this, but these options can make it easier for a spammer
-                to hack your site.<br />
-                When you are confident that the plugin is working you can
-                uncheck these boxes.</p>
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Automatically Add Admins to Allow List</span>
-                </legend>
-                <p><input name="addtoallowlist" type="checkbox" value="Y" <?php if ( $addtoallowlist == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+                to hack your site.
+                When you are confident that the plugin is working, you can
+                disable these checks.</p>
+             
+
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="addtoallowlist">
+            <input class"ss_toggle" type="checkbox" id="addtoallowlist" name="addtoallowlist" value="Y" <?php if ( $addtoallowlist == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Automatically Add Admins to Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                
                     Whenever an administrative user logs in, the IP address is
                     added to the Allow List. This means that
                     you can't be locked out unless your IP address changes or
                     you log in from a different location. As
                     soon as a login is successful then the IP is white-listed to
                     prevent future problems. Disable this
-                    if you think that you will never be locked out.</p>
-            </fieldset>
+                    if you think that you will never be locked out.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check Credentials on All Login Attempts</span>
-                </legend>
-                <p><input name="chkadminlog" type="checkbox" value="Y" <?php if ( $chkadminlog == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
-                    Normally the plugin checks for spammers before WordPress can
-                    try to log in a user.
+             
+                 
+					
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkadminlog">
+            <input class"ss_toggle" type="checkbox" id="chkadminlog" name="chkadminlog" value="Y" <?php if ( $chkadminlog == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check Credentials on All Login Attempts </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                  
+                    Normally the plugin checks for spammers before WordPress can try to log in a user.
                     If you check this box, every attempt to log in will be
                     tested for a valid user.
                     This may allow a hacker to guess your user ID and password
@@ -292,39 +297,43 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     This is turned on initially to prevent you from being locked
                     out of your own blog,
                     but should be unchecked after you verify that the plugin
-                    does not think you are a spammer.</p>
-            </fieldset>
-        </fieldset>
+		            does not think you are a spammer.</span></i></div>
+             
+         
         <br />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Validate Requests</span>
-            </legend>
+         
+             
+				<span style="font-weight:bold;font-size:18px;">Validate Requests</span>
+             
             <p>Spam bots do not always follow rules. They don't provide the
                 proper request headers or are too quick.
                 These items can be quickly checked. These rules are the most
                 economical way of detecting spammers.</p>
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Block Spam Missing the HTTP_ACCEPT Header</span>
-                </legend>
-                <p><input name="chkaccept" type="checkbox" value="Y" <?php if ( $chkaccept == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkaccept">
+            <input class"ss_toggle" type="checkbox" id="chkaccept" name="chkaccept" value="Y" <?php if ( $chkaccept == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Block Spam Missing the HTTP_ACCEPT Header </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                   
                     Blocks users who have a missing or incomplete HTTP_ACCEPT
                     header. All browsers provide this header.
                     If a hit on your site is missing the HTTP_ACCEPT header it
                     is because a poorly written bot is
-                    trying access your site.</p>
-            </fieldset>
+                    trying access your site.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Block Invalid HTTP_REFERER</span>
-                </legend>
-                <p><input name="chkreferer" type="checkbox" value="Y" <?php if ( $chkreferer == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                 
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkreferer">
+            <input class"ss_toggle" type="checkbox" id="chkreferer" name="chkreferer" value="Y" <?php if ( $chkreferer == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Block Invalid HTTP_REFERER </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                 
                     When you submit a form, all browsers provide the web page
                     that submitted the form. If this referring
                     page is missing or does not match your website then the
@@ -333,72 +342,103 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     header. You may want to disable
                     this function if you log into your website from your mobile
                     device. Test it first - the better
-                    written apps provide the referring page.</p>
-            </fieldset>
+                    written apps provide the referring page.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Deny Disposable Email Addresses</span>
-                </legend>
-                <p><input name="chkdisp" type="checkbox" value="Y" <?php if ( $chkdisp == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkdisp">
+            <input class"ss_toggle" type="checkbox" id="chkdisp" name="chkdisp" value="Y" <?php if ( $chkdisp == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Deny Disposable Email Addresses </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                   
                     Spammers who want to hide their true identities use
                     disposable email addresses. You can get these
                     from a number of sites. The spammer doesn't have to
                     register. He just picks up any mail anonymously.
                     Legitimate users use their real email address. It is very
                     likely that anyone using a disposable
-                    email address is a spammer.</p>
-            </fieldset>
+                    email address is a spammer.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Long Emails, Author Name, or Password</span>
-                </legend>
-                <p><input name="chklong" type="checkbox" value="Y" <?php if ( $chklong == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                 
+
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chklong">
+            <input class"ss_toggle" type="checkbox" id="chklong" name="chklong" value="Y" <?php if ( $chklong == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Long Emails, Author Name, or Password </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                  
                     Spammers can't resist using very long names and emails. This
                     rejects these if they are over 64
-                    characters in length.</p>
-            </fieldset>
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Short Emails or Author Name</span>
-                </legend>
-                <p><input name="chkshort" type="checkbox" value="Y" <?php if ( $chkshort == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+                    characters in length.</span></i></div>
+             
+            <br />
+             
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkshort">
+            <input class"ss_toggle" type="checkbox" id="chkshort" name="chkshort" value="Y" <?php if ( $chkshort == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Short Emails or Author Name </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                 
                     Spammers sometimes use blank usernames or author names. If
                     you are having trouble with a plugin or
                     theme
                     not using the correct fields with rejects for short
-                    usernames, then uncheck this box.</p>
-            </fieldset>
+                    usernames, then uncheck this box.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for BBCodes</span>
-                </legend>
-                <p><input name="chkbbcode" type="checkbox" value="Y" <?php if ( $chkbbcode == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkbbcode">
+            <input class"ss_toggle" type="checkbox" id="chkbbcode" name="chkbbcode" value="Y" <?php if ( $chkbbcode == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for BBCodes </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+   
                     BBCodes are codes like [url] that spammers like to place in
                     comments. WordPress does not support
                     BBCodes without a plugin.
                     If you have a BBCode plugin then disable this. This will
-                    mark any comment that has BBCodes as spam.
-                </p>
-            </fieldset>
+                    mark any comment that has BBCodes as spam.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Quick Responses</span>
-                </legend>
-                <p><input name="chksession" type="checkbox" value="Y" <?php if ( $chksession == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                 
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkperiods">
+            <input class"ss_toggle" type="checkbox" id="chkperiods" name="chkperiods" value="Y" <?php if ( $chkperiods == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Periods <sup class="ss_sup">NEW!</sup> </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                  
+                    An email with more than 2 periods (1 to separate a name and 1 after the TLD is often the sign of a spammer.</span></i></div>
+             
+            <br />
+             
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkhyphens">
+            <input class"ss_toggle" type="checkbox" id="chkhyphens" name="chkhyphens" value="Y" <?php if ( $chkhyphens == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Hyphens <sup class="ss_sup">NEW!</sup> </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                 
+                   Spammers like to use hyphens in their emails. With this check enabled, an address with >1 hyphens is blocked.</span></i></div>
+             
+            <br />			
+                            
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chksession">
+            <input class"ss_toggle" type="checkbox" id="chksession" name="chksession" value="Y" onclick="ss_show_quick()" <?php if ( $chksession == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Quick Responses </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                  
                     <em>(disabled if caching is active)</em> The plugin will
                     drop a cookie with the current time in it.
                     When the user enters a comment or tries to log into the
@@ -406,66 +446,83 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     responds too fast, he is a spammer. If cookies are not
                     supported, this is disabled. Use the timeout
                     value below to control the speed (stops the most spammers of
-                    all the methods listed here).<br />
-                    Response Timeout Value:
-                    <input name="sesstime" type="text" value="<?php echo $sesstime; ?>" size="2" />
+                    all the methods listed here).</span></i></div>
+					<br />
+				<span id="ss_show_quick" style="margin-left:30px;margin-bottom:15px;display:none;">
+                    <p style="margin-left:30px;">Response Timeout Value:
+                    <input name="sesstime" type="text" value="<?php echo $sesstime; ?>" size="2" /><br />
                     This is the time used to determine if a spammer has filled
                     out a form too quickly. Humans take more
                     than 10 seconds, at least, to fill out forms. The default is
                     4 seconds. If a user takes 4 seconds or
                     less to fill out a form they are not human and are denied.
                     Users who use automatic passwords may
-                    show up as false positives, so keep this low.</p>
-            </fieldset>
+					show up as false positives, so keep this low.</p></span>
+<script>
+function ss_show_quick() {
+  var checkBox = document.getElementById("chksession");
+  var text = document.getElementById("ss_show_quick");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+</script>             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Deny 404 Exploit Probing</span>
-                </legend>
-                <p><input name="chk404" type="checkbox" value="Y" <?php if ( $chk404 == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+               
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chk404">
+            <input class"ss_toggle" type="checkbox" id="chk404" name="chk404" value="Y" <?php if ( $chk404 == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Deny 404 Exploit Probing </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                  
                     Bots often search your site for exploitable files. If there
                     is a match to a known exploit URL,
-                    this will automatically add the IP address to the Deny List.
-                </p>
-            </fieldset>
+                    this will automatically add the IP address to the Deny List.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Deny IPs Detected by Akismet</span>
-                </legend>
-                <p><input name="chkakismet" type="checkbox" value="Y" <?php if ( $chkakismet == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+ 
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkakismet">
+            <input class"ss_toggle" type="checkbox" id="chkakismet" name="chkakismet" value="Y" <?php if ( $chkakismet == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Deny IPs Detected by Akismet </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+  
                     Akismet does a good job detecting spam. If Akismet catches a
                     spammer, then the IP address should be
                     added to the bad IP cache. Akismet will continue to block
                     comment spam, but if there is a login or
-                    registration attempt from the same IP, it will be blocked.
-                </p>
-            </fieldset>
+                    registration attempt from the same IP, it will be blocked.</span></i></div>
+
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Exploits</span>
-                </legend>
-                <p><input name="chkexploits" type="checkbox" value="Y" <?php if ( $chkexploits == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                  
+     <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkexploits">
+            <input class"ss_toggle" type="checkbox" id="chkexploits" name="chkexploits" value="Y" <?php if ( $chkexploits == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Exploits </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+   
                     This checks for the PHP eval function and typical SQL
                     injection strings in comments and login
                     attempts. It also checks for JavaScript that may potentially
-                    be used for cross domain exploits.</p>
-            </fieldset>
+                    be used for cross domain exploits.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Deny Login Attempts Using 'admin' in Username</span>
-                </legend>
-                <p><input name="chkadmin" type="checkbox" value="Y" <?php if ( $chkadmin == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                 
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkadmin">
+            <input class"ss_toggle" type="checkbox" id="chkadmin" name="chkadmin" value="Y" <?php if ( $chkadmin == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Deny Login Attempts Using 'admin' in Username </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                    
                     When a spammer starts hitting the login page with 'admin'
                     anywhere in the login ID and there is no
                     matching user,
@@ -478,43 +535,64 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     This has the side effect of preventing users from
                     registering a username with the word admin in it.
                     Users cannot register with 'admin2' or 'superadmin' or
-                    'Administrator.'</p>
-            </fieldset>
+                    'Administrator.'</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check Against List of Ubiquity-Nobis and Other Spam Server IPs</span>
-                </legend>
-                <p><input name="chkubiquity" type="checkbox" value="Y" <?php if ( $chkubiquity == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+    <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkubiquity">
+            <input class"ss_toggle" type="checkbox" id="chkubiquity" name="chkubiquity" value="Y" <?php if ( $chkubiquity == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check Against List of Ubiquity-Nobis and Other Spam Server IPs </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+        
                     A list of hosting companies who tolerate spammers. They are
                     the source of many comment spam
-                    and login attempts. This blocks many of them.</p>
-            </fieldset>
+                    and login attempts. This blocks many of them.</span></i></div>            
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Major Hosting Companies and Cloud Services</span>
-                </legend>
-                <p><input name="chkhosting" type="checkbox" value="Y" <?php if ( $chkhosting == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+                             
+   <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkhosting">
+            <input class"ss_toggle" type="checkbox" id="chkhosting" name="chkhosting" value="Y" <?php if ( $chkhosting == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Major Hosting Companies and Cloud Services </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+   
                     Your users should come from ISPs only. If a request comes
                     from a web host such as Softlayer,
                     Rackspace, or Amazon AWS, it is likely that the the user is
                     a spammer who is running some spam
-                    software to attack your site.</p>
-            </fieldset>
+                    software to attack your site.</span></i></div> 
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Many Hits in a Short Time</span>
-                </legend>
-                <p><input name="chkmulti" type="checkbox" value="Y" <?php if ( $chkmulti == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
-                    Deny access when there are
+             
+
+   <div class="checkbox switcher">
+      <label id="ss_subhead" for="chktor">
+            <input class"ss_toggle" type="checkbox" id="chktor" name="chktor" value="Y" <?php if ( $chktor == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Tor Exit Nodes <sup class="ss_sup">NEW!</sup> </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+  
+                    Spammers can conceal their bad activities by accessing your website and commenting through Tor.</span></i></div> 
+             
+            <br />
+             
+                 
+   <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkmulti">
+            <input class"ss_toggle" type="checkbox" id="chkmulti" name="chkmulti" value="Y" onclick="ss_show_chkmulti()" <?php if ( $chkmulti == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Many Hits in a Short Time </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+ 
+                    Spammers hit your site over and over again. If you get more
+                    than the specified hits in the specified time, the spammer
+                    will be stopped,
+                    added to the bad cache, and shown the challenge page.</span></i></div>
+    <span id="ss_show_chkmulti" style="margin-left:30px;margin-bottom:15px;display:none;">           
+		<p style="margin-left:30px;">Deny access when there are
                     <select name="multicnt">
                         <option val="4" <?php if ( $multicnt <= 4 ) {
 							echo "selected='selected'";
@@ -589,64 +667,71 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                         </option>
                     </select>
                     minutes.<br />
-                    Spammers hit your site over and over again. If you get more
-                    than 5 hits in 3 minutes, the spammer
-                    will be stopped,
-                    added to the bad cache, and shown the challenge page.
-                </p>
-            </fieldset>
+		</p></span>
+<script>
+function ss_show_chkmulti() {
+  var checkBox = document.getElementById("chkmulti");
+  var text = document.getElementById("ss_show_chkmulti");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+</script>                
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Check for Amazon Cloud</span>
-                </legend>
-                <p><input name="chkamazon" type="checkbox" value="Y" <?php if ( $chkamazon == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+             
+                 
+   <div class="checkbox switcher">
+      <label id="ss_subhead" for="chkamazon">
+            <input class"ss_toggle" type="checkbox" id="chkamazon" name="chkamazon" value="Y" <?php if ( $chkamazon == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check for Amazon Cloud </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                  
                     You can block comments and logins from Amazon Cloud Servers
                     using this setting. It may be that good
                     services use
                     Amazon Cloud servers so you may not want to use this. Be
                     careful about blocking Amazon. Sometimes
                     you get spam from
-                    one of their servers, but they shut it down right away.</p>
-            </fieldset>
-            <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Filter Login Requests</span>
-                </legend>
-                <p><input name="filterregistrations" type="checkbox" value="Y" <?php if ( $filterregistrations == 'Y' ) {
-						echo "checked=\"checked\"";
-					} ?> />
+                    one of their servers, but they shut it down right away.</span></i></div>
+             
+            <br />            
+                 
+  <div class="checkbox switcher">
+      <label id="ss_subhead" for="filterregistrations">
+            <input class"ss_toggle" type="checkbox" id="filterregistrations" name="filterregistrations" value="Y" <?php if ( $filterregistrations == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Filter Login Requests </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+                   
                     Some plugins and themes bypass the standard registration
                     forms. If you check this, Stop Spammers
                     will try to intercept the login in the WordPress user login
                     module. This will cause some overhead,
                     but gives Stop Spammers another shot at detecting spam. This
                     is turned off by default because it
-                    could potentially be called at every page load.</p>
-            </fieldset>
+                    could potentially be called at every page load.</span></i></div>
+             
             <br />
-            <fieldset>
-                <legend>
-					<span style="font-weight:bold;font-size:1.2em">Block Countries</span>
-                </legend>
-                <p><strong>This does not block the whole country. It only blocks
-                        spam sources in a country.</strong></p>
-                <p>Blocking countries only blocks the known spam blocks from
+             
+<fieldset>                 
+					<span style="font-weight:bold;font-size:18px">Block Countries</span>
+                 <br />
+                    <div class="ss_info_box">
+					<p>Blocking countries only blocks the known spam blocks from
                     those countries. Blocking residential ISPs in countries
-                    where spammers are quickly shut down is avoided.
-                    <em><strong>Blocking the US will not block Cox, Verizon, AT&amp;T,
-                            etc. It will block
-                            hosting companies that send out spam that are
-                            located in the US.</strong></em></p>
+                    where spammers are quickly shut down is avoided. 
+					Blocking the US will not block Cox, Verizon, AT&amp;T,
+                    etc. It will block hosting companies that send out spam that are
+                    located in the US.</strong></em></p>
                 <p>Blocking RU will, however, block most of Russia, because
                     Russian ISPs do not shut down zombie
                     computers in
-                    residential blocks.</p>
-                <p>If you block countries, make sure that you have set the
-                    Challenge to use a CAPTCHA screen so that
+                    residential blocks.
+                    If you block countries, make sure that you have set the
+					Challenge to use a <a href="/wp-admin/admin.php?page=ss_challenge"><strong>CAPTCHA screen</strong></a> so that
                     legitimate users
                     can get into your site even if blocked.</p>
                 <p>The biggest countries can put a strain on memory. US, Russia,
@@ -657,10 +742,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     things a little
                     and in some cases might shut down your site. If you are
                     using a free or low-budget host to run your site,
-                    there could be a problem.</p>
-                <p>Check all:
-                    <input type="checkbox" name="ss_set" value="1" onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>
-                </p>
+                    there could be a problem.</p></div>
+            
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="countries">
+            <input class="ss_toggle" type="checkbox" id="countries" name="ss_set" value="1" onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>
+		  <small><span class="button-primary" style="font-size:16px!important;">Check All</span></small></label></div>
+<br />
                 <div class="stat-box"><input name="chkAD" type="checkbox"
                                              value="Y" <?php if ( $chkAD
 				                                                  == "Y"
@@ -1641,8 +1729,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						echo "checked=\"checked\"";
 					} ?> />Yemen
                 </div>
-            </fieldset>
-        </fieldset>
+         </fieldset>            
+         
         <br />
         <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>

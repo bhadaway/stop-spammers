@@ -15,7 +15,7 @@ $search   = SS_PLUGIN_URL . 'images/search.png';
 $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1>Stop Spammers — Log Report</h1>
+    <h1 class="ss_head">Stop Spammers — Log Report</h1>
 	<?php
 	// $ip=ss_get_ip();
 	$stats = ss_get_stats();
@@ -83,11 +83,11 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
     <form method="post" action="">
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <input type="hidden" name="ss_stop_update_log_size" value="true" />
-        <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">History Size</span>
-            </legend>
-            Select the number of items to save in the History. Keep this
-            small.<br />
+        
+            <h2>History Size</h2>
+            
+            Select the number of events to save in the history.<br />
+		<p class="submit">
             <select name="ss_sp_hist">
                 <option value="10" <?php if ( $ss_sp_hist == '10' ) {
 					echo "selected=\"true\"";
@@ -109,38 +109,41 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 					echo "selected=\"true\"";
 				} ?>>100
                 </option>
+                <option value="150" <?php if ( $ss_sp_hist == '150' ) {
+					echo "selected=\"true\"";
+				} ?>>150
+                </option>
             </select>
-            <p class="submit"><input class="button-primary" value="Update Log Size" type="submit" /></p>
-    </form>
-    </fieldset>
-    <fieldset>
-        <legend>
-			<span style="font-weight:bold;font-size:1.2em">Clear Activity</span>
-        </legend>
+            <input class="button-primary" value="Update Log Size" type="submit" /></p>
+
         <form method="post" action="">
             <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
             <input type="hidden" name="ss_stop_clear_hist" value="true" />
             <p class="submit"><input class="button-primary" value="Clear Recent Activity" type="submit" /></p>
         </form>
-    </fieldset>
+    
 	<?php
 	if ( empty( $hist ) ) {
 		echo "<p>Nothing in logs.</p>";
 	} else {
 		?>
-        <table style="width:100%;background-color:#eee" cellspacing="2">
-            <tr style="background-color:ivory;text-align:center">
-                <td>Date/Time</td>
-                <td>Email</td>
-                <td>IP</td>
-                <td>Author, User/Pwd</td>
-                <td>Script</td>
-                <td>Reason
+	<br />
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Date Search" title="Filter by a value">
+        <table name="mytable" id="myTable" style="width:100%;background-color:#eee" cellspacing="2">
+			<thead>
+            <tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600;">
+                <th onclick="sortTable(0)" class="filterhead ss_cleanup">Date/Time</th>
+                <th class="ss_cleanup">Email</th>
+                <th class="ss_cleanup">IP</th>
+                <th class="ss_cleanup">Author, User/Pwd</th>
+                <th class="ss_cleanup">Script</th>
+                <th class="ss_cleanup">Reason
 					<?php
 					if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 					?>
-                </td>
-                <td>Blog</td>
+                </th>
+			</thead>
+			<tbody>
 				<?php
 				}
 				?>
@@ -215,7 +218,82 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 				echo "</tr>";
 			}
 			?>
+		</tbody>
         </table>
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+	function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 		<?php
 	}
 	?>

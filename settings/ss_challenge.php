@@ -88,7 +88,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1>Stop Spammers — Challenge and Deny</h1>
+    <h1 class="ss_head">Stop Spammers — Challenge and Deny</h1>
 	<?php if ( ! empty( $update ) ) {
 		echo "$update";
 	} ?>
@@ -113,51 +113,67 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
         </fieldset>
         <br />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Send Spammer to Another Web Page</span>
-            </legend>
-            Enable redirect:
-            <input type="checkbox" name="redir" value="Y" <?php if ( $redir
-			                                                         == 'Y'
-			) {
-				echo "checked=\"checked\"";
-			} ?> />
-            <br />
-            <p>If you want you can send the spammer to a web page. This can be a
+            
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="redir">
+            <input class"ss_toggle" type="checkbox" id="redir" name="redir" value="Y" onclick="ss_show_option()" <?php if ( $redir == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Send Spammer to Another Web Page </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">		
+            Redirect the spammer to a different page. This can be a
                 custom page explaining terms of
-                service for example.</p>
-            Redirect URL:
-            <input size="77" name="redirurl" type="text" value="<?php echo $redirurl; ?>" />
-        </fieldset>
-        <br />
-        <fieldset>
-            <legend><span style="font-weight:bold;font-size:1.2em">Allow Users to Add to the Allow Request List</span>
-            </legend>
-            <p>Users can see the form to add themselves to the request list, but
+                service for example.</span></i></div>
+			<br />
+           <span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;">Redirect URL:
+            <input id="myLargeInput" size="77" name="redirurl" type="text" placeholder="e.g. https://trumani.com/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
+<script>
+function ss_show_option() {
+  var checkBox = document.getElementById("redir");
+  var text = document.getElementById("ss_show_option");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+</script>
+
+
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="wlreq">
+            <input class"ss_toggle" type="checkbox" id="wlreq" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Blocked users see the Allow Request form </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
+  
+                Users can see the form to add themselves to the request list, but
                 lots of spammers fill it out randomly.
-                This hides the request form.</p>
-            Blocked users see the Allow Request form:
-            <input type="checkbox" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
-				echo "checked=\"checked\"";
-			} ?> />
-        </fieldset>
+                This hides the request form.</span></i></div>
+		
         <br />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Notify Webmaster When a User Requests to be Added to the Allow List</span>
-            </legend>
-            <p>Blocked users can add their email addresses to the the Allow List
-                request. This will also send you an
-                email notification.</p>
-            Enable email request:
-            <input type="checkbox" name="notify" value="Y" <?php if ( $notify == 'Y' ) {
-				echo "checked=\"checked\"";
-			} ?> />
+
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="notify">
+            <input class"ss_toggle" type="checkbox" id="notify" name="notify" value="Y" onclick="ss_show_notify()" <?php if ( $notify == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Notify Webmaster When a User Requests to be Added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
+                Blocked users can add their email addresses to the the Allow List
+                request. This will also send you an email notification.</span></i></div>
             <br />
-            (Optional) email where requests are sent:<br />
-            <input size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" />
-        </fieldset>
+            <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none;">(Optional) Secify where email requests are sent:
+            <input id="myInput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
+<script>
+function ss_show_notify() {
+  var checkBox = document.getElementById("notify");
+  var text = document.getElementById("ss_show_notify");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+</script>
         <br />
         <fieldset>
             <legend>
@@ -209,10 +225,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<span style="font-weight:bold;font-size:1.2em">Google reCAPTCHA API Key</span>
             </legend>
             Site Key:
-            <input size="64" name="recaptchaapisite" type="text" value="<?php echo $recaptchaapisite; ?>" />
+            <input id="myLargeInput" size="64" name="recaptchaapisite" type="text" value="<?php echo $recaptchaapisite; ?>" />
             <br />
             Secret Key:
-            <input size="64" name="recaptchaapisecret" type="text" value="<?php echo $recaptchaapisecret; ?>" />
+            <input id="myLargeInput" size="64" name="recaptchaapisecret" type="text" value="<?php echo $recaptchaapisecret; ?>" />
             <br />
             <p>These API keys are used for displaying a Google reCAPTCHA on your
                 site.
@@ -238,10 +254,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<span style="font-weight:bold;font-size:1.2em">Solve Media CAPTCHA API Key</span>
             </legend>
             Solve Media Challenge Key:
-            <input size="64" name="solvmediaapivchallenge" type="text" value="<?php echo $solvmediaapivchallenge; ?>" />
+            <input id="myLargeInput" size="64" name="solvmediaapivchallenge" type="text" value="<?php echo $solvmediaapivchallenge; ?>" />
             <br />
             Solve Media Verification Key:
-            <input size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>" />
+            <input id="myLargeInput" size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>" />
             <br />
             <p>This API key is used for displaying a Solve Media CAPTCHA on your
                 site.

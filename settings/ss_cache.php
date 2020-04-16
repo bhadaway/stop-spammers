@@ -60,7 +60,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1>Stop Spammers — Cache</h1>
+    <h1 class="ss_head">Stop Spammers — Cache</h1>
 	<?php
 	if ( ! empty( $msg ) ) {
 		echo "$msg";
@@ -129,8 +129,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<span style="font-weight:bold;font-size:1.2em">Good Cache Size</span>
             </legend>
             <p>The good cache should be set to just a few entries. The first
-                time a spammer hits your site he may not be well-known and once
-                he gets in the Good Cache he can hit your site without being
+                time a spammer hits your site, s/he may not be well-known and once
+                s/he gets in the Good Cache, s/he can hit your site without being
                 checked again. Increasing the size of the cache means a spammer
                 has more opportunities to hit your site without a new check.</p>
             Good Cache Size:

@@ -1,0 +1,1100 @@
+
+Time: 2020/01/12 00:09:48
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkstripe
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 162
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:02:05
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:02:44
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:08:33
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:08:37
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:08:42
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:12:11
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 03:12:38
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: authorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 174
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 16:21:55
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkauthorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 175
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 16:21:55
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkbraintree
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 186
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 21:48:37
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkauthorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 175
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 21:48:37
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkbraintree
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 186
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 23:09:16
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 23:09:16
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 23:10:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/12 23:10:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/13 00:02:40
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/13 00:02:40
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/13 00:02:55
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkauthorizenet
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 175
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/13 00:02:55
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkbraintree
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 186
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/13 01:59:05
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: summry
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_summary.php
+Line Number: 341
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 00:56:16
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 28
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 00:58:11
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 28
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 00:58:15
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 28
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 01:00:18
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 28
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 01:50:45
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 28
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:28:08
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 18
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:28:14
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 18
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:28:42
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 18
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:39:21
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 190
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:39:32
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 190
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:39:36
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 190
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:40:00
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 190
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:41:21
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 20
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 02:47:40
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 25
+Memory Used, Peak: 31457280, 31457280
+---------------------
+
+Time: 2020/01/15 13:54:12
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 25
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/15 16:26:45
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 25
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 17:44:45
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 25
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 19:46:42
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 25
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 19:59:30
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:35:19
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 25
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:37:03
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 27
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:40:50
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 27
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:42:31
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 27
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:44:05
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:45:37
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:45:42
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:46:27
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:47:25
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:48:15
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:48:24
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 20:49:14
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:26:12
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:26:24
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:31:27
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 26
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:41:29
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 44
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:42:45
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 43
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:44:00
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 43
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:46:47
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 43
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:46:50
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 43
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/20 21:48:07
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: submit
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_premium.php
+Line Number: 43
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 02:05:30
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 02:05:30
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 03:08:01
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 03:08:01
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 15:21:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 15:21:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 15:21:22
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 15:21:22
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 16:05:23
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkperiods
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 402
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/21 16:05:23
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkhyphens
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_options.php
+Line Number: 413
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/22 15:15:22
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 189
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:37:27
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 189
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:48:37
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 189
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:49:28
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 189
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:50:16
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:50:21
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:50:58
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:53:20
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 01:54:21
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:45:22
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:46:34
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:48:52
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:49:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:49:17
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:49:35
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:49:43
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:49:54
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:50:41
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:51:08
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/23 18:52:01
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/24 02:50:40
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/24 02:50:56
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/24 03:01:08
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/24 13:28:49
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/24 13:28:52
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/24 21:22:52
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/25 19:15:57
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/25 19:53:43
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 190
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/25 19:57:59
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/28 01:02:08
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/28 01:02:29
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/28 01:02:44
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/28 19:03:47
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/28 19:04:12
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/28 19:27:04
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 33554432, 33554432
+---------------------
+
+Time: 2020/01/29 23:58:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 35651584, 35651584
+---------------------
+
+Time: 2020/01/29 23:58:17
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 35651584, 35651584
+---------------------
+
+Time: 2020/02/04 20:34:58
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 63.85.50.1
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 38273024, 38273024
+---------------------
+
+Time: 2020/02/10 02:30:45
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: chkrecurly
+IP Address: 24.33.82.126
+File Name: /home/beautyba/motovos/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_allowlist_settings.php
+Line Number: 273
+Memory Used, Peak: 36175872, 36175872
+---------------------

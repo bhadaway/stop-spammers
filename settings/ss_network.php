@@ -8,7 +8,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 ss_fix_post_vars();
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1>Stop Spammers — Multisite</h1>
+    <h1 class="ss_head">Stop Spammers — Multisite</h1>
 	<?php
 	$now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	// $ip=ss_get_ip();

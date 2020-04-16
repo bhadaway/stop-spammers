@@ -8,20 +8,18 @@ if ( ! current_user_can( 'manage_options' ) ) {
 ss_fix_post_vars();
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1>Stop Spammers — DB Cleanup</h1>
+    <h1 class="ss_head">Stop Spammers — DB Cleanup</h1>
 	<?php if ( array_key_exists( 'autol', $_POST )
 	           || array_key_exists( 'delo', $_POST )
 	) {
 		echo '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 	}
 	?>
-    <div class="notice notice-warning">
-        <p>This feature is to be considered experimental. Use with caution and at your own risk.</p>
-    </div>
+	<div class="ss_info_box">
     <p>Plugins often don't clean up their mess when they are uninstalled. Some
         malicious themes and plugins use
-        WordPress options to store some information.</p>
-    <p>This function allows you inspect and delete orphan or suspicious options
+        WordPress options to store information.
+        This function allows you inspect and delete orphan or suspicious options
         and to change plugin options so that
         they don&acute;t autoload.</p>
     <p>In WordPress, some options are loaded whenever WordPress loads a page.
@@ -61,7 +59,7 @@ ss_fix_post_vars();
         the autoload option back to &quot;yes&quot;.</p>
     <p>Option names are determined by the plugin author. Some are obvious, but
         some make no sense. You may have to
-        do a little detective work to figure out where an option came from.</p>
+        do a little detective work to figure out where an option came from.</p></div>
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
@@ -301,12 +299,12 @@ ss_fix_post_vars();
         <table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
             <thead>
             <tr bgcolor="#fff">
-                <th>Option</th>
-                <th>Autoload</th>
-                <th>Size</th>
-                <th>Change Autoload</th>
-                <th>Delete</th>
-                <th>View Contents</th>
+                <th class="ss_cleanup">Option</th>
+                <th  class="ss_cleanup">Autoload</th>
+                <th  class="ss_cleanup">Size</th>
+                <th class="ss_cleanup">Change Autoload</th>
+                <th class="ss_cleanup">Delete</th>
+                <th class="ss_cleanup">View Contents</th>
             </tr>
             </thead>
 			<?php
@@ -317,13 +315,13 @@ ss_fix_post_vars();
 				$sz = number_format( $sz );
 //if ($autoload=='no') $au='No';
 				?>
-                <tr bgcolor="#fff">
+                <tr class="ss_cleanup_tr" bgcolor="#fff">
                     <td align="center"><?php echo $option_name; ?></td>
                     <td align="center"><?php echo $autoload; ?></td>
                     <td align="center"><?php echo $sz; ?></td>
                     <td align="center"><input type="checkbox" value="<?php echo $autoload . '_' . $option_name; ?>" name="autol[]">&nbsp;<?php echo $autoload; ?></td>
                     <td align="center"><input type="checkbox" value="<?php echo $option_name; ?>" name="delo[]"></td>
-                    <td><button type="submit" name="view" value="<?php echo $option_name; ?>">view</button></td>
+                    <td align="center"><button type="submit" name="view" value="<?php echo $option_name; ?>">view</button></td>
                 </tr>
 				<?php
 			}
