@@ -119,7 +119,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 IPv6 numbers. You can use CIDR format to
                 block a range (e.g. 1.2.3.4/16) or you can use wild cards (e.g.
                 spammer@spam.* or 1.2.3.*).
-				</span></i></div>
+				</span></i>
+               <br />
                <br />
 
 <div class="checkbox switcher">
@@ -127,14 +128,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input class"ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Enable Block by User Id</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+		  <small><span style="font-size:16px!important;">Enable Block by User ID</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 This is usually not
                 useful as spammers can change the user ID
                 that they use. These are checked after the Allow List so the Allow List
                 overrides any blocking.
                 </span></i></div>
              <br />
-            <textarea id="myLargeInput" name="blist" cols="40" rows="8"><?php
+            <textarea name="blist" cols="40" rows="8"><?php
 				foreach ( $blist as $p ) {
 					echo $p . "\r\n";
 				}
@@ -155,7 +156,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 cards do not work here).
                 Add or delete spam words (one word per line).</span></i></div>
 				<br />
-            <textarea id="myLargeInput" name="spamwords" cols="40" rows="8"><?php
+            <textarea name="spamwords" cols="40" rows="8"><?php
 				foreach ( $spamwords as $p ) {
 					echo $p . "\r\n";
 				}
@@ -182,7 +183,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 forms. 
                 Add or delete agent strings (one word per line):</span></i></div>
 				<br />
-            <textarea id="myLargeInput" name="badagents" cols="40" rows="8"><?php
+            <textarea name="badagents" cols="40" rows="8"><?php
 				foreach ( $badagents as $p ) {
 					echo $p . "\r\n";
 				}
@@ -210,7 +211,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 will stop 'user@mail.xxx.ru',
                 but it will not stop 'user@xxx.ru'.
                 Blocked TLDs (One TLD per line not case sensitive):</p>
-            <textarea id="myLargeInput" name="badTLDs" cols="40" rows="8"><?php
+            <textarea name="badTLDs" cols="40" rows="8"><?php
 				foreach ( $badTLDs as $p ) {
 					echo $p . "\r\n";
 				}
@@ -219,3 +220,4 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <br />
         <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>
+</div>

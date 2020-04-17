@@ -88,7 +88,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — Challenge and Deny</h1>
+    <h1 class="ss_head">Stop Spammers — Challenge & Deny</h1>
 	<?php if ( ! empty( $update ) ) {
 		echo "$update";
 	} ?>
@@ -125,7 +125,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 service for example.</span></i></div>
 			<br />
            <span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;">Redirect URL:
-            <input id="myLargeInput" size="77" name="redirurl" type="text" placeholder="e.g. https://trumani.com/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
+            <input size="77" name="redirurl" type="text" placeholder="e.g. https://trumani.com/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
 <script>
 function ss_show_option() {
   var checkBox = document.getElementById("redir");
@@ -225,10 +225,10 @@ function ss_show_notify() {
 				<span style="font-weight:bold;font-size:1.2em">Google reCAPTCHA API Key</span>
             </legend>
             Site Key:
-            <input id="myLargeInput" size="64" name="recaptchaapisite" type="text" value="<?php echo $recaptchaapisite; ?>" />
+            <input size="64" name="recaptchaapisite" type="text" value="<?php echo $recaptchaapisite; ?>" />
             <br />
             Secret Key:
-            <input id="myLargeInput" size="64" name="recaptchaapisecret" type="text" value="<?php echo $recaptchaapisecret; ?>" />
+            <input size="64" name="recaptchaapisecret" type="text" value="<?php echo $recaptchaapisecret; ?>" />
             <br />
             <p>These API keys are used for displaying a Google reCAPTCHA on your
                 site.
@@ -254,10 +254,10 @@ function ss_show_notify() {
 				<span style="font-weight:bold;font-size:1.2em">Solve Media CAPTCHA API Key</span>
             </legend>
             Solve Media Challenge Key:
-            <input id="myLargeInput" size="64" name="solvmediaapivchallenge" type="text" value="<?php echo $solvmediaapivchallenge; ?>" />
+            <input size="64" name="solvmediaapivchallenge" type="text" value="<?php echo $solvmediaapivchallenge; ?>" />
             <br />
             Solve Media Verification Key:
-            <input id="myLargeInput" size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>" />
+            <input size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>" />
             <br />
             <p>This API key is used for displaying a Solve Media CAPTCHA on your
                 site.

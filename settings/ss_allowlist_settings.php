@@ -163,7 +163,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input class"ss_toggle" type="checkbox" id="chkwluserid" name="chkwluserid" value="Y" <?php if ( $chkwluserid == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Enable Allow by User Id (not recommended)</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+		  <small><span style="font-size:16px!important;">Enable Allow by User ID (not recommended)</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
             If enabled, you may put user IDs here, but this isn't recommended because spammers
                 can easily find a user's ID from
                 previous comments, and add comments using it.

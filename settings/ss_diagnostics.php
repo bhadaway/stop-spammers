@@ -63,7 +63,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             Subject:<br />
 			<input id="myInput" name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
             Comment:<br />
-			<textarea id="myLargeInput" name="body"><?php echo $body; ?></textarea><br />
+			<textarea name="body"><?php echo $body; ?></textarea><br />
             <div style="width:50%;float:left">
                 <p class="submit"><input name="testopt" class="button-primary" value="Test Options" type="submit" /></p>
             </div>

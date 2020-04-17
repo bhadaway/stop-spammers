@@ -134,14 +134,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                         href="https://www.stopforumspam.com/keys"
                         target="_blank">https://www.stopforumspam.com/keys</a>.<br />
 			<br />
-            <input class="ss-plugin-long" size="32" name="apikey" type="text" value="<?php echo $apikey; ?>" /><br />
+            <input size="32" name="apikey" type="text" value="<?php echo $apikey; ?>" /><br />
 		</fieldset>
 			<br />
         <fieldset>
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Project Honeypot API Key</span>
             </legend>
-            <input class="ss-plugin-long" size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>" /><br />
+            <input size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>" /><br />
             <p>This API key is used for querying the Project Honeypot Deny List.
                 It is required if you want to
                 check IP addresses against the Project Honeypot database. You
@@ -167,7 +167,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">BotScout API Key</span>
             </legend>
-            <input class="ss-plugin-long" size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>" /><br />
+            <input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>" /><br />
             <p>This API key is used for querying the BotScout database. It is
                 required if you want to
                 check IP addresses against the botscout.com database. You can
@@ -193,7 +193,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Google Safe Browsing API Key</span>
             </legend>
-            <input class="ss-plugin-long" size="32" name="googleapi" type="text" value="<?php echo $googleapi; ?>" /><br />
+            <input size="32" name="googleapi" type="text" value="<?php echo $googleapi; ?>" /><br />
             <p><a href="https://developers.google.com/safe-browsing/key_signup"
                target="_blank">Sign up for a Google Safe
                 Browsing API Key</a> If this API key is present, URLs found in

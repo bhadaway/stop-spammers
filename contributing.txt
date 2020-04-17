@@ -1,13 +1,12 @@
-Please follow WordPress Coding Standards:
-
-https://make.wordpress.org/core/handbook/best-practices/coding-standards/
-
-<?php
-function foo() {
-	if ( $x > 5 ) {
-		echo "bar";
-	}
-
-	return
-		"string";
+Please follow WordPress Coding Standards:
+
+https://make.wordpress.org/core/handbook/best-practices/coding-standards/
+
+<?php
+function foo() {
+	if ( $x > 5 ) {
+		echo "bar";
+	}
+	return
+		"string";
 }

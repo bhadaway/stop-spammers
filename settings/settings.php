@@ -45,8 +45,8 @@ function ss_admin_menu_l() {
 	);
 	add_submenu_page(
 		'stop_spammers', // plugins parent
-		"Allow Requests & Lists — Stop Spammers", // $page_title,
-		'Allow Reqests & Lists', // $menu_title,
+		"Allow Lists — Stop Spammers", // $page_title,
+		'Allow Lists', // $menu_title,
 		'manage_options', // $capability,
 		'ss_allow_list', // $menu_slug,
 		'ss_allowlist_settings' // function
@@ -61,8 +61,8 @@ function ss_admin_menu_l() {
 	);
 	add_submenu_page(
 		'stop_spammers', // plugins parent
-		"Challenge and Deny — Stop Spammers", // $page_title,
-		'Challenge &amp; Deny', // $menu_title,
+		"Challenge & Deny — Stop Spammers", // $page_title,
+		'Challenge & Deny', // $menu_title,
 		'manage_options', // $capability,
 		'ss_challenge', // $menu_slug,
 		'ss_challenges' // function
