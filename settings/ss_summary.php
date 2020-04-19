@@ -232,7 +232,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
     <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop spammers icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
-    <?php _e( 'Version', 'stop-spammers' ); ?> <span class="green"><?php echo SS_VERSION; ?></span>
+    <?php _e( 'Version', 'stop-spammers' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 		<?php
 	if ( ! empty( $summry ) ) {
 		?>
@@ -240,7 +240,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	$ip = ss_get_ip();
 	?>
-	| Your current IP address is: <span class="green"><?php echo $ip; ?> | <strong><a style="color:#67aeca;text-decoration: none;" href="https://trumani.com/downloads/stop-spammers-premium/">GET PREMIUM OPTIONS</a></strong></span>
+	| Your current IP address is: <strong><?php echo $ip; ?></strong>
+	<?php
+	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+		echo ' | <strong><a href="https://trumani.com/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">GET PREMIUM OPTIONS</a></strong>';
+	}
+	?>
 	<?php
 	// check the IP to see if we are local
 	$ansa = be_load( 'chkvalidip', ss_get_ip() );
@@ -335,11 +340,11 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 
 			<h2>Summary of Spam</h2>
         
-<div class="main-stats" style="width:95%;">
+<div class="main-stats" style="width:95%">
 <?php
 	 if ( $spcount > 0 ) {
 		?>
-        <p>Stop Spammers has stopped <span class="green"><?php echo $spcount; ?></span> spammers since <?php echo $spdate; ?>.</p>
+        <p>Stop Spammers has stopped <strong><?php echo $spcount; ?></strong> spammers since <?php echo $spdate; ?>.</p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
@@ -410,7 +415,7 @@ function ss_force_reset_options() {
 	delete_option('ss_cache');
 } ?>
 </div>
-    <h2>Free Options</h2>
+    <h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { echo 'Free '; } ?>Options</h2>
 
 <div class="ss_admin_info_boxes_3row" >
   <div class="ss_admin_info_boxes_3col" >		
@@ -492,20 +497,52 @@ All options related to checking spam and logins. You can also block whole countr
 </div>
 </div>
 </div>
-<h2>Premium Options</h2>
-<div class="ss_admin_info_boxes_1row" >
-  <div class="ss_admin_info_boxes_1col" >
-    <h3>Add even more options, including export log to excel, restore options, and transfer configurations.</h3>
-	 <div class="ss_admin_button">
-    <a href="https://trumani.com/downloads/stop-spammers-premium/">Go Premium</a>
-</div>
+
+<?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	echo '
+		<h2>Premium Options</h2>
+		<div class="ss_admin_info_boxes_1row" >
+  			<div class="ss_admin_info_boxes_1col" >
+    		<h3>Add even more options, including export log to excel, restore options, and transfer configurations.</h3>
+				<div class="ss_admin_button">
+    				<a href="https://trumani.com/downloads/stop-spammers-premium/">Go Premium</a>
+				</div>
+			</div>
+		</div>
+	';
+} else {
+	echo '
+		<div class="ss_admin_info_boxes_3row">
+			<div class="ss_admin_info_boxes_3col">
+				<h3>Restore Default Settings</h3>
+				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/restore-settings_stop-spammers_trumani.png" class="center_thumb" />
+				Too fargone? Revert to the out-of-the box configurations.
+				<div class="ss_admin_button">
+					<a href="admin.php?page=ssp_premium">RESTORE</a>
+				</div>
+			</div>
+			<div class="ss_admin_info_boxes_3col">
+				<h3>Import/Export Settings</h3>
+				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/import-export_stop-spammers_trumani.png" class="center_thumb" />
+				You can download your personalized configurations and upload them to all of your other sites.
+				<div class="ss_admin_button">
+					<a href="admin.php?page=ssp_premium">IMPORT/EXPORT</a>
+				</div>
+			</div>
+			<div class="ss_admin_info_boxes_3col">
+				<h3>Export Log to Excel</h3>
+				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/export-to-excel_stop-spammers_trumani.png" class="center_thumb" />
+				Save the log report returns for future reference.
+				<div class="ss_admin_button">
+					<a href="admin.php?page=ssp_premium">EXPORT LOG</a>
+			</div>
+		</div>
 	</div>
-	</div>
-<br />
-<br />
-<br />
-<br />
-<br />
+	';
+}
+?>
+
+<br style="clear:both" />
 <br />
 <h2>Beta Options</h2>
     <span class="notice notice-warning" style="display:block">

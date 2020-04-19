@@ -5,7 +5,7 @@ Plugin URI: https://trumani.com/
 Contributors: trumani, bhadaway, Keith Graham
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.2
+Version: 2020.3
 Tested up to: 5.4
 License: https://www.gnu.org/licenses/gpl.html
 

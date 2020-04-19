@@ -219,7 +219,11 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
-	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated! Need to Export/Import Your Personalized Settings to other Sites? <strong><a href="/wp-admin/admin.php?page=ss_premium">Try Premium</a></strong></p></div>';
+	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated! Need to import/export your personalized settings to other sites? — <strong><a href="/wp-admin/admin.php?page=ss_premium">Try Premium</a></strong></p></div>';
+	} else {
+		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated!</p></div>';
+	}
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>

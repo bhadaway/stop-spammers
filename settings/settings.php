@@ -27,14 +27,16 @@ function ss_admin_menu_l() {
 		'stop_spammers', // $menu_slug,
 		'ss_summary' // $function
 	);
-	add_submenu_page(
-	'stop_spammers', // plugins parent
-	"Premium — Stop Spammers", // $page_title,
-	'<span class="gopro">Premium Security</span>', // $menu_title,
-	'manage_options', // $capability,
-	'ss_premium', // $menu_slug,
-	'ss_premium' // function
-	);
+	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+		add_submenu_page(
+			'stop_spammers', // plugins parent
+			"Premium — Stop Spammers", // $page_title,
+			'<span class="gopro">Premium Security</span>', // $menu_title,
+			'manage_options', // $capability,
+			'ss_premium', // $menu_slug,
+			'ss_premium' // function
+		);
+	}
 	add_submenu_page(
 		'stop_spammers', // plugins parent
 		"Protection Options — Stop Spammers", // $page_title,
@@ -162,10 +164,6 @@ function ss_cache() {
 	include_setting( "ss_cache.php" );
 }
 
-function ss_threat_scan() {
-	include_setting( "ss_threat_scan.php" );
-}
-
 function ss_option_maint() {
 	include_setting( "ss_option_maint.php" );
 }
@@ -184,10 +182,6 @@ function ss_contribute() {
 
 function ss_diagnostics() {
 	include_setting( "ss_diagnostics.php" );
-}
-
-function ss_allowreq() {
-	include_setting( "ss_allowreq.php" );
 }
 
 function include_setting( $file ) {
