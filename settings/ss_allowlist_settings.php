@@ -62,9 +62,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         </form>
 		<?php
 		?>
-        <table width="100%" style="background-color:#eee" cellspacing="2">
+        <table name="mytable" id="myTable" style="width:100%;background-color:#eee" cellspacing="2">
             <thead>
-            <tr style="background-color:#675682;text-align:center">
+            <tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
                 <th>Time</th>
                 <th>IP</th>
                 <th>Email</th>

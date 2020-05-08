@@ -138,12 +138,10 @@ $now      = date( 'Y/m/d H:i:s',
 		} else {
 			?>
             <br/>
-            <input type="text" id="myInput" onkeyup="myFunction()"
-                   placeholder="Date Search" title="Filter by a value">
-            <table name="mytable" id="myTable"
-                   style="width:100%;background-color:#eee" cellspacing="2">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Date Search" title="Filter by a value">
+            <table name="mytable" id="myTable" style="width:100%;background-color:#eee" cellspacing="2">
                 <thead>
-                <tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600;">
+                <tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
                     <th onclick="sortTable(0)" class="filterhead ss_cleanup">
                         Date/Time
                     </th>
