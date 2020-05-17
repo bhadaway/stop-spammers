@@ -3,9 +3,10 @@
 Author: Trumani
 Plugin URI: https://trumani.com/
 Contributors: trumani, bhadaway, Keith Graham
+Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.3
+Version: 2020.4
 Tested up to: 5.4
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -35,6 +36,12 @@ OR
 
 == Changelog ==
 
+= 2020.4 =
+* [New] Support notice
+
+= 2020.3 =
+* [Update] Usability updates
+
 = 2020.2 =
 * [Update] Plugin audit and cleanup
 
@@ -42,16 +49,14 @@ OR
 * [Update] Various hotfixes
 
 = 2020.1 =
-
-* [NEW!] Check for Tor Exit Nodes
-* [NEW!] Check for too many periods
-* [NEW!] Check for too many hyphens
-* [NEW!] Allow Stripe
-* [NEW!] Allow Authorize.Net
-* [NEW!] Allow Braintree
-* [NEW!] Allow Recurly
-* [UPDATE] Admin UI enhancements
+* [New] Check for Tor Exit Nodes
+* [New] Check for too many periods
+* [New] Check for too many hyphens
+* [New] Allow Stripe
+* [New] Allow Authorize.Net
+* [New] Allow Braintree
+* [New] Allow Recurly
+* [Update] Admin UI enhancements
 
 = 2019.6 =
-
 * [New owner](https://github.com/Trumani/stop-spammers/issues/145)
