@@ -243,7 +243,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	| Your current IP address is: <strong><?php echo $ip; ?></strong>
 	<?php
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		echo ' | <strong><a href="https://trumani.com/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">GET PREMIUM OPTIONS</a></strong>';
+		echo ' | <strong>USE CODE SSP4ME FOR $5 OFF THE <a href="https://trumani.com/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">PREMIUM PLUGIN</a></strong>';
 	}
 	?>
 	<?php
@@ -503,7 +503,7 @@ All options related to checking spam and logins. You can also block whole countr
 		<h2>Premium Options</h2>
 		<div class="ss_admin_info_boxes_1row" >
   			<div class="ss_admin_info_boxes_1col" >
-    		<h3>Add even more options, including export log to excel, restore options, and transfer configurations.</h3>
+    		<h3>Add a server-side firewall and options like export log to excel, restore options, and transfer settings.</h3>
 				<div class="ss_admin_button">
     				<a href="https://trumani.com/downloads/stop-spammers-premium/">Go Premium</a>
 				</div>
@@ -565,4 +565,5 @@ All options related to checking spam and logins. You can also block whole countr
     <a href="?page=ss_diagnostics">Scan</a>
 </div>
 </div>   
+</div>
 </div>
