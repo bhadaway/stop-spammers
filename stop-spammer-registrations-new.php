@@ -36,22 +36,27 @@ function ss_styles() {
 add_action( 'admin_print_styles', 'ss_styles' );
 
 // admin notice for users
-//function ss_admin_notice() {
-//    $user_id = get_current_user_id();
-//    if ( !get_user_meta( $user_id, 'ss_notice_dismissed2' ) && current_user_can( 'manage_options' ) )
-//        echo '<div class="notice notice-info"><p>' . __( '<big><strong>UPDATE</strong> — Blah blah blah. <a href="https://stopspammers.io/" target="_blank">Check it out</a>.</big>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
-//}
-//
-//add_action( 'admin_notices', 'ss_admin_notice' );
-//
+function ss_admin_notice() {
+    $user_id = get_current_user_id();
+    if ( !get_user_meta( $user_id, 'ss_notice_dismissed3' ) && current_user_can( 'manage_options' ) )
+        echo '<div class="notice notice-info"><p>' . __( '<big><strong>New Features Are Here</strong></big> <sup><i class="fa fa-question-circle fa tooltip"><span class="tooltiptext">                 
+* Disable custom passwords <br />
+* 2,500+ disposable emaill domains added to deny list <br />
+* Force username-only login <br />
+* Force email-only login
+</span></i></sup> | Your support means everything. Please consider purchasing premium or donating. Use <strong>SSP4ME</strong> for $5 off Premium. <a href="https://trumani.com/downloads/stop-spammers-premium/" class="button" target="_blank">Premium</a> <a href="https://trumani.com/donate" class="button" target="_blank">Donate</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
+}
+
+add_action( 'admin_notices', 'ss_admin_notice' );
+
 // dismiss admin notice for users
-//function ss_notice_dismissed() {
-//    $user_id = get_current_user_id();
-//    if ( isset( $_GET['ss-dismiss'] ) )
-//        add_user_meta( $user_id, 'ss_notice_dismissed2', 'true', true );
-//}
-//
-//add_action( 'admin_init', 'ss_notice_dismissed' );
+function ss_notice_dismissed() {
+    $user_id = get_current_user_id();
+    if ( isset( $_GET['ss-dismiss'] ) )
+        add_user_meta( $user_id, 'ss_notice_dismissed3', 'true', true );
+}
+
+add_action( 'admin_init', 'ss_notice_dismissed' );
 
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );
@@ -91,20 +96,24 @@ add_filter( 'ss_addons_get', 'ss_addons_d', 0 );
  * 10) on CAPTCHA success add to Good Cache, remove from Bad Cache, update counters, log success
  */
 function ss_init() {
-	remove_action( 'init', 'ss_init' );
+	
+	remove_action( 'init', 'ss_init' );	
+
 	add_filter( 'pre_user_login', 'ss_user_reg_filter', 1, 1 );
-// incompatible with a Jetpack submit
+	// incompatible with a Jetpack submit
 	if ( $_POST != null && array_key_exists( 'jetpack_protect_num', $_POST ) ) {
 		return;
 	}
-// eMember trying to log in - disable plugin for eMember logins
+	
+	// eMember trying to log in - disable plugin for eMember logins
 	if ( function_exists( 'wp_emember_is_member_logged_in' ) ) {
-// only eMember function I could find after 30 seconds of Googling
+		// only eMember function I could find after 30 seconds of Googling
 		if ( ! empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
 			return;
 		}
 	}
-// set up the Akismet hit
+	
+	// set up the Akismet hit
 	add_action( 'akismet_spam_caught', 'ss_log_akismet' ); // hook Akismet spam
 	$muswitch = 'N';
 	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
@@ -173,10 +182,10 @@ function ss_init() {
 				return;
 			}
 		}
-// need to check that we are not Allow Listed
-// don't check if IP is Google, etc.
-// check to see if we are doing a post with values
-// better way to check for Jetpack
+		// need to check that we are not Allow Listed
+		// don't check if IP is Google, etc.
+		// check to see if we are doing a post with values
+		// better way to check for Jetpack
 		if ( class_exists( 'Jetpack' )
 		     && Jetpack::is_module_active( 'protect' )
 		) {
@@ -186,26 +195,26 @@ function ss_init() {
 		if ( ! empty( $post['email'] ) || ! empty( $post['author'] )
 		     || ! empty( $post['comment'] )
 		) { // must be a login or a comment which require minimum stuff
-// remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
-// sfs_debug_msg( 'email or author ' . print_r( $post, true ) );
+			// remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
+			// sfs_debug_msg( 'email or author ' . print_r( $post, true ) );
 			$reason = ss_check_white();
 			if ( $reason !== false ) {
-// sfs_debug_msg( "return from white $reason" );
+			// sfs_debug_msg( "return from white $reason" );
 				return;
 			}
-// sfs_debug_msg( 'past white ' );
+			// sfs_debug_msg( 'past white ' );
 			ss_check_post(); // on POST check if we need to stop comments or logins
 		} else {
-// sfs_debug_msg( 'no email or author ' . print_r( $post, true ) );
+		// sfs_debug_msg( 'no email or author ' . print_r( $post, true ) );
 		}
 	} else {
-// this is a get - check for get addons
+		// this is a get - check for get addons
 		$addons = array();
 		$addons = apply_filters( 'ss_addons_get', $addons );
-// these are the allow before addons
-// returns array 
-// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
-// [3]=addon author, [4]=addon description
+		// these are the allow before addons
+		// returns array 
+		// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
+		// [3]=addon author, [4]=addon description
 		if ( ! empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
 				if ( ! empty( $add ) && is_array( $add ) ) {
@@ -214,9 +223,8 @@ function ss_init() {
 					$post    = get_post_variables();
 					$reason  = be_load( $add, ss_get_ip(), $stats, $options );
 					if ( $reason !== false ) {
-// need to log a passed hit on post here
-						remove_filter( 'pre_user_login', 'ss_user_reg_filter',
-							1 );
+						// need to log a passed hit on post here
+						remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 						ss_log_bad( ss_get_ip(), $reason, $add[1], $add );
 
 						return;
@@ -225,12 +233,10 @@ function ss_init() {
 			}
 		}
 	}
-	add_action( 'template_redirect',
-		'ss_check_404s' ); // check missed hits for robots scanning for exploits
-	add_action( 'ss_stop_spam_caught', 'ss_caught_action', 10,
-		2 ); // hook stop spam  - for testing
-	add_action( 'ss_stop_spam_OK', 'ss_stop_spam_OK', 10,
-		2 ); // hook stop spam - for testing
+
+	add_action( 'template_redirect', 'ss_check_404s' ); // check missed hits for robots scanning for exploits
+	add_action( 'ss_stop_spam_caught', 'ss_caught_action', 10, 2 ); // hook stop spam  - for testing
+	add_action( 'ss_stop_spam_OK', 'ss_stop_spam_OK', 10, 2 ); // hook stop spam - for testing
 }
 
 // start of loadable functions
@@ -777,5 +783,96 @@ function ss_user_reg_filter( $user_login ) {
 		}
 	}
 
+
+add_action('init', 'ss_custom_login_module');
+
+function ss_custom_login_module() {
+	
+	$options = ss_get_options();
+
+	if( isset($options['login_type']) & $options['login_type'] == "username") {
+		
+		remove_filter( 'authenticate', 'wp_authenticate_email_password', 20 );
+
+	} else if( isset($options['login_type']) & $options['login_type'] == "email") {
+
+		remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
+
+	}
+	
+	if(isset($options['enable_custom_password']) & $options['enable_custom_password'] ==  'Y') {
+
+		add_action( 'register_form', 'ss_password_field' );
+		add_action( 'register_post', 'ss_validate_password', 10, 3 );
+		add_action( 'user_register', 'ss_update_user_password', 100 );
+
+	}
+
+}
+
+
+
+
+function ss_password_field() {
+
+	?>
+	<p>
+		<label for="user_password">Password</label>
+		<input type="password" name="user_password" id="user_password" class="input" autocapitalize="off">
+	</p>
+	<p>
+		<label for="user_confirm_password">Confirm Password</label>
+		<input type="password" name="user_confirm_password" id="user_confirm_password" class="input" autocapitalize="off">
+	</p>
+	<?php
+
+}
+
+
+
+function ss_validate_password($login, $email, $errors) {
+    
+    if ( $_POST['user_password'] !== $_POST['user_confirm_password'] ) {
+        $errors->add( 'passwords_not_matched', "<strong>ERROR</strong>: Password & confirm password does not match" );
+    }
+    
+    if ( strlen( $_POST['user_password'] ) < 6 ) {
+        $errors->add( 'password_too_short', "<strong>ERROR</strong>: Passwords must be at least six characters long" );
+    }
+
+}
+
+
+
+function ss_update_user_password( $user_id ) {
+    
+    $user_data = array();
+    $user_data['ID'] = $user_id;
+
+    if ( $_POST['user_password'] !== '' ) {
+        $user_data['user_pass'] = $_POST['user_password'];
+    }
+
+    wp_update_user( $user_data );
+
+}
+
+add_filter(  'gettext',  'ss_login_text'  );
+function ss_login_text( $translating ) {
+
+	$options = ss_get_options();
+
+	if( isset($options['login_type']) & $options['login_type'] == "username") {
+		
+		return str_ireplace(  'Username or Email Address',  'Username',  $translating );
+
+	} else if( isset($options['login_type']) & $options['login_type'] == "email") {
+
+		return str_ireplace(  'Username or Email Address',  'Email Address',  $translating );
+
+	} else {
+		return $translating;
+	}
+
+}
 require_once( 'includes/stop-spam-utils.php' );
-?>
