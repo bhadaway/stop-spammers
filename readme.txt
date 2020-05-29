@@ -38,7 +38,7 @@ OR
 
 = 2020.4 =
 * [New] Disable custom passwords
-* [New] 2,500+ disposable emaill domains added to deny list
+* [Enhanced] 2,500+ disposable emaill domains added to deny list
 * [New] Force username-only login
 * [New] Force email-only login
 * [Update] Support notice
