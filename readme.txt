@@ -37,10 +37,10 @@ OR
 == Changelog ==
 
 = 2020.4 =
-* [New] 2,500+ disposable email domains added to deny list
 * [New] Force username-only login
 * [New] Force email-only login
 * [New] Disable custom passwords
+* [Enhanced] 2,500+ disposable email domains added to deny list
 * [Update] Support notice
 
 = 2020.3 =
