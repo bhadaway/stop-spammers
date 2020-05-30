@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://trumani.com/
 Description: Stop WordPress spam dead in its tracks. Designed to secure your website immediately. Enhance your UX with 30+ configurable options and a testing tool.
-Version: 2020.4
+Version: 2020.4.1
 Author: Trumani
 Author URI: https://trumani.com/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2020.4' );
+define( 'SS_VERSION', '2020.4.1' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -753,12 +753,12 @@ add_action('init', 'ss_custom_login_module');
 
 function ss_custom_login_module() {
 	$options = ss_get_options();
-	if ( isset( $options['login_type'] ) & $options['login_type'] == "username" ) {
+	if ( isset( $options['login_type'] ) && $options['login_type'] == "username" ) {
 		remove_filter( 'authenticate', 'wp_authenticate_email_password', 20 );
-	} else if ( isset( $options['login_type'] ) & $options['login_type'] == "email" ) {
+	} else if ( isset( $options['login_type'] ) && $options['login_type'] == "email" ) {
 		remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
 	}
-	if ( isset( $options['enable_custom_password'] ) & $options['enable_custom_password'] ==  'Y' ) {
+	if ( isset( $options['enable_custom_password'] ) && $options['enable_custom_password'] ==  'Y' ) {
 		add_action( 'register_form', 'ss_password_field' );
 		add_action( 'register_post', 'ss_validate_password', 10, 3 );
 		add_action( 'user_register', 'ss_update_user_password', 100 );
@@ -780,7 +780,7 @@ function ss_password_field() {
 
 function ss_validate_password( $login, $email, $errors ) {
     if ( $_POST['user_password'] !== $_POST['user_confirm_password'] ) {
-        $errors->add( 'passwords_not_matched', "<strong>ERROR</strong>: Password & confirm password does not match" );
+        $errors->add( 'passwords_not_matched', "<strong>ERROR</strong>: Password and confirm password does not match" );
     }
     if ( strlen( $_POST['user_password'] ) < 6 ) {
         $errors->add( 'password_too_short', "<strong>ERROR</strong>: Passwords must be at least six characters long" );
@@ -799,9 +799,9 @@ function ss_update_user_password( $user_id ) {
 add_filter( 'gettext', 'ss_login_text' );
 function ss_login_text( $translating ) {
 	$options = ss_get_options();
-	if ( isset( $options['login_type'] ) & $options['login_type'] == "username" ) {	
+	if ( isset( $options['login_type'] ) && $options['login_type'] == "username" ) {	
 		return str_ireplace( 'Username or Email Address', 'Username', $translating );
-	} else if ( isset( $options['login_type'] ) & $options['login_type'] == "email" ) {
+	} else if ( isset( $options['login_type'] ) && $options['login_type'] == "email" ) {
 		return str_ireplace( 'Username or Email Address', 'Email Address', $translating );
 	} else {
 		return $translating;
