@@ -231,7 +231,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop spammers icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
+    <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
     <?php _e( 'Version', 'stop-spammers' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 		<?php
 	if ( ! empty( $summry ) ) {
