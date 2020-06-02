@@ -796,7 +796,10 @@ function ss_update_user_password( $user_id ) {
     wp_update_user( $user_data );
 }
 
-// add_filter( 'gettext', 'ss_login_text' );
+add_action( 'login_head', function(){
+	add_filter(  'gettext',  'ss_login_text'  );	
+});
+
 function ss_login_text( $translating ) {
 	$options = ss_get_options();
 	if ( isset( $options['login_type'] ) && $options['login_type'] == "username" ) {	
