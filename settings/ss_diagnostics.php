@@ -1114,9 +1114,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 			'w.wpquery.o'                        => 'Malicious jquery in bootleg plugin or theme',
 			'<scr\\\'+'                          => 'Obfuscated script tag, usually in bootleg plugin or theme'
 		);
-		$sql     = "select option_id,option_value,option_name
-from $ptab where
-";
+		$sql     = "select option_id,option_value,option_name from $ptab where";
 		foreach ( $badguys as $baddie => $reas ) {
 			$sql .= "INSTR(LCASE(option_value), '$baddie') +";
 		}
