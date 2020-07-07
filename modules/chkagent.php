@@ -36,7 +36,6 @@ class chkagent extends be_module {
 				return 'Deny List User Agent: ' . $a;
 			}
 		}
-
 		return false;
 	}
 }

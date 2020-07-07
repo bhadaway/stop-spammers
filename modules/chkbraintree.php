@@ -248,7 +248,6 @@ class chkauthorizenet extends be_module {
 			'50.18.225.62',
 			'184.169.160.115',
 			'52.9.201.213'
-
 		);
 }
 

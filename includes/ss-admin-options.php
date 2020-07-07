@@ -451,8 +451,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 		$signup_ip2 = $signup_ip;
 		$ipline     = "";
 		if ( ! empty( $signup_ip ) ) {
-			$ipline = apply_filters( 'ip2link',
-				$signup_ip2 ); // if the ip2link plugin is installed
+			$ipline = apply_filters( 'ip2link', $signup_ip2 ); // if the ip2link plugin is installed
 // now add the check 
 			$user_info   = get_userdata( $user_id );
 			$useremail   = urlencode( $user_info->user_email ); // for reporting
@@ -469,13 +468,10 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 				$report  = "<a title=\"Report to SFS\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\" /></a>";
 				$action .= $report;
 			}
-
 			return $ipline . $action;
 		}
-
 		return "";
 	}
-
 	return $value;
 }
 

@@ -50,15 +50,13 @@ class chksfs extends be_module {
 			$sfsage  = $options['sfsage'];
 // if ( !empty( $frequency ) && !empty( $lastseen ) && ( $frequency != 255 ) && ( $frequency >= $freq ) && ( strtotime( $lastseen ) > ( time() - ( 60*60*24*$maxtime ) ) ) ) { 
 			if ( ( $frequency >= $sfsfreq )
-			     && ( strtotime( $lastseen ) > ( time() - ( 60 * 60 * 24
-			                                                * $sfsage ) ) )
+			     && ( strtotime( $lastseen ) > ( time() - ( 60 * 60 * 24 * $sfsage ) ) )
 			) {
 // frequency we got from the db, sfsfreq is the min we'll accept (default 0)
 // sfsage is the age in days - we get lastscene from
 				return "SFS last seen=$lastseen, frequency=$frequency";
 			}
 		}
-
 		return false;
 	}
 }

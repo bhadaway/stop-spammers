@@ -122,7 +122,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				</span></i>
                <br />
                <br />
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkbluserid">
             <input class"ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) {
@@ -141,8 +140,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				}
 				?></textarea>
         <br />
-
-
 				<h2>Spam Words List</h2>
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkspamwords">
@@ -162,7 +159,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				}
 				?></textarea>
         <br />
-
 				<h2>Bad User Agents List</h2>
 				<p>This is a string search so that all you have to enter is enough
                 of the agent to match. Telesoft matches
@@ -190,7 +186,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				?></textarea>
             <br />
         <br />
-
 				<h2>Blocked TLDs</h2>
             <p class ="ss_info_box">Enter the TLD name including the '.' e.g. .XXX
              A TLD is the last part of a domain like .COM or .NET. You can
@@ -216,7 +211,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo $p . "\r\n";
 				}
 				?></textarea><br />
-
         <br />
         <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>

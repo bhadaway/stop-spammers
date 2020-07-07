@@ -113,7 +113,6 @@ class chk404 extends be_module {
 // echo "$sname, $bad<br />";
 			}
 		}
-
 		return false;
 	}
 }

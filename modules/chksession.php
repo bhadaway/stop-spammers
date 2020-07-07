@@ -16,7 +16,6 @@ class chksession {
 				setcookie( 'ss_protection_time', strtotime( "now" ),
 					strtotime( '+1 min' ) );
 			}
-
 			return false;
 		}
 // post is set - check the timeout
@@ -54,7 +53,6 @@ class chksession {
 				}
 			}
 		}
-
 		return false;
 	}
 }

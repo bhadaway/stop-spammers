@@ -392,7 +392,6 @@ where instr(t1.option_name,'SS_SECRET_WORD')>0
 	if ( empty( $count ) ) {
 		$count = "0";
 	}
-
 	return $count;
 }
 
@@ -425,5 +424,4 @@ where instr(t1.option_name,'SS_SECRET_WORD')>0
 ";
 	$wpdb->query( $sql );
 }
-
 ?>

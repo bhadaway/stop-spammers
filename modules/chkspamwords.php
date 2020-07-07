@@ -20,7 +20,6 @@ class chkspamwords {
 				}
 			}
 		}
-
 		return false;
 	}
 }

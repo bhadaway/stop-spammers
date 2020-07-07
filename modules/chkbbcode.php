@@ -25,7 +25,6 @@ class chkbbcode { // change name
 				}
 			}
 		}
-
 		return false;
 	}
 }

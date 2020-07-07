@@ -28,7 +28,6 @@ class chkinvalidip {
 		if ( $ips >= '240000000000' && $ips <= '255255255255' ) {
 			return 'Reserved for future use';
 		}
-
 		return false;
 	}
 }

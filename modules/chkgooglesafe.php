@@ -64,7 +64,6 @@ class chkgooglesafe extends be_module {
 				}
 			}
 		}
-
 		return false;
 	}
 }

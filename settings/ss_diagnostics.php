@@ -1515,7 +1515,6 @@ INSTR(LCASE(user_email), 'javascript:')>0
 				}
 			}
 		}
-
 // if ( strpos( $file, 'stop-spammers' ) !== false ) return false;
 		return true;
 	}

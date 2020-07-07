@@ -27,9 +27,7 @@ class chkyahoomerchant extends be_module {
 			'66.163.172.0/22'
 		);
 		$this->searchname = 'Yahoo Merchant Services';
-
 		return $this->searchList( $ip, $yahoo );
-
 		return false;
 	}
 }

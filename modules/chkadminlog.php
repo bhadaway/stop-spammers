@@ -24,10 +24,8 @@ class chkadminlog extends be_module {
 			if ( ! is_wp_error( $user ) ) { // user login is good
 				return 'Authenticated User Login';
 			}
-
 			return false;
 		}
-
 		return false;
 	}
 }

@@ -16,7 +16,6 @@ class chkscripts extends be_module {
 		if ( strpos( $sname, 'admin-ajax.php' ) !== false ) {
 			return "allow admin-ajax.php";
 		} // necessary?
-
 		return false;
 	}
 }

@@ -10,7 +10,6 @@ class chkgcache extends be_module { // change name
 // checks the IP from params which has the cache in it
 		$this->searchname = 'Good Cache';
 		$gcache           = $stats['goodips'];
-
 		return $this->searchcache( $ip, $gcache );
 	}
 }

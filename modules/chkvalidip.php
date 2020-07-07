@@ -55,7 +55,6 @@ class chkvalidip {
 		if ( strpos( $client_ip, $this->_cut_ip( $ip_by_host ) ) === false ) {
 			return true;
 		}
-
 		return false;
 	}
 // checking for fake IP
@@ -177,7 +176,6 @@ class chkvalidip {
 		if ( substr( $ip, 0, $j ) == substr( $lip, 0, $k ) ) {
 			return 'IP same /24 subnet as server ' . $ip;
 		}
-
 		return false;
 	}
 }

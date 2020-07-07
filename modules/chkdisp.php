@@ -3133,7 +3133,6 @@ class chkdisp {
 // do you really want this guy?
 			return 'Disposable Email: ' . $options['em'];
 		}
-
 		return false;
 	}
 }

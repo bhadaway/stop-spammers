@@ -41,7 +41,6 @@ class chkbotscout extends be_module {
 				}
 			}
 		}
-
 		return false;
 	}
 }

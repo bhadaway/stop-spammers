@@ -14,7 +14,6 @@ class chkwluserid extends be_module { // change name
 			return false;
 		}
 		$wlist = $options['wlist'];
-
 		return $this->searchList( $user, $wlist );
 	}
 }

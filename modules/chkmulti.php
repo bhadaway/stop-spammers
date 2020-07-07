@@ -52,7 +52,6 @@ class chkmulti extends be_module {
 		if ( $row[1] >= $multicnt ) {
 			return "$row[1] Hits in last 3 minutes";
 		}
-
 		return false;
 	}
 }

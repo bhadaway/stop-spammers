@@ -42,7 +42,6 @@ class chktld { // change name
 				}
 			}
 		}
-
 		return false;
 	}
 }

@@ -69,8 +69,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		) {
 			$chkcaptcha            = 'Y';
 			$options['chkcaptcha'] = $chkcaptcha;
-			$msg
-			                       = "You cannot use Google reCAPTCHA unless you have entered an API key";
+			$msg                   = "You cannot use Google reCAPTCHA unless you have entered an API key";
 		}
 		if ( $chkcaptcha == 'S'
 		     && ( $solvmediaapivchallenge == ''
@@ -113,7 +112,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
         </fieldset>
         <br />
-            
 <div class="checkbox switcher">
       <label id="ss_subhead" for="redir">
             <input class"ss_toggle" type="checkbox" id="redir" name="redir" value="Y" onclick="ss_show_option()" <?php if ( $redir == 'Y' ) {
@@ -137,21 +135,16 @@ function ss_show_option() {
   }
 }
 </script>
-
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="wlreq">
             <input class"ss_toggle" type="checkbox" id="wlreq" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Blocked users see the Allow Request form </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">                 
-  
+		  <small><span style="font-size:16px!important;">Blocked users see the Allow Request form </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 Users can see the form to add themselves to the request list, but
                 lots of spammers fill it out randomly.
-                This hides the request form.</span></i></div>
-		
+                This hides the request form.</span></i></div>	
         <br />
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="notify">
             <input class"ss_toggle" type="checkbox" id="notify" name="notify" value="Y" onclick="ss_show_notify()" <?php if ( $notify == 'Y' ) {

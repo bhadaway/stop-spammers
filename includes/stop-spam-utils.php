@@ -5,6 +5,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 function ss_append_file( $filename, &$content ) {
 // this writes content to a file in the uploads director in the 'stop-spammer-registrations' directory
 // changed to write to the current directory - content_dir is a bad place
@@ -36,16 +37,13 @@ function ss_read_file( $f, $method = 'GET' ) {
 	}
 	if ( is_array( $result ) ) {
 		$ansa = $result['body'];
-
 		return $ansa;
 	}
 	if ( is_object( $result ) ) {
 		$ansa = 'ERR: ' . $result->get_error_message();
-
 		return $ansa; // return $ansa when debugging
 // return '';
 	}
-
 	return '';
 }
 
@@ -55,7 +53,6 @@ function ss_read_filex( $filename ) {
 	if ( file_exists( $file ) ) {
 		return file_get_contents( $file );
 	}
-
 	return "File Not Found";
 }
 
@@ -64,13 +61,11 @@ function ss_file_exists( $filename ) {
 	if ( ! file_exists( $file ) ) {
 		return false;
 	}
-
 	return filesize( $file );
 }
 
 function ss_file_delete( $filename ) {
 	$file = SS_PLUGIN_DATA . $filename;
-
 	return @unlink( $file );
 }
 
@@ -142,8 +137,7 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 	if ( strpos( $errmsg, 'modify header information' ) ) {
 		return false;
 	}
-	$now = date( 'Y/m/d H:i:s',
-		time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+	$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	$m1  = memory_get_usage( true );
 	$m2  = memory_get_peak_usage( true );
 	$ip  = ss_get_ip();
@@ -161,7 +155,6 @@ Memory Used, Peak: $m1, $m2
 // write out the error
 	@file_put_contents( SS_PLUGIN_DATA . '.sfs_debug_output.txt', $msg,
 		FILE_APPEND );
-
 	return false;
 }
 

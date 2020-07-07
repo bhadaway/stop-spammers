@@ -40,16 +40,14 @@ $now      = date( 'Y/m/d H:i:s',
 			$stats['spdate']  = $spdate;
 			ss_set_stats( $stats );
 			extract( $stats ); // extract again to get the new options
-			$msg
-				= "<div class='notice notice-success'><p>Activity Log Cleared</p></div>";
+			$msg              = "<div class='notice notice-success'><p>Activity Log Cleared</p></div>";
 		}
 		if ( array_key_exists( 'ss_stop_update_log_size', $_POST ) ) {
 // update log size
 			if ( array_key_exists( 'ss_sp_hist', $_POST ) ) {
 				$ss_sp_hist            = stripslashes( $_POST['ss_sp_hist'] );
 				$options['ss_sp_hist'] = $ss_sp_hist;
-				$msg
-				                       = "<div class='notice notice-success'><p>Options Updated</p></div>";
+				$msg                   = "<div class='notice notice-success'><p>Options Updated</p></div>";
 // update the options
 				ss_set_options( $options );
 			}
@@ -86,12 +84,9 @@ $now      = date( 'Y/m/d H:i:s',
         // }, 10000);
     </script>
     <form method="post" action="">
-        <input type="hidden" name="ss_stop_spammers_control"
-               value="<?php echo $nonce; ?>"/>
-        <input type="hidden" name="ss_stop_update_log_size" value="true"/>
-
+        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+        <input type="hidden" name="ss_stop_update_log_size" value="true" />
         <h2>History Size</h2>
-
         Select the number of events to save in the history.<br/>
         <p class="submit">
             <select name="ss_sp_hist">
@@ -122,7 +117,6 @@ $now      = date( 'Y/m/d H:i:s',
             </select>
             <input class="button-primary" value="Update Log Size"
                    type="submit"/></p>
-
         <form method="post" action="">
             <input type="hidden" name="ss_stop_spammers_control"
                    value="<?php echo $nonce; ?>"/>
@@ -131,7 +125,6 @@ $now      = date( 'Y/m/d H:i:s',
                                      value="Clear Recent Activity"
                                      type="submit"/></p>
         </form>
-
 		<?php
 		if ( empty( $hist ) ) {
 			echo "<p>Nothing in logs.</p>";

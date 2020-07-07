@@ -880,7 +880,6 @@ class chktor extends be_module {
 		if ( in_array( $ip, $torlist ) ) {
 			return 'Tor Exit Node';
 		}
-
 		return false;
 // return false if OK, return a reason if not.
 	}

@@ -18,7 +18,6 @@ class chkform extends be_module {
 // sfs_debug_msg( "continue check wp-login.php $ip" );
 			return false;
 		}
-
 // sfs_debug_msg( "Allowed $uri $ip" );
 		return "Post request not in wp-comments-post.php or wp-login.php - $uri";
 	}

@@ -6,7 +6,7 @@ Contributors: trumani, bhadaway, Keith Graham
 Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.4.2
+Version: 2020.4.3
 Tested up to: 5.4
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -35,6 +35,9 @@ OR
 3. Activate the plugin from the plugins page in the admin.
 
 == Changelog ==
+
+= 2020.4.3 =
+* [Enhanced] Code cleanup
 
 = 2020.4.2 =
 * [Revert] Removed gettext

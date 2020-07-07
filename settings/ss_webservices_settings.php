@@ -188,7 +188,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             </table>
         </fieldset>
         <br />
-
         <fieldset>
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Google Safe Browsing API Key</span>

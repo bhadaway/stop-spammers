@@ -43,7 +43,6 @@ class chkhoney {
 				}
 			}
 		}
-
 		return false;
 	}
 }

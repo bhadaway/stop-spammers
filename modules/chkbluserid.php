@@ -14,7 +14,6 @@ class chkbluserid extends be_module { // change name
 			return false;
 		}
 		$blist = $options['blist'];
-
 		return $this->searchList( $user, $blist );
 	}
 }

@@ -14,7 +14,6 @@ class chkwlem extends be_module { // change name
 			return false;
 		}
 		$wlist = $options['wlist'];
-
 		return $this->searchList( $email, $wlist );
 	}
 }

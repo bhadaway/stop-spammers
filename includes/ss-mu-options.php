@@ -93,7 +93,6 @@ function ssp_global_get( $option ) {
 	restore_current_blog();
 // restore the filter
 	$ssp_semaphore --;
-
 	return $ansa;
 }
 
@@ -112,7 +111,6 @@ function ssp_global_Delete( $ops ) {
 	$ansa = delete_option( $ops );
 	restore_current_blog();
 	$ssp_semaphore --;
-
 	return $ansa;
 }
 
@@ -125,7 +123,6 @@ function ssp_global_unsetup() {
 		remove_filter( 'delete_option_' . $value, 'ss_pf_global_delete' );
 		remove_filter( 'pre_option_' . $value, 'ss_pf_global_get', 1 );
 	}
-
 	return;
 }
 

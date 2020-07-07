@@ -25,7 +25,6 @@ class chkshort { // change name
 				}
 			}
 		}
-
 		return false;
 	}
 }

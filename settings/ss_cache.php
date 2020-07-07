@@ -27,12 +27,10 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$ss_sp_cache            = stripslashes( $_POST['ss_sp_cache'] );
 			$options['ss_sp_cache'] = $ss_sp_cache;
 		}
-
 		if ( array_key_exists( 'ss_sp_good', $_POST ) ) {
 			$ss_sp_good            = stripslashes( $_POST['ss_sp_good'] );
 			$options['ss_sp_good'] = $ss_sp_good;
 		}
-
 		ss_set_options( $options );
 	}
 }
@@ -44,7 +42,6 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'ss_stop_clear_cache', $_POST ) ) {
-
 		// clear the cache
 		$badips           = array();
 		$goodips          = array();
@@ -53,7 +50,6 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_stats( $stats );
 		echo "<div class='notice notice-success'><p>Cache Cleared</p></div>";
 	}
-
 	$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
 }
 
@@ -210,7 +206,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     <td width="30%">Rejected IPs</td>
 					<?php
 				}
-
 				?>
 				<?php
 				if ( count( $goodips ) > 0 ) {
@@ -218,7 +213,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     <td width="30%">Good IPs</td>
 					<?php
 				}
-
 				?>
             </tr>
             <tr>
@@ -233,7 +227,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						?></td>
 					<?php
 				}
-
 				?>
 				<?php
 				if ( count( $goodips ) > 0 ) {
@@ -247,11 +240,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						?></td>
 					<?php
 				}
-
 				?>
             </tr>
         </table>
 		<?php
 	}
-
 	?>

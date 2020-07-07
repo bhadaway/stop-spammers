@@ -2,14 +2,16 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
+
 if ( ! current_user_can( 'manage_options' ) ) {
 	die( 'Access Denied' );
 }
+
 if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
 	echo "<div>Jetpack Protect has been detected. Stop Spammers has disabled itself.<br />Please turn off Jetpack Protect or uninstall Stop Spammers.</div>";
-
 	return;
 }
+
 ss_fix_post_vars();
 $stats = ss_get_stats();
 extract( $stats );
@@ -205,11 +207,14 @@ $counters = array(
 	'cntncap'             => 'Failed CAPTCHA', // captha not success
 	'cntpass'             => 'Total Pass', // passed
 );
+
 $message  = "";
 $nonce    = '';
+
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
+
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'clear', $_POST ) ) {
 		foreach ( $counters as $v1 => $v2 ) {
@@ -337,9 +342,7 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 		<?php
 	} */
 ?>	
-
-			<h2>Summary of Spam</h2>
-        
+<h2>Summary of Spam</h2>
 <div class="main-stats" style="width:95%">
 <?php
 	 if ( $spcount > 0 ) {
@@ -374,8 +377,6 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 // count is in data[0] and use the plugin name
 		$summry .= "<div class='stat-box'>$key: " . $data[0] . "</div>";
 	} ?>
-
-
 		<?php
 		echo $summry;
 		?>
@@ -388,13 +389,11 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
 
 function ss_control()  {
 	// this is the display of information about the page.
-
 	if (array_key_exists('resetOptions',$_POST)) {
 		ss_force_reset_options();
 	}
 	$ip=astound_get_ip();
 	$nonce=wp_create_nonce('ss_options');
-
 	$options=ss_get_options();
 	extract($options);
 }
@@ -409,95 +408,73 @@ function ss_force_reset_options() {
 	if (!function_exists('ss_reset_options')) {
 		ss_require('includes/ss-init-options.php');
 	}
-
 	ss_reset_options();
 	// clear the cache
 	delete_option('ss_cache');
 } ?>
 </div>
-    <h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { echo 'Free '; } ?>Options</h2>
 
-<div class="ss_admin_info_boxes_3row" >
-  <div class="ss_admin_info_boxes_3col" >		
-<h3>PROTECTION OPTIONS</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" >
-
-All options related to checking spam and logins. You can also block whole countries.
-<div class="ss_admin_button">
-    <a href="?page=ss_options">Protection</a>
-</div>
-		</div>
-		<div class="ss_admin_info_boxes_3col" >
-		<h3>ALLOW LISTS</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb" >
-        Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.
-		<div class="ss_admin_button">
-    <a href="?page=ss_allow_list">Allow</a>
-</div>
-		</div>
-		<div class="ss_admin_info_boxes_3col" >
-		<h3>BLOCK LISTS</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb" >
-        Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.
-		<div class="ss_admin_button">
-    <a href="?page=ss_deny_list">Block</a>
-</div>
+<h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { echo 'Free '; } ?>Options</h2>
+<div class="ss_admin_info_boxes_3row">
+	<div class="ss_admin_info_boxes_3col">
+		<h3>PROTECTION OPTIONS</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" />All options related to checking spam and logins. You can also block whole countries.
+		<div class="ss_admin_button"> <a href="?page=ss_options">Protection</a>
 		</div>
 	</div>
-<div class="ss_admin_info_boxes_3row" >
-  <div class="ss_admin_info_boxes_3col" >		
-<h3>CHALLENGE &amp; DENY</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb" >
-        Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.
-<div class="ss_admin_button">
-    <a href="?page=ss_challenge">Challenges</a>
+	<div class="ss_admin_info_boxes_3col">
+		<h3>ALLOW LISTS</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb">Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.
+		<div class="ss_admin_button"> <a href="?page=ss_allow_list">Allow</a>
+		</div>
+	</div>
+	<div class="ss_admin_info_boxes_3col">
+		<h3>BLOCK LISTS</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb">Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.
+		<div class="ss_admin_button"> <a href="?page=ss_deny_list">Block</a>
+		</div>
+	</div>
 </div>
-		</div>        
-<div class="ss_admin_info_boxes_3col" >		
-<h3>APPROVE REQUESTS</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb" >
-		Review and approve or deny users who were blocked and filled out the form requesting access to your site.
-<div class="ss_admin_button">
-    <a href="?page=ss_allow_list">Approve</a>
+<div class="ss_admin_info_boxes_3row">
+	<div class="ss_admin_info_boxes_3col">
+		<h3>CHALLENGE &amp; DENY</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb">Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.
+		<div class="ss_admin_button"> <a href="?page=ss_challenge">Challenges</a>
+		</div>
+	</div>
+	<div class="ss_admin_info_boxes_3col">
+		<h3>APPROVE REQUESTS</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb">Review and approve or deny users who were blocked and filled out the form requesting access to your site.
+		<div class="ss_admin_button"> <a href="?page=ss_allow_list">Approve</a>
+		</div>
+	</div>
+	<div class="ss_admin_info_boxes_3col">
+		<h3>WEB SERVICES</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb">Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.
+		<div class="ss_admin_button"> <a href="?page=ss_webservices_settings">Web Services</a>
+		</div>
+	</div>
 </div>
-</div> 
-
-<div class="ss_admin_info_boxes_3col" >		
-<h3>WEB SERVICES</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb" >
-        Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.
-<div class="ss_admin_button">
-    <a href="?page=ss_webservices_settings">Web Services</a>
+<div class="ss_admin_info_boxes_3row">
+	<div class="ss_admin_info_boxes_3col">
+		<h3>CACHE</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb">Shows the cache of recently detected events.
+		<div class="ss_admin_button"> <a href="?page=ss_cache">Cache</a>
+		</div>
+	</div>
+	<div class="ss_admin_info_boxes_3col">
+		<h3>LOG REPORT</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb">Details the most recent events detected by Stop Spammers.
+		<div class="ss_admin_button"> <a href="?page=ss_reports">Log Report</a>
+		</div>
+	</div>
+	<div class="ss_admin_info_boxes_3col">
+		<h3>DIAGNOSTICS</h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb">Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.
+		<div class="ss_admin_button"> <a href="?page=ss_diagnostics">Diagnostics</a>
+		</div>
+	</div>
 </div>
-</div>   
-</div>
-<div class="ss_admin_info_boxes_3row" >
-  <div class="ss_admin_info_boxes_3col" >		
-<h3>CACHE</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb" >      
-        Shows the cache of recently detected events.
-<div class="ss_admin_button">
-    <a href="?page=ss_cache">Cache</a>
-</div>
-</div>
-<div class="ss_admin_info_boxes_3col" >		
-<h3>LOG REPORT</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb" >          
-        Details the most recent events detected by Stop Spammers.
-<div class="ss_admin_button">
-    <a href="?page=ss_reports">Log Report</a>
-</div>
-</div> 
-<div class="ss_admin_info_boxes_3col" >		
-<h3>DIAGNOSTICS</h3>
-<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb" >     
-    Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.
-<div class="ss_admin_button">
-    <a href="?page=ss_diagnostics">Diagnostics</a>
-</div>
-</div>
-</div>
-
 <?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 	echo '
 		<h2>Premium Options</h2>
@@ -541,7 +518,6 @@ All options related to checking spam and logins. You can also block whole countr
 	';
 }
 ?>
-
 <br style="clear:both" />
 <br />
 <h2>Beta Options</h2>

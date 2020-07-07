@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://trumani.com/
 Description: Stop WordPress spam dead in its tracks. Designed to secure your website immediately. Enhance your UX with 30+ configurable options and a testing tool.
-Version: 2020.4.2
+Version: 2020.4.3
 Author: Trumani
 Author URI: https://trumani.com/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,11 +12,12 @@ Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2020.4.2' );
+define( 'SS_VERSION', '2020.4.3' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
 $ss_check_sempahore = false;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -25,14 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 function ss_load_plugin_textdomain() {
     load_plugin_textdomain( 'stop-spammers', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 
 // load admin styles
 function ss_styles() {
 	wp_enqueue_style( 'admin', plugin_dir_url( __FILE__ ) . 'css/admin.css' );
 }
-
 add_action( 'admin_print_styles', 'ss_styles' );
 
 // admin notice for users
@@ -43,7 +42,6 @@ function ss_admin_notice() {
 		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> <sup><i class="fa fa-question-circle fa tooltip"><span class="tooltiptext">* 2,500+ disposable email domains added to deny list<br />* Force username-only login<br />* Force email-only login<br />* Disable custom passwords</span></i></sup> | Upgrade or make a donation to help keep the project alive ♥ — <strong>SSP4ME</strong> for $5 Off <a href="https://trumani.com/downloads/stop-spammers-premium/" class="button" target="_blank">Premium</a> <a href="https://trumani.com/donate" class="button" target="_blank">Donate</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
 	}
 }
-
 add_action( 'admin_notices', 'ss_admin_notice' );
 
 // dismiss admin notice for users
@@ -54,7 +52,6 @@ function ss_notice_dismissed() {
 			add_user_meta( $user_id, 'ss_notice_dismissed3', 'true', true );
 	}
 }
-
 add_action( 'admin_init', 'ss_notice_dismissed' );
 
 // hook the init event to start work
@@ -172,7 +169,6 @@ function ss_init() {
 				be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
 // if we come back we continue as normal
 				sfs_errorsonoff( 'off' );
-
 				return;
 			}
 		}
@@ -298,7 +294,6 @@ function ss_get_stats() {
 	) {
 		return $stats;
 	}
-
 	return be_load( 'ss_get_stats', '' );
 }
 
@@ -311,7 +306,6 @@ function ss_get_options() {
 	) {
 		return $options;
 	}
-
 	return be_load( 'ss_get_options', '' );
 }
 
@@ -730,85 +724,24 @@ function ss_user_reg_filter( $user_login ) {
 	$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 	return $user_login;
 }
-
 // action links
-	add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
-	function ss_summary_link( $links ) {
-		$links = array_merge( array( '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings' ) . '</a>' ), $links );
-		return $links;
-	}
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
 
-	add_action( 'admin_init', 'check_for_premium' );
-	function check_for_premium() {
-		if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-			add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
-			function ss_upgrade_link( $links ) {
-				$links = array_merge( array( '<a href="https://trumani.com/" title="Get Maximum Dynamic Security" target="_blank" style="font-weight:bold">' . __( 'Upgrade' ) . '</a>' ), $links );
-				return $links;
-			}
+function ss_summary_link( $links ) {
+	$links = array_merge( array( '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings' ) . '</a>' ), $links );
+	return $links;
+}
+add_action( 'admin_init', 'check_for_premium' );
+
+function check_for_premium() {
+	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
+		function ss_upgrade_link( $links ) {
+			$links = array_merge( array( '<a href="https://trumani.com/" title="Get Maximum Dynamic Security" target="_blank" style="font-weight:bold">' . __( 'Upgrade' ) . '</a>' ), $links );
+			return $links;
 		}
 	}
-
+}
 add_action('init', 'ss_custom_login_module');
-
-function ss_custom_login_module() {
-	$options = ss_get_options();
-	if ( isset( $options['login_type'] ) && $options['login_type'] == "username" ) {
-		remove_filter( 'authenticate', 'wp_authenticate_email_password', 20 );
-	} else if ( isset( $options['login_type'] ) && $options['login_type'] == "email" ) {
-		remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
-	}
-	if ( isset( $options['enable_custom_password'] ) && $options['enable_custom_password'] ==  'Y' ) {
-		add_action( 'register_form', 'ss_password_field' );
-		add_action( 'register_post', 'ss_validate_password', 10, 3 );
-		add_action( 'user_register', 'ss_update_user_password', 100 );
-	}
-}
-
-function ss_password_field() {
-	?>
-	<p>
-		<label for="user_password">Password</label>
-		<input type="password" name="user_password" id="user_password" class="input" autocapitalize="off" />
-	</p>
-	<p>
-		<label for="user_confirm_password">Confirm Password</label>
-		<input type="password" name="user_confirm_password" id="user_confirm_password" class="input" autocapitalize="off" />
-	</p>
-	<?php
-}
-
-function ss_validate_password( $login, $email, $errors ) {
-    if ( $_POST['user_password'] !== $_POST['user_confirm_password'] ) {
-        $errors->add( 'passwords_not_matched', "<strong>ERROR</strong>: Password and confirm password does not match" );
-    }
-    if ( strlen( $_POST['user_password'] ) < 6 ) {
-        $errors->add( 'password_too_short', "<strong>ERROR</strong>: Passwords must be at least six characters long" );
-    }
-}
-
-function ss_update_user_password( $user_id ) {
-    $user_data = array();
-    $user_data['ID'] = $user_id;
-    if ( $_POST['user_password'] !== '' ) {
-        $user_data['user_pass'] = $_POST['user_password'];
-    }
-    wp_update_user( $user_data );
-}
-
-add_action( 'login_head', function(){
-	add_filter(  'gettext',  'ss_login_text'  );	
-});
-
-function ss_login_text( $translating ) {
-	$options = ss_get_options();
-	if ( isset( $options['login_type'] ) && $options['login_type'] == "username" ) {	
-		return str_ireplace( 'Username or Email Address', 'Username', $translating );
-	} else if ( isset( $options['login_type'] ) && $options['login_type'] == "email" ) {
-		return str_ireplace( 'Username or Email Address', 'Email Address', $translating );
-	} else {
-		return $translating;
-	}
-}
 
 require_once( 'includes/stop-spam-utils.php' );

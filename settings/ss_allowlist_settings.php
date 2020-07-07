@@ -153,11 +153,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update"/>
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 				<h2>Personalized Allow List</h2>
-            
             <p>Put IP addresses or emails here that you don't want blocked.
                 One email or IP to a line. You can use wild cards here for
                 emails. These are checked first so they override any blocking.</p>
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkwluserid">
             <input class"ss_toggle" type="checkbox" id="chkwluserid" name="chkwluserid" value="Y" <?php if ( $chkwluserid == 'Y' ) {
@@ -174,14 +172,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo $wlist[ $k ] . "\r\n";
 				}
 				?></textarea>
-
-        <br/>
+        <br />
         <h2>Allow Options</h2>
         <p>These options will be checked first and will allow some users to
             continue without being checked further.
             You can prevent Google, PayPal, and other services from ever being
             blocked.</p>
-
  <br />
 		<div class="checkbox switcher">
       <label id="ss_subhead" for="chkgoogle">
@@ -191,9 +187,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  <small><span style="font-size:16px!important;">Google (Keep enabled under most circumstances)</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 Google is very important to most
                 websites. In most cases, you won't want Google blocked</span></i></div>
-
         <br />
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkgenallowlist">
             <input class"ss_toggle" type="checkbox" id="chkgenallowlist" name="chkgenallowlist" value="Y" <?php if ( $chkgenallowlist == 'Y' ) {
@@ -208,10 +202,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 Checking this will let in some spam, but will not block
                 residential ISP customers from
                 industrialized countries.</span></i></div>
-
         <br />
-
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkmiscallowlist">
             <input class"ss_toggle" type="checkbox" id="chkmiscallowlist" name="chkmiscallowlist" value="Y" <?php if ( $chkmiscallowlist == 'Y' ) {
@@ -224,10 +215,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 Request other services be added to this whitelist
                 <a href="https://github.com/bhadaway/stop-spammers/issues"
                    target="_blank">on GitHub</a>.</span></i></div>
-
         <br />
-
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkpaypal">
             <input class"ss_toggle" type="checkbox" id="chkpaypal" name="chkpaypal" value="Y" <?php if ( $chkpaypal == 'Y' ) {
@@ -235,9 +223,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Allow PayPal</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through PayPal, enable this setting.</span></i></div>
-
         <br />
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkstripe">
             <input class"ss_toggle" type="checkbox" id="chkstripe" name="chkstripe" value="Y" <?php if ( $chkstripe == 'Y' ) {
@@ -245,9 +231,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Allow Stripe <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Stripe, enable this setting.</span></i></div>
-
         <br />
-		
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkauthorizenet">
             <input class"ss_toggle" type="checkbox" id="chkauthorizenet" name="chkauthorizenet" value="Y" <?php if ( $chkauthorizenet == 'Y' ) {
@@ -255,9 +239,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Allow Authorize.Net <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Authorize.Net, enable this setting.</span></i></div>
-
         <br />
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkbraintree">
             <input class"ss_toggle" type="checkbox" id="chkbraintree" name="chkbraintree" value="Y" <?php if ( $chkbraintree == 'Y' ) {
@@ -265,9 +247,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Allow Braintree <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Braintree, enable this setting.</span></i></div>
- 
         <br />
-		
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkrecurly">
             <input class"ss_toggle" type="checkbox" id="chkrecurly" name="chkrecurly" value="Y" <?php if ( $chkrecurly == 'Y' ) {
@@ -275,9 +255,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Allow Recurly <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Recurly, enable this setting.</span></i></div>
- 
         <br />
-
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkyahoomerchant">
             <input class"ss_toggle" type="checkbox" id="chkyahoomerchant" name="chkyahoomerchant" value="Y" <?php if ( $chkyahoomerchant == 'Y' ) {
@@ -285,9 +263,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Allow Yahoo Merchant Services</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you use Yahoo Merchant Services, enable this setting.</span></i></div>
-
         <br />
- 
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkaws">
             <input class"ss_toggle" type="checkbox" id="chkaws" name="chkaws" value="Y" <?php if ( $chkaws == 'Y' ) {
@@ -302,7 +278,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                 or cross post from Twitter,
                 it may be using Amazon's cloud services. Enable this if you want
                 to always allow Amazon AWS.</span></i></div>
-
         <br />
         <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
     </form>
