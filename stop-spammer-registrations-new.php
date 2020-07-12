@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://trumani.com/
 Description: Stop WordPress spam dead in its tracks. Designed to secure your website immediately. Enhance your UX with 30+ configurable options and a testing tool.
-Version: 2020.4.3
+Version: 2020.4.4
 Author: Trumani
 Author URI: https://trumani.com/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2020.4.3' );
+define( 'SS_VERSION', '2020.4.4' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -403,8 +403,7 @@ function ss_check_white() {
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
 	$post    = get_post_variables();
-	$ansa    = be_load( 'ss_check_white', ss_get_ip(), $stats, $options,
-		$post );
+	$ansa    = be_load( 'ss_check_white', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ansa;
 }
@@ -724,14 +723,13 @@ function ss_user_reg_filter( $user_login ) {
 	$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 	return $user_login;
 }
-// action links
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
 
+// action links
 function ss_summary_link( $links ) {
 	$links = array_merge( array( '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings' ) . '</a>' ), $links );
 	return $links;
 }
-add_action( 'admin_init', 'check_for_premium' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
 
 function check_for_premium() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
@@ -742,6 +740,6 @@ function check_for_premium() {
 		}
 	}
 }
-add_action('init', 'ss_custom_login_module');
+add_action( 'admin_init', 'check_for_premium' );
 
 require_once( 'includes/stop-spam-utils.php' );
