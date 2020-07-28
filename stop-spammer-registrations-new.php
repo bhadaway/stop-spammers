@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://trumani.com/
 Description: Stop WordPress spam dead in its tracks. Designed to secure your website immediately. Enhance your UX with 30+ configurable options and a testing tool.
-Version: 2020.4.4
+Version: 2020.4.5
 Author: Trumani
 Author URI: https://trumani.com/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2020.4.4' );
+define( 'SS_VERSION', '2020.4.5' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -38,8 +38,8 @@ add_action( 'admin_print_styles', 'ss_styles' );
 function ss_admin_notice() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed3' ) && current_user_can( 'manage_options' ) )
-		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> <sup><i class="fa fa-question-circle fa tooltip"><span class="tooltiptext">* 2,500+ disposable email domains added to deny list<br />* Force username-only login<br />* Force email-only login<br />* Disable custom passwords</span></i></sup> | Upgrade or make a donation to help keep the project alive ♥ — <strong>SSP4ME</strong> for $5 Off <a href="https://trumani.com/downloads/stop-spammers-premium/" class="button" target="_blank">Premium</a> <a href="https://trumani.com/donate" class="button" target="_blank">Donate</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed4' ) && current_user_can( 'manage_options' ) )
+		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | We\'d love to get your feedback! <a href="https://trumani.com/stop-spammers-giveaway/" target="_blank">Learn how</a> you can get a copy of Premium for 50% off or even free.', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
@@ -49,7 +49,7 @@ function ss_notice_dismissed() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['ss-dismiss'] ) )
-			add_user_meta( $user_id, 'ss_notice_dismissed3', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed4', 'true', true );
 	}
 }
 add_action( 'admin_init', 'ss_notice_dismissed' );
