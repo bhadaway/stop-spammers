@@ -36,6 +36,9 @@ OR
 
 == Changelog ==
 
+= 2020.5 =
+* [New] Deny URL shortening service links
+
 = 2020.4.5 =
 * [New] Notice
 
