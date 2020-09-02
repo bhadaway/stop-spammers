@@ -601,9 +601,8 @@ class ss_get_options {
 				'xanax',
 				'You’re a winner',
 				'zolus'
-			)
-		);
-		'denyurlshortners'  => array(
+			),
+			'denyurlshortners'  => array(
 				'0rz.tw',
 				'1-url.net',
 				'126.am',

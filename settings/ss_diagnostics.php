@@ -136,6 +136,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chksession',
 						'chksfs',
 						'chkspamwords',
+						'chkurlshort',
 						'chktld',
 						'chkubiquity',
 						'chkmulti'

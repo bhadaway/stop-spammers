@@ -59,6 +59,7 @@ $counters = array(
 	'cntchksession'       => 'Session Speed',
 	'cntchksfs'           => 'Stop Forum Spam',
 	'cntchkspamwords'     => 'Spam Words',
+	'cntchkurlshort'      => 'Short Urls',
 	'cntchktld'           => 'Email TLD',
 	'cntchkubiquity'      => 'Ubiquity Servers',
 	'cntchkmulti'         => 'Repeated Hits',
