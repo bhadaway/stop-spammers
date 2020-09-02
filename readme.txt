@@ -18,9 +18,12 @@ Stop spam emails, spam comments, spam registration, and spam bots and spammers i
 
 Stop Spammers works right out-of-the-box, without needing to adjust any settings. If you need more sophisticated protection, you have 50+ configuration options at your fingertips for maximum personalization.
 
-If you update to version 2020, please clear your cache to see the new UI.
-
 Get even more options with <strong><a href="https://trumani.com/downloads/stop-spammers-premium/">Stop Spammers Premium</a></strong>.
+1. Server-level firewall
+2. Custom login form protected by stop spammers
+3. Import/Export Settings
+4. Restore Default Settings
+5. Export Log to Excel
 
 **Features**
 
