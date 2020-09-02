@@ -45,7 +45,6 @@ class ss_check_post extends be_module {
 			'chkreferer',
 			'chksession',
 			'chkspamwords',
-			'chkurlshort',
 			'chktld',
 			'chkaccept',
 			'chkadmin',

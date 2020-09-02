@@ -58,7 +58,7 @@ class ss_get_options {
 			'chksession'    => 'Y',
 			'chksfs'        => 'Y',
 			'chkspamwords'  => 'Y',
-			'chkurlshort'  	=> 'Y',
+			'chkurlshort'  => 'Y',
 			'chktld'        => 'Y',
 			'chkubiquity'   => 'Y',
 			'chkakismet'    => 'Y',
@@ -601,9 +601,9 @@ class ss_get_options {
 				'xanax',
 				'You’re a winner',
 				'zolus'
-
-			),
-			'denyurlshortners'  => array(
+			)
+		);
+		'denyurlshortners'  => array(
 				'0rz.tw',
 				'1-url.net',
 				'126.am',
