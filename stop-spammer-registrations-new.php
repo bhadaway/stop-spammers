@@ -34,7 +34,7 @@ function ss_styles() {
 }
 add_action( 'admin_print_styles', 'ss_styles' );
 
-// admin notice for users
+/*// admin notice for users
 function ss_admin_notice() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
@@ -52,7 +52,7 @@ function ss_notice_dismissed() {
 			add_user_meta( $user_id, 'ss_notice_dismissed4', 'true', true );
 	}
 }
-add_action( 'admin_init', 'ss_notice_dismissed' );
+add_action( 'admin_init', 'ss_notice_dismissed' );*/
 
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );

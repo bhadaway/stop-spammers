@@ -6,7 +6,7 @@ Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.4.5
+Version: 2020.5
 Tested up to: 5.5
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -21,6 +21,25 @@ Stop Spammers works right out-of-the-box, without needing to adjust any settings
 If you update to version 2020, please clear your cache to see the new UI.
 
 Get even more options with <strong><a href="https://trumani.com/downloads/stop-spammers-premium/">Stop Spammers Premium</a></strong>.
+
+**Features**
+
+Extremely granular control, so that any variety of website can create a special custom cocktail just for their particular spam issues:
+
+* Block suspicious behavior
+* Block IPs found in public blacklists
+* Block spam words
+* Block disposable emails
+* Block URL shortening services
+* Block TLDs
+* Block countries
+* Block/allow IPs, emails, and usernames manually
+* So much more...
+* Server-level firewall protection (Premium Only)
+* Themed registration/login pages (Premium Only)
+* Import/export settings (Premium Only)
+* Extended log reports and data export (Premium Only)
+* Contact Form 7 protection (Premium Only — Coming Soon)
 
 == Installation ==
 
