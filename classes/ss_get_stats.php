@@ -64,6 +64,7 @@ class ss_get_stats {
 			'cntchksession'    => 0,
 			'cntchksfs'        => 0,
 			'cntchkspamwords'  => 0,
+			'cntchkurlshort'   => 0,
 			'cntchktld'        => 0,
 			'cntchkubiquity'   => 0,
 			'cntchkmulti'      => 0

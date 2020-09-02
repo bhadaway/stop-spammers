@@ -48,6 +48,23 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$options['spamwords'] = $tblist;
 		$spamwords            = $tblist;
 	}
+	if ( array_key_exists( 'denyurlshortners', $_POST ) ) {
+		$denyurlshortners = $_POST['denyurlshortners'];
+		if ( empty( $denyurlshortners ) ) {
+			$denyurlshortners = array();
+		} else {
+			$denyurlshortners = explode( "\n", $denyurlshortners );
+		}
+		$tblist = array();
+		foreach ( $denyurlshortners as $bl ) {
+			$bl = trim( $bl );
+			if ( ! empty( $bl ) ) {
+				$tblist[] = $bl;
+			}
+		}
+		$options['denyurlshortners'] = $tblist;
+		$denyurlshortners            = $tblist;
+	}
 	if ( array_key_exists( 'badTLDs', $_POST ) ) {
 		$badTLDs = $_POST['badTLDs'];
 		if ( empty( $badTLDs ) ) {
@@ -85,6 +102,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 // check box setting
 	$optionlist = array(
 		'chkspamwords',
+		'chkurlshort',
 		'chkbluserid',
 		'chkagent'
 	);
@@ -106,14 +124,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
     <h1 class="ss_head">Stop Spammers — Block Lists</h1>
-	<?php if ( ! empty( $msg ) ) {
-		echo "$msg";
-	} ?>
+	<?php if ( ! empty( $msg ) ) { echo "$msg"; } ?>
     <form method="post" action="">
         <input type="hidden" name="action" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 				<h2>Block List</h2>
-            Put IP addresses or emails here that you want blocked. One email
+				Put IP addresses or emails here that you want blocked. One email
                 or IP to a line.
                 You can mix email addresses and IP numbers. You can use IPv4 or
                 IPv6 numbers. You can use CIDR format to
@@ -122,11 +138,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				</span></i>
                <br />
                <br />
-<div class="checkbox switcher">
+               <div class="checkbox switcher">
       <label id="ss_subhead" for="chkbluserid">
-            <input class"ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) {
-					echo "checked=\"checked\"";
-} ?> /><span><small></small></span>
+            <input class="ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) { echo "checked=\"checked\"";} ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Enable Block by User ID</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 This is usually not
                 useful as spammers can change the user ID
@@ -143,7 +157,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<h2>Spam Words List</h2>
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkspamwords">
-            <input class"ss_toggle" type="checkbox" id="chkspamwords" name="chkspamwords" value="Y" <?php if ( $chkspamwords == 'Y' ) {
+            <input class="ss_toggle" type="checkbox" id="chkspamwords" name="chkspamwords" value="Y" <?php if ( $chkspamwords == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Check Spam Words</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
@@ -159,13 +173,32 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				}
 				?></textarea>
         <br />
+				<h2>URL Shortening Services List</h2>
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="chkurlshort">
+            <input class="ss_toggle" type="checkbox" id="chkurlshort" name="chkurlshort" value="Y" <?php if ( $chkurlshort == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Check URL Shorteners</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+            Use the URL Shorteners list to check comment body, email, and author
+                fields. If a link here shows up in an
+                email address or author field then block the comment. (wild
+                cards do not work here).
+                Add or delete URLs (one URL per line).</span></i></div>
+				<br />
+            <textarea name="denyurlshortners" cols="40" rows="8"><?php
+				foreach ( $denyurlshortners as $p ) {
+					echo $p . "\r\n";
+				}
+				?></textarea>
+        <br />
 				<h2>Bad User Agents List</h2>
 				<p>This is a string search so that all you have to enter is enough
                 of the agent to match. Telesoft matches
                 Telesoft Spider or Telesoft 3.2.</p>
 <div class="checkbox switcher">
       <label id="ss_subhead" for="chkagent">
-            <input class"ss_toggle" type="checkbox" id="chkagent" name="chkagent" value="Y" <?php if ( $chkagent == 'Y' ) {
+            <input class="ss_toggle" type="checkbox" id="chkagent" name="chkagent" value="Y" <?php if ( $chkagent == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Check Agents</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
