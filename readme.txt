@@ -53,6 +53,40 @@ OR
 2. Upload the plugin folder to your wp-content/**plugins** folder.
 3. Activate the plugin from the plugins page in the admin.
 
+== Frequently Asked Questions ==
+
+= What do I do if I lock myself out of my own site? =
+
+See: https://github.com/bhadaway/stop-spammers/issues/5.
+
+= Can I use Stop Spammers with Cloudflare? =
+
+Yes. But, you may need to restore visitor IPs: https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs.
+
+= Can I use Stop Spammers with WooCommerce (and other ecommerce plugins)? =
+
+Yes. But, in some configurations, you may need to go to Stop Spammers > Protection Options > Toggle on the option for "Only Use the Plugin for Standard WordPress Forms" > Save if you're running into any issues.
+
+= Can I use Stop Spammers with Akismet? =
+
+Yes. Stop Spammers can even check Akismet for an extra layer of protection.
+
+= Can I use Stop Spammers with Jetpack? =
+
+Yes and no. You can use all Jetpack features except for Jetpack Protect, as it conflicts with Stop Spammers.
+
+= Can I use Stop Spammers with Wordfence (and other spam and security plugins)? =
+
+Yes. The two can compliment each other. However, if you have only a small amount of hosting resources (mainly memory) or aren't even allowing registration on your website, using both might be overkill.
+
+= 2FA is failing. =
+
+Toggle off the "Check Credentials on All Login Attempts" option and try again.
+
+= Is Stop Spammers GDPR-compliant? =
+
+Yes. See: https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging. Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
+
 == Changelog ==
 
 = 2020.5 =
