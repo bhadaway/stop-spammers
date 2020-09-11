@@ -6,7 +6,7 @@ Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.5.1
+Version: 2020.5
 Tested up to: 5.5
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -39,7 +39,7 @@ Extremely granular control, so that any variety of website can create a special 
 * Export log to Excel (Premium Only)
 * Restore default settings (Premium Only)
 * Contact Form 7 protection (Premium Only)
-* Built-in contact form (Premium Only)
+* Built-in contact form (Premium Only — Coming Soon)
 
 == Installation ==
 
