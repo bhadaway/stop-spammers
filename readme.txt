@@ -39,7 +39,7 @@ Extremely granular control, so that any variety of website can create a special 
 * Export log to Excel (Premium Only)
 * Restore default settings (Premium Only)
 * Contact Form 7 protection (Premium Only)
-* Built-in contact form (Premium Only — Coming Soon)
+* Built-in contact form (Premium Only)
 
 == Installation ==
 
