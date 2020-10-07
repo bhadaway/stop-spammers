@@ -139,7 +139,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chkurlshort',
 						'chktld',
 						'chkubiquity',
-						'chkmulti'
+						'chkmulti',
+						'chkperiods'
 					);
 					$m1         = memory_get_usage( true );
 					$m2         = memory_get_peak_usage( true );
