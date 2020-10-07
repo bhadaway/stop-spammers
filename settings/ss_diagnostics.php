@@ -131,16 +131,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chkhosting',
 						'chkinvalidip',
 						'chklong',
-						'chkshort',
+						'chkmulti',
+						'chkperiods',
 						'chkreferer',
 						'chksession',
 						'chksfs',
+						'chkshort',
 						'chkspamwords',
-						'chkurlshort',
 						'chktld',
 						'chkubiquity',
-						'chkmulti',
-						'chkperiods'
+						'chkurlshort'
 					);
 					$m1         = memory_get_usage( true );
 					$m2         = memory_get_peak_usage( true );
