@@ -17,7 +17,7 @@ class chkperiods  extends be_module {
 			$email = $post['user_email'];
 			if ( !empty( $email ) ) {
 				list( $text, $domain ) = explode( '@', $email, 2 );
-				if ( substr_count( $domain, "." ) > 2 ) {
+				if ( substr_count( $domain, "." ) >= 2 ) {
 					return "too many periods in: $email";
 				}
 			}
@@ -25,4 +25,5 @@ class chkperiods  extends be_module {
 		return false;
 	}
 }
+
 ?>
