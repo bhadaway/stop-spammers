@@ -9,7 +9,7 @@ class chkhyphens  extends be_module {
 			if ( !empty( $email ) ) {
 				$email = substr( $email, 0, strpos( $email, '@' ) );
 				if ( substr_count( $email, "-" ) > 1 ) {
-					return "too many periods in: $email";
+					return "too many hyphens in: $email";
 				}
 			}
 		}
@@ -18,7 +18,7 @@ class chkhyphens  extends be_module {
 			if ( !empty( $email ) ) {
 				$email = substr( $email, 0, strpos( $email, '@' ) );
 				if ( substr_count( $email, "-" ) > 1 ) {
-					return "too many periods in: $email";
+					return "too many hyphens in: $email";
 				}
 			}
 		}
