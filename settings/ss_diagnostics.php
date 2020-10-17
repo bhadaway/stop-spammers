@@ -43,7 +43,7 @@ if ( array_key_exists( 'body', $_POST ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — Diagnostics</h1>
+    <h1 class="ss_head">Stop Spammers — Diagnostics & Threat Scan</h1>
 	<div class="ss_info_box">
     <form method="post" action="">
         <input type="hidden" name="action" value="update" />
