@@ -17,7 +17,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 }
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'action', $_POST ) ) {
-		$optionlist = array( 'redir', 'notify', 'wlreq' );
+		$optionlist = array( 'redir', 'notify', 'notifyrequester', 'wlreq' );
 		foreach ( $optionlist as $check ) {
 			$v = 'N';
 			if ( array_key_exists( $check, $_POST ) ) {
