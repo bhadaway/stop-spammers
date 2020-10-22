@@ -400,6 +400,7 @@ User IP: " . $ip . "
 User Email: " . $ke . "
 Spam Reason: " . $kr . "
 User Message: " . $km . "
+". $web . "
 
 Please be aware that the user has been recognized as a potential spammer.
 
@@ -423,6 +424,7 @@ Some spam bots fill out the request form with a fake explanation.
 		$sname = $this->getSname();
 		$now   = date( 'Y/m/d H:i:s',
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$web = echo "   <a href='?page=ss_allow_list'>Approve or Deny Request</a>";
 		$ke    = "";
 		if ( array_key_exists( 'ke', $_POST ) ) {
 			$ke = sanitize_text_field( $_POST['ke'] ); // email
