@@ -150,7 +150,7 @@ function ss_show_option() {
             <input class"ss_toggle" type="checkbox" id="notify" name="notify" value="Y" onclick="ss_show_notify()" <?php if ( $notify == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Notify Webmaster When a User Requests to be Added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
+		  <small><span style="font-size:16px!important;">Notify Web Admin when a user requests to be added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
                 Blocked users can add their email addresses to the the Allow List
                 request. This will also send you an email notification.</span></i></div>
             <br />
@@ -167,6 +167,15 @@ function ss_show_notify() {
   }
 }
 </script>
+<br />
+<div class="checkbox switcher">
+      <label id="ss_subhead" for="notifyrequester">
+            <input class"ss_toggle" type="checkbox" id="notify" name="notifyrequester" value="Y" onclick="ss_show_notifyrequester()" <?php if ( $notifyrequester == 'Y' ) {
+					echo "checked=\"checked\"";
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Notify Requester when a Web Admin has approved their request to be added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
+                Blocked users can add their email addresses to the the Allow List
+                request. This will also send you an email notification.</span></i></div>
         <br />
         <fieldset>
             <legend>
