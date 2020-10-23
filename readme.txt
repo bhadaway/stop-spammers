@@ -6,7 +6,7 @@ Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.5.1
+Version: 2020.6
 Tested up to: 5.5
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -32,6 +32,7 @@ Extremely granular control, so that any variety of website can create a special 
 * Block TLDs
 * Block countries
 * Block/allow IPs, emails, and usernames manually
+* Send email when allow list request is approved
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
@@ -88,6 +89,14 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging. Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2020.6 =
+* [New] Send email when allow list request is approved (community request)
+* [New] Approve or Deny action in request email with link to Allow List page (community request)
+* [Update] Update Stop Spammers menu icon to 'S' logo
+* [Fix] Conditional fields hidden on page load when option is enabled
+* [Fix] Updates to multisite (community reported)
+* [Fix] Shortcode and HTML support on Spam Message (community reported)
 
 = 2020.5.1 =
 * [Fix] Deny if email has too many periods
