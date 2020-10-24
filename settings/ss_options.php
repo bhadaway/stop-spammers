@@ -500,6 +500,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     text.style.display = "none";
                 }
             }
+            ss_show_quick();
         </script>
         <br />
         <div class="checkbox switcher">
@@ -724,6 +725,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
                     text.style.display = "none";
                 }
             }
+            jQuery(function(){
+            	ss_show_chkmulti();
+            });
         </script>
         <br />
         <div class="checkbox switcher">

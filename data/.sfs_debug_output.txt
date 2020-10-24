@@ -1,0 +1,150 @@
+
+Time: 2020/10/22 17:02:31
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 173
+Memory Used, Peak: 14680064, 14680064
+---------------------
+
+Time: 2020/10/22 17:08:59
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 173
+Memory Used, Peak: 12582912, 14680064
+---------------------
+
+Time: 2020/10/22 17:12:02
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 173
+Memory Used, Peak: 12582912, 14680064
+---------------------
+
+Time: 2020/10/22 17:13:36
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 14680064
+---------------------
+
+Time: 2020/10/22 17:17:46
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 14680064
+---------------------
+
+Time: 2020/10/22 17:22:55
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 14680064
+---------------------
+
+Time: 2020/10/22 17:24:06
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/22 23:19:59
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/22 23:24:51
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/22 23:27:03
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: notifyrequester
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/22 23:38:01
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: emailrequest
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/22 23:41:33
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: emailrequest
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/23 13:47:04
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: emailrequest
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 12582912, 12582912
+---------------------
+
+Time: 2020/10/23 13:51:27
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined variable: emailrequest
+IP Address: 24.33.82.126
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/settings/ss_challenge.php
+Line Number: 175
+Memory Used, Peak: 16777216, 18874368
+---------------------
+
+Time: 2020/10/23 23:15:14
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: reason
+IP Address: 185.220.100.242
+File Name: /home/beautyba/public_html/test/wp-content/plugins/stop-spammers-master/classes/ss_challenge.php
+Line Number: 342
+Memory Used, Peak: 10485760, 10485760
+---------------------

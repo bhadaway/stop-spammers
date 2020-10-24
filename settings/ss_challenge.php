@@ -17,7 +17,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 }
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'action', $_POST ) ) {
-		$optionlist = array( 'redir', 'notify', 'notifyrequester', 'wlreq' );
+		$optionlist = array( 'redir', 'notify', 'emailrequest', 'wlreq' );
 		foreach ( $optionlist as $check ) {
 			$v = 'N';
 			if ( array_key_exists( $check, $_POST ) ) {
@@ -101,8 +101,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Spammer Message</span>
             </legend>
-            <p>This message is only visible to spammers. It only shows if
-                spammers are rejected at the time the login or
+            <p>This message only shows if spammers or false positive valid visitors are rejected at the time the login or
                 comment form is displayed. You can use the shortcode <em>[reason]</em>
                 to include the deny reason code
                 with the message. You can also use <em>[ip]</em> in your message
@@ -134,6 +133,7 @@ function ss_show_option() {
      text.style.display = "none";
   }
 }
+ss_show_option();
 </script>
 <div class="checkbox switcher">
       <label id="ss_subhead" for="wlreq">
@@ -151,8 +151,7 @@ function ss_show_option() {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;">Notify Web Admin when a user requests to be added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
-                Blocked users can add their email addresses to the the Allow List
-                request. This will also send you an email notification.</span></i></div>
+                If a web admin approves a request, the requester will be automatically notified via email.</span></i></div>
             <br />
             <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none;">(Optional) Secify where email requests are sent:
             <input id="myInput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
@@ -166,17 +165,27 @@ function ss_show_notify() {
      text.style.display = "none";
   }
 }
+ss_show_notify();
 </script>
-<br />
-<div class="checkbox switcher">
-      <label id="ss_subhead" for="notifyrequester">
-            <input class"ss_toggle" type="checkbox" id="notify" name="notifyrequester" value="Y" onclick="ss_show_notifyrequester()" <?php if ( $notifyrequester == 'Y' ) {
+
+        <div class="checkbox switcher">
+            <label id="ss_subhead" for="emailrequest">
+                <input class="ss_toggle" type="checkbox" id="emailrequest"
+                       name="emailrequest"
+                       value="Y" <?php if ( $emailrequest == 'Y' ) {
 					echo "checked=\"checked\"";
-} ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Notify Requester when a Web Admin has approved their request to be added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
-                Blocked users can add their email addresses to the the Allow List
-                request. This will also send you an email notification.</span></i></div>
-        <br />
+				} ?> /><span><small></small></span>
+                <small>
+                    <span style="font-size:16px!important">Notify Requester when a Web Admin has approved their request to be added to the Allow List <sup class="ss_sup">NEW!</sup></span>
+                </small>
+            </label>
+            <i class="fa fa-question-circle fa-2x tooltip">
+			<span class="tooltiptext">                 	
+					If a web admin approves a request, the requester will be automatically notified via email. 
+			</span>
+            </i>
+        </div>
+		<br />
         <fieldset>
             <legend>
 				<span style="font-weight:bold;font-size:1.2em">Second Chance CAPTCHA Challenge</span>

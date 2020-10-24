@@ -238,7 +238,8 @@ class ss_challenge extends be_module {
 			$ke = $post['email'];
 			$km = '';
 			$kr = "";
-// if ( array_key_exists( 'reason', $post ) ) $kr=$post['reason'];
+			if ( array_key_exists( 'reason', $post ) )
+				$kr = $post['reason'];
 			$ka = $post['author'];
 			$kp = base64_encode( serialize( $_POST ) );
 // sfs_debug_msg( 'first time getting post stuff');
@@ -260,7 +261,7 @@ class ss_challenge extends be_module {
 <input type=\"hidden\" name=\"ka\" value=\"$ka\" />
 ";
 		$formbot = "
-<input type=\"submit\" value=\"Press to Continue\" />
+<p><input style=\"background:#007cba;padding: 10px 15px;border:none;border-radius:3px;color:white;cursor:pointer;\" type=\"submit\" value=\"Submit Request\" /></p>
 </form>
 ";
 		$not     = '';
@@ -269,17 +270,16 @@ class ss_challenge extends be_module {
 			$not = "
 <fieldset>
 <legend><span style=\"font-weight:bold;font-size:1.2em\" >Allow Request</span></legend>
-<p>You have been blocked from entering information on this blog. In order to prevent this from happening in the future you
-may ask the owner to add your network address to a list that allows you full access.</p>
+<p>You have been blocked from entering information on this site. In order to prevent this from happening in the future, complete the request below to have the admin add your IP to a list that allows you full access.</p>
 <p>Please enter your <strong>e</strong><strong>ma</strong><strong>il</strong> <strong>add</strong><strong>re</strong><strong>ss</strong> and a short note requesting access here.</p>
-<span style=\"color:fff\">e</span>-<span style=\"color:fffdff\">ma</span>il for contact (required)<!-- not the message -->: <input type=\"text\" value=\"\" name=\"ke\" /><br />
-message <!-- not email -->:<br /><textarea name=\"km\"></textarea>
+<span style=\"color:fff\">Email Address (required)</span><!-- not the message -->: <input type=\"text\" value=\"\" name=\"ke\" /><br />
+Message<!-- not email -->:<br /><textarea name=\"km\" placeholder=\"If you were submitting a contact form, use this field to enter the message.\" style=\"width:100%\"  rows=\"5\"></textarea>
 </fieldset>
 ";
 		}
 		$captop = "
 <fieldset>
-<legend><span style=\"font-weight:bold;font-size:1.2em\">Please prove you are not a robot.</span></legend>
+<legend><span style=\"font-weight:bold;font-size:1.2em\">Please prove you are not a robot</span></legend>
 ";
 		$capbot = "
 </fieldset>
@@ -325,7 +325,6 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 <p>Enter the SUM of these two numbers: <span style=\"size:4em;font-weight:bold\">$n1 + $n2</span><br />
 <input name=\"sum\" value=\"\" type=\"text\" />
 <input type=\"hidden\" name=\"nums\" value=\"$stupid\" /><br />
-<input type=\"submit\" value=\"Press to Continue\" />
 ";
 				break;
 			case 'F':
@@ -339,7 +338,9 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 // have a display
 // need to send it to the display
 		if ( empty( $msg ) ) {
-			$msg = $rejectmessage;
+			$msg = html_entity_decode($rejectmessage);
+			$msg = str_replace('[ip]', $ip, $msg);
+			$msg = str_replace('[reason]', $post['reason'], $msg);
 		}
 		$ansa = "
 $msg
@@ -386,6 +387,8 @@ $formbot
 			}
 			$subject = 'Allow List Request from ' . get_bloginfo( 'name' );
 			$ip      = ss_get_ip();
+			$web = "Approve or Deny Request: ". admin_url( "admin.php?page=ss_allow_list" );
+
 			$message = "
 Webmaster,
 
@@ -424,7 +427,7 @@ Some spam bots fill out the request form with a fake explanation.
 		$sname = $this->getSname();
 		$now   = date( 'Y/m/d H:i:s',
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-		$web = echo "   <a href='?page=ss_allow_list'>Approve or Deny Request</a>";
+		//$web = echo "<a href='?page=ss_allow_list'>Approve or Deny Request</a>";
 		$ke    = "";
 		if ( array_key_exists( 'ke', $_POST ) ) {
 			$ke = sanitize_text_field( $_POST['ke'] ); // email

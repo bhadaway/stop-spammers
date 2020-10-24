@@ -84,7 +84,7 @@ class ss_get_options {
 			'chkcaptcha'          => 'A',
 			'chkxff'              => 'N',
 			'notify'              => 'Y',
-			'notifyrequester'     => 'Y',
+			'emailrequest'     	  => 'Y',
 			'chkspoof'            => 'N',
 			'filterregistrations' => 'Y'
 			// filter registration attempts - even if not from post

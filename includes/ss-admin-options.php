@@ -7,7 +7,7 @@ if ( $options['addtoallowlist'] == 'Y' ) {
 	ss_sfs_check_admin(); // adds user to Allow List
 }
 // admin vs mu admin
-if ( SS_MU == 'Y' ) {
+if ( get_option( 'ss_muswitch', 'N' ) == 'Y' ) {
 	add_action( 'mu_rightnow_end', 'ss_sp_rightnow' );
 	add_filter( 'network_admin_plugin_action_links_' . plugin_basename( __FILE__ ), 'ss_sp_plugin_action_links' );
 	add_filter( 'plugin_row_meta', 'ss_sp_plugin_action_links', 10, 2 );
