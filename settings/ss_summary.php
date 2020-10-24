@@ -481,9 +481,9 @@ function ss_force_reset_options() {
 		<h2>Premium Options</h2>
 		<div class="ss_admin_info_boxes_1row" >
   			<div class="ss_admin_info_boxes_1col" >
-    		<h3>Add a server-side firewall and options like export log to excel, restore options, and transfer settings.</h3>
+    		<h3>Add a server-side firewall and themeable login, protect Divi / Elementor / CF7 / bbPress with our honeypot, export logs to excel, restore options, and transfer settings.</h3>
 				<div class="ss_admin_button">
-    				<a href="https://trumani.com/downloads/stop-spammers-premium/">Go Premium</a>
+    				<a href="https://stopspammers.io/downloads/stop-spammers-premium/">Go Premium</a>
 				</div>
 			</div>
 		</div>
