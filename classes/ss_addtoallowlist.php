@@ -30,9 +30,7 @@ class ss_addtoallowlist {
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-
 		$this->ss_send_approval_email( $ip, $stats, $options, $post );
-
 		return false;
 	}
 
@@ -45,8 +43,8 @@ class ss_addtoallowlist {
 		}
 		$wlrequests = $stats['wlrequests'];
 		$request = array();
-		foreach ($wlrequests as $r) {
-			if($r[0] == $ip) {
+		foreach ( $wlrequests as $r ) {
+			if ( $r[0] == $ip ) {
 				$request = $r;
 				break;
 			}
@@ -58,14 +56,14 @@ class ss_addtoallowlist {
 		$ke = sanitize_text_field( $to );
 		$blog = get_bloginfo( 'name' );
 		$subject = get_bloginfo( 'name' ) . ': Your Request has been approved';
-		$subject = str_replace('&', 'and', $subject);
+		$subject = str_replace( '&', 'and', $subject );
 		$message = "
 Hi,
 
 I apologize for the inconvenience. I have added your IP address to the allow list. Please let me know if I can be of further assistance.
 
 $blog";
-		$message = str_replace('&', 'and', $message);
+		$message = str_replace( '&', 'and', $message );
 		$headers = 'From: ' . get_option( 'admin_email' ) . "\r\n";
 		wp_mail( $to, $subject, $message, $headers );
 		return true;
