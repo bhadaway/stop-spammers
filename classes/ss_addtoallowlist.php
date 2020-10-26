@@ -49,6 +49,9 @@ class ss_addtoallowlist {
 				break;
 			}
 		}
+		if( empty( $request ) or ! isset( $request[1] ) ) {
+			return false;
+		}
 		$to = $request[1];
 		if ( ! is_email( $to ) ) {
 			return false;
