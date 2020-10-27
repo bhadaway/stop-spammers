@@ -6,7 +6,7 @@ Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.6
+Version: 2020.6.1
 Tested up to: 5.5
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -58,11 +58,11 @@ OR
 
 = What do I do if I lock myself out of my own site? =
 
-See: https://github.com/bhadaway/stop-spammers/issues/5.
+See: [https://github.com/trumani/stop-spammers/issues/5](https://github.com/trumani/stop-spammers/issues/5).
 
 = Can I use Stop Spammers with Cloudflare? =
 
-Yes. But, you may need to restore visitor IPs: https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs.
+Yes. But, you may need to restore visitor IPs: [https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs](https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs).
 
 = Can I use Stop Spammers with WooCommerce (and other ecommerce plugins)? =
 
@@ -86,9 +86,12 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 
 = Is Stop Spammers GDPR-compliant? =
 
-Yes. See: https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging. Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
+Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2020.6.1 =
+* [Fix] PHP notice
 
 = 2020.6 =
 * [New] Send email when allow list request is approved (community request)
@@ -147,4 +150,4 @@ Yes. See: https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-con
 * [Update] Admin UI enhancements
 
 = 2019.6 =
-* [New owner](https://github.com/Trumani/stop-spammers/issues/145)
+* [New owner](https://github.com/trumani/stop-spammers/issues/145)

@@ -49,7 +49,7 @@ class ss_addtoallowlist {
 				break;
 			}
 		}
-		if( empty( $request ) or ! isset( $request[1] ) ) {
+		if ( empty( $request ) or ! isset( $request[1] ) ) {
 			return false;
 		}
 		$to = $request[1];

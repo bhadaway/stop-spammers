@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://trumani.com/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2020.6
+Version: 2020.6.1
 Author: Trumani
 Author URI: https://trumani.com/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2020.6' );
+define( 'SS_VERSION', '2020.6.1' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
