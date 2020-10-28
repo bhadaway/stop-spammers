@@ -207,10 +207,6 @@ div.checkbox.switcher label *, div.radio.switcher label * {
   font-size: 12px;
 }
 
-div.checkbox.switcher label input, div.radio.switcher label input {
-  display: none;
-}
-
 div.checkbox.switcher label input + span, div.radio.switcher label input + span {
   position: relative;
   display: inline-block;
@@ -219,9 +215,9 @@ div.checkbox.switcher label input + span, div.radio.switcher label input + span 
   height: 28px;
   background: #d9534f;
   border: 1px solid #d43f3a;
-  ;
   border-radius: 50px;
   transition: all 0.3s ease-in-out;
+  display: none;
 }
 
 div.checkbox.switcher label input + span small, div.radio.switcher label input + span small {
