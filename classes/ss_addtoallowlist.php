@@ -30,7 +30,8 @@ class ss_addtoallowlist {
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-		$this->ss_send_approval_email( $ip, $stats, $options, $post );
+		if( isset( $_GET['func' ] ) and $_GET['func'] == 'add_white' )
+			$this->ss_send_approval_email( $ip, $stats, $options, $post );
 		return false;
 	}
 
@@ -41,10 +42,13 @@ class ss_addtoallowlist {
 		if ( $options['emailrequest'] == 'N' ) {
 			return false;
 		}
+		if ( ! isset( $_GET['ip'] ) ) {
+			return false;
+		}
 		$wlrequests = $stats['wlrequests'];
 		$request = array();
 		foreach ( $wlrequests as $r ) {
-			if ( $r[0] == $ip ) {
+			if ( $r[0] == $_GET['ip'] ) {
 				$request = $r;
 				break;
 			}
