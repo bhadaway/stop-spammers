@@ -30,7 +30,7 @@ class ss_addtoallowlist {
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-		if( isset( $_GET['func' ] ) and $_GET['func'] == 'add_white' )
+		if ( isset( $_GET['func' ] ) and $_GET['func'] == 'add_white' )
 			$this->ss_send_approval_email( $ip, $stats, $options, $post );
 		return false;
 	}
