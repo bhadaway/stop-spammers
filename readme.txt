@@ -6,8 +6,8 @@ Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://trumani.com/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.6.2
-Tested up to: 5.5
+Version: 2020.6.3
+Tested up to: 5.6
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
@@ -80,7 +80,7 @@ Yes and no. You can use all Jetpack features except for Jetpack Protect, as it c
 
 Yes. The two can compliment each other. However, if you have only a small amount of hosting resources (mainly memory) or aren't even allowing registration on your website, using both might be overkill.
 
-= 2FA is failing. =
+= Why is 2FA failing? =
 
 Toggle off the "Check Credentials on All Login Attempts" option and try again.
 
@@ -89,6 +89,9 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2020.6.3 =
+* [Fix] Shortened URL option only checks for exact matches now
 
 = 2020.6.2 =
 * [Update] Minor UI improvements
