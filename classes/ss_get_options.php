@@ -21,6 +21,7 @@ class ss_get_options {
 			'chkmiscallowlist' => 'Y',
 			'chkpaypal'        => 'Y',
 			'chkform'          => 'N',
+			'ss_private_mode'  => 'N',
 			'chkscripts'       => 'Y',
 			'chkvalidip'       => 'Y',
 			'chkwlem'          => 'Y',

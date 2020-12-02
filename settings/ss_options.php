@@ -45,6 +45,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'chkakismet',
 		'filterregistrations',
 		'chkform',
+		'ss_private_mode',
 		'chkubiquity',
 		'enable_custom_password'
 	);
@@ -249,23 +250,36 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <div class="checkbox switcher">
             <label id="ss_subhead" for="chkform">
-                <input class="ss_toggle" type="checkbox" id="chkform"
-                       name="chkform" value="Y" <?php if ( $chkform == 'Y' ) {
-					echo "checked=\"checked\"";
-				} ?> /><span><small></small></span>
-                <small>
-                    <span style="font-size:16px!important">Only Use the Plugin for Standard WordPress Forms (not recommended) </span></small></label><i
-                    class="fa fa-question-circle fa-2x tooltip"><span
-                        class="tooltiptext">
-				Stop Spammers kicks off whenever someone fills out a
-				form and presses submit. It
-				checks all the forms on a website, not just comments and logins.
-				This option will limit the plugin to
-				wp-comments-post.php and wp-login.php. WooCommerce and other
-				plugins will not be checked. Enable
-				if you run an ecommerce site or a specialized site that
-				has forms that are blocked.</span></i></div>
+            	<input class="ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) { echo "checked=\"checked\""; } ?> />
+            	<span><small></small></span>
+            	<small>
+            		<span style="font-size:16px!important">Only Use the Plugin for Standard WordPress Forms (not recommended) </span>
+            	</small>
+            </label>
+            <i class="fa fa-question-circle fa-2x tooltip">
+            	<span class="tooltiptext">
+					Stop Spammers kicks off whenever someone fills out a
+					form and presses submit. It
+					checks all the forms on a website, not just comments and logins.
+					This option will limit the plugin to
+					wp-comments-post.php and wp-login.php. WooCommerce and other
+					plugins will not be checked. Enable
+					if you run an ecommerce site or a specialized site that
+					has forms that are blocked.
+				</span>
+			</i>
+		</div>
         <br />
+        <div class="checkbox switcher">
+        	<label id="ss_subhead" for="ss_private_mode">
+            	<input class="ss_toggle" type="checkbox" id="ss_private_mode" name="ss_private_mode" value="Y" <?php if ( $ss_private_mode == 'Y' ) { echo "checked=\"checked\""; } ?> />
+            	<span><small></small></span>
+            	<small>
+            		<span style="font-size:16px!important"><strong style="font-size:16px!important">Private Site:</strong> Required users to be logged in to view site</span>
+            	</small>
+            </label>
+        </div>
+        <br>
         <span style="font-weight:bold;font-size:18px">Prevent Lockouts</span>
         <p>This plugin aggressively checks for spammers and is unforgiving
             to the point where even you may get

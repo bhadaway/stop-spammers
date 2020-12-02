@@ -724,6 +724,18 @@ function ss_user_reg_filter( $user_login ) {
 	return $user_login;
 }
 
+// Private Mode: Redirect users who arent logged in
+function login_redirect() {
+    global $pagenow, $post;
+    $options = ss_get_options();
+    if( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( ! is_user_logged_in() && $post->post_name != 'login' ) ) {
+    	wp_redirect( site_url( 'login' ) ); exit;
+    } else if ( $options['ss_private_mode'] == "Y" and ( ! is_user_logged_in() && ( $pagenow != 'wp-login.php' and $post->post_name != 'login' ) ) ) {
+    	auth_redirect();
+    }
+}
+add_action( 'wp', 'login_redirect' );
+
 // action links
 function ss_summary_link( $links ) {
 	$links = array_merge( array( '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings' ) . '</a>' ), $links );
