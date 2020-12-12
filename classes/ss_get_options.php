@@ -31,7 +31,9 @@ class ss_get_options {
 			'chkstripe'        => 'Y',
 			'chkauthorizenet'  => 'Y',
 			'chkbraintree'     => 'Y',
-			'chkrecurly'       => 'Y'
+			'chkrecurly'       => 'Y',
+			'ss_login_attempts' => 'N',
+
 		);
 // Deny List Y/N settings
 		$defaultBL = array(
@@ -1254,6 +1256,8 @@ class ss_get_options {
 			'solvmediaapivchallenge' => '',
 			'solvmediaapiverify'     => '',
 			'blogseyekey'            => '',
+			'ss_login_attempts_unit' => 'hour',
+			'ss_login_lockout_unit' => 'hour',
 			'sesstime'               => 4,
 			'sfsfreq'                => 0,
 			'hnyage'                 => 9999,
@@ -1262,7 +1266,11 @@ class ss_get_options {
 			'hnylevel'               => 5,
 			'botage'                 => 9999,
 			'multicnt'               => 5,
-			'multitime'              => 3
+			'multitime'              => 3,
+			'ss_login_attempts_threshold' => 5,
+			'ss_login_attempts_duration'  => 1,
+			'ss_login_lockout_duration'   => 24
+			
 		);
 		$force          = true;
 		$defaults       = array(

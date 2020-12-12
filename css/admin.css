@@ -207,6 +207,10 @@ div.checkbox.switcher label *, div.radio.switcher label * {
   font-size: 12px;
 }
 
+div.checkbox.switcher label input, div.radio.switcher label input{
+  display: none;
+}
+
 div.checkbox.switcher label input + span, div.radio.switcher label input + span {
   position: relative;
   display: inline-block;
@@ -217,7 +221,6 @@ div.checkbox.switcher label input + span, div.radio.switcher label input + span 
   border: 1px solid #d43f3a;
   border-radius: 50px;
   transition: all 0.3s ease-in-out;
-  display: none;
 }
 
 div.checkbox.switcher label input + span small, div.radio.switcher label input + span small {
@@ -343,6 +346,12 @@ i.fa.fa-question-circle:hover {
 
 .ss_icon {
   max-height: 30px;
+}
+
+.ss-small-box {
+    width: 35px;
+    text-align: center;
+    display: initial !important;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
