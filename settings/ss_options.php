@@ -46,7 +46,6 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'filterregistrations',
 		'chkform',
 		'ss_private_mode',
-		'ss_login_attempts',
 		'chkubiquity',
 		'enable_custom_password'
 	);
@@ -226,25 +225,6 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$multicnt            = stripslashes( $_POST['multicnt'] );
 		$options['multicnt'] = $multicnt;
 	}
-	if ( array_key_exists( 'ss_login_attempts_threshold', $_POST ) ) {
-		$ss_login_attempts_threshold            = stripslashes( $_POST['ss_login_attempts_threshold'] );
-		$options['ss_login_attempts_threshold'] = $ss_login_attempts_threshold;
-	}
-	if ( array_key_exists( 'ss_login_attempts_duration', $_POST ) ) {
-		$ss_login_attempts_duration            = stripslashes( $_POST['ss_login_attempts_duration'] );
-		$options['ss_login_attempts_duration'] = $ss_login_attempts_duration;
-	}
-	if ( array_key_exists( 'ss_login_attempts_unit', $_POST ) ) {
-		$ss_login_attempts_unit            = stripslashes( $_POST['ss_login_attempts_unit'] );
-		$options['ss_login_attempts_unit'] = $ss_login_attempts_unit;
-	}
-	if ( array_key_exists( 'ss_login_lockout_duration', $_POST ) ) {
-		$ss_login_lockout_duration            = stripslashes( $_POST['ss_login_lockout_duration'] );
-		$options['ss_login_lockout_duration'] = $ss_login_lockout_duration;
-	}
-	if ( isset( $_POST['ss_login_lockout_unit'] ) ) {
-		$options['ss_login_lockout_unit'] = stripslashes( $_POST['ss_login_lockout_unit'] );
-	}
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
@@ -297,32 +277,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br>
-		<div class="checkbox switcher">
-			<label id="ss_subhead" for="ss_login_attempts">
-				<input class="ss_toggle" type="checkbox" id="ss_login_attempts" name="ss_login_attempts" value="Y" <?php if ( $ss_login_attempts == 'Y' ) { echo "checked=\"checked\""; } ?> />
-				<span><small></small></span>
-				<small>
-					<span style="font-size:16px!important">
-						<strong style="font-size:16px!important">Login Attempts:</strong> After <input type="text" name="ss_login_attempts_threshold" id="ss_login_attempts_threshold" class="ss-small-box" value="<?php echo $ss_login_attempts_threshold; ?>"> failed login attempts within
-						<input type="text" name="ss_login_attempts_duration" id="ss_login_attempts_duration" class="ss-small-box" value="<?php echo $ss_login_attempts_duration; ?>"> 
-						<select name="ss_login_attempts_unit" id="ss_login_attempts_unit" class="ss-small-dropbox">
-							<option value="minute" <?php if ( $ss_login_attempts_unit == 'minute' ) { echo 'selected="selected"'; } ?>>minute(s)</option>
-							<option value="hour" <?php if ( $ss_login_attempts_unit == 'hour' ) { echo 'selected="selected"'; } ?>>hour(s)</option>
-							<option value="day" <?php if ( $ss_login_attempts_unit == 'day' ) { echo 'selected="selected"'; } ?>>day(s)</option>
-						</select>,
-						lockout the account for
-						<input type="text" name="ss_login_lockout_duration" id="ss_login_lockout_duration" class="ss-small-box" value="<?php echo $ss_login_lockout_duration; ?>"> 
-						<select name="ss_login_lockout_unit" id="ss_login_lockout_unit" class="ss-small-dropbox">
-							<option value="minute" <?php if ( $ss_login_lockout_unit == 'minute' ) { echo 'selected="selected"'; } ?>>minute(s)</option>
-							<option value="hour" <?php if ( $ss_login_lockout_unit == 'hour' ) { echo 'selected="selected"'; } ?>>hour(s)</option>
-							<option value="day" <?php if ( $ss_login_lockout_unit == 'day' ) { echo 'selected="selected"'; } ?>>day(s)</option>
-						</select>.
-					</span>
-				</small>
-			</label>
-		</div>
-		<br>
-
 		<span style="font-weight:bold;font-size:18px">Prevent Lockouts</span>
 		<p>This plugin aggressively checks for spammers and is unforgiving
 			to the point where even you may get

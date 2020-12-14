@@ -353,6 +353,9 @@ i.fa.fa-question-circle:hover {
     text-align: center;
     display: initial !important;
 }
+select.ss-small-dropbox{
+  vertical-align: baseline;
+}
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 680px) {
