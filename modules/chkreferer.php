@@ -45,7 +45,6 @@ class chkreferer extends be_module {
 // bad referer - must be from this site
 			return "Invalid HTTP_REFERER";
 		}
-
 		return false;
 	}
 }

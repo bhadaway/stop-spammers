@@ -115,14 +115,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
       <label id="ss_subhead" for="redir">
             <input class"ss_toggle" type="checkbox" id="redir" name="redir" value="Y" onclick="ss_show_option()" <?php if ( $redir == 'Y' ) {
 					echo "checked=\"checked\"";
-} ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Send Spammer to Another Web Page </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">		
+} ?> />
+		  <small><span style="font-size:16px!important;">Send Spammer to Another Web Page</span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">		
             Redirect the spammer to a different page. This can be a
                 custom page explaining terms of
                 service for example.</span></i></div>
 			<br />
-           <span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;">Redirect URL:
-            <input size="77" name="redirurl" type="text" placeholder="e.g. https://trumani.com/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
+			<span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;">Redirect URL:
+        	<input size="77" name="redirurl" type="text" placeholder="e.g. https://stopspammers.io/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
 <script>
 function ss_show_option() {
   var checkBox = document.getElementById("redir");
@@ -139,8 +139,8 @@ ss_show_option();
       <label id="ss_subhead" for="wlreq">
             <input class"ss_toggle" type="checkbox" id="wlreq" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
 					echo "checked=\"checked\"";
-} ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Blocked users see the Allow Request form </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+} ?> />
+		  <small><span style="font-size:16px!important;">Blocked users see the Allow Request form</span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 Users can see the form to add themselves to the request list, but
                 lots of spammers fill it out randomly.
                 This hides the request form.</span></i></div>	
@@ -153,7 +153,7 @@ ss_show_option();
 		  <small><span style="font-size:16px!important;">Notify Web Admin when a user requests to be added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
                 If a web admin approves a request, the requester will be automatically notified via email.</span></i></div>
             <br />
-            <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none;">(Optional) Secify where email requests are sent:
+            <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none">(Optional) Specify where email requests are sent:
             <input id="myInput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
 <script>
 function ss_show_notify() {
@@ -167,7 +167,6 @@ function ss_show_notify() {
 }
 ss_show_notify();
 </script>
-
         <div class="checkbox switcher">
             <label id="ss_subhead" for="emailrequest">
                 <input class="ss_toggle" type="checkbox" id="emailrequest"

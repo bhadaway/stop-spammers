@@ -1,18 +1,18 @@
 <?php
 /*
 Plugin Name: Stop Spammers
-Plugin URI: https://trumani.com/
+Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2020.6.3
+Version: 2021
 Author: Trumani
-Author URI: https://trumani.com/
+Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
 Domain Path: /languages
 Text Domain: stop-spammers
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2020.6.3' );
+define( 'SS_VERSION', '2021' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -34,12 +34,12 @@ function ss_styles() {
 }
 add_action( 'admin_print_styles', 'ss_styles' );
 
-/*// admin notice for users
+// admin notice for users
 function ss_admin_notice() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed4' ) && current_user_can( 'manage_options' ) )
-		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | We\'d love to get your feedback! <a href="https://trumani.com/stop-spammers-giveaway/" target="_blank">Learn how</a> you can get a copy of Premium for 50% off or even free.', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_5' ) && current_user_can( 'manage_options' ) )
+		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Thank you! For a limited time, enjoy 50% off with code <strong>HALFOFF</strong> when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
@@ -49,10 +49,10 @@ function ss_notice_dismissed() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['ss-dismiss'] ) )
-			add_user_meta( $user_id, 'ss_notice_dismissed4', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_5', 'true', true );
 	}
 }
-add_action( 'admin_init', 'ss_notice_dismissed' );*/
+add_action( 'admin_init', 'ss_notice_dismissed' );
 
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );
@@ -382,8 +382,7 @@ function ss_log_akismet() {
 	$post           = get_post_variables();
 	$post['reason'] = 'from Akismet';
 	$post['chk']    = 'chkakismet';
-	$ansa           = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options,
-		$post );
+	$ansa           = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ansa;
 }
@@ -419,9 +418,7 @@ function ss_check_white_block() {
 	return $ansa;
 }
 
-function be_load(
-	$file, $ip, &$stats = array(), &$options = array(), &$post = array()
-) {
+function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 // all classes have a process() method
 // all classes have the same name as the file being loaded
 // only executes the file if there is an option set with value 'Y' for the name
@@ -747,7 +744,7 @@ function check_for_premium() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
 		function ss_upgrade_link( $links ) {
-			$links = array_merge( array( '<a href="https://trumani.com/" title="Get Maximum Dynamic Security" target="_blank" style="font-weight:bold">' . __( 'Upgrade' ) . '</a>' ), $links );
+			$links = array_merge( array( '<a href="https://stopspammers.io/" title="Get Maximum Dynamic Security" target="_blank" style="font-weight:bold">' . __( 'Upgrade' ) . '</a>' ), $links );
 			return $links;
 		}
 	}

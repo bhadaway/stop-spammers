@@ -62,14 +62,9 @@ class ss_addtoallowlist {
 		}
 		$ke = sanitize_text_field( $to );
 		$blog = get_bloginfo( 'name' );
-		$subject = get_bloginfo( 'name' ) . ': Your Request has been approved';
+		$subject = get_bloginfo( 'name' ) . ': Your Request Has Been Approved';
 		$subject = str_replace( '&', 'and', $subject );
-		$message = "
-Hi,
-
-I apologize for the inconvenience. I have added your IP address to the allow list. Please let me know if I can be of further assistance.
-
-$blog";
+		$message = "Apologies for the inconvenience. You've now been cleared for landing on $blog.";
 		$message = str_replace( '&', 'and', $message );
 		$headers = 'From: ' . get_option( 'admin_email' ) . "\r\n";
 		wp_mail( $to, $subject, $message, $headers );

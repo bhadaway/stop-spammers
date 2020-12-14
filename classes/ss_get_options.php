@@ -65,7 +65,7 @@ class ss_get_options {
 			'chkakismet'    => 'Y',
 			'chkmulti'      => 'Y',
 			'chktor'     	=> 'Y',
-			'chkperiods'	=> 'N',
+			'chkperiods'	=> 'Y',
 			'chkhyphens'	=> 'N'
 		);
 // control options that can be set - not checks
@@ -84,8 +84,8 @@ class ss_get_options {
 			'redir'               => 'N',
 			'chkcaptcha'          => 'A',
 			'chkxff'              => 'N',
-			'notify'              => 'Y',
-			'emailrequest'     	  => 'Y',
+			'notify'              => 'N',
+			'emailrequest'     	  => 'N',
 			'chkspoof'            => 'N',
 			'filterregistrations' => 'Y'
 			// filter registration attempts - even if not from post

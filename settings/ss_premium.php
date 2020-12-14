@@ -12,7 +12,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
     <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-premium.png'; ?>" class="ss_icon">Stop Spammers — Premium Options</h1>
     <br />
 	    <span class="notice notice-warning" style="display:block">
-        <p>Use coupon code <strong>SSP4ME</strong> to get $5 off <a href="https://trumani.com/downloads/stop-spammers-premium/">Stop Spammers Premium</a>.</p>
+        <p>Use coupon code <strong>SSP4ME</strong> to get $5 off <a href="https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium</a>.</p>
     </span>
     <br />
     <div class="ss_admin_info_boxes_3row">
@@ -52,6 +52,6 @@ if ( ! current_user_can( 'manage_options' ) ) {
         </div>
     </div>
 	            <div class="ss_admin_button">
-                <a href="https://trumani.com/downloads/stop-spammers-premium/">Get Premium</a>
+                <a href="https://stopspammers.io/downloads/stop-spammers-premium/">Get Premium</a>
             </div>
 </div>

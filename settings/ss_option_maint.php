@@ -300,8 +300,8 @@ ss_fix_post_vars();
             <thead>
             <tr bgcolor="#fff">
                 <th class="ss_cleanup">Option</th>
-                <th  class="ss_cleanup">Autoload</th>
-                <th  class="ss_cleanup">Size</th>
+                <th class="ss_cleanup">Autoload</th>
+                <th class="ss_cleanup">Size</th>
                 <th class="ss_cleanup">Change Autoload</th>
                 <th class="ss_cleanup">Delete</th>
                 <th class="ss_cleanup">View Contents</th>

@@ -1,12 +1,12 @@
 === Stop Spammers ===
 
 Author: Trumani
-Plugin URI: https://trumani.com/
+Plugin URI: https://stopspammers.io/
 Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
-Donate link: https://trumani.com/donate
+Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Stable Tag: trunk
-Version: 2020.6.3
+Version: 2021
 Tested up to: 5.6
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -18,7 +18,7 @@ Stop spam emails, spam comments, spam registration, and spam bots and spammers i
 
 Stop Spammers works right out-of-the-box, without needing to adjust any settings. If you need more sophisticated protection, you have 50+ configuration options at your fingertips for maximum personalization.
 
-Get even more options with <strong><a href="https://trumani.com/downloads/stop-spammers-premium/">Stop Spammers Premium</a></strong>.
+Get even more options with <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium</a></strong>.
 
 **Features**
 
@@ -33,9 +33,11 @@ Extremely granular control, so that any variety of website can create a special 
 * Block countries
 * Block/allow IPs, emails, and usernames manually
 * Send email when allow list request is approved
+* Private mode
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
+* Brute force login protection (Premium Only)
 * Import/export settings (Premium Only)
 * Export log to Excel (Premium Only)
 * Restore default settings (Premium Only)
@@ -90,7 +92,12 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
-= 2020.6.3 =
+= 2021 =
+* [New] Private mode feature
+* [Update] UI improvements
+* [Enhanced] Too many periods feature
+* [Enhanced] Emails are now off by default (to avoid potential issues with server reputation)
+* [Enhanced] Code audit and cleanup
 * [Fix] Shortened URL option only checks for exact matches now
 
 = 2020.6.2 =

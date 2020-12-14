@@ -190,13 +190,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</i>
 		</div>
 		<br />
-		<textarea name="denyurlshortners" cols="40" rows="8">
-			<?php
-				foreach ( $denyurlshortners as $p ) {
-					echo $p . "\r\n";
-				}
-				?>
-		</textarea>
+		<textarea name="denyurlshortners" cols="40" rows="8"><?php
+			foreach ( $denyurlshortners as $p ) {
+				echo $p . "\r\n";
+			}
+		?></textarea>
         <br />
 				<h2>Bad User Agents List</h2>
 				<p>This is a string search so that all you have to enter is enough

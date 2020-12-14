@@ -249,7 +249,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	| Your current IP address is: <strong><?php echo $ip; ?></strong>
 	<?php
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		echo ' | <strong>USE CODE SSP4ME FOR $5 OFF THE <a href="https://trumani.com/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">PREMIUM PLUGIN</a></strong>';
+		echo ' | <strong>USE CODE SSP4ME FOR $5 OFF THE <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">PREMIUM PLUGIN</a></strong>';
 	}
 	?>
 	<?php

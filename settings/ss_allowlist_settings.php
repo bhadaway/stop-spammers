@@ -33,7 +33,6 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$stats['wlrequests'] = $wlrequests;
 		ss_set_stats( $stats );
 	}
-
 	$msg = '';
 }
 
@@ -229,7 +228,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input class"ss_toggle" type="checkbox" id="chkstripe" name="chkstripe" value="Y" <?php if ( $chkstripe == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Allow Stripe <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+		  <small><span style="font-size:16px!important;">Allow Stripe</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Stripe, enable this setting.</span></i></div>
         <br />
 <div class="checkbox switcher">
@@ -237,7 +236,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input class"ss_toggle" type="checkbox" id="chkauthorizenet" name="chkauthorizenet" value="Y" <?php if ( $chkauthorizenet == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Allow Authorize.Net <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+		  <small><span style="font-size:16px!important;">Allow Authorize.Net</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Authorize.Net, enable this setting.</span></i></div>
         <br />
 <div class="checkbox switcher">
@@ -245,7 +244,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input class"ss_toggle" type="checkbox" id="chkbraintree" name="chkbraintree" value="Y" <?php if ( $chkbraintree == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Allow Braintree <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+		  <small><span style="font-size:16px!important;">Allow Braintree</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Braintree, enable this setting.</span></i></div>
         <br />
 <div class="checkbox switcher">
@@ -253,7 +252,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             <input class"ss_toggle" type="checkbox" id="chkrecurly" name="chkrecurly" value="Y" <?php if ( $chkrecurly == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Allow Recurly <sup class="ss_sup">NEW!</sup></span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
+		  <small><span style="font-size:16px!important;">Allow Recurly</span></small></label> <i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
                 If you accept payment through Recurly, enable this setting.</span></i></div>
         <br />
 <div class="checkbox switcher">
