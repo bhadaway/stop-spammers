@@ -39,7 +39,7 @@ function ss_admin_notice() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_5' ) && current_user_can( 'manage_options' ) )
-		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Thank you! For a limited time, enjoy 50% off with code <strong>HALFOFF</strong> when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
+		echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Thank you! For a limited time, enjoy a big discount with code <strong>holidaycheer</strong> when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
