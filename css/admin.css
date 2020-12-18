@@ -68,6 +68,10 @@
   padding: 5px 15px;
 }
 
+#ss-plugin .postbox .inside {
+  padding-bottom: 0;
+}
+
 .ss_admin_button a {
   text-transform: uppercase;
   letter-spacing: 1px;
