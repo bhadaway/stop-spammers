@@ -82,7 +82,7 @@ class ss_get_options {
 			'wlreq'               => 'Y',
 			// using this to see if we display the notify form
 			'redir'               => 'N',
-			'chkcaptcha'          => 'A',
+			'chkcaptcha'          => 'N',
 			'chkxff'              => 'N',
 			'notify'              => 'N',
 			'emailrequest'     	  => 'N',
