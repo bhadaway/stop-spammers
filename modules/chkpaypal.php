@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// last updated from https://www.paypal.com/us/smarthelp/article/what-are-the-ip-addresses-for-live-paypal-servers-ts1056 on 12/22/20
 class chkpaypal extends be_module {
 	public $searchname = 'PayPal';
 	public $searchlist = array(

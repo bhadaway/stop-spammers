@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// last updated from https://stripe.com/docs/ips on 12/22/20
 class chkstripe extends be_module {
 	public $searchname = 'stripe';
 	public $searchlist = array(
@@ -106,6 +107,12 @@ class chkstripe extends be_module {
 			'107.23.48.182',
 			'107.23.48.232',
 // webhooks
+			'3.18.12.63',
+			'3.130.192.231',
+			'13.235.14.237',
+			'13.235.122.149',
+			'35.154.171.200',
+			'52.15.183.38',
 			'54.187.174.169',
 			'54.187.205.235',
 			'54.187.216.72',

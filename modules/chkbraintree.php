@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// last updated from https://developers.braintreepayments.com/reference/general/braintree-ip-addresses on 12/22/20
 class chkauthorizenet extends be_module {
 	public $searchname = 'authorizenet';
 	public $searchlist = array(

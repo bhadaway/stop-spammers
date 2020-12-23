@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// last updated from https://support.google.com/a/answer/10026322 on 12/22/20
 class chkgoogle extends be_module {
 	public $searchname = 'Google IP';
 	public $searchlist = array(

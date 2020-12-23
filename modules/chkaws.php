@@ -1,10 +1,10 @@
 <?php
-// for Amazon AWS - source of spam but usually cleaned up promptly
-// exact same as chkamazon except used as an Allow List
+// Allow List - returns false if not found
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// last updated from https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html on 12/22/20
 class chkaws extends be_module {
 	public $searchname = 'Amazon AWS Server';
 	public $searchlist = array(
