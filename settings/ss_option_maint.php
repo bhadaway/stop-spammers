@@ -18,7 +18,7 @@ ss_fix_post_vars();
 	<div class="ss_info_box">
     <p>Inspect and delete orphan or suspicious options or change plugin options so that
         they don&acute;t autoload. Be aware that you can break some
-        plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/database-cleanup/" target="_blank">review our documentation.</a></p></div>
+        plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/database-cleanup/" target="_blank">review our documentation</a>.</p></div>
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
