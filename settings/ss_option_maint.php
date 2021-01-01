@@ -295,7 +295,7 @@ ss_fix_post_vars();
 	$m3 = number_format( $m3 );
 	echo "<p>Memory Usage Currently: $m1, Peak: $m3</p>";
 	$nonce          = wp_create_nonce( 'ss_update2' );
-	$showtransients = true; // change to true to clean up transients
+	$showtransients = false; // change to true to clean up transients
 	if ( $showtransients
 	     && countTransients() > 0
 	) { // personal use - probably too dangerous for casual users
