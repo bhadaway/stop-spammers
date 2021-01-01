@@ -82,7 +82,11 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_options( $options );
 		extract( $options ); // extract again to get the new options
 	}
-	$update = '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>';
+	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated! Add Cracking Defense with Brute Force Protection <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
+	} else {
+		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated!</p></div>';
+	}
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
@@ -97,29 +101,19 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
     <form method="post" action="">
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <input type="hidden" name="action" value="update challenge" />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Spammer Message</span>
-            </legend>
-            <p>This message only shows if spammers or false positive valid visitors are rejected at the time the login or
-                comment form is displayed. You can use the shortcode <em>[reason]</em>
-                to include the deny reason code
-                with the message. You can also use <em>[ip]</em> in your message
-                which would be the user's IP address.
-                (You may not want to give spammers hints on how they were
-                denied.)</p>
+	<br />
+	<div class="mainsection">Access Denied Message
+	<sup class="ss_sup"><a href="https://stopspammers.io/challenge-and-deny/#accessdenied" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
             <textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
-        </fieldset>
         <br />
+	<div class="mainsection">Routing and Notifications
+	<sup class="ss_sup"><a href="https://stopspammers.io/challenge-and-deny/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 <div class="checkbox switcher">
       <label id="ss_subhead" for="redir">
             <input class"ss_toggle" type="checkbox" id="redir" name="redir" value="Y" onclick="ss_show_option()" <?php if ( $redir == 'Y' ) {
 					echo "checked=\"checked\"";
-} ?> />
-		  <small><span style="font-size:16px!important;">Send Spammer to Another Web Page</span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">		
-            Redirect the spammer to a different page. This can be a
-                custom page explaining terms of
-                service for example.</span></i></div>
+} ?> /><span><small></small></span>
+		  <small><span style="font-size:16px!important;">Send Visitor to Another Web Page</span></small></label></div>
 			<br />
 			<span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;">Redirect URL:
         	<input size="77" name="redirurl" type="text" placeholder="e.g. https://stopspammers.io/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
@@ -135,23 +129,22 @@ function ss_show_option() {
 }
 ss_show_option();
 </script>
-<div class="checkbox switcher">
-      <label id="ss_subhead" for="wlreq">
-            <input class"ss_toggle" type="checkbox" id="wlreq" name="wlreq" value="Y" <?php if ( $wlreq == 'Y' ) {
+        <div class="checkbox switcher">
+            <label id="ss_subhead" for="wlreq">
+                <input class="ss_toggle" type="checkbox" id="wlreq"
+                       name="wlreq"
+                       value="Y" <?php if ( $wlreq == 'Y' ) {
 					echo "checked=\"checked\"";
-} ?> />
-		  <small><span style="font-size:16px!important;">Blocked users see the Allow Request form</span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">
-                Users can see the form to add themselves to the request list, but
-                lots of spammers fill it out randomly.
-                This hides the request form.</span></i></div>	
+				} ?> /><span><small></small></span>
+                <small>
+                    <span style="font-size:16px!important">Blocked users see the Allow Request form</span></small></label></div>
         <br />
 <div class="checkbox switcher">
       <label id="ss_subhead" for="notify">
             <input class"ss_toggle" type="checkbox" id="notify" name="notify" value="Y" onclick="ss_show_notify()" <?php if ( $notify == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Notify Web Admin when a user requests to be added to the Allow List </span></small></label><i class="fa fa-question-circle fa-2x tooltip"><span class="tooltiptext">	
-                If a web admin approves a request, the requester will be automatically notified via email.</span></i></div>
+		  <small><span style="font-size:16px!important;">Notify Web Admin when a user requests to be added to the Allow List</span></small></label></div>
             <br />
             <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none">(Optional) Specify where email requests are sent:
             <input id="myInput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
@@ -175,35 +168,19 @@ ss_show_notify();
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
                 <small>
-                    <span style="font-size:16px!important">Notify Requester when a Web Admin has approved their request to be added to the Allow List <sup class="ss_sup">NEW!</sup></span>
-                </small>
-            </label>
-            <i class="fa fa-question-circle fa-2x tooltip">
-			<span class="tooltiptext">                 	
-					If a web admin approves a request, the requester will be automatically notified via email. 
-			</span>
-            </i>
-        </div>
+                    <span style="font-size:16px!important">Notify Requester when a Web Admin has approved their request to be added to the Allow List </span><sup class="ss_sup">NEW!</sup></small></label></div>
 		<br />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Second Chance CAPTCHA Challenge</span>
-            </legend>
+		<br />
+	<div class="mainsection">CAPTCHA
+	<sup class="ss_sup"><a href="https://stopspammers.io/challenge-and-deny/#captcha" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+        <div style="margin-left:30px;">
+				<small><span style="font-size:16px!important;">Second Chance CAPTCHA Challenge</span></small>
 			<?php
 			if ( ! empty( $msg ) ) {
 				echo "<span style=\"color:red;font-size:1.2em\">$msg</span>";
 			}
 			?>
-            <p>The plugin is extremely aggressive and will probably block some
-                small number of legitimate users. You can
-                give users a second chance by displaying a CAPTCHA image and
-                asking them to type in the letters that
-                they see. This prevents lockouts.<br/>
-                This option will override the email notification option
-                above.<br/>
-                By default, the plugin will support the arithmetic question,
-                which is okay. For better results,
-                use Google's reCAPTCHA, or you can try SolveMedia's CAPTCHA<br />
+            <p>
                 <input type="radio" value="N"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'N' ) {
 					echo "checked=\"checked\"";
@@ -224,30 +201,16 @@ ss_show_notify();
 					echo "checked=\"checked\"";
 				} ?> />
                 Arithmetic Question</p>
-            <p>In order to use Solve Media or Google reCAPTCHA you will need to
-                get an API key. Open CAPTCHA is no
-                longer supported so the arithmetic question will be used for
-                those that had it set.</p>
-        </fieldset>
+            <p>To use either the Solve Media or Google reCAPTCHA, you will need an API key.</p></div>
+
         <br />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Google reCAPTCHA API Key</span>
-            </legend>
+			<div style="margin-left:30px;"><small><span style="font-size:16px!important;">Google reCAPTCHA API Key</span></small> <br />
             Site Key:
             <input size="64" name="recaptchaapisite" type="text" value="<?php echo $recaptchaapisite; ?>" />
             <br />
             Secret Key:
             <input size="64" name="recaptchaapisecret" type="text" value="<?php echo $recaptchaapisecret; ?>" />
             <br />
-            <p>These API keys are used for displaying a Google reCAPTCHA on your
-                site.
-                You can display the reCAPTCHA in case a real user is blocked, so
-                they can still leave a comment.
-                You can register and get an API key at <a
-                        href="https://www.google.com/recaptcha/admin#list"
-                        target="_blank">https://www.google.com/recaptcha/admin#list</a>.
-                If the keys are correct you should see the reCAPTCHA here:</p>
 			<?php
 			if ( ! empty( $recaptchaapisite ) ) {
 				?>
@@ -257,26 +220,14 @@ ss_show_notify();
 				<?php
 			}
 			?>
-        </fieldset>
         <br />
-        <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Solve Media CAPTCHA API Key</span>
-            </legend>
+			<small><span style="font-size:16px!important;">Solve Media CAPTCHA API Key</span></small> <br />
             Solve Media Challenge Key:
             <input size="64" name="solvmediaapivchallenge" type="text" value="<?php echo $solvmediaapivchallenge; ?>" />
             <br />
             Solve Media Verification Key:
             <input size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>" />
             <br />
-            <p>This API key is used for displaying a Solve Media CAPTCHA on your
-                site.
-                You can display the CAPTCHA in case a real user is blocked, so
-                they can still leave a comment.
-                You can register and get an API key at <a
-                        href="https://portal.solvemedia.com/portal/public/signup"
-                        target="_blank">https://portal.solvemedia.com/portal/public/signup</a>.
-                If the keys are correct you should see the CAPTCHA here:</p>
 			<?php
 			if ( ! empty( $solvmediaapivchallenge ) ) {
 				?>
@@ -287,7 +238,7 @@ ss_show_notify();
 				<?php
 			}
 			?>
-        </fieldset>
+			</div>
         <br />
         <br />
         <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
