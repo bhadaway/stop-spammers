@@ -16,50 +16,9 @@ ss_fix_post_vars();
 	}
 	?>
 	<div class="ss_info_box">
-    <p>Plugins often don't clean up their mess when they are uninstalled. Some
-        malicious themes and plugins use
-        WordPress options to store information.
-        This function allows you inspect and delete orphan or suspicious options
-        and to change plugin options so that
-        they don&acute;t autoload.</p>
-    <p>In WordPress, some options are loaded whenever WordPress loads a page.
-        These are marked as autoload options.
-        This is done to speed up WordPress and prevent the programs from hitting
-        the database every time some plugin
-        needs to look up an option. Automatic loading of options at startup
-        makes WordPress fast, but it can also
-        use up memory for options that will seldom or never be used.</p>
-    <p>You can safely switch options so that they don&acute;t load
-        automatically. Probably the worst thing that will
-        happen is that the page will paint a little slower because the option is
-        retrieved separately from other
-        options. The best thing that can happen is there is a lower demand on
-        memory because the unused options are
-        not loaded when WordPress starts loading a page.</p>
-    <p>When plugins are uninstalled they are supposed to clean up their options.
-        Many plugins do not do any cleanup
-        during uninstall. It is quite possible that you have many orphan options
-        from plugins that you deleted long
-        ago. These are autoloaded on every page, slowing down your pages and
-        eating up memory. These options can be
-        safely marked so that they will not autoload. If you are sure they are
-        not needed you can delete them.</p>
-    <p>The change autoload column shows current autoload state. Yes means it is
-        autoloading. No means that it is
-        not.</p>
-    <p>You can change the autoload settings or delete an option on the form
-        below. Be aware that you can break some
-        plugins by deleting their options. I do not show most of the built-in
-        options used by WordPress. The list
-        below should be just plugin options.</p>
-    <p>It is far safer to change the autoload option value to &quot;no&quot;
-        than to delete an option. Only delete
-        an option if you are sure that it is from an uninstalled plugin. If you
-        find your pages slowing down, turn
-        the autoload option back to &quot;yes&quot;.</p>
-    <p>Option names are determined by the plugin author. Some are obvious, but
-        some make no sense. You may have to
-        do a little detective work to figure out where an option came from.</p></div>
+    <p>Inspect and delete orphan or suspicious options or change plugin options so that
+        they don&acute;t autoload. Be aware that you can break some
+        plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/database-cleanup/" target="_blank">review our documentation.</a></p></div>
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
@@ -336,7 +295,7 @@ ss_fix_post_vars();
 	$m3 = number_format( $m3 );
 	echo "<p>Memory Usage Currently: $m1, Peak: $m3</p>";
 	$nonce          = wp_create_nonce( 'ss_update2' );
-	$showtransients = false; // change to true to clean up transients
+	$showtransients = true; // change to true to clean up transients
 	if ( $showtransients
 	     && countTransients() > 0
 	) { // personal use - probably too dangerous for casual users
