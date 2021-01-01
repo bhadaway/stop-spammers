@@ -343,10 +343,11 @@ div.checkbox.switcher label:active:after {
   margin: 20px 0;
   box-sizing: border-box;
 }
-
+i.fa.fa-question-circle {
+	color: #444 !important;
+}
 i.fa.fa-question-circle:hover {
-  color: #e52a6f;
-  cursor: help;
+  color: #e52a6f !important;
 }
 
 .ss_icon {
@@ -360,6 +361,12 @@ i.fa.fa-question-circle:hover {
 }
 select.ss-small-dropbox{
   vertical-align: baseline;
+}
+
+div.mainsection {
+	font-weight:bold;
+	font-size:18px;
+	margin: 0px 0px 25px 0px;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
