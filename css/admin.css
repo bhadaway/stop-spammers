@@ -6,7 +6,10 @@
   font-family: 'Roboto Slab', -apple-system,BlinkMacSystemFont, Roboto, sans-serif;
   font-size: 30px;
 }
-
+.keyhead {
+	font-size: 16px !important;
+	margin-left: 30px;
+}
 #toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image {
   max-height: 20px;
   padding: 7px 0 0;
