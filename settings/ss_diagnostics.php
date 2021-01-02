@@ -49,9 +49,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <input type="hidden" name="action" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
-            <legend>
-				<span style="font-weight:bold;font-size:1.2em">Option Testing</span>
-            </legend>
+	<div class="mainsection">Option Testing
+	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 			<p>Run the settings against an IP address to see the results.</p>
             IP Address:<br />
 			<input id="myInput" name="ip" type="text" value="<?php echo $ip; ?>">
@@ -343,6 +342,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         </fieldset>
 		</div>
         <br/>
+<div class="ss_info_box">
+	<div class="mainsection">Information Display
+	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#infodisplay" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
         <div style="width:50%;float:left">
             <h2>Display All Options</h2>
             <p>You can dump all options here (useful for debugging):</p>
@@ -494,7 +496,7 @@ echo "\r\n";
 		"\n</div>\n";
 	}
 	?>
-
+</div>
 <?php
 
 ss_fix_post_vars();
@@ -514,22 +516,11 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div class="ss_info_box">
-	<span style="font-weight:bold;font-size:18px">Threat Scan</span>
-    <p>This is a very simple threat scan that looks for things out of place in
+	<div class="mainsection">Threat Scan
+	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#threats" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+    <p>A very simple scan that looks for things out of place in
         the content directory as well as the
         database.</p>
-    <p>The process searches PHP files for the occurrence of the eval() function,
-        which, although a valuable part of PHP
-        is also the door that hackers use in order to infect systems. The eval()
-        function is avoided by many programmers
-        unless there is a real need. It is often used by hackers to hide their
-        malicious code or to inject future
-        threats into infected systems. If you find a theme or a plugin that uses
-        the eval() function it is safer to
-        delete it and ask the author to provide a new version that does not use
-        this function.</p>
-    <p>The scan can take a few seconds and on larger or slower systems can
-		time-out.</p>
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
@@ -539,63 +530,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<?php
 	if ( $runscan ) {
 		?>
-<div class="ss_info_box">
-	<i class="fa fa-question-circle fa-2x"></i>	
-    <span style="font-weight:bold;font-size:18px">Food for Thought</span>    
-	<p>When you scan your system you will often see the eval used in
-            Javascript because it is used in the
-            Javascript AJAX and JSON functionality. The appearance of eval in
-            these cases does not mean that there is a
-            possible threat. It just means that you should inspect the code to
-            make sure that it is in a Javascript
-            section and not native PHP. The process continues its scan by checking the database tables for
-            Javascript or HTML where it should not be
-            found.</p>
-        <p>Normally, Javascript can be found in the post body, but if the script
-            tag is found in a title or a text field
-            where it does not belong it is probably because the script is hiding
-            something, such as a hidden admin user,
-            so that the normal administration pages do not show bad records. The
-            scan looks for this and displays the
-            table and record number where it believes there is something
-            hinky.</p>
-        <p>The scan continues looking in the database for certain HTML in places
-            where it does not belong. Recent
-            threats have been putting HTML into fields in the options table so
-            that users will be sent to malicious
-            sites. The presence of HTML in options values is suspect and should
-            be checked.</p>
-        <p>The options table will have things placed there by plugins so it is
-            difficult to tell if scripts, iframes,
-            and other HTML tags are a threat. They will be reported, but they
-            should be checked before deleting the
-            entries.</p>
-        <p>This process is just a simple scan and does not try to fix any
-            problems. It will show things that may not be
-            threats, but should be checked. If anything shows up, you should try
-            to repair the damage or hire someone to
-            do it. I am not a security expert, but a programmer who discovered
-            these types of things in a friend's blog.
-            After many hours of checking I was able to fix the problem, but a
-            professional could have done it faster and
-            easier, although they would have charged for it.</p>
-        <p>You probably do not have a backup to your blog, so if this scan shows
-            you are clean, your next step is to
-            install one of the plugins that does regular backups of your system.
-            Next, make sure you have the latest
-            WordPress version.</p>
-        <p>If you think you have problems, the first thing to do is change your
-            user ID and password. Next make a backup
-            of the infected system. Any repairs to WordPress might delete
-            important data so you might lose posts, and
-            the backup will help you recover missing posts.</p>
-        <p>The next step is to install the latest version of WordPress. The new
-            versions usually have fixes for older
-            threats.</p>
-        <p>You may want to export your WordPress posts, make a new clean
-            installation of WordPress, and then import the
-            old posts. If this doesn't work it is time to get a pro involved.</p></div>
-        <h2>A clean scan does not mean you are safe. Please do backups and keep
+        <h2>A clean scan does not mean you are safe. Please keep regular backups and ensure
             your installation up-to-date!</h2>
         <hr />
 		<?php
