@@ -5,8 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // last updated from https://developers.braintreepayments.com/reference/general/braintree-ip-addresses on 12/22/20
-class chkauthorizenet extends be_module {
-	public $searchname = 'authorizenet';
+class chkbraintree extends be_module {
+	public $searchname = 'braintree';
 	public $searchlist = array(
 // IP ranges
 			'63.146.102.0/26',
