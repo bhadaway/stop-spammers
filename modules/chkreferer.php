@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -31,10 +32,10 @@ class chkreferer extends be_module {
 // check to see if our domain is found in the referer
 		$host = $_SERVER['HTTP_HOST'];
 		if ( empty( $ref ) ) {
-			return 'Missing HTTP_REFERER';
+			_e( 'Missing HTTP_REFERER', 'stop-spammer-registrations-plugin' );
 		}
 		if ( empty( $host ) ) {
-			return 'Missing HTTP_HOST';
+			_e( 'Missing HTTP_HOST', 'stop-spammer-registrations-plugin' );
 		}
 // some servers have an empty host for some reason
 // some servers and links from https to http and back don't send a referer
@@ -43,7 +44,7 @@ class chkreferer extends be_module {
 		} // had to do this because sometimes legit ones are null?
 		if ( strpos( strtolower( $ref ), strtolower( $host ) ) === false ) {
 // bad referer - must be from this site
-			return "Invalid HTTP_REFERER";
+			_e( 'Invalid HTTP_REFERER', 'stop-spammer-registrations-plugin' );
 		}
 		return false;
 	}

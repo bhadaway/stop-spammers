@@ -1,10 +1,13 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
+
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
+
 ss_fix_post_vars();
 $trash    = SS_PLUGIN_URL . 'images/trash.png';
 $tdown    = SS_PLUGIN_URL . 'images/tdown.png';
@@ -12,11 +15,10 @@ $tup      = SS_PLUGIN_URL . 'images/tup.png';
 $whois    = SS_PLUGIN_URL . 'images/whois.png';
 $stophand = SS_PLUGIN_URL . 'images/stop.png';
 $search   = SS_PLUGIN_URL . 'images/search.png';
-$now      = date( 'Y/m/d H:i:s',
-	time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+$now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 ?>
 <div id="ss-plugin" class="wrap">
-	<h1 class="ss_head">Stop Spammers — Log Report</h1>
+	<h1 class="ss_head">Stop Spammers — <?php __( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
 	// $ip=ss_get_ip();
 	$stats = ss_get_stats();
@@ -40,40 +42,38 @@ $now      = date( 'Y/m/d H:i:s',
 			$stats['spdate']  = $spdate;
 			ss_set_stats( $stats );
 			extract( $stats ); // extract again to get the new options
-			$msg              = "<div class='notice notice-success'><p>Activity Log Cleared</p></div>";
+			$msg              = '<div class="notice notice-success"><p>' . __( 'Activity Log Cleared', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 		}
 		if ( array_key_exists( 'ss_stop_update_log_size', $_POST ) ) {
 // update log size
 			if ( array_key_exists( 'ss_sp_hist', $_POST ) ) {
 				$ss_sp_hist            = stripslashes( $_POST['ss_sp_hist'] );
 				$options['ss_sp_hist'] = $ss_sp_hist;
-				$msg                   = "<div class='notice notice-success'><p>Options Updated</p></div>";
+				$msg                   = '<div class="notice notice-success"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 // update the options
 				ss_set_options( $options );
 			}
 		}
 	}
 	if ( ! empty( $msg ) ) {
-		echo "$msg";
+		echo '$msg';
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
-		<p>There are <a
-					href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a>
+		<p><?php __( 'There are <a href="edit-comments.php?comment_status=spam">' . echo $num . '</a>
 			spam comments waiting for
-			you to report them.</p>
+			you to report them.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
-		<p>There are <a
-					href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a>
+		<p><?php __( 'There are <a href="edit-comments.php?comment_status=moderated">' . echo $num . '</a>
 			comments waiting to be
-			moderated.</p>
+			moderated.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	$nonce = wp_create_nonce( 'ss_stopspam_update' );
@@ -86,8 +86,8 @@ $now      = date( 'Y/m/d H:i:s',
 	<form method="post" action="">
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 		<input type="hidden" name="ss_stop_update_log_size" value="true" />
-		<h2>History Size</h2>
-		Select the number of events to save in the history.<br/>
+		<h2><?php __( 'History Size', 'stop-spammer-registrations-plugin' ); ?></h2>
+		<?php __( 'Select the number of events to save in the history.', 'stop-spammer-registrations-plugin' ); ?><br/>
 		<p class="submit">
 			<select name="ss_sp_hist">
 				<option value="10" <?php if ( $ss_sp_hist == '10' ) {
@@ -115,37 +115,30 @@ $now      = date( 'Y/m/d H:i:s',
 				} ?>>150
 				</option>
 			</select>
-			<input class="button-primary" value="Update Log Size"
-				   type="submit"/></p>
+			<input class="button-primary" value="<?php __( 'Update Log Size', 'stop-spammer-registrations-plugin' ); ?>" type="submit"/></p>
 		<form method="post" action="">
-			<input type="hidden" name="ss_stop_spammers_control"
-				   value="<?php echo $nonce; ?>"/>
+			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
 			<input type="hidden" name="ss_stop_clear_hist" value="true"/>
-			<p class="submit"><input class="button-primary"
-									 value="Clear Recent Activity"
-									 type="submit"/></p>
+			<p class="submit"><input class="button-primary" value="<?php __( 'Clear Recent Activity', 'stop-spammer-registrations-plugin' ); ?>" type="submit"/></p>
 		</form>
 		<?php
 		if ( empty( $hist ) ) {
-			echo "<p>Nothing in logs.</p>";
+			_e( '<p>Nothing in logs.</p>', 'stop-spammer-registrations-plugin' );
 		} else {
 			?>
 			<br/>
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Date Search" title="Filter by a value">
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="<?php __( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php __( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
 			<table name="mytable" id="myTable" style="width:100%;background-color:#eee" cellspacing="2">
 				<thead>
 				<tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
-					<th onclick="sortTable(0)" class="filterhead ss_cleanup">
-						Date/Time
-					</th>
-					<th class="ss_cleanup">Email</th>
-					<th class="ss_cleanup">IP</th>
-					<th class="ss_cleanup">Author, User/Pwd</th>
-					<th class="ss_cleanup">Script</th>
-					<th class="ss_cleanup">Reason
+					<th onclick="sortTable(0)" class="filterhead ss_cleanup"><?php __( 'Date/Time', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php __( 'Email', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php __( 'IP', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php __( 'Author, User/Pwd', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php __( 'Script', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php __( 'Reason', 'stop-spammer-registrations-plugin' ); ?>
 						<?php
-						if ( function_exists( 'is_multisite' )
-							 && is_multisite() ) {
+						if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 						?>
 					</th>
 				</thead>
@@ -181,18 +174,14 @@ $now      = date( 'Y/m/d H:i:s',
 					if ( empty( $reason ) ) {
 						$reason = "passed";
 					}
-					$stopper
-						= "<a title=\"Check Stop Forum Spam (SFS)\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\" /></a>";
-					$honeysearch
-						= "<a title=\"Check project HoneyPot\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$ip\"><img src=\"$search\" height=\"16px\" /></a>";
-					$botsearch
-						= "<a title=\"Check BotScout\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$ip\"><img src=\"$search\" height=\"16px\" /></a>";
-					$who
-						= "<br /><a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
-					echo "<tr style=\"background-color:white\">
+					$stopper     = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=$ip"><img src="$stophand" height="16px" /></a>';
+					$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_$ip"><img src="$search" height="16px" /></a>';
+					$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=$ip"><img src="$search" height="16px" /></a>';
+					$who         = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip"><img src="$whois" height="16px" /></a>';
+					echo '<tr style=\"background-color:white\">
 <td>$dt</td>
 <td>$em</td>
-<td>$ip $who $stopper $honeysearch $botsearch";
+<td>$ip $who $stopper $honeysearch $botsearch';
 					if ( stripos( $reason, 'passed' ) !== false
 						 && ( $id == '/'
 							  || strpos( $id, 'login' ) ) !== false
@@ -201,29 +190,29 @@ $now      = date( 'Y/m/d H:i:s',
 							&& ! in_array( $ip, $wlist )
 					) {
 						$ajaxurl = admin_url( 'admin-ajax.php' );
-						echo "<a href=\"\" onclick=\"sfs_ajax_process( '$ip','log','add_black','$ajaxurl' );return false;\" title=\"Add to Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a>";
+						echo '<a href="" onclick="sfs_ajax_process(\'$ip\',\'log\',\'add_black\',\'$ajaxurl\');return false;" title="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '"><img src="$tdown" height="16px" /></a>';
 						$options = get_option( 'ss_stop_sp_reg_options' );
 						$apikey  = $options['apikey'];
 						if ( ! empty( $apikey ) && ! empty( $em ) ) {
-							$href = "href=\"#\"";
-							$onclick = "onclick=\"sfs_ajax_report_spam(this, 'registration', '$blog', '$ajaxurl', '$em', '$ip', '$au');return false;\"";
-							echo "|";
-							echo "<a title=\"Report to Stop Forum Spam (SFS)\" $href $onclick class='delete:the-comment-list:comment-$id::delete=1 delete vim-d vim-destructive'>Report to SFS</a>";
+							$href = 'href="#"';
+							$onclick = 'onclick="sfs_ajax_report_spam(this,\'registration\',\'$blog\',\'$ajaxurl\',\'$em\',\'$ip\',\'$au\');return false;\"';
+							echo '|';
+							echo '<a title="' . esc_attr__( 'Report to Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" $href $onclick class="delete:the-comment-list:comment-$id::delete=1 delete vim-d vim-destructive">' . __( 'Report to SFS', 'stop-spammer-registrations-plugin' ) . '</a>';
 						}
 					}
-					echo "</td><td>$au</td>
+					echo '</td><td>$au</td>
 <td>$id</td>
-<td>$reason</td>";
+<td>$reason</td>';
 					if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 // switch to blog and back
 						$blogname  = get_blog_option( $blog, 'blogname' );
 						$blogadmin = esc_url( get_admin_url( $blog ) );
 						$blogadmin = trim( $blogadmin, '/' );
-						echo "<td style=\"font-size:.9em;padding:2px\" align=\"center\">";
-						echo "<a href=\"$blogadmin/edit-comments.php\">$blogname</a>";
-						echo "</td>";
+						echo '<td style="font-size:.9em;padding:2px" align="center">';
+						echo '<a href="$blogadmin/edit-comments.php">$blogname</a>';
+						echo '</td>';
 					}
-					echo "</tr>";
+					echo '</tr>';
 				}
 				?>
 				</tbody>

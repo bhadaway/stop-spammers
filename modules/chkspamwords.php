@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -15,7 +16,7 @@ class chkspamwords {
 			if ( ! empty( $data ) ) {
 				foreach ( $spamwords as $sw ) {
 					if ( stripos( $data, $sw ) !== false ) {
-						return "Spam Word: $sw in $key";
+						_e( 'Spam Word: $sw in $key', 'stop-spammer-registrations-plugin' );
 					}
 				}
 			}

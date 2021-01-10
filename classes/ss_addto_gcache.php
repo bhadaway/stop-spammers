@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -28,7 +29,6 @@ class ss_addto_gcache {
 			unset( $stats['badips'] );
 		}
 		ss_set_stats( $stats );
-
 		return goodips;
 	}
 }

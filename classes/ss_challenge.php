@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -74,12 +75,12 @@ class ss_challenge extends be_module {
 						$post, $post );
 				}
 // now the CAPTCHA settings
-				$msg = "Thank you,<br />";
+				$msg = __( 'Thank you,<br />', 'stop-spammer-registrations-plugin' );
 				if ( $emailsent ) {
-					$msg .= "The webmaster has been notified by email.<br />";
+					$msg .= __( 'The webmaster has been notified by email.<br />', 'stop-spammer-registrations-plugin' );
 				}
 				if ( $allowset ) {
-					$msg .= "Your request has been recorded.<br />";
+					$msg .= __( 'Your request has been recorded.<br />', 'stop-spammer-registrations-plugin' );
 				}
 				if ( empty( $chkcaptcha ) || $chkcaptcha == 'N' ) {
 // send out the thank you message
@@ -100,7 +101,7 @@ class ss_challenge extends be_module {
 							if ( empty( $recaptchaapisecret )
 							     || empty( $recaptchaapisite )
 							) {
-								$msg = "reCAPTCHA keys are not set.";
+								$msg = __( 'reCAPTCHA keys are not set.', 'stop-spammer-registrations-plugin' );
 							} else {
 								$g = $_REQUEST['g-recaptcha-response'];
 // $url="https://www.google.com/recaptcha/api/siteverify";
@@ -114,14 +115,13 @@ class ss_challenge extends be_module {
 									$_POST = unserialize( base64_decode( $kp ) );
 // sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 // success add to cache
-									ss_log_good( $ip, 'Passed reCAPTCHA',
-										'pass' );
+									ss_log_good( $ip, __( 'Passed reCAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
 									do_action( 'ss_stop_spam_OK', $ip,
 										$post ); // so plugins can undo spam report
 
 									return false;
 								} else {
-									$msg = "Google reCAPTCHA entry does not match. Try again.";
+									$msg = __( 'Google reCAPTCHA entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
 								}
 							}
 						}
@@ -174,7 +174,7 @@ class ss_challenge extends be_module {
 								'body'        => $body,
 								'cookies'     => array()
 							);
-							$url         = '//verify.solvemedia.com/papi/verify/';
+							$url         = 'https://verify.solvemedia.com/papi/verify/';
 							$resultarray = wp_remote_post( $url, $args );
 							$result      = $resultarray['body'];
 // $result = 
@@ -184,14 +184,13 @@ class ss_challenge extends be_module {
 								$_POST = unserialize( base64_decode( $kp ) );
 // sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 // success add to cache
-								ss_log_good( $ip, 'Passed Solve Media CAPTCHA',
-									'pass' );
+								ss_log_good( $ip, __( 'Passed Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
 								do_action( 'ss_stop_spam_OK', $ip,
 									$post ); // so plugins can undo spam report
 
 								return false;
 							} else {
-								$msg = "CAPTCHA entry does not match. Try again.";
+								$msg = __( 'CAPTCHA entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
 							}
 						}
 						break;
@@ -213,15 +212,13 @@ class ss_challenge extends be_module {
 								$_POST = unserialize( base64_decode( $kp ) );
 // sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 // success add to cache
-								ss_log_good( $ip,
-									'Passed Simple Arithmetic CAPTCHA',
-									'pass' );
+								ss_log_good( $ip, __( 'Passed Simple Arithmetic CAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
 								do_action( 'ss_stop_spam_OK', $ip,
 									$post ); // so plugins can undo spam report
 
 								return false;
 							} else {
-								$msg = "Incorrect. Try again.";
+								$msg = __( 'Incorrect. Try again.', 'stop-spammer-registrations-plugin' );
 							}
 						}
 						break;
@@ -260,14 +257,14 @@ class ss_challenge extends be_module {
 <input type=\"hidden\" name=\"kr\" value=\"$kr\" />
 <input type=\"hidden\" name=\"ka\" value=\"$ka\" />
 ";
-		$formbot = "
+		$formbot = __( '
 <p><input style=\"background:#007cba;padding: 10px 15px;border:none;border-radius:3px;color:white;cursor:pointer;\" type=\"submit\" value=\"Submit Request\" /></p>
 </form>
-";
+', 'stop-spammer-registrations-plugin' );
 		$not     = '';
 		if ( $wlreq == 'Y' ) {
 // halfhearted attempt to hide which field is the email field
-			$not = "
+			$not = __( '
 <fieldset>
 <legend><span style=\"font-weight:bold;font-size:1.2em\" >Allow Request</span></legend>
 <p>You have been blocked from entering information on this site. In order to prevent this from happening in the future, complete the request below to have the admin add your IP to a list that allows you full access.</p>
@@ -275,12 +272,12 @@ class ss_challenge extends be_module {
 <span style=\"color:fff\">Email Address (required)</span><!-- not the message -->: <input type=\"text\" value=\"\" name=\"ke\" /><br />
 Message<!-- not email -->:<br /><textarea name=\"km\" placeholder=\"If you were submitting a contact form, use this field to enter the message.\" style=\"width:100%\"  rows=\"5\"></textarea>
 </fieldset>
-";
+', 'stop-spammer-registrations-plugin' );
 		}
-		$captop = "
+		$captop = __( '
 <fieldset>
 <legend><span style=\"font-weight:bold;font-size:1.2em\">Please prove you are not a robot</span></legend>
-";
+', 'stop-spammer-registrations-plugin' );
 		$capbot = "
 </fieldset>
 ";
@@ -321,11 +318,11 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 					$seed = strtotime( $spdate );
 				}
 				$stupid = $n1 + $n2 - $seed;
-				$cap    = "
+				$cap    = __( '
 <p>Enter the SUM of these two numbers: <span style=\"size:4em;font-weight:bold\">$n1 + $n2</span><br />
 <input name=\"sum\" value=\"\" type=\"text\" />
 <input type=\"hidden\" name=\"nums\" value=\"$stupid\" /><br />
-";
+', 'stop-spammer-registrations-plugin' );
 				break;
 			case 'F':
 // future
@@ -385,11 +382,11 @@ $formbot
 			if ( ! empty( $wlreqmail ) ) {
 				$to = $wlreqmail;
 			}
-			$subject = 'Allow List Request from ' . get_bloginfo( 'name' );
+			$subject = __( 'Allow List Request from ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
 			$ip      = ss_get_ip();
-			$web = "Approve or Deny Request: ". admin_url( "admin.php?page=ss_allow_list" );
+			$web = __( 'Approve or Deny Request: ', 'stop-spammer-registrations-plugin' ) . admin_url( 'admin.php?page=ss_allow_list' );
 
-			$message = "
+			$message = __( '
 Webmaster,
 
 A request has been received from someone who has been marked as a spammer by the Stop Spammers plugin.
@@ -398,22 +395,23 @@ You are being notified because you have checked off the box on the settings page
 
 The information from the request is:
 
-Time: $now
-User IP: " . $ip . "
-User Email: " . $ke . "
-Spam Reason: " . $kr . "
-User Message: " . $km . "
-". $web . "
+Time: ' . $now . '
+User IP: ' . $ip . '
+User Email: ' . $ke . '
+Spam Reason: ' . $kr . '
+User Message: ' . $km . '
+
+' . $web . '
 
 Please be aware that the user has been recognized as a potential spammer.
 
 Some spam bots fill out the request form with a fake explanation.
 
-— Stop Spammers";
-			$headers = 'From: ' . get_option( 'admin_email' ) . "\r\n";
+— Stop Spammers
+', 'stop-spammer-registrations-plugin' );
+			$headers = __( 'From: ', 'stop-spammer-registrations-plugin' ) . get_option( 'admin_email' ) . "\r\n";
 			wp_mail( $to, $subject, $message, $headers );
-			$rejectmessage = "<h2>Email sent. Thank you.</h2>";
-
+			$rejectmessage = __( '<h2>Email sent. Thank you.</h2>', 'stop-spammer-registrations-plugin' );
 			return true;
 		}
 	}
@@ -456,7 +454,6 @@ Some spam bots fill out the request form with a fake explanation.
 		$stats['wlrequests'] = $wlrequests;
 // sfs_debug_msg( "added request: '$ke'" );
 		ss_set_stats( $stats );
-
 		return true;
 	}
 }

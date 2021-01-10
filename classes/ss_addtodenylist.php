@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -29,7 +30,6 @@ class ss_addtodenylist {
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-
 		return false;
 	}
 }

@@ -50,7 +50,7 @@ class chkmulti extends be_module {
 		$stats['multi'] = $multi;
 		ss_set_stats( $stats );
 		if ( $row[1] >= $multicnt ) {
-			return "$row[1] Hits in last 3 minutes";
+			_e( '$row[1] Hits in last 3 minutes', 'stop-spammer-registrations-plugin' );
 		}
 		return false;
 	}

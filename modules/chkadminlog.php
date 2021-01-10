@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,7 +23,7 @@ class chkadminlog extends be_module {
 			}
 			$user = @wp_authenticate( $log, $pwd );
 			if ( ! is_wp_error( $user ) ) { // user login is good
-				return 'Authenticated User Login';
+				_e( 'Authenticated User Login', 'stop-spammer-registrations-plugin' );
 			}
 			return false;
 		}

@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -29,7 +30,7 @@ class chkbotscout extends be_module {
 		$check   = $this->getafile( $query, 'GET' );
 		if ( ! empty( $check ) ) {
 			if ( substr( $check, 0, 4 ) == "ERR:" ) {
-				return $check . 'BotScout Error, ';
+				return $check . __( 'BotScout Error, ', 'stop-spammer-registrations-plugin' );
 			}
 			if ( strpos( $check, '|' ) ) {
 				$result = explode( '|', $check );

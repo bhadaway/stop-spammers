@@ -1,6 +1,6 @@
 <?php
 // this checks 404 entries for attacks
-// loaded at theme if (!defined('ABSPATH')) exit;
+// loaded at theme if ( !defined( 'ABSPATH' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,8 +21,7 @@ class ss_check_404s {
 		ss_log_bad( $ip, $reason, 'chk404' );
 // need to deny access
 		$rejectmessage = $options['rejectmessage'];
-		wp_die( "$rejectmessage", "Login Access Denied",
-			array( 'response' => 403 ) );
+		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
 }

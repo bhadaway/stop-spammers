@@ -1,10 +1,13 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
+
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
+
 ss_fix_post_vars();
 $now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
@@ -12,9 +15,11 @@ extract( $options );
 // $ip=ss_get_ip();
 $nonce   = '';
 $msg     = '';
+
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
+
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'action', $_POST ) ) {
 		$optionlist = array( 'redir', 'notify', 'emailrequest', 'wlreq' );
@@ -69,7 +74,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		) {
 			$chkcaptcha            = 'Y';
 			$options['chkcaptcha'] = $chkcaptcha;
-			$msg                   = "You cannot use Google reCAPTCHA unless you have entered an API key";
+			$msg                   = __( 'You cannot use Google reCAPTCHA unless you have entered an API key.', 'stop-spammer-registrations-plugin' );
 		}
 		if ( $chkcaptcha == 'S'
 		     && ( $solvmediaapivchallenge == ''
@@ -77,21 +82,21 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		) {
 			$chkcaptcha            = 'Y';
 			$options['chkcaptcha'] = $chkcaptcha;
-			$msg                   = "You cannot use Solve Media CAPTCHA unless you have entered an API key";
+			$msg                   = __( 'You cannot use Solve Media CAPTCHA unless you have entered an API key.', 'stop-spammer-registrations-plugin' );
 		}
 		ss_set_options( $options );
 		extract( $options ); // extract again to get the new options
 	}
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		$update = '<div class="notice notice-success is-dismissible"><p>Options Updated! Add Cracking Defense with Brute Force Protection <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
+		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Add Cracking Defense with Brute Force Protection <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
-		$update = '<div class="notice notice-success is-dismissible"><p>Options Updated!</p></div>';
+		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — Challenge & Deny</h1>
+    <h1 class="ss_head">Stop Spammers — <?php __( 'Challenge & Deny', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php if ( ! empty( $update ) ) {
 		echo "$update";
 	} ?>
@@ -102,20 +107,20 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <input type="hidden" name="action" value="update challenge" />
 	<br />
-	<div class="mainsection">Access Denied Message
+	<div class="mainsection"><?php __( 'Access Denied Message', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/challenge-and-deny/#accessdenied" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
             <textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
         <br />
-	<div class="mainsection">Routing and Notifications
+	<div class="mainsection"><?php __( 'Routing and Notifications', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/challenge-and-deny/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 <div class="checkbox switcher">
       <label id="ss_subhead" for="redir">
             <input class"ss_toggle" type="checkbox" id="redir" name="redir" value="Y" onclick="ss_show_option()" <?php if ( $redir == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Send Visitor to Another Web Page</span></small></label></div>
+		  <small><span style="font-size:16px!important;"><?php __( 'Send Visitor to Another Web Page', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 			<br />
-			<span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;">Redirect URL:
+			<span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;"><?php __( 'Redirect URL:', 'stop-spammer-registrations-plugin' ); ?>
         	<input size="77" name="redirurl" type="text" placeholder="e.g. https://stopspammers.io/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
 <script>
 function ss_show_option() {
@@ -137,16 +142,16 @@ ss_show_option();
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
                 <small>
-                    <span style="font-size:16px!important">Blocked users see the Allow Request form</span></small></label></div>
+                    <span style="font-size:16px!important"><?php __( 'Blocked users see the Allow Request form', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
         <br />
 <div class="checkbox switcher">
       <label id="ss_subhead" for="notify">
             <input class"ss_toggle" type="checkbox" id="notify" name="notify" value="Y" onclick="ss_show_notify()" <?php if ( $notify == 'Y' ) {
 					echo "checked=\"checked\"";
 } ?> /><span><small></small></span>
-		  <small><span style="font-size:16px!important;">Notify Web Admin when a user requests to be added to the Allow List</span></small></label></div>
+		  <small><span style="font-size:16px!important;"><?php __( 'Notify Web Admin when a user requests to be added to the Allow List', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
             <br />
-            <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none">(Optional) Specify where email requests are sent:
+            <span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none"><?php __( '(Optional) Specify where email requests are sent:', 'stop-spammer-registrations-plugin' ); ?>
             <input id="myInput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
 <script>
 function ss_show_notify() {
@@ -168,13 +173,13 @@ ss_show_notify();
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
                 <small>
-                    <span style="font-size:16px!important">Notify Requester when a Web Admin has approved their request to be added to the Allow List </span><sup class="ss_sup">NEW!</sup></small></label></div>
+                    <span style="font-size:16px!important"><?php __( 'Notify Requester when a Web Admin has approved their request to be added to the Allow List', 'stop-spammer-registrations-plugin' ); ?> </span><sup class="ss_sup"><?php __( 'NEW!', 'stop-spammer-registrations-plugin' ); ?></sup></small></label></div>
 		<br />
 		<br />
-	<div class="mainsection">CAPTCHA
+	<div class="mainsection"><?php __( 'CAPTCHA', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/challenge-and-deny/#captcha" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
         <div style="margin-left:30px;">
-				<small><span style="font-size:16px!important;">Second Chance CAPTCHA Challenge</span></small>
+				<small><span style="font-size:16px!important;"><?php __( 'Second Chance CAPTCHA Challenge', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			<?php
 			if ( ! empty( $msg ) ) {
 				echo "<span style=\"color:red;font-size:1.2em\">$msg</span>";
@@ -185,30 +190,29 @@ ss_show_notify();
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'N' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                No CAPTCHA (default)<br />
+                <?php __( 'No CAPTCHA (default)', 'stop-spammer-registrations-plugin' ); ?><br />
                 <input type="radio" value="G"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'G' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                Google reCAPTCHA<br />
+                <?php __( 'Google reCAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
                 <input type="radio" value="S"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'S' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                Solve Media CAPTCHA<br />
+                <?php __( 'Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
                 <input type="radio" value="A"
                        name="chkcaptcha" <?php if ( $chkcaptcha == 'A' ) {
 					echo "checked=\"checked\"";
 				} ?> />
-                Arithmetic Question</p>
-            <p>To use either the Solve Media or Google reCAPTCHA, you will need an API key.</p></div>
-
-        <br />
-			<div style="margin-left:30px;"><small><span style="font-size:16px!important;">Google reCAPTCHA API Key</span></small> <br />
-            Site Key:
+                <?php __( 'Arithmetic Question', 'stop-spammer-registrations-plugin' ); ?>
+            <p><?php __( 'To use either the Solve Media or Google reCAPTCHA, you will need an API key.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+			<br />
+			<div style="margin-left:30px;"><small><span style="font-size:16px!important;"><?php __( 'Google reCAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+            <?php __( 'Site Key:', 'stop-spammer-registrations-plugin' ); ?>
             <input size="64" name="recaptchaapisite" type="text" value="<?php echo $recaptchaapisite; ?>" />
             <br />
-            Secret Key:
+            <?php __( 'Secret Key:', 'stop-spammer-registrations-plugin' ); ?>
             <input size="64" name="recaptchaapisecret" type="text" value="<?php echo $recaptchaapisecret; ?>" />
             <br />
 			<?php
@@ -216,31 +220,33 @@ ss_show_notify();
 				?>
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                 <div class="g-recaptcha" data-sitekey="<?php echo $recaptchaapisite; ?>"></div>
-                If the reCAPTCHA form looks good, you need to enable the reCAPTCHA on the Challenge &amp; Deny options page. (see left)
+                <?php __( 'If the reCAPTCHA form looks good, you need to enable the reCAPTCHA on the Challenge &amp; Deny options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
 				<?php
 			}
 			?>
-        <br />
-			<small><span style="font-size:16px!important;">Solve Media CAPTCHA API Key</span></small> <br />
-            Solve Media Challenge Key:
+			<br />
+			<small><span style="font-size:16px!important;"><?php __( 'Solve Media CAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+            <?php __( 'Solve Media Challenge Key:', 'stop-spammer-registrations-plugin' ); ?>
             <input size="64" name="solvmediaapivchallenge" type="text" value="<?php echo $solvmediaapivchallenge; ?>" />
             <br />
-            Solve Media Verification Key:
+            <?php __( 'Solve Media Verification Key:', 'stop-spammer-registrations-plugin' ); ?>
             <input size="64" name="solvmediaapiverify" type="text" value="<?php echo $solvmediaapiverify; ?>" />
             <br />
 			<?php
 			if ( ! empty( $solvmediaapivchallenge ) ) {
 				?>
                 <script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo $solvmediaapivchallenge; ?>"></script>
-                <p>If the CAPTCHA form looks good, you need to enable the
+                <?php __( '
+				<p>If the CAPTCHA form looks good, you need to enable the
                     CAPTCHA on the Challenge &amp; Deny options
                     page. (see left)</p>
+				', 'stop-spammer-registrations-plugin' ); ?>
 				<?php
 			}
 			?>
 			</div>
         <br />
         <br />
-        <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
+        <p class="submit"><input class="button-primary" value="<?php __( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
     </form>
 </div>

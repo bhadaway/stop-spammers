@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -269,11 +270,10 @@ class be_module {
 					$ipe = be_module::ip2numstr( $ipe );
 					if ( $ipt >= $ips && $ipt <= $ipe ) {
 						if ( is_array( $ip ) ) {
-							echo "array in ip: " . print_r( $ip, true )
+							_e( 'Array in IP: ', 'stop-spammer-registrations-plugin' ) . print_r( $ip, true )
 							     . "<br />";
 							$ip = $ip[0];
 						}
-
 						return $this->searchname . ': ' . $ip;
 					}
 				}

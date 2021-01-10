@@ -108,7 +108,7 @@ class chk404 extends be_module {
 // ss_cd_write_file( "debug.txt", "check 404 '$hit'" );
 		foreach ( $expl as $bad ) {
 			if ( stripos( $sname, $bad ) !== false ) {
-				return "404 on Exploit Attempt $sname $bad";
+				_e( '404 on Exploit Attempt $sname $bad', 'stop-spammer-registrations-plugin' );
 			} else {
 // echo "$sname, $bad<br />";
 			}

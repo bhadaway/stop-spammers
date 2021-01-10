@@ -1,10 +1,11 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -228,49 +229,49 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated! Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
+		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
-		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated!</p></div>';
+		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-	<h1 class="ss_head">Stop Spammers — Protection Options</h1>
+	<h1 class="ss_head">Stop Spammers — <?php __( 'Protection Options', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<br />
 	<?php if ( ! empty( $msg ) ) {
-		echo "$msg";
+		echo '$msg';
 	} ?>
 	<br />
 	<form method="post" action="" name="ss">
 		<input type="hidden" name="action" value="update" />
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-		<div class="mainsection">Form Checking
+		<div class="mainsection"><?php __( 'Form Checking', 'stop-spammer-registrations-plugin' ); ?>
 		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#formchecking" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<p><?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-			echo '<span style="color:purple">WooCommerce detected. We recommend enabling this option.</span>';
+			_e( '<span style="color:purple">WooCommerce detected. We recommend enabling this option.</span>', 'stop-spammer-registrations-plugin' );
 		} ?></p>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkform">
 				<input class="ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) { echo "checked=\"checked\""; } ?> /><span><small></small></span>
 				<small>
-					<span style="font-size:16px!important">Only Use the Plugin for Standard WordPress Forms (not recommended)</span>
+					<span style="font-size:16px!important"><?php __( 'Only Use the Plugin for Standard WordPress Forms (not recommended)', 'stop-spammer-registrations-plugin' ); ?></span>
 				</small>
 			</label>
 		</div>
 		<br />
-		<div class="mainsection">Members-only Mode
+		<div class="mainsection"><?php __( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
 		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#membersonly" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_private_mode">
 				<input class="ss_toggle" type="checkbox" id="ss_private_mode" name="ss_private_mode" value="Y" <?php if ( $ss_private_mode == 'Y' ) { echo "checked=\"checked\""; } ?> /><span><small></small></span>
 				<small>
-					<span style="font-size:16px!important">Require Users to Be Logged in to View Site</span> <sup class="ss_sup">NEW!</sup>
+					<span style="font-size:16px!important"><?php __( 'Require Users to Be Logged in to View Site', 'stop-spammer-registrations-plugin' ); ?></span> <sup class="ss_sup"><?php __( 'NEW!', 'stop-spammer-registrations-plugin' ); ?></sup>
 				</small>
 			</label>
 		</div>
 		<br />
-		<div class="mainsection">Prevent Lockouts
+		<div class="mainsection"><?php __( 'Prevent Lockouts', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#preventlockouts" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="addtoallowlist">
@@ -280,7 +281,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
 				<small>
-					<span style="font-size:16px!important">Automatically Add Admins to Allow List</span></small></label></div>
+					<span style="font-size:16px!important"><?php __( 'Automatically Add Admins to Allow List', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 			<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkadminlog">
@@ -290,9 +291,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check Credentials on All Login Attempts</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check Credentials on All Login Attempts', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
-		<div class="mainsection">Validate Requests
+		<div class="mainsection"><?php __( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
 		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#validaterequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkaccept">
@@ -302,7 +303,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Block Spam Missing the HTTP_ACCEPT Header</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Block Spam Missing the HTTP_ACCEPT Header', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkreferer">
@@ -312,7 +313,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Block Invalid HTTP_REFERER</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Block Invalid HTTP_REFERER', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkdisp">
@@ -320,7 +321,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkdisp" value="Y" <?php if ( $chkdisp == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Deny Disposable Email Addresses</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Deny Disposable Email Addresses', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chklong">
@@ -328,7 +329,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chklong" value="Y" <?php if ( $chklong == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Long Emails, Author Name, or Password</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Long Emails, Author Name, or Password', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkshort">
@@ -336,7 +337,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkshort" value="Y" <?php if ( $chkshort == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Short Emails or Author Name</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Short Emails or Author Name', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkbbcode">
@@ -347,7 +348,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
 				<small><span
-							style="font-size:16px!important">Check for BBCodes</span></small></label></div>
+							style="font-size:16px!important"><?php __( 'Check for BBCodes', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkperiods">
@@ -358,7 +359,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
 				<small><span
-							style="font-size:16px!important">Check for Periods</span></small></label></div>
+							style="font-size:16px!important"><?php __( 'Check for Periods', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkhyphens">
@@ -369,7 +370,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
 				<small><span
-							style="font-size:16px!important">Check for Hyphens</span></small></label></div>
+							style="font-size:16px!important"><?php __( 'Check for Hyphens', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chksession">
@@ -380,10 +381,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Quick Responses</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Quick Responses', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<span id="ss_show_quick" style="margin-left:30px;margin-bottom:15px;display:none">
-					<p style="margin-left:30px;">Response Timeout Value:
+					<p style="margin-left:30px;"><?php __( 'Response Timeout Value:', 'stop-spammer-registrations-plugin' ); ?>
 					<input name="sesstime" type="text"
 						   value="<?php echo $sesstime; ?>" size="2"/><br /></p>
 		</span>
@@ -406,7 +407,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chk404" value="Y" <?php if ( $chk404 == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Deny 404 Exploit Probing</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Deny 404 Exploit Probing', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkakismet">
@@ -416,7 +417,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Deny IPs Detected by Akismet</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Deny IPs Detected by Akismet', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkexploits">
@@ -426,7 +427,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Exploits</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Exploits', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkadmin">
@@ -434,7 +435,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkadmin" value="Y" <?php if ( $chkadmin == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Deny Login Attempts Using 'admin' in Username</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Deny Login Attempts Using "admin" in Username', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkubiquity">
@@ -444,7 +445,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check Against List of Ubiquity-Nobis and Other Spam Server IPs</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check Against List of Ubiquity-Nobis and Other Spam Server IPs', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkhosting">
@@ -454,7 +455,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Major Hosting Companies and Cloud Services</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Major Hosting Companies and Cloud Services', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chktor">
@@ -462,7 +463,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chktor" value="Y" <?php if ( $chktor == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Tor Exit Nodes</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Tor Exit Nodes', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkmulti">
@@ -473,10 +474,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Many Hits in a Short Time</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Many Hits in a Short Time', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<span id="ss_show_chkmulti"
 			  style="margin-left:30px;margin-bottom:15px;display:none">
-		<p style="margin-left:30px;">Deny access when there are
+		<p style="margin-left:30px;"><?php __( 'Deny access when there are', 'stop-spammer-registrations-plugin' ); ?>
 					<select name="multicnt">
 						<option val="4" <?php if ( $multicnt <= 4 ) {
 							echo "selected='selected'";
@@ -507,7 +508,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						} ?>>10
 						</option>
 					</select>
-					comments or logins in less than
+					<?php __( 'comments or logins in less than', 'stop-spammer-registrations-plugin' ); ?>
 					<select name="multitime">
 						<option val="1" <?php if ( $multitime <= 1 ) {
 							echo "selected='selected'";
@@ -550,7 +551,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						} ?>>10
 						</option>
 					</select>
-					minutes.<br />
+					<?php __( 'minutes.', 'stop-spammer-registrations-plugin' ); ?><br />
 		</p></span>
 		<script>
 			function ss_show_chkmulti() {
@@ -575,7 +576,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Check for Amazon Cloud</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Check for Amazon Cloud', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="filterregistrations">
@@ -584,10 +585,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   value="Y" <?php if ( $filterregistrations == 'Y' ) {
 					echo "checked=\"checked\"";
 				} ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important">Filter Login Requests</span></small></label></div>
+				<small><span style="font-size:16px!important"><?php __( 'Filter Login Requests', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<fieldset>
-		<div class="mainsection">Block Countries
+		<div class="mainsection"><?php __( 'Block Countries', 'stop-spammer-registrations-plugin' ); ?>
 		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#blockcountries" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 			<br />
 			<div class="checkbox switcher">
@@ -596,7 +597,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						   name="ss_set" value="1"
 						   onclick='var t=ss.ss_set.checked;var els=document.getElementsByTagName("INPUT");for (index = 0; index < els.length; ++index){if (els[index].type=="checkbox"){if (els[index].name.length==5){els[index].checked=t;}}}'/>
 					<small><span class="button-primary"
-								 style="font-size:16px!important">Check All</span></small></label>
+								 style="font-size:16px!important"><?php __( 'Check All', 'stop-spammer-registrations-plugin' ); ?></span></small></label>
 			</div>
 			<br />
 			<div class="stat-box"><input name="chkAD" type="checkbox"
@@ -1581,6 +1582,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</div>
 		</fieldset>
 		<br />
-		<p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
+		<p class="submit"><input class="button-primary" value="<?php __( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 	</form>
 </div>

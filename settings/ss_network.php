@@ -1,14 +1,18 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
+
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
+
 ss_fix_post_vars();
+
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — Multisite</h1>
+    <h1 class="ss_head">Stop Spammers — <?php __( 'Multisite', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
 	$now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	// $ip=ss_get_ip();
@@ -33,7 +37,7 @@ ss_fix_post_vars();
 				$muswitch = 'N';
 			}
 			update_option( 'ss_muswitch', $muswitch );
-			echo "<h2>Options Updated</h2>";
+			_e( '<h2>Options Updated</h2>', 'stop-spammer-registrations-plugin' );
 		}
 	} else {
 // echo "no nonce<br />";
@@ -45,20 +49,20 @@ ss_fix_post_vars();
         <input type="hidden" name="action" value="update mu settings" />
         <fieldset>
             <legend>
-				<span style="font-weight:bold;font-size:1.2em">Network Blog Option</span>
+				<span style="font-weight:bold;font-size:1.2em"><?php __( 'Network Blog Option', 'stop-spammer-registrations-plugin' ); ?></span>
             </legend>
-            <p>Networked ON: <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
+            <p><?php __( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                Networked OFF: <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
+                <?php __( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                If you are running WPMU and want to control options and history
+                <?php __( 'If you are running WPMU and want to control options and history
                 through the main login admin panel,
                 select ON. If you select OFF, each blog will have to configure
                 the plugin separately, and each blog will
-                have a separte history.</p>
-            <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
+                have a separte history.', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p class="submit"><input class="button-primary" value="<?php __( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </fieldset>
     </form>
 </div>

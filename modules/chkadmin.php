@@ -23,7 +23,7 @@ class chkadmin extends be_module {
 			return false;
 		} // false alarm - really is a person admin
 // this may cause problems when a legitimate new user wants to include the string admin in their username
-		return "Admin Login or Registration Attempt: $login";
+		_e( 'Admin Login or Registration Attempt: $login', 'stop-spammer-registrations-plugin' );
 	}
 }
 

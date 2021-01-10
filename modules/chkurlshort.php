@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,7 +14,7 @@ class chkurlshort {
 			if ( ! empty( $data ) ) {
 				foreach ( $denyurlshortners as $urlshort ) {
 					if ( stripos( $data, $urlshort ) !== false and ( stripos( $data, $urlshort ) == 0 or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == " " or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "/" or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "@" or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "." ) ) {
-						return "URL Shortener: $urlshort in $key";
+						_e( 'URL Shortener: $urlshort in $key', 'stop-spammer-registrations-plugin' );
 					}
 				}
 			}

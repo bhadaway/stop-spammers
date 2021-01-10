@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -24,7 +25,6 @@ class ss_remove_gcache {
 		}
 		$stats['goodips'] = $goodips;
 		ss_set_stats( $stats );
-
 		return $goodips; // return the array so AJAX can show it
 	}
 }

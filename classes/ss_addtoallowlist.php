@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -8,8 +9,7 @@ class ss_addtoallowlist {
 		$ip, &$stats = array(), &$options = array(), &$post = array()
 	) {
 		// adds to Allow List - used to add admin to Allow List or to add a comment author to Allow List
-		$now = date( 'Y/m/d H:i:s',
-			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$wlist = $options['wlist'];
 		// $ip=ss_get_ip();
 		// add this IP to your Allow List
@@ -62,11 +62,11 @@ class ss_addtoallowlist {
 		}
 		$ke = sanitize_text_field( $to );
 		$blog = get_bloginfo( 'name' );
-		$subject = get_bloginfo( 'name' ) . ': Your Request Has Been Approved';
+		$subject = get_bloginfo( 'name' ) . __( ': Your Request Has Been Approved', 'stop-spammer-registrations-plugin' );
 		$subject = str_replace( '&', 'and', $subject );
-		$message = "Apologies for the inconvenience. You've now been cleared for landing on $blog.";
+		$message = __( 'Apologies for the inconvenience. You\'ve now been cleared for landing on $blog.', 'stop-spammer-registrations-plugin' );
 		$message = str_replace( '&', 'and', $message );
-		$headers = 'From: ' . get_option( 'admin_email' ) . "\r\n";
+		$headers = __( 'From: ', 'stop-spammer-registrations-plugin' ) . get_option( 'admin_email' ) . "\r\n";
 		wp_mail( $to, $subject, $message, $headers );
 		return true;
 	}

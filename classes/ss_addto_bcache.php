@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -24,7 +25,6 @@ class ss_addto_bcache {
 		}
 		$stats['badips'] = $badips;
 		ss_set_stats( $stats );
-
 		return $badips;
 	}
 }

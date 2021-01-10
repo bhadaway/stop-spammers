@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
-
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .ss_head {
   font-family: 'Roboto Slab', -apple-system,BlinkMacSystemFont, Roboto, sans-serif;
   font-size: 30px;
 }
+
 .keyhead {
 	font-size: 16px !important;
 	margin-left: 30px;
 }
+
 #toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image {
   max-height: 20px;
   padding: 7px 0 0;
@@ -204,6 +205,7 @@ th.ss_cleanup {
 .ss_cleanup_tr:hover {
   background: #F1F1F1 !important;
 }
+
 /* Checkbox toggle switch */
 div.checkbox.switcher label, div.radio.switcher label {
   padding: 0;
@@ -362,6 +364,7 @@ i.fa.fa-question-circle:hover {
     text-align: center;
     display: initial !important;
 }
+
 select.ss-small-dropbox{
   vertical-align: baseline;
 }

@@ -1,14 +1,19 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
+
 $stats   = ss_get_stats();
 $options = ss_get_options();
+
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
+
 ss_fix_post_vars();
 $now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+
 // for session speed checks
 // if( !isset( $_POST ) || empty( $_POST ) ) { // no post defined
 // $_SESSION['ss_stop_spammers_time'] = time();
@@ -43,31 +48,33 @@ if ( array_key_exists( 'body', $_POST ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — Diagnostics & Threat Scan</h1>
+    <h1 class="ss_head">Stop Spammers — <?php __( 'Diagnostics & Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<div class="ss_info_box">
     <form method="post" action="">
         <input type="hidden" name="action" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
-	<div class="mainsection">Option Testing
+	<div class="mainsection"><?php __( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+			<?php __( '
 			<p>Run the settings against an IP address to see the results.</p>
             IP Address:<br />
+			', 'stop-spammer-registrations-plugin' ); ?>
 			<input id="myInput" name="ip" type="text" value="<?php echo $ip; ?>">
-			(Your server address is <?php echo $hip; ?>)<br /><br />
-            Email:<br/>
+			<?php __( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br /><br />
+            <?php __( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br/>
 			<input id="myInput" name="email" type="text" value="<?php echo $email; ?>" /><br /><br />
-            Author/User:<br />
+            <?php __( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input id="myInput" name="author" type="text" value="<?php echo $author; ?>" /><br /><br />
-            Subject:<br />
+            <?php __( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input id="myInput" name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
-            Comment:<br />
+            <?php __( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<textarea name="body"><?php echo $body; ?></textarea><br />
             <div style="width:50%;float:left">
-                <p class="submit"><input name="testopt" class="button-primary" value="Test Options" type="submit" /></p>
+                <p class="submit"><input name="testopt" class="button-primary" value="<?php __( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
             </div>
             <div style="width:50%;float:right">
-                <p class="submit"><input name="testcountry" class="button-primary" value="Test Countries" type="submit" /></p>
+                <p class="submit"><input name="testcountry" class="button-primary" value="<?php __( 'Test Countries', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
             </div>
             <br style="clear:both" />
 			<?php
@@ -99,8 +106,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					);
 					$m1         = memory_get_usage( true );
 					$m2         = memory_get_peak_usage( true );
-					echo "<br />Memory used, peak: $m1, $m2<br />";
-					echo "<ul>Allow Checks<br />";
+					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<ul>Allow Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
@@ -143,8 +150,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					);
 					$m1         = memory_get_usage( true );
 					$m2         = memory_get_peak_usage( true );
-					echo "<br />Memory used, peak: $m1, $m2<br />";
-					echo "<ul>Deny Checks<br />";
+					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<ul>Deny Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
@@ -175,7 +182,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					echo "<br />Memory used, peak: $m1, $m2<br />";
+					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
 				}
 				if ( array_key_exists( 'testcountry', $_POST ) ) {
 					$optionlist = array(
@@ -325,7 +332,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 // SC - Seychelles
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					echo "<br />Memory used, peak: $m1, $m2<br />";
+					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
@@ -335,7 +342,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					echo "<br />Memory used, peak: $m1, $m2<br />";
+					_e( '<br />Memory used, peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
 				}
 			}
 			?>			
@@ -343,17 +350,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
         <br/>
 <div class="ss_info_box">
-	<div class="mainsection">Information Display
+	<div class="mainsection"><?php __( 'Information Display', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#infodisplay" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
         <div style="width:50%;float:left">
-            <h2>Display All Options</h2>
-            <p>You can dump all options here (useful for debugging):</p>
-            <p class="submit"><input name="dumpoptions" class="button-primary" value="Dump Options" type="submit" /></p>
+            <h2><?php __( 'Display All Options', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php __( 'You can dump all options here (useful for debugging):', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p class="submit"><input name="dumpoptions" class="button-primary" value="<?php __( 'Dump Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </div>
         <div style="width:50%;float:right">
-            <h2>Display All Stats</h2>
-            <p>You can dump all stats here: </p>
-            <p class="submit"><input name="dumpstats" class="button-primary" value="Dump Stats" type="submit" /></p>
+            <h2><?php __( 'Display All Stats', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php __( 'You can dump all stats here: ', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p class="submit"><input name="dumpstats" class="button-primary" value="<?php __( 'Dump Stats', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </div>
         <br style="clear:both" />
 		<?php
@@ -422,7 +429,7 @@ echo "\r\n";
 		) {
 			if ( array_key_exists( 'killdebug', $_POST ) ) {
 				$f = unlink( $dfile );
-				echo "<p>File deleted.<p>";
+				_e( '<p>File Deleted<p>', 'stop-spammer-registrations-plugin' );
 			}
 		}
 	}
@@ -441,7 +448,7 @@ echo "\r\n";
 		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
 		) {
 			if ( array_key_exists( 'showdebug', $_POST ) ) {
-				echo "<p><strong>Debug Output:</strong></p><pre>$f</pre><p><strong>end of file (if empty, there are no errors to display)</p></strong>";
+				_e( '<p><strong>Debug Output:</strong></p><pre>$f</pre><p><strong>end of file (if empty, there are no errors to display)</p></strong>', 'stop-spammer-registrations-plugin' );
 			}
 		}
 		$nonce = wp_create_nonce( 'ss_stopspam_update' );
@@ -450,7 +457,7 @@ echo "\r\n";
             <form method="post" action="">
                 <input type="hidden" name="update_options" value="update" />
                 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-                <p class="submit"><input class="button-primary" name="showdebug" value="Show Debug File" type="submit" />
+                <p class="submit"><input class="button-primary" name="showdebug" value="<?php __( 'Show Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" />
                 </p>
             </form>
         </div>
@@ -458,7 +465,7 @@ echo "\r\n";
             <form method="post" action="">
                 <input type="hidden" name="update_options" value="update" />
                 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-                <p class="submit"><input class="button-primary" name="killdebug" value="Delete Debug File" type="submit" /></p>
+                <p class="submit"><input class="button-primary" name="killdebug" value="<?php __( 'Delete Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
             </form>
         </div>
         <br style="clear:both" /><br />
@@ -475,7 +482,7 @@ echo "\r\n";
 	}
 	if ( $pinf ) {
 		?>
-        <a href="" onclick="document.getElementById('shpinf').style.display='block';return false;" class="button-primary">Show PHP Info</a>
+        <a href="" onclick="document.getElementById('shpinf').style.display='block';return false;" class="button-primary"><?php __( 'Show PHP Info', 'stop-spammer-registrations-plugin' ); ?></a>
 		<?php
 		ob_start();
 		phpinfo();
@@ -516,28 +523,29 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div class="ss_info_box">
-	<div class="mainsection">Threat Scan
+	<div class="mainsection"><?php __( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#threats" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+	<?php __( '
     <p>A very simple scan that looks for things out of place in
         the content directory as well as the
         database.</p>
+	', 'stop-spammer-registrations-plugin' ); ?>
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-        <p class="submit"><input class="button-primary" value="Run Scan" type="submit" /></p>
+        <p class="submit"><input class="button-primary" value="<?php __( 'Run Scan', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
     </form>
 	</div>
 	<?php
 	if ( $runscan ) {
 		?>
-        <h2>A clean scan does not mean you are safe. Please keep regular backups and ensure
-            your installation up-to-date!</h2>
+        <h2><?php __( 'A clean scan does not mean you are safe. Please keep regular backups and ensure your installation up-to-date!', 'stop-spammer-registrations-plugin' ); ?></h2>
         <hr />
 		<?php
 		$disp = false;
 		flush();
 // lets try the posts - looking for script tags in data
-		echo "<br /><br />Testing Posts<br />";
+		_e( '<br /><br />Testing Posts<br />', 'stop-spammer-registrations-plugin' );
 		$ptab = $pre . 'posts';
 		$sql  = "select ID,post_author,post_title,post_name,guid,post_content,post_mime_type
 from $ptab where 
@@ -654,17 +662,17 @@ INSTR(LCASE(post_mime_type), 'script') > 0
 				) {
 					$reason .= "post_mime_type:script ";
 				}
-				echo "found possible problems in post ($reason) ID: "
+				_e( 'found possible problems in post ($reason) ID: ', 'stop-spammer-registrations-plugin' )
 				     . $myrow->ID . '<br />';
 			}
 		} else {
-			echo "<br />Nothing found in posts.<br />";
+			_e( '<br />Nothing found in posts.<br />', 'stop-spammer-registrations-plugin' );
 			$disp = false;
 		}
-		echo "<hr />";
+		echo '<hr />';
 // comments: comment_ID: author_url, comment_agent, comment_author, comment_email
 		$ptab = $pre . 'comments';
-		echo "<br /><br />Testing Comments<br />";
+		_e( '<br /><br />Testing Comments<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$sql    = "select comment_ID,comment_author_url,comment_agent,comment_author,comment_author_email,comment_content
 from $ptab where 
@@ -788,17 +796,17 @@ INSTR(LCASE(comment_author_url), 'javascript:') >0
 				) {
 					$reason .= "comment_content:javascript: ";
 				}
-				echo "found possible problems in comment ($reason) ID"
+				_e( 'found possible problems in comment ($reason) ID', 'stop-spammer-registrations-plugin' )
 				     . $myrow->comment_ID . '<br />';
 			}
 		} else {
-			echo "<br />Nothing found in comments.<br />";
+			_e( '<br />Nothing found in comments.<br />', 'stop-spammer-registrations-plugin' );
 		}
 		flush();
-		echo "<hr />";
+		echo '<hr />';
 // links: links_id: link_url, link_image, link_description, link_notes, link_rss,link_rss
 		$ptab = $pre . 'links';
-		echo "<br /><br />Testing Links<br />";
+		_e( '<br /><br />Testing Links<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$sql    = "select link_ID,link_url,link_image,link_description,link_notes
 from $ptab where 
@@ -903,16 +911,16 @@ INSTR(LCASE(link_url), 'javascript:') >0
 				) {
 					$reason .= "link_url:javascript: ";
 				}
-				echo "found possible problems in links ($reason) ID:"
+				_e( 'found possible problems in links ($reason) ID:', 'stop-spammer-registrations-plugin' )
 				     . $myrow->link_ID . '<br />';
 			}
 		} else {
-			echo "<br />Nothing found in links.<br />";
+			_e( '<br />Nothing found in links.<br />', 'stop-spammer-registrations-plugin' );
 		}
-		echo "<hr />";
+		echo '<hr />';
 // users: ID: user_login, user_nicename, user_email, user_url, display_name
 		$ptab = $pre . 'users';
-		echo "<br /><br />Testing Users<br />";
+		_e( '<br /><br />Testing Users<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$sql  = "select ID,user_login,user_nicename,user_email,user_url,display_name 
 from $ptab where 
@@ -1024,32 +1032,32 @@ INSTR(LCASE(user_email), 'javascript:')>0
 				) {
 					$reason .= "user_url:javascript: ";
 				}
-				echo "found possible problems in Users ($reason) ID:"
+				_e( 'found possible problems in Users ($reason) ID:', 'stop-spammer-registrations-plugin' )
 				     . $myrow->ID . '<br />';
 			}
 		} else {
-			echo "<br />Nothing found in users.<br />";
+			_e( '<br />Nothing found in users.<br />', 'stop-spammer-registrations-plugin' );
 		}
-		echo "<hr />";
+		echo '<hr />';
 // options: option_id option_value, option_name
 // I may have to update this as new websites show up
 		$ptab = $pre . 'options';
-		echo "<br /><br />Testing Options Table for HTML<br />";
+		_e( '<br /><br />Testing Options Table for HTML<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$badguys = array(
-			'eval('                              => 'eval function found',
-			'eval ('                             => 'eval function found',
-			'networkads'                         => 'unexpected network ads reference',
-			'document.write(unescape('           => 'javascript document write unescape',
-			'try{window.onload'                  => 'javascript onload event',
-			'escape(document['                   => 'javascript checking document array',
-			'escape(navigator['                  => 'javascript checking navigator',
-			'document.write(string.fromcharcode' => 'obsfucated javascript write',
-			'(base64' . '_decode'                => 'base64 decode to hide code',
-			'(gz' . 'inflate'                    => 'gzip inflate often used to hide code',
-			'UA-27917097-1'                      => 'Bogus Google Analytics code',
-			'w.wpquery.o'                        => 'Malicious jquery in bootleg plugin or theme',
-			'<scr\\\'+'                          => 'Obfuscated script tag, usually in bootleg plugin or theme'
+			'eval('                              => __( 'eval function found', 'stop-spammer-registrations-plugin' ),
+			'eval ('                             => __( 'eval function found', 'stop-spammer-registrations-plugin' ),
+			'networkads'                         => __( 'unexpected network ads reference', 'stop-spammer-registrations-plugin' ),
+			'document.write(unescape('           => __( 'javascript document write unescape', 'stop-spammer-registrations-plugin' ),
+			'try{window.onload'                  => __( 'javascript onload event', 'stop-spammer-registrations-plugin' ),
+			'escape(document['                   => __( 'javascript checking document array', 'stop-spammer-registrations-plugin' ),
+			'escape(navigator['                  => __( 'javascript checking navigator', 'stop-spammer-registrations-plugin' ),
+			'document.write(string.fromcharcode' => __( 'obsfucated javascript write', 'stop-spammer-registrations-plugin' ),
+			'(base64' . '_decode'                => __( 'base64 decode to hide code', 'stop-spammer-registrations-plugin' ),
+			'(gz' . 'inflate'                    => __( 'gzip inflate often used to hide code', 'stop-spammer-registrations-plugin' ),
+			'UA-27917097-1'                      => __( 'Bogus Google Analytics code', 'stop-spammer-registrations-plugin' ),
+			'w.wpquery.o'                        => __( 'Malicious jquery in bootleg plugin or theme', 'stop-spammer-registrations-plugin' ),
+			'<scr\\\'+'                          => __( 'Obfuscated script tag, usually in bootleg plugin or theme', 'stop-spammer-registrations-plugin' )
 		);
 		$sql     = "select option_id,option_value,option_name from $ptab where";
 		foreach ( $badguys as $baddie => $reas ) {
@@ -1076,14 +1084,14 @@ INSTR(LCASE(user_email), 'javascript:')>0
 						}
 					}
 				}
-				echo "<strong>Found possible problems in Option $name ($reason)</strong> option_id:"
-				     . $myrow->option_id . ", value: $line<br /><br />";
+				_e( '<strong>Found possible problems in Option $name ($reason)</strong> option_id:', 'stop-spammer-registrations-plugin' )
+				     . $myrow->option_id . ', value: $line<br /><br />';
 			}
 		} else {
-			echo "<br />Nothing found in options.<br />";
+			_e( '<br />Nothing found in options.<br />', 'stop-spammer-registrations-plugin' );
 		}
-		echo "<hr />";
-		echo "<h2>Scanning Themes and Plugins for eval</h2>";
+		echo '<hr />';
+		_e( '<h2>Scanning Themes and Plugins for eval</h2>', 'stop-spammer-registrations-plugin' );
 		flush();
 		if ( ss_scan_for_eval() ) {
 			$disp = true;
@@ -1091,35 +1099,35 @@ INSTR(LCASE(user_email), 'javascript:')>0
 	;
 		if ( $disp ) {
 			?>
-            <h2>Possible Problems Found!</h2>
-            <p>These are warnings only. Some content and plugins might not be
+            <h2><?php __( 'Possible Problems Found!', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php __( 'These are warnings only. Some content and plugins might not be
                 malicious, but still contain one or more
                 of these indicators. Please investigate all indications of
                 problems. The plugin may err on the side of
-                caution.</p>
-            <p>Although there are legitimate reasons for using the eval
-                function, and Javascript uses it frequently,
+                caution.', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p><?php __( 'Although there are legitimate reasons for using the eval
+                function, and JavaScript uses it frequently,
                 finding eval in PHP code is in the very least bad practice, and
                 the worst is used to hide malicious
-                code. If eval() comes up in a scan, try to get rid of it.</p>
-            <p>Your code could contain 'eval', or 'document.write(unescape(' or
-                'try{window.onload' or
-                setAttribute('src'. These are markers for problems such as SQL
-                injection or cross-browser Javascript.
+                code. If eval() comes up in a scan, try to get rid of it.', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p><?php __( 'Your code could contain "eval", or "document.write(unescape(" or
+                "try{window.onload" or
+                setAttribute("src". These are markers for problems such as SQL
+                injection or cross-browser JavaScript.
                 &lt;script&gt; tags should occur in your posts, if you added
                 them, but should not be found anywhere
                 else, except options. Options often have scripts for displaying
                 Facebook, Twitter, etc. Be careful,
                 though, if one appears in an option. Most of the time it is OK,
-                but make sure.</p>
+                but make sure.', 'stop-spammer-registrations-plugin' ); ?></p>
 			<?php
 		} else {
 			?>
-            <h2>No Problems Found</h2>
-            <p>It appears that there are no eval or suspicious Javascript
+            <h2><?php __( 'No Problems Found', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php __( 'It appears that there are no eval or suspicious JavaScript
                 functions in the code in your wp-content
                 directory. That does not mean that you are safe, only that a
-                threat may be well-hidden.</p>
+                threat may be well-hidden.', 'stop-spammer-registrations-plugin' ); ?></p>
 			<?php
 		}
 		flush();
@@ -1134,7 +1142,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 			$phparray );
 // phparray should have a list of all of the PHP files
 		$disp = false;
-		echo "Files: <ol>";
+		_e( 'Files: <ol>', 'stop-spammer-registrations-plugin' );
 		for ( $j = 0; $j < count( $phparray ); $j ++ ) {
 // ignore my work on this subject
 			if ( strpos( $phparray[ $j ], 'threat_scan' ) === false
@@ -1144,16 +1152,15 @@ INSTR(LCASE(user_email), 'javascript:')>0
 				if ( count( $ansa ) > 0 ) {
 					$disp = true;
 // echo "Think we got something<br />";
-					echo "<li>" . $phparray[ $j ] . " <br /> ";
+					echo '<li>' . $phparray[ $j ] . ' <br /> ';
 					for ( $k = 0; $k < count( $ansa ); $k ++ ) {
-						echo $ansa[ $k ] . " <br />";
+						echo $ansa[ $k ] . ' <br />';
 					}
-					echo "</li>";
+					echo '</li>';
 				}
 			}
 		}
-		echo "</ol>";
-
+		echo '</ol>';
 		return $disp;
 	} // end of function
 	// recursive walk of directory structure.
@@ -1455,6 +1462,5 @@ INSTR(LCASE(user_email), 'javascript:')>0
 // if ( strpos( $file, 'stop-spammers' ) !== false ) return false;
 		return true;
 	}
-
 	?>
 </div>

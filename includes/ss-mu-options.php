@@ -71,7 +71,6 @@ function ssp_global_add( $option, $value ) {
 	$ansa = update_option( $f, $value );
 	restore_current_blog();
 	$ssp_semaphore --;
-
 	return true; // functions.php ignores result anyway
 }
 

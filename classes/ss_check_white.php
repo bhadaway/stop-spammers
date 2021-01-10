@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -9,7 +10,7 @@ class ss_check_white extends be_module {
 	) {
 		$email = $post['email'];
 // $p=print_r( $post,true );
-// if ( $post['email']=='tester@tester.com' ) {
+// if ( $post['email']=='email@example.com' ) {
 // return false; // use to test plugin
 // }
 // can't ever block local server because of cron jobs
@@ -30,7 +31,6 @@ class ss_check_white extends be_module {
 // need to log a passed hit on post here
 						ss_log_good( ss_get_ip(), $reason, $add[1],
 							$add ); // added get IP because it might be altered
-
 						return $reason;
 					}
 				}

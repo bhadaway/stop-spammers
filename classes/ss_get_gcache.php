@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -20,19 +21,18 @@ class ss_get_gcache {
 		$ajaxurl   = admin_url( 'admin-ajax.php' );
 		$show      = '';
 		foreach ( $goodips as $key => $value ) {
-			$who     = "<a title=\"Look Up WHOIS\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a>";
+			$who     = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a>";
 			$show   .= "<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
 // try AJAX on the delete from bad cache
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','$cachedel','$ajaxurl');return false;\"";
-			$show   .= " <a href=\"\" $onclick title=\"Delete $key from Cache\" alt=\"Delete $key from Cache\" ><img src=\"$trash\" height=\"16px\" /></a> ";
+			$show   .= " <a href=\"\" $onclick title=\"" . esc_attr__( 'Delete $key from Cache', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Delete $key from Cache', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$trash\" height=\"16px\" /></a> ";
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','add_black','$ajaxurl');return false;\"";
-			$show   .= " <a href=\"\" $onclick title=\"Add to $key Deny List\" alt=\"Add to Deny List\" ><img src=\"$tdown\" height=\"16px\" /></a> ";
+			$show   .= " <a href=\"\" $onclick title=\"" . esc_attr__( 'Add to $key Deny List', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$tdown\" height=\"16px\" /></a> ";
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','add_white','$ajaxurl');return false;\"";
-			$show   .= " <a href=\"\" $onclick title=\"Add to $key Allow List\" alt=\"Add to Allow List\" ><img src=\"$tup\" height=\"16px\" /></a>";
+			$show   .= " <a href=\"\" $onclick title=\"" . esc_attr__( 'Add to $key Allow List', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Add to Allow List', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$tup\" height=\"16px\" /></a>";
 			$show   .= $who;
 			$show   .= "<br />";
 		}
-
 		return $show;
 	}
 }

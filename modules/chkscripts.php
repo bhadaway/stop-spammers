@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -10,11 +11,11 @@ class chkscripts extends be_module {
 	) {
 		$sname = $this->getSname();
 		if ( strpos( $sname, 'wp-cron.php' ) !== false ) {
-			return "allow wp-cron";
+			_e( 'allow wp-cron', 'stop-spammer-registrations-plugin' );
 		}
 // if( strpos( $sname, 'admin.php?' ) !== false ) return "allow admin.php?";
 		if ( strpos( $sname, 'admin-ajax.php' ) !== false ) {
-			return "allow admin-ajax.php";
+			_e( 'allow admin-ajax.php', 'stop-spammer-registrations-plugin' );
 		} // necessary?
 		return false;
 	}

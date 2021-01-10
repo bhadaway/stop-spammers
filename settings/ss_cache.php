@@ -1,9 +1,11 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
+
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -48,35 +50,36 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$stats['badips']  = $badips;
 		$stats['goodips'] = $goodips;
 		ss_set_stats( $stats );
-		echo "<div class='notice notice-success'><p>Cache Cleared</p></div>";
+		echo '<div class="notice notice-success"><p>' . __( 'Cache Cleared', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated! Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
+		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
-		$msg = '<div class="notice notice-success is-dismissible"><p>Options Updated!</p></div>';
+		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 }
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — Cache</h1>
+    <h1 class="ss_head">Stop Spammers — <?php __( 'Cache', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
 	if ( ! empty( $msg ) ) {
 		echo "$msg";
 	} ?>
 	<br />
 	<div class="ss_info_box">
-    
+    <?php __( '
     <p>Whenever a user tries to leave a comment, register, or login, they are
         recorded in the Good Cache if they pass or the Bad Cache if they fail.
         If a user is blocked from access, they are added to the Bad Cache. You
         can see the caches here. To learn more about caching, 
-		please <a href="https://stopspammers.io/ip-cache" target="_blank">review our documentation</a>.</p></div>
+		please <a href="https://stopspammers.io/ip-cache" target="_blank">review our documentation</a>.</p>
+	', 'stop-spammer-registrations-plugin' ); ?>
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-				<span class="keyhead">Bad IP Cache Size</span>
+		<span class="keyhead"><?php __( 'Bad IP Cache Size', 'stop-spammer-registrations-plugin' ); ?></span>
 		<select name="ss_sp_cache">
                 <option value="0" <?php
 				if ( $ss_sp_cache == '0' ) {
@@ -116,8 +119,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             </select>
         <br />
 		<br />
-		<span class="keyhead">Good IP Cache Size</span>
-            <select name="ss_sp_good">
+		<span class="keyhead"><?php __( 'Good IP Cache Size', 'stop-spammer-registrations-plugin' ); ?></span>
+        <select name="ss_sp_good">
                 <option value="1" <?php
 				if ( $ss_sp_good == '1' ) {
 					echo "selected=\"true\"";
@@ -171,18 +174,18 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             </select>
         </fieldset>
         <br />
-        <p class="submit"><input class="button-primary" value="Save Changes" type="submit" /></p>
+        <p class="submit"><input class="button-primary" value="<?php __( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
     </form>
 	<?php
 	if ( count( $badips ) == 0 && count( $goodips ) == 0 ) {
-		echo "Nothing in the cache.";
+		_e( 'Nothing in the cache.', 'stop-spammer-registrations-plugin' );
 	} else {
 		?>
-        <h2>Cached Values</h2>
+        <h2><?php __( 'Cached Values', 'stop-spammer-registrations-plugin' ); ?></h2>
         <form method="post" action="">
             <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
             <input type="hidden" name="ss_stop_clear_cache" value="true" />
-            <p class="submit"><input class="button-primary" value="Clear the Cache" type="submit" /></p>
+            <p class="submit"><input class="button-primary" value="<?php __( 'Clear the Cache', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </form>
         <table>
             <tr>
@@ -190,14 +193,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				if ( count( $badips ) > 0 ) {
 					arsort( $badips );
 					?>
-                    <td width="30%">Rejected IPs</td>
+                    <td width="30%"><?php __( 'Bad IPs', 'stop-spammer-registrations-plugin' ); ?></td>
 					<?php
 				}
 				?>
 				<?php
 				if ( count( $goodips ) > 0 ) {
 					?>
-                    <td width="30%">Good IPs</td>
+                    <td width="30%"><?php __( 'Good IPs', 'stop-spammer-registrations-plugin' ); ?></td>
 					<?php
 				}
 				?>

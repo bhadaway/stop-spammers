@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -35,7 +36,7 @@ class chkdnsbl {
 					          && $result[3] <= 7 )
 					     && $result[1] > 0
 					) {
-						return "dnsbl: $data=" . $result[0] . ',' . $result[1]
+						return "DNSBL: $data=" . $result[0] . ',' . $result[1]
 						       . ',' . $result[2] . ',' . $result[3];
 					}
 				}

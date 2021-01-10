@@ -3131,7 +3131,7 @@ class chkdisp {
 		) {
 // the email is a disposable email address
 // do you really want this guy?
-			return 'Disposable Email: ' . $options['em'];
+			_e( 'Disposable Email: ', 'stop-spammer-registrations-plugin' ) . $options['em'];
 		}
 		return false;
 	}

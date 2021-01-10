@@ -8,7 +8,7 @@ Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
 Domain Path: /languages
-Text Domain: stop-spammers
+Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // making translation-ready
 function ss_load_plugin_textdomain() {
-    load_plugin_textdomain( 'stop-spammers', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'stop-spammer-registrations-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 
@@ -39,7 +39,7 @@ function ss_admin_notice() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_5' ) && current_user_can( 'manage_options' ) )
-			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Thank you! Enjoy our best discount of the year with code <strong>holidaycheer</strong> when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">Dismiss</a></p></div>';
+			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Thank you! Enjoy our best discount of the year with code <strong>holidaycheer</strong> when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
@@ -380,7 +380,7 @@ function ss_log_akismet() {
 	}
 // not on Allow Lists
 	$post           = get_post_variables();
-	$post['reason'] = 'from Akismet';
+	$post['reason'] = __( 'from Akismet', 'stop-spammer-registrations-plugin' );
 	$post['chk']    = 'chkakismet';
 	$ansa           = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
@@ -435,7 +435,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 	if ( is_array( $file ) ) { // add-ons pass their array
 // this is an absolute location so load it directly
 		if ( ! file_exists( $file[0] ) ) {
-			sfs_debug_msg( 'not found ' . print_r( $add, true ) );
+			sfs_debug_msg( __( 'not found ', 'stop-spammer-registrations-plugin' ) . print_r( $add, true ) );
 			return false;
 		}
 // require_once( $file[0] );
@@ -462,7 +462,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 		$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
 	if ( ! file_exists( $fd ) ) {
-		echo "<br /><br />Missing $file $fd<br /><br />";
+		_e( '<br /><br />Missing $file $fd<br /><br />', 'stop-spammer-registrations-plugin' );
 		return false;
 	}
 	require_once( $fd );
@@ -697,18 +697,17 @@ function ss_user_reg_filter( $user_login ) {
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
 		$rejectmessage  = $options['rejectmessage'];
-		$post['reason'] = 'Failed Registration: Bad Cache';
+		$post['reason'] = __( 'Failed Registration: Bad Cache', 'stop-spammer-registrations-plugin' );
 		$host['chk']    = 'chkbcache';
 		$ansa           = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
-		wp_die( "$rejectmessage", "Login Access Denied",
-			array( 'response' => 403 ) );
+		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
 // check the whitelist
 	$reason = ss_check_white();
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
-		$post['reason'] = 'Passed Registration:' . $reason;
+		$post['reason'] = __( 'Passed Registration:', 'stop-spammer-registrations-plugin' ) . $reason;
 		$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 		sfs_errorsonoff( 'off' );
 		return $user_login;
@@ -716,7 +715,7 @@ function ss_user_reg_filter( $user_login ) {
 // check the blacklist
 // sfs_debug_msg( "Checking blacklist on registration: /r/n".print_r( $post, true ) );
 	$ret            = be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
-	$post['reason'] = 'Passed Registration ' . $ret;
+	$post['reason'] = __( 'Passed Registration ', 'stop-spammer-registrations-plugin' ) . $ret;
 	$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 	return $user_login;
 }
@@ -735,7 +734,7 @@ add_action( 'wp', 'login_redirect' );
 
 // action links
 function ss_summary_link( $links ) {
-	$links = array_merge( array( '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings' ) . '</a>' ), $links );
+	$links = array_merge( array( '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings', 'stop-spammer-registrations-plugin' ) . '</a>' ), $links );
 	return $links;
 }
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
@@ -744,7 +743,7 @@ function check_for_premium() {
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
 		function ss_upgrade_link( $links ) {
-			$links = array_merge( array( '<a href="https://stopspammers.io/" title="Get Maximum Dynamic Security" target="_blank" style="font-weight:bold">' . __( 'Upgrade' ) . '</a>' ), $links );
+			$links = array_merge( array( '<a href="https://stopspammers.io/" title="' . esc_attr( 'Get Maximum Dynamic Security', 'stop-spammer-registrations-plugin' ) . '" target="_blank" style="font-weight:bold">' . __( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a>' ), $links );
 			return $links;
 		}
 	}

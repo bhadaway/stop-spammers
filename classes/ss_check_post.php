@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -246,9 +247,9 @@ class ss_check_post extends be_module {
 // sfs_debug_msg( "check post $ip, " . print_r( $post,true ) );
 // for testing the cache without doing spam
 		if ( array_key_exists( 'email', $post )
-		     && $post['email'] == 'tester@tester.com'
+		     && $post['email'] == 'email@example.com'
 		) {
-			$post['reason'] = "testing IP - will always be blocked"; // use to test plugin
+			$post['reason'] = __( 'Testing IP - will always be blocked', 'stop-spammer-registrations-plugin' ); // use to test plugin
 			be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
 
 			return;

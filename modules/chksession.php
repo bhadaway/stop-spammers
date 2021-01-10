@@ -48,7 +48,7 @@ class chksession {
 					     && $tm <= $sesstime
 					) { // zero seconds is wrong, too - it means that session was set somewhere
 // takes longer than 2 seconds to really type a comment
-						return "Session Speed - $tm seconds";
+						_e( 'Session Speed - $tm seconds', 'stop-spammer-registrations-plugin' );
 					}
 				}
 			}

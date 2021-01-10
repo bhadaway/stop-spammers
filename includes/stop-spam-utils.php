@@ -53,7 +53,7 @@ function ss_read_filex( $filename ) {
 	if ( file_exists( $file ) ) {
 		return file_get_contents( $file );
 	}
-	return "File Not Found";
+	_e( 'File Not Found', 'stop-spammer-registrations-plugin' );
 }
 
 function ss_file_exists( $filename ) {
@@ -123,25 +123,25 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 	}
 	switch ( $errno ) {
 		case E_ERROR:
-			$serrno = "Fatal run-time errors. These indicate errors that can not be recovered from, such as a memory allocation problem. Execution of the script is halted. ";
+			$serrno = __( 'Fatal run-time errors. These indicate errors that can not be recovered from, such as a memory allocation problem. Execution of the script is halted. ', 'stop-spammer-registrations-plugin' );
 			break;
 		case E_WARNING:
-			$serrno = "Run-time warnings (non-fatal errors). Execution of the script is not halted. ";
+			$serrno = __( 'Run-time warnings (non-fatal errors). Execution of the script is not halted. ', 'stop-spammer-registrations-plugin' );
 			break;
 		case E_NOTICE:
-			$serrno = "Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. ";
+			$serrno = __( 'Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. ', 'stop-spammer-registrations-plugin' );
 			break;
 		default;
-			$serrno = "Unknown Error Type $errno";
+			$serrno = __( 'Unknown Error Type $errno', 'stop-spammer-registrations-plugin' );
 	}
-	if ( strpos( $errmsg, 'modify header information' ) ) {
+	if ( strpos( $errmsg, __( 'modify header information', 'stop-spammer-registrations-plugin' ) ) ) {
 		return false;
 	}
 	$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	$m1  = memory_get_usage( true );
 	$m2  = memory_get_peak_usage( true );
 	$ip  = ss_get_ip();
-	$msg = "
+	$msg = __( '
 Time: $now
 Error Number: $errno
 Error Type: $serrno
@@ -151,7 +151,7 @@ File Name: $filename
 Line Number: $linenum
 Memory Used, Peak: $m1, $m2
 ---------------------
-";
+', 'stop-spammer-registrations-plugin' );;
 // write out the error
 	@file_put_contents( SS_PLUGIN_DATA . '.sfs_debug_output.txt', $msg, FILE_APPEND );
 	return false;

@@ -10,9 +10,9 @@ class chkperiods extends be_module {
 				list( $text, $domain ) = explode( '@', $email, 2 );
 				$domain = $this->remove_tld( $domain );
 				if ( substr_count( $domain, "." ) >= 1 ) {
-					return "Too many periods in: $email";
+					_e( 'Too many periods in: $email', 'stop-spammer-registrations-plugin' );
 				} else if ( substr_count( $text, "." ) >= 2 ) {
-					return "Too many periods in: $email";
+					_e( 'Too many periods in: $email', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
@@ -22,9 +22,9 @@ class chkperiods extends be_module {
 				list( $text, $domain ) = explode( '@', $email, 2 );
 				$domain = $this->remove_tld( $domain );
 				if ( substr_count( $domain, "." ) >= 2 ) {
-					return "Too many periods in: $email";
+					_e( 'Too many periods in: $email', 'stop-spammer-registrations-plugin' );
 				} else if ( substr_count( $text, "." ) >= 2 ) {
-					return "Too many periods in: $email";
+					_e( 'Too many periods in: $email', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}

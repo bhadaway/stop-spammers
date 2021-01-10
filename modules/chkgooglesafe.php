@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -59,7 +60,7 @@ class chkgooglesafe extends be_module {
 					if ( strpos( $r, 'phishing' ) !== false
 					     || strpos( $r, 'malware' ) !== false
 					) {
-						return 'Google Safe: ' . $r;
+						_e( 'Google Safe: ', 'stop-spammer-registrations-plugin' ) . $r;
 					}
 				}
 			}

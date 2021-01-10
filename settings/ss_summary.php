@@ -1,14 +1,15 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // just in case
 
 if ( ! current_user_can( 'manage_options' ) ) {
-	die( 'Access Denied' );
+	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
 if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
-	echo "<div>Jetpack Protect has been detected. Stop Spammers has disabled itself.<br />Please turn off Jetpack Protect or uninstall Stop Spammers.</div>";
+	_e( '<div>Jetpack Protect has been detected. Because of a conflict, Stop Spammers has disabled itself.<br />You do not need to disable Jetpack, just the Protect feature.</div>', 'stop-spammer-registrations-plugin' );
 	return;
 }
 
@@ -20,196 +21,196 @@ $now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 // counters should have the same name as the YN switch for the check
 // I see lots of missing counters here
 $counters = array(
-	'cntchkcloudflare'    => 'Pass Cloudflare',
-	'cntchkgcache'        => 'Pass Good Cache',
-	'cntchkakismet'       => 'Reported by Akismet',
-	'cntchkgenallowlist'  => 'Pass Generated Allow List',
-	'cntchkgoogle'        => 'Pass Google',
-	'cntchkmiscallowlist' => 'Pass Allow List',
-	'cntchkpaypal'        => 'Pass PayPal',
-	'cntchkscripts'       => 'Pass Scripts',
-	'cntchkvalidip'       => 'Pass Uncheckable IP',
-	'cntchkwlem'          => 'Allow List Email',
-	'cntchkuserid'        => 'Allow User ID/Author',
-	'cntchkwlist'         => 'Pass Allow List IP',
-	'cntchkyahoomerchant' => 'Pass Yahoo merchant',
-	'cntchk404'           => '404 Exploit Attempt',
-	'cntchkaccept'        => 'Bad or Missing Accept Header',
-	'cntchkadmin'         => 'Admin Login Attempt',
-	'cntchkadminlog'      => 'Passed Login OK',
-	'cntchkagent'         => 'Bad or Missing User Agent',
-	'cntchkamazon'        => 'Amazon AWS',
-	'cntchkaws'           => 'Amazon AWS Allow',
-	'cntchkbcache'        => 'Bad Cache',
-	'cntchkblem'          => 'Deny List Email',
-	'cntchkuserid'        => 'Deny User ID/Author',
-	'cntchkblip'          => 'Deny List IP',
-	'cntchkbotscout'      => 'BotScout',
-	'cntchkdisp'          => 'Disposable Email',
-	'cntchkdnsbl'         => 'DNSBL Hit',
-	'cntchkexploits'      => 'Exploit Attempt',
-	'cntchkgooglesafe'    => 'Google Safe Browsing',
-	'cntchkhoney'         => 'Project Honeypot',
-	'cntchkhosting'       => 'Known Spam Host',
-	'cntchkinvalidip'     => 'Block Invalid IP',
-	'cntchklong'          => 'Long Email',
-	'cntchkshort'         => 'Short Email',
-	'cntchkbbcode'        => 'BBCode in Request',
-	'cntchkreferer'       => 'Bad HTTP_REFERER',
-	'cntchksession'       => 'Session Speed',
-	'cntchksfs'           => 'Stop Forum Spam',
-	'cntchkspamwords'     => 'Spam Words',
-	'cntchkurlshort'      => 'Short URLs',
-	'cntchktld'           => 'Email TLD',
-	'cntchkubiquity'      => 'Ubiquity Servers',
-	'cntchkmulti'         => 'Repeated Hits',
-	'cntchkform'          => 'Check for Standard Form',
-	'cntchkAD'            => 'Andorra',
-	'cntchkAE'            => 'United Arab Emirates',
-	'cntchkAF'            => 'Afghanistan',
-	'cntchkAL'            => 'Albania',
-	'cntchkAM'            => 'Armenia',
-	'cntchkAR'            => 'Argentina',
-	'cntchkAT'            => 'Austria',
-	'cntchkAU'            => 'Australia',
-	'cntchkAX'            => 'Aland Islands',
-	'cntchkAZ'            => 'Azerbaijan',
-	'cntchkBA'            => 'Bosnia And Herzegovina',
-	'cntchkBB'            => 'Barbados',
-	'cntchkBD'            => 'Bangladesh',
-	'cntchkBE'            => 'Belgium',
-	'cntchkBG'            => 'Bulgaria',
-	'cntchkBH'            => 'Bahrain',
-	'cntchkBN'            => 'Brunei Darussalam',
-	'cntchkBO'            => 'Bolivia',
-	'cntchkBR'            => 'Brazil',
-	'cntchkBS'            => 'Bahamas',
-	'cntchkBY'            => 'Belarus',
-	'cntchkBZ'            => 'Belize',
-	'cntchkCA'            => 'Canada',
-	'cntchkCD'            => 'Congo, Democratic Republic',
-	'cntchkCH'            => 'Switzerland',
-	'cntchkCL'            => 'Chile',
-	'cntchkCN'            => 'China',
-	'cntchkCO'            => 'Colombia',
-	'cntchkCR'            => 'Costa Rica',
-	'cntchkCU'            => 'Cuba',
-	'cntchkCW'            => 'CuraÃ§ao',
-	'cntchkCY'            => 'Cyprus',
-	'cntchkCZ'            => 'Czech Republic',
-	'cntchkDE'            => 'Germany',
-	'cntchkDK'            => 'Denmark',
-	'cntchkDO'            => 'Dominican Republic',
-	'cntchkDZ'            => 'Algeria',
-	'cntchkEC'            => 'Ecuador',
-	'cntchkEE'            => 'Estonia',
-	'cntchkES'            => 'Spain',
-	'cntchkEU'            => 'European Union',
-	'cntchkFI'            => 'Finland',
-	'cntchkFJ'            => 'Fiji',
-	'cntchkFR'            => 'France',
-	'cntchkGB'            => 'Great Britain',
-	'cntchkGE'            => 'Georgia',
-	'cntchkGF'            => 'French Guiana',
-	'cntchkGI'            => 'Gibraltar',
-	'cntchkGP'            => 'Guadeloupe',
-	'cntchkGR'            => 'Greece',
-	'cntchkGT'            => 'Guatemala',
-	'cntchkGU'            => 'Guam',
-	'cntchkGY'            => 'Guyana',
-	'cntchkHK'            => 'Hong Kong',
-	'cntchkHN'            => 'Honduras',
-	'cntchkHR'            => 'Croatia',
-	'cntchkHT'            => 'Haiti',
-	'cntchkHU'            => 'Hungary',
-	'cntchkID'            => 'Indonesia',
-	'cntchkIE'            => 'Ireland',
-	'cntchkIL'            => 'Israel',
-	'cntchkIN'            => 'India',
-	'cntchkIQ'            => 'Iraq',
-	'cntchkIR'            => 'Iran, Islamic Republic Of',
-	'cntchkIS'            => 'Iceland',
-	'cntchkIT'            => 'Italy',
-	'cntchkJM'            => 'Jamaica',
-	'cntchkJO'            => 'Jordan',
-	'cntchkJP'            => 'Japan',
-	'cntchkKE'            => 'Kenya',
-	'cntchkKG'            => 'Kyrgyzstan',
-	'cntchkKH'            => 'Cambodia',
-	'cntchkKR'            => 'Korea',
-	'cntchkKW'            => 'Kuwait',
-	'cntchkKY'            => 'Cayman Islands',
-	'cntchkKZ'            => 'Kazakhstan',
+	'cntchkcloudflare'    => __( 'Pass Cloudflare', 'stop-spammer-registrations-plugin' ),
+	'cntchkgcache'        => __( 'Pass Good Cache', 'stop-spammer-registrations-plugin' ),
+	'cntchkakismet'       => __( 'Reported by Akismet', 'stop-spammer-registrations-plugin' ),
+	'cntchkgenallowlist'  => __( 'Pass Generated Allow List', 'stop-spammer-registrations-plugin' ),
+	'cntchkgoogle'        => __( 'Pass Google', 'stop-spammer-registrations-plugin' ),
+	'cntchkmiscallowlist' => __( 'Pass Allow List', 'stop-spammer-registrations-plugin' ),
+	'cntchkpaypal'        => __( 'Pass PayPal', 'stop-spammer-registrations-plugin' ),
+	'cntchkscripts'       => __( 'Pass Scripts', 'stop-spammer-registrations-plugin' ),
+	'cntchkvalidip'       => __( 'Pass Uncheckable IP', 'stop-spammer-registrations-plugin' ),
+	'cntchkwlem'          => __( 'Allow List Email', 'stop-spammer-registrations-plugin' ),
+	'cntchkuserid'        => __( 'Allow User ID/Author', 'stop-spammer-registrations-plugin' ),
+	'cntchkwlist'         => __( 'Pass Allow List IP', 'stop-spammer-registrations-plugin' ),
+	'cntchkyahoomerchant' => __( 'Pass Yahoo merchant', 'stop-spammer-registrations-plugin' ),
+	'cntchk404'           => __( '404 Exploit Attempt', 'stop-spammer-registrations-plugin' ),
+	'cntchkaccept'        => __( 'Bad or Missing Accept Header', 'stop-spammer-registrations-plugin' ),
+	'cntchkadmin'         => __( 'Admin Login Attempt', 'stop-spammer-registrations-plugin' ),
+	'cntchkadminlog'      => __( 'Passed Login OK', 'stop-spammer-registrations-plugin' ),
+	'cntchkagent'         => __( 'Bad or Missing User Agent', 'stop-spammer-registrations-plugin' ),
+	'cntchkamazon'        => __( 'Amazon AWS', 'stop-spammer-registrations-plugin' ),
+	'cntchkaws'           => __( 'Amazon AWS Allow', 'stop-spammer-registrations-plugin' ),
+	'cntchkbcache'        => __( 'Bad Cache', 'stop-spammer-registrations-plugin' ),
+	'cntchkblem'          => __( 'Deny List Email', 'stop-spammer-registrations-plugin' ),
+	'cntchkuserid'        => __( 'Deny User ID/Author', 'stop-spammer-registrations-plugin' ),
+	'cntchkblip'          => __( 'Deny List IP', 'stop-spammer-registrations-plugin' ),
+	'cntchkbotscout'      => __( 'BotScout', 'stop-spammer-registrations-plugin' ),
+	'cntchkdisp'          => __( 'Disposable Email', 'stop-spammer-registrations-plugin' ),
+	'cntchkdnsbl'         => __( 'DNSBL Hit', 'stop-spammer-registrations-plugin' ),
+	'cntchkexploits'      => __( 'Exploit Attempt', 'stop-spammer-registrations-plugin' ),
+	'cntchkgooglesafe'    => __( 'Google Safe Browsing', 'stop-spammer-registrations-plugin' ),
+	'cntchkhoney'         => __( 'Project Honeypot', 'stop-spammer-registrations-plugin' ),
+	'cntchkhosting'       => __( 'Known Spam Host', 'stop-spammer-registrations-plugin' ),
+	'cntchkinvalidip'     => __( 'Block Invalid IP', 'stop-spammer-registrations-plugin' ),
+	'cntchklong'          => __( 'Long Email', 'stop-spammer-registrations-plugin' ),
+	'cntchkshort'         => __( 'Short Email', 'stop-spammer-registrations-plugin' ),
+	'cntchkbbcode'        => __( 'BBCode in Request', 'stop-spammer-registrations-plugin' ),
+	'cntchkreferer'       => __( 'Bad HTTP_REFERER', 'stop-spammer-registrations-plugin' ),
+	'cntchksession'       => __( 'Session Speed', 'stop-spammer-registrations-plugin' ),
+	'cntchksfs'           => __( 'Stop Forum Spam', 'stop-spammer-registrations-plugin' ),
+	'cntchkspamwords'     => __( 'Spam Words', 'stop-spammer-registrations-plugin' ),
+	'cntchkurlshort'      => __( 'Short URLs', 'stop-spammer-registrations-plugin' ),
+	'cntchktld'           => __( 'Email TLD', 'stop-spammer-registrations-plugin' ),
+	'cntchkubiquity'      => __( 'Ubiquity Servers', 'stop-spammer-registrations-plugin' ),
+	'cntchkmulti'         => __( 'Repeated Hits', 'stop-spammer-registrations-plugin' ),
+	'cntchkform'          => __( 'Check for Standard Form', 'stop-spammer-registrations-plugin' ),
+	'cntchkAD'            => __( 'Andorra', 'stop-spammer-registrations-plugin' ),
+	'cntchkAE'            => __( 'United Arab Emirates', 'stop-spammer-registrations-plugin' ),
+	'cntchkAF'            => __( 'Afghanistan', 'stop-spammer-registrations-plugin' ),
+	'cntchkAL'            => __( 'Albania', 'stop-spammer-registrations-plugin' ),
+	'cntchkAM'            => __( 'Armenia', 'stop-spammer-registrations-plugin' ),
+	'cntchkAR'            => __( 'Argentina', 'stop-spammer-registrations-plugin' ),
+	'cntchkAT'            => __( 'Austria', 'stop-spammer-registrations-plugin' ),
+	'cntchkAU'            => __( 'Australia', 'stop-spammer-registrations-plugin' ),
+	'cntchkAX'            => __( 'Aland Islands', 'stop-spammer-registrations-plugin' ),
+	'cntchkAZ'            => __( 'Azerbaijan', 'stop-spammer-registrations-plugin' ),
+	'cntchkBA'            => __( 'Bosnia And Herzegovina', 'stop-spammer-registrations-plugin' ),
+	'cntchkBB'            => __( 'Barbados', 'stop-spammer-registrations-plugin' ),
+	'cntchkBD'            => __( 'Bangladesh', 'stop-spammer-registrations-plugin' ),
+	'cntchkBE'            => __( 'Belgium', 'stop-spammer-registrations-plugin' ),
+	'cntchkBG'            => __( 'Bulgaria', 'stop-spammer-registrations-plugin' ),
+	'cntchkBH'            => __( 'Bahrain', 'stop-spammer-registrations-plugin' ),
+	'cntchkBN'            => __( 'Brunei Darussalam', 'stop-spammer-registrations-plugin' ),
+	'cntchkBO'            => __( 'Bolivia', 'stop-spammer-registrations-plugin' ),
+	'cntchkBR'            => __( 'Brazil', 'stop-spammer-registrations-plugin' ),
+	'cntchkBS'            => __( 'Bahamas', 'stop-spammer-registrations-plugin' ),
+	'cntchkBY'            => __( 'Belarus', 'stop-spammer-registrations-plugin' ),
+	'cntchkBZ'            => __( 'Belize', 'stop-spammer-registrations-plugin' ),
+	'cntchkCA'            => __( 'Canada', 'stop-spammer-registrations-plugin' ),
+	'cntchkCD'            => __( 'Congo, Democratic Republic', 'stop-spammer-registrations-plugin' ),
+	'cntchkCH'            => __( 'Switzerland', 'stop-spammer-registrations-plugin' ),
+	'cntchkCL'            => __( 'Chile', 'stop-spammer-registrations-plugin' ),
+	'cntchkCN'            => __( 'China', 'stop-spammer-registrations-plugin' ),
+	'cntchkCO'            => __( 'Colombia', 'stop-spammer-registrations-plugin' ),
+	'cntchkCR'            => __( 'Costa Rica', 'stop-spammer-registrations-plugin' ),
+	'cntchkCU'            => __( 'Cuba', 'stop-spammer-registrations-plugin' ),
+	'cntchkCW'            => __( 'CuraÃ§ao', 'stop-spammer-registrations-plugin' ),
+	'cntchkCY'            => __( 'Cyprus', 'stop-spammer-registrations-plugin' ),
+	'cntchkCZ'            => __( 'Czech Republic', 'stop-spammer-registrations-plugin' ),
+	'cntchkDE'            => __( 'Germany', 'stop-spammer-registrations-plugin' ),
+	'cntchkDK'            => __( 'Denmark', 'stop-spammer-registrations-plugin' ),
+	'cntchkDO'            => __( 'Dominican Republic', 'stop-spammer-registrations-plugin' ),
+	'cntchkDZ'            => __( 'Algeria', 'stop-spammer-registrations-plugin' ),
+	'cntchkEC'            => __( 'Ecuador', 'stop-spammer-registrations-plugin' ),
+	'cntchkEE'            => __( 'Estonia', 'stop-spammer-registrations-plugin' ),
+	'cntchkES'            => __( 'Spain', 'stop-spammer-registrations-plugin' ),
+	'cntchkEU'            => __( 'European Union', 'stop-spammer-registrations-plugin' ),
+	'cntchkFI'            => __( 'Finland', 'stop-spammer-registrations-plugin' ),
+	'cntchkFJ'            => __( 'Fiji', 'stop-spammer-registrations-plugin' ),
+	'cntchkFR'            => __( 'France', 'stop-spammer-registrations-plugin' ),
+	'cntchkGB'            => __( 'Great Britain', 'stop-spammer-registrations-plugin' ),
+	'cntchkGE'            => __( 'Georgia', 'stop-spammer-registrations-plugin' ),
+	'cntchkGF'            => __( 'French Guiana', 'stop-spammer-registrations-plugin' ),
+	'cntchkGI'            => __( 'Gibraltar', 'stop-spammer-registrations-plugin' ),
+	'cntchkGP'            => __( 'Guadeloupe', 'stop-spammer-registrations-plugin' ),
+	'cntchkGR'            => __( 'Greece', 'stop-spammer-registrations-plugin' ),
+	'cntchkGT'            => __( 'Guatemala', 'stop-spammer-registrations-plugin' ),
+	'cntchkGU'            => __( 'Guam', 'stop-spammer-registrations-plugin' ),
+	'cntchkGY'            => __( 'Guyana', 'stop-spammer-registrations-plugin' ),
+	'cntchkHK'            => __( 'Hong Kong', 'stop-spammer-registrations-plugin' ),
+	'cntchkHN'            => __( 'Honduras', 'stop-spammer-registrations-plugin' ),
+	'cntchkHR'            => __( 'Croatia', 'stop-spammer-registrations-plugin' ),
+	'cntchkHT'            => __( 'Haiti', 'stop-spammer-registrations-plugin' ),
+	'cntchkHU'            => __( 'Hungary', 'stop-spammer-registrations-plugin' ),
+	'cntchkID'            => __( 'Indonesia', 'stop-spammer-registrations-plugin' ),
+	'cntchkIE'            => __( 'Ireland', 'stop-spammer-registrations-plugin' ),
+	'cntchkIL'            => __( 'Israel', 'stop-spammer-registrations-plugin' ),
+	'cntchkIN'            => __( 'India', 'stop-spammer-registrations-plugin' ),
+	'cntchkIQ'            => __( 'Iraq', 'stop-spammer-registrations-plugin' ),
+	'cntchkIR'            => __( 'Iran, Islamic Republic Of', 'stop-spammer-registrations-plugin' ),
+	'cntchkIS'            => __( 'Iceland', 'stop-spammer-registrations-plugin' ),
+	'cntchkIT'            => __( 'Italy', 'stop-spammer-registrations-plugin' ),
+	'cntchkJM'            => __( 'Jamaica', 'stop-spammer-registrations-plugin' ),
+	'cntchkJO'            => __( 'Jordan', 'stop-spammer-registrations-plugin' ),
+	'cntchkJP'            => __( 'Japan', 'stop-spammer-registrations-plugin' ),
+	'cntchkKE'            => __( 'Kenya', 'stop-spammer-registrations-plugin' ),
+	'cntchkKG'            => __( 'Kyrgyzstan', 'stop-spammer-registrations-plugin' ),
+	'cntchkKH'            => __( 'Cambodia', 'stop-spammer-registrations-plugin' ),
+	'cntchkKR'            => __( 'Korea', 'stop-spammer-registrations-plugin' ),
+	'cntchkKW'            => __( 'Kuwait', 'stop-spammer-registrations-plugin' ),
+	'cntchkKY'            => __( 'Cayman Islands', 'stop-spammer-registrations-plugin' ),
+	'cntchkKZ'            => __( 'Kazakhstan', 'stop-spammer-registrations-plugin' ),
 	'cntchkLA'            => "Lao People's Democratic Republic",
-	'cntchkLB'            => 'Lebanon',
-	'cntchkLK'            => 'Sri Lanka',
-	'cntchkLT'            => 'Lithuania',
-	'cntchkLU'            => 'Luxembourg',
-	'cntchkLV'            => 'Latvia',
-	'cntchkMD'            => 'Moldova',
-	'cntchkME'            => 'Montenegro',
-	'cntchkMK'            => 'Macedonia',
-	'cntchkMM'            => 'Myanmar',
-	'cntchkMN'            => 'Mongolia',
-	'cntchkMO'            => 'Macao',
-	'cntchkMP'            => 'Northern Mariana Islands',
-	'cntchkMQ'            => 'Martinique',
-	'cntchkMT'            => 'Malta',
-	'cntchkMV'            => 'Maldives',
-	'cntchkMX'            => 'Mexico',
-	'cntchkMY'            => 'Malaysia',
-	'cntchkNC'            => 'New Caledonia',
-	'cntchkNI'            => 'Nicaragua',
-	'cntchkNL'            => 'Netherlands',
-	'cntchkNO'            => 'Norway',
-	'cntchkNP'            => 'Nepal',
-	'cntchkNZ'            => 'New Zealand',
-	'cntchkOM'            => 'Oman',
-	'cntchkPA'            => 'Panama',
-	'cntchkPE'            => 'Peru',
-	'cntchkPG'            => 'Papua New Guinea',
-	'cntchkPH'            => 'Philippines',
-	'cntchkPK'            => 'Pakistan',
-	'cntchkPL'            => 'Poland',
-	'cntchkPR'            => 'Puerto Rico',
-	'cntchkPS'            => 'Palestinian Territory, Occupied',
-	'cntchkPT'            => 'Portugal',
-	'cntchkPW'            => 'Palau',
-	'cntchkPY'            => 'Paraguay',
-	'cntchkQA'            => 'Qatar',
-	'cntchkRO'            => 'Romania',
-	'cntchkRS'            => 'Serbia',
-	'cntchkRU'            => 'Russian Federation',
-	'cntchkSA'            => 'Saudi Arabia',
-	'cntchkSC'            => 'Seychelles',
-	'cntchkSE'            => 'Sweden',
-	'cntchkSG'            => 'Singapore',
-	'cntchkSI'            => 'Slovenia',
-	'cntchkSK'            => 'Slovakia',
-	'cntchkSV'            => 'El Salvador',
-	'cntchkSX'            => 'Sint Maarten',
-	'cntchkSY'            => 'Syrian Arab Republic',
-	'cntchkTH'            => 'Thailand',
-	'cntchkTJ'            => 'Tajikistan',
-	'cntchkTM'            => 'Turkmenistan',
-	'cntchkTR'            => 'Turkey',
-	'cntchkTT'            => 'Trinidad And Tobago',
-	'cntchkTW'            => 'Taiwan',
-	'cntchkUA'            => 'Ukraine',
-	'cntchkUK'            => 'United Kingdom',
-	'cntchkUS'            => 'United States',
-	'cntchkUY'            => 'Uruguay',
-	'cntchkUZ'            => 'Uzbekistan',
-	'cntchkVC'            => 'Saint Vincent And Grenadines',
-	'cntchkVE'            => 'Venezuela',
-	'cntchkVN'            => 'Viet Nam',
-	'cntchkYE'            => 'Yemen',
-	'cntcap'              => 'Passed CAPTCHA', // captha success
-	'cntncap'             => 'Failed CAPTCHA', // captha not success
-	'cntpass'             => 'Total Pass', // passed
+	'cntchkLB'            => __( 'Lebanon', 'stop-spammer-registrations-plugin' ),
+	'cntchkLK'            => __( 'Sri Lanka', 'stop-spammer-registrations-plugin' ),
+	'cntchkLT'            => __( 'Lithuania', 'stop-spammer-registrations-plugin' ),
+	'cntchkLU'            => __( 'Luxembourg', 'stop-spammer-registrations-plugin' ),
+	'cntchkLV'            => __( 'Latvia', 'stop-spammer-registrations-plugin' ),
+	'cntchkMD'            => __( 'Moldova', 'stop-spammer-registrations-plugin' ),
+	'cntchkME'            => __( 'Montenegro', 'stop-spammer-registrations-plugin' ),
+	'cntchkMK'            => __( 'Macedonia', 'stop-spammer-registrations-plugin' ),
+	'cntchkMM'            => __( 'Myanmar', 'stop-spammer-registrations-plugin' ),
+	'cntchkMN'            => __( 'Mongolia', 'stop-spammer-registrations-plugin' ),
+	'cntchkMO'            => __( 'Macao', 'stop-spammer-registrations-plugin' ),
+	'cntchkMP'            => __( 'Northern Mariana Islands', 'stop-spammer-registrations-plugin' ),
+	'cntchkMQ'            => __( 'Martinique', 'stop-spammer-registrations-plugin' ),
+	'cntchkMT'            => __( 'Malta', 'stop-spammer-registrations-plugin' ),
+	'cntchkMV'            => __( 'Maldives', 'stop-spammer-registrations-plugin' ),
+	'cntchkMX'            => __( 'Mexico', 'stop-spammer-registrations-plugin' ),
+	'cntchkMY'            => __( 'Malaysia', 'stop-spammer-registrations-plugin' ),
+	'cntchkNC'            => __( 'New Caledonia', 'stop-spammer-registrations-plugin' ),
+	'cntchkNI'            => __( 'Nicaragua', 'stop-spammer-registrations-plugin' ),
+	'cntchkNL'            => __( 'Netherlands', 'stop-spammer-registrations-plugin' ),
+	'cntchkNO'            => __( 'Norway', 'stop-spammer-registrations-plugin' ),
+	'cntchkNP'            => __( 'Nepal', 'stop-spammer-registrations-plugin' ),
+	'cntchkNZ'            => __( 'New Zealand', 'stop-spammer-registrations-plugin' ),
+	'cntchkOM'            => __( 'Oman', 'stop-spammer-registrations-plugin' ),
+	'cntchkPA'            => __( 'Panama', 'stop-spammer-registrations-plugin' ),
+	'cntchkPE'            => __( 'Peru', 'stop-spammer-registrations-plugin' ),
+	'cntchkPG'            => __( 'Papua New Guinea', 'stop-spammer-registrations-plugin' ),
+	'cntchkPH'            => __( 'Philippines', 'stop-spammer-registrations-plugin' ),
+	'cntchkPK'            => __( 'Pakistan', 'stop-spammer-registrations-plugin' ),
+	'cntchkPL'            => __( 'Poland', 'stop-spammer-registrations-plugin' ),
+	'cntchkPR'            => __( 'Puerto Rico', 'stop-spammer-registrations-plugin' ),
+	'cntchkPS'            => __( 'Palestinian Territory, Occupied', 'stop-spammer-registrations-plugin' ),
+	'cntchkPT'            => __( 'Portugal', 'stop-spammer-registrations-plugin' ),
+	'cntchkPW'            => __( 'Palau', 'stop-spammer-registrations-plugin' ),
+	'cntchkPY'            => __( 'Paraguay', 'stop-spammer-registrations-plugin' ),
+	'cntchkQA'            => __( 'Qatar', 'stop-spammer-registrations-plugin' ),
+	'cntchkRO'            => __( 'Romania', 'stop-spammer-registrations-plugin' ),
+	'cntchkRS'            => __( 'Serbia', 'stop-spammer-registrations-plugin' ),
+	'cntchkRU'            => __( 'Russian Federation', 'stop-spammer-registrations-plugin' ),
+	'cntchkSA'            => __( 'Saudi Arabia', 'stop-spammer-registrations-plugin' ),
+	'cntchkSC'            => __( 'Seychelles', 'stop-spammer-registrations-plugin' ),
+	'cntchkSE'            => __( 'Sweden', 'stop-spammer-registrations-plugin' ),
+	'cntchkSG'            => __( 'Singapore', 'stop-spammer-registrations-plugin' ),
+	'cntchkSI'            => __( 'Slovenia', 'stop-spammer-registrations-plugin' ),
+	'cntchkSK'            => __( 'Slovakia', 'stop-spammer-registrations-plugin' ),
+	'cntchkSV'            => __( 'El Salvador', 'stop-spammer-registrations-plugin' ),
+	'cntchkSX'            => __( 'Sint Maarten', 'stop-spammer-registrations-plugin' ),
+	'cntchkSY'            => __( 'Syrian Arab Republic', 'stop-spammer-registrations-plugin' ),
+	'cntchkTH'            => __( 'Thailand', 'stop-spammer-registrations-plugin' ),
+	'cntchkTJ'            => __( 'Tajikistan', 'stop-spammer-registrations-plugin' ),
+	'cntchkTM'            => __( 'Turkmenistan', 'stop-spammer-registrations-plugin' ),
+	'cntchkTR'            => __( 'Turkey', 'stop-spammer-registrations-plugin' ),
+	'cntchkTT'            => __( 'Trinidad And Tobago', 'stop-spammer-registrations-plugin' ),
+	'cntchkTW'            => __( 'Taiwan', 'stop-spammer-registrations-plugin' ),
+	'cntchkUA'            => __( 'Ukraine', 'stop-spammer-registrations-plugin' ),
+	'cntchkUK'            => __( 'United Kingdom', 'stop-spammer-registrations-plugin' ),
+	'cntchkUS'            => __( 'United States', 'stop-spammer-registrations-plugin' ),
+	'cntchkUY'            => __( 'Uruguay', 'stop-spammer-registrations-plugin' ),
+	'cntchkUZ'            => __( 'Uzbekistan', 'stop-spammer-registrations-plugin' ),
+	'cntchkVC'            => __( 'Saint Vincent And Grenadines', 'stop-spammer-registrations-plugin' ),
+	'cntchkVE'            => __( 'Venezuela', 'stop-spammer-registrations-plugin' ),
+	'cntchkVN'            => __( 'Viet Nam', 'stop-spammer-registrations-plugin' ),
+	'cntchkYE'            => __( 'Yemen', 'stop-spammer-registrations-plugin' ),
+	'cntcap'              => __( 'Passed CAPTCHA', 'stop-spammer-registrations-plugin' ), // captha success
+	'cntncap'             => __( 'Failed CAPTCHA', 'stop-spammer-registrations-plugin' ), // captha not success
+	'cntpass'             => __( 'Total Pass', 'stop-spammer-registrations-plugin' ), // passed
 );
 
-$message  = "";
+$message  = '';
 $nonce    = '';
 
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
@@ -223,7 +224,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		}
 		$addonstats          = array();
 		$stats['addonstats'] = $addonstats;
-		$msg                 = '<div class="notice notice-success is-dismissible"><p>Summary Cleared</p></div>';
+		$msg                 = '<div class="notice notice-success is-dismissible"><p>' . __( 'Summary Cleared', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 		ss_set_stats( $stats );
 		extract( $stats ); // extract again to get the new options
 	}
@@ -238,7 +239,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
     <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
-    <?php _e( 'Version', 'stop-spammers' ); ?> <strong><?php echo SS_VERSION; ?></strong>
+    <?php __( 'Version', 'stop-spammer-registrations-plugin' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 		<?php
 	if ( ! empty( $summry ) ) {
 		?>
@@ -246,7 +247,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	$ip = ss_get_ip();
 	?>
-	| Your current IP address is: <strong><?php echo $ip; ?></strong>
+	| <?php __( 'Your current IP address is', 'stop-spammer-registrations-plugin' ); ?>: <strong><?php echo $ip; ?></strong>
 	<?php
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		echo ' | <strong>USE CODE SSP4ME FOR $5 OFF THE <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">PREMIUM PLUGIN</a></strong>';
@@ -260,8 +261,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	if ( $ansa !== false ) {
 		?>
-        <p>This address is invalid for testing for the following reason:
-            <span style="font-weight:bold;font-size:1.2em"><?php echo $ansa; ?></span>.<br />
+        <p><?php __( 'This address is invalid for testing for the following reason:
+            <span style="font-weight:bold;font-size:1.2em">' . echo $ansa . '</span>.<br />
             If you working on a local installation of WordPress, this might be
             OK. However, if the plugin reports that your
             IP is invalid it may be because you are using Cloudflare or a proxy
@@ -279,7 +280,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
             this by installing the Cloudflare plugin. If
             you use Cloudflare to protect and speed up your site then you MUST
             install the Cloudflare plugin. This plugin
-            will be crippled until you install it.</p>
+            will be crippled until you install it.', 'stop-spammer-registrations-plugin' ); ?></p>
 	<?php
 	}
 	// need the current guy
@@ -296,73 +297,47 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	
 	if ( ! empty( $msg ) ) {
-		echo "$msg";
+		echo '$msg';
 	}
 	$current_user_name = wp_get_current_user()->user_login;
-	
 	if ( $current_user_name == 'admin' ) {
-		echo "<span class=\"notice notice-warning\" style=\"display:block\">SECURITY RISK: You are using the admin ID \"admin\". This is 
-an invitation to hackers to try and guess your password. Please change this.<br />
-Here is discussion on WordPress.org:
-<a href=\"https://wordpress.org/support/topic/how-to-change-admin-username?replies=4\" target=\"_blank\">How to Change Admin Username</a>
-</span>";
+		_e( '<span class="notice notice-warning" style="display:block">
+SECURITY RISK: You are using the username "admin." This is 
+an invitation to hackers to try and guess your password. Please change this.
+</span>', 'stop-spammer-registrations-plugin' );
 	}
 	$showcf = false; // hide this for now
 	if ( $showcf && array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER )
 	     && ! function_exists( 'cloudflare_init' )
 	     && ! defined( 'W3TC' )
 	) {
-		echo "<span class=\"notice notice-warning\" style=\"display:block\">
-WARNING: Cloudflare Remote IP address detected. Please install the <a href=\"https://wordpress.org/plugins/cloudflare/\" target=\"_blank\">Cloudflare Plugin</a>.
-This plugin works best with the Cloudflare plugin when yout website is using Cloudflare.
-</span>";
+		_e( '<span class="notice notice-warning" style="display:block">
+WARNING: Cloudflare Remote IP address detected. Please make sure to
+<a href="https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs" target="_blank">restore visitor IPs</a>.
+</span>', 'stop-spammer-registrations-plugin' );
 	}
 	?>
 
-<?php	
-	/* if ( $spmcount > 0 ) {
-		?>
-        <script>
-            function showcheat() {
-                var el = document.getElementById("cheater");
-                el.style.display = "block";
-                return false;
-            }
-        </script>
-        <p>Stop Spammers in total has stopped <a href="" onclick="showcheat();return false;" class="green"><?php echo $spmcount; ?></a> spammers since <?php echo $spmdate; ?>.</p>
-        <div id="cheater" style="display:none">
-            Enter a new Total Spam Count:<br />
-            <form method="post" action="">
-                <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-                <input type="hidden" name="update_total" value="Update Total" />
-                Count: <input type="text" name="spmcount" value="<?php echo $spmcount; ?>" /><br />
-                Date: <input type="text" name="spmdate" value="<?php echo $spmdate; ?>" /><br />
-                <p class="submit" style="clear:both"><input class="button-primary" value="Update Total Spam" type="submit" /></p>
-            </form>
-        </div>
-		<?php
-	} */
-?>	
-<h2>Summary of Spam</h2>
+<h2><?php __( 'Summary of Spam', 'stop-spammer-registrations-plugin' ); ?></h2>
 <div class="main-stats" style="width:95%">
 <?php
 	 if ( $spcount > 0 ) {
 		?>
-        <p>Stop Spammers has stopped <strong><?php echo $spcount; ?></strong> spammers since <?php echo $spdate; ?>.</p>
+        <p><?php __( 'Stop Spammers has stopped <strong>' . echo $spcount . '</strong> spammers since ' . echo $spdate . '.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
-        <p>There are <a href='edit-comments.php?comment_status=spam'><?php echo $num; ?></a> spam comments waiting for you to report them.</p>
+        <p><?php __( 'There are <a href="edit-comments.php?comment_status=spam">' . echo $num . '</a> spam comments waiting for you to report.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
-        <p>There are <a href='edit-comments.php?comment_status=moderated'><?php echo $num; ?></a> comments waiting to be moderated.</p></div>
+        <p><?php __( 'There are <a href="edit-comments.php?comment_status=moderated">' . echo $num . '</a> comments waiting to be moderated.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 		<?php
 	}
 	$summry = '';
@@ -384,7 +359,7 @@ This plugin works best with the Cloudflare plugin when yout website is using Clo
         <form method="post" action="">
             <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
             <input type="hidden" name="clear" value="clear summary" />
-            <p class="submit" style="clear:both"><input class="button-primary" value="Clear Summary" type="submit" /></p>
+            <p class="submit" style="clear:both"><input class="button-primary" value="<?php __( 'Clear Summary', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </form>
 <?php
 
@@ -402,88 +377,88 @@ function ss_control()  {
 function ss_force_reset_options() {
 	$ss_opt=$_POST['ss_opt'];
 	$ss_opt=sanitize_text_field($ss_opt);
-	if (!wp_verify_nonce($ss_opt,'ss_options')) {	
-		echo "Session timeout, please refresh the page";
+	if ( !wp_verify_nonce( $ss_opt, 'ss_options' ) ) {	
+		echo _e( 'Session Timeout — Please Refresh the Page', 'stop-spammer-registrations-plugin' );
 		exit;
 	}
-	if (!function_exists('ss_reset_options')) {
-		ss_require('includes/ss-init-options.php');
+	if ( !function_exists( 'ss_reset_options' ) ) {
+		ss_require( 'includes/ss-init-options.php' );
 	}
 	ss_reset_options();
 	// clear the cache
-	delete_option('ss_cache');
+	delete_option( 'ss_cache' );
 } ?>
 </div>
 
-<h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { echo 'Free '; } ?>Options</h2>
+<h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php __( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
-		<h3>PROTECTION OPTIONS</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" />All options related to checking spam and logins. You can also block whole countries.
-		<div class="ss_admin_button"> <a href="?page=ss_options">Protection</a>
+		<h3><?php __( 'PROTECTION OPTIONS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" /><?php __( 'All options related to checking spam and logins. You can also block whole countries.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_options"><?php __( 'Protection', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3>ALLOW LISTS</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb">Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.
-		<div class="ss_admin_button"> <a href="?page=ss_allow_list">Allow</a>
+		<h3><?php __( 'ALLOW LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb"><?php __( 'Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_allow_list"><?php __( 'Allow', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3>BLOCK LISTS</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb">Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.
-		<div class="ss_admin_button"> <a href="?page=ss_deny_list">Block</a>
+		<h3><?php __( 'BLOCK LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb"><?php __( 'Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_deny_list"><?php __( 'Block', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 </div>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
-		<h3>CHALLENGE &amp; DENY</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb">Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.
-		<div class="ss_admin_button"> <a href="?page=ss_challenge">Challenges</a>
+		<h3><?php __( 'CHALLENGE &amp; DENY', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb"><?php __( 'Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_challenge"><?php __( 'Challenges', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3>APPROVE REQUESTS</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb">Review and approve or deny users who were blocked and filled out the form requesting access to your site.
-		<div class="ss_admin_button"> <a href="?page=ss_allow_list">Approve</a>
+		<h3><?php __( 'APPROVE REQUESTS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb"><?php __( 'Review and approve or deny users who were blocked and filled out the form requesting access to your site.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_allow_list"><?php __( 'Approve', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3>WEB SERVICES</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb">Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.
-		<div class="ss_admin_button"> <a href="?page=ss_webservices_settings">Web Services</a>
+		<h3><?php __( 'WEB SERVICES', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb"><?php __( 'Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_webservices_settings"><?php __( 'Web Services', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 </div>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
-		<h3>CACHE</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb">Shows the cache of recently detected events.
-		<div class="ss_admin_button"> <a href="?page=ss_cache">Cache</a>
+		<h3><?php __( 'CACHE', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb"><?php __( 'Shows the cache of recently detected events.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_cache"><?php __( 'Cache', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3>LOG REPORT</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb">Details the most recent events detected by Stop Spammers.
-		<div class="ss_admin_button"> <a href="?page=ss_reports">Log Report</a>
+		<h3><?php __( 'LOG REPORT', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb"><?php __( 'Details the most recent events detected by Stop Spammers.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_reports"><?php __( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3>DIAGNOSTICS</h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb">Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.
-		<div class="ss_admin_button"> <a href="?page=ss_diagnostics">Diagnostics</a>
+		<h3><?php __( 'DIAGNOSTICS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb"><?php __( 'Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_diagnostics"><?php __( 'Diagnostics', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 </div>
 <?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 	echo '
-		<h2>Premium Options</h2>
+		<h2>' . __( 'Premium Options', 'stop-spammer-registrations-plugin' ) . '</h2>
 		<div class="ss_admin_info_boxes_1row" >
   			<div class="ss_admin_info_boxes_1col" >
-    		<h3>Add a server-side firewall and themeable login, protect Divi / Elementor / CF7 / bbPress with our honeypot, export logs to excel, restore options, and transfer settings.</h3>
+    		<h3>' . __( 'Add a server-side firewall and themeable login, protect Divi / Elementor / CF7 / bbPress with our honeypot, export logs to excel, restore options, and transfer settings.', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<div class="ss_admin_button">
-    				<a href="https://stopspammers.io/downloads/stop-spammers-premium/">Go Premium</a>
+    				<a href="https://stopspammers.io/downloads/stop-spammers-premium/">' . __( 'Go Premium', 'stop-spammer-registrations-plugin' ) . '</a>
 				</div>
 			</div>
 		</div>
@@ -492,27 +467,27 @@ function ss_force_reset_options() {
 	echo '
 		<div class="ss_admin_info_boxes_3row">
 			<div class="ss_admin_info_boxes_3col">
-				<h3>Restore Default Settings</h3>
+				<h3>' . __( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/restore-settings_stop-spammers_trumani.png" class="center_thumb" />
-				Too fargone? Revert to the out-of-the box configurations.
+				' . __( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
-					<a href="admin.php?page=ssp_premium">RESTORE</a>
+					<a href="admin.php?page=ssp_premium">' . __( 'RESTORE', 'stop-spammer-registrations-plugin' ) . '</a>
 				</div>
 			</div>
 			<div class="ss_admin_info_boxes_3col">
-				<h3>Import/Export Settings</h3>
+				<h3>' . __( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/import-export_stop-spammers_trumani.png" class="center_thumb" />
-				You can download your personalized configurations and upload them to all of your other sites.
+				' . __( 'You can download your personalized configurations and upload them to all of your other sites.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
-					<a href="admin.php?page=ssp_premium">IMPORT/EXPORT</a>
+					<a href="admin.php?page=ssp_premium">' . __( 'IMPORT/EXPORT', 'stop-spammer-registrations-plugin' ) . '</a>
 				</div>
 			</div>
 			<div class="ss_admin_info_boxes_3col">
-				<h3>Export Log to Excel</h3>
+				<h3>' . __( 'Export Log to Excel', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/export-to-excel_stop-spammers_trumani.png" class="center_thumb" />
-				Save the log report returns for future reference.
+				' . __( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
-					<a href="admin.php?page=ssp_premium">EXPORT LOG</a>
+					<a href="admin.php?page=ssp_premium">' . __( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
 			</div>
 		</div>
 	</div>
@@ -521,25 +496,25 @@ function ss_force_reset_options() {
 ?>
 <br style="clear:both" />
 <br />
-<h2>Beta Options</h2>
+<h2><?php __( 'Beta Options', 'stop-spammer-registrations-plugin' ); ?></h2>
     <span class="notice notice-warning" style="display:block">
-        <p>These features are to be considered experimental. Use with caution and at your own risk.</p>
+        <p><?php __( 'These features are to be considered experimental. Use with caution and at your own risk.', 'stop-spammer-registrations-plugin' ); ?></p>
     </span>
 <div class="ss_admin_info_boxes_2row" >
   <div class="ss_admin_info_boxes_2col" >
-    <h3>Database Cleanup</h3>
+    <h3><?php __( 'Database Cleanup', 'stop-spammer-registrations-plugin' ); ?></h3>
     <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/database-cleanup.png'; ?>" class="center_thumb" >    
-        Delete leftover options from deleted plugins or anything that appears suspicious.
+        <?php __( 'Delete leftover options from deleted plugins or anything that appears suspicious.', 'stop-spammer-registrations-plugin' ); ?>
  <div class="ss_admin_button">
-    <a href="?page=ss_option_maint">Cleanup</a>
+    <a href="?page=ss_option_maint"><?php __( 'Cleanup', 'stop-spammer-registrations-plugin' ); ?></a>
 </div>
 </div>       
   <div class="ss_admin_info_boxes_2col" >
-    <h3>Threat Scan</h3>
+    <h3><?php __( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h3>
     <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/threat-scan.png'; ?>" class="center_thumb" >           
-		A simple scan to find possibly malicious code.
+		<?php __( 'A simple scan to find possibly malicious code.', 'stop-spammer-registrations-plugin' ); ?>
  <div class="ss_admin_button">
-    <a href="?page=ss_diagnostics">Scan</a>
+    <a href="?page=ss_diagnostics"><?php __( 'Scan', 'stop-spammer-registrations-plugin' ); ?></a>
 </div>
 </div>   
 </div>

@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,7 +22,7 @@ class chkbbcode { // change name
 			foreach ( $bbcodes as $bb ) {
 // sfs_debug_msg( "looking for $key - $bb in $data" );
 				if ( stripos( $data, $bb ) !== false ) {
-					return "BBCode $bb in $key";
+					_e ( 'BBCode $bb in $key', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}

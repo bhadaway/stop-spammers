@@ -41,7 +41,6 @@ class chkakismet {
 			'comment_content'      => ''
 		);
 		$response = $this->akismet_comment_check( '123YourAPIKey', $data );
-
 		return $response;
 	}
 
