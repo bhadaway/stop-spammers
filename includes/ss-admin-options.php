@@ -69,7 +69,7 @@ function ss_sp_rightnow() {
 	$options = ss_get_options();
 	if ( $spmcount > 0 ) {
 // get the path to the plugin
-		_e( '<p>Stop Spammers has prevented <strong>$spmcount</strong> spammers from registering or leaving comments.</p>', 'stop-spammer-registrations-plugin' );
+		_e( '<p>Stop Spammers has prevented <strong>' . $spmcount . '</strong> spammers from registering or leaving comments.</p>', 'stop-spammer-registrations-plugin' );
 	}
 	if ( count( $wlrequests ) == 1 ) {
 		echo '<p><strong>' . count( $wlrequests ) . '</strong> ' . __( 'user has been denied access and <a href="admin.php?page=ss_allow_list">requested</a> that you add them to the Allow List.</p>', 'stop-spammer-registrations-plugin' );
@@ -207,7 +207,7 @@ function sfs_handle_ajax_sub( $data ) {
 		);
 	} else {
 		if ( empty( $comment ) ) {
-			_e( ' No Comment Found for $comment_id', 'stop-spammer-registrations-plugin' );
+			_e( ' No Comment Found for ' . $comment_id . '', 'stop-spammer-registrations-plugin' );
 			exit();
 		}
 	}
@@ -309,13 +309,13 @@ function sfs_handle_ajax_check( $data ) {
 		$check = trim( $check, '0' );
 		if ( substr( $check, 0, 4 ) == "ERR:" ) {
 			_e( ' Access to the Stop Forum Spam Database Shows Errors\r\n', 'stop-spammer-registrations-plugin' );
-			_e( ' Response Was: $check\r\n', 'stop-spammer-registrations-plugin' );
+			_e( ' Response Was: ' . $check . '\r\n', 'stop-spammer-registrations-plugin' );
 		}
 // access to the Stop Forum Spam database is working
 		$n = strpos( $check, '<response success="true">' );
 		if ( $n === false ) {
 			_e( ' Access to the Stop Forum Spam Database is Not Working\r\n', 'stop-spammer-registrations-plugin' );
-			_e( ' Response was\r\n $check\r\n', 'stop-spammer-registrations-plugin' );
+			_e( ' Response was\r\n ' . $check . '\r\n', 'stop-spammer-registrations-plugin' );
 		} else {
 			_e( ' Access to the Stop Forum Spam Database is Working', 'stop-spammer-registrations-plugin' );
 		}
@@ -413,7 +413,7 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 			exit();
 			break;
 		default:
-			_e( '\r\n\r\nUnrecognized function "$func"', 'stop-spammer-registrations-plugin' );
+			_e( '\r\n\r\nUnrecognized function "' . $func . '"', 'stop-spammer-registrations-plugin' );
 			exit();
 	}
 	$ajaxurl  = admin_url( 'admin-ajax.php' );
@@ -435,7 +435,7 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 			exit();
 		default:
 // coming from logs report we need to display an appropriate message, I think
-			_e( 'Something is missing $container ', 'stop-spammer-registrations-plugin' );
+			_e( 'Something is missing ' . $container . ' ', 'stop-spammer-registrations-plugin' );
 			exit();
 	}
 }

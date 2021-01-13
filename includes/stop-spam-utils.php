@@ -132,7 +132,7 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 			$serrno = __( 'Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. ', 'stop-spammer-registrations-plugin' );
 			break;
 		default;
-			$serrno = __( 'Unknown Error Type $errno', 'stop-spammer-registrations-plugin' );
+			$serrno = __( 'Unknown Error Type ' . $errno . '', 'stop-spammer-registrations-plugin' );
 	}
 	if ( strpos( $errmsg, __( 'modify header information', 'stop-spammer-registrations-plugin' ) ) ) {
 		return false;
@@ -141,15 +141,15 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 	$m1  = memory_get_usage( true );
 	$m2  = memory_get_peak_usage( true );
 	$ip  = ss_get_ip();
-	$msg = __( '
-Time: $now
-Error Number: $errno
-Error Type: $serrno
-Error Msg: $errmsg
-IP Address: $ip
-File Name: $filename
-Line Number: $linenum
-Memory Used, Peak: $m1, $m2
+	$msg = _e( '
+Time: ' . $now . '
+Error Number: ' . $errno . '
+Error Type: ' . $serrno . '
+Error Msg: ' . $errmsg . '
+IP Address: ' . $ip . '
+File Name: ' . $filename . '
+Line Number: ' . $linenum . '
+Memory Used: ' . $m1 . ' Peak: ' . $m2 . '
 ---------------------
 ', 'stop-spammer-registrations-plugin' );;
 // write out the error

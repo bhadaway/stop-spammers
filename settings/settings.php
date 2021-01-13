@@ -190,7 +190,7 @@ function include_setting( $file ) {
 	if ( file_exists( $ppath . $file ) ) {
 		require_once( $ppath . $file );
 	} else {
-		_e( '<br />Missing file: $ppath $file <br />', 'stop-spammer-registrations-plugin' );
+		_e( '<br />Missing File: ' . $ppath, $file . ' <br />', 'stop-spammer-registrations-plugin' );
 	}
 	sfs_errorsonoff( 'off' );
 }

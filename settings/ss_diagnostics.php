@@ -48,33 +48,33 @@ if ( array_key_exists( 'body', $_POST ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — <?php __( 'Diagnostics & Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h1>
+    <h1 class="ss_head">Stop Spammers — <?php _e( 'Diagnostics & Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<div class="ss_info_box">
     <form method="post" action="">
         <input type="hidden" name="action" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
-	<div class="mainsection"><?php __( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
+	<div class="mainsection"><?php _e( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
-			<?php __( '
+			<?php _e( '
 			<p>Run the settings against an IP address to see the results.</p>
             IP Address:<br />
 			', 'stop-spammer-registrations-plugin' ); ?>
 			<input id="myInput" name="ip" type="text" value="<?php echo $ip; ?>">
-			<?php __( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br /><br />
-            <?php __( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br/>
+			<?php _e( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br /><br />
+            <?php _e( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br/>
 			<input id="myInput" name="email" type="text" value="<?php echo $email; ?>" /><br /><br />
-            <?php __( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br />
+            <?php _e( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input id="myInput" name="author" type="text" value="<?php echo $author; ?>" /><br /><br />
-            <?php __( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br />
+            <?php _e( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input id="myInput" name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
-            <?php __( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br />
+            <?php _e( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<textarea name="body"><?php echo $body; ?></textarea><br />
             <div style="width:50%;float:left">
-                <p class="submit"><input name="testopt" class="button-primary" value="<?php __( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+                <p class="submit"><input name="testopt" class="button-primary" value="<?php _e( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
             </div>
             <div style="width:50%;float:right">
-                <p class="submit"><input name="testcountry" class="button-primary" value="<?php __( 'Test Countries', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+                <p class="submit"><input name="testcountry" class="button-primary" value="<?php _e( 'Test Countries', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
             </div>
             <br style="clear:both" />
 			<?php
@@ -106,7 +106,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					);
 					$m1         = memory_get_usage( true );
 					$m2         = memory_get_peak_usage( true );
-					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 					_e( '<ul>Allow Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
@@ -150,7 +150,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					);
 					$m1         = memory_get_usage( true );
 					$m2         = memory_get_peak_usage( true );
-					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 					_e( '<ul>Deny Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
@@ -182,7 +182,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 				}
 				if ( array_key_exists( 'testcountry', $_POST ) ) {
 					$optionlist = array(
@@ -332,7 +332,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 // SC - Seychelles
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br />Memory Used, Peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
@@ -342,7 +342,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br />Memory used, peak: $m1, $m2<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 				}
 			}
 			?>			
@@ -350,17 +350,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
         <br/>
 <div class="ss_info_box">
-	<div class="mainsection"><?php __( 'Information Display', 'stop-spammer-registrations-plugin' ); ?>
+	<div class="mainsection"><?php _e( 'Information Display', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#infodisplay" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
         <div style="width:50%;float:left">
-            <h2><?php __( 'Display All Options', 'stop-spammer-registrations-plugin' ); ?></h2>
-            <p><?php __( 'You can dump all options here (useful for debugging):', 'stop-spammer-registrations-plugin' ); ?></p>
-            <p class="submit"><input name="dumpoptions" class="button-primary" value="<?php __( 'Dump Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+            <h2><?php _e( 'Display All Options', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php _e( 'You can dump all options here (useful for debugging):', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p class="submit"><input name="dumpoptions" class="button-primary" value="<?php _e( 'Dump Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </div>
         <div style="width:50%;float:right">
-            <h2><?php __( 'Display All Stats', 'stop-spammer-registrations-plugin' ); ?></h2>
-            <p><?php __( 'You can dump all stats here: ', 'stop-spammer-registrations-plugin' ); ?></p>
-            <p class="submit"><input name="dumpstats" class="button-primary" value="<?php __( 'Dump Stats', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+            <h2><?php _e( 'Display All Stats', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php _e( 'You can dump all stats here: ', 'stop-spammer-registrations-plugin' ); ?></p>
+            <p class="submit"><input name="dumpstats" class="button-primary" value="<?php _e( 'Dump Stats', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </div>
         <br style="clear:both" />
 		<?php
@@ -457,7 +457,7 @@ echo "\r\n";
             <form method="post" action="">
                 <input type="hidden" name="update_options" value="update" />
                 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-                <p class="submit"><input class="button-primary" name="showdebug" value="<?php __( 'Show Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" />
+                <p class="submit"><input class="button-primary" name="showdebug" value="<?php _e( 'Show Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" />
                 </p>
             </form>
         </div>
@@ -465,7 +465,7 @@ echo "\r\n";
             <form method="post" action="">
                 <input type="hidden" name="update_options" value="update" />
                 <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-                <p class="submit"><input class="button-primary" name="killdebug" value="<?php __( 'Delete Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+                <p class="submit"><input class="button-primary" name="killdebug" value="<?php _e( 'Delete Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
             </form>
         </div>
         <br style="clear:both" /><br />
@@ -482,7 +482,7 @@ echo "\r\n";
 	}
 	if ( $pinf ) {
 		?>
-        <a href="" onclick="document.getElementById('shpinf').style.display='block';return false;" class="button-primary"><?php __( 'Show PHP Info', 'stop-spammer-registrations-plugin' ); ?></a>
+        <a href="" onclick="document.getElementById('shpinf').style.display='block';return false;" class="button-primary"><?php _e( 'Show PHP Info', 'stop-spammer-registrations-plugin' ); ?></a>
 		<?php
 		ob_start();
 		phpinfo();
@@ -523,9 +523,9 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div class="ss_info_box">
-	<div class="mainsection"><?php __( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?>
+	<div class="mainsection"><?php _e( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#threats" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
-	<?php __( '
+	<?php _e( '
     <p>A very simple scan that looks for things out of place in
         the content directory as well as the
         database.</p>
@@ -533,13 +533,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-        <p class="submit"><input class="button-primary" value="<?php __( 'Run Scan', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+        <p class="submit"><input class="button-primary" value="<?php _e( 'Run Scan', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
     </form>
 	</div>
 	<?php
 	if ( $runscan ) {
 		?>
-        <h2><?php __( 'A clean scan does not mean you are safe. Please keep regular backups and ensure your installation up-to-date!', 'stop-spammer-registrations-plugin' ); ?></h2>
+        <h2><?php _e( 'A clean scan does not mean you are safe. Please keep regular backups and ensure your installation up-to-date!', 'stop-spammer-registrations-plugin' ); ?></h2>
         <hr />
 		<?php
 		$disp = false;
@@ -662,7 +662,7 @@ INSTR(LCASE(post_mime_type), 'script') > 0
 				) {
 					$reason .= "post_mime_type:script ";
 				}
-				_e( 'found possible problems in post ($reason) ID: ', 'stop-spammer-registrations-plugin' )
+				_e( 'found possible problems in post (' . $reason . ') ID: ', 'stop-spammer-registrations-plugin' )
 				     . $myrow->ID . '<br />';
 			}
 		} else {
@@ -796,7 +796,7 @@ INSTR(LCASE(comment_author_url), 'javascript:') >0
 				) {
 					$reason .= "comment_content:javascript: ";
 				}
-				_e( 'found possible problems in comment ($reason) ID', 'stop-spammer-registrations-plugin' )
+				_e( 'found possible problems in comment (' . $reason . ') ID', 'stop-spammer-registrations-plugin' )
 				     . $myrow->comment_ID . '<br />';
 			}
 		} else {
@@ -911,7 +911,7 @@ INSTR(LCASE(link_url), 'javascript:') >0
 				) {
 					$reason .= "link_url:javascript: ";
 				}
-				_e( 'found possible problems in links ($reason) ID:', 'stop-spammer-registrations-plugin' )
+				_e( 'found possible problems in links (' . $reason . ') ID:', 'stop-spammer-registrations-plugin' )
 				     . $myrow->link_ID . '<br />';
 			}
 		} else {
@@ -1032,7 +1032,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 				) {
 					$reason .= "user_url:javascript: ";
 				}
-				_e( 'found possible problems in Users ($reason) ID:', 'stop-spammer-registrations-plugin' )
+				_e( 'found possible problems in Users (' . $reason . ') ID:', 'stop-spammer-registrations-plugin' )
 				     . $myrow->ID . '<br />';
 			}
 		} else {
@@ -1084,7 +1084,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 						}
 					}
 				}
-				_e( '<strong>Found possible problems in Option $name ($reason)</strong> option_id:', 'stop-spammer-registrations-plugin' )
+				_e( '<strong>Found possible problems in Option $name (' . $reason . ')</strong> option_id:', 'stop-spammer-registrations-plugin' )
 				     . $myrow->option_id . ', value: $line<br /><br />';
 			}
 		} else {
@@ -1099,18 +1099,18 @@ INSTR(LCASE(user_email), 'javascript:')>0
 	;
 		if ( $disp ) {
 			?>
-            <h2><?php __( 'Possible Problems Found!', 'stop-spammer-registrations-plugin' ); ?></h2>
-            <p><?php __( 'These are warnings only. Some content and plugins might not be
+            <h2><?php _e( 'Possible Problems Found!', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php _e( 'These are warnings only. Some content and plugins might not be
                 malicious, but still contain one or more
                 of these indicators. Please investigate all indications of
                 problems. The plugin may err on the side of
                 caution.', 'stop-spammer-registrations-plugin' ); ?></p>
-            <p><?php __( 'Although there are legitimate reasons for using the eval
+            <p><?php _e( 'Although there are legitimate reasons for using the eval
                 function, and JavaScript uses it frequently,
                 finding eval in PHP code is in the very least bad practice, and
                 the worst is used to hide malicious
                 code. If eval() comes up in a scan, try to get rid of it.', 'stop-spammer-registrations-plugin' ); ?></p>
-            <p><?php __( 'Your code could contain "eval", or "document.write(unescape(" or
+            <p><?php _e( 'Your code could contain "eval", or "document.write(unescape(" or
                 "try{window.onload" or
                 setAttribute("src". These are markers for problems such as SQL
                 injection or cross-browser JavaScript.
@@ -1123,8 +1123,8 @@ INSTR(LCASE(user_email), 'javascript:')>0
 			<?php
 		} else {
 			?>
-            <h2><?php __( 'No Problems Found', 'stop-spammer-registrations-plugin' ); ?></h2>
-            <p><?php __( 'It appears that there are no eval or suspicious JavaScript
+            <h2><?php _e( 'No Problems Found', 'stop-spammer-registrations-plugin' ); ?></h2>
+            <p><?php _e( 'It appears that there are no eval or suspicious JavaScript
                 functions in the code in your wp-content
                 directory. That does not mean that you are safe, only that a
                 threat may be well-hidden.', 'stop-spammer-registrations-plugin' ); ?></p>

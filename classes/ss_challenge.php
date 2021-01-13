@@ -258,7 +258,7 @@ class ss_challenge extends be_module {
 <input type=\"hidden\" name=\"ka\" value=\"$ka\" />
 ";
 		$formbot = __( '
-<p><input style=\"background:#007cba;padding: 10px 15px;border:none;border-radius:3px;color:white;cursor:pointer;\" type=\"submit\" value=\"Submit Request\" /></p>
+<p><input style="background:#007cba;padding: 10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request" /></p>
 </form>
 ', 'stop-spammer-registrations-plugin' );
 		$not     = '';
@@ -266,17 +266,17 @@ class ss_challenge extends be_module {
 // halfhearted attempt to hide which field is the email field
 			$not = __( '
 <fieldset>
-<legend><span style=\"font-weight:bold;font-size:1.2em\" >Allow Request</span></legend>
+<legend><span style="font-weight:bold;font-size:1.2em" >Allow Request</span></legend>
 <p>You have been blocked from entering information on this site. In order to prevent this from happening in the future, complete the request below to have the admin add your IP to a list that allows you full access.</p>
 <p>Please enter your <strong>e</strong><strong>ma</strong><strong>il</strong> <strong>add</strong><strong>re</strong><strong>ss</strong> and a short note requesting access here.</p>
-<span style=\"color:fff\">Email Address (required)</span><!-- not the message -->: <input type=\"text\" value=\"\" name=\"ke\" /><br />
-Message<!-- not email -->:<br /><textarea name=\"km\" placeholder=\"If you were submitting a contact form, use this field to enter the message.\" style=\"width:100%\"  rows=\"5\"></textarea>
+<span style="color:#fff">Email Address (required)</span><!-- not the message -->: <input type="text" value="" name="ke" /><br />
+Message<!-- not email -->:<br /><textarea name=\"km\" placeholder=\"If you were submitting a contact form, use this field to enter the message." style="width:100%"  rows="5"></textarea>
 </fieldset>
 ', 'stop-spammer-registrations-plugin' );
 		}
 		$captop = __( '
 <fieldset>
-<legend><span style=\"font-weight:bold;font-size:1.2em\">Please prove you are not a robot</span></legend>
+<legend><span style="font-weight:bold;font-size:1.2em">Please prove you are not a robot</span></legend>
 ', 'stop-spammer-registrations-plugin' );
 		$capbot = "
 </fieldset>
@@ -318,10 +318,10 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 					$seed = strtotime( $spdate );
 				}
 				$stupid = $n1 + $n2 - $seed;
-				$cap    = __( '
-<p>Enter the SUM of these two numbers: <span style=\"size:4em;font-weight:bold\">$n1 + $n2</span><br />
-<input name=\"sum\" value=\"\" type=\"text\" />
-<input type=\"hidden\" name=\"nums\" value=\"$stupid\" /><br />
+				$cap    = _e( '
+<p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . $n1 + $n2 . '</span><br />
+<input name="sum" value="" type="text" />
+<input type="hidden" name="nums" value="' . $stupid . '" /><br />
 ', 'stop-spammer-registrations-plugin' );
 				break;
 			case 'F':
@@ -386,7 +386,7 @@ $formbot
 			$ip      = ss_get_ip();
 			$web = __( 'Approve or Deny Request: ', 'stop-spammer-registrations-plugin' ) . admin_url( 'admin.php?page=ss_allow_list' );
 
-			$message = __( '
+			$message = _e( '
 Webmaster,
 
 A request has been received from someone who has been marked as a spammer by the Stop Spammers plugin.

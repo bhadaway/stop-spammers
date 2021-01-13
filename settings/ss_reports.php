@@ -18,7 +18,7 @@ $search   = SS_PLUGIN_URL . 'images/search.png';
 $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 ?>
 <div id="ss-plugin" class="wrap">
-	<h1 class="ss_head">Stop Spammers — <?php __( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></h1>
+	<h1 class="ss_head">Stop Spammers — <?php _e( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
 	// $ip=ss_get_ip();
 	$stats = ss_get_stats();
@@ -62,7 +62,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	$num      = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
-		<p><?php __( 'There are <a href="edit-comments.php?comment_status=spam">' . echo $num . '</a>
+		<p><?php _e( 'There are <a href="edit-comments.php?comment_status=spam">' . $num . '</a>
 			spam comments waiting for
 			you to report them.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
@@ -71,7 +71,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	$num      = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
-		<p><?php __( 'There are <a href="edit-comments.php?comment_status=moderated">' . echo $num . '</a>
+		<p><?php _e( 'There are <a href="edit-comments.php?comment_status=moderated">' . $num . '</a>
 			comments waiting to be
 			moderated.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
@@ -86,8 +86,8 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	<form method="post" action="">
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 		<input type="hidden" name="ss_stop_update_log_size" value="true" />
-		<h2><?php __( 'History Size', 'stop-spammer-registrations-plugin' ); ?></h2>
-		<?php __( 'Select the number of events to save in the history.', 'stop-spammer-registrations-plugin' ); ?><br/>
+		<h2><?php _e( 'History Size', 'stop-spammer-registrations-plugin' ); ?></h2>
+		<?php _e( 'Select the number of events to save in the history.', 'stop-spammer-registrations-plugin' ); ?><br/>
 		<p class="submit">
 			<select name="ss_sp_hist">
 				<option value="10" <?php if ( $ss_sp_hist == '10' ) {
@@ -115,11 +115,11 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 				} ?>>150
 				</option>
 			</select>
-			<input class="button-primary" value="<?php __( 'Update Log Size', 'stop-spammer-registrations-plugin' ); ?>" type="submit"/></p>
+			<input class="button-primary" value="<?php _e( 'Update Log Size', 'stop-spammer-registrations-plugin' ); ?>" type="submit"/></p>
 		<form method="post" action="">
 			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>"/>
 			<input type="hidden" name="ss_stop_clear_hist" value="true"/>
-			<p class="submit"><input class="button-primary" value="<?php __( 'Clear Recent Activity', 'stop-spammer-registrations-plugin' ); ?>" type="submit"/></p>
+			<p class="submit"><input class="button-primary" value="<?php _e( 'Clear Recent Activity', 'stop-spammer-registrations-plugin' ); ?>" type="submit"/></p>
 		</form>
 		<?php
 		if ( empty( $hist ) ) {
@@ -127,16 +127,16 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 		} else {
 			?>
 			<br/>
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="<?php __( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php __( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
 			<table name="mytable" id="myTable" style="width:100%;background-color:#eee" cellspacing="2">
 				<thead>
 				<tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
-					<th onclick="sortTable(0)" class="filterhead ss_cleanup"><?php __( 'Date/Time', 'stop-spammer-registrations-plugin' ); ?></th>
-					<th class="ss_cleanup"><?php __( 'Email', 'stop-spammer-registrations-plugin' ); ?></th>
-					<th class="ss_cleanup"><?php __( 'IP', 'stop-spammer-registrations-plugin' ); ?></th>
-					<th class="ss_cleanup"><?php __( 'Author, User/Pwd', 'stop-spammer-registrations-plugin' ); ?></th>
-					<th class="ss_cleanup"><?php __( 'Script', 'stop-spammer-registrations-plugin' ); ?></th>
-					<th class="ss_cleanup"><?php __( 'Reason', 'stop-spammer-registrations-plugin' ); ?>
+					<th onclick="sortTable(0)" class="filterhead ss_cleanup"><?php _e( 'Date/Time', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php _e( 'Email', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php _e( 'IP', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php _e( 'Author, User/Pwd', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php _e( 'Script', 'stop-spammer-registrations-plugin' ); ?></th>
+					<th class="ss_cleanup"><?php _e( 'Reason', 'stop-spammer-registrations-plugin' ); ?>
 						<?php
 						if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 						?>
@@ -174,14 +174,14 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 					if ( empty( $reason ) ) {
 						$reason = "passed";
 					}
-					$stopper     = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=$ip"><img src="$stophand" height="16px" /></a>';
-					$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_$ip"><img src="$search" height="16px" /></a>';
-					$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=$ip"><img src="$search" height="16px" /></a>';
-					$who         = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip"><img src="$whois" height="16px" /></a>';
+					$stopper     = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=$ip"><img src="' . $stophand . '" height="16px" /></a>';
+					$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_$ip"><img src="' . $search . '" height="16px" /></a>';
+					$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=$ip"><img src="' . $search . '" height="16px" /></a>';
+					$who         = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip"><img src="' . $whois . '" height="16px" /></a>';
 					echo '<tr style=\"background-color:white\">
-<td>$dt</td>
-<td>$em</td>
-<td>$ip $who $stopper $honeysearch $botsearch';
+<td>' . $dt . '</td>
+<td>' . $em . '</td>
+<td>' . $ip, $who, $stopper, $honeysearch, $botsearch . '';
 					if ( stripos( $reason, 'passed' ) !== false
 						 && ( $id == '/'
 							  || strpos( $id, 'login' ) ) !== false
@@ -200,9 +200,9 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 							echo '<a title="' . esc_attr__( 'Report to Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" $href $onclick class="delete:the-comment-list:comment-$id::delete=1 delete vim-d vim-destructive">' . __( 'Report to SFS', 'stop-spammer-registrations-plugin' ) . '</a>';
 						}
 					}
-					echo '</td><td>$au</td>
-<td>$id</td>
-<td>$reason</td>';
+					echo '</td><td>' . $au . '</td>
+<td>' . $id . '</td>
+<td>' . $reason . '</td>';
 					if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 // switch to blog and back
 						$blogname  = get_blog_option( $blog, 'blogname' );

@@ -141,7 +141,7 @@ $counters = array(
 	'cntchkKW'            => __( 'Kuwait', 'stop-spammer-registrations-plugin' ),
 	'cntchkKY'            => __( 'Cayman Islands', 'stop-spammer-registrations-plugin' ),
 	'cntchkKZ'            => __( 'Kazakhstan', 'stop-spammer-registrations-plugin' ),
-	'cntchkLA'            => "Lao People's Democratic Republic",
+	'cntchkLA'            => __( 'Lao People\'s Democratic Republic', 'stop-spammer-registrations-plugin' ),
 	'cntchkLB'            => __( 'Lebanon', 'stop-spammer-registrations-plugin' ),
 	'cntchkLK'            => __( 'Sri Lanka', 'stop-spammer-registrations-plugin' ),
 	'cntchkLT'            => __( 'Lithuania', 'stop-spammer-registrations-plugin' ),
@@ -239,7 +239,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div id="ss-plugin" class="wrap">
     <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
-    <?php __( 'Version', 'stop-spammer-registrations-plugin' ); ?> <strong><?php echo SS_VERSION; ?></strong>
+    <?php _e( 'Version', 'stop-spammer-registrations-plugin' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 		<?php
 	if ( ! empty( $summry ) ) {
 		?>
@@ -247,7 +247,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	$ip = ss_get_ip();
 	?>
-	| <?php __( 'Your current IP address is', 'stop-spammer-registrations-plugin' ); ?>: <strong><?php echo $ip; ?></strong>
+	| <?php _e( 'Your current IP address is', 'stop-spammer-registrations-plugin' ); ?>: <strong><?php echo $ip; ?></strong>
 	<?php
 	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		echo ' | <strong>USE CODE SSP4ME FOR $5 OFF THE <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">PREMIUM PLUGIN</a></strong>';
@@ -261,8 +261,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	if ( $ansa !== false ) {
 		?>
-        <p><?php __( 'This address is invalid for testing for the following reason:
-            <span style="font-weight:bold;font-size:1.2em">' . echo $ansa . '</span>.<br />
+        <p><?php _e( 'This address is invalid for testing for the following reason:
+            <span style="font-weight:bold;font-size:1.2em">' . $ansa . '</span>.<br />
             If you working on a local installation of WordPress, this might be
             OK. However, if the plugin reports that your
             IP is invalid it may be because you are using Cloudflare or a proxy
@@ -318,26 +318,26 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 	}
 	?>
 
-<h2><?php __( 'Summary of Spam', 'stop-spammer-registrations-plugin' ); ?></h2>
+<h2><?php _e( 'Summary of Spam', 'stop-spammer-registrations-plugin' ); ?></h2>
 <div class="main-stats" style="width:95%">
 <?php
 	 if ( $spcount > 0 ) {
 		?>
-        <p><?php __( 'Stop Spammers has stopped <strong>' . echo $spcount . '</strong> spammers since ' . echo $spdate . '.', 'stop-spammer-registrations-plugin' ); ?></p>
+        <p><?php _e( 'Stop Spammers has stopped <strong>' . $spcount . '</strong> spammers since ' . $spdate . '.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
-        <p><?php __( 'There are <a href="edit-comments.php?comment_status=spam">' . echo $num . '</a> spam comments waiting for you to report.', 'stop-spammer-registrations-plugin' ); ?></p>
+        <p><?php _e( 'There are <a href="edit-comments.php?comment_status=spam">' . $num . '</a> spam comments waiting for you to report.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
-        <p><?php __( 'There are <a href="edit-comments.php?comment_status=moderated">' . echo $num . '</a> comments waiting to be moderated.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+        <p><?php _e( 'There are <a href="edit-comments.php?comment_status=moderated">' . $num . '</a> comments waiting to be moderated.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 		<?php
 	}
 	$summry = '';
@@ -359,7 +359,7 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
         <form method="post" action="">
             <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
             <input type="hidden" name="clear" value="clear summary" />
-            <p class="submit" style="clear:both"><input class="button-primary" value="<?php __( 'Clear Summary', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+            <p class="submit" style="clear:both"><input class="button-primary" value="<?php _e( 'Clear Summary', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </form>
 <?php
 
@@ -378,7 +378,7 @@ function ss_force_reset_options() {
 	$ss_opt=$_POST['ss_opt'];
 	$ss_opt=sanitize_text_field($ss_opt);
 	if ( !wp_verify_nonce( $ss_opt, 'ss_options' ) ) {	
-		echo _e( 'Session Timeout — Please Refresh the Page', 'stop-spammer-registrations-plugin' );
+		_e( 'Session Timeout — Please Refresh the Page', 'stop-spammer-registrations-plugin' );
 		exit;
 	}
 	if ( !function_exists( 'ss_reset_options' ) ) {
@@ -390,64 +390,64 @@ function ss_force_reset_options() {
 } ?>
 </div>
 
-<h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php __( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
+<h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'PROTECTION OPTIONS', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" /><?php __( 'All options related to checking spam and logins. You can also block whole countries.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_options"><?php __( 'Protection', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'PROTECTION OPTIONS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" /><?php _e( 'All options related to checking spam and logins. You can also block whole countries.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_options"><?php _e( 'Protection', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'ALLOW LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb"><?php __( 'Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_allow_list"><?php __( 'Allow', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'ALLOW LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb"><?php _e( 'Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_allow_list"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'BLOCK LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb"><?php __( 'Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_deny_list"><?php __( 'Block', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'BLOCK LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb"><?php _e( 'Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_deny_list"><?php _e( 'Block', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 </div>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'CHALLENGE &amp; DENY', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb"><?php __( 'Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_challenge"><?php __( 'Challenges', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'CHALLENGE &amp; DENY', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb"><?php _e( 'Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_challenge"><?php _e( 'Challenges', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'APPROVE REQUESTS', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb"><?php __( 'Review and approve or deny users who were blocked and filled out the form requesting access to your site.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_allow_list"><?php __( 'Approve', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'APPROVE REQUESTS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb"><?php _e( 'Review and approve or deny users who were blocked and filled out the form requesting access to your site.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_allow_list"><?php _e( 'Approve', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'WEB SERVICES', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb"><?php __( 'Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_webservices_settings"><?php __( 'Web Services', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'WEB SERVICES', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb"><?php _e( 'Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_webservices_settings"><?php _e( 'Web Services', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 </div>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'CACHE', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb"><?php __( 'Shows the cache of recently detected events.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_cache"><?php __( 'Cache', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'CACHE', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb"><?php _e( 'Shows the cache of recently detected events.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_cache"><?php _e( 'Cache', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'LOG REPORT', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb"><?php __( 'Details the most recent events detected by Stop Spammers.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_reports"><?php __( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'LOG REPORT', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb"><?php _e( 'Details the most recent events detected by Stop Spammers.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_reports"><?php _e( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3col">
-		<h3><?php __( 'DIAGNOSTICS', 'stop-spammer-registrations-plugin' ); ?></h3>
-		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb"><?php __( 'Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.', 'stop-spammer-registrations-plugin' ); ?>
-		<div class="ss_admin_button"> <a href="?page=ss_diagnostics"><?php __( 'Diagnostics', 'stop-spammer-registrations-plugin' ); ?></a>
+		<h3><?php _e( 'DIAGNOSTICS', 'stop-spammer-registrations-plugin' ); ?></h3>
+		<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb"><?php _e( 'Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="ss_admin_button"> <a href="?page=ss_diagnostics"><?php _e( 'Diagnostics', 'stop-spammer-registrations-plugin' ); ?></a>
 		</div>
 	</div>
 </div>
@@ -467,27 +467,27 @@ function ss_force_reset_options() {
 	echo '
 		<div class="ss_admin_info_boxes_3row">
 			<div class="ss_admin_info_boxes_3col">
-				<h3>' . __( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
+				<h3>' . _e( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/restore-settings_stop-spammers_trumani.png" class="center_thumb" />
-				' . __( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ) . '
+				' . _e( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
-					<a href="admin.php?page=ssp_premium">' . __( 'RESTORE', 'stop-spammer-registrations-plugin' ) . '</a>
+					<a href="admin.php?page=ssp_premium">' . _e( 'RESTORE', 'stop-spammer-registrations-plugin' ) . '</a>
 				</div>
 			</div>
 			<div class="ss_admin_info_boxes_3col">
-				<h3>' . __( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
+				<h3>' . _e( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/import-export_stop-spammers_trumani.png" class="center_thumb" />
-				' . __( 'You can download your personalized configurations and upload them to all of your other sites.', 'stop-spammer-registrations-plugin' ) . '
+				' . _e( 'You can download your personalized configurations and upload them to all of your other sites.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
-					<a href="admin.php?page=ssp_premium">' . __( 'IMPORT/EXPORT', 'stop-spammer-registrations-plugin' ) . '</a>
+					<a href="admin.php?page=ssp_premium">' . _e( 'IMPORT/EXPORT', 'stop-spammer-registrations-plugin' ) . '</a>
 				</div>
 			</div>
 			<div class="ss_admin_info_boxes_3col">
-				<h3>' . __( 'Export Log to Excel', 'stop-spammer-registrations-plugin' ) . '</h3>
+				<h3>' . _e( 'Export Log to Excel', 'stop-spammer-registrations-plugin' ) . '</h3>
 				<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/export-to-excel_stop-spammers_trumani.png" class="center_thumb" />
-				' . __( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
+				' . _e( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
-					<a href="admin.php?page=ssp_premium">' . __( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
+					<a href="admin.php?page=ssp_premium">' . _e( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
 			</div>
 		</div>
 	</div>
@@ -496,25 +496,25 @@ function ss_force_reset_options() {
 ?>
 <br style="clear:both" />
 <br />
-<h2><?php __( 'Beta Options', 'stop-spammer-registrations-plugin' ); ?></h2>
+<h2><?php _e( 'Beta Options', 'stop-spammer-registrations-plugin' ); ?></h2>
     <span class="notice notice-warning" style="display:block">
-        <p><?php __( 'These features are to be considered experimental. Use with caution and at your own risk.', 'stop-spammer-registrations-plugin' ); ?></p>
+        <p><?php _e( 'These features are to be considered experimental. Use with caution and at your own risk.', 'stop-spammer-registrations-plugin' ); ?></p>
     </span>
 <div class="ss_admin_info_boxes_2row" >
   <div class="ss_admin_info_boxes_2col" >
-    <h3><?php __( 'Database Cleanup', 'stop-spammer-registrations-plugin' ); ?></h3>
+    <h3><?php _e( 'Database Cleanup', 'stop-spammer-registrations-plugin' ); ?></h3>
     <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/database-cleanup.png'; ?>" class="center_thumb" >    
-        <?php __( 'Delete leftover options from deleted plugins or anything that appears suspicious.', 'stop-spammer-registrations-plugin' ); ?>
+        <?php _e( 'Delete leftover options from deleted plugins or anything that appears suspicious.', 'stop-spammer-registrations-plugin' ); ?>
  <div class="ss_admin_button">
-    <a href="?page=ss_option_maint"><?php __( 'Cleanup', 'stop-spammer-registrations-plugin' ); ?></a>
+    <a href="?page=ss_option_maint"><?php _e( 'Cleanup', 'stop-spammer-registrations-plugin' ); ?></a>
 </div>
 </div>       
   <div class="ss_admin_info_boxes_2col" >
-    <h3><?php __( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h3>
+    <h3><?php _e( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h3>
     <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/threat-scan.png'; ?>" class="center_thumb" >           
-		<?php __( 'A simple scan to find possibly malicious code.', 'stop-spammer-registrations-plugin' ); ?>
+		<?php _e( 'A simple scan to find possibly malicious code.', 'stop-spammer-registrations-plugin' ); ?>
  <div class="ss_admin_button">
-    <a href="?page=ss_diagnostics"><?php __( 'Scan', 'stop-spammer-registrations-plugin' ); ?></a>
+    <a href="?page=ss_diagnostics"><?php _e( 'Scan', 'stop-spammer-registrations-plugin' ); ?></a>
 </div>
 </div>   
 </div>

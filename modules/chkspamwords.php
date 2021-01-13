@@ -16,7 +16,7 @@ class chkspamwords {
 			if ( ! empty( $data ) ) {
 				foreach ( $spamwords as $sw ) {
 					if ( stripos( $data, $sw ) !== false ) {
-						_e( 'Spam Word: $sw in $key', 'stop-spammer-registrations-plugin' );
+						_e( 'Spam Word: ' . $sw . ' in ' . $key . '', 'stop-spammer-registrations-plugin' );
 					}
 				}
 			}

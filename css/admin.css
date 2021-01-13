@@ -309,7 +309,7 @@ div.checkbox.switcher label:active:after {
 .tooltip {
   position: relative;
   display: inline-block;
-  top: 5px;
+  top: 10px;
   margin-left: 5px;
 }
 

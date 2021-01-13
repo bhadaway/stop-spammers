@@ -20,7 +20,7 @@ ss_fix_post_vars();
 	}
 	?>
 	<div class="ss_info_box">
-    <p><?php __( 'Inspect and delete orphan or suspicious options or change plugin options so that
+    <p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that
         they don&acute;t autoload. Be aware that you can break some
         plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 	<?php
@@ -42,7 +42,7 @@ ss_fix_post_vars();
 			}
 			$v = print_r( $v, true );
 			$v = htmlentities( $v );
-			_e( '<h2>contents of $op</h2><pre>$v</pre>', 'stop-spammer-registrations-plugin' );
+			_e( '<h2>contents of ' . $op . '</h2><pre>' . $v . '</pre>', 'stop-spammer-registrations-plugin' );
 		}
 		if ( array_key_exists( 'autol', $_POST ) ) {
 			$autol = $_POST['autol'];
@@ -54,7 +54,7 @@ ss_fix_post_vars();
 					$au = 'no';
 				}
 				$name = substr( $name, strpos( $name, '_' ) + 1 );
-				_e( 'changing $name autoload to $au<br />', 'stop-spammer-registrations-plugin' );
+				_e( 'changing ' . $name . ' autoload to $au<br />', 'stop-spammer-registrations-plugin' );
 				$sql  = "update $ptab set autoload='$au' where option_name='$name'";
 				$wpdb->query( $sql );
 			}
@@ -62,7 +62,7 @@ ss_fix_post_vars();
 		if ( array_key_exists( 'delo', $_POST ) ) {
 			$delo = $_POST['delo'];
 			foreach ( $delo as $name ) {
-				_e( 'deleting $name <br />', 'stop-spammer-registrations-plugin' );
+				_e( 'deleting ' . $name . ' <br />', 'stop-spammer-registrations-plugin' );
 				$sql = "delete from $ptab where option_name='$name'";
 				$wpdb->query( $sql );
 			}
@@ -262,12 +262,12 @@ ss_fix_post_vars();
         <table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
             <thead>
             <tr bgcolor="#fff">
-                <th class="ss_cleanup"><?php __( 'Option', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php __( 'Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php __( 'Size', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php __( 'Change Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php __( 'Delete', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php __( 'View Contents', 'stop-spammer-registrations-plugin' ); ?></th>
+                <th class="ss_cleanup"><?php _e( 'Option', 'stop-spammer-registrations-plugin' ); ?></th>
+                <th class="ss_cleanup"><?php _e( 'Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
+                <th class="ss_cleanup"><?php _e( 'Size', 'stop-spammer-registrations-plugin' ); ?></th>
+                <th class="ss_cleanup"><?php _e( 'Change Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
+                <th class="ss_cleanup"><?php _e( 'Delete', 'stop-spammer-registrations-plugin' ); ?></th>
+                <th class="ss_cleanup"><?php _e( 'View Contents', 'stop-spammer-registrations-plugin' ); ?></th>
             </tr>
             </thead>
 			<?php
@@ -284,20 +284,20 @@ ss_fix_post_vars();
                     <td align="center"><?php echo $sz; ?></td>
                     <td align="center"><input type="checkbox" value="<?php echo $autoload . '_' . $option_name; ?>" name="autol[]">&nbsp;<?php echo $autoload; ?></td>
                     <td align="center"><input type="checkbox" value="<?php echo $option_name; ?>" name="delo[]"></td>
-                    <td align="center"><button type="submit" name="view" value="<?php echo $option_name; ?>"><?php __( 'view', 'stop-spammer-registrations-plugin' ); ?></button></td>
+                    <td align="center"><button type="submit" name="view" value="<?php echo $option_name; ?>"><?php _e( 'view', 'stop-spammer-registrations-plugin' ); ?></button></td>
                 </tr>
 				<?php
 			}
 			?>
         </table>
-        <p class="submit"><input class="button-primary" value="<?php __( 'Update', 'stop-spammer-registrations-plugin' ); ?>" type="submit" onclick="return confirm('Are you sure? These changes are permenant.');"></p>
+        <p class="submit"><input class="button-primary" value="<?php _e( 'Update', 'stop-spammer-registrations-plugin' ); ?>" type="submit" onclick="return confirm('Are you sure? These changes are permenant.');"></p>
     </form>
 	<?php
 	$m1 = memory_get_usage();
 	$m3 = memory_get_peak_usage();
 	$m1 = number_format( $m1 );
 	$m3 = number_format( $m3 );
-	_e( '<p>Memory Usage Currently: $m1, Peak: $m3</p>', 'stop-spammer-registrations-plugin' );
+	_e( '<p>Memory Usage Currently: ' . $m1 . ' Peak: ' . $m3 . '</p>', 'stop-spammer-registrations-plugin' );
 	$nonce          = wp_create_nonce( 'ss_update2' );
 	$showtransients = false; // change to true to clean up transients
 	if ( $showtransients
@@ -305,14 +305,14 @@ ss_fix_post_vars();
 	) { // personal use - probably too dangerous for casual users
 		?>
         <hr />
-        <p><?php __( 'WordPress creates temporary objects in the database called
+        <p><?php _e( 'WordPress creates temporary objects in the database called
             transients.<br />
             WordPress is not good about cleaning them up afterwards. You can
             clean these up safely and it might
             speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
         <form method="POST" name="DOIT2" action="">
             <input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>" />
-            <p class="submit"><input class="button-primary" value="<?php __( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+            <p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </form>
 		<?php
 		$nonce = '';
@@ -324,7 +324,7 @@ ss_fix_post_vars();
 			deleteTransients();
 		}
 		?>
-        <p><?php __( 'Currently there are ' . echo countTransients() . ' found.', 'stop-spammer-registrations-plugin' ); ?></p>
+        <p><?php _e( 'Currently there are ' . countTransients() . ' found.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	?>

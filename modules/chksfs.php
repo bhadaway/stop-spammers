@@ -55,7 +55,7 @@ class chksfs extends be_module {
 			) {
 // frequency we got from the db, sfsfreq is the min we'll accept (default 0)
 // sfsage is the age in days - we get lastscene from
-				_e( 'SFS last seen = $lastseen, frequency = $frequency', 'stop-spammer-registrations-plugin' );
+				_e( 'SFS Last Seen = ' . $lastseen . ', Frequency = ' . $frequency . '', 'stop-spammer-registrations-plugin' );
 			}
 		}
 		return false;

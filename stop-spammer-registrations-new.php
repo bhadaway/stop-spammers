@@ -462,7 +462,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 		$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
 	if ( ! file_exists( $fd ) ) {
-		_e( '<br /><br />Missing $file $fd<br /><br />', 'stop-spammer-registrations-plugin' );
+		_e( '<br /><br />Missing ' . $file, $fd . '<br /><br />', 'stop-spammer-registrations-plugin' );
 		return false;
 	}
 	require_once( $fd );
