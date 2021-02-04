@@ -677,12 +677,12 @@ function ss_log_user_ip( $user_login = "", $user = "" ) {
  * add_filter( 'user_registration_email', ss_user_reg_filter, 1, 1 );
  ***********************************/
 function ss_user_reg_filter( $user_login ) {
-// the plugin should be all initialized
-// check the IP, etc.
+	// the plugin should be all initialized
+	// check the IP, etc.
 	sfs_errorsonoff();
 	$options        = ss_get_options();
 	$stats          = ss_get_stats();
-// fake out the post variables
+	// fake out the post variables
 	$post           = get_post_variables();
 	$post['author'] = $user_login;
 	$post['addon']  = 'chkRegister'; // not really an add-on - but may be moved out when working
@@ -691,8 +691,8 @@ function ss_user_reg_filter( $user_login ) {
 		sfs_errorsonoff( 'off' );
 		return $user_login;
 	}
-// if the suspect is already in the Bad Cache he does not get a second chance?
-// prevents looping	
+	// if the suspect is already in the Bad Cache he does not get a second chance?
+	// prevents looping	
 	$reason = be_load( 'chkbcache', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
@@ -703,7 +703,12 @@ function ss_user_reg_filter( $user_login ) {
 		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
-// check the whitelist
+	// check periods
+	$reason = be_load( 'chkperiods', ss_get_ip(), $stats, $options, $post );
+	if( $reason !== false) { 
+		wp_die( 'Registration Access Denied', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
+	}
+	// check the whitelist
 	$reason = ss_check_white();
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
@@ -712,8 +717,8 @@ function ss_user_reg_filter( $user_login ) {
 		sfs_errorsonoff( 'off' );
 		return $user_login;
 	}
-// check the blacklist
-// sfs_debug_msg( "Checking blacklist on registration: /r/n".print_r( $post, true ) );
+	// check the blacklist
+	// sfs_debug_msg( "Checking blacklist on registration: /r/n".print_r( $post, true ) );
 	$ret            = be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
 	$post['reason'] = __( 'Passed Registration ', 'stop-spammer-registrations-plugin' ) . $ret;
 	$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );

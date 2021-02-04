@@ -101,6 +101,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chkwlem',
 						'chkwluserid',
 						'chkwlist',
+						'chkwlistemail',
 						'chkform',
 						'chkyahoomerchant'
 					);

@@ -11,12 +11,22 @@ class ss_addtoallowlist {
 		// adds to Allow List - used to add admin to Allow List or to add a comment author to Allow List
 		$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$wlist = $options['wlist'];
+		if ( ! isset( $options['wlist_email'] ) ) {
+			$wlist_email = array();
+		} else {
+			$wlist_email = $options['wlist_email'];
+		}
 		// $ip=ss_get_ip();
 		// add this IP to your Allow List
 		if ( ! in_array( $ip, $wlist ) ) {
 			$wlist[] = $ip;
 		}
 		$options['wlist'] = $wlist;
+		// add this email to your Allow List
+		if ( isset( $_GET['email'] ) and $_GET['email'] != ''  and ! in_array( $_GET['email'], $wlist_email ) ) {
+			$wlist_email[] = $_GET['email'];
+		}
+		$options['wlist_email'] = $wlist_email;
 		ss_set_options( $options );
 		// need to remove from caches
 		$badips = $stats['badips'];

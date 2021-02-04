@@ -350,6 +350,7 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 	$tup       = SS_PLUGIN_URL . 'images/tup.png'; // fix this
 	$whois     = SS_PLUGIN_URL . 'images/whois.png'; // fix this
 	$ip        = $_GET['ip'];
+	$email     = $_GET['email'];
 	$container = $_GET['cont'];
 	$func      = $_GET['func'];
 // echo "error $ip, $func, $container," . print_r( $_GET, true ) ;exit();

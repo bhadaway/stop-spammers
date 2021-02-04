@@ -1,10 +1,11 @@
 var sfs_ajax_who = "";
 
-function sfs_ajax_process(sip, contx, sfunc, url) {
+function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
     sfs_ajax_who = contx;
     var data = {
         action: 'sfs_process',
         ip: sip,
+        email: email,
         cont: contx,
         func: sfunc,
         ajax_url: url

@@ -53,6 +53,7 @@ class ss_check_white extends be_module {
             // 'chkvalidip', // handled in deny testing
 			'chkwlem',
 			'chkwluserid',
+			'chkwlistemail',
 			'chkwlist',
 			'chkyahoomerchant'
 		);

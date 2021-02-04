@@ -248,11 +248,12 @@ class ss_get_options {
 				'Unknown',
 				'uptime files'
 			),
-			'badTLDs'    => array(),
-			'blist'      => array(),
-			'payoptions' => array(),
-			'wlist'      => array(),
-			'spamwords'  => array(
+			'badTLDs'     => array(),
+			'blist'       => array(),
+			'payoptions'  => array(),
+			'wlist'       => array(),
+			'wlist_email' => array(),
+			'spamwords'   => array(
 				'#1',
 				'100% free',
 				'100% more',
