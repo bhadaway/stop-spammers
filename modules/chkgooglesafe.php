@@ -20,7 +20,7 @@ class chkgooglesafe extends be_module {
 		}
 		$googleapi = $stats['googleapi'];
 		$content   = $stats['content'];
-		$post      = array();
+		$post	   = array();
 		preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@',
 			$content, $post, PREG_PATTERN_ORDER );
 		$urls1 = array();
@@ -56,10 +56,10 @@ class chkgooglesafe extends be_module {
 			if ( !empty( $url ) ) {
 				$query = "https://sb-ssl.google.com/safebrowsing/api/lookup?client=stop-spammer-plugin&apikey=$googleapi&appver=9.3&pver=3.0&url=$url";
 // using file get contents or get using the https lookup?
-				$r     = $this->getafile( $query );
+				$r	 = $this->getafile( $query );
 				if ( !empty( $r ) ) {
 					if ( strpos( $r, 'phishing' ) !== false
-					     || strpos( $r, 'malware' ) !== false
+						 || strpos( $r, 'malware' ) !== false
 					) {
 						_e( 'Google Safe: ', 'stop-spammer-registrations-plugin' ) . $r;
 					}

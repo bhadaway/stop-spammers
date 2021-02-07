@@ -11,7 +11,7 @@ class chkbcache extends be_module { // change name
 	) {
 // checks the IP from params which has the cache in it
 		$this->searchname = 'Bad Cache';
-		$gcache           = $stats['badips'];
+		$gcache		      = $stats['badips'];
 		return $this->searchcache( $ip, $gcache );
 	}
 }

@@ -10,7 +10,7 @@ if ( !current_user_can( 'manage_options' ) ) {
 }
 
 ss_fix_post_vars();
-$now     = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+$now	 = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
 $nonce   = '';
@@ -35,7 +35,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['blist'] = $tblist;
-		$blist            = $tblist;
+		$blist			  = $tblist;
 	}
 	if ( array_key_exists( 'spamwords', $_POST ) ) {
 		$spamwords = $_POST['spamwords'];
@@ -52,7 +52,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['spamwords'] = $tblist;
-		$spamwords            = $tblist;
+		$spamwords			= $tblist;
 	}
 	if ( array_key_exists( 'denyurlshortners', $_POST ) ) {
 		$denyurlshortners = $_POST['denyurlshortners'];
@@ -69,7 +69,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['denyurlshortners'] = $tblist;
-		$denyurlshortners            = $tblist;
+		$denyurlshortners			= $tblist;
 	}
 	if ( array_key_exists( 'badTLDs', $_POST ) ) {
 		$badTLDs = $_POST['badTLDs'];
@@ -86,7 +86,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['badTLDs'] = $tblist;
-		$badTLDs            = $tblist;
+		$badTLDs			= $tblist;
 	}
 	if ( array_key_exists( 'badagents', $_POST ) ) {
 		$badagents = $_POST['badagents'];
@@ -103,7 +103,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['badagents'] = $tblist;
-		$badagents            = $tblist;
+		$badagents			= $tblist;
 	}
 // check box setting
 	$optionlist = array(
@@ -182,7 +182,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				echo $p . "\r\n";
 			}
 		?></textarea>
-        <br />
+		<br />
 	<div class="mainsection"><?php _e( 'Bad User Agents List', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#badagents" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>	
 <div class="checkbox switcher">

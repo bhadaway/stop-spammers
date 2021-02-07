@@ -33,12 +33,12 @@ class chkdnsbl {
 // [1] is numbr of days since last report
 // spammers are type 1 to 7
 					if ( $result[2] >= 25
-					     && ( $result[3] >= 1
-					          && $result[3] <= 7 )
-					     && $result[1] > 0
+						 && ( $result[3] >= 1
+							  && $result[3] <= 7 )
+						 && $result[1] > 0
 					) {
 						return "DNSBL: $data=" . $result[0] . ',' . $result[1]
-						       . ',' . $result[2] . ',' . $result[3];
+							   . ',' . $result[2] . ',' . $result[3];
 					}
 				}
 			}

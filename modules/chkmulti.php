@@ -32,7 +32,7 @@ class chkmulti extends be_module {
 			$multicnt = $options['multicnt'];
 		}
 // clean up multi 
-		$now        = date( 'Y/m/d H:i:s',
+		$now		= date( 'Y/m/d H:i:s',
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$nowtimeout = date( 'Y/m/d H:i:s',
 			time() - ( 60 * $multitime ) + ( get_option( 'gmt_offset' ) * 3600 ) );

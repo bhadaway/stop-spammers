@@ -6,12 +6,10 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_challenge extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 // it looks like I am not getting my stats and options correctly
 // sfs_debug_msg( 'Made it into challenge' );
-		$ip      = ss_get_ip();
+		$ip	  = ss_get_ip();
 		$stats   = ss_get_stats();
 		$options = ss_get_options();
 // $post=get_post_variables();
@@ -63,7 +61,7 @@ class ss_challenge extends be_module {
 				$kp = $_POST['kp'];
 			} // serialized post
 			if ( !empty( $nonce )
-			     && wp_verify_nonce( $nonce, 'ss_stopspam_deny' )
+				 && wp_verify_nonce( $nonce, 'ss_stopspam_deny' )
 			) {
 // sfs_debug_msg( 'nonce is good' );
 // have a form return
@@ -92,15 +90,15 @@ class ss_challenge extends be_module {
 				switch ( $chkcaptcha ) {
 					case 'G':
 						if ( array_key_exists( 'recaptcha', $_POST )
-						     && !empty( $_POST['recaptcha'] )
-						     && array_key_exists( 'g-recaptcha-response',
+							 && !empty( $_POST['recaptcha'] )
+							 && array_key_exists( 'g-recaptcha-response',
 								$_POST )
 						) {
 // check reCAPTCHA
 							$recaptchaapisecret = $options['recaptchaapisecret'];
 							$recaptchaapisite   = $options['recaptchaapisite'];
 							if ( empty( $recaptchaapisecret )
-							     || empty( $recaptchaapisite )
+								 || empty( $recaptchaapisite )
 							) {
 								$msg = __( 'reCAPTCHA keys are not set.', 'stop-spammer-registrations-plugin' );
 							} else {
@@ -110,7 +108,7 @@ class ss_challenge extends be_module {
 								$resp = ss_read_file( $url );
 // sfs_debug_msg( "recaptcha '$g', '$ip' '$resp' - \r\n" . print_r( $_POST, true ) );
 								if ( strpos( $resp, '"success": true' )
-								     !== false
+									 !== false
 								) { // found success
 // $kp=base64_encode( serialize( $_POST ) );
 									$_POST = unserialize( base64_decode( $kp ) );
@@ -129,13 +127,13 @@ class ss_challenge extends be_module {
 						break;
 					case 'S':
 						if ( array_key_exists( 'adcopy_challenge', $_POST )
-						     && !empty( $_POST['adcopy_challenge'] )
+							 && !empty( $_POST['adcopy_challenge'] )
 						) {
 // solve media
 							$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
-							$solvmediaapiverify     = $options['solvmediaapiverify'];
-							$adcopy_challenge       = $_REQUEST['adcopy_challenge'];
-							$adcopy_response        = $_REQUEST['adcopy_response'];
+							$solvmediaapiverify	 = $options['solvmediaapiverify'];
+							$adcopy_challenge	   = $_REQUEST['adcopy_challenge'];
+							$adcopy_response		= $_REQUEST['adcopy_response'];
 // $ip='127.0.0.1';
 							$postdata = http_build_query(
 								array(
@@ -145,7 +143,7 @@ class ss_challenge extends be_module {
 									'remoteip'   => $ip
 								)
 							);
-							$opts     = array(
+							$opts	 = array(
 								'http' =>
 									array(
 										'method'  => 'POST',
@@ -158,26 +156,26 @@ class ss_challenge extends be_module {
 							/**********************************************
 							 * try to use the sp function
 							 **********************************************/
-							$body        = array(
+							$body		= array(
 								'privatekey' => $solvmediaapiverify,
 								'challenge'  => $adcopy_challenge,
 								'response'   => $adcopy_response,
 								'remoteip'   => $ip
 							);
-							$args        = array(
+							$args		= array(
 								'user-agent'  => 'WordPress/' . '4.2' . '; ' . get_bloginfo( 'url' ),
-								'blocking'    => true,
-								'headers'     => array( 'Content-type: application/x-www-form-urlencoded' ),
-								'method'      => 'POST',
-								'timeout'     => 45,
+								'blocking'	=> true,
+								'headers'	 => array( 'Content-type: application/x-www-form-urlencoded' ),
+								'method'	  => 'POST',
+								'timeout'	 => 45,
 								'redirection' => 5,
 								'httpversion' => '1.0',
-								'body'        => $body,
-								'cookies'     => array()
+								'body'		=> $body,
+								'cookies'	 => array()
 							);
-							$url         = 'https://verify.solvemedia.com/papi/verify/';
+							$url		 = 'https://verify.solvemedia.com/papi/verify/';
 							$resultarray = wp_remote_post( $url, $args );
-							$result      = $resultarray['body'];
+							$result	  = $resultarray['body'];
 // $result = 
 // file_get_contents( '//verify.solvemedia.com/papi/verify/', 
 // false, $context );  
@@ -198,7 +196,7 @@ class ss_challenge extends be_module {
 					case 'A':
 					case 'Y':
 						if ( array_key_exists( 'nums', $_POST )
-						     && !empty( $_POST['nums'] )
+							 && !empty( $_POST['nums'] )
 						) {
 // simple arithmetic - at least it is different for each website and changes occasionally
 							$seed   = 5;
@@ -262,7 +260,7 @@ class ss_challenge extends be_module {
 <p><input style="background:#007cba;padding: 10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request" /></p>
 </form>
 ', 'stop-spammer-registrations-plugin' );
-		$not     = '';
+		$not	 = '';
 		if ( $wlreq == 'Y' ) {
 // halfhearted attempt to hide which field is the email field
 			$not = __( '
@@ -288,7 +286,7 @@ Message<!-- not email -->:<br /><textarea name="km" placeholder="If you were sub
 			case 'G':
 // reCAPTCHA
 				$recaptchaapisite = $options['recaptchaapisite'];
-				$cap              = "
+				$cap			  = "
 <script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>\r\n
 <input type=\"hidden\" name=\"recaptcha\" value=\"recaptcha\" />
 <div class=\"g-recaptcha\" data-sitekey=\"$recaptchaapisite\"></div>
@@ -296,7 +294,7 @@ Message<!-- not email -->:<br /><textarea name="km" placeholder="If you were sub
 				break;
 			case 'S':
 				$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
-				$cap                    = "
+				$cap					= "
 <script src=\"https://api-secure.solvemedia.com/papi/challenge.script?k=$solvmediaapivchallenge\"></script>
 <noscript>
 <iframe src=\"https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge\"
@@ -319,7 +317,7 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 					$seed = strtotime( $spdate );
 				}
 				$stupid = $n1 + $n2 - $seed;
-				$cap    = _e( '
+				$cap	= _e( '
 <p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . $n1 + $n2 . '</span><br />
 <input name="sum" value="" type="text" />
 <input type="hidden" name="nums" value="' . $stupid . '" /><br />
@@ -330,7 +328,7 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 			default:
 				$captop = '';
 				$capbot = '';
-				$cap    = '';
+				$cap	= '';
 				break;
 		}
 // have a display
@@ -357,7 +355,7 @@ $formbot
 		if ( !array_key_exists( 'notify', $options ) ) {
 			return false;
 		}
-		$notify    = $options['notify'];
+		$notify	= $options['notify'];
 		$wlreqmail = $options['wlreqmail'];
 		if ( $notify == 'N' ) {
 			return false;
@@ -384,7 +382,7 @@ $formbot
 				$to = $wlreqmail;
 			}
 			$subject = __( 'Allow List Request from ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
-			$ip      = ss_get_ip();
+			$ip	  = ss_get_ip();
 			$web = __( 'Approve or Deny Request: ', 'stop-spammer-registrations-plugin' ) . admin_url( 'admin.php?page=ss_allow_list' );
 
 			$message = _e( '
@@ -427,7 +425,7 @@ Some spam bots fill out the request form with a fake explanation.
 		$now   = date( 'Y/m/d H:i:s',
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		//$web = echo "<a href='?page=ss_allow_list'>Approve or Deny Request</a>";
-		$ke    = "";
+		$ke	= "";
 		if ( array_key_exists( 'ke', $_POST ) ) {
 			$ke = sanitize_text_field( $_POST['ke'] ); // email
 		}

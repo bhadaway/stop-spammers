@@ -13,7 +13,7 @@ class chkvalidip {
 	 * @param string $ip Client IP
 	 * @param string $host Client Host [optional]
 	 *
-	 * @return  boolean         TRUE if fake IP
+	 * @return  boolean		 TRUE if fake IP
 	 * @since   2.0
 	 * @change  2.6.2
 	 *
@@ -25,7 +25,7 @@ class chkvalidip {
 		/* IPv6 special */
 		if ( self::_is_ipv6( $client_ip ) ) {
 			if ( self::_is_ipv6( $host_by_ip )
-			     && inet_pton( $client_ip ) === inet_pton( $host_by_ip )
+				 && inet_pton( $client_ip ) === inet_pton( $host_by_ip )
 			) {
 // no domain
 				return false;
@@ -37,7 +37,7 @@ class chkvalidip {
 					return true;
 				} else {
 					return inet_pton( $client_ip )
-					       !== inet_pton( $record[0]['ipv6'] );
+						   !== inet_pton( $record[0]['ipv6'] );
 				}
 			}
 		}
@@ -74,7 +74,7 @@ class chkvalidip {
 	private static function _is_ipv6( $ip ) {
 //return !$this->_is_ipv4( $ip );
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 )
-		       !== false;
+			   !== false;
 	}
 
 	/**
@@ -90,7 +90,7 @@ class chkvalidip {
 	private static function _is_ipv4( $ip ) {
 //return preg_match( '/^\d{1,3}( \.\d{1,3} ){3,3}$/', $ip );
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 )
-		       !== false;
+			   !== false;
 	}
 
 	public function process(

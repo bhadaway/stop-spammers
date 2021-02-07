@@ -65,7 +65,7 @@ function ss_sp_plugin_action_links( $links, $file ) {
 }
 
 function ss_sp_rightnow() {
-	$stats = ss_get_stats();
+	$stats   = ss_get_stats();
 	extract( $stats );
 	$options = ss_get_options();
 	if ( $spmcount > 0 ) {
@@ -82,16 +82,16 @@ function ss_sp_rightnow() {
 function ss_row( $actions, $comment ) {
 	$options  = get_option( 'ss_stop_sp_reg_options' ); // for some reason the main call is not available?
 	$apikey   = $options['apikey'];
-	$email    = urlencode( $comment->comment_author_email );
-	$ip       = $comment->comment_author_IP;
+	$email	  = urlencode( $comment->comment_author_email );
+	$ip	      = $comment->comment_author_IP;
 	$action   = "";
 // $action.="|";
 // $action.="<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
 // add the network check
-	$whois    = SS_PLUGIN_URL . 'images/whois.png';
-	$who      = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
+	$whois	  = SS_PLUGIN_URL . 'images/whois.png';
+	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
 	$stophand = SS_PLUGIN_URL . 'images/stop.png';
-	$stop     = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\" /> </a>";
+	$stop	  = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\" /> </a>";
 	$action  .= " $who $stop";
 // now add the report function
 	$email = urlencode( $comment->comment_author_email );
@@ -99,9 +99,9 @@ function ss_row( $actions, $comment ) {
 		$actions['check_spam'] = $action;
 		return $actions;
 	}
-	$ID       = $comment->comment_ID;
-	$exst     = '';
-	$uname    = urlencode( $comment->comment_author );
+	$ID	      = $comment->comment_ID;
+	$exst	  = '';
+	$uname	  = urlencode( $comment->comment_author );
 	$content  = $comment->comment_content;
 	$evidence = $comment->comment_author_url;
 	if ( empty( $evidence ) ) {
@@ -130,9 +130,9 @@ function ss_row( $actions, $comment ) {
 		$evidence = substr( $evidence, 0, 125 ) . '...';
 	}
 	$target  = " target=\"_blank\" ";
-	$href    = "href=\"https://www.stopforumspam.com/add.php?username=$uname&email=$email&ip_addr=$ip&evidence=$evidence&api_key=$apikey\" ";
+	$href	 = "href=\"https://www.stopforumspam.com/add.php?username=$uname&email=$email&ip_addr=$ip&evidence=$evidence&api_key=$apikey\" ";
 	$onclick = '';
-	$blog    = 1;
+	$blog	 = 1;
 	global $blog_id;
 	if ( !isset( $blog_id ) || $blog_id != 1 ) {
 		$blog = $blog_id;
@@ -141,7 +141,7 @@ function ss_row( $actions, $comment ) {
 	if ( !empty( $apikey ) ) {
 // $target="target=\"ss_sfs_reg_if1\"";
 // make this the xlsrpc call
-		$href    = "href=\"#\"";
+		$href	 = "href=\"#\"";
 		$onclick = "onclick=\"sfs_ajax_report_spam(this,'$ID','$blog','$ajaxurl');return false;\"";
 	}
 	if ( !empty( $email ) ) {
@@ -201,9 +201,9 @@ function sfs_handle_ajax_sub( $data ) {
 	if ( $comment_id == 'registration' ) {
 		$comment = array(
 			'comment_author_email' => $_GET['email'],
-			'comment_author'       => $_GET['user'],
-			'comment_author_IP'    => $_GET['ip'],
-			'comment_content'      => 'registration',
+			'comment_author'	   => $_GET['user'],
+			'comment_author_IP'	   => $_GET['ip'],
+			'comment_content'	   => 'registration',
 			'comment_author_url'   => ''
 		);
 	} else {
@@ -213,8 +213,8 @@ function sfs_handle_ajax_sub( $data ) {
 		}
 	}
 // print_r( $comment );
-	$email    = urlencode( $comment['comment_author_email'] );
-	$uname    = urlencode( $comment['comment_author'] );
+	$email	= urlencode( $comment['comment_author_email'] );
+	$uname	= urlencode( $comment['comment_author'] );
 	$ip_addr  = $comment['comment_author_IP'];
 // code added as per Paul at Stop Forum Spam
 	$content  = $comment['comment_content'];
@@ -346,21 +346,21 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 		_e( ' Function Not Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
-	$trash     = SS_PLUGIN_URL . 'images/trash.png';
-	$tdown     = SS_PLUGIN_URL . 'images/tdown.png';
-	$tup       = SS_PLUGIN_URL . 'images/tup.png'; // fix this
-	$whois     = SS_PLUGIN_URL . 'images/whois.png'; // fix this
-	$ip        = $_GET['ip'];
-	$email     = $_GET['email'];
+	$trash	   = SS_PLUGIN_URL . 'images/trash.png';
+	$tdown	   = SS_PLUGIN_URL . 'images/tdown.png';
+	$tup	   = SS_PLUGIN_URL . 'images/tup.png'; // fix this
+	$whois	   = SS_PLUGIN_URL . 'images/whois.png'; // fix this
+	$ip		   = $_GET['ip'];
+	$email	   = $_GET['email'];
 	$container = $_GET['cont'];
-	$func      = $_GET['func'];
+	$func	   = $_GET['func'];
 // echo "error $ip, $func, $container," . print_r( $_GET, true ) ;exit();
 // container is blank, goodips, badips or log
 // func is add_black, add_white, delete_gcache or delete_bcache
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
 // $stats, $options );
-	$ansa    = array();
+	$ansa	 = array();
 	switch ( $func ) {
 		case 'delete_gcache':
 // deletes a Good Cache item
@@ -444,30 +444,30 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 
 function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 // get the IP for this column
-	$trash    = SS_PLUGIN_URL . 'images/trash.png';
-	$tdown    = SS_PLUGIN_URL . 'images/tdown.png';
-	$tup      = SS_PLUGIN_URL . 'images/tup.png';
-	$whois    = SS_PLUGIN_URL . 'images/whois.png';
+	$trash	  = SS_PLUGIN_URL . 'images/trash.png';
+	$tdown	  = SS_PLUGIN_URL . 'images/tdown.png';
+	$tup	  = SS_PLUGIN_URL . 'images/tup.png';
+	$whois	  = SS_PLUGIN_URL . 'images/whois.png';
 	$stophand = SS_PLUGIN_URL . 'images/stop.png';
 	$search   = SS_PLUGIN_URL . 'images/search.png';
 	if ( $column_name == 'signup_ip' ) {
 		$signup_ip  = get_user_meta( $user_id, 'signup_ip', true );
 		$signup_ip2 = $signup_ip;
-		$ipline     = "";
+		$ipline	 = "";
 		if ( !empty( $signup_ip ) ) {
 			$ipline = apply_filters( 'ip2link', $signup_ip2 ); // if the ip2link plugin is installed
 // now add the check 
 			$user_info   = get_userdata( $user_id );
 			$useremail   = urlencode( $user_info->user_email ); // for reporting
-			$userurl     = urlencode( $user_info->user_url );
-			$username    = $user_info->display_name;
-			$stopper     = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" height=\"16px\" /></a>";
+			$userurl	 = urlencode( $user_info->user_url );
+			$username	 = $user_info->display_name;
+			$stopper	 = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" height=\"16px\" /></a>";
 			$honeysearch = "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" height=\"16px\" /></a>";
 			$botsearch   = "<a title=\"" . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" height=\"16px\" /></a>";
-			$who         = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$signup_ip\"><img src=\"$whois\" height=\"16px\" /></a>";
-			$action      = " $who $stopper $honeysearch $botsearch";
-			$options     = ss_get_options();
-			$apikey      = $options['apikey'];
+			$who		 = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$signup_ip\"><img src=\"$whois\" height=\"16px\" /></a>";
+			$action	     = " $who $stopper $honeysearch $botsearch";
+			$options	 = ss_get_options();
+			$apikey	     = $options['apikey'];
 			if ( !empty( $apikey ) ) {
 				$report  = "<a title=\"" . esc_attr__( 'Report to SFS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\" /></a>";
 				$action .= $report;

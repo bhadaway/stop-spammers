@@ -41,13 +41,13 @@ class chksession {
 		$sesstime = 2; // nobody can do it in 3 seconds
 		if ( !defined( "WP_CACHE" ) || ( !WP_CACHE ) ) {
 			if ( strpos( $sname, 'wp-login.php' )
-			     === false
+				 === false
 			) {  // don't check for logins - too many failures
 				if ( isset( $_COOKIE['ss_stop_spammers_time'] ) ) {
 					$stime = $_COOKIE['ss_stop_spammers_time'];
-					$tm    = strtotime( "now" ) - $stime;
+					$tm	= strtotime( "now" ) - $stime;
 					if ( $tm > 0
-					     && $tm <= $sesstime
+						 && $tm <= $sesstime
 					) { // zero seconds is wrong, too - it means that session was set somewhere
 // takes longer than 2 seconds to really type a comment
 						_e( 'Session Speed — ' . $tm . ' seconds', 'stop-spammer-registrations-plugin' );

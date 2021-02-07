@@ -8,7 +8,7 @@ this hooks the options functions of WP in order to update one option from blog #
 if ( !defined( 'ABSPATH' ) ) {
 	http_response_code( 404 );
 	die();
-} // just in case
+}
 
 // now we need to get a ask the user for a list of options that he wants to get
 // call the setup from the plugin proper
@@ -47,7 +47,7 @@ function ssp_global_set( $newvalue, $oldvalue ) {
 	}
 	$ssp_semaphore ++;
 	$filt = current_filter();
-	$f    = substr( $filt, strlen( 'pre_update_option_' ) );
+	$f	= substr( $filt, strlen( 'pre_update_option_' ) );
 // now add to list of options we are hooking
 	switch_to_blog( 1 );
 	$ansa = update_option( $f, $newvalue );
@@ -67,7 +67,7 @@ function ssp_global_add( $option, $value ) {
 	}
 	$ssp_semaphore ++;
 	$filt = current_filter();
-	$f    = substr( $filt, strlen( 'add_option_' ) );
+	$f	  = substr( $filt, strlen( 'add_option_' ) );
 // now add to list of options we are hooking
 	switch_to_blog( 1 );
 // echo "<br />Updating $f, $value <br />";
@@ -87,7 +87,7 @@ function ssp_global_get( $option ) {
 	}
 	$ssp_semaphore ++;
 	$filt = current_filter();
-	$f    = substr( $filt, strlen( 'pre_option_' ) );
+	$f	= substr( $filt, strlen( 'pre_option_' ) );
 // switch to main blog
 // undo the filter to prevent deadly recursion
 	switch_to_blog( 1 );
@@ -108,7 +108,7 @@ function ssp_global_Delete( $ops ) {
 	}
 	$ssp_semaphore ++;
 	$filt = current_filter();
-	$f    = substr( $filt, strlen( 'delete_option_' ) );
+	$f	= substr( $filt, strlen( 'delete_option_' ) );
 	switch_to_blog( 1 );
 	$ansa = delete_option( $ops );
 	restore_current_blog();

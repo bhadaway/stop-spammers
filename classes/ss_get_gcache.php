@@ -13,16 +13,16 @@ class ss_get_gcache {
 		$goodips   = $stats['goodips'];
 		$cachedel  = 'delete_gcache';
 		$container = 'goodips';
-		$trash     = SS_PLUGIN_URL . 'images/trash.png';
-		$tdown     = SS_PLUGIN_URL . 'images/tdown.png';
-		$tup       = SS_PLUGIN_URL . 'images/tup.png';
-		$whois     = SS_PLUGIN_URL . 'images/whois.png';
+		$trash	   = SS_PLUGIN_URL . 'images/trash.png';
+		$tdown	   = SS_PLUGIN_URL . 'images/tdown.png';
+		$tup	   = SS_PLUGIN_URL . 'images/tup.png';
+		$whois	   = SS_PLUGIN_URL . 'images/whois.png';
 		$stophand  = SS_PLUGIN_URL . 'images/stop.png';
-		$search    = SS_PLUGIN_URL . 'images/search.png';
+		$search	   = SS_PLUGIN_URL . 'images/search.png';
 		$ajaxurl   = admin_url( 'admin-ajax.php' );
-		$show      = '';
+		$show	   = '';
 		foreach ( $goodips as $key => $value ) {
-			$who     = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a>";
+			$who	 = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a>";
 			$show   .= "<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
 // try AJAX on the delete from bad cache
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','$cachedel','$ajaxurl');return false;\"";

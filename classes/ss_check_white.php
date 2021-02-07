@@ -51,7 +51,7 @@ class ss_check_white extends be_module {
 			'chkpaypal',
 			'chkform',
 			'chkscripts',
-            // 'chkvalidip', // handled in deny testing
+			// 'chkvalidip', // handled in deny testing
 			'chkwlem',
 			'chkwluserid',
 			'chkwlistemail',

@@ -11,7 +11,7 @@ class chkwlist extends be_module { // change name
 	) {
 // checks the IP from params which has the cache in it
 		$this->searchname = 'Allow List IP';
-		$gcache           = $options['wlist'];
+		$gcache		      = $options['wlist'];
 		return $this->searchList( $ip, $gcache );
 	}
 }

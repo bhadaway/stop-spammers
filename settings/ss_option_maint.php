@@ -13,15 +13,15 @@ ss_fix_post_vars();
 
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — DB Cleanup</h1>
+	<h1 class="ss_head">Stop Spammers — DB Cleanup</h1>
 	<?php if ( array_key_exists( 'autol', $_POST ) || array_key_exists( 'delo', $_POST ) ) {
 		echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 	?>
 	<div class="ss_info_box">
-    <p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that
-        they don&acute;t autoload. Be aware that you can break some
-        plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+	<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that
+		they don&acute;t autoload. Be aware that you can break some
+		plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
@@ -226,7 +226,7 @@ ss_fix_post_vars();
 	);
 	global $wpdb;
 	// global $wp_query;
-	$ptab = $wpdb->options;
+	$ptab  = $wpdb->options;
 	// option_id, option_name, option_value, autoload
 	$sql   = "SELECT * from $ptab order by autoload,option_name";
 	$arows = $wpdb->get_results( $sql, ARRAY_A );
@@ -256,19 +256,19 @@ ss_fix_post_vars();
 	// $rows has the allowed options - all default and system options have been excluded
 	$nonce = wp_create_nonce( 'ss_update' );
 	?>
-    <form method="POST" name="DOIT2" action="">
-        <input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
-        <table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
-            <thead>
-            <tr bgcolor="#fff">
-                <th class="ss_cleanup"><?php _e( 'Option', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php _e( 'Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php _e( 'Size', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php _e( 'Change Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php _e( 'Delete', 'stop-spammer-registrations-plugin' ); ?></th>
-                <th class="ss_cleanup"><?php _e( 'View Contents', 'stop-spammer-registrations-plugin' ); ?></th>
-            </tr>
-            </thead>
+	<form method="POST" name="DOIT2" action="">
+		<input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
+		<table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
+			<thead>
+			<tr bgcolor="#fff">
+				<th class="ss_cleanup"><?php _e( 'Option', 'stop-spammer-registrations-plugin' ); ?></th>
+				<th class="ss_cleanup"><?php _e( 'Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
+				<th class="ss_cleanup"><?php _e( 'Size', 'stop-spammer-registrations-plugin' ); ?></th>
+				<th class="ss_cleanup"><?php _e( 'Change Autoload', 'stop-spammer-registrations-plugin' ); ?></th>
+				<th class="ss_cleanup"><?php _e( 'Delete', 'stop-spammer-registrations-plugin' ); ?></th>
+				<th class="ss_cleanup"><?php _e( 'View Contents', 'stop-spammer-registrations-plugin' ); ?></th>
+			</tr>
+			</thead>
 			<?php
 			foreach ( $rows as $row ) {
 				extract( $row );
@@ -277,42 +277,42 @@ ss_fix_post_vars();
 				$sz = number_format( $sz );
 //if ($autoload=='no') $au='No';
 				?>
-                <tr class="ss_cleanup_tr" bgcolor="#fff">
-                    <td align="center"><?php echo $option_name; ?></td>
-                    <td align="center"><?php echo $autoload; ?></td>
-                    <td align="center"><?php echo $sz; ?></td>
-                    <td align="center"><input type="checkbox" value="<?php echo $autoload . '_' . $option_name; ?>" name="autol[]">&nbsp;<?php echo $autoload; ?></td>
-                    <td align="center"><input type="checkbox" value="<?php echo $option_name; ?>" name="delo[]"></td>
-                    <td align="center"><button type="submit" name="view" value="<?php echo $option_name; ?>"><?php _e( 'view', 'stop-spammer-registrations-plugin' ); ?></button></td>
-                </tr>
+				<tr class="ss_cleanup_tr" bgcolor="#fff">
+					<td align="center"><?php echo $option_name; ?></td>
+					<td align="center"><?php echo $autoload; ?></td>
+					<td align="center"><?php echo $sz; ?></td>
+					<td align="center"><input type="checkbox" value="<?php echo $autoload . '_' . $option_name; ?>" name="autol[]">&nbsp;<?php echo $autoload; ?></td>
+					<td align="center"><input type="checkbox" value="<?php echo $option_name; ?>" name="delo[]"></td>
+					<td align="center"><button type="submit" name="view" value="<?php echo $option_name; ?>"><?php _e( 'view', 'stop-spammer-registrations-plugin' ); ?></button></td>
+				</tr>
 				<?php
 			}
 			?>
-        </table>
-        <p class="submit"><input class="button-primary" value="<?php _e( 'Update', 'stop-spammer-registrations-plugin' ); ?>" type="submit" onclick="return confirm('Are you sure? These changes are permenant.');"></p>
-    </form>
+		</table>
+		<p class="submit"><input class="button-primary" value="<?php _e( 'Update', 'stop-spammer-registrations-plugin' ); ?>" type="submit" onclick="return confirm('Are you sure? These changes are permenant.');"></p>
+	</form>
 	<?php
 	$m1 = memory_get_usage();
 	$m3 = memory_get_peak_usage();
 	$m1 = number_format( $m1 );
 	$m3 = number_format( $m3 );
 	_e( '<p>Memory Usage Currently: ' . $m1 . ' Peak: ' . $m3 . '</p>', 'stop-spammer-registrations-plugin' );
-	$nonce          = wp_create_nonce( 'ss_update2' );
+	$nonce		  = wp_create_nonce( 'ss_update2' );
 	$showtransients = false; // change to true to clean up transients
 	if ( $showtransients
-	     && countTransients() > 0
+		 && countTransients() > 0
 	) { // personal use - probably too dangerous for casual users
 		?>
-        <hr />
-        <p><?php _e( 'WordPress creates temporary objects in the database called
-            transients.<br />
-            WordPress is not good about cleaning them up afterwards. You can
-            clean these up safely and it might
-            speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
-        <form method="POST" name="DOIT2" action="">
-            <input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>" />
-            <p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
-        </form>
+		<hr />
+		<p><?php _e( 'WordPress creates temporary objects in the database called
+			transients.<br />
+			WordPress is not good about cleaning them up afterwards. You can
+			clean these up safely and it might
+			speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
+		<form method="POST" name="DOIT2" action="">
+			<input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>" />
+			<p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+		</form>
 		<?php
 		$nonce = '';
 		if ( array_key_exists( 'ss_opt_tdel', $_POST ) ) {
@@ -323,7 +323,7 @@ ss_fix_post_vars();
 			deleteTransients();
 		}
 		?>
-        <p><?php _e( 'Currently there are ' . countTransients() . ' found.', 'stop-spammer-registrations-plugin' ); ?></p>
+		<p><?php _e( 'Currently there are ' . countTransients() . ' found.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<?php
 	}
 	?>
@@ -333,9 +333,9 @@ function countTransients() {
 	$blog_id = get_current_blog_id();
 	global $wpdb;
 	$optimeout = time() - 60;
-	$table     = $wpdb->get_blog_prefix( $blog_id ) . 'options';
-	$count     = 0;
-	$sql       = "
+	$table	 = $wpdb->get_blog_prefix( $blog_id ) . 'options';
+	$count	 = 0;
+	$sql	   = "
 select count(*) from $table 
 where
 option_name like '\_transient\_timeout\_%'
@@ -346,11 +346,11 @@ or t1.option_name like '\_transient\_feed\_mod_%'
 or t1.option_name like '\_transient\__bbp\_%' 
 and option_value < '$optimeout'
 ";
-	$sql       = "
+	$sql	   = "
 select count(*) from $table 
 where instr(t1.option_name,'SS_SECRET_WORD')>0
 ";
-	$count     += $wpdb->get_var( $sql );
+	$count	 += $wpdb->get_var( $sql );
 	if ( empty( $count ) ) {
 		$count = "0";
 	}
@@ -366,8 +366,8 @@ function deleteTransients() {
 	$blog_id = get_current_blog_id();
 	global $wpdb;
 	$optimeout = time() - 60;
-	$table     = $wpdb->get_blog_prefix( $blog_id ) . 'options';
-	$sql       = "
+	$table	 = $wpdb->get_blog_prefix( $blog_id ) . 'options';
+	$sql	   = "
 delete from $table
 where 
 option_name like '\_transient\_timeout\_%'

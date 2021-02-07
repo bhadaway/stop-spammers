@@ -199,7 +199,7 @@ function include_setting( $file ) {
 
 function ss_fix_post_vars() {
 // sanitize post
-	$p    = $_POST;
+	$p	  = $_POST;
 	$keys = array_keys( $_POST );
 	foreach ( $keys as $var ) {
 		try {

@@ -11,7 +11,7 @@ class chkwluserid extends be_module { // change name
 	) {
 // checks the user - dangerous to allow a whitelisted user - spammers could use it
 		$this->searchname = 'Allow List Email';
-		$user             = $post['author'];
+		$user			  = $post['author'];
 		if ( empty( $user ) ) {
 			return false;
 		}

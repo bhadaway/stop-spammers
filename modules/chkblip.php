@@ -11,7 +11,7 @@ class chkblip extends be_module { // change name
 	) {
 // checks the IP from params which has the cache in it
 		$this->searchname = 'Deny List IP';
-		$gcache           = $options['blist'];
+		$gcache		      = $options['blist'];
 		return $this->searchList( $ip, $gcache );
 	}
 }

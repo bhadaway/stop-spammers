@@ -11,7 +11,7 @@ class chkwlem extends be_module { // change name
 	) {
 // checks the email - not sure I want to allow an Allow List on email - maybe won't include
 		$this->searchname = 'Allow List Email';
-		$email            = $post['email'];
+		$email			  = $post['email'];
 		if ( empty( $email ) ) {
 			return false;
 		}

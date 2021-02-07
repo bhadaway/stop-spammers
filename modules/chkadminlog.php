@@ -14,8 +14,8 @@ class chkadminlog extends be_module {
 	) {
 		$sname = $this->getSname();
 		if ( !class_exists( 'GoogleAuthenticator' )
-		     && strpos( $sname, 'wp-login.php' ) !== false
-		     && function_exists( 'wp_authenticate' )
+			 && strpos( $sname, 'wp-login.php' ) !== false
+			 && function_exists( 'wp_authenticate' )
 		) {
 			$log = $post['author'];
 			$pwd = $post['pwd'];

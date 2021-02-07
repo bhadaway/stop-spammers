@@ -10,13 +10,13 @@ if ( !current_user_can( 'manage_options' ) ) {
 }
 
 ss_fix_post_vars();
-$trash    = SS_PLUGIN_URL . 'images/trash.png';
-$tdown    = SS_PLUGIN_URL . 'images/tdown.png';
-$tup      = SS_PLUGIN_URL . 'images/tup.png';
-$whois    = SS_PLUGIN_URL . 'images/whois.png';
+$trash	  = SS_PLUGIN_URL . 'images/trash.png';
+$tdown	  = SS_PLUGIN_URL . 'images/tdown.png';
+$tup	  = SS_PLUGIN_URL . 'images/tup.png';
+$whois	  = SS_PLUGIN_URL . 'images/whois.png';
 $stophand = SS_PLUGIN_URL . 'images/stop.png';
 $search   = SS_PLUGIN_URL . 'images/search.png';
-$now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+$now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 ?>
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head">Stop Spammers — <?php _e( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></h1>
@@ -26,7 +26,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	extract( $stats );
 	$options = ss_get_options();
 	extract( $options );
-	$ip    = $_SERVER['REMOTE_ADDR'];
+	$ip	= $_SERVER['REMOTE_ADDR'];
 	$nonce = '';
 	$msg   = '';
 	if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
@@ -35,22 +35,22 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 	if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		if ( array_key_exists( 'ss_stop_clear_hist', $_POST ) ) {
 // clean out the history
-			$hist             = array();
-			$stats['hist']    = $hist;
-			$spcount          = 0;
+			$hist			 = array();
+			$stats['hist']	= $hist;
+			$spcount		  = 0;
 			$stats['spcount'] = $spcount;
-			$spdate           = $now;
+			$spdate		   = $now;
 			$stats['spdate']  = $spdate;
 			ss_set_stats( $stats );
 			extract( $stats ); // extract again to get the new options
-			$msg              = '<div class="notice notice-success"><p>' . __( 'Activity Log Cleared', 'stop-spammer-registrations-plugin' ) . '</p></div>';
+			$msg			  = '<div class="notice notice-success"><p>' . __( 'Activity Log Cleared', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 		}
 		if ( array_key_exists( 'ss_stop_update_log_size', $_POST ) ) {
 // update log size
 			if ( array_key_exists( 'ss_sp_hist', $_POST ) ) {
-				$ss_sp_hist            = stripslashes( $_POST['ss_sp_hist'] );
+				$ss_sp_hist			= stripslashes( $_POST['ss_sp_hist'] );
 				$options['ss_sp_hist'] = $ss_sp_hist;
-				$msg                   = '<div class="notice notice-success"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
+				$msg				   = '<div class="notice notice-success"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 // update the options
 				ss_set_options( $options );
 			}
@@ -60,7 +60,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 		echo $msg;
 	}
 	$num_comm = wp_count_comments();
-	$num      = number_format_i18n( $num_comm->spam );
+	$num	  = number_format_i18n( $num_comm->spam );
 	if ( $num_comm->spam > 0 && SS_MU != 'Y' ) {
 		?>
 		<p><?php _e( 'There are <a href="edit-comments.php?comment_status=spam">' . $num . '</a>
@@ -69,7 +69,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 		<?php
 	}
 	$num_comm = wp_count_comments();
-	$num      = number_format_i18n( $num_comm->moderated );
+	$num	  = number_format_i18n( $num_comm->moderated );
 	if ( $num_comm->moderated > 0 && SS_MU != 'Y' ) {
 		?>
 		<p><?php _e( 'There are <a href="edit-comments.php?comment_status=moderated">' . $num . '</a>
@@ -175,10 +175,10 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 					if ( empty( $reason ) ) {
 						$reason = "passed";
 					}
-					$stopper     = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=$ip"><img src="' . $stophand . '" height="16px" /></a>';
+					$stopper	 = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=$ip"><img src="' . $stophand . '" height="16px" /></a>';
 					$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_$ip"><img src="' . $search . '" height="16px" /></a>';
 					$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=$ip"><img src="' . $search . '" height="16px" /></a>';
-					$who         = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip"><img src="' . $whois . '" height="16px" /></a>';
+					$who		 = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip"><img src="' . $whois . '" height="16px" /></a>';
 					echo '<tr style=\"background-color:white\">
 <td>' . $dt . '</td>
 <td>' . $em . '</td>

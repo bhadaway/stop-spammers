@@ -53,7 +53,7 @@ class ss_check_post extends be_module {
 			'chkaccept',
 			'chkadmin',
 		);
-		$actions     = array( // these require an IP that can be trusted
+		$actions	 = array( // these require an IP that can be trusted
 			'chkamazon',
 			'chkbcache',
 			'chkblip',
@@ -209,7 +209,7 @@ class ss_check_post extends be_module {
 			'chkdnsbl'
 // check countries
 		);
-		$chk         = '';
+		$chk		 = '';
 // start with the no IP list
 		foreach ( $noipactions as $chk ) {
 			if ( $options[ $chk ] == 'Y' ) {
@@ -248,12 +248,9 @@ class ss_check_post extends be_module {
 		}
 // sfs_debug_msg( "check post $ip, " . print_r( $post,true ) );
 // for testing the cache without doing spam
-		if ( array_key_exists( 'email', $post )
-		     && $post['email'] == 'email@example.com'
-		) {
+		if ( array_key_exists( 'email', $post ) && $post['email'] == 'email@example.com' ) {
 			$post['reason'] = __( 'Testing IP - will always be blocked', 'stop-spammer-registrations-plugin' ); // use to test plugin
 			be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
-
 			return;
 		}
 // these are the deny after addons

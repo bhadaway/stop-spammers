@@ -25,7 +25,7 @@ class chkreferer extends be_module {
 		}
 		$a = array( false, '' );
 		if ( strpos( strtolower( $ua ), 'iphone' ) === false
-		     && strpos( strtolower( $ua ), 'ipad' ) === false
+			 && strpos( strtolower( $ua ), 'ipad' ) === false
 		) {
 			return false;
 		}

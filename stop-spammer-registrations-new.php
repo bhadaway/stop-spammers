@@ -25,7 +25,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 // making translation-ready
 function ss_load_plugin_textdomain() {
-    load_plugin_textdomain( 'stop-spammer-registrations-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'stop-spammer-registrations-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 
@@ -179,18 +179,18 @@ function ss_init() {
 	if ( isset( $_POST ) && !empty( $_POST ) ) {
 // see if we are returning from a deny
 		if ( array_key_exists( 'ss_deny', $_POST )
-		     && array_key_exists( 'kn', $_POST )
+			 && array_key_exists( 'kn', $_POST )
 		) {
 // deny form hit
 			$knonce = $_POST['kn'];
 			if ( !empty( $knonce )
-			     && wp_verify_nonce( $knonce, 'ss_stopspam_deny' )
+				 && wp_verify_nonce( $knonce, 'ss_stopspam_deny' )
 			) {
 // call the checker program
 				sfs_errorsonoff();
 				$options = ss_get_options();
 				$stats   = ss_get_stats();
-				$post    = get_post_variables();
+				$post	= get_post_variables();
 				be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
 // if we come back we continue as normal
 				sfs_errorsonoff( 'off' );
@@ -202,13 +202,13 @@ function ss_init() {
 		// check to see if we are doing a post with values
 		// better way to check for Jetpack
 		if ( class_exists( 'Jetpack' )
-		     && Jetpack::is_module_active( 'protect' )
+			 && Jetpack::is_module_active( 'protect' )
 		) {
 			return;
 		}
 		$post = get_post_variables();
 		if ( !empty( $post['email'] ) || !empty( $post['author'] )
-		     || !empty( $post['comment'] )
+			 || !empty( $post['comment'] )
 		) { // must be a login or a comment which require minimum stuff
 			// remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 			// sfs_debug_msg( 'email or author ' . print_r( $post, true ) );
@@ -235,7 +235,7 @@ function ss_init() {
 				if ( !empty( $add ) && is_array( $add ) ) {
 					$options = ss_get_options();
 					$stats   = ss_get_stats();
-					$post    = get_post_variables();
+					$post	= get_post_variables();
 					$reason  = be_load( $add, ss_get_ip(), $stats, $options );
 					if ( $reason !== false ) {
 						// need to log a passed hit on post here
@@ -268,7 +268,7 @@ function ss_sfs_check_admin() {
 function ss_sfs_reg_add_user_to_allowlist() {
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post    = get_post_variables();
+	$post	= get_post_variables();
 	return be_load( 'ss_addtoallowlist', ss_get_ip(), $stats, $options );
 }
 
@@ -297,7 +297,7 @@ function ss_set_stats( &$stats, $addon = array() ) {
 		}
 		$addstats[0] ++;
 		$addonstats[ $addon[1] ] = $addstats;
-		$stats['addonstats']     = $addonstats;
+		$stats['addonstats']	 = $addonstats;
 	}
 // other checks? - I might start compressing this, since it can get large
 	update_option( 'ss_stop_sp_reg_stats', $stats );
@@ -314,8 +314,8 @@ function ss_get_now() {
 function ss_get_stats() {
 	$stats = get_option( 'ss_stop_sp_reg_stats' );
 	if ( !empty( $stats ) && is_array( $stats )
-	     && array_key_exists( 'version', $stats )
-	     && $stats['version'] == SS_VERSION
+		 && array_key_exists( 'version', $stats )
+		 && $stats['version'] == SS_VERSION
 	) {
 		return $stats;
 	}
@@ -324,10 +324,10 @@ function ss_get_stats() {
 
 function ss_get_options() {
 	$options = get_option( 'ss_stop_sp_reg_options' );
-	$st      = array();
+	$st	  = array();
 	if ( !empty( $options ) && is_array( $options )
-	     && array_key_exists( 'version', $options )
-	     && $options['version'] == SS_VERSION
+		 && array_key_exists( 'version', $options )
+		 && $options['version'] == SS_VERSION
 	) {
 		return $options;
 	}
@@ -355,7 +355,7 @@ function ss_admin_menu() {
 function ss_check_site_get() {
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post    = get_post_variables();
+	$post	= get_post_variables();
 	sfs_errorsonoff();
 	$ret = be_load( 'ss_check_site_get', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
@@ -366,8 +366,8 @@ function ss_check_post() {
 	sfs_errorsonoff();
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post    = get_post_variables();
-	$ret     = be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
+	$post	= get_post_variables();
+	$ret	 = be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ret;
 }
@@ -376,17 +376,17 @@ function ss_check_404s() { // check for exploits on 404s
 	sfs_errorsonoff();
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$ret     = be_load( 'ss_check_404s', ss_get_ip(), $stats, $options );
+	$ret	 = be_load( 'ss_check_404s', ss_get_ip(), $stats, $options );
 	sfs_errorsonoff( 'off' );
 	return $ret;
 }
 
 function ss_log_bad( $ip, $reason, $chk, $addon = array() ) {
-	$options        = ss_get_options();
-	$stats          = ss_get_stats();
-	$post           = get_post_variables();
+	$options		= ss_get_options();
+	$stats		    = ss_get_stats();
+	$post		    = get_post_variables();
 	$post['reason'] = $reason;
-	$post['chk']    = $chk;
+	$post['chk']	= $chk;
 	$post['addon']  = $addon;
 	return be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
 }
@@ -404,20 +404,20 @@ function ss_log_akismet() {
 		return;
 	}
 // not on Allow Lists
-	$post           = get_post_variables();
+	$post		    = get_post_variables();
 	$post['reason'] = __( 'from Akismet', 'stop-spammer-registrations-plugin' );
-	$post['chk']    = 'chkakismet';
-	$ansa           = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
+	$post['chk']	= 'chkakismet';
+	$ansa		    = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ansa;
 }
 
 function ss_log_good( $ip, $reason, $chk, $addon = array() ) {
-	$options        = ss_get_options();
-	$stats          = ss_get_stats();
-	$post           = get_post_variables();
+	$options		= ss_get_options();
+	$stats		    = ss_get_stats();
+	$post		    = get_post_variables();
 	$post['reason'] = $reason;
-	$post['chk']    = $chk;
+	$post['chk']	= $chk;
 	$post['addon']  = $addon;
 	return be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 }
@@ -426,19 +426,19 @@ function ss_check_white() {
 	sfs_errorsonoff();
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post    = get_post_variables();
-	$ansa    = be_load( 'ss_check_white', ss_get_ip(), $stats, $options, $post );
+	$post	 = get_post_variables();
+	$ansa	 = be_load( 'ss_check_white', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ansa;
 }
 
 function ss_check_white_block() {
 	sfs_errorsonoff();
-	$options       = ss_get_options();
-	$stats         = ss_get_stats();
-	$post          = get_post_variables();
+	$options	   = ss_get_options();
+	$stats		   = ss_get_stats();
+	$post		   = get_post_variables();
 	$post['block'] = true;
-	$ansa          = be_load( 'ss_check_white', ss_get_ip(), $stats, $options, $post );
+	$ansa		   = be_load( 'ss_check_white', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ansa;
 }
@@ -473,18 +473,18 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 		return $result;
 	}
 	$ppath = plugin_dir_path( __FILE__ ) . 'classes/';
-	$fd    = $ppath . $file . '.php';
-	$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
+	$fd	= $ppath . $file . '.php';
+	$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	if ( !file_exists( $fd ) ) {
 // echo "<br /><br />Missing $file $fd<br /><br />";
 		$ppath = plugin_dir_path( __FILE__ ) . 'modules/';
-		$fd    = $ppath . $file . '.php';
-		$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
+		$fd	= $ppath . $file . '.php';
+		$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
 	if ( !file_exists( $fd ) ) {
 		$ppath = plugin_dir_path( __FILE__ ) . 'modules/countries/';
-		$fd    = $ppath . $file . '.php';
-		$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
+		$fd	= $ppath . $file . '.php';
+		$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
 	if ( !file_exists( $fd ) ) {
 		_e( '<br /><br />Missing ' . $file, $fd . '<br /><br />', 'stop-spammer-registrations-plugin' );
@@ -506,14 +506,14 @@ function get_post_variables() {
 // need to find: login password comment author email
 // copied from stop spammers plugin
 // made generic so it also checks "head" and "get" (as well as cookies)
-	$p    = $_POST;
+	$p	= $_POST;
 	$ansa = array(
 		'email'   => '',
 		'author'  => '',
-		'pwd'     => '',
+		'pwd'	  => '',
 		'comment' => '',
 		'subject' => '',
-		'url'     => ''
+		'url'	  => ''
 	);
 	if ( empty( $p ) || !is_array( $p ) ) {
 		return $ansa;
@@ -531,10 +531,10 @@ function get_post_variables() {
 			'name',
 			'_id'
 		),
-		'pwd'     => array( 'psw', 'pwd', 'pass', 'secret' ),
+		'pwd'	  => array( 'psw', 'pwd', 'pass', 'secret' ),
 		'comment' => array( 'comment', 'message', 'body', 'excerpt' ),
 		'subject' => array( 'subj', 'topic' ),
-		'url'     => array( 'url', 'blog_name', 'blogname' )
+		'url'	  => array( 'url', 'blog_name', 'blogname' )
 	);
 	$emfound = false;
 // rewrite this
@@ -564,7 +564,7 @@ function get_post_variables() {
 						$pval = print_r( $pval, true );
 					}
 					if ( strpos( $pval, '@' ) !== false
-					     && strrpos( $pval, '.' ) > strpos( $pval, '@' )
+						 && strrpos( $pval, '.' ) > strpos( $pval, '@' )
 					) {
 // close enough
 						$ansa[ $var ] = $pval;
@@ -689,7 +689,7 @@ function ss_log_user_ip( $user_login = "", $user = "" ) {
 	}
 	$user_id = $user->ID;
 // $ip=ss_get_ip();
-	$ip    = $_SERVER['REMOTE_ADDR'];
+	$ip	= $_SERVER['REMOTE_ADDR'];
 	$oldip = get_user_meta( $user_id, 'signup_ip', true );
 	if ( empty( $oldip ) || $ip != $oldip ) {
 		update_user_meta( $user_id, 'signup_ip', $ip );
@@ -705,10 +705,10 @@ function ss_user_reg_filter( $user_login ) {
 	// the plugin should be all initialized
 	// check the IP, etc.
 	sfs_errorsonoff();
-	$options        = ss_get_options();
-	$stats          = ss_get_stats();
+	$options		= ss_get_options();
+	$stats		    = ss_get_stats();
 	// fake out the post variables
-	$post           = get_post_variables();
+	$post		    = get_post_variables();
 	$post['author'] = $user_login;
 	$post['addon']  = 'chkRegister'; // not really an add-on - but may be moved out when working
 	if ( $options['filterregistrations'] != 'Y' ) {
@@ -723,8 +723,8 @@ function ss_user_reg_filter( $user_login ) {
 	if ( $reason !== false ) {
 		$rejectmessage  = $options['rejectmessage'];
 		$post['reason'] = __( 'Failed Registration: Bad Cache', 'stop-spammer-registrations-plugin' );
-		$host['chk']    = 'chkbcache';
-		$ansa           = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
+		$host['chk']	= 'chkbcache';
+		$ansa		    = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
 		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
@@ -738,27 +738,27 @@ function ss_user_reg_filter( $user_login ) {
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
 		$post['reason'] = __( 'Passed Registration:', 'stop-spammer-registrations-plugin' ) . $reason;
-		$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
+		$ansa		   = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 		sfs_errorsonoff( 'off' );
 		return $user_login;
 	}
 	// check the blacklist
 	// sfs_debug_msg( "Checking blacklist on registration: /r/n".print_r( $post, true ) );
-	$ret            = be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
+	$ret			= be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
 	$post['reason'] = __( 'Passed Registration ', 'stop-spammer-registrations-plugin' ) . $ret;
-	$ansa           = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
+	$ansa		    = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 	return $user_login;
 }
 
 // Private Mode: Redirect users who arent logged in
 function login_redirect() {
-    global $pagenow, $post;
-    $options = ss_get_options();
-    if( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && $post->post_name != 'login' ) ) {
-    	wp_redirect( site_url( 'login' ) ); exit;
-    } else if ( $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && ( $pagenow != 'wp-login.php' and $post->post_name != 'login' ) ) ) {
-    	auth_redirect();
-    }
+	global $pagenow, $post;
+	$options = ss_get_options();
+	if( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && $post->post_name != 'login' ) ) {
+		wp_redirect( site_url( 'login' ) ); exit;
+	} else if ( $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && ( $pagenow != 'wp-login.php' and $post->post_name != 'login' ) ) ) {
+		auth_redirect();
+	}
 }
 add_action( 'wp', 'login_redirect' );
 

@@ -13,12 +13,12 @@ ss_fix_post_vars();
 
 ?>
 <div id="ss-plugin" class="wrap">
-    <h1 class="ss_head">Stop Spammers — <?php _e( 'Multisite', 'stop-spammer-registrations-plugin' ); ?></h1>
+	<h1 class="ss_head">Stop Spammers — <?php _e( 'Multisite', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
-	$now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+	$now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	// $ip=ss_get_ip();
-	$ip       = $_SERVER['REMOTE_ADDR'];
-	$nonce    = '';
+	$ip	      = $_SERVER['REMOTE_ADDR'];
+	$nonce	  = '';
 	$muswitch = get_option( 'ss_muswitch' );
 	if ( empty( $muswitch ) ) {
 		$muswitch = 'N';
@@ -45,25 +45,25 @@ ss_fix_post_vars();
 	}
 	$nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
-    <form method="post" action="">
-        <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-        <input type="hidden" name="action" value="update mu settings" />
-        <fieldset>
-            <legend>
+	<form method="post" action="">
+		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+		<input type="hidden" name="action" value="update mu settings" />
+		<fieldset>
+			<legend>
 				<span style="font-weight:bold;font-size:1.2em"><?php _e( 'Network Blog Option', 'stop-spammer-registrations-plugin' ); ?></span>
-            </legend>
-            <p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
+			</legend>
+			<p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                <?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
+				<?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
 					echo "checked=\"true\"";
 				} ?> /><br />
-                <?php _e( 'If you are running WPMU and want to control options and history
-                through the main login admin panel,
-                select ON. If you select OFF, each blog will have to configure
-                the plugin separately, and each blog will
-                have a separte history.', 'stop-spammer-registrations-plugin' ); ?></p>
-            <p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
-        </fieldset>
-    </form>
+				<?php _e( 'If you are running WPMU and want to control options and history
+				through the main login admin panel,
+				select ON. If you select OFF, each blog will have to configure
+				the plugin separately, and each blog will
+				have a separte history.', 'stop-spammer-registrations-plugin' ); ?></p>
+			<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+		</fieldset>
+	</form>
 </div>

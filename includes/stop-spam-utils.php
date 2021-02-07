@@ -12,7 +12,7 @@ function ss_append_file( $filename, &$content ) {
 // this writes content to a file in the uploads director in the 'stop-spammer-registrations' directory
 // changed to write to the current directory - content_dir is a bad place
 	$file = SS_PLUGIN_DATA . $filename;
-	$f    = @fopen( $file, 'a' );
+	$f	= @fopen( $file, 'a' );
 	if ( !$f ) {
 		return false;
 	}
@@ -28,11 +28,11 @@ function ss_read_file( $f, $method = 'GET' ) {
 	if ( !class_exists( 'WP_Http' ) ) {
 		include_once( ABSPATH . WPINC . '/class-http.php' );
 	}
-	$request          = new WP_Http;
-	$parms            = array();
+	$request		  = new WP_Http;
+	$parms			  = array();
 	$parms['timeout'] = 10; // bump timeout a little we are timing out in Google
 	$parms['method']  = $method;
-	$result           = $request->request( $f, $parms );
+	$result		      = $request->request( $f, $parms );
 // see if there is anything there
 	if ( empty( $result ) ) {
 		return '';
@@ -89,7 +89,7 @@ function sfs_errorsonoff( $old = null ) {
 function sfs_debug_msg( $msg ) {
 // used to aid debugging - adds to debug file
 	$debug = true;
-	$ip    = ss_get_ip();
+	$ip	= ss_get_ip();
 	if ( !$debug ) {
 		return;
 	}
