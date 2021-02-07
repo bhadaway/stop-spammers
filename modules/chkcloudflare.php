@@ -1,7 +1,9 @@
 <?php
 // Allow List - returns false if not found
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 // last updated from https://www.cloudflare.com/ips/ on 12/22/20
@@ -18,7 +20,7 @@ class chkcloudflare extends be_module {
 		if ( function_exists( 'cloudflare_init' ) ) {
 			return false;
 		} // no sense proceeding, Cloudflare is on the case
-		if ( ! array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER ) ) {
+		if ( !array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER ) ) {
 			return false;
 		} // we would normally whitelist if Cloudflare plugin is not active and we detect Cloudflare IP - here we are fixing that
 		$ip4ranges = array(
@@ -59,7 +61,7 @@ class chkcloudflare extends be_module {
 // echo "$ipr - $ipl <br />";
 				if ( $ipt == $ipr ) {
 // goto is not supported in older versions of PHP
-// goto cf_true; // I love it! I haven't coded a goto in over 25 years.
+// goto cf_true; // I love it!I haven't coded a goto in over 25 years.
 					$cf_found = true;
 					break;
 				}
@@ -75,7 +77,7 @@ class chkcloudflare extends be_module {
 				}
 			}
 		}
-		if ( ! $cf_found ) {
+		if ( !$cf_found ) {
 			return false;
 		}
 // cf_true:

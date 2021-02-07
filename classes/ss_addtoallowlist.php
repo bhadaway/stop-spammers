@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_addtoallowlist {
@@ -11,19 +12,19 @@ class ss_addtoallowlist {
 		// adds to Allow List - used to add admin to Allow List or to add a comment author to Allow List
 		$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$wlist = $options['wlist'];
-		if ( ! isset( $options['wlist_email'] ) ) {
+		if ( !isset( $options['wlist_email'] ) ) {
 			$wlist_email = array();
 		} else {
 			$wlist_email = $options['wlist_email'];
 		}
 		// $ip=ss_get_ip();
 		// add this IP to your Allow List
-		if ( ! in_array( $ip, $wlist ) ) {
+		if ( !in_array( $ip, $wlist ) ) {
 			$wlist[] = $ip;
 		}
 		$options['wlist'] = $wlist;
 		// add this email to your Allow List
-		if ( isset( $_GET['email'] ) and $_GET['email'] != ''  and ! in_array( $_GET['email'], $wlist_email ) ) {
+		if ( isset( $_GET['email'] ) and $_GET['email'] != ''  and !in_array( $_GET['email'], $wlist_email ) ) {
 			$wlist_email[] = $_GET['email'];
 		}
 		$options['wlist_email'] = $wlist_email;
@@ -46,13 +47,13 @@ class ss_addtoallowlist {
 	}
 
 	public function ss_send_approval_email( $ip, $stats = array(), $options = array(), $post = array() ) {
-		if ( ! array_key_exists( 'emailrequest', $options ) ) {
+		if ( !array_key_exists( 'emailrequest', $options ) ) {
 			return false;
 		}
 		if ( $options['emailrequest'] == 'N' ) {
 			return false;
 		}
-		if ( ! isset( $_GET['ip'] ) ) {
+		if ( !isset( $_GET['ip'] ) ) {
 			return false;
 		}
 		$wlrequests = $stats['wlrequests'];
@@ -63,11 +64,11 @@ class ss_addtoallowlist {
 				break;
 			}
 		}
-		if ( empty( $request ) or ! isset( $request[1] ) ) {
+		if ( empty( $request ) or !isset( $request[1] ) ) {
 			return false;
 		}
 		$to = $request[1];
-		if ( ! is_email( $to ) ) {
+		if ( !is_email( $to ) ) {
 			return false;
 		}
 		$ke = sanitize_text_field( $to );

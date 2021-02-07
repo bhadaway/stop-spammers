@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
@@ -21,7 +22,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
 
-if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 // update
 // check box items - keep track of these
 	$optionlist = array(
@@ -228,7 +229,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
 		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
@@ -236,49 +237,50 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
+<!-- <sup class="ss_sup"><?php _e( 'NEW!', 'stop-spammer-registrations-plugin' ); ?></sup> -->
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head">Stop Spammers — <?php _e( 'Protection Options', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<br />
-	<?php if ( ! empty( $msg ) ) {
-		echo '$msg';
+	<?php if ( !empty( $msg ) ) {
+		echo $msg;
 	} ?>
 	<br />
 	<form method="post" action="" name="ss">
 		<input type="hidden" name="action" value="update" />
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 		<div class="mainsection"><?php _e( 'Form Checking', 'stop-spammer-registrations-plugin' ); ?>
-		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#formchecking" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
-		<p><?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-			_e( '<span style="color:purple">WooCommerce detected. We recommend enabling this option.</span>', 'stop-spammer-registrations-plugin' );
-		} ?></p>
+		<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#formchecking" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+			_e( '<p><span style="color:purple">WooCommerce detected. We recommend keeping this option enabled to avoid blocking customers.</span></p>', 'stop-spammer-registrations-plugin' );
+		} ?>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkform">
-				<input class="ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) { echo "checked=\"checked\""; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small>
-					<span style="font-size:16px!important"><?php _e( 'Only Use the Plugin for Standard WordPress Forms (not recommended)', 'stop-spammer-registrations-plugin' ); ?></span>
+					<span style="font-size:16px!important"><?php _e( 'Only Use the Plugin for Standard WordPress Forms', 'stop-spammer-registrations-plugin' ); ?></span>
 				</small>
 			</label>
 		</div>
 		<br />
 		<div class="mainsection"><?php _e( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
-		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#membersonly" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+		<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#membersonly" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_private_mode">
-				<input class="ss_toggle" type="checkbox" id="ss_private_mode" name="ss_private_mode" value="Y" <?php if ( $ss_private_mode == 'Y' ) { echo "checked=\"checked\""; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="ss_private_mode" name="ss_private_mode" value="Y" <?php if ( $ss_private_mode == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small>
-					<span style="font-size:16px!important"><?php _e( 'Require Users to Be Logged in to View Site', 'stop-spammer-registrations-plugin' ); ?></span> <sup class="ss_sup"><?php _e( 'NEW!', 'stop-spammer-registrations-plugin' ); ?></sup>
+					<span style="font-size:16px!important"><?php _e( 'Require Users to Be Logged in to View Site', 'stop-spammer-registrations-plugin' ); ?></span>
 				</small>
 			</label>
 		</div>
 		<br />
 		<div class="mainsection"><?php _e( 'Prevent Lockouts', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#preventlockouts" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#preventlockouts" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="addtoallowlist">
 				<input class="ss_toggle" type="checkbox" id="addtoallowlist"
 					   name="addtoallowlist"
 					   value="Y" <?php if ( $addtoallowlist == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small>
 					<span style="font-size:16px!important"><?php _e( 'Automatically Add Admins to Allow List', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
@@ -289,19 +291,19 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkadminlog" value="Y" <?php if ( $chkadminlog
 															   == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check Credentials on All Login Attempts', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<div class="mainsection"><?php _e( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
-		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#validaterequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+		<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#validaterequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkaccept">
 				<input class="ss_toggle" type="checkbox" id="chkaccept"
 					   name="chkaccept" value="Y" <?php if ( $chkaccept
 															 == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Block Spam Missing the HTTP_ACCEPT Header', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -311,7 +313,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkreferer" value="Y" <?php if ( $chkreferer
 															  == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Block Invalid HTTP_REFERER', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -319,7 +321,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<label id="ss_subhead" for="chkdisp">
 				<input class="ss_toggle" type="checkbox" id="chkdisp"
 					   name="chkdisp" value="Y" <?php if ( $chkdisp == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Deny Disposable Email Addresses', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -327,7 +329,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<label id="ss_subhead" for="chklong">
 				<input class="ss_toggle" type="checkbox" id="chklong"
 					   name="chklong" value="Y" <?php if ( $chklong == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Long Emails, Author Name, or Password', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -335,7 +337,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<label id="ss_subhead" for="chkshort">
 				<input class="ss_toggle" type="checkbox" id="chkshort"
 					   name="chkshort" value="Y" <?php if ( $chkshort == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Short Emails or Author Name', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -345,7 +347,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkbbcode" value="Y" <?php if ( $chkbbcode
 															 == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span
 							style="font-size:16px!important"><?php _e( 'Check for BBCodes', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
@@ -356,7 +358,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkperiods" value="Y" <?php if ( $chkperiods
 															  == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span
 							style="font-size:16px!important"><?php _e( 'Check for Periods', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
@@ -367,7 +369,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkhyphens" value="Y" <?php if ( $chkhyphens
 															  == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span
 							style="font-size:16px!important"><?php _e( 'Check for Hyphens', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
@@ -379,7 +381,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   onclick="ss_show_quick()" <?php if ( $chksession
 															== 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Quick Responses', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -405,7 +407,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<label id="ss_subhead" for="chk404">
 				<input class="ss_toggle" type="checkbox" id="chk404"
 					   name="chk404" value="Y" <?php if ( $chk404 == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Deny 404 Exploit Probing', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -415,7 +417,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkakismet" value="Y" <?php if ( $chkakismet
 															  == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Deny IPs Detected by Akismet', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -425,7 +427,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkexploits" value="Y" <?php if ( $chkexploits
 															   == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Exploits', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -433,7 +435,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<label id="ss_subhead" for="chkadmin">
 				<input class="ss_toggle" type="checkbox" id="chkadmin"
 					   name="chkadmin" value="Y" <?php if ( $chkadmin == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Deny Login Attempts Using "admin" in Username', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -443,7 +445,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkubiquity" value="Y" <?php if ( $chkubiquity
 															   == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check Against List of Ubiquity-Nobis and Other Spam Server IPs', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -453,7 +455,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkhosting" value="Y" <?php if ( $chkhosting
 															  == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Major Hosting Companies and Cloud Services', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -461,7 +463,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<label id="ss_subhead" for="chktor">
 				<input class="ss_toggle" type="checkbox" id="chktor"
 					   name="chktor" value="Y" <?php if ( $chktor == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Tor Exit Nodes', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -472,7 +474,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   onclick="ss_show_chkmulti()" <?php if ( $chkmulti
 															   == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Many Hits in a Short Time', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<span id="ss_show_chkmulti"
@@ -574,7 +576,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					   name="chkamazon" value="Y" <?php if ( $chkamazon
 															 == 'Y'
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for Amazon Cloud', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
@@ -583,13 +585,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<input class="ss_toggle" type="checkbox"
 					   id="filterregistrations" name="filterregistrations"
 					   value="Y" <?php if ( $filterregistrations == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Filter Login Requests', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 		<br />
 		<fieldset>
 		<div class="mainsection"><?php _e( 'Block Countries', 'stop-spammer-registrations-plugin' ); ?>
-		<sup class="ss_sup"><a href="https://stopspammers.io/protection-options/#blockcountries" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+		<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 			<br />
 			<div class="checkbox switcher">
 				<label id="ss_subhead" for="countries">
@@ -604,980 +606,980 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 										 value="Y" <?php if ( $chkAD
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Andorra
 			</div>
 			<div class="stat-box"><input name="chkAE" type="checkbox"
 										 value="Y" <?php if ( $chkAE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />United Arab Emirates
 			</div>
 			<div class="stat-box"><input name="chkAF" type="checkbox"
 										 value="Y" <?php if ( $chkAF
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Afghanistan
 			</div>
 			<div class="stat-box"><input name="chkAL" type="checkbox"
 										 value="Y" <?php if ( $chkAL
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Albania
 			</div>
 			<div class="stat-box"><input name="chkAM" type="checkbox"
 										 value="Y" <?php if ( $chkAM
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Armenia
 			</div>
 			<div class="stat-box"><input name="chkAR" type="checkbox"
 										 value="Y" <?php if ( $chkAR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Argentina
 			</div>
 			<div class="stat-box"><input name="chkAT" type="checkbox"
 										 value="Y" <?php if ( $chkAT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Austria
 			</div>
 			<div class="stat-box"><input name="chkAU" type="checkbox"
 										 value="Y" <?php if ( $chkAU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Australia
 			</div>
 			<div class="stat-box"><input name="chkAX" type="checkbox"
 										 value="Y" <?php if ( $chkAX
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Aland Islands
 			</div>
 			<div class="stat-box"><input name="chkAZ" type="checkbox"
 										 value="Y" <?php if ( $chkAZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Azerbaijan
 			</div>
 			<div class="stat-box"><input name="chkBA" type="checkbox"
 										 value="Y" <?php if ( $chkBA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Bosnia And Herzegovina
 			</div>
 			<div class="stat-box"><input name="chkBB" type="checkbox"
 										 value="Y" <?php if ( $chkBB
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Barbados
 			</div>
 			<div class="stat-box"><input name="chkBD" type="checkbox"
 										 value="Y" <?php if ( $chkBD
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Bangladesh
 			</div>
 			<div class="stat-box"><input name="chkBE" type="checkbox"
 										 value="Y" <?php if ( $chkBE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Belgium
 			</div>
 			<div class="stat-box"><input name="chkBG" type="checkbox"
 										 value="Y" <?php if ( $chkBG
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Bulgaria
 			</div>
 			<div class="stat-box"><input name="chkBH" type="checkbox"
 										 value="Y" <?php if ( $chkBH
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Bahrain
 			</div>
 			<div class="stat-box"><input name="chkBN" type="checkbox"
 										 value="Y" <?php if ( $chkBN
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Brunei Darussalam
 			</div>
 			<div class="stat-box"><input name="chkBO" type="checkbox"
 										 value="Y" <?php if ( $chkBO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Bolivia
 			</div>
 			<div class="stat-box"><input name="chkBR" type="checkbox"
 										 value="Y" <?php if ( $chkBR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Brazil
 			</div>
 			<div class="stat-box"><input name="chkBS" type="checkbox"
 										 value="Y" <?php if ( $chkBS
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Bahamas
 			</div>
 			<div class="stat-box"><input name="chkBY" type="checkbox"
 										 value="Y" <?php if ( $chkBY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Belarus
 			</div>
 			<div class="stat-box"><input name="chkBZ" type="checkbox"
 										 value="Y" <?php if ( $chkBZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Belize
 			</div>
 			<div class="stat-box"><input name="chkCA" type="checkbox"
 										 value="Y" <?php if ( $chkCA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Canada
 			</div>
 			<div class="stat-box"><input name="chkCD" type="checkbox"
 										 value="Y" <?php if ( $chkCD
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Congo, Democratic Republic
 			</div>
 			<div class="stat-box"><input name="chkCH" type="checkbox"
 										 value="Y" <?php if ( $chkCH
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Switzerland
 			</div>
 			<div class="stat-box"><input name="chkCL" type="checkbox"
 										 value="Y" <?php if ( $chkCL
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Chile
 			</div>
 			<div class="stat-box"><input name="chkCN" type="checkbox"
 										 value="Y" <?php if ( $chkCN
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />China
 			</div>
 			<div class="stat-box"><input name="chkCO" type="checkbox"
 										 value="Y" <?php if ( $chkCO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Colombia
 			</div>
 			<div class="stat-box"><input name="chkCR" type="checkbox"
 										 value="Y" <?php if ( $chkCR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Costa Rica
 			</div>
 			<div class="stat-box"><input name="chkCU" type="checkbox"
 										 value="Y" <?php if ( $chkCU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Cuba
 			</div>
 			<div class="stat-box"><input name="chkCW" type="checkbox"
 										 value="Y" <?php if ( $chkCW
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />CuraÃ§ao
 			</div>
 			<div class="stat-box"><input name="chkCY" type="checkbox"
 										 value="Y" <?php if ( $chkCY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Cyprus
 			</div>
 			<div class="stat-box"><input name="chkCZ" type="checkbox"
 										 value="Y" <?php if ( $chkCZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Czech Republic
 			</div>
 			<div class="stat-box"><input name="chkDE" type="checkbox"
 										 value="Y" <?php if ( $chkDE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Germany
 			</div>
 			<div class="stat-box"><input name="chkDK" type="checkbox"
 										 value="Y" <?php if ( $chkDK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Denmark
 			</div>
 			<div class="stat-box"><input name="chkDO" type="checkbox"
 										 value="Y" <?php if ( $chkDO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Dominican Republic
 			</div>
 			<div class="stat-box"><input name="chkDZ" type="checkbox"
 										 value="Y" <?php if ( $chkDZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Algeria
 			</div>
 			<div class="stat-box"><input name="chkEC" type="checkbox"
 										 value="Y" <?php if ( $chkEC
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Ecuador
 			</div>
 			<div class="stat-box"><input name="chkEE" type="checkbox"
 										 value="Y" <?php if ( $chkEE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Estonia
 			</div>
 			<div class="stat-box"><input name="chkES" type="checkbox"
 										 value="Y" <?php if ( $chkES
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Spain
 			</div>
 			<div class="stat-box"><input name="chkEU" type="checkbox"
 										 value="Y" <?php if ( $chkEU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />European Union
 			</div>
 			<div class="stat-box"><input name="chkFI" type="checkbox"
 										 value="Y" <?php if ( $chkFI
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Finland
 			</div>
 			<div class="stat-box"><input name="chkFJ" type="checkbox"
 										 value="Y" <?php if ( $chkFJ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Fiji
 			</div>
 			<div class="stat-box"><input name="chkFR" type="checkbox"
 										 value="Y" <?php if ( $chkFR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />France
 			</div>
 			<div class="stat-box"><input name="chkGB" type="checkbox"
 										 value="Y" <?php if ( $chkGB
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Great Britain
 			</div>
 			<div class="stat-box"><input name="chkGE" type="checkbox"
 										 value="Y" <?php if ( $chkGE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Georgia
 			</div>
 			<div class="stat-box"><input name="chkGF" type="checkbox"
 										 value="Y" <?php if ( $chkGF
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />French Guiana
 			</div>
 			<div class="stat-box"><input name="chkGI" type="checkbox"
 										 value="Y" <?php if ( $chkGI
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Gibraltar
 			</div>
 			<div class="stat-box"><input name="chkGP" type="checkbox"
 										 value="Y" <?php if ( $chkGP
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Guadeloupe
 			</div>
 			<div class="stat-box"><input name="chkGR" type="checkbox"
 										 value="Y" <?php if ( $chkGR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Greece
 			</div>
 			<div class="stat-box"><input name="chkGT" type="checkbox"
 										 value="Y" <?php if ( $chkGT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Guatemala
 			</div>
 			<div class="stat-box"><input name="chkGU" type="checkbox"
 										 value="Y" <?php if ( $chkGU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Guam
 			</div>
 			<div class="stat-box"><input name="chkGY" type="checkbox"
 										 value="Y" <?php if ( $chkGY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Guyana
 			</div>
 			<div class="stat-box"><input name="chkHK" type="checkbox"
 										 value="Y" <?php if ( $chkHK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Hong Kong
 			</div>
 			<div class="stat-box"><input name="chkHN" type="checkbox"
 										 value="Y" <?php if ( $chkHN
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Honduras
 			</div>
 			<div class="stat-box"><input name="chkHR" type="checkbox"
 										 value="Y" <?php if ( $chkHR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Croatia
 			</div>
 			<div class="stat-box"><input name="chkHT" type="checkbox"
 										 value="Y" <?php if ( $chkHT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Haiti
 			</div>
 			<div class="stat-box"><input name="chkHU" type="checkbox"
 										 value="Y" <?php if ( $chkHU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Hungary
 			</div>
 			<div class="stat-box"><input name="chkID" type="checkbox"
 										 value="Y" <?php if ( $chkID
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Indonesia
 			</div>
 			<div class="stat-box"><input name="chkIE" type="checkbox"
 										 value="Y" <?php if ( $chkIE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Ireland
 			</div>
 			<div class="stat-box"><input name="chkIL" type="checkbox"
 										 value="Y" <?php if ( $chkIL
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Israel
 			</div>
 			<div class="stat-box"><input name="chkIN" type="checkbox"
 										 value="Y" <?php if ( $chkIN
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />India
 			</div>
 			<div class="stat-box"><input name="chkIQ" type="checkbox"
 										 value="Y" <?php if ( $chkIQ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Iraq
 			</div>
 			<div class="stat-box"><input name="chkIR" type="checkbox"
 										 value="Y" <?php if ( $chkIR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Iran, Islamic Republic Of
 			</div>
 			<div class="stat-box"><input name="chkIS" type="checkbox"
 										 value="Y" <?php if ( $chkIS
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Iceland
 			</div>
 			<div class="stat-box"><input name="chkIT" type="checkbox"
 										 value="Y" <?php if ( $chkIT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Italy
 			</div>
 			<div class="stat-box"><input name="chkJM" type="checkbox"
 										 value="Y" <?php if ( $chkJM
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Jamaica
 			</div>
 			<div class="stat-box"><input name="chkJO" type="checkbox"
 										 value="Y" <?php if ( $chkJO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Jordan
 			</div>
 			<div class="stat-box"><input name="chkJP" type="checkbox"
 										 value="Y" <?php if ( $chkJP
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Japan
 			</div>
 			<div class="stat-box"><input name="chkKE" type="checkbox"
 										 value="Y" <?php if ( $chkKE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Kenya
 			</div>
 			<div class="stat-box"><input name="chkKG" type="checkbox"
 										 value="Y" <?php if ( $chkKG
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Kyrgyzstan
 			</div>
 			<div class="stat-box"><input name="chkKH" type="checkbox"
 										 value="Y" <?php if ( $chkKH
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Cambodia
 			</div>
 			<div class="stat-box"><input name="chkKR" type="checkbox"
 										 value="Y" <?php if ( $chkKR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Korea
 			</div>
 			<div class="stat-box"><input name="chkKW" type="checkbox"
 										 value="Y" <?php if ( $chkKW
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Kuwait
 			</div>
 			<div class="stat-box"><input name="chkKY" type="checkbox"
 										 value="Y" <?php if ( $chkKY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Cayman Islands
 			</div>
 			<div class="stat-box"><input name="chkKZ" type="checkbox"
 										 value="Y" <?php if ( $chkKZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Kazakhstan
 			</div>
 			<div class="stat-box"><input name="chkLA" type="checkbox"
 										 value="Y" <?php if ( $chkLA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Lao People's Democratic Republic
 			</div>
 			<div class="stat-box"><input name="chkLB" type="checkbox"
 										 value="Y" <?php if ( $chkLB
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Lebanon
 			</div>
 			<div class="stat-box"><input name="chkLK" type="checkbox"
 										 value="Y" <?php if ( $chkLK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Sri Lanka
 			</div>
 			<div class="stat-box"><input name="chkLT" type="checkbox"
 										 value="Y" <?php if ( $chkLT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Lithuania
 			</div>
 			<div class="stat-box"><input name="chkLU" type="checkbox"
 										 value="Y" <?php if ( $chkLU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Luxembourg
 			</div>
 			<div class="stat-box"><input name="chkLV" type="checkbox"
 										 value="Y" <?php if ( $chkLV
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Latvia
 			</div>
 			<div class="stat-box"><input name="chkMD" type="checkbox"
 										 value="Y" <?php if ( $chkMD
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Moldova
 			</div>
 			<div class="stat-box"><input name="chkME" type="checkbox"
 										 value="Y" <?php if ( $chkME
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Montenegro
 			</div>
 			<div class="stat-box"><input name="chkMK" type="checkbox"
 										 value="Y" <?php if ( $chkMK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Macedonia
 			</div>
 			<div class="stat-box"><input name="chkMM" type="checkbox"
 										 value="Y" <?php if ( $chkMM
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Myanmar
 			</div>
 			<div class="stat-box"><input name="chkMN" type="checkbox"
 										 value="Y" <?php if ( $chkMN
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Mongolia
 			</div>
 			<div class="stat-box"><input name="chkMO" type="checkbox"
 										 value="Y" <?php if ( $chkMO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Macao
 			</div>
 			<div class="stat-box"><input name="chkMP" type="checkbox"
 										 value="Y" <?php if ( $chkMP
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Northern Mariana Islands
 			</div>
 			<div class="stat-box"><input name="chkMQ" type="checkbox"
 										 value="Y" <?php if ( $chkMQ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Martinique
 			</div>
 			<div class="stat-box"><input name="chkMT" type="checkbox"
 										 value="Y" <?php if ( $chkMT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Malta
 			</div>
 			<div class="stat-box"><input name="chkMV" type="checkbox"
 										 value="Y" <?php if ( $chkMV
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Maldives
 			</div>
 			<div class="stat-box"><input name="chkMX" type="checkbox"
 										 value="Y" <?php if ( $chkMX
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Mexico
 			</div>
 			<div class="stat-box"><input name="chkMY" type="checkbox"
 										 value="Y" <?php if ( $chkMY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Malaysia
 			</div>
 			<div class="stat-box"><input name="chkNC" type="checkbox"
 										 value="Y" <?php if ( $chkNC
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />New Caledonia
 			</div>
 			<div class="stat-box"><input name="chkNI" type="checkbox"
 										 value="Y" <?php if ( $chkNI
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Nicaragua
 			</div>
 			<div class="stat-box"><input name="chkNL" type="checkbox"
 										 value="Y" <?php if ( $chkNL
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Netherlands
 			</div>
 			<div class="stat-box"><input name="chkNO" type="checkbox"
 										 value="Y" <?php if ( $chkNO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Norway
 			</div>
 			<div class="stat-box"><input name="chkNP" type="checkbox"
 										 value="Y" <?php if ( $chkNP
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Nepal
 			</div>
 			<div class="stat-box"><input name="chkNZ" type="checkbox"
 										 value="Y" <?php if ( $chkNZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />New Zealand
 			</div>
 			<div class="stat-box"><input name="chkOM" type="checkbox"
 										 value="Y" <?php if ( $chkOM
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Oman
 			</div>
 			<div class="stat-box"><input name="chkPA" type="checkbox"
 										 value="Y" <?php if ( $chkPA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Panama
 			</div>
 			<div class="stat-box"><input name="chkPE" type="checkbox"
 										 value="Y" <?php if ( $chkPE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Peru
 			</div>
 			<div class="stat-box"><input name="chkPG" type="checkbox"
 										 value="Y" <?php if ( $chkPG
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Papua New Guinea
 			</div>
 			<div class="stat-box"><input name="chkPH" type="checkbox"
 										 value="Y" <?php if ( $chkPH
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Philippines
 			</div>
 			<div class="stat-box"><input name="chkPK" type="checkbox"
 										 value="Y" <?php if ( $chkPK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Pakistan
 			</div>
 			<div class="stat-box"><input name="chkPL" type="checkbox"
 										 value="Y" <?php if ( $chkPL
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Poland
 			</div>
 			<div class="stat-box"><input name="chkPR" type="checkbox"
 										 value="Y" <?php if ( $chkPR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Puerto Rico
 			</div>
 			<div class="stat-box"><input name="chkPS" type="checkbox"
 										 value="Y" <?php if ( $chkPS
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Palestinian Territory, Occupied
 			</div>
 			<div class="stat-box"><input name="chkPT" type="checkbox"
 										 value="Y" <?php if ( $chkPT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Portugal
 			</div>
 			<div class="stat-box"><input name="chkPW" type="checkbox"
 										 value="Y" <?php if ( $chkPW
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Palau
 			</div>
 			<div class="stat-box"><input name="chkPY" type="checkbox"
 										 value="Y" <?php if ( $chkPY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Paraguay
 			</div>
 			<div class="stat-box"><input name="chkQA" type="checkbox"
 										 value="Y" <?php if ( $chkQA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Qatar
 			</div>
 			<div class="stat-box"><input name="chkRO" type="checkbox"
 										 value="Y" <?php if ( $chkRO
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Romania
 			</div>
 			<div class="stat-box"><input name="chkRS" type="checkbox"
 										 value="Y" <?php if ( $chkRS
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Serbia
 			</div>
 			<div class="stat-box"><input name="chkRU" type="checkbox"
 										 value="Y" <?php if ( $chkRU
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Russian Federation
 			</div>
 			<div class="stat-box"><input name="chkSA" type="checkbox"
 										 value="Y" <?php if ( $chkSA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Saudi Arabia
 			</div>
 			<div class="stat-box"><input name="chkSC" type="checkbox"
 										 value="Y" <?php if ( $chkSC
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Seychelles
 			</div>
 			<div class="stat-box"><input name="chkSE" type="checkbox"
 										 value="Y" <?php if ( $chkSE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Sweden
 			</div>
 			<div class="stat-box"><input name="chkSG" type="checkbox"
 										 value="Y" <?php if ( $chkSG
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Singapore
 			</div>
 			<div class="stat-box"><input name="chkSI" type="checkbox"
 										 value="Y" <?php if ( $chkSI
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Slovenia
 			</div>
 			<div class="stat-box"><input name="chkSK" type="checkbox"
 										 value="Y" <?php if ( $chkSK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Slovakia
 			</div>
 			<div class="stat-box"><input name="chkSV" type="checkbox"
 										 value="Y" <?php if ( $chkSV
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />El Salvador
 			</div>
 			<div class="stat-box"><input name="chkSX" type="checkbox"
 										 value="Y" <?php if ( $chkSX
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Sint Maarten
 			</div>
 			<div class="stat-box"><input name="chkSY" type="checkbox"
 										 value="Y" <?php if ( $chkSY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Syrian Arab Republic
 			</div>
 			<div class="stat-box"><input name="chkTH" type="checkbox"
 										 value="Y" <?php if ( $chkTH
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Thailand
 			</div>
 			<div class="stat-box"><input name="chkTJ" type="checkbox"
 										 value="Y" <?php if ( $chkTJ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Tajikistan
 			</div>
 			<div class="stat-box"><input name="chkTM" type="checkbox"
 										 value="Y" <?php if ( $chkTM
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Turkmenistan
 			</div>
 			<div class="stat-box"><input name="chkTR" type="checkbox"
 										 value="Y" <?php if ( $chkTR
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Turkey
 			</div>
 			<div class="stat-box"><input name="chkTT" type="checkbox"
 										 value="Y" <?php if ( $chkTT
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Trinidad And Tobago
 			</div>
 			<div class="stat-box"><input name="chkTW" type="checkbox"
 										 value="Y" <?php if ( $chkTW
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Taiwan
 			</div>
 			<div class="stat-box"><input name="chkUA" type="checkbox"
 										 value="Y" <?php if ( $chkUA
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Ukraine
 			</div>
 			<div class="stat-box"><input name="chkUK" type="checkbox"
 										 value="Y" <?php if ( $chkUK
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />United Kingdom
 			</div>
 			<div class="stat-box"><input name="chkUS" type="checkbox"
 										 value="Y" <?php if ( $chkUS
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />United States
 			</div>
 			<div class="stat-box"><input name="chkUY" type="checkbox"
 										 value="Y" <?php if ( $chkUY
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Uruguay
 			</div>
 			<div class="stat-box"><input name="chkUZ" type="checkbox"
 										 value="Y" <?php if ( $chkUZ
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Uzbekistan
 			</div>
 			<div class="stat-box"><input name="chkVC" type="checkbox"
 										 value="Y" <?php if ( $chkVC
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Saint Vincent And Grenadines
 			</div>
 			<div class="stat-box"><input name="chkVE" type="checkbox"
 										 value="Y" <?php if ( $chkVE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Venezuela
 			</div>
 			<div class="stat-box"><input name="chkVN" type="checkbox"
 										 value="Y" <?php if ( $chkVN
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Viet Nam
 			</div>
 			<div class="stat-box"><input name="chkYE" type="checkbox"
 										 value="Y" <?php if ( $chkYE
 															  == "Y"
 				) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 				} ?> />Yemen
 			</div>
 		</fieldset>

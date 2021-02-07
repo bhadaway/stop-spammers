@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_check_post extends be_module {
@@ -20,9 +21,9 @@ class ss_check_post extends be_module {
 		}
 		$addons = array();
 		$addons = apply_filters( 'ss_addons_deny', $addons );
-		if ( ! empty( $addons ) && is_array( $addons ) ) {
+		if ( !empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
-				if ( ! empty( $add ) && is_array( $add ) ) {
+				if ( !empty( $add ) && is_array( $add ) ) {
 					$reason = be_load( $add, ss_get_ip(), $stats, $options,
 						$post );
 					if ( $reason !== false ) {

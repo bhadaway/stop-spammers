@@ -1,7 +1,9 @@
 <?php
 // adds to the Good Cache and log
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_log_good extends be_module {
@@ -47,7 +49,7 @@ class ss_log_good extends be_module {
 		$blog = '';
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 			global $blog_id;
-			if ( ! isset( $blog_id ) || $blog_id != 1 ) {
+			if ( !isset( $blog_id ) || $blog_id != 1 ) {
 				$blog = $blog_id;
 			}
 		}

@@ -4,9 +4,12 @@ ss-mu-options.php
 provides mu support to the Stop Spammers plugin
 this hooks the options functions of WP in order to update one option from blog #1`
 */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 } // just in case
+
 // now we need to get a ask the user for a list of options that he wants to get
 // call the setup from the plugin proper
 // ssp_global_setup(); // when plugin is loaded this get's done
@@ -35,7 +38,7 @@ function ssp_global_setup() {
 }
 
 function ssp_global_set( $newvalue, $oldvalue ) {
-	if ( ! function_exists( 'switch_to_blog' ) ) {
+	if ( !function_exists( 'switch_to_blog' ) ) {
 		return $newvalue;
 	}
 	global $ssp_semaphore;
@@ -55,7 +58,7 @@ function ssp_global_set( $newvalue, $oldvalue ) {
 }
 
 function ssp_global_add( $option, $value ) {
-	if ( ! function_exists( 'switch_to_blog' ) ) {
+	if ( !function_exists( 'switch_to_blog' ) ) {
 		return false;
 	}
 	global $ssp_semaphore;
@@ -75,7 +78,7 @@ function ssp_global_add( $option, $value ) {
 }
 
 function ssp_global_get( $option ) {
-	if ( ! function_exists( 'switch_to_blog' ) ) {
+	if ( !function_exists( 'switch_to_blog' ) ) {
 		return false;
 	}
 	global $ssp_semaphore;
@@ -96,7 +99,7 @@ function ssp_global_get( $option ) {
 }
 
 function ssp_global_Delete( $ops ) {
-	if ( ! function_exists( 'switch_to_blog' ) ) {
+	if ( !function_exists( 'switch_to_blog' ) ) {
 		return false;
 	}
 	global $ssp_semaphore;

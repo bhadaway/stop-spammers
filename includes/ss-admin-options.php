@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 $options = ss_get_options();
@@ -133,17 +134,17 @@ function ss_row( $actions, $comment ) {
 	$onclick = '';
 	$blog    = 1;
 	global $blog_id;
-	if ( ! isset( $blog_id ) || $blog_id != 1 ) {
+	if ( !isset( $blog_id ) || $blog_id != 1 ) {
 		$blog = $blog_id;
 	}
 	$ajaxurl = admin_url( 'admin-ajax.php' );
-	if ( ! empty( $apikey ) ) {
+	if ( !empty( $apikey ) ) {
 // $target="target=\"ss_sfs_reg_if1\"";
 // make this the xlsrpc call
 		$href    = "href=\"#\"";
 		$onclick = "onclick=\"sfs_ajax_report_spam(this,'$ID','$blog','$ajaxurl');return false;\"";
 	}
-	if ( ! empty( $email ) ) {
+	if ( !empty( $email ) ) {
 		$action .= "|";
 		$action .= "<a $exst title=\"" . esc_attr__( 'Report to Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" $target $href $onclick class='delete:the-comment-list:comment-$ID::delete=1 delete vim-d vim-destructive'>" . __( ' Report to SFS', 'stop-spammer-registrations-plugin' ) . "</a>";
 	}
@@ -164,10 +165,10 @@ function ipChkk() {
 
 function sfs_handle_ajax_sub( $data ) {
 // check to see if it user can manage options
-	if ( ! is_user_logged_in() ) {
+	if ( !is_user_logged_in() ) {
 		return;
 	}
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( !current_user_can( 'manage_options' ) ) {
 		return;
 	}
 // suddenly loading before 'init' has loaded things?
@@ -285,7 +286,7 @@ function sfs_get_urls( $content ) {
 		$urls2 = array();
 	}
 	$urls3 = array_merge( $urls1, $urls2 );
-	if ( ! is_array( $urls3 ) ) {
+	if ( !is_array( $urls3 ) ) {
 		return array();
 	}
 	for ( $j = 0; $j < count( $urls3 ); $j ++ ) {
@@ -295,7 +296,7 @@ function sfs_get_urls( $content ) {
 }
 
 function sfs_handle_ajax_check( $data ) {
-	if ( ! ipChkk() ) {
+	if ( !ipChkk() ) {
 		_e( ' Not Enabled', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
@@ -304,7 +305,7 @@ function sfs_handle_ajax_check( $data ) {
 	$query = "https://www.stopforumspam.com/api?ip=91.186.18.61";
 	$check = '';
 	$check = ss_sfs_reg_getafile( $query );
-	if ( ! empty( $check ) ) {
+	if ( !empty( $check ) ) {
 		$check = trim( $check );
 		$check = trim( $check, '0' );
 		if ( substr( $check, 0, 4 ) == "ERR:" ) {
@@ -326,10 +327,10 @@ function sfs_handle_ajax_check( $data ) {
 }
 
 function sfs_handle_ajax_sfs_process( $data ) {
-	if ( ! is_user_logged_in() ) {
+	if ( !is_user_logged_in() ) {
 		return;
 	}
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( !current_user_can( 'manage_options' ) ) {
 		return;
 	}
 	sfs_errorsonoff();
@@ -341,7 +342,7 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 // anything in data? never
 // get the things out of the get
 // check for valid get
-	if ( ! array_key_exists( 'func', $_GET ) ) {
+	if ( !array_key_exists( 'func', $_GET ) ) {
 		_e( ' Function Not Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
@@ -453,7 +454,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 		$signup_ip  = get_user_meta( $user_id, 'signup_ip', true );
 		$signup_ip2 = $signup_ip;
 		$ipline     = "";
-		if ( ! empty( $signup_ip ) ) {
+		if ( !empty( $signup_ip ) ) {
 			$ipline = apply_filters( 'ip2link', $signup_ip2 ); // if the ip2link plugin is installed
 // now add the check 
 			$user_info   = get_userdata( $user_id );
@@ -467,7 +468,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 			$action      = " $who $stopper $honeysearch $botsearch";
 			$options     = ss_get_options();
 			$apikey      = $options['apikey'];
-			if ( ! empty( $apikey ) ) {
+			if ( !empty( $apikey ) ) {
 				$report  = "<a title=\"" . esc_attr__( 'Report to SFS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" height=\"16px\" /></a>";
 				$action .= $report;
 			}

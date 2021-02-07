@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // just in case
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
@@ -55,8 +56,8 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 			}
 		}
 	}
-	if ( ! empty( $msg ) ) {
-		echo '$msg';
+	if ( !empty( $msg ) ) {
+		echo $msg;
 	}
 	$num_comm = wp_count_comments();
 	$num      = number_format_i18n( $num_comm->spam );
@@ -128,7 +129,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 			?>
 			<br/>
 			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
-			<table name="mytable" id="myTable" style="width:100%;background-color:#eee" cellspacing="2">
+			<table name="sstable" id="sstable" style="width:100%;background-color:#eee" cellspacing="2">
 				<thead>
 				<tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
 					<th onclick="sortTable(0)" class="filterhead ss_cleanup"><?php _e( 'Date/Time', 'stop-spammer-registrations-plugin' ); ?></th>
@@ -186,14 +187,14 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 						 && ( $id == '/'
 							  || strpos( $id, 'login' ) ) !== false
 						 || strpos( $id, 'register' ) !== false
-							&& ! in_array( $ip, $blist )
-							&& ! in_array( $ip, $wlist )
+							&& !in_array( $ip, $blist )
+							&& !in_array( $ip, $wlist )
 					) {
 						$ajaxurl = admin_url( 'admin-ajax.php' );
 						echo '<a href="" onclick="sfs_ajax_process(\'$ip\',\'log\',\'add_black\',\'$ajaxurl\');return false;" title="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '"><img src="$tdown" height="16px" /></a>';
 						$options = get_option( 'ss_stop_sp_reg_options' );
 						$apikey  = $options['apikey'];
-						if ( ! empty( $apikey ) && ! empty( $em ) ) {
+						if ( !empty( $apikey ) && !empty( $em ) ) {
 							$href = 'href="#"';
 							$onclick = 'onclick="sfs_ajax_report_spam(this,\'registration\',\'$blog\',\'$ajaxurl\',\'$em\',\'$ip\',\'$au\');return false;\"';
 							echo '|';
@@ -221,7 +222,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 				function sortTable(n) {
 					var table, rows, switching, i, x, y, shouldSwitch, dir,
 						switchcount = 0;
-					table = document.getElementById("myTable");
+					table = document.getElementById("sstable");
 					switching = true;
 					//Set the sorting direction to ascending:
 					dir = "asc";
@@ -278,7 +279,7 @@ $now      = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) 
 					var input, filter, table, tr, td, i, txtValue;
 					input = document.getElementById("myInput");
 					filter = input.value.toUpperCase();
-					table = document.getElementById("myTable");
+					table = document.getElementById("sstable");
 					tr = table.getElementsByTagName("tr");
 					for (i = 0; i < tr.length; i++) {
 						td = tr[i].getElementsByTagName("td")[0];

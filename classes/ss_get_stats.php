@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_get_stats {
@@ -10,7 +11,7 @@ class ss_get_stats {
 	) {
 // gets the stats when reset or new version
 		$stats = get_option( 'ss_stop_sp_reg_stats' );
-		if ( empty( $stats ) || ! is_array( $stats ) ) {
+		if ( empty( $stats ) || !is_array( $stats ) ) {
 			$stats = array();
 		}
 		$defaults   = array(
@@ -231,25 +232,25 @@ class ss_get_stats {
 				$ansa[ $key ] = $stats[ $key ];
 			}
 		}
-		if ( ! is_array( $ansa['wlrequests'] ) ) {
+		if ( !is_array( $ansa['wlrequests'] ) ) {
 			$ansa['wlrequests'] = array();
 		}
-		if ( ! is_array( $ansa['badips'] ) ) {
+		if ( !is_array( $ansa['badips'] ) ) {
 			$ansa['badips'] = array();
 		}
-		if ( ! is_array( $ansa['hist'] ) ) {
+		if ( !is_array( $ansa['hist'] ) ) {
 			$ansa['hist'] = array();
 		}
-		if ( ! is_array( $ansa['addonstats'] ) ) {
+		if ( !is_array( $ansa['addonstats'] ) ) {
 			$ansa['addonstats'] = array();
 		}
-		if ( ! is_array( $ansa['goodips'] ) ) {
+		if ( !is_array( $ansa['goodips'] ) ) {
 			$ansa['goodips'] = array();
 		}
-		if ( ! is_numeric( $ansa['spcount'] ) ) {
+		if ( !is_numeric( $ansa['spcount'] ) ) {
 			$ansa['spcount'] = 0;
 		}
-		if ( ! is_numeric( $ansa['spmcount'] ) ) {
+		if ( !is_numeric( $ansa['spmcount'] ) ) {
 			$ansa['spmcount'] = 0;
 		}
 		if ( $ansa['spcount'] == 0 ) {

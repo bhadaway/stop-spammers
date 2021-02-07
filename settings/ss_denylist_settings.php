@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // just in case
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
@@ -18,7 +19,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
 
-if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'blist', $_POST ) ) {
 		$blist = $_POST['blist'];
 		if ( empty( $blist ) ) {
@@ -29,7 +30,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$tblist = array();
 		foreach ( $blist as $bl ) {
 			$bl = trim( $bl );
-			if ( ! empty( $bl ) ) {
+			if ( !empty( $bl ) ) {
 				$tblist[] = $bl;
 			}
 		}
@@ -46,7 +47,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$tblist = array();
 		foreach ( $spamwords as $bl ) {
 			$bl = trim( $bl );
-			if ( ! empty( $bl ) ) {
+			if ( !empty( $bl ) ) {
 				$tblist[] = $bl;
 			}
 		}
@@ -63,7 +64,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$tblist = array();
 		foreach ( $denyurlshortners as $bl ) {
 			$bl = trim( $bl );
-			if ( ! empty( $bl ) ) {
+			if ( !empty( $bl ) ) {
 				$tblist[] = $bl;
 			}
 		}
@@ -80,7 +81,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$tblist = array();
 		foreach ( $badTLDs as $bl ) {
 			$bl = trim( $bl );
-			if ( ! empty( $bl ) ) {
+			if ( !empty( $bl ) ) {
 				$tblist[] = $bl;
 			}
 		}
@@ -97,7 +98,7 @@ if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$tblist = array();
 		foreach ( $badagents as $bl ) {
 			$bl = trim( $bl );
-			if ( ! empty( $bl ) ) {
+			if ( !empty( $bl ) ) {
 				$tblist[] = $bl;
 			}
 		}
@@ -130,19 +131,19 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<h1 class="ss_head">Stop Spammers — <?php _e( 'Block Lists', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<br />
 	<br />
-	<?php if ( ! empty( $msg ) ) {
-		echo "$msg";
+	<?php if ( !empty( $msg ) ) {
+		echo $msg;
 	} ?>
 	<form method="post" action="">
 		<input type="hidden" name="action" value="update" />
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 	<div class="mainsection"><?php _e( 'Personalised Block List', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/block-list/#blocklist" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blocklist" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 			<p><?php _e( 'Add IP addresses or emails here that you want blocked.', 'stop-spammer-registrations-plugin' ); ?></p>
 <div class="checkbox switcher">
 	  <label id="ss_subhead" for="chkbluserid">
 			<input class="ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;"><?php _e( 'Enable Block by User ID', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 			 <br />
@@ -153,11 +154,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				?></textarea>
 		<br />
 	<div class="mainsection"><?php _e( 'Spam Words List', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/block-list/#spamwords" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>				
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#spamwords" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>				
 <div class="checkbox switcher">
 	  <label id="ss_subhead" for="chkspamwords">
 			<input class="ss_toggle" type="checkbox" id="chkspamwords" name="chkspamwords" value="Y" <?php if ( $chkspamwords == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;"><?php _e( 'Check Spam Words', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 				<br />
@@ -168,7 +169,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				?></textarea>
 		<br />
 	<div class="mainsection"><?php _e( 'URL Shortening Services List', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/block-list/#urlshortening" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>			
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#urlshortening" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>			
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkurlshort">
 				<input class="ss_toggle" type="checkbox" id="chkurlshort" name="chkurlshort" value="Y" <?php if ( $chkurlshort == 'Y' ) { echo 'checked="checked"'; } ?> />
@@ -183,11 +184,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
         <br />
 	<div class="mainsection"><?php _e( 'Bad User Agents List', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/block-list/#badagents" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>	
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#badagents" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>	
 <div class="checkbox switcher">
 	  <label id="ss_subhead" for="chkagent">
 			<input class="ss_toggle" type="checkbox" id="chkagent" name="chkagent" value="Y" <?php if ( $chkagent == 'Y' ) {
-					echo "checked=\"checked\"";
+					echo 'checked="checked"';
 } ?> /><span><small></small></span>
 		  <small><span style="font-size:16px!important;"><?php _e( 'Check Agents', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 				<br />
@@ -199,7 +200,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<br />
 		<br />
 	<div class="mainsection"><?php _e( 'Blocked TLDs', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/block-list/#blockedtlds" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>					
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blockedtlds" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>					
 			<?php _e( '
 			<p>Enter the TLD name including the '.' e.g. .XXX
 			 A TLD is the last part of a domain like .COM or .NET.</p>

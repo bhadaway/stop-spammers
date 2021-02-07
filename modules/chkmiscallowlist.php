@@ -1,7 +1,9 @@
 <?php
 // Allow List various services - returns name if found, false if not found
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkmiscallowlist extends be_module {

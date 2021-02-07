@@ -1,7 +1,9 @@
 <?php
 // Allow List - returns false if not found
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 // last updated from https://help.smallbusiness.yahoo.net/s/article/SLN19413 on 12/22/20

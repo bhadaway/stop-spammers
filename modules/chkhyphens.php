@@ -1,6 +1,9 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
 class chkhyphens  extends be_module { 
 	public function process( $ip, &$stats=array(), &$options=array(), &$post=array() ) {
@@ -25,4 +28,5 @@ class chkhyphens  extends be_module {
 		return false;
 	}
 }
+
 ?>

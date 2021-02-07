@@ -1,7 +1,9 @@
 <?php
 // checks for invalid IPs
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkinvalidip {
@@ -13,7 +15,7 @@ class chkinvalidip {
 		}
 		if ( defined( 'AF_INET6' ) && strpos( $ip, ':' ) !== false ) {
 			try {
-				if ( ! @inet_pton( $ip ) ) {
+				if ( !@inet_pton( $ip ) ) {
 					_e( 'Invalid IP: ', 'stop-spammer-registrations-plugin' ) . $ip;
 				}
 			} catch ( Exception $e ) {

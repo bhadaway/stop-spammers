@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkreferer extends be_module {
@@ -10,7 +11,7 @@ class chkreferer extends be_module {
 	) {
 		$this->searchname = 'HTTP_REFERER check';
 // only check this on posts, but we can double check
-		if ( ! $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+		if ( !$_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			return false;
 		}
 		$ref = '';

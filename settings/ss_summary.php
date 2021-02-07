@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // just in case
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
@@ -241,7 +242,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
     <h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
     <?php _e( 'Version', 'stop-spammer-registrations-plugin' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 		<?php
-	if ( ! empty( $summry ) ) {
+	if ( !empty( $summry ) ) {
 		?>
 		<?php
 	}
@@ -249,7 +250,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
 	| <?php _e( 'Your current IP address is', 'stop-spammer-registrations-plugin' ); ?>: <strong><?php echo $ip; ?></strong>
 	<?php
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		echo ' | <strong>USE CODE SSP4ME FOR $5 OFF THE <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" style="color:#67aeca;text-decoration:none">PREMIUM PLUGIN</a></strong>';
 	}
 	?>
@@ -296,8 +297,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		$sname = substr( $sname, 0, strpos( $sname, '?' ) );
 	}
 	
-	if ( ! empty( $msg ) ) {
-		echo '$msg';
+	if ( !empty( $msg ) ) {
+		echo $msg;
 	}
 	$current_user_name = wp_get_current_user()->user_login;
 	if ( $current_user_name == 'admin' ) {
@@ -308,8 +309,8 @@ an invitation to hackers to try and guess your password. Please change this.
 	}
 	$showcf = false; // hide this for now
 	if ( $showcf && array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER )
-	     && ! function_exists( 'cloudflare_init' )
-	     && ! defined( 'W3TC' )
+	     && !function_exists( 'cloudflare_init' )
+	     && !defined( 'W3TC' )
 	) {
 		_e( '<span class="notice notice-warning" style="display:block">
 WARNING: Cloudflare Remote IP address detected. Please make sure to
@@ -342,7 +343,7 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 	}
 	$summry = '';
 	foreach ( $counters as $v1 => $v2 ) {
-		if ( ! empty( $stats[ $v1 ] ) ) {
+		if ( !empty( $stats[ $v1 ] ) ) {
 			$summry .= "<div class='stat-box'>$v2: " . $stats[ $v1 ] . "</div>";
 		} else {
 // echo "  $v1 - $v2 , ";
@@ -362,7 +363,6 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
             <p class="submit" style="clear:both"><input class="button-primary" value="<?php _e( 'Clear Summary', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
         </form>
 <?php
-
 function ss_control()  {
 	// this is the display of information about the page.
 	if (array_key_exists('resetOptions',$_POST)) {
@@ -388,9 +388,7 @@ function ss_force_reset_options() {
 	// clear the cache
 	delete_option( 'ss_cache' );
 } ?>
-</div>
-
-<h2><?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
+<h2><?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 <div class="ss_admin_info_boxes_3row">
 	<div class="ss_admin_info_boxes_3col">
 		<h3><?php _e( 'PROTECTION OPTIONS', 'stop-spammer-registrations-plugin' ); ?></h3>
@@ -451,7 +449,7 @@ function ss_force_reset_options() {
 		</div>
 	</div>
 </div>
-<?php if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+<?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 	echo '
 		<h2>' . __( 'Premium Options', 'stop-spammer-registrations-plugin' ) . '</h2>
 		<div class="ss_admin_info_boxes_1row" >
@@ -488,9 +486,9 @@ function ss_force_reset_options() {
 				' . _e( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
 				<div class="ss_admin_button">
 					<a href="admin.php?page=ssp_premium">' . _e( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
+				</div>
 			</div>
 		</div>
-	</div>
 	';
 }
 ?>

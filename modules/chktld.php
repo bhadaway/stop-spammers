@@ -1,8 +1,10 @@
 <?php
 // changed to look for the ending tld in all fields
 // thanks to Johan Schiff
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chktld { // change name

@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkhoney {
@@ -14,7 +15,7 @@ class chkhoney {
 		if ( empty( $stats ) ) {
 			return false;
 		}
-		if ( ! array_key_exists( 'honeyapi', $stats ) ) {
+		if ( !array_key_exists( 'honeyapi', $stats ) ) {
 			return false;
 		}
 		$apikey = $stats['honeyapi'];

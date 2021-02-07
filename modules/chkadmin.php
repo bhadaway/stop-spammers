@@ -1,8 +1,10 @@
 <?php
 // this is specific to my website - needs to be made generic
 // originally designed to block admin login attempts
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkadmin extends be_module {
@@ -16,7 +18,7 @@ class chkadmin extends be_module {
 		}
 // no users or authors named admin 
 // do a look up to see if there is an author named admin
-		if ( ! function_exists( 'get_users' ) ) {
+		if ( !function_exists( 'get_users' ) ) {
 			return false;
 		} // non-WP?
 		if ( get_user_by( 'login', $login ) ) {

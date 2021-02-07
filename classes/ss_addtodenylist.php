@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_addtodenylist {
@@ -13,7 +14,7 @@ class ss_addtodenylist {
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$blist = $options['blist'];
 // add this IP to your Allow List
-		if ( ! in_array( $ip, $blist ) ) {
+		if ( !in_array( $ip, $blist ) ) {
 			$blist[] = $ip;
 		}
 		$options['blist'] = $blist;

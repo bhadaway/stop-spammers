@@ -1,7 +1,9 @@
 <?php
 // generated Saturday 11th of April 2015 04:12:30 PM
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkIT extends be_module {

@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkbotscout extends be_module {
@@ -18,7 +19,7 @@ class chkbotscout extends be_module {
 		if ( empty( $stats ) ) {
 			return false;
 		}
-		if ( ! array_key_exists( 'botscoutapi', $options ) ) {
+		if ( !array_key_exists( 'botscoutapi', $options ) ) {
 			return false;
 		}
 		$apikey = $options['botscoutapi'];
@@ -28,7 +29,7 @@ class chkbotscout extends be_module {
 		$botfreq = $options['botfreq'];
 		$query   = "https://botscout.com/test/?ip=$ip&key=$apikey";
 		$check   = $this->getafile( $query, 'GET' );
-		if ( ! empty( $check ) ) {
+		if ( !empty( $check ) ) {
 			if ( substr( $check, 0, 4 ) == "ERR:" ) {
 				return $check . __( 'BotScout Error, ', 'stop-spammer-registrations-plugin' );
 			}

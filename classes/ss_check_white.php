@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_check_white extends be_module {
@@ -22,9 +23,9 @@ class ss_check_white extends be_module {
 // returns array 
 // [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 // [3]=addon author, [4]=addon description
-		if ( ! empty( $addons ) && is_array( $addons ) ) {
+		if ( !empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
-				if ( ! empty( $add ) && is_array( $add ) ) {
+				if ( !empty( $add ) && is_array( $add ) ) {
 					$reason = be_load( $add, ss_get_ip(), $stats, $options,
 						$post );
 					if ( $reason !== false ) {

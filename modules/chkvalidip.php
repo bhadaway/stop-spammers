@@ -1,7 +1,9 @@
 <?php
 // returns false if the IP is valid - returns reason if IP is invalid
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkvalidip {
@@ -70,7 +72,7 @@ class chkvalidip {
 	 *
 	 */
 	private static function _is_ipv6( $ip ) {
-//return ! $this->_is_ipv4( $ip );
+//return !$this->_is_ipv4( $ip );
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 )
 		       !== false;
 	}
@@ -102,7 +104,7 @@ class chkvalidip {
 		}
 		if ( defined( 'AF_INET6' ) && strpos( $ip, ':' ) !== false ) {
 			try {
-				if ( ! @inet_pton( $ip ) ) {
+				if ( !@inet_pton( $ip ) ) {
 					_e( 'Invalid IP: ', 'stop-spammer-registrations-plugin' ) . $ip;
 				}
 			} catch ( Exception $e ) {

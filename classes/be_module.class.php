@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class be_module {
@@ -15,7 +16,7 @@ class be_module {
 
 	public static function getafile( $f, $method = 'GET' ) {
 // try this using Wp_Http
-		if ( ! class_exists( 'WP_Http' ) ) {
+		if ( !class_exists( 'WP_Http' ) ) {
 			include_once( ABSPATH . WPINC . '/class-http.php' );
 		}
 		$request          = new WP_Http;
@@ -80,7 +81,7 @@ class be_module {
 // searches an array for an IP or an email
 // simple search array no key
 		$searchname = $this->searchname;
-		if ( ! is_array( $haystack ) ) {
+		if ( !is_array( $haystack ) ) {
 			return false;
 		}
 		$needle = strtolower( $needle );
@@ -178,7 +179,7 @@ class be_module {
 // searches an array for an IP or an email - uses wildcards, short instances and cidrs
 // the wlist array is of the form $time->ip
 		$searchname = $this->searchname;
-		if ( ! is_array( $haystack ) ) {
+		if ( !is_array( $haystack ) ) {
 			return false;
 		}
 		$needle = strtolower( $needle );
@@ -235,7 +236,7 @@ class be_module {
 // does a match agains a list of IP addresses
 		$ipt = be_module::ip2numstr( $ip );
 		foreach ( $this->searchlist as $c ) {
-			if ( ! is_array( $c ) ) {
+			if ( !is_array( $c ) ) {
 // this might be a cidr
 				if ( substr_count( $c, '.' ) == 3 ) {
 					if ( strpos( $c, '/' ) !== false ) {
@@ -246,7 +247,7 @@ class be_module {
 						$c = array( $c, $c );
 					}
 				}
-				if ( ! is_array( $c ) ) {
+				if ( !is_array( $c ) ) {
 					$this->searchname = $c;
 				}
 			}

@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // just in case
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
@@ -23,7 +24,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
 
-if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'update_options', $_POST ) ) {
 		if ( array_key_exists( 'ss_sp_cache', $_POST ) ) {
 			$ss_sp_cache            = stripslashes( $_POST['ss_sp_cache'] );
@@ -52,7 +53,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_stats( $stats );
 		echo '<div class="notice notice-success"><p>' . __( 'Cache Cleared', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
 		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
@@ -60,12 +61,14 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 }
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
+
 ?>
+
 <div id="ss-plugin" class="wrap">
     <h1 class="ss_head">Stop Spammers — <?php _e( 'Cache', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
-	if ( ! empty( $msg ) ) {
-		echo "$msg";
+	if ( !empty( $msg ) ) {
+		echo $msg;
 	} ?>
 	<br />
 	<div class="ss_info_box">
@@ -79,8 +82,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
     <form method="post" action="">
         <input type="hidden" name="update_options" value="update" />
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-		<span class="keyhead"><?php _e( 'Bad IP Cache Size', 'stop-spammer-registrations-plugin' ); ?></span>
-		<select name="ss_sp_cache">
+		<label class="keyhead">
+			<?php _e( 'Bad IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
+			<br />
+			<select name="ss_sp_cache">
                 <option value="0" <?php
 				if ( $ss_sp_cache == '0' ) {
 					echo "selected=\"true\"";
@@ -117,10 +122,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				} ?>>200
                 </option>
             </select>
+		</label>
         <br />
 		<br />
-		<span class="keyhead"><?php _e( 'Good IP Cache Size', 'stop-spammer-registrations-plugin' ); ?></span>
-        <select name="ss_sp_good">
+		<label class="keyhead">
+			<?php _e( 'Good IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
+			<br />
+			<select name="ss_sp_good">
                 <option value="1" <?php
 				if ( $ss_sp_good == '1' ) {
 					echo "selected=\"true\"";
@@ -172,7 +180,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				} ?>>200
                 </option>
             </select>
-        </fieldset>
+		</label>
         <br />
         <p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
     </form>
@@ -235,4 +243,4 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         </table>
 		<?php
 	}
-	?>
+?>

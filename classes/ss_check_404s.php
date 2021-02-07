@@ -1,8 +1,9 @@
 <?php
 // this checks 404 entries for attacks
 // loaded at theme if ( !defined( 'ABSPATH' ) ) exit;
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_check_404s {

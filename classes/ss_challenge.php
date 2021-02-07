@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_challenge extends be_module {
@@ -22,7 +23,7 @@ class ss_challenge extends be_module {
 		*/
 // display deny message and CAPTCHA if set
 // first, check to see if they should be redirected
-		if ( $options['redir'] == 'Y' && ! empty( $options['redirurl'] ) ) {
+		if ( $options['redir'] == 'Y' && !empty( $options['redirurl'] ) ) {
 // sfs_debug_msg( 'Redir?' );
 			header( 'HTTP/1.1 307 Moved' );
 			header( 'Status: 307 Moved' );
@@ -39,7 +40,7 @@ class ss_challenge extends be_module {
 // nonce is in a field named kn - this is not to confuse with other forms that may be coming in
 		$nonce = '';
 		$msg   = ''; // this is the body message for failed CAPTCHAs, notifies and requests
-		if ( ! empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
+		if ( !empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
 // sfs_debug_msg( 'second time' );
 			$nonce = $_POST['kn'];
 // get the post items
@@ -61,7 +62,7 @@ class ss_challenge extends be_module {
 			if ( array_key_exists( 'kp', $_POST ) ) {
 				$kp = $_POST['kp'];
 			} // serialized post
-			if ( ! empty( $nonce )
+			if ( !empty( $nonce )
 			     && wp_verify_nonce( $nonce, 'ss_stopspam_deny' )
 			) {
 // sfs_debug_msg( 'nonce is good' );
@@ -91,7 +92,7 @@ class ss_challenge extends be_module {
 				switch ( $chkcaptcha ) {
 					case 'G':
 						if ( array_key_exists( 'recaptcha', $_POST )
-						     && ! empty( $_POST['recaptcha'] )
+						     && !empty( $_POST['recaptcha'] )
 						     && array_key_exists( 'g-recaptcha-response',
 								$_POST )
 						) {
@@ -128,7 +129,7 @@ class ss_challenge extends be_module {
 						break;
 					case 'S':
 						if ( array_key_exists( 'adcopy_challenge', $_POST )
-						     && ! empty( $_POST['adcopy_challenge'] )
+						     && !empty( $_POST['adcopy_challenge'] )
 						) {
 // solve media
 							$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
@@ -197,12 +198,12 @@ class ss_challenge extends be_module {
 					case 'A':
 					case 'Y':
 						if ( array_key_exists( 'nums', $_POST )
-						     && ! empty( $_POST['nums'] )
+						     && !empty( $_POST['nums'] )
 						) {
 // simple arithmetic - at least it is different for each website and changes occasionally
 							$seed   = 5;
 							$spdate = $stats['spdate'];
-							if ( ! empty( $spdate ) ) {
+							if ( !empty( $spdate ) ) {
 								$seed = strtotime( $spdate );
 							}
 							$nums  = really_clean( sanitize_text_field( $_POST['nums'] ) );
@@ -246,7 +247,7 @@ class ss_challenge extends be_module {
 		$knonce = wp_create_nonce( 'ss_stopspam_deny' );
 // this may be the second time through
 		$formtop = '';
-		if ( ! empty( $msg ) ) {
+		if ( !empty( $msg ) ) {
 			$msg = "\r\n<br /><span style=\"color:red\"> $msg </span><hr />\r\n";
 		}
 		$formtop .= "
@@ -269,8 +270,8 @@ class ss_challenge extends be_module {
 <legend><span style="font-weight:bold;font-size:1.2em" >Allow Request</span></legend>
 <p>You have been blocked from entering information on this site. In order to prevent this from happening in the future, complete the request below to have the admin add your IP to a list that allows you full access.</p>
 <p>Please enter your <strong>e</strong><strong>ma</strong><strong>il</strong> <strong>add</strong><strong>re</strong><strong>ss</strong> and a short note requesting access here.</p>
-<span style="color:#fff">Email Address (required)</span><!-- not the message -->: <input type="text" value="" name="ke" /><br />
-Message<!-- not email -->:<br /><textarea name=\"km\" placeholder=\"If you were submitting a contact form, use this field to enter the message." style="width:100%"  rows="5"></textarea>
+Email Address (required)<!-- not the message -->: <input type="text" value="" name="ke" /><br />
+Message<!-- not email -->:<br /><textarea name="km" placeholder="If you were submitting a contact form, use this field to enter the message." style="width:100%"  rows="5"></textarea>
 </fieldset>
 ', 'stop-spammer-registrations-plugin' );
 		}
@@ -314,7 +315,7 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 // use the "since" date from stats
 				$seed   = 5;
 				$spdate = $stats['spdate'];
-				if ( ! empty( $spdate ) ) {
+				if ( !empty( $spdate ) ) {
 					$seed = strtotime( $spdate );
 				}
 				$stupid = $n1 + $n2 - $seed;
@@ -353,7 +354,7 @@ $formbot
 	}
 
 	public function ss_send_email( $options = array() ) {
-		if ( ! array_key_exists( 'notify', $options ) ) {
+		if ( !array_key_exists( 'notify', $options ) ) {
 			return false;
 		}
 		$notify    = $options['notify'];
@@ -361,12 +362,12 @@ $formbot
 		if ( $notify == 'N' ) {
 			return false;
 		}
-		if ( array_key_exists( 'ke', $_POST ) && ! empty( $_POST['ke'] ) ) {
+		if ( array_key_exists( 'ke', $_POST ) && !empty( $_POST['ke'] ) ) {
 // send wp_mail to sysop
 			$now = date( 'Y/m/d H:i:s',
 				time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 			$ke  = $_POST['ke'];
-			if ( ! is_email( $ke ) ) {
+			if ( !is_email( $ke ) ) {
 				return false;
 			}
 			if ( empty( $ke ) ) {
@@ -379,7 +380,7 @@ $formbot
 			}
 			$kr = really_clean( sanitize_text_field( $_POST['kr'] ) );
 			$to = get_option( 'admin_email' );
-			if ( ! empty( $wlreqmail ) ) {
+			if ( !empty( $wlreqmail ) ) {
 				$to = $wlreqmail;
 			}
 			$subject = __( 'Allow List Request from ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
@@ -434,7 +435,7 @@ Some spam bots fill out the request form with a fake explanation.
 		if ( empty( $ke ) ) {
 			return false;
 		}
-		if ( ! is_email( $ke ) ) {
+		if ( !is_email( $ke ) ) {
 			return false;
 		}
 		$km  = really_clean( sanitize_text_field( $_POST['km'] ) ); // user message
@@ -446,7 +447,7 @@ Some spam bots fill out the request form with a fake explanation.
 		$req = array( $ip, $ke, $ka, $kr, $km, $sname );
 // add to the request list
 		$wlrequests = $stats['wlrequests'];
-		if ( empty( $wlrequests ) || ! is_array( $wlrequests ) ) {
+		if ( empty( $wlrequests ) || !is_array( $wlrequests ) ) {
 			$wlrequests = array();
 		}
 		$wlrequests[ $now ] = $req;

@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkurlshort {
@@ -11,7 +12,7 @@ class chkurlshort {
 		// 'email', 'author', 'pwd', 'comment', 'subject'
 		$denyurlshortners = $options['denyurlshortners'];
 		foreach ( $post as $key => $data ) {
-			if ( ! empty( $data ) ) {
+			if ( !empty( $data ) ) {
 				foreach ( $denyurlshortners as $urlshort ) {
 					if ( stripos( $data, $urlshort ) !== false and ( stripos( $data, $urlshort ) == 0 or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == " " or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "/" or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "@" or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "." ) ) {
 						_e( 'URL Shortener: ' . $urlshort . ' in ' . $key . '', 'stop-spammer-registrations-plugin' );

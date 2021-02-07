@@ -1,13 +1,14 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // just in case
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
 $stats   = ss_get_stats();
 $options = ss_get_options();
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
 
@@ -55,7 +56,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
         <fieldset>
 	<div class="mainsection"><?php _e( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 			<?php _e( '
 			<p>Run the settings against an IP address to see the results.</p>
             IP Address:<br />
@@ -82,7 +83,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 				$nonce = $_POST['ss_stop_spammers_control'];
 			}
-			if ( ! empty( $nonce )
+			if ( !empty( $nonce )
 			     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
 			) {
 				$post = get_post_variables();
@@ -114,7 +115,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						if ( empty( $ansa ) ) {
 							$ansa = 'OK';
 						}
-						echo "$chk : $ansa<br />";
+						echo "$chk: $ansa<br />";
 					}
 					echo "</ul>";
 					$optionlist = array(
@@ -158,7 +159,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						if ( empty( $ansa ) ) {
 							$ansa = 'OK';
 						}
-						echo "$chk : $ansa<br />";
+						echo "$chk: $ansa<br />";
 					}
 					echo "</ul>";
 					$optionlist = array();
@@ -168,7 +169,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						$optionlist );
 					$a5         = apply_filters( 'ss_addons_get', $optionlist );
 					$optionlist = array_merge( $a1, $a3, $a5 );
-					if ( ! empty( $optionlist ) ) {
+					if ( !empty( $optionlist ) ) {
 						echo "<ul>Add-on Checks<br />";
 						foreach ( $optionlist as $chk ) {
 							$ansa = be_load( $chk, $ip, $stats, $options,
@@ -177,7 +178,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 								$ansa = 'OK';
 							}
 							$nm = $chk[1];
-							echo "$nm : $ansa<br />";
+							echo "$nm: $ansa<br />";
 						}
 						echo "</ul>";
 					}
@@ -339,7 +340,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						if ( empty( $ansa ) ) {
 							$ansa = 'OK';
 						}
-						echo "$chk : $ansa<br />";
+						echo "$chk: $ansa<br />";
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
@@ -352,7 +353,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
         <br/>
 <div class="ss_info_box">
 	<div class="mainsection"><?php _e( 'Information Display', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#infodisplay" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#infodisplay" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
         <div style="width:50%;float:left">
             <h2><?php _e( 'Display All Options', 'stop-spammer-registrations-plugin' ); ?></h2>
             <p><?php _e( 'You can dump all options here (useful for debugging):', 'stop-spammer-registrations-plugin' ); ?></p>
@@ -368,7 +369,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce )
+		if ( !empty( $nonce )
 		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
 		) {
 			if ( array_key_exists( 'dumpoptions', $_POST ) ) {
@@ -394,7 +395,7 @@ echo "\r\n";
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce )
+		if ( !empty( $nonce )
 		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
 		) {
 			if ( array_key_exists( 'dumpstats', $_POST ) ) {
@@ -425,7 +426,7 @@ echo "\r\n";
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce )
+		if ( !empty( $nonce )
 		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
 		) {
 			if ( array_key_exists( 'killdebug', $_POST ) ) {
@@ -445,7 +446,7 @@ echo "\r\n";
 		if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 			$nonce = $_POST['ss_stop_spammers_control'];
 		}
-		if ( ! empty( $nonce )
+		if ( !empty( $nonce )
 		     && wp_verify_nonce( $nonce, 'ss_stopspam_update' )
 		) {
 			if ( array_key_exists( 'showdebug', $_POST ) ) {
@@ -475,7 +476,7 @@ echo "\r\n";
 	$ini  = '';
 	$pinf = true;
 	$ini  = @ini_get( 'disable_functions' );
-	if ( ! empty( $ini ) ) {
+	if ( !empty( $ini ) ) {
 		$disabled = explode( ',', $ini );
 		if ( is_array( $disabled ) && in_array( 'phpinfo', $disabled ) ) {
 			$pinf = false;
@@ -516,7 +517,7 @@ $nonce   = '';
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
-if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
+if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'update_options', $_POST ) ) {
 		$runscan = true;
 	}
@@ -525,7 +526,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 <div class="ss_info_box">
 	<div class="mainsection"><?php _e( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?>
-	<sup class="ss_sup"><a href="https://stopspammers.io/diagnostics-and-threat-scan/#threats" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
+	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#threats" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>
 	<?php _e( '
     <p>A very simple scan that looks for things out of place in
         the content directory as well as the
@@ -1078,7 +1079,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 				if ( strpos( $name, '_transient_feed_' ) === false ) {
 					$disp = true;
 					foreach ( $badguys as $baddie => $reas ) {
-						if ( ! ( strpos( $line, $baddie ) === false ) ) {
+						if ( !( strpos( $line, $baddie ) === false ) ) {
 // bad boy
 							$line   = ss_make_red( $baddie, $line );
 							$reason .= $reas . ' ';
@@ -1166,7 +1167,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 	} // end of function
 	// recursive walk of directory structure.
 	function ss_scan_for_eval_recurse( $dir, $phparray ) {
-		if ( ! @is_dir( $dir ) ) {
+		if ( !@is_dir( $dir ) ) {
 			return $phparray;
 		}
 // if (substr($dir,0,1)='.') return $phparray;
@@ -1204,7 +1205,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 	}
 
 	function ss_look_in_file( $file ) {
-		if ( ! file_exists( $file ) ) {
+		if ( !file_exists( $file ) ) {
 			return false;
 		}
 // don't look in this plugin because it finds too much stuff
@@ -1237,12 +1238,12 @@ INSTR(LCASE(user_email), 'javascript:')>0
 			'w.wpquery.o',
 			"<scr'+"
 		);
-		while ( ! @feof( $handle ) ) {
+		while ( !@feof( $handle ) ) {
 			$line = fgets( $handle );
 			$line = htmlentities( $line );
 			$n ++;
 			foreach ( $badguys as $baddie ) {
-				if ( ! ( strpos( $line, $baddie ) === false ) ) {
+				if ( !( strpos( $line, $baddie ) === false ) ) {
 // bad boy
 					if ( ss_ok_list( $file, $n ) ) {
 						$line         = ss_make_red( $baddie, $line );

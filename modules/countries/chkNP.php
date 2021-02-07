@@ -1,7 +1,9 @@
 <?php
 // generated Saturday 11th of April 2015 04:12:56 PM
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkNP extends be_module {

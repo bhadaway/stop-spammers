@@ -1,7 +1,9 @@
 <?php
 // checks 404s to see if anyone is fishing for an exploit
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chk404 extends be_module {

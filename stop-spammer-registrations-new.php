@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2021.1
+Version: 2021.2
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,14 +12,15 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2021.1' );
+define( 'SS_VERSION', '2021.2' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
 $ss_check_sempahore = false;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 // making translation-ready
@@ -36,23 +37,47 @@ add_action( 'admin_print_styles', 'ss_styles' );
 
 // admin notice for users
 function ss_admin_notice() {
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_5' ) && current_user_can( 'manage_options' ) )
-			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Thank you! Enjoy our best discount of the year with code <strong>holidaycheer</strong> when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_6' ) && current_user_can( 'manage_options' ) ) {
+			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Get even more options when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+		}
 	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
 
 // dismiss admin notice for users
 function ss_notice_dismissed() {
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
-		if ( isset( $_GET['ss-dismiss'] ) )
-			add_user_meta( $user_id, 'ss_notice_dismissed_5', 'true', true );
+		if ( isset( $_GET['ss-dismiss'] ) ) {
+			add_user_meta( $user_id, 'ss_notice_dismissed_6', 'true', true );
+		}
 	}
 }
 add_action( 'admin_init', 'ss_notice_dismissed' );
+
+// WooCommerce warning for users
+function ss_wc_admin_notice() {
+	if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+		$user_id = get_current_user_id();
+		if ( !get_user_meta( $user_id, 'ss_wc_notice_dismissed' ) && current_user_can( 'manage_options' ) ) {
+			echo '<div class="notice notice-info"><p style="color:purple">' . __( '<big><strong>WooCommerce Detected</strong></big> | We recommend keeping <a href="admin.php?page=ss_options">this option</a> enabled to avoid blocking customers.', 'stop-spammers' ) . '<a href="?sswc-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+		}
+	}
+}
+add_action( 'admin_notices', 'ss_wc_admin_notice' );
+
+// dismiss WooCommerce warning for users
+function ss_wc_notice_dismissed() {
+	if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+		$user_id = get_current_user_id();
+		if ( isset( $_GET['sswc-dismiss'] ) ) {
+			add_user_meta( $user_id, 'ss_wc_notice_dismissed', 'true', true );
+		}
+	}
+}
+add_action( 'admin_init', 'ss_wc_notice_dismissed' );
 
 // hook the init event to start work
 add_action( 'init', 'ss_init', 0 );
@@ -101,7 +126,7 @@ function ss_init() {
 	// eMember trying to log in - disable plugin for eMember logins
 	if ( function_exists( 'wp_emember_is_member_logged_in' ) ) {
 		// only eMember function I could find after 30 seconds of Googling
-		if ( ! empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
+		if ( !empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
 			return;
 		}
 	}
@@ -138,7 +163,7 @@ function ss_init() {
 // user is not logged in - we can do checks
 // add the new user hooks
 	global $wp_version;
-	if ( ! version_compare( $wp_version, "3.1",
+	if ( !version_compare( $wp_version, "3.1",
 		"<" )
 	) { // only in newer versions
 		add_action( 'user_register', 'ss_new_user_ip' );
@@ -151,14 +176,14 @@ function ss_init() {
 		}
 	}
 // can we check for $_GET registrations?
-	if ( isset( $_POST ) && ! empty( $_POST ) ) {
+	if ( isset( $_POST ) && !empty( $_POST ) ) {
 // see if we are returning from a deny
 		if ( array_key_exists( 'ss_deny', $_POST )
 		     && array_key_exists( 'kn', $_POST )
 		) {
 // deny form hit
 			$knonce = $_POST['kn'];
-			if ( ! empty( $knonce )
+			if ( !empty( $knonce )
 			     && wp_verify_nonce( $knonce, 'ss_stopspam_deny' )
 			) {
 // call the checker program
@@ -182,8 +207,8 @@ function ss_init() {
 			return;
 		}
 		$post = get_post_variables();
-		if ( ! empty( $post['email'] ) || ! empty( $post['author'] )
-		     || ! empty( $post['comment'] )
+		if ( !empty( $post['email'] ) || !empty( $post['author'] )
+		     || !empty( $post['comment'] )
 		) { // must be a login or a comment which require minimum stuff
 			// remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 			// sfs_debug_msg( 'email or author ' . print_r( $post, true ) );
@@ -205,9 +230,9 @@ function ss_init() {
 		// returns array 
 		// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
 		// [3]=addon author, [4]=addon description
-		if ( ! empty( $addons ) && is_array( $addons ) ) {
+		if ( !empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
-				if ( ! empty( $add ) && is_array( $add ) ) {
+				if ( !empty( $add ) && is_array( $add ) ) {
 					$options = ss_get_options();
 					$stats   = ss_get_stats();
 					$post    = get_post_variables();
@@ -249,7 +274,7 @@ function ss_sfs_reg_add_user_to_allowlist() {
 
 function ss_set_stats( &$stats, $addon = array() ) {
 // this sets the stats
-	if ( empty( $addon ) || ! is_array( $addon ) ) {
+	if ( empty( $addon ) || !is_array( $addon ) ) {
 // need to know if the spam count has changed
 		if ( $stats['spcount'] == 0 || empty( $stats['spdate'] ) ) {
 			$stats['spdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
@@ -288,7 +313,7 @@ function ss_get_now() {
 
 function ss_get_stats() {
 	$stats = get_option( 'ss_stop_sp_reg_stats' );
-	if ( ! empty( $stats ) && is_array( $stats )
+	if ( !empty( $stats ) && is_array( $stats )
 	     && array_key_exists( 'version', $stats )
 	     && $stats['version'] == SS_VERSION
 	) {
@@ -300,7 +325,7 @@ function ss_get_stats() {
 function ss_get_options() {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	$st      = array();
-	if ( ! empty( $options ) && is_array( $options )
+	if ( !empty( $options ) && is_array( $options )
 	     && array_key_exists( 'version', $options )
 	     && $options['version'] == SS_VERSION
 	) {
@@ -319,7 +344,7 @@ function ss_get_ip() {
 }
 
 function ss_admin_menu() {
-	if ( ! function_exists( 'ss_admin_menu_l' ) ) {
+	if ( !function_exists( 'ss_admin_menu_l' ) ) {
 		ss_sp_require( 'settings/settings.php' );
 	}
 	sfs_errorsonoff();
@@ -426,7 +451,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 		return false;
 	}
 // load the be_module if does not exist
-	if ( ! class_exists( 'be_module' ) ) {
+	if ( !class_exists( 'be_module' ) ) {
 		require_once( 'classes/be_module.class.php' );
 	}
 // if ( $ip == null ) $ip = ss_get_ip();
@@ -434,7 +459,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 // if it is an addon, it has the absolute path to the be_module
 	if ( is_array( $file ) ) { // add-ons pass their array
 // this is an absolute location so load it directly
-		if ( ! file_exists( $file[0] ) ) {
+		if ( !file_exists( $file[0] ) ) {
 			sfs_debug_msg( __( 'not found ', 'stop-spammer-registrations-plugin' ) . print_r( $add, true ) );
 			return false;
 		}
@@ -450,18 +475,18 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 	$ppath = plugin_dir_path( __FILE__ ) . 'classes/';
 	$fd    = $ppath . $file . '.php';
 	$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
-	if ( ! file_exists( $fd ) ) {
+	if ( !file_exists( $fd ) ) {
 // echo "<br /><br />Missing $file $fd<br /><br />";
 		$ppath = plugin_dir_path( __FILE__ ) . 'modules/';
 		$fd    = $ppath . $file . '.php';
 		$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
-	if ( ! file_exists( $fd ) ) {
+	if ( !file_exists( $fd ) ) {
 		$ppath = plugin_dir_path( __FILE__ ) . 'modules/countries/';
 		$fd    = $ppath . $file . '.php';
 		$fd    = str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
-	if ( ! file_exists( $fd ) ) {
+	if ( !file_exists( $fd ) ) {
 		_e( '<br /><br />Missing ' . $file, $fd . '<br /><br />', 'stop-spammer-registrations-plugin' );
 		return false;
 	}
@@ -490,7 +515,7 @@ function get_post_variables() {
 		'subject' => '',
 		'url'     => ''
 	);
-	if ( empty( $p ) || ! is_array( $p ) ) {
+	if ( empty( $p ) || !is_array( $p ) ) {
 		return $ansa;
 	}
 	$search  = array(
@@ -526,7 +551,7 @@ function get_post_variables() {
 					break;
 				}
 			}
-			if ( ! empty( $ansa[ $var ] ) ) {
+			if ( !empty( $ansa[ $var ] ) ) {
 				break;
 			}
 		}
@@ -632,7 +657,7 @@ function really_clean( $s ) {
 }
 
 function load_be_module() {
-	if ( ! class_exists( 'be_module' ) ) {
+	if ( !class_exists( 'be_module' ) ) {
 		require_once( 'classes/be_module.class.php' );
 	}
 }
@@ -659,7 +684,7 @@ function ss_log_user_ip( $user_login = "", $user = "" ) {
 		return;
 	}
 // add the user's IP to new users
-	if ( ! isset( $user->ID ) ) {
+	if ( !isset( $user->ID ) ) {
 		return;
 	}
 	$user_id = $user->ID;
@@ -729,9 +754,9 @@ function ss_user_reg_filter( $user_login ) {
 function login_redirect() {
     global $pagenow, $post;
     $options = ss_get_options();
-    if( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( ! is_user_logged_in() && $post->post_name != 'login' ) ) {
+    if( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && $post->post_name != 'login' ) ) {
     	wp_redirect( site_url( 'login' ) ); exit;
-    } else if ( $options['ss_private_mode'] == "Y" and ( ! is_user_logged_in() && ( $pagenow != 'wp-login.php' and $post->post_name != 'login' ) ) ) {
+    } else if ( $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && ( $pagenow != 'wp-login.php' and $post->post_name != 'login' ) ) ) {
     	auth_redirect();
     }
 }
@@ -745,7 +770,7 @@ function ss_summary_link( $links ) {
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
 
 function check_for_premium() {
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
 		function ss_upgrade_link( $links ) {
 			$links = array_merge( array( '<a href="https://stopspammers.io/" title="' . esc_attr( 'Get Maximum Dynamic Security', 'stop-spammer-registrations-plugin' ) . '" target="_blank" style="font-weight:bold">' . __( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a>' ), $links );

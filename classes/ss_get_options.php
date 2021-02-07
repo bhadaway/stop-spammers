@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class ss_get_options {
@@ -21,7 +22,7 @@ class ss_get_options {
 			'chkgoogle'        => 'Y',
 			'chkmiscallowlist' => 'Y',
 			'chkpaypal'        => 'Y',
-			'chkform'          => 'N',
+			'chkform'          => ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) ? 'Y' : 'N',
 			'ss_private_mode'  => 'N',
 			'chkscripts'       => 'Y',
 			'chkvalidip'       => 'Y',
@@ -60,12 +61,12 @@ class ss_get_options {
 			'chksession'    => 'Y',
 			'chksfs'        => 'Y',
 			'chkspamwords'  => 'Y',
-			'chkurlshort'  => 'Y',
+			'chkurlshort'   => 'Y',
 			'chktld'        => 'Y',
 			'chkubiquity'   => 'Y',
 			'chkakismet'    => 'Y',
 			'chkmulti'      => 'Y',
-			'chktor'     	=> 'Y',
+			'chktor'     	=> 'N',
 			'chkperiods'	=> 'Y',
 			'chkhyphens'	=> 'N'
 		);
@@ -1423,7 +1424,7 @@ class ss_get_options {
 			$defaultARRAY, $defaultSVC, $defaultCOUNTRY, $defaults );
 // to keep from getting option creep we then set the options from opts back into the ansa
 // had to do this to get rid of obsolete or mistaken options
-		if ( empty( $options ) || ! is_array( $options ) ) {
+		if ( empty( $options ) || !is_array( $options ) ) {
 			$options = array();
 		}
 		foreach ( $options as $key => $val ) {
@@ -1435,43 +1436,43 @@ class ss_get_options {
 		}
 		$ansa['version'] = SS_VERSION;
 // check the numeric varables for numericness - user can enter anything
-		if ( ! is_numeric( $ansa['botage'] ) ) {
+		if ( !is_numeric( $ansa['botage'] ) ) {
 			$ansa['botage'] = 9999;
 		}
-		if ( ! is_numeric( $ansa['botfreq'] ) ) {
+		if ( !is_numeric( $ansa['botfreq'] ) ) {
 			$ansa['botfreq'] = 0;
 		}
-		if ( ! is_numeric( $ansa['hnyage'] ) ) {
+		if ( !is_numeric( $ansa['hnyage'] ) ) {
 			$ansa['hnyage'] = 9999;
 		}
-		if ( ! is_numeric( $ansa['hnylevel'] ) ) {
+		if ( !is_numeric( $ansa['hnylevel'] ) ) {
 			$ansa['hnylevel'] = 5;
 		}
-		if ( ! is_numeric( $ansa['ss_sp_cache'] ) ) {
+		if ( !is_numeric( $ansa['ss_sp_cache'] ) ) {
 			$ansa['ss_sp_cache'] = 25;
 		}
-		if ( ! is_numeric( $ansa['ss_sp_cache_em'] ) ) {
+		if ( !is_numeric( $ansa['ss_sp_cache_em'] ) ) {
 			$ansa['ss_sp_cache_em'] = 10;
 		}
-		if ( ! is_numeric( $ansa['ss_sp_good'] ) ) {
+		if ( !is_numeric( $ansa['ss_sp_good'] ) ) {
 			$ansa['ss_sp_good'] = 2;
 		}
-		if ( ! is_numeric( $ansa['ss_sp_hist'] ) ) {
+		if ( !is_numeric( $ansa['ss_sp_hist'] ) ) {
 			$ansa['ss_sp_hist'] = 25;
 		}
-		if ( ! is_numeric( $ansa['sesstime'] ) ) {
+		if ( !is_numeric( $ansa['sesstime'] ) ) {
 			$ansa['sesstime'] = 4;
 		}
-		if ( ! is_numeric( $ansa['sfsage'] ) ) {
+		if ( !is_numeric( $ansa['sfsage'] ) ) {
 			$ansa['sfsage'] = 9999;
 		}
-		if ( ! is_numeric( $ansa['sfsfreq'] ) ) {
+		if ( !is_numeric( $ansa['sfsfreq'] ) ) {
 			$ansa['sfsfreq'] = 0;
 		}
-		if ( ! is_numeric( $ansa['ss_sp_good'] ) ) {
+		if ( !is_numeric( $ansa['ss_sp_good'] ) ) {
 			$ansa['ss_sp_good'] = 0;
 		}
-		if ( ! is_numeric( trim( $ansa['logfilesize'] ) ) ) {
+		if ( !is_numeric( trim( $ansa['logfilesize'] ) ) ) {
 			$ansa['logfilesize'] = 0;
 		}
 		$ansa['chkcloudflare'] = 'Y'; // force it true for now

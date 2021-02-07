@@ -1,18 +1,19 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkagent extends be_module {
 	public function process(
 		$ip, &$stats = array(), &$options = array(), &$post = array()
 	) {
-		if ( ! array_key_exists( 'badagents', $options ) ) {
+		if ( !array_key_exists( 'badagents', $options ) ) {
 			return false;
 		}
 		$badagents = $options['badagents'];
-		if ( empty( $badagents ) || ! is_array( $badagents ) ) {
+		if ( empty( $badagents ) || !is_array( $badagents ) ) {
 			return false;
 		}
 		$agent = "";

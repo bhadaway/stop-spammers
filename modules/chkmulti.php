@@ -1,8 +1,10 @@
 <?php
 // this keeps a list of the hits and counts in the last 3 minutes - if someone has tried to leave 
 // more than 5 comments in three minutes then they must be a spammer
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkmulti extends be_module {
@@ -14,11 +16,11 @@ class chkmulti extends be_module {
 				return false; // don't want to do this if just testing - could lock out sysop
 			}
 		}
-		if ( ! array_key_exists( 'multi', $stats ) ) {
+		if ( !array_key_exists( 'multi', $stats ) ) {
 			return false;
 		}
 		$multi = $stats['multi'];
-		if ( ! is_array( $multi ) ) {
+		if ( !is_array( $multi ) ) {
 			$multi = array();
 		}
 		$multitime = 3;

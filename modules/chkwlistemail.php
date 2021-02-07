@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkwlistemail extends be_module { // change name
@@ -13,7 +14,7 @@ class chkwlistemail extends be_module { // change name
 			$current_user = wp_get_current_user();
 			$this->searchname = 'Allow List Email';
 			$gcache           = $options['wlist_email'];
-			return $this->searchList(  $current_user->user_email, $gcache );
+			return $this->searchList( $current_user->user_email, $gcache );
 		} else {
 			return;
 		}

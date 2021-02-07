@@ -1,34 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-.ss_head {
-  font-family: 'Roboto Slab', -apple-system,BlinkMacSystemFont, Roboto, sans-serif;
-  font-size: 30px;
-}
-
-.keyhead {
-	font-size: 16px !important;
-	margin-left: 30px;
-}
-
 #toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image {
   max-height: 20px;
   padding: 7px 0 0;
 }
 
-#ss-plugin * {
+#ss-plugin, #ss-plugin * {
   box-sizing: border-box;
 }
 
-#ss-plugin textarea {
-  width: 100% !important;
-  max-width: 500px !important;
+#ss-plugin .ss_head {
+  font-family: 'Roboto Slab', -apple-system,BlinkMacSystemFont, Roboto, sans-serif;
+  font-size: 30px;
 }
 
-.ipbox {
-  width: 250px !important;
-  max-width: 250px !important;
+#ss-plugin .keyhead {
+  display: block;
+  font-size: 16px !important;
+  margin-left: 30px;
 }
+
+#ss-plugin .ipbox {}
 
 #ss-plugin img {
   margin-right: 5px;
@@ -36,6 +29,11 @@
 
 #ss-plugin input[type="text"] {
   max-width: 400px;
+}
+
+#ss-plugin textarea {
+  width: 100% !important;
+  max-width: 500px !important;
 }
 
 #ss-plugin fieldset {
@@ -52,17 +50,11 @@
   padding: 10px;
 }
 
-.main-stats {
-  padding: 5px 10px;
-  background: white;
-  margin: 5px;
-  border-radius: 2;
-  float: none;
-}
+#ss-plugin .main-stats {}
 
 #ss-plugin .stat-box {
   padding: 5px 10px;
-  background: #EEE;
+  background: #fff;
   margin: 5px;
   border-radius: 2;
   float: left;
@@ -76,7 +68,7 @@
   padding-bottom: 0;
 }
 
-.ss_admin_button a {
+#ss-plugin .ss_admin_button a {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 15px;
@@ -101,7 +93,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#b29af8, endColorstr=#9174ed);
 }
 
-.ss_admin_button a:hover {
+#ss-plugin .ss_admin_button a:hover {
   border: 1px solid #693bf1;
   background-color: #8e6af5;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8e6af5), to(#6d47e7));
@@ -113,61 +105,58 @@
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#8e6af5, endColorstr=#6d47e7);
 }
 
-.ss_admin_info_boxes_1col {
+#ss-plugin .ss_admin_info_boxes_1col {
   float: left;
   width: 94%;
+  min-height: 100px;
   margin: 10px;
-  padding: 10px;
-  height: 100px;
- /* Should be removed. Only for demonstration */
+  padding: 15px;
   text-align: center;
   background: white;
 }
 
-.ss_admin_info_boxes_1col:hover {
+#ss-plugin .ss_admin_info_boxes_1col:hover {
   background: #f9f9f9;
 }
 
-.ss_admin_info_boxes_2col {
+#ss-plugin .ss_admin_info_boxes_2col {
   float: left;
   width: 47%;
+  min-height: 300px;
   margin: 10px;
-  padding: 10px;
-  height: 300px;
- /* Should be removed. Only for demonstration */
+  padding: 15px;
   text-align: center;
   background: white;
 }
 
-.ss_admin_info_boxes_2col:hover {
+#ss-plugin .ss_admin_info_boxes_2col:hover {
   background: #f9f9f9;
 }
 
 /* Create three equal columns that float next to each other */
-.ss_admin_info_boxes_3col {
+#ss-plugin .ss_admin_info_boxes_3col {
   float: left;
   width: 30%;
+  min-height: 300px;
   margin: 10px;
-  padding: 10px;
-  height: 300px;
- /* Should be removed. Only for demonstration */
+  padding: 15px;
   text-align: center;
   background: white;
 }
 
-.ss_admin_info_boxes_3col:hover {
+#ss-plugin .ss_admin_info_boxes_3col:hover {
   background: #f9f9f9;
 }
 
 /* Clear floats after the columns */
-.ss_admin_info_boxes_3row:after {
+#ss-plugin .ss_admin_info_boxes_3row:after {
   content: "";
   display: table;
   clear: both;
 }
 
 /* Center image thumbs */
-.center_thumb {
+#ss-plugin .center_thumb {
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -176,25 +165,25 @@
   margin-bottom: 15px;
 }
 
-.ss_sup {
+#ss-plugin .ss_sup {
   color: #e52a6f;
 }
 
-.gopro {
+#ss-plugin .gopro {
   font-weight: 800;
   color: #67aeca;
 }
 
-#myInput {
+#ss-plugin #myInput {
   width: 170px !important;
   max-width: 170px !important;
 }
 
-.filterhead {
+#ss-plugin .filterhead {
   cursor: pointer;
 }
 
-th.ss_cleanup {
+#ss-plugin th.ss_cleanup {
   position: sticky;
   top: 32px;
   background: #675682;
@@ -202,25 +191,25 @@ th.ss_cleanup {
   color: #fff;
 }
 
-.ss_cleanup_tr:hover {
+#ss-plugin .ss_cleanup_tr:hover {
   background: #F1F1F1 !important;
 }
 
 /* Checkbox toggle switch */
-div.checkbox.switcher label, div.radio.switcher label {
+#ss-plugin div.checkbox.switcher label, #ss-plugin div.radio.switcher label {
   padding: 0;
 }
 
-div.checkbox.switcher label *, div.radio.switcher label * {
+#ss-plugin div.checkbox.switcher label *, #ss-plugin div.radio.switcher label * {
   vertical-align: middle;
   font-size: 12px;
 }
 
-div.checkbox.switcher label input, div.radio.switcher label input{
+#ss-plugin div.checkbox.switcher label input, #ss-plugin div.radio.switcher label input {
   display: none;
 }
 
-div.checkbox.switcher label input + span, div.radio.switcher label input + span {
+#ss-plugin div.checkbox.switcher label input + span, div.radio.switcher label input + span {
   position: relative;
   display: inline-block;
   margin-right: 10px;
@@ -232,7 +221,7 @@ div.checkbox.switcher label input + span, div.radio.switcher label input + span 
   transition: all 0.3s ease-in-out;
 }
 
-div.checkbox.switcher label input + span small, div.radio.switcher label input + span small {
+#ss-plugin div.checkbox.switcher label input + span small, #ss-plugin div.radio.switcher label input + span small {
   position: absolute;
   display: block;
   width: 50%;
@@ -243,7 +232,7 @@ div.checkbox.switcher label input + span small, div.radio.switcher label input +
   left: 0;
 }
 
-div.checkbox.switcher label input + span small:before, div.radio.switcher label input + span small:before {
+#ss-plugin div.checkbox.switcher label input + span small:before, #ss-plugin div.radio.switcher label input + span small:before {
   content: 'Off';
   position: absolute;
   top: 4.5px;
@@ -256,16 +245,16 @@ div.checkbox.switcher label input + span small:before, div.radio.switcher label 
   color: #fff;
 }
 
-div.checkbox.switcher label input:checked + span, div.radio.switcher label input:checked + span {
+#ss-plugin div.checkbox.switcher label input:checked + span, #ss-plugin div.radio.switcher label input:checked + span {
   background: #5cb85c;
   border-color: #4cae4c;
 }
 
-div.checkbox.switcher label input:checked + span small, div.radio.switcher label input:checked + span small {
+#ss-plugin div.checkbox.switcher label input:checked + span small, #ss-plugin div.radio.switcher label input:checked + span small {
   left: 50%;
 }
 
-div.checkbox.switcher label input:checked + span small:before, div.radio.switcher label input:checked + span small:before {
+#ss-plugin div.checkbox.switcher label input:checked + span small:before, #ss-plugin div.radio.switcher label input:checked + span small:before {
   content: 'On';
   position: absolute;
   top: 4.5px;
@@ -278,16 +267,16 @@ div.checkbox.switcher label input:checked + span small:before, div.radio.switche
   color: #fff;
 }
 
-div.checkbox.switcher label input:checked + span small:after, div.radio.switcher label input:checked + span small:after {
+#ss-plugin div.checkbox.switcher label input:checked + span small:after, #ss-plugin div.radio.switcher label input:checked + span small:after {
   left: calc(100% - 2px);
   transform: translateX(-100%);
 }
 
-div.checkbox.switcher label:active:after {
+#ss-plugin div.checkbox.switcher label:active:after {
   width: 60px;
 }
 
-#ss_subhead {
+#ss-plugin #ss_subhead {
   color: #333;
   font-family: 'Lato', sans-serif;
   font-size: 20px !important;
@@ -295,25 +284,25 @@ div.checkbox.switcher label:active:after {
   margin-left: 30px;
 }
 
-#ss_subhead div.container {
+#ss-plugin #ss_subhead div.container {
   padding: 5% 0;
 }
 
-#ss_subhead2 {
+#ss-plugin #ss_subhead2 {
   color: #333;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   font-weight: 500;
 }
 
-.tooltip {
+#ss-plugin .tooltip {
   position: relative;
   display: inline-block;
   top: 10px;
   margin-left: 5px;
 }
 
-.tooltip .tooltiptext {
+#ss-plugin .tooltip .tooltiptext {
   visibility: hidden;
   width: 400px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -333,63 +322,59 @@ div.checkbox.switcher label:active:after {
   padding: 10px;
 }
 
-.tooltip:hover .tooltiptext {
+#ss-plugin .tooltip:hover .tooltiptext {
   visibility: visible;
 }
 
-.ss_option_header {
+#ss-plugin .ss_option_header {
   font-size: 16px !important;
 }
 
-.ss_info_box {
+#ss-plugin .ss_info_box {
   background: white !important;
   width: 100%;
   padding: 1.5em;
   margin: 20px 0;
   box-sizing: border-box;
 }
-i.fa.fa-question-circle {
+
+#ss-plugin i.fa.fa-question-circle {
 	color: #444 !important;
 }
-i.fa.fa-question-circle:hover {
+
+#ss-plugin i.fa.fa-question-circle:hover {
   color: #e52a6f !important;
 }
 
-.ss_icon {
+#ss-plugin .ss_icon {
   max-height: 30px;
 }
 
-.ss-small-box {
+#ss-plugin .ss-small-box {
     width: 35px;
     text-align: center;
     display: initial !important;
 }
 
-select.ss-small-dropbox{
+#ss-plugin select.ss-small-dropbox{
   vertical-align: baseline;
 }
 
-div.mainsection {
+#ss-plugin div.mainsection {
 	font-weight:bold;
 	font-size:18px;
 	margin: 0px 0px 25px 0px;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+/* Responsive layout */
 @media screen and (max-width: 680px) {
-  .ss_admin_info_boxes_1col {
-    width: 100%;
+
+  #ss-plugin .ss_admin_info_boxes_1col, #ss-plugin .ss_admin_info_boxes_2col, #ss-plugin .ss_admin_info_boxes_3col {
+    width: 94%;
   }
 
-  .ss_admin_info_boxes_2col {
-    width: 100%;
-  }
-
-  .ss_admin_info_boxes_3col {
-    width: 100%;
-  }
-
-  th.ss_cleanup {
+  #ss-plugin th.ss_cleanup {
     top: 48px;
   }
+
 }

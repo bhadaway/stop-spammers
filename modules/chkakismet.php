@@ -1,7 +1,9 @@
 <?php
 // this check never seems to work, so I'll leave it for now, but not use it
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkakismet {
@@ -9,10 +11,10 @@ class chkakismet {
 		$ip, &$stats = array(), &$options = array(), &$post = array()
 	) {
 // do a lookup on Akismet
-		if ( ! function_exists( 'get_option' ) ) {
+		if ( !function_exists( 'get_option' ) ) {
 			return false;
 		}
-		if ( ! function_exists( 'site_url' ) ) {
+		if ( !function_exists( 'site_url' ) ) {
 			return false;
 		}
 		$api_key = get_option( 'wordpress_api_key' );
@@ -59,8 +61,7 @@ class chkakismet {
 		$path    = '/1.1/comment-check';
 		$port    = 80;
 // $akismet_ua = "WordPress/3.8.1 | Akismet/2.5.9";
-		$akismet_ua     = sprintf( 'WordPress/%s | Akismet/%s',
-			$GLOBALS['wp_version'], constant( 'AKISMET_VERSION' ) );
+		$akismet_ua     = sprintf( 'WordPress/%s | Akismet/%s', $GLOBALS['wp_version'], constant( 'AKISMET_VERSION' ) );
 		$content_length = strlen( $request );
 		$http_request   = "POST $path HTTP/1.0\r\n";
 		$http_request  .= "Host: $host\r\n";
@@ -73,7 +74,7 @@ class chkakismet {
 		if ( false != ( $fs = @fsockopen( $http_host, $port, $errno, $errstr, 10 ) )
 		) {
 			fwrite( $fs, $http_request );
-			while ( ! feof( $fs ) ) {
+			while ( !feof( $fs ) ) {
 				$response .= fgets( $fs, 1160 );
 			} // one TCP-IP packet
 			$r = print_r( $response, true );

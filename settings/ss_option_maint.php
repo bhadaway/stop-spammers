@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // just in case
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
+}
 
-if ( ! current_user_can( 'manage_options' ) ) {
+if ( !current_user_can( 'manage_options' ) ) {
 	die ( 'Access Denied' );
 }
 
@@ -13,16 +14,14 @@ ss_fix_post_vars();
 ?>
 <div id="ss-plugin" class="wrap">
     <h1 class="ss_head">Stop Spammers — DB Cleanup</h1>
-	<?php if ( array_key_exists( 'autol', $_POST )
-	           || array_key_exists( 'delo', $_POST )
-	) {
+	<?php if ( array_key_exists( 'autol', $_POST ) || array_key_exists( 'delo', $_POST ) ) {
 		echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 	?>
 	<div class="ss_info_box">
     <p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that
         they don&acute;t autoload. Be aware that you can break some
-        plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+        plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
@@ -33,7 +32,7 @@ ss_fix_post_vars();
 	if ( array_key_exists( 'ss_opt_control', $_POST ) ) {
 		$nonce = $_POST['ss_opt_control'];
 	}
-	if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_update' ) ) {
+	if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_update' ) ) {
 		if ( array_key_exists( 'view', $_POST ) ) {
 			$op = $_POST['view'];
 			$v  = get_option( $op );
@@ -237,7 +236,7 @@ ss_fix_post_vars();
 	foreach ( $arows as $row ) {
 		$uop  = true;
 		$name = $row['option_name'];
-		if ( ! in_array( $name, $sysops ) ) {
+		if ( !in_array( $name, $sysops ) ) {
 // check for name like for transients
 // _transient_ , _site_transient_
 			foreach ( $sysops as $op ) {
@@ -319,7 +318,7 @@ ss_fix_post_vars();
 		if ( array_key_exists( 'ss_opt_tdel', $_POST ) ) {
 			$nonce = $_POST['ss_opt_tdel'];
 		}
-		if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_update2' ) ) {
+		if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_update2' ) ) {
 // doit!
 			deleteTransients();
 		}

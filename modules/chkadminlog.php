@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkadminlog extends be_module {
@@ -12,7 +13,7 @@ class chkadminlog extends be_module {
 		$ip, &$stats = array(), &$options = array(), &$post = array()
 	) {
 		$sname = $this->getSname();
-		if ( ! class_exists( 'GoogleAuthenticator' )
+		if ( !class_exists( 'GoogleAuthenticator' )
 		     && strpos( $sname, 'wp-login.php' ) !== false
 		     && function_exists( 'wp_authenticate' )
 		) {
@@ -22,7 +23,7 @@ class chkadminlog extends be_module {
 				return false;
 			}
 			$user = @wp_authenticate( $log, $pwd );
-			if ( ! is_wp_error( $user ) ) { // user login is good
+			if ( !is_wp_error( $user ) ) { // user login is good
 				_e( 'Authenticated User Login', 'stop-spammer-registrations-plugin' );
 			}
 			return false;

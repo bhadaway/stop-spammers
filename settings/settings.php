@@ -1,8 +1,10 @@
 <?php
 // this is the new settings pages for Stop Spammers
 // this is loaded only when users who can change settings are logged in
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 function ss_admin_menu_l() {
@@ -27,7 +29,7 @@ function ss_admin_menu_l() {
 		'stop_spammers', // $menu_slug,
 		'ss_summary' // $function
 	);
-	if ( ! is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		add_submenu_page(
 			'stop_spammers', // plugins parent
 			__( 'Premium — Stop Spammers', 'stop-spammer-registrations-plugin' ), // $page_title,
@@ -125,7 +127,7 @@ function ss_summary() {
 	include_setting( "ss_summary.php" );
 }
 
-if ( ! function_exists( 'ss_premium.php' ) ) {
+if ( !function_exists( 'ss_premium.php' ) ) {
 function ss_premium( $args ) {
   include_setting( "ss_premium.php" );
   return array();

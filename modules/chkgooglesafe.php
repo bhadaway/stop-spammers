@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkgooglesafe extends be_module {
@@ -11,10 +12,10 @@ class chkgooglesafe extends be_module {
 		if ( empty( $stats ) ) {
 			return false;
 		}
-		if ( ! array_key_exists( 'googleapi', $stats ) ) {
+		if ( !array_key_exists( 'googleapi', $stats ) ) {
 			return false;
 		}
-		if ( ! array_key_exists( 'content', $stats ) ) {
+		if ( !array_key_exists( 'content', $stats ) ) {
 			return false;
 		}
 		$googleapi = $stats['googleapi'];
@@ -39,7 +40,7 @@ class chkgooglesafe extends be_module {
 			$urls2 = array();
 		}
 		$urls3 = array_merge( $urls1, $urls2 );
-		if ( ! is_array( $urls3 ) ) {
+		if ( !is_array( $urls3 ) ) {
 			return false;
 		}
 		if ( empty( $urls3 ) ) {
@@ -52,11 +53,11 @@ class chkgooglesafe extends be_module {
 		for ( $j = 0; $j < count( $urls3 ) && $j < 4; $j ++ ) {
 // check Google
 			$url = $urls3[ $j ];
-			if ( ! empty( $url ) ) {
+			if ( !empty( $url ) ) {
 				$query = "https://sb-ssl.google.com/safebrowsing/api/lookup?client=stop-spammer-plugin&apikey=$googleapi&appver=9.3&pver=3.0&url=$url";
 // using file get contents or get using the https lookup?
 				$r     = $this->getafile( $query );
-				if ( ! empty( $r ) ) {
+				if ( !empty( $r ) ) {
 					if ( strpos( $r, 'phishing' ) !== false
 					     || strpos( $r, 'malware' ) !== false
 					) {

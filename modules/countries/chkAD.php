@@ -1,7 +1,9 @@
 <?php
 // generated Saturday 11th of April 2015 04:11:41 PM
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkAD extends be_module {

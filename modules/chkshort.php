@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkshort { // change name
@@ -11,14 +12,14 @@ class chkshort { // change name
 		$this->searchname = 'Email/Author Too Short';
 		if ( array_key_exists( 'email', $post ) ) {
 			$email = $post['email'];
-			if ( ! empty( $email ) ) {
+			if ( !empty( $email ) ) {
 				if ( strlen( $email ) < 5 ) {
 					_e( 'Email Too Short: ' . $email . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
 		if ( array_key_exists( 'author', $post ) ) {
-			if ( ! empty( $post['author'] ) ) {
+			if ( !empty( $post['author'] ) ) {
 				$author = $post['author'];
 // short author is OK?
 				if ( strlen( $post['author'] ) < 3 ) {

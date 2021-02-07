@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkspamwords {
@@ -13,7 +14,7 @@ class chkspamwords {
 // 'email', 'author', 'pwd', 'comment', 'subject'
 		$spamwords = $options['spamwords'];
 		foreach ( $post as $key => $data ) {
-			if ( ! empty( $data ) ) {
+			if ( !empty( $data ) ) {
 				foreach ( $spamwords as $sw ) {
 					if ( stripos( $data, $sw ) !== false ) {
 						_e( 'Spam Word: ' . $sw . ' in ' . $key . '', 'stop-spammer-registrations-plugin' );

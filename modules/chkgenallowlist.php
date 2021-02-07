@@ -5,8 +5,10 @@
  * The upside is that you will never block a legitimate customer.
  * This is a trade off. I don't use this, but I have zero spam tolerance.
  *****************************/
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+
+if ( !defined( 'ABSPATH' ) ) {
+	http_response_code( 404 );
+	die();
 }
 
 class chkgenallowlist extends be_module {
@@ -883,7 +885,7 @@ class chkgenallowlist extends be_module {
 			array( '68.172.0.0', '68.175.255.255' ),
 			// # Time Warner Cable Internet LLC US
 			array( '68.180.128.0', '68.180.255.255' ),
-			// # Yahoo! Inc. US
+			// # Yahoo!Inc. US
 			array( '68.184.0.0', '68.191.255.255' ),
 			// # Charter Communications CHARTER-N... US
 			array( '68.192.0.0', '68.199.255.255' ),
@@ -2711,7 +2713,7 @@ class chkgenallowlist extends be_module {
 			array( '212.24.64.0', '212.24.95.255' ),
 			// # Virgin Media Limited GB
 			array( '212.82.96.0', '212.82.99.255' ),
-			// # Yahoo! Europe GB
+			// # Yahoo!Europe GB
 			array( '212.123.64.0', '212.123.95.255' ),
 			// # Tiscali Italia SpA IT
 			array( '212.131.0.0', '212.131.255.255' ),
