@@ -6,9 +6,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_get_options {
-	public function process(
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		$ip, &$stats = array(), &$options = array(), &$post = array() ) {
 // Y/N options
 		$options = get_option( 'ss_stop_sp_reg_options' );
 // Allow List Y/N options
@@ -29,6 +28,7 @@ class ss_get_options {
 			'chkwlem'		   => 'Y',
 			'chkwluserid'	   => 'N',
 			'chkwlist'		   => 'Y',
+			'chkwlistemail'	   => 'Y',
 			'chkyahoomerchant' => 'Y',
 			'chkstripe'		   => 'Y',
 			'chkauthorizenet'  => 'Y',

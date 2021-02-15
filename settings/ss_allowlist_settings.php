@@ -36,7 +36,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$stats['wlrequests'] = $wlrequests;
 		ss_set_stats( $stats );
 	}
-	if ( array_key_exists( 'wlist', $_POST ) ) {
+	if ( array_key_exists( 'wlist', $_POST ) and ! array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
 		$wlist  = $_POST['wlist'];
 		$wlist  = explode( "\n", $wlist );
 		$tblist = array();
@@ -49,30 +49,32 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$options['wlist'] = $tblist;
 		$wlist			= $tblist;
 	}
-	$optionlist = array(
-		'chkgoogle',
-		'chkaws',
-		'chkwluserid',
-		'chkpaypal',
-		'chkstripe',
-		'chkauthorizenet',
-		'chkbraintree',
-		'chkrecurly',
-		'chkgenallowlist',
-		'chkmiscallowlist',
-		'chkyahoomerchant'
-	);
-	foreach ( $optionlist as $check ) {
-		$v = 'N';
-		if ( array_key_exists( $check, $_POST ) ) {
-			$v = $_POST[ $check ];
-			if ( $v != 'Y' ) {
-				$v = 'N';
+	if ( ! array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
+		$optionlist = array(
+			'chkgoogle',
+			'chkaws',
+			'chkwluserid',
+			'chkpaypal',
+			'chkstripe',
+			'chkauthorizenet',
+			'chkbraintree',
+			'chkrecurly',
+			'chkgenallowlist',
+			'chkmiscallowlist',
+			'chkyahoomerchant'
+		);
+		foreach ( $optionlist as $check ) {
+			$v = 'N';
+			if ( array_key_exists( $check, $_POST ) ) {
+				$v = $_POST[ $check ];
+				if ( $v != 'Y' ) {
+					$v = 'N';
+				}
 			}
+			$options[ $check ] = $v;
 		}
-		$options[ $check ] = $v;
+		ss_set_options( $options );
 	}
-	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
 	$msg = __( '<div class="notice notice-success is-dismissible"><p>Options Updated</p></div>', 'stop-spammer-registrations-plugin' );
 }

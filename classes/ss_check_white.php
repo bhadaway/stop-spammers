@@ -58,6 +58,9 @@ class ss_check_white extends be_module {
 			'chkwlist',
 			'chkyahoomerchant'
 		);
+		if( ! isset( $options[ 'chkwlistemail'] ) )
+			$options[ 'chkwlistemail' ] = 'Y';
+
 		foreach ( $actions as $chk ) {
 			if ( $options[ $chk ] == 'Y' ) {
 				$reason = be_load( $chk, ss_get_ip(), $stats, $options, $post );
