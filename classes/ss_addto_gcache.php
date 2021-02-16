@@ -6,9 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_addto_gcache {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		extract( $stats );
 		extract( $options );
 		$now = date( 'Y/m/d H:i:s',
@@ -25,7 +23,7 @@ class ss_addto_gcache {
 			}
 		}
 		$stats['goodips'] = $goodips;
-// if we add to Good Cache we need to delete from Bad Cache
+		// if we add to Good Cache we need to delete from Bad Cache
 		if ( array_key_exists( $ip, $stats['badips'] ) ) {
 			unset( $stats['badips'] );
 		}

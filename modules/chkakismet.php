@@ -7,10 +7,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkakismet {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// do a lookup on Akismet
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// do a lookup on Akismet
 		if ( !function_exists( 'get_option' ) ) {
 			return false;
 		}
@@ -29,7 +27,7 @@ class chkakismet {
 		if ( empty( $api_key ) || empty( $agent ) || empty( $blogurl ) ) {
 			return false;
 		}
-		$refer	= $_SERVER['HTTP_REFERER'];
+		$refer	 = $_SERVER['HTTP_REFERER'];
 		$data	 = array(
 			'blog'				   => $blogurl,
 			'user_ip'			   => $ip,
@@ -45,7 +43,6 @@ class chkakismet {
 		$response = $this->akismet_comment_check( '123YourAPIKey', $data );
 		return $response;
 	}
-
 	function akismet_comment_check( $key, $data ) {
 		$request = 'blog=' . urlencode( $data['blog'] ) .
 				   '&user_ip=' . urlencode( $data['user_ip'] ) .
@@ -60,7 +57,7 @@ class chkakismet {
 		$host	= $http_host = $key . '.rest.akismet.com';
 		$path	= '/1.1/comment-check';
 		$port	= 80;
-// $akismet_ua = "WordPress/3.8.1 | Akismet/2.5.9";
+		// $akismet_ua = "WordPress/3.8.1 | Akismet/2.5.9";
 		$akismet_ua	    = sprintf( 'WordPress/%s | Akismet/%s', $GLOBALS['wp_version'], constant( 'AKISMET_VERSION' ) );
 		$content_length = strlen( $request );
 		$http_request   = "POST $path HTTP/1.0\r\n";
@@ -71,8 +68,7 @@ class chkakismet {
 		$http_request  .= "\r\n";
 		$http_request  .= $request;
 		$response	    = '';
-		if ( false != ( $fs = @fsockopen( $http_host, $port, $errno, $errstr, 10 ) )
-		) {
+		if ( false != ( $fs = @fsockopen( $http_host, $port, $errno, $errstr, 10 ) ) ) {
 			fwrite( $fs, $http_request );
 			while ( !feof( $fs ) ) {
 				$response .= fgets( $fs, 1160 );

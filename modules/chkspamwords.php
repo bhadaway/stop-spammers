@@ -6,12 +6,10 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkspamwords {
-// look on option list for spam words
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// spam words can be in password, author, comment, etc. - anything in the post
-// 'email', 'author', 'pwd', 'comment', 'subject'
+	// look on option list for spam words
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// spam words can be in password, author, comment, etc. - anything in the post
+		// 'email', 'author', 'pwd', 'comment', 'subject'
 		$spamwords = $options['spamwords'];
 		foreach ( $post as $key => $data ) {
 			if ( !empty( $data ) ) {

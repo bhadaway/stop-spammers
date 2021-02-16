@@ -8,9 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 // last updated from https://help.smallbusiness.yahoo.net/s/article/SLN19413 on 12/22/20
 class chkyahoomerchant extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		$yahoo = array(
 			'52.89.44.13',
 			'52.73.246.40',

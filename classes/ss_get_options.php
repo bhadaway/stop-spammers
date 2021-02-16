@@ -8,10 +8,10 @@ if ( !defined( 'ABSPATH' ) ) {
 class ss_get_options {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-// Y/N options
+		// Y/N options
 		$options = get_option( 'ss_stop_sp_reg_options' );
-// Allow List Y/N options
-// not all Y/N options can be changed, but we need them for the load loops
+		// Allow List Y/N options
+		// not all Y/N options can be changed, but we need them for the load loops
 		$defaultWL = array(
 			'chkadminlog'	   => 'Y',
 			'chkaws'		   => 'N',
@@ -35,7 +35,7 @@ class ss_get_options {
 			'chkbraintree'	   => 'Y',
 			'chkrecurly'	   => 'Y'
 		);
-// Deny List Y/N settings
+		// Deny List Y/N settings
 		$defaultBL = array(
 			'chk404'		=> 'Y',
 			'chkaccept'	    => 'Y',
@@ -70,7 +70,7 @@ class ss_get_options {
 			'chkperiods'	=> 'Y',
 			'chkhyphens'	=> 'N'
 		);
-// control options that can be set - not checks
+		// control options that can be set - not checks
 		$defaultsCTRL   = array(
 			'chkemail'			  => 'Y',
 			'chkip'			      => 'Y',
@@ -1420,10 +1420,9 @@ class ss_get_options {
 			'chkVN' => 'N',
 			'chkYE' => 'N'
 		);
-		$ansa = array_merge( $defaultWL, $defaultsCTRL, $defaultBL,
-			$defaultARRAY, $defaultSVC, $defaultCOUNTRY, $defaults );
-// to keep from getting option creep we then set the options from opts back into the ansa
-// had to do this to get rid of obsolete or mistaken options
+		$ansa = array_merge( $defaultWL, $defaultsCTRL, $defaultBL, $defaultARRAY, $defaultSVC, $defaultCOUNTRY, $defaults );
+		// to keep from getting option creep we then set the options from opts back into the ansa
+		// had to do this to get rid of obsolete or mistaken options
 		if ( empty( $options ) || !is_array( $options ) ) {
 			$options = array();
 		}
@@ -1431,11 +1430,11 @@ class ss_get_options {
 			if ( array_key_exists( $key, $ansa ) ) {
 				$ansa[ $key ] = $options[ $key ];
 			} else {
-// sfs_debug_msg("option $key missing from $options");
+			// sfs_debug_msg("option $key missing from $options");
 			}
 		}
 		$ansa['version'] = SS_VERSION;
-// check the numeric varables for numericness - user can enter anything
+		// check the numeric varables for numericness - user can enter anything
 		if ( !is_numeric( $ansa['botage'] ) ) {
 			$ansa['botage'] = 9999;
 		}
@@ -1477,8 +1476,9 @@ class ss_get_options {
 		}
 		$ansa['chkcloudflare'] = 'Y'; // force it true for now
 		ss_set_options( $ansa ); // new version, need to set the new options
-// sfs_debug_msg( "in get options\r\n".print_r( $ansa, true ) );		
+		// sfs_debug_msg( "in get options\r\n".print_r( $ansa, true ) );		
 		return $ansa;
 	}
 }
+
 ?>

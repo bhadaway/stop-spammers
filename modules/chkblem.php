@@ -6,10 +6,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkblem extends be_module { // change name
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// checks the IP from params which has the cache in it
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// checks the IP from params which has the cache in it
 		$this->searchname = 'Deny List Email';
 		$email			  = $post['email'];
 		if ( empty( $email ) ) {

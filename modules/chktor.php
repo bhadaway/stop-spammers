@@ -8,9 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 // last updated from https://github.com/SecOps-Institute/Tor-IP-Addresses/blob/master/tor-exit-nodes.lst on 12/22/20
 class chktor extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		$torlist = array(
 			'1.171.36.68',
 			'101.99.90.171',
@@ -1949,7 +1947,7 @@ class chktor extends be_module {
 			_e( 'Tor Exit Node', 'stop-spammer-registrations-plugin' );
 		}
 		return false;
-// return false if OK, return a reason if not
+		// return false if OK, return a reason if not
 	}
 }
 

@@ -366,7 +366,7 @@
 	margin: 0px 0px 25px 0px;
 }
 
-/* Responsive layout */
+/* responsive layout */
 @media screen and (max-width: 680px) {
 
 	#ss-plugin .ss_admin_info_boxes_1col, #ss-plugin .ss_admin_info_boxes_2col, #ss-plugin .ss_admin_info_boxes_3col {

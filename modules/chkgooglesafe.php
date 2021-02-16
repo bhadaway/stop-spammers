@@ -6,9 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkgooglesafe extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		if ( empty( $stats ) ) {
 			return false;
 		}
@@ -31,7 +29,7 @@ class chkgooglesafe extends be_module {
 		} else {
 			$urls1 = array();
 		}
-// BBCode
+		// BBCode
 		preg_match_all( '/\[url=(.+)\]/iU', $content, $post,
 			PREG_PATTERN_ORDER );
 		if ( is_array( $post ) && is_array( $post[0] ) ) {
@@ -49,18 +47,16 @@ class chkgooglesafe extends be_module {
 		for ( $j = 0; $j < count( $urls3 ); $j ++ ) {
 			$urls3[ $j ] = urlencode( $urls3[ $j ] );
 		}
-// $urls3 has the list of URLs found in content
+		// $urls3 has the list of URLs found in content
 		for ( $j = 0; $j < count( $urls3 ) && $j < 4; $j ++ ) {
-// check Google
+			// check Google
 			$url = $urls3[ $j ];
 			if ( !empty( $url ) ) {
 				$query = "https://sb-ssl.google.com/safebrowsing/api/lookup?client=stop-spammer-plugin&apikey=$googleapi&appver=9.3&pver=3.0&url=$url";
-// using file get contents or get using the https lookup?
-				$r	 = $this->getafile( $query );
+				// using file get contents or get using the https lookup?
+				$r	   = $this->getafile( $query );
 				if ( !empty( $r ) ) {
-					if ( strpos( $r, 'phishing' ) !== false
-						 || strpos( $r, 'malware' ) !== false
-					) {
+					if ( strpos( $r, 'phishing' ) !== false || strpos( $r, 'malware' ) !== false ) {
 						_e( 'Google Safe: ', 'stop-spammer-registrations-plugin' ) . $r;
 					}
 				}

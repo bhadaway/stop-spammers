@@ -48,12 +48,11 @@ function ssp_global_set( $newvalue, $oldvalue ) {
 	$ssp_semaphore ++;
 	$filt = current_filter();
 	$f	= substr( $filt, strlen( 'pre_update_option_' ) );
-// now add to list of options we are hooking
+	// now add to list of options we are hooking
 	switch_to_blog( 1 );
 	$ansa = update_option( $f, $newvalue );
 	restore_current_blog();
 	$ssp_semaphore --;
-
 	return $oldvalue; // returning the old value keeps the add from updating the current
 }
 
@@ -68,9 +67,9 @@ function ssp_global_add( $option, $value ) {
 	$ssp_semaphore ++;
 	$filt = current_filter();
 	$f	  = substr( $filt, strlen( 'add_option_' ) );
-// now add to list of options we are hooking
+	// now add to list of options we are hooking
 	switch_to_blog( 1 );
-// echo "<br />Updating $f, $value <br />";
+	// echo '<br />Updating $f, $value <br />';
 	$ansa = update_option( $f, $value );
 	restore_current_blog();
 	$ssp_semaphore --;
@@ -88,12 +87,12 @@ function ssp_global_get( $option ) {
 	$ssp_semaphore ++;
 	$filt = current_filter();
 	$f	= substr( $filt, strlen( 'pre_option_' ) );
-// switch to main blog
-// undo the filter to prevent deadly recursion
+	// switch to main blog
+	// undo the filter to prevent deadly recursion
 	switch_to_blog( 1 );
 	$ansa = get_option( $f );
 	restore_current_blog();
-// restore the filter
+	// restore the filter
 	$ssp_semaphore --;
 	return $ansa;
 }
@@ -117,7 +116,7 @@ function ssp_global_Delete( $ops ) {
 }
 
 function ssp_global_unsetup() {
-// if someone set the mu global options flag to 'N' then we have to unset the global setup
+	// if someone set the mu global options flag to 'N' then we have to unset the global setup
 	$ops = array( 'ss_stop_sp_reg_stats', 'ss_stop_sp_reg_options' );
 	foreach ( $ops as $value ) {
 		remove_filter( 'pre_update_option_' . $value, 'ss_pf_global_set', 10, 2 );

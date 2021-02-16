@@ -6,9 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chktemplate extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		return false;
 	}
 }

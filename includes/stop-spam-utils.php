@@ -9,8 +9,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 function ss_append_file( $filename, &$content ) {
-// this writes content to a file in the uploads director in the 'stop-spammer-registrations' directory
-// changed to write to the current directory - content_dir is a bad place
+	// this writes content to a file in the uploads director in the 'stop-spammer-registrations' directory
+	// changed to write to the current directory - content_dir is a bad place
 	$file = SS_PLUGIN_DATA . $filename;
 	$f	= @fopen( $file, 'a' );
 	if ( !$f ) {
@@ -19,12 +19,11 @@ function ss_append_file( $filename, &$content ) {
 	fwrite( $f, $content );
 	fclose( $f );
 	@chmod( $file, 0640 ); // read/write for owner and owner groups
-
 	return true;
 }
 
 function ss_read_file( $f, $method = 'GET' ) {
-// try this using Wp_Http
+	// try this using Wp_Http
 	if ( !class_exists( 'WP_Http' ) ) {
 		include_once( ABSPATH . WPINC . '/class-http.php' );
 	}
@@ -33,7 +32,7 @@ function ss_read_file( $f, $method = 'GET' ) {
 	$parms['timeout'] = 10; // bump timeout a little we are timing out in Google
 	$parms['method']  = $method;
 	$result		      = $request->request( $f, $parms );
-// see if there is anything there
+	// see if there is anything there
 	if ( empty( $result ) ) {
 		return '';
 	}
@@ -44,13 +43,13 @@ function ss_read_file( $f, $method = 'GET' ) {
 	if ( is_object( $result ) ) {
 		$ansa = 'ERR: ' . $result->get_error_message();
 		return $ansa; // return $ansa when debugging
-// return '';
+		// return '';
 	}
 	return '';
 }
 
 function ss_read_filex( $filename ) {
-// read file
+	// read file
 	$file = SS_PLUGIN_DATA . $filename;
 	if ( file_exists( $file ) ) {
 		return file_get_contents( $file );
@@ -76,7 +75,7 @@ function ss_file_delete( $filename ) {
 // the plugin will drop a file sfs_debug_output.txt in the current directory (root, wp-admin, or network) 
 // directory must be writeable or plugin will crash
 function sfs_errorsonoff( $old = null ) {
-	$debug = true;  // change to true to debug, false to stop all debugging
+	$debug = true; // change to true to debug, false to stop all debugging
 	if ( !$debug ) {
 		return;
 	}
@@ -87,33 +86,25 @@ function sfs_errorsonoff( $old = null ) {
 }
 
 function sfs_debug_msg( $msg ) {
-// used to aid debugging - adds to debug file
+	// used to aid debugging - adds to debug file
 	$debug = true;
 	$ip	= ss_get_ip();
 	if ( !$debug ) {
 		return;
 	}
-	$now = date( 'Y/m/d H:i:s',
-		time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-// get the program that is running
-	$sname = ( !empty( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI']
-		: $_SERVER['SCRIPT_NAME'] );
-
-	@file_put_contents( SS_PLUGIN_DATA . ".sfs_debug_output.txt"
-		, "$now : $sname , $msg  ,  $ip \r\n"
-		, FILE_APPEND
-	);
-
+	$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+	// get the program that is running
+	$sname = ( !empty( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'] );
+	@file_put_contents( SS_PLUGIN_DATA . ".sfs_debug_output.txt", "$now: $sname, $msg, $ip \r\n", FILE_APPEND );
 }
 
 function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
-// write the answers to the file
-// we are only concerned with the errors and warnings, not the notices
-// if ( $errno == E_NOTICE || $errno == E_WARNING ) return false;
-// if ( $errno == 2048 ) return; // WordPress throws deprecated all over the place
+	// write the answers to the file
+	// we are only concerned with the errors and warnings, not the notices
+	// if ( $errno == E_NOTICE || $errno == E_WARNING ) return false;
+	// if ( $errno == 2048 ) return; // WordPress throws deprecated all over the place
 	$serrno = "";
-	if (
-		( strpos( $filename, 'ss' ) === false )
+	if ( ( strpos( $filename, 'ss' ) === false )
 		&& ( strpos( $filename, 'admin-options' ) === false )
 		&& ( strpos( $filename, 'mu-options' ) === false )
 		&& ( strpos( $filename, 'stop-spam' ) === false )
@@ -154,7 +145,7 @@ Line Number: ' . $linenum . '
 Memory Used: ' . $m1 . ' Peak: ' . $m2 . '
 ---------------------
 ', 'stop-spammer-registrations-plugin' );;
-// write out the error
+	// write out the error
 	@file_put_contents( SS_PLUGIN_DATA . '.sfs_debug_output.txt', $msg, FILE_APPEND );
 	return false;
 }

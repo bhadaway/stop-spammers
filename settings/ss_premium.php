@@ -8,12 +8,13 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
 }
+
 ?>
 
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-premium.png'; ?>" class="ss_icon">Stop Spammers — <?php _e( 'Premium Options', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<br />
-		<span class="notice notice-warning" style="display:block">
+	<span class="notice notice-warning" style="display:block">
 		<p><?php _e( 'Use coupon code <strong>SSP4ME</strong> to get $5 off <a href="https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
 	</span>
 	<br />
@@ -32,6 +33,7 @@ if ( !current_user_can( 'manage_options' ) ) {
 			<h3><?php _e( 'Themed Login', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/themed-login_stop-spammers-premium_trumani.png'; ?>" class="center_thumb">
 			<?php _e( 'Frontend login and registration forms that are protected by Stop Spammers and login/logout links you can add to any menu. Ability to disable wp-login.php.', 'stop-spammer-registrations-plugin' ); ?>
+		</div>
 	</div>
 	<div class="ss_admin_info_boxes_3row">
 		<div class="ss_admin_info_boxes_3col">

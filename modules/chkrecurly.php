@@ -9,8 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
 class chkrecurly extends be_module {
 	public $searchname = 'chkrecurly';
 	public $searchlist = array(
-
-// IP addresses
+			// IP addresses
 			'35.233.168.62',
 			'35.185.253.62',
 			'35.188.232.138',

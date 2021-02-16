@@ -168,7 +168,7 @@ class chkpaypal extends be_module {
 			'96.7.199.186',
 			'96.7.231.186',
 			'96.7.247.186',
-// sandbox
+			// sandbox
 			'173.0.82.75',
 			'173.0.82.91',
 			'173.0.82.77',
@@ -181,7 +181,7 @@ class chkpaypal extends be_module {
 			'173.0.82.86',
 			'173.0.82.89',
 			'173.0.82.101',
-// latest using a range
+			// latest using a range
 			'173.0.82.0/24',
 			'173.0.83.0/24',
 			'173.0.81.0/24'

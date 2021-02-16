@@ -7,10 +7,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chk404 extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// following strings are possibly exploits - it may be a malicious robot is searching for an exploitable program
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// following strings are possibly exploits - it may be a malicious robot is searching for an exploitable program
 		$expl = array(
 			'/administrator/',
 			'/doc-ready/doc-ready',
@@ -107,12 +105,12 @@ class chk404 extends be_module {
 			'/system.php'
 		);
 		$sname = $this->getSname();
-// ss_cd_write_file( "debug.txt", "check 404 '$hit'" );
+		// ss_cd_write_file( "debug.txt", "check 404 '$hit'" );
 		foreach ( $expl as $bad ) {
 			if ( stripos( $sname, $bad ) !== false ) {
 				_e( '404 on Exploit Attempt ' . $sname, $bad . '', 'stop-spammer-registrations-plugin' );
 			} else {
-// echo "$sname, $bad<br />";
+			// echo "$sname, $bad<br />";
 			}
 		}
 		return false;

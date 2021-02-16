@@ -7,9 +7,8 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class ss_get_stats {
 	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// gets the stats when reset or new version
+		$ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// gets the stats when reset or new version
 		$stats = get_option( 'ss_stop_sp_reg_stats' );
 		if ( empty( $stats ) || !is_array( $stats ) ) {
 			$stats = array();
@@ -38,7 +37,7 @@ class ss_get_stats {
 			'cntchkwlist'		  => 0,
 			'cntchkyahoomerchant' => 0
 		);
-// Deny List Y/N settings
+		// Deny List Y/N settings
 		$defaultsBL = array(
 			'cntchk404'		    => 0,
 			'cntchkaccept'	    => 0,
@@ -224,9 +223,8 @@ class ss_get_stats {
 			'cntchkVN' => 0,
 			'cntchkYE' => 0
 		);
-		$ansa = array_merge( $defaults, $defaultsWL,
-			$defaultsTOTALS, $defaultsBL, $defaultsCountries );
-// get rid of old values no longer used in this version_compare
+		$ansa = array_merge( $defaults, $defaultsWL, $defaultsTOTALS, $defaultsBL, $defaultsCountries );
+		// get rid of old values no longer used in this version_compare
 		foreach ( $ansa as $key => $val ) {
 			if ( array_key_exists( $key, $stats ) ) {
 				$ansa[ $key ] = $stats[ $key ];
@@ -263,7 +261,7 @@ class ss_get_stats {
 		}
 		$ansa['version'] = SS_VERSION;
 		ss_set_stats( $ansa );
-// sfs_debug_msg( "in get ansa\r\n".print_r( $ansa, true ) );
+		// sfs_debug_msg( "in get ansa\r\n".print_r( $ansa, true ) );
 		return $ansa;
 	}
 }

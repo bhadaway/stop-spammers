@@ -6,16 +6,16 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class be_module {
-// useful functions for be classes
-// attemping to make this stand-alone
-// if not passed an array of variables then extract it
+	// useful functions for be classes
+	// attemping to make this stand-alone
+	// if not passed an array of variables then extract it
 	public $searchname = '';
 	public $searchlist = array();
 
-// most common use is as a country lookup - this does the base country lookup if there is no process
+	// most common use is as a country lookup - this does the base country lookup if there is no process
 
 	public static function getafile( $f, $method = 'GET' ) {
-// try this using Wp_Http
+		// try this using Wp_Http
 		if ( !class_exists( 'WP_Http' ) ) {
 			include_once( ABSPATH . WPINC . '/class-http.php' );
 		}
@@ -24,7 +24,7 @@ class be_module {
 		$parms['timeout'] = 10; // bump timeout a little we are timing out in Google
 		$parms['method']  = $method;
 		$result		      = $request->request( $f, $parms );
-// see if there is anything there
+		// see if there is anything there
 		if ( empty( $result ) ) {
 			return '';
 		}
@@ -35,13 +35,13 @@ class be_module {
 		if ( is_object( $result ) ) {
 			$ansa = 'ERR: ' . $result->get_error_message();
 			return $ansa; // return $ansa when debugging
-// return '';
+			// return '';
 		}
 		return '';
 	}
 
 	public static function getSname() {
-// gets the module name from the URL address line
+	// gets the module name from the URL address line
 		$sname = '';
 		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 			$sname = $_SERVER["REQUEST_URI"];
@@ -53,7 +53,7 @@ class be_module {
 				$_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
 			}
 		}
-// echo "sname=$sname<br />";
+		// echo "sname=$sname<br />";
 		if ( empty( $sname ) ) {
 			$sname = '';
 		}
@@ -61,7 +61,7 @@ class be_module {
 	}
 
 	public static function cidr2str( $ipl, $bits ) {
-// finds end range for a numstr input
+		// finds end range for a numstr input
 		$ipl = ip2long( $ipl );
 		$ipl = sprintf( "%u", $ipl );
 		$num = pow( 2, 32 - $bits ) - 1;
@@ -71,10 +71,9 @@ class be_module {
 		return long2ip( $ipl );
 	}
 
-	public function searchList( $needle, &$haystack
-	) { // array in haystack is time=>reason
-// searches an array for an IP or an email
-// simple search array no key
+	public function searchList( $needle, &$haystack ) { // array in haystack is time=>reason
+		// searches an array for an IP or an email
+		// simple search array no key
 		$searchname = $this->searchname;
 		if ( !is_array( $haystack ) ) {
 			return false;
@@ -83,8 +82,7 @@ class be_module {
 		if ( empty( $needle ) ) {
 			return false;
 		}
-		foreach ( $haystack as $search )
-		{ // haystack is a list of names or emails, possibly with wildcards
+		foreach ( $haystack as $search ) { // haystack is a list of names or emails, possibly with wildcards
 			$search = trim( strtolower( $search ) );
 			$reason = $search;
 			if ( empty( $search ) ) {
@@ -93,12 +91,12 @@ class be_module {
 			if ( $needle == $search ) {
 				return "$searchname: $needle";
 			}
-// four kinds of search, looking for an IP, cidr, wildcard or an email
+			// four kinds of search, looking for an IP, cidr, wildcard or an email
 			if ( substr_count( $needle, '.' ) == 3
 				 && strpos( $search, '.' ) !== false
 				 && strpos( $search, '/' ) !== false
 			) {
-// searching for an cidr in the list
+				// searching for an cidr in the list
 				list( $subnet, $mask ) = explode( '/', $search );
 				$x2 = ip2long( $needle ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
 				$x3 = ip2long( $subnet ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
@@ -106,17 +104,15 @@ class be_module {
 					return "$searchname: $reason";
 				}
 			}
-// check for wildcard - both email and IP
-			if ( strpos( $search, '*' ) !== false
-				 || strpos( $search, '?' ) !== false
-			) {
-// new wildcard search
+			// check for wildcard - both email and IP
+			if ( strpos( $search, '*' ) !== false || strpos( $search, '?' ) !== false ) {
+				// new wildcard search
 				if ( be_module::wildcard_match( $search, $needle ) ) {
 					return "$searchname: $reason: $needle";
 				}
 				continue;
 			}
-// check for partial both email and IP
+			// check for partial both email and IP
 			if ( strlen( $needle ) > strlen( $search ) ) {
 				$n = substr( $needle, 0, strlen( $search ) );
 				if ( $n == $search ) {
@@ -149,7 +145,7 @@ class be_module {
 			}
 			return $return;
 		}
-// split patterns by *? but not \* \?
+		// split patterns by *? but not \* \?
 		$pattern = preg_split( '/((?<!\\\)\*)|((?<!\\\)\?)/', $pattern, null,
 			PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
 		foreach ( $pattern as $key => $part ) {
@@ -166,10 +162,9 @@ class be_module {
 		return preg_match( $pattern, $value );
 	}
 
-	public function searchcache( $needle, &$haystack
-	) { // array in haystack is ip=>reason
-// searches an array for an IP or an email - uses wildcards, short instances and cidrs
-// the wlist array is of the form $time->ip
+	public function searchcache( $needle, &$haystack ) { // array in haystack is ip=>reason
+		// searches an array for an IP or an email - uses wildcards, short instances and cidrs
+		// the wlist array is of the form $time->ip
 		$searchname = $this->searchname;
 		if ( !is_array( $haystack ) ) {
 			return false;
@@ -183,28 +178,26 @@ class be_module {
 			if ( $needle == $search ) {
 				return "$searchname: $needle";
 			}
-// four kinds of search, looking for an IP, cidr, wildcard or an email
-// check for wildcard - both email and IP
+			// four kinds of search, looking for an IP, cidr, wildcard or an email
+			// check for wildcard - both email and IP
 			if ( strpos( $search, '*' ) !== false
 				 || strpos( $search, '?' ) !== false
 			) {
 				if ( be_module::wildcard_match( $search, $needle ) ) {
 					return "$searchname: $reason: $needle";
 				}
-// $search=substr( $search, 0, strpos( $search, '*' ) );
-// if ( $search = substr( $needle, 0, strlen( $search ) ) ) return "$searchname: $reason";
+				// $search=substr( $search, 0, strpos( $search, '*' ) );
+				// if ( $search = substr( $needle, 0, strlen( $search ) ) ) return "$searchname: $reason";
 			}
-// check for partial both email and IP
+			// check for partial both email and IP
 			if ( strlen( $needle ) > strlen( $search ) ) {
 				$n = substr( $needle, 0, strlen( $search ) );
 				if ( $n == $search ) {
 					return "$searchname: $reason";
 				}
 			}
-			if ( substr_count( $needle, '.' ) == 3
-				 && strpos( $search, '/' ) !== false
-			) {
-// searching for an cidr in the list
+			if ( substr_count( $needle, '.' ) == 3 && strpos( $search, '/' ) !== false ) {
+				// searching for an cidr in the list
 				list( $subnet, $mask ) = explode( '/', $search );
 				$x2 = ip2long( $needle ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
 				$x3 = ip2long( $subnet ) & ~( ( 1 << ( 32 - $mask ) ) - 1 );
@@ -220,20 +213,20 @@ class be_module {
 		$ip, &$stats = array(), &$options = array(), &$post = array() ) {
 			return be_module::ipListMatch( $ip );
 		}
-// https://github.com/andrewtch/phpwildcard/blob/master/wildcard_match.php
+		// https://github.com/andrewtch/phpwildcard/blob/master/wildcard_match.php
 
 	public function ipListMatch( $ip ) {
-// does a match agains a list of IP addresses
+		// does a match agains a list of IP addresses
 		$ipt = be_module::ip2numstr( $ip );
 		foreach ( $this->searchlist as $c ) {
 			if ( !is_array( $c ) ) {
-// this might be a cidr
+				// this might be a cidr
 				if ( substr_count( $c, '.' ) == 3 ) {
 					if ( strpos( $c, '/' ) !== false ) {
-// cidr
+						// cidr
 						$c = be_module::cidr2ip( $c );
 					} else {
-// single IP
+						// single IP
 						$c = array( $c, $c );
 					}
 				}
@@ -291,9 +284,9 @@ class be_module {
 			return false;
 		}
 		list( $ip, $bits ) = explode( '/', $cidr );
-// echo "1) Bad end $ip, $bits,<br />";
+		// echo "1) Bad end $ip, $bits,<br />";
 		$ip = be_module::fixip( $ip ); // in case the wrong number of dots
-// echo "2) Bad end $ip, $bits,<br />";
+		// echo "2) Bad end $ip, $bits,<br />";
 		if ( $ip === false ) {
 			return false;
 		}
@@ -302,21 +295,21 @@ class be_module {
 		$end   = sprintf( "%u", $end );
 		$end1  = $end + 0;
 		$num   = pow( 2, 32 - $bits ) - 1;
-// echo "4) Bad end $num,<br />";
+		// echo "4) Bad end $num,<br />";
 		$end = ( $end + 0 ) | $num;
 		$end = $end + 1;
-// $pend=long2ip($end);
-// echo "3) Bad end $pend,<br />";
+		// $pend=long2ip($end);
+		// echo "3) Bad end $pend,<br />";
 		$end2 = long2ip( $end );
 		if ( $end == '128.0.0.0' ) {
-// echo "Bad end $ip, $bits,$end, $end1, $end2, $num)<br />";
+		// echo "Bad end $ip, $bits,$end, $end1, $end2, $num)<br />";
 		}
 		$start = be_module::cidrStart2str( $start, $bits );
 		return array( $start, $end2 );
 	}
 
 	public static function fixip( $ip ) {
-// checks IP for right number of zeros
+		// checks IP for right number of zeros
 		$ip = trim( $ip );
 		if ( empty( $ip ) ) {
 			return false;
@@ -337,18 +330,17 @@ class be_module {
 	}
 
 	public static function cidrStart2str( $ipl, $bits ) {
-// finds end range for a numstr input
+		// finds end range for a numstr input
 		$ipl = ip2long( $ipl );
 		$ipl = sprintf( "%u", $ipl );
 		$num = pow( 2, 32 - $bits ) - 1;
-// echo decbin( $num ) . '<br />';
+		// echo decbin( $num ) . '<br />';
 		$ipl = $ipl + 0;
-// echo decbin( $ipl ) . '<br />';
+		// echo decbin( $ipl ) . '<br />';
 		$z = pow( 2, 33 ) - 1;
-// echo 'z' . decbin( $z ) . '<br />';
-		$z = $num
-			 ^ $z; // 10000000000000000000000000000 xor 0000000000000000000011111 = 011111111111111111111111100000
-// echo 'z2' . decbin( $z ) . '<br />';
+		// echo 'z' . decbin( $z ) . '<br />';
+		$z = $num ^ $z; // 10000000000000000000000000000 xor 0000000000000000000011111 = 011111111111111111111111100000
+		// echo 'z2' . decbin( $z ) . '<br />';
 		$ipl = $ipl & $z;
 		return long2ip( $ipl );
 	}

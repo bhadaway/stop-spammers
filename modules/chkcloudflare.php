@@ -8,15 +8,13 @@ if ( !defined( 'ABSPATH' ) ) {
 
 // last updated from https://www.cloudflare.com/ips/ on 12/22/20
 class chkcloudflare extends be_module {
-// if the Cloudflare plugin is not installed then the IP will be Cloudflare's - can't check this
-// as of 6.03 can also correct it
-// no longer returns anything but false - if we detect cloudflare we fix it
-// if we detect Cloudflare and can't fix it we can't really do anything about it - just block it
-// Cloudflare will be whitelisted in the generated whitelist
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// return false;
+	// if the Cloudflare plugin is not installed then the IP will be Cloudflare's - can't check this
+	// as of 6.03 can also correct it
+	// no longer returns anything but false - if we detect cloudflare we fix it
+	// if we detect Cloudflare and can't fix it we can't really do anything about it - just block it
+	// Cloudflare will be whitelisted in the generated whitelist
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// return false;
 		if ( function_exists( 'cloudflare_init' ) ) {
 			return false;
 		} // no sense proceeding, Cloudflare is on the case
@@ -50,7 +48,7 @@ class chkcloudflare extends be_module {
 		);
 		$cf_found  = false;
 		if ( strpos( $ip, '.' ) !== false ) {
-// check the Cloudflare ranges using cidr
+			// check the Cloudflare ranges using cidr
 			$ipl = ip2long( $ip );
 			foreach ( $ip4ranges as $ip4 ) {
 				list( $range, $bits ) = explode( '/', $ip4, 2 );
@@ -58,10 +56,10 @@ class chkcloudflare extends be_module {
 				$mask = - 1 << ( 32 - $bits );
 				$ipt = $ipl & $mask;
 				$ipr = $ipr & $mask;
-// echo "$ipr - $ipl <br />";
+				// echo "$ipr - $ipl <br />";
 				if ( $ipt == $ipr ) {
-// goto is not supported in older versions of PHP
-// goto cf_true; // I love it!I haven't coded a goto in over 25 years.
+					// goto is not supported in older versions of PHP
+					// goto cf_true; // I love it!I haven't coded a goto in over 25 years.
 					$cf_found = true;
 					break;
 				}
@@ -69,9 +67,9 @@ class chkcloudflare extends be_module {
 		} else if ( strpos( $ip, ':' ) !== false && strlen( $ip ) >= 9 ) {
 			$ip = strtolower( $ip ); // not sure what Apache sends us
 			foreach ( $ip6ranges as $ip6 ) {
-// cheat - Cloudflare uses 32 bit masks so just use the first 9 characters
+				// cheat - Cloudflare uses 32 bit masks so just use the first 9 characters
 				if ( substr( $ip6, 0, 9 ) == substr( $ip, 0, 9 ) ) {
-//goto cf_true;
+					// goto cf_true;
 					$cf_found = true;
 					break;
 				}
@@ -80,8 +78,8 @@ class chkcloudflare extends be_module {
 		if ( !$cf_found ) {
 			return false;
 		}
-// cf_true:
-// we need to use the IP borrowed from Cloudflare
+		// cf_true:
+		// we need to use the IP borrowed from Cloudflare
 		if ( array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER ) ) {
 			if ( array_key_exists( 'REMOTE_ADDR', $_SERVER ) ) {
 				$_SERVER["REMOTE_ADDR"] = $_SERVER["HTTP_CF_CONNECTING_IP"];

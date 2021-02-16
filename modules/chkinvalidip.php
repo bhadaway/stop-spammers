@@ -7,9 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkinvalidip {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		if ( strpos( $ip, '.' ) === false && strpos( $ip, ':' ) === false ) {
 			_e( 'Invalid IP: ', 'stop-spammer-registrations-plugin' ) . $ip;
 		}
@@ -26,7 +24,7 @@ class chkinvalidip {
 		if ( $ips >= '224000000000' && $ips <= '239255255255' ) {
 			_e( 'IPv4 Multicast Address Space Registry', 'stop-spammer-registrations-plugin' );
 		}
-// reserved for future use >= 240.0.0.0
+		// reserved for future use >= 240.0.0.0
 		if ( $ips >= '240000000000' && $ips <= '255255255255' ) {
 			_e( 'Reserved for future use', 'stop-spammer-registrations-plugin' );
 		}

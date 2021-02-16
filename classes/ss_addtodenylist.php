@@ -6,20 +6,18 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_addtodenylist {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// adds to Deny List
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// adds to Deny List
 		$now = date( 'Y/m/d H:i:s',
 			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$blist = $options['blist'];
-// add this IP to your Allow List
+		// add this IP to your Allow List
 		if ( !in_array( $ip, $blist ) ) {
 			$blist[] = $ip;
 		}
 		$options['blist'] = $blist;
 		ss_set_options( $options );
-// need to remove from caches
+		// need to remove from caches
 		$badips = $stats['badips'];
 		if ( array_key_exists( $ip, $badips ) ) {
 			unset( $badips[ $ip ] );

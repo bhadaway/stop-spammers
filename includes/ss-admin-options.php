@@ -49,7 +49,7 @@ function sfs_handle_ajax() {
 }
 
 function ss_sp_plugin_action_links( $links, $file ) {
-// get the links
+	// get the links
 	if ( strpos( $file, 'stop-spammer' ) === false ) {
 		return $links;
 	}
@@ -58,8 +58,8 @@ function ss_sp_plugin_action_links( $links, $file ) {
 	} else {
 		$link = '<a href="' . admin_url( 'admin.php?page=stop_spammers' ) . '">' . __( 'Settings', 'stop-spammer-registrations-plugin' ) . '</a>';
 	}
-// check to see if we are in network
-// to-do
+	// check to see if we are in network
+	// to-do
 	$links[] = $link;
 	return $links;
 }
@@ -69,7 +69,7 @@ function ss_sp_rightnow() {
 	extract( $stats );
 	$options = ss_get_options();
 	if ( $spmcount > 0 ) {
-// get the path to the plugin
+		// get the path to the plugin
 		_e( '<p>Stop Spammers has prevented <strong>' . $spmcount . '</strong> spammers from registering or leaving comments.</p>', 'stop-spammer-registrations-plugin' );
 	}
 	if ( count( $wlrequests ) == 1 ) {
@@ -85,15 +85,15 @@ function ss_row( $actions, $comment ) {
 	$email	  = urlencode( $comment->comment_author_email );
 	$ip	      = $comment->comment_author_IP;
 	$action   = "";
-// $action.="|";
-// $action.="<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
-// add the network check
+	// $action.="|";
+	// $action.="<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
+	// add the network check
 	$whois	  = SS_PLUGIN_URL . 'images/whois.png';
 	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
 	$stophand = SS_PLUGIN_URL . 'images/stop.png';
 	$stop	  = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\" /> </a>";
 	$action  .= " $who $stop";
-// now add the report function
+	// now add the report function
 	$email = urlencode( $comment->comment_author_email );
 	if ( empty( $email ) ) {
 		$actions['check_spam'] = $action;
@@ -114,7 +114,7 @@ function ss_row( $actions, $comment ) {
 	} else {
 		$urls1 = array();
 	}
-// BBCode
+	// BBCode
 	preg_match_all( '/\[url=(.+)\]/iU', $content, $post, PREG_PATTERN_ORDER );
 	if ( is_array( $post ) && is_array( $post[0] ) ) {
 		$urls2 = array_unique( $post[0] );
@@ -139,8 +139,8 @@ function ss_row( $actions, $comment ) {
 	}
 	$ajaxurl = admin_url( 'admin-ajax.php' );
 	if ( !empty( $apikey ) ) {
-// $target="target=\"ss_sfs_reg_if1\"";
-// make this the xlsrpc call
+		// $target="target=\"ss_sfs_reg_if1\"";
+		// make this the xlsrpc call
 		$href	 = "href=\"#\"";
 		$onclick = "onclick=\"sfs_ajax_report_spam(this,'$ID','$blog','$ajaxurl');return false;\"";
 	}
@@ -164,31 +164,31 @@ function ipChkk() {
 }
 
 function sfs_handle_ajax_sub( $data ) {
-// check to see if it user can manage options
+	// check to see if it user can manage options
 	if ( !is_user_logged_in() ) {
 		return;
 	}
 	if ( !current_user_can( 'manage_options' ) ) {
 		return;
 	}
-// suddenly loading before 'init' has loaded things?
-// get the stuff from the $_GET and call stop forum spam
-// this tages the stuff from the get and uses it to do the get from SFS
-// get the configuration items
+	// suddenly loading before 'init' has loaded things?
+	// get the stuff from the $_GET and call stop forum spam
+	// this tages the stuff from the get and uses it to do the get from SFS
+	// get the configuration items
 	$options = get_option( 'ss_stop_sp_reg_options' ); // for some reason the main call is not available?
 	if ( empty( $options ) ) { // can't happen?
 		_e( ' No Options Set', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
-// print_r( $options );
+	// print_r( $options );
 	extract( $options );
-// get the comment_id parameter	
+	// get the comment_id parameter	
 	$comment_id = urlencode( $_GET['comment_id'] );
 	if ( empty( $comment_id ) ) {
 		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
-// need to pass the blog ID also
+	// need to pass the blog ID also
 	$blog = '';
 	$blog = $_GET['blog_id'];
 	if ( $blog != '' ) {
@@ -196,7 +196,7 @@ function sfs_handle_ajax_sub( $data ) {
 			switch_to_blog( $blog );
 		}
 	}
-// get the comment
+	// get the comment
 	$comment = get_comment( $comment_id, ARRAY_A );
 	if ( $comment_id == 'registration' ) {
 		$comment = array(
@@ -212,11 +212,11 @@ function sfs_handle_ajax_sub( $data ) {
 			exit();
 		}
 	}
-// print_r( $comment );
-	$email	= urlencode( $comment['comment_author_email'] );
-	$uname	= urlencode( $comment['comment_author'] );
+	// print_r( $comment );
+	$email	  = urlencode( $comment['comment_author_email'] );
+	$uname	  = urlencode( $comment['comment_author'] );
 	$ip_addr  = $comment['comment_author_IP'];
-// code added as per Paul at Stop Forum Spam
+	// code added as per Paul at Stop Forum Spam
 	$content  = $comment['comment_content'];
 	$evidence = $comment['comment_author_url'];
 	if ( $blog != '' ) {
@@ -236,7 +236,7 @@ function sfs_handle_ajax_sub( $data ) {
 	} else {
 		$urls1 = array();
 	}
-// BBCode
+	// BBCode
 	preg_match_all( '/\[url=(.+)\]/iU', $content, $post, PREG_PATTERN_ORDER );
 	if ( is_array( $post ) && is_array( $post[0] ) ) {
 		$urls2 = array_unique( $post[0] );
@@ -256,7 +256,7 @@ function sfs_handle_ajax_sub( $data ) {
 		exit();
 	}
 	$hget = "https://www.stopforumspam.com/add.php?ip_addr=$ip_addr&api_key=$apikey&email=$email&username=$uname&evidence=$evidence";
-// echo $hget;
+	// echo $hget;
 	$ret  = ss_read_file( $hget );
 	if ( stripos( $ret, __( 'data submitted successfully', 'stop-spammer-registrations-plugin' ) ) !== false ) {
 		echo $ret;
@@ -278,7 +278,7 @@ function sfs_get_urls( $content ) {
 	} else {
 		$urls1 = array();
 	}
-// BBCode
+	// BBCode
 	preg_match_all( '/\[url=(.+)\]/iU', $content, $post, PREG_PATTERN_ORDER );
 	if ( is_array( $post ) && is_array( $post[0] ) ) {
 		$urls2 = array_unique( $post[0] );
@@ -300,8 +300,8 @@ function sfs_handle_ajax_check( $data ) {
 		_e( ' Not Enabled', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
-// this does a call to the SFS site to check a known spammer
-// returns success or not
+	// this does a call to the SFS site to check a known spammer
+	// returns success or not
 	$query = "https://www.stopforumspam.com/api?ip=91.186.18.61";
 	$check = '';
 	$check = ss_sfs_reg_getafile( $query );
@@ -312,7 +312,7 @@ function sfs_handle_ajax_check( $data ) {
 			_e( ' Access to the Stop Forum Spam Database Shows Errors\r\n', 'stop-spammer-registrations-plugin' );
 			_e( ' Response Was: ' . $check . '\r\n', 'stop-spammer-registrations-plugin' );
 		}
-// access to the Stop Forum Spam database is working
+		// access to the Stop Forum Spam database is working
 		$n = strpos( $check, '<response success="true">' );
 		if ( $n === false ) {
 			_e( ' Access to the Stop Forum Spam Database is Not Working\r\n', 'stop-spammer-registrations-plugin' );
@@ -339,9 +339,9 @@ function sfs_handle_ajax_sfs_process( $data ) {
 }
 
 function sfs_handle_ajax_sfs_process_watch( $data ) {
-// anything in data? never
-// get the things out of the get
-// check for valid get
+	// anything in data? never
+	// get the things out of the get
+	// check for valid get
 	if ( !array_key_exists( 'func', $_GET ) ) {
 		_e( ' Function Not Found', 'stop-spammer-registrations-plugin' );
 		exit();
@@ -354,23 +354,23 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 	$email	   = $_GET['email'];
 	$container = $_GET['cont'];
 	$func	   = $_GET['func'];
-// echo "error $ip, $func, $container," . print_r( $_GET, true ) ;exit();
-// container is blank, goodips, badips or log
-// func is add_black, add_white, delete_gcache or delete_bcache
+	// echo "error $ip, $func, $container," . print_r( $_GET, true ) ;exit();
+	// container is blank, goodips, badips or log
+	// func is add_black, add_white, delete_gcache or delete_bcache
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-// $stats, $options );
+	// $stats, $options );
 	$ansa	 = array();
 	switch ( $func ) {
 		case 'delete_gcache':
-// deletes a Good Cache item
+			// deletes a Good Cache item
 			$ansa = be_load( 'ss_remove_gcache', $ip, $stats, $options );
 			$show = be_load( 'ss_get_gcache', 'x', $stats, $options );
 			echo $show;
 			exit();
 			break;
 		case 'delete_bcache':
-// deletes a Bad Cache item
+			// deletes a Bad Cache item
 			$ansa = be_load( 'ss_remove_bcache', $ip, $stats, $options );
 			$show = be_load( 'ss_get_bcache', 'x', $stats, $options );
 			echo $show;
@@ -436,14 +436,14 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 			echo $ansa;
 			exit();
 		default:
-// coming from logs report we need to display an appropriate message, I think
+			// coming from logs report we need to display an appropriate message, I think
 			_e( 'Something is missing ' . $container . ' ', 'stop-spammer-registrations-plugin' );
 			exit();
 	}
 }
 
 function ss_sfs_ip_column( $value, $column_name, $user_id ) {
-// get the IP for this column
+	// get the IP for this column
 	$trash	  = SS_PLUGIN_URL . 'images/trash.png';
 	$tdown	  = SS_PLUGIN_URL . 'images/tdown.png';
 	$tup	  = SS_PLUGIN_URL . 'images/tup.png';
@@ -456,7 +456,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 		$ipline	 = "";
 		if ( !empty( $signup_ip ) ) {
 			$ipline = apply_filters( 'ip2link', $signup_ip2 ); // if the ip2link plugin is installed
-// now add the check 
+			// now add the check 
 			$user_info   = get_userdata( $user_id );
 			$useremail   = urlencode( $user_info->user_email ); // for reporting
 			$userurl	 = urlencode( $user_info->user_url );

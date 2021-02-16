@@ -7,33 +7,21 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkvalidip {
-	/**
-	 * Check for a fake IP
-	 *
-	 * @param string $ip Client IP
-	 * @param string $host Client Host [optional]
-	 *
-	 * @return  boolean		 TRUE if fake IP
-	 * @since   2.0
-	 * @change  2.6.2
-	 *
-	 */
+	// check for a fake IP
 	private static function _is_fake_ip( $client_ip ) {
 		$client_host = "";
-		/* Remote Host */
+		// remote host
 		$host_by_ip = gethostbyaddr( $client_ip );
-		/* IPv6 special */
+		// IPv6 special
 		if ( self::_is_ipv6( $client_ip ) ) {
-			if ( self::_is_ipv6( $host_by_ip )
-				 && inet_pton( $client_ip ) === inet_pton( $host_by_ip )
-			) {
-// no domain
+			if ( self::_is_ipv6( $host_by_ip ) && inet_pton( $client_ip ) === inet_pton( $host_by_ip ) ) {
+				// no domain
 				return false;
 			} else {
-// has domain
+				// has domain
 				$record = dns_get_record( $host_by_ip, DNS_AAAA );
 				if ( empty( $record ) || empty( $record[0]['ipv6'] ) ) {
-// no reverse entry
+					// no reverse entry
 					return true;
 				} else {
 					return inet_pton( $client_ip )
@@ -41,7 +29,7 @@ class chkvalidip {
 				}
 			}
 		}
-		/* IPv4 / Comment */
+		// IPv4 / comment
 		if ( empty( $client_host ) ) {
 			$ip_by_host = gethostbyname( $host_by_ip );
 			if ( $ip_by_host === $host_by_ip ) {
@@ -59,43 +47,17 @@ class chkvalidip {
 		}
 		return false;
 	}
-// checking for fake IP
-
-	/**
-	 * Check for an IPv6 address
-	 *
-	 * @param string $ip IP to validate
-	 *
-	 * @return  boolean  TRUE if IPv6
-	 * @since   2.6.2
-	 * @change  2.6.2
-	 *
-	 */
+	// check for IPv6
 	private static function _is_ipv6( $ip ) {
-//return !$this->_is_ipv4( $ip );
-		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 )
-			   !== false;
+		// return !$this->_is_ipv4( $ip );
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) !== false;
 	}
-
-	/**
-	 * Check for an IPv4 address
-	 *
-	 * @param string $ip IP to validate
-	 *
-	 * @return  integer  TRUE if IPv4
-	 * @since   2.4
-	 * @change  2.6.2
-	 *
-	 */
+	// check for IPv4
 	private static function _is_ipv4( $ip ) {
-//return preg_match( '/^\d{1,3}( \.\d{1,3} ){3,3}$/', $ip );
-		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 )
-			   !== false;
+		// return preg_match( '/^\d{1,3}( \.\d{1,3} ){3,3}$/', $ip );
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) !== false;
 	}
-
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		if ( empty( $ip ) ) {
 			_e( 'Invalid IP: ', 'stop-spammer-registrations-plugin' ) . $ip;
 		}
@@ -111,7 +73,7 @@ class chkvalidip {
 				_e( 'Invalid IP: ', 'stop-spammer-registrations-plugin' ) . $ip;
 			}
 		}
-// check IPv4 for local private IP addresses
+		// check IPv4 for local private IP addresses
 		if ( $ip == '127.0.0.1' ) {
 			_e( 'Accessing Site Through localhost', 'stop-spammer-registrations-plugin' );
 		}
@@ -129,8 +91,8 @@ class chkvalidip {
 				break;
 			} // sorted so we can bail
 		}
-// use the experimental check fake IP routine
-// doesn't work on older PHPs or some servers without IPv6 support enables
+		// use the experimental check fake IP routine
+		// doesn't work on older PHPs or some servers without IPv6 support enables
 		/*
 		try {
 		if ( $this->_is_fake_ip( $ip ) ) {
@@ -140,12 +102,12 @@ class chkvalidip {
 		return $e;
 		}
 		*/
-// check for IPv6
+		// check for IPv6
 		$lip = "127.0.0.1";
 		if ( substr( $ip, 0, 2 ) == 'FB' || substr( $ip, 0, 2 ) == 'fb' ) {
 			__( 'Local IP Address: ', 'stop-spammer-registrations-plugin' ) . $ip;
 		}
-// see if server and browser are running on same server
+		// see if server and browser are running on same server
 		if ( array_key_exists( 'SERVER_ADDR', $_SERVER ) ) {
 			$lip = $_SERVER["SERVER_ADDR"];
 			if ( $ip == $lip ) {
@@ -163,10 +125,10 @@ class chkvalidip {
 					_e( 'IP Same as Server: ', 'stop-spammer-registrations-plugin' ) . $ip;
 				}
 			} catch ( Exception $e ) {
-// can't make this work - ignore
+			// can't make this work - ignore
 			}
 		}
-// we can do this with IPv4 addresses - check if same /24 subnet
+		// we can do this with IPv4 addresses - check if same /24 subnet
 		$j = strrpos( $ip, '.' );
 		if ( $j === false ) {
 			return false;

@@ -7,17 +7,14 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_log_bad extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		$chk = 'error';
 		extract( $stats );
 		extract( $post );
 		$sname = $this->getSname();
-		$now   = date( 'Y/m/d H:i:s',
-			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-// updates counters - adds to log list - adds to Bad Cache - then updates stats when done
-// start with the counters - does some extra checks in case the stats file gets corrupted
+		$now   = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		// updates counters - adds to log list - adds to Bad Cache - then updates stats when done
+		// start with the counters - does some extra checks in case the stats file gets corrupted
 		if ( array_key_exists( 'spcount', $stats ) ) {
 			$stats['spcount'] ++;
 		} else {
@@ -33,7 +30,7 @@ class ss_log_bad extends be_module {
 		} else {
 			$stats[ 'cnt' . $chk ] = 1;
 		}
-// now the cache - need to purge it for time and length
+		// now the cache - need to purge it for time and length
 		$ss_sp_cache   = $options['ss_sp_cache'];
 		$badips[ $ip ] = $now;
 		asort( $badips );
@@ -48,7 +45,7 @@ class ss_log_bad extends be_module {
 			}
 		}
 		$stats['badips'] = $badips;
-// now we need to log the IP and reason
+		// now we need to log the IP and reason
 		$blog = '';
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 			global $blog_id;
@@ -56,12 +53,11 @@ class ss_log_bad extends be_module {
 				$blog = $blog_id;
 			}
 		}
-// 
 		$ss_sp_hist = $options['ss_sp_hist'];
 		while ( count( $hist ) > $ss_sp_hist ) {
 			array_shift( $hist );
 		}
-// if ( !empty( $pwd ) ) $author=$author.'/'.$pwd; // show bad passwords?
+		// if ( !empty( $pwd ) ) $author=$author.'/'.$pwd; // show bad passwords?
 		$hist[ $now ]  = array( $ip, $email, $author, $sname, $reason, $blog );
 		$stats['hist'] = $hist;
 		if ( array_key_exists( 'addon', $post ) ) {
@@ -69,9 +65,8 @@ class ss_log_bad extends be_module {
 		} else {
 			ss_set_stats( $stats );
 		}
-// we can report the spam to add-ons here
-		do_action( 'ss_stop_spam_caught', $ip,
-			$post ); // post has the chk and reason in the array plus all the other info
+		// we can report the spam to add-ons here
+		do_action( 'ss_stop_spam_caught', $ip, $post ); // post has the chk and reason in the array plus all the other info
 		be_load( 'ss_challenge', $ip, $stats, $options, $post );
 		exit();
 	}

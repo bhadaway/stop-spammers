@@ -6,9 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkagent extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		if ( !array_key_exists( 'badagents', $options ) ) {
 			return false;
 		}
@@ -23,7 +21,7 @@ class chkagent extends be_module {
 		if ( empty( $agent ) ) {
 			_e( 'Missing User Agent', 'stop-spammer-registrations-plugin' );
 		}
-// user agent can be spoofed - move these exclusions to a better test when finished
+		// user agent can be spoofed - move these exclusions to a better test when finished
 		if ( stripos( $agent, 'docs.google.com/viewer' ) !== false ) {
 			return false;
 		} // fix this?

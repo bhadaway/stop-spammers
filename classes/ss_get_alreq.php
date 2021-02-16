@@ -7,9 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_get_alreq {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		extract( $stats );
 		extract( $options );
 		$trash	     = SS_PLUGIN_URL . 'images/trash.png';
@@ -19,20 +17,20 @@ class ss_get_alreq {
 		$ajaxurl	 = admin_url( 'admin-ajax.php' );
 		$show		 = '';
 		$nwlrequests = array();
-// sfs_debug_msg( 'wlrequests ' . print_r( $wlrequests, true ) );
+		// sfs_debug_msg( 'wlrequests ' . print_r( $wlrequests, true ) );
 		foreach ( $wlrequests as $key => $value ) {
 			$sw = true;
 			if ( !empty( $ip ) && $ip != 'x' ) {
 				if ( $key == $ip ) {
-// sfs_debug_msg( "wlreq matched '$ip'" );
+					// sfs_debug_msg( "wlreq matched '$ip'" );
 					$sw = false;
 				}
 				if ( $ip == trim( $value[0] ) ) { // match IP
-// sfs_debug_msg( "wlreq val 0 '$value[0]'" );
+					// sfs_debug_msg( "wlreq val 0 '$value[0]'" );
 					$sw = false;
 				}
 				if ( $ip == trim( $value[1] ) ) { // match email
-// sfs_debug_msg( "wlreq val 1 '$value[1]'" );
+					// sfs_debug_msg( "wlreq val 1 '$value[1]'" );
 					$sw = false;
 				}
 			}
@@ -55,7 +53,7 @@ class ss_get_alreq {
 			}
 		}
 		$stats['wlrequests'] = $nwlrequests;
-// sfs_debug_msg( 'nwlrequests ' . print_r( $nwlrequests, true ) );
+		// sfs_debug_msg( 'nwlrequests ' . print_r( $nwlrequests, true ) );
 		if ( array_key_exists( 'addon', $post ) ) {
 			ss_set_stats( $stats, $post['addon'] );
 		} else {

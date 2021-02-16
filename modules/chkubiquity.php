@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 class chkubiquity extends be_module {
 	public $searchname = 'Ubiquity';
 	public $searchlist = array(
-// ubiquity IP numbers as of 6/13/2014
+			// ubiquity IP numbers as of 6/13/2014
 			'XSServer',
 			array( '46.251.228.0', '46.251.229.255' ),
 			array( '109.230.197.0', '109.230.197.255' ),

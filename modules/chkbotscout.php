@@ -6,9 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkbotscout extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		$disabled = true;
 		if ( $disabled ) {
 			return false;
@@ -36,7 +34,7 @@ class chkbotscout extends be_module {
 			if ( strpos( $check, '|' ) ) {
 				$result = explode( '|', $check );
 				if ( count( $result ) > 2 ) {
-// Y|IP|3 - found, type, database occurrences
+					// Y|IP|3 - found, type, database occurrences
 					if ( $result[0] == 'Y' && $result[2] > $botfreq ) {
 						return 'BotScout, ' . $result[2];
 					}

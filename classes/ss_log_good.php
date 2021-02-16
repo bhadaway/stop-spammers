@@ -7,30 +7,27 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_log_good extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// are we getting stats?
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// are we getting stats?
 		$chk = "error";
 		extract( $stats );
 		extract( $post );
-// reason and chk are from the post array
+		// reason and chk are from the post array
 		if ( array_key_exists( 'cnt' . $chk, $stats ) ) {
 			$stats[ 'cnt' . $chk ] ++;
 		} else {
 			$stats[ 'cnt' . $chk ] = 1;
 		}
 		$sname = $this->getSname();
-		$now   = date( 'Y/m/d H:i:s',
-			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-// updates counters - adds to log list - adds to Good Cache - then updates stats when done
-// start with the counters - does some extra checks in case the stats file gets corrupted
+		$now   = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		// updates counters - adds to log list - adds to Good Cache - then updates stats when done
+		// start with the counters - does some extra checks in case the stats file gets corrupted
 		if ( array_key_exists( 'cntpass', $stats ) ) {
 			$stats['cntpass'] ++;
 		} else {
 			$stats['cntpass'] = 1;
 		}
-// now the cache - need to purge it for time and length
+		// now the cache - need to purge it for time and length
 		$ss_sp_good	 = $options['ss_sp_good'];
 		$goodips[ $ip ] = $now;
 		asort( $goodips );
@@ -45,7 +42,7 @@ class ss_log_good extends be_module {
 			}
 		}
 		$stats['goodips'] = $goodips;
-// now we need to log the IP and reason
+		// now we need to log the IP and reason
 		$blog = '';
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 			global $blog_id;

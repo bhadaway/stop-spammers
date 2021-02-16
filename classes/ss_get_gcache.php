@@ -6,10 +6,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class ss_get_gcache {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
-// gets the innerhtml for cache - same as get gcache except for names
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
+		// gets the innerhtml for cache - same as get gcache except for names
 		$goodips   = $stats['goodips'];
 		$cachedel  = 'delete_gcache';
 		$container = 'goodips';
@@ -24,7 +22,7 @@ class ss_get_gcache {
 		foreach ( $goodips as $key => $value ) {
 			$who	 = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$key\"><img src=\"$whois\" height=\"16px\" /></a>";
 			$show   .= "<a href=\"https://www.stopforumspam.com/search?q=$key\" target=\"_stopspam\">$key: $value</a> ";
-// try AJAX on the delete from bad cache
+			// try AJAX on the delete from bad cache
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','$cachedel','$ajaxurl');return false;\"";
 			$show   .= " <a href=\"\" $onclick title=\"" . esc_attr__( 'Delete $key from Cache', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Delete $key from Cache', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$trash\" height=\"16px\" /></a> ";
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','add_black','$ajaxurl');return false;\"";

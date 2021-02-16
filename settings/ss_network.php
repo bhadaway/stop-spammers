@@ -12,6 +12,7 @@ if ( !current_user_can( 'manage_options' ) ) {
 ss_fix_post_vars();
 
 ?>
+
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head">Stop Spammers — <?php _e( 'Multisite', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php
@@ -41,7 +42,7 @@ ss_fix_post_vars();
 			_e( '<h2>Options Updated</h2>', 'stop-spammer-registrations-plugin' );
 		}
 	} else {
-// echo "no nonce<br />";
+	// echo "no nonce<br />";
 	}
 	$nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
@@ -52,12 +53,10 @@ ss_fix_post_vars();
 			<legend>
 				<span style="font-weight:bold;font-size:1.2em"><?php _e( 'Network Blog Option', 'stop-spammer-registrations-plugin' ); ?></span>
 			</legend>
-			<p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) {
-					echo "checked=\"true\"";
-				} ?> /><br />
-				<?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) {
-					echo "checked=\"true\"";
-				} ?> /><br />
+			<p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) { echo 'checked="true"'; } ?> />
+				<br />
+				<?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) { echo 'checked="true"'; } ?> />
+				<br />
 				<?php _e( 'If you are running WPMU and want to control options and history
 				through the main login admin panel,
 				select ON. If you select OFF, each blog will have to configure

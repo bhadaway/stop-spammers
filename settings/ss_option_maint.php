@@ -181,7 +181,7 @@ ss_fix_post_vars();
 		'widget_rss',
 		'widget_search',
 		'widget_text',
-// some that I added because changing caused problems
+		// some that I added because changing caused problems
 		'akismet_available_servers',
 		'auth_key',
 		'auth_salt',
@@ -206,7 +206,7 @@ ss_fix_post_vars();
 		'auto_core_update_notified',
 		'link_manager_enabled',
 		'WPLANG',
-// added by jetsam -------------------------------------------
+		// added by jetsam -------------------------------------------
 		'ss_stop_sp_reg_options', // not for all
 		'ss_stop_sp_reg_stats', // not for all
 		// wp opts
@@ -221,8 +221,7 @@ ss_fix_post_vars();
 		'site_icon',
 		'theme_switch_menu_locations',
 		'wp_page_for_privacy_policy',
-// ----------------------------------------------------------
-
+		// ----------------------------------------------------------
 	);
 	global $wpdb;
 	// global $wp_query;
@@ -232,16 +231,16 @@ ss_fix_post_vars();
 	$arows = $wpdb->get_results( $sql, ARRAY_A );
 	// filter out the ones we don't like
 	// echo "<br /> $sql : size of options array " . $ptab . " = " . count( $arows ) . "<br />";
-	$rows = array();
+	$rows  = array();
 	foreach ( $arows as $row ) {
 		$uop  = true;
 		$name = $row['option_name'];
 		if ( !in_array( $name, $sysops ) ) {
-// check for name like for transients
-// _transient_ , _site_transient_
+			// check for name like for transients
+			// _transient_ , _site_transient_
 			foreach ( $sysops as $op ) {
 				if ( strpos( $name, $op ) !== false ) {
-// hit a name like
+					// hit a name like
 					$uop = false;
 					break;
 				}
@@ -256,7 +255,7 @@ ss_fix_post_vars();
 	// $rows has the allowed options - all default and system options have been excluded
 	$nonce = wp_create_nonce( 'ss_update' );
 	?>
-	<form method="POST" name="DOIT2" action="">
+	<form method="post" name="DOIT2" action="">
 		<input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
 		<table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
 			<thead>
@@ -275,7 +274,7 @@ ss_fix_post_vars();
 				$sz = strlen( $option_value );
 				$au = $autoload;
 				$sz = number_format( $sz );
-//if ($autoload=='no') $au='No';
+				// if ( $autoload=='no' ) $au='No';
 				?>
 				<tr class="ss_cleanup_tr" bgcolor="#fff">
 					<td align="center"><?php echo $option_name; ?></td>
@@ -297,19 +296,16 @@ ss_fix_post_vars();
 	$m1 = number_format( $m1 );
 	$m3 = number_format( $m3 );
 	_e( '<p>Memory Usage Currently: ' . $m1 . ' Peak: ' . $m3 . '</p>', 'stop-spammer-registrations-plugin' );
-	$nonce		  = wp_create_nonce( 'ss_update2' );
+	$nonce		    = wp_create_nonce( 'ss_update2' );
 	$showtransients = false; // change to true to clean up transients
-	if ( $showtransients
-		 && countTransients() > 0
-	) { // personal use - probably too dangerous for casual users
-		?>
+	if ( $showtransients && countTransients() > 0 ) { // personal use - probably too dangerous for casual users ?>
 		<hr />
 		<p><?php _e( 'WordPress creates temporary objects in the database called
 			transients.<br />
 			WordPress is not good about cleaning them up afterwards. You can
 			clean these up safely and it might
 			speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
-		<form method="POST" name="DOIT2" action="">
+		<form method="post" name="DOIT2" action="">
 			<input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>" />
 			<p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 		</form>
@@ -319,7 +315,7 @@ ss_fix_post_vars();
 			$nonce = $_POST['ss_opt_tdel'];
 		}
 		if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_update2' ) ) {
-// doit!
+			// doit!
 			deleteTransients();
 		}
 		?>
@@ -333,8 +329,8 @@ function countTransients() {
 	$blog_id = get_current_blog_id();
 	global $wpdb;
 	$optimeout = time() - 60;
-	$table	 = $wpdb->get_blog_prefix( $blog_id ) . 'options';
-	$count	 = 0;
+	$table	   = $wpdb->get_blog_prefix( $blog_id ) . 'options';
+	$count	   = 0;
 	$sql	   = "
 select count(*) from $table 
 where
@@ -350,23 +346,19 @@ and option_value < '$optimeout'
 select count(*) from $table 
 where instr(t1.option_name,'SS_SECRET_WORD')>0
 ";
-	$count	 += $wpdb->get_var( $sql );
+	$count	  += $wpdb->get_var( $sql );
 	if ( empty( $count ) ) {
 		$count = "0";
 	}
 	return $count;
 }
 
-/**
- * clear expired transients for current blog
- *
- * @param int $blog_id
- */
+// clear expired transients for current blog
 function deleteTransients() {
 	$blog_id = get_current_blog_id();
 	global $wpdb;
 	$optimeout = time() - 60;
-	$table	 = $wpdb->get_blog_prefix( $blog_id ) . 'options';
+	$table	   = $wpdb->get_blog_prefix( $blog_id ) . 'options';
 	$sql	   = "
 delete from $table
 where 
@@ -386,4 +378,5 @@ where instr(t1.option_name,'SS_SECRET_WORD')>0
 ";
 	$wpdb->query( $sql );
 }
+
 ?>

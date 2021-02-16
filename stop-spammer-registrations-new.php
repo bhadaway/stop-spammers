@@ -106,7 +106,7 @@ add_filter( 'ss_addons_get', 'ss_addons_d', 0 );
  * hook init
  * 4) on template redirect check for bad requests and 404s on exploit items
  * 5) on init check for POST or GET
- * 6) on post gather post variables and check for spam, logins or exploits
+ * 6) on post gather post variables and check for spam, logins, or exploits
  * 7) on get check for access blocking
  * 8) on deny
  * update counters
@@ -141,7 +141,7 @@ function ss_init() {
 		}
 		restore_current_blog();
 		if ( $muswitch == 'Y' ) {
-// install the hooks for options
+			// install the hooks for options
 			define( 'SS_MU', $muswitch );
 			ss_sp_require( 'includes/ss-mu-options.php' );
 			ssp_global_setup();
@@ -150,8 +150,8 @@ function ss_init() {
 		define( 'SS_MU', $muswitch );
 	}
 	if ( function_exists( 'is_user_logged_in' ) ) {
-// check to see if we need to hook the settings
-// load the settings if logged in
+		// check to see if we need to hook the settings
+		// load the settings if logged in
 		if ( is_user_logged_in() ) {
 			remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 			if ( current_user_can( 'manage_options' ) ) {
@@ -160,39 +160,33 @@ function ss_init() {
 			}
 		}
 	}
-// user is not logged in - we can do checks
-// add the new user hooks
+	// user is not logged in - we can do checks
+	// add the new user hooks
 	global $wp_version;
-	if ( !version_compare( $wp_version, "3.1",
-		"<" )
-	) { // only in newer versions
+	if ( !version_compare( $wp_version, "3.1", "<" ) ) { // only in newer versions
 		add_action( 'user_register', 'ss_new_user_ip' );
 		add_action( 'wp_login', 'ss_log_user_ip', 10, 2 );
 	}
-// don't do anything else if the eMember is logged in
+	// don't do anything else if the eMember is logged in
 	if ( function_exists( 'wp_emember_is_member_logged_in' ) ) {
 		if ( wp_emember_is_member_logged_in() ) {
 			return;
 		}
 	}
-// can we check for $_GET registrations?
+	// can we check for $_GET registrations?
 	if ( isset( $_POST ) && !empty( $_POST ) ) {
-// see if we are returning from a deny
-		if ( array_key_exists( 'ss_deny', $_POST )
-			 && array_key_exists( 'kn', $_POST )
-		) {
-// deny form hit
+		// see if we are returning from a deny
+		if ( array_key_exists( 'ss_deny', $_POST ) && array_key_exists( 'kn', $_POST ) ) {
+			// deny form hit
 			$knonce = $_POST['kn'];
-			if ( !empty( $knonce )
-				 && wp_verify_nonce( $knonce, 'ss_stopspam_deny' )
-			) {
-// call the checker program
+			if ( !empty( $knonce ) && wp_verify_nonce( $knonce, 'ss_stopspam_deny' ) ) {
+				// call the checker program
 				sfs_errorsonoff();
 				$options = ss_get_options();
 				$stats   = ss_get_stats();
-				$post	= get_post_variables();
+				$post	 = get_post_variables();
 				be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
-// if we come back we continue as normal
+				// if we come back we continue as normal
 				sfs_errorsonoff( 'off' );
 				return;
 			}
@@ -201,20 +195,16 @@ function ss_init() {
 		// don't check if IP is Google, etc.
 		// check to see if we are doing a post with values
 		// better way to check for Jetpack
-		if ( class_exists( 'Jetpack' )
-			 && Jetpack::is_module_active( 'protect' )
-		) {
+		if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
 			return;
 		}
 		$post = get_post_variables();
-		if ( !empty( $post['email'] ) || !empty( $post['author'] )
-			 || !empty( $post['comment'] )
-		) { // must be a login or a comment which require minimum stuff
+		if ( !empty( $post['email'] ) || !empty( $post['author'] ) || !empty( $post['comment'] ) ) { // must be a login or a comment which require minimum stuff
 			// remove_filter( 'pre_user_login', 'ss_user_reg_filter', 1 );
 			// sfs_debug_msg( 'email or author ' . print_r( $post, true ) );
 			$reason = ss_check_white();
 			if ( $reason !== false ) {
-			// sfs_debug_msg( "return from white $reason" );
+				// sfs_debug_msg( "return from white $reason" );
 				return;
 			}
 			// sfs_debug_msg( 'past white ' );
@@ -228,14 +218,17 @@ function ss_init() {
 		$addons = apply_filters( 'ss_addons_get', $addons );
 		// these are the allow before addons
 		// returns array 
-		// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
-		// [3]=addon author, [4]=addon description
+		// [0] = class location
+		// [1] = class name (also used as counter)
+		// [2] = addon name
+		// [3] = addon author
+		// [4] = addon description
 		if ( !empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
 				if ( !empty( $add ) && is_array( $add ) ) {
 					$options = ss_get_options();
 					$stats   = ss_get_stats();
-					$post	= get_post_variables();
+					$post	 = get_post_variables();
 					$reason  = be_load( $add, ss_get_ip(), $stats, $options );
 					if ( $reason !== false ) {
 						// need to log a passed hit on post here
@@ -249,7 +242,7 @@ function ss_init() {
 	}
 	add_action( 'template_redirect', 'ss_check_404s' ); // check missed hits for robots scanning for exploits
 	add_action( 'ss_stop_spam_caught', 'ss_caught_action', 10, 2 ); // hook stop spam  - for testing
-	add_action( 'ss_stop_spam_OK', 'ss_stop_spam_OK', 10, 2 ); // hook stop spam - for testing
+	add_action( 'ss_stop_spam_ok', 'ss_stop_spam_ok', 10, 2 ); // hook stop spam - for testing
 }
 
 // start of loadable functions
@@ -268,14 +261,14 @@ function ss_sfs_check_admin() {
 function ss_sfs_reg_add_user_to_allowlist() {
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post	= get_post_variables();
+	$post	 = get_post_variables();
 	return be_load( 'ss_addtoallowlist', ss_get_ip(), $stats, $options );
 }
 
 function ss_set_stats( &$stats, $addon = array() ) {
-// this sets the stats
+	// this sets the stats
 	if ( empty( $addon ) || !is_array( $addon ) ) {
-// need to know if the spam count has changed
+		// need to know if the spam count has changed
 		if ( $stats['spcount'] == 0 || empty( $stats['spdate'] ) ) {
 			$stats['spdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		}
@@ -283,8 +276,8 @@ function ss_set_stats( &$stats, $addon = array() ) {
 			$stats['spmdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		}
 	} else {
-// update addon stats
-// addon stats are kept in addonstats array in stats
+		// update addon stats
+		// addon stats are kept in addonstats array in stats
 		$addonstats = array();
 		if ( array_key_exists( 'addonstats', $stats ) ) {
 			$addonstats = $stats['addonstats'];
@@ -299,12 +292,12 @@ function ss_set_stats( &$stats, $addon = array() ) {
 		$addonstats[ $addon[1] ] = $addstats;
 		$stats['addonstats']	 = $addonstats;
 	}
-// other checks? - I might start compressing this, since it can get large
+	// other checks? - I might start compressing this, since it can get large
 	update_option( 'ss_stop_sp_reg_stats', $stats );
 }
 
 function ss_get_now() {
-// to use a safe date everywhere
+	// to use a safe date everywhere
 	if ( function_exists( 'date_default_timezone_set' ) ) {
 		date_default_timezone_set( 'UTC' ); // WP is a UTC base date - if default tz is not set this fixes it
 	}
@@ -313,10 +306,7 @@ function ss_get_now() {
 
 function ss_get_stats() {
 	$stats = get_option( 'ss_stop_sp_reg_stats' );
-	if ( !empty( $stats ) && is_array( $stats )
-		 && array_key_exists( 'version', $stats )
-		 && $stats['version'] == SS_VERSION
-	) {
+	if ( !empty( $stats ) && is_array( $stats ) && array_key_exists( 'version', $stats ) && $stats['version'] == SS_VERSION ) {
 		return $stats;
 	}
 	return be_load( 'ss_get_stats', '' );
@@ -324,11 +314,8 @@ function ss_get_stats() {
 
 function ss_get_options() {
 	$options = get_option( 'ss_stop_sp_reg_options' );
-	$st	  = array();
-	if ( !empty( $options ) && is_array( $options )
-		 && array_key_exists( 'version', $options )
-		 && $options['version'] == SS_VERSION
-	) {
+	$st	     = array();
+	if ( !empty( $options ) && is_array( $options ) && array_key_exists( 'version', $options ) && $options['version'] == SS_VERSION ) {
 		return $options;
 	}
 	return be_load( 'ss_get_options', '' );
@@ -355,7 +342,7 @@ function ss_admin_menu() {
 function ss_check_site_get() {
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post	= get_post_variables();
+	$post	 = get_post_variables();
 	sfs_errorsonoff();
 	$ret = be_load( 'ss_check_site_get', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
@@ -366,7 +353,7 @@ function ss_check_post() {
 	sfs_errorsonoff();
 	$options = ss_get_options();
 	$stats   = ss_get_stats();
-	$post	= get_post_variables();
+	$post	 = get_post_variables();
 	$ret	 = be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff( 'off' );
 	return $ret;
@@ -398,12 +385,12 @@ function ss_log_akismet() {
 	if ( $options['chkakismet'] != 'Y' ) {
 		return false;
 	}
-// check whitelists first
+	// check whitelists first
 	$reason = ss_check_white();
 	if ( $reason !== false ) {
 		return;
 	}
-// not on Allow Lists
+	// not on Allow Lists
 	$post		    = get_post_variables();
 	$post['reason'] = __( 'from Akismet', 'stop-spammer-registrations-plugin' );
 	$post['chk']	= 'chkakismet';
@@ -444,39 +431,39 @@ function ss_check_white_block() {
 }
 
 function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = array() ) {
-// all classes have a process() method
-// all classes have the same name as the file being loaded
-// only executes the file if there is an option set with value 'Y' for the name
+	// all classes have a process() method
+	// all classes have the same name as the file being loaded
+	// only executes the file if there is an option set with value 'Y' for the name
 	if ( empty( $file ) ) {
 		return false;
 	}
-// load the be_module if does not exist
+	// load the be_module if does not exist
 	if ( !class_exists( 'be_module' ) ) {
 		require_once( 'classes/be_module.class.php' );
 	}
-// if ( $ip == null ) $ip = ss_get_ip();
-// for some loads we use an absolute path
-// if it is an addon, it has the absolute path to the be_module
+	// if ( $ip == null ) $ip = ss_get_ip();
+	// for some loads we use an absolute path
+	// if it is an addon, it has the absolute path to the be_module
 	if ( is_array( $file ) ) { // add-ons pass their array
-// this is an absolute location so load it directly
+		// this is an absolute location so load it directly
 		if ( !file_exists( $file[0] ) ) {
 			sfs_debug_msg( __( 'not found ', 'stop-spammer-registrations-plugin' ) . print_r( $add, true ) );
 			return false;
 		}
-// require_once( $file[0] );
-// this loads a be_module class
+		// require_once( $file[0] );
+		// this loads a be_module class
 		$class  = new $file[1]();
 		$result = $class->process( $ip, $stats, $options, $post );
 		$class  = null;
 		unset( $class ); // doesn't do anything
-// memory_get_usage( true ); // force a garage collection
+		// memory_get_usage( true ); // force a garage collection
 		return $result;
 	}
 	$ppath = plugin_dir_path( __FILE__ ) . 'classes/';
 	$fd	= $ppath . $file . '.php';
 	$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	if ( !file_exists( $fd ) ) {
-// echo "<br /><br />Missing $file $fd<br /><br />";
+		// echo "<br /><br />Missing $file $fd<br /><br />";
 		$ppath = plugin_dir_path( __FILE__ ) . 'modules/';
 		$fd	= $ppath . $file . '.php';
 		$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
@@ -491,8 +478,8 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 		return false;
 	}
 	require_once( $fd );
-// this loads a be_module class
-// sfs_debug_msg( "loading $fd" );
+	// this loads a be_module class
+	// sfs_debug_msg( "loading $fd" );
 	$class  = new $file();
 	$result = $class->process( $ip, $stats, $options, $post );
 	$class  = null;
@@ -502,11 +489,11 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 
 // this should be moved to a dynamic load, perhaps - it is one of the most common things
 function get_post_variables() {
-// for WordPress and other login and comment programs
-// need to find: login password comment author email
-// copied from stop spammers plugin
-// made generic so it also checks "head" and "get" (as well as cookies)
-	$p	= $_POST;
+	// for WordPress and other login and comment programs
+	// need to find: login password comment author email
+	// copied from stop spammers plugin
+	// made generic so it also checks "head" and "get" (as well as cookies)
+	$p	  = $_POST;
 	$ansa = array(
 		'email'   => '',
 		'author'  => '',
@@ -537,13 +524,13 @@ function get_post_variables() {
 		'url'	  => array( 'url', 'blog_name', 'blogname' )
 	);
 	$emfound = false;
-// rewrite this
+	// rewrite this
 	foreach ( $search as $var => $sa ) {
 		foreach ( $sa as $srch ) {
 			foreach ( $p as $pkey => $pval ) {
-// see if the things in $srch live in post
+				// see if the things in $srch live in post
 				if ( stripos( $pkey, $srch ) !== false ) {
-// got a hit
+					// got a hit
 					if ( is_array( $pval ) ) {
 						$pval = print_r( $pval, true );
 					}
@@ -555,18 +542,16 @@ function get_post_variables() {
 				break;
 			}
 		}
-		if ( empty( $ansa[ $var ] ) && $var == 'email' ) {  // empty email
-// did not get a hit so we need to try again and look for something that looks like an email
+		if ( empty( $ansa[ $var ] ) && $var == 'email' ) { // empty email
+			// did not get a hit so we need to try again and look for something that looks like an email
 			foreach ( $p as $pkey => $pval ) {
 				if ( stripos( $pkey, 'input_' ) ) {
-// might have an email
+					// might have an email
 					if ( is_array( $pval ) ) {
 						$pval = print_r( $pval, true );
 					}
-					if ( strpos( $pval, '@' ) !== false
-						 && strrpos( $pval, '.' ) > strpos( $pval, '@' )
-					) {
-// close enough
+					if ( strpos( $pval, '@' ) !== false && strrpos( $pval, '.' ) > strpos( $pval, '@' ) ) {
+						// close enough
 						$ansa[ $var ] = $pval;
 						break;
 					}
@@ -594,10 +579,10 @@ function get_post_variables() {
 	}
 	}
 	*/
-// sanitize input - some of this is stored in history and needs to be cleaned up
+	// sanitize input - some of this is stored in history and needs to be cleaned up
 	foreach ( $ansa as $key => $value ) {
-// clean the variables even more
-		$ansa[ $key ] = sanitize_text_field( $value ); // really clean gets rid of high value characters
+		// clean the variables even more
+		$ansa[$key] = sanitize_text_field( $value ); // really clean gets rid of high value characters
 	}
 	if ( strlen( $ansa['email'] ) > 80 ) {
 		$ansa['email'] = substr( $ansa['email'], 0, 77 ) . '...';
@@ -617,29 +602,29 @@ function get_post_variables() {
 	if ( strlen( $ansa['url'] ) > 80 ) {
 		$ansa['url'] = substr( $ansa['url'], 0, 77 ) . '...';
 	}
-// print_r( $ansa );
-// exit;
+	// print_r( $ansa );
+	// exit;
 	return $ansa;
 }
 
 function ss_addons_d( $config = array() ) {
-// dummy function for testing
+	// dummy function for testing
 	return $config;
 }
 
 function ss_caught_action( $ip = '', $post = array() ) {
-// this is hit on spam detect for addons - added this for a template for testing - not needed
-// $post has all the standardized post variables plus reason and the chk that found the problem
-// good add-on would be a plugin to manage an SQL table where this stuff is stored
+	// this is hit on spam detect for addons - added this for a template for testing - not needed
+	// $post has all the standardized post variables plus reason and the chk that found the problem
+	// good add-on would be a plugin to manage an SQL table where this stuff is stored
 }
 
-function ss_stop_spam_OK( $ip = '', $post = array() ) {
-// dummy function for testing
-// unreports spam
+function ss_stop_spam_ok( $ip = '', $post = array() ) {
+	// dummy function for testing
+	// unreports spam
 }
 
 function really_clean( $s ) {
-// try to get all non-7-bit things out of the string
+	// try to get all non-7-bit things out of the string
 	if ( empty( $s ) ) {
 		return '';
 	}
@@ -665,9 +650,9 @@ function load_be_module() {
 function ss_new_user_ip( $user_id ) {
 	$x  = $_SERVER['REQUEST_URI'];
 	$ip = ss_get_ip();
-// sfs_debug_msg( "Checking reg filter login $x ( ss_user_ip ) = " . $ip . ", method = " . $_SERVER['REQUEST_METHOD'] . ", request = " . print_r( $_REQUEST, true ) );
-// check to see if the user is OK
-// add the users IP to new users
+	// sfs_debug_msg( "Checking reg filter login $x ( ss_user_ip ) = " . $ip . ", method = " . $_SERVER['REQUEST_METHOD'] . ", request = " . print_r( $_REQUEST, true ) );
+	// check to see if the user is OK
+	// add the users IP to new users
 	update_user_meta( $user_id, 'signup_ip', $ip );
 }
 
@@ -683,14 +668,14 @@ function ss_log_user_ip( $user_login = "", $user = "" ) {
 	if ( empty( $user_login ) ) {
 		return;
 	}
-// add the user's IP to new users
+	// add the user's IP to new users
 	if ( !isset( $user->ID ) ) {
 		return;
 	}
 	$user_id = $user->ID;
-// $ip=ss_get_ip();
-	$ip	= $_SERVER['REMOTE_ADDR'];
-	$oldip = get_user_meta( $user_id, 'signup_ip', true );
+	// $ip = ss_get_ip();
+	$ip		 = $_SERVER['REMOTE_ADDR'];
+	$oldip   = get_user_meta( $user_id, 'signup_ip', true );
 	if ( empty( $oldip ) || $ip != $oldip ) {
 		update_user_meta( $user_id, 'signup_ip', $ip );
 	}
@@ -730,7 +715,7 @@ function ss_user_reg_filter( $user_login ) {
 	}
 	// check periods
 	$reason = be_load( 'chkperiods', ss_get_ip(), $stats, $options, $post );
-	if( $reason !== false) { 
+	if ( $reason !== false ) { 
 		wp_die( 'Registration Access Denied', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 	}
 	// check the whitelist
@@ -738,7 +723,7 @@ function ss_user_reg_filter( $user_login ) {
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
 		$post['reason'] = __( 'Passed Registration:', 'stop-spammer-registrations-plugin' ) . $reason;
-		$ansa		   = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
+		$ansa		    = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
 		sfs_errorsonoff( 'off' );
 		return $user_login;
 	}
@@ -750,11 +735,11 @@ function ss_user_reg_filter( $user_login ) {
 	return $user_login;
 }
 
-// Private Mode: Redirect users who arent logged in
+// private mode
 function login_redirect() {
 	global $pagenow, $post;
 	$options = ss_get_options();
-	if( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && $post->post_name != 'login' ) ) {
+	if ( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && $post->post_name != 'login' ) ) {
 		wp_redirect( site_url( 'login' ) ); exit;
 	} else if ( $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && ( $pagenow != 'wp-login.php' and $post->post_name != 'login' ) ) ) {
 		auth_redirect();

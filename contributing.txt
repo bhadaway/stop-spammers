@@ -3,10 +3,11 @@ Please follow WordPress Coding Standards:
 https://make.wordpress.org/core/handbook/best-practices/coding-standards/
 
 <?php
-function foo() {
+
+// comment
+function ss_foo() {
 	if ( $x > 5 ) {
-		echo "bar";
+		echo 'bar';
 	}
-	return
-		"string";
+	return 'string';
 }

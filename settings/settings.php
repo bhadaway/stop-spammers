@@ -1,6 +1,4 @@
 <?php
-// this is the new settings pages for Stop Spammers
-// this is loaded only when users who can change settings are logged in
 
 if ( !defined( 'ABSPATH' ) ) {
 	http_response_code( 404 );
@@ -198,7 +196,7 @@ function include_setting( $file ) {
 }
 
 function ss_fix_post_vars() {
-// sanitize post
+	// sanitize post
 	$p	  = $_POST;
 	$keys = array_keys( $_POST );
 	foreach ( $keys as $var ) {

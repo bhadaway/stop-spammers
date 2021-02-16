@@ -21,7 +21,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 
 if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'action', $_POST ) ) {
-// other API keys
+		// other API keys
 		if ( array_key_exists( 'apikey', $_POST ) ) {
 			$apikey			   = stripslashes( $_POST['apikey'] );
 			$options['apikey'] = $apikey;
@@ -78,7 +78,9 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 }
+
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
+
 ?>
 
 <div id="ss-plugin" class="wrap">
@@ -116,8 +118,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px;">
 			<tr bgcolor="white">
-				<td valign="top"><?php _e( 'Deny spammers found on Stop Forum Spam with
-					more than
+				<td valign="top"><?php _e( 'Deny spammers found on Stop Forum Spam with more than
 					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . $sfsfreq . '" />
 					incidents, and occurring less than
 					<input size="4" name="sfsage" type="text" class="small-text" value="' . $sfsage . '" />
@@ -133,10 +134,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>" />
 		</label>
 		<br />
-		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px;">
+		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
-				<td valign="top"><?php _e( 'Deny spammers found on Project HoneyPot
-					with incidents less than
+				<td valign="top"><?php _e( 'Deny spammers found on Project HoneyPot with incidents less than
 					<input size="3" name="hnyage" type="text" class="small-text" value="' . $hnyage . '" />
 					days ago, and with more than
 					<input size="4" name="hnylevel" type="text" class="small-text" value="' . $hnylevel . '" />
@@ -153,10 +153,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>" />
 		</label>
 		<br />
-		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px;">
+		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
-				<td valign="top"><?php _e( 'Deny spammers found on BotScout with more
-					than
+				<td valign="top"><?php _e( 'Deny spammers found on BotScout with more than
 					<input size="3" name="botfreq" type="text" class="small-text" value="' . $botfreq . '" />
 					incidents.', 'stop-spammer-registrations-plugin' ); ?>
 				</td>

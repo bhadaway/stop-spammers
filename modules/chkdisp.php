@@ -7,9 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkdisp {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		if ( empty( $options['em'] ) ) {
 			return false;
 		}
@@ -3127,12 +3125,10 @@ class chkdisp {
 			'zzi.us',
 			'zzz.com',
 		);
-		$emdomain	= explode( '@', $options['em'] );
-		if ( count( $emdomain ) == 2
-			 && in_array( strtolower( $emdomain[1] ), $disposables )
-		) {
-// the email is a disposable email address
-// do you really want this guy?
+		$emdomain = explode( '@', $options['em'] );
+		if ( count( $emdomain ) == 2 && in_array( strtolower( $emdomain[1] ), $disposables ) ) {
+			// the email is a disposable email address
+			// do you really want this guy?
 			_e( 'Disposable Email: ', 'stop-spammer-registrations-plugin' ) . $options['em'];
 		}
 		return false;

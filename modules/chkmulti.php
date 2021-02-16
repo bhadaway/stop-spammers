@@ -8,9 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkmulti extends be_module {
-	public function process(
-		$ip, &$stats = array(), &$options = array(), &$post = array()
-	) {
+	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		if ( function_exists( 'is_user_logged_in' ) ) {
 			if ( is_user_logged_in() ) {
 				return false; // don't want to do this if just testing - could lock out sysop
@@ -31,13 +29,10 @@ class chkmulti extends be_module {
 		if ( array_key_exists( 'multicnt', $options ) ) {
 			$multicnt = $options['multicnt'];
 		}
-// clean up multi 
-		$now		= date( 'Y/m/d H:i:s',
-			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-		$nowtimeout = date( 'Y/m/d H:i:s',
-			time() - ( 60 * $multitime ) + ( get_option( 'gmt_offset' ) * 3600 ) );
-		foreach ( $multi as $key => $data )
-		{ // key is IP, data is array of time and count
+		// clean up multi 
+		$now		= date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 60 * $multitime ) + ( get_option( 'gmt_offset' ) * 3600 ) );
+		foreach ( $multi as $key => $data ) { // key is IP, data is array of time and count
 			if ( $data[0] < $nowtimeout ) {
 				unset( $multi[ $key ] );
 			}

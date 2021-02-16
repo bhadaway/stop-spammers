@@ -46,7 +46,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'ss_stop_clear_cache', $_POST ) ) {
 		// clear the cache
-		$badips		   = array();
+		$badips		      = array();
 		$goodips		  = array();
 		$stats['badips']  = $badips;
 		$stats['goodips'] = $goodips;
@@ -86,41 +86,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php _e( 'Bad IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
 			<br />
 			<select name="ss_sp_cache">
-				<option value="0" <?php
-				if ( $ss_sp_cache == '0' ) {
-					echo "selected=\"true\"";
-				} ?>>0
-				</option>
-				<option value="10" <?php
-				if ( $ss_sp_cache == '10' ) {
-					echo "selected=\"true\"";
-				} ?>>10
-				</option>
-				<option value="25" <?php
-				if ( $ss_sp_cache == '25' ) {
-					echo "selected=\"true\"";
-				} ?>>25
-				</option>
-				<option value="50" <?php
-				if ( $ss_sp_cache == '50' ) {
-					echo "selected=\"true\"";
-				} ?>>50
-				</option>
-				<option value="75" <?php
-				if ( $ss_sp_cache == '75' ) {
-					echo "selected=\"true\"";
-				} ?>>75
-				</option>
-				<option value="100" <?php
-				if ( $ss_sp_cache == '100' ) {
-					echo "selected=\"true\"";
-				} ?>>100
-				</option>
-				<option value="200" <?php
-				if ( $ss_sp_cache == '200' ) {
-					echo "selected=\"true\"";
-				} ?>>200
-				</option>
+				<option value="0" <?php if ( $ss_sp_cache == '0' ) { echo 'selected="true"'; } ?>>0</option>
+				<option value="10" <?php if ( $ss_sp_cache == '10' ) { echo 'selected="true"'; } ?>>10</option>
+				<option value="25" <?php if ( $ss_sp_cache == '25' ) { echo 'selected="true"'; } ?>>25</option>
+				<option value="50" <?php if ( $ss_sp_cache == '50' ) { echo 'selected="true"'; } ?>>50</option>
+				<option value="75" <?php if ( $ss_sp_cache == '75' ) { echo 'selected="true"'; } ?>>75</option>
+				<option value="100" <?php if ( $ss_sp_cache == '100' ) { echo 'selected="true"'; } ?>>100</option>
+				<option value="200" <?php if ( $ss_sp_cache == '200' ) { echo 'selected="true"'; } ?>>200</option>
 			</select>
 		</label>
 		<br />
@@ -129,56 +101,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php _e( 'Good IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
 			<br />
 			<select name="ss_sp_good">
-				<option value="1" <?php
-				if ( $ss_sp_good == '1' ) {
-					echo "selected=\"true\"";
-				} ?>>1
-				</option>
-				<option value="2" <?php
-				if ( $ss_sp_good == '2' ) {
-					echo "selected=\"true\"";
-				} ?>>2
-				</option>
-				<option value="3" <?php
-				if ( $ss_sp_good == '3' ) {
-					echo "selected=\"true\"";
-				} ?>>3
-				</option>
-				<option value="4" <?php
-				if ( $ss_sp_good == '4' ) {
-					echo "selected=\"true\"";
-				} ?>>4
-				</option>
-				<option value="10" <?php
-				if ( $ss_sp_good == '10' ) {
-					echo "selected=\"true\"";
-				} ?>>10
-				</option>
-				<option value="25" <?php
-				if ( $ss_sp_good == '25' ) {
-					echo "selected=\"true\"";
-				} ?>>25
-				</option>
-				<option value="50" <?php
-				if ( $ss_sp_good == '50' ) {
-					echo "selected=\"true\"";
-				} ?>>50
-				</option>
-				<option value="75" <?php
-				if ( $ss_sp_good == '75' ) {
-					echo "selected=\"true\"";
-				} ?>>75
-				</option>
-				<option value="100" <?php
-				if ( $ss_sp_good == '100' ) {
-					echo "selected=\"true\"";
-				} ?>>100
-				</option>
-				<option value="200" <?php
-				if ( $ss_sp_good == '200' ) {
-					echo "selected=\"true\"";
-				} ?>>200
-				</option>
+				<option value="1" <?php if ( $ss_sp_good == '1' ) { echo 'selected="true"'; } ?>>1</option>
+				<option value="2" <?php if ( $ss_sp_good == '2' ) { echo 'selected="true"'; } ?>>2</option>
+				<option value="3" <?php if ( $ss_sp_good == '3' ) { echo 'selected="true"'; } ?>>3</option>
+				<option value="4" <?php if ( $ss_sp_good == '4' ) { echo 'selected="true"'; } ?>>4</option>
+				<option value="10" <?php if ( $ss_sp_good == '10' ) { echo 'selected="true"'; } ?>>10</option>
+				<option value="25" <?php if ( $ss_sp_good == '25' ) { echo 'selected="true"'; } ?>>25</option>
+				<option value="50" <?php if ( $ss_sp_good == '50' ) { echo 'selected="true"'; } ?>>50</option>
+				<option value="75" <?php if ( $ss_sp_good == '75' ) { echo 'selected="true"'; } ?>>75</option>
+				<option value="100" <?php if ( $ss_sp_good == '100' ) { echo 'selected="true"'; } ?>>100</option>
+				<option value="200" <?php if ( $ss_sp_good == '200' ) { echo 'selected="true"'; } ?>>200</option>
 			</select>
 		</label>
 		<br />
