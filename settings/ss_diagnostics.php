@@ -61,14 +61,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<p>Run the settings against an IP address to see the results.</p>
 			IP Address:<br />
 			', 'stop-spammer-registrations-plugin' ); ?>
-			<input id="myInput" name="ip" type="text" value="<?php echo $ip; ?>">
+			<input id="ssinput" name="ip" type="text" value="<?php echo $ip; ?>">
 			<?php _e( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br /><br />
 			<?php _e( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br/>
-			<input id="myInput" name="email" type="text" value="<?php echo $email; ?>" /><br /><br />
+			<input id="ssinput" name="email" type="text" value="<?php echo $email; ?>" /><br /><br />
 			<?php _e( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br />
-			<input id="myInput" name="author" type="text" value="<?php echo $author; ?>" /><br /><br />
+			<input id="ssinput" name="author" type="text" value="<?php echo $author; ?>" /><br /><br />
 			<?php _e( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br />
-			<input id="myInput" name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
+			<input id="ssinput" name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
 			<?php _e( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br />
 			<textarea name="body"><?php echo $body; ?></textarea><br />
 			<div style="width:50%;float:left">

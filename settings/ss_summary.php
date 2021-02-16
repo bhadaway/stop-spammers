@@ -236,13 +236,16 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		extract( $stats ); // extract again to get the new options
 	}
 }
+
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
+
 ?>
+
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
 	<?php _e( 'Version', 'stop-spammer-registrations-plugin' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 		<?php
-	if ( !empty( $summry ) ) {
+	if ( !empty( $summary ) ) {
 		?>
 		<?php
 	}
@@ -341,10 +344,10 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 		<p><?php _e( 'There are <a href="edit-comments.php?comment_status=moderated">' . $num . '</a> comments waiting to be moderated.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 		<?php
 	}
-	$summry = '';
+	$summary = '';
 	foreach ( $counters as $v1 => $v2 ) {
 		if ( !empty( $stats[ $v1 ] ) ) {
-			  $summry .= "<div class='stat-box'>$v2: " . $stats[ $v1 ] . "</div>";
+			  $summary .= "<div class='stat-box'>$v2: " . $stats[ $v1 ] . "</div>";
 		} else {
 // echo "  $v1 - $v2 , ";
 		}
@@ -352,10 +355,10 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 	$addonstats = $stats['addonstats'];
 	foreach ( $addonstats as $key => $data ) {
 // count is in data[0] and use the plugin name
-		$summry .= "<div class='stat-box'>$key: " . $data[0] . "</div>";
+		$summary .= "<div class='stat-box'>$key: " . $data[0] . "</div>";
 	} ?>
 		<?php
-		echo $summry;
+		echo $summary;
 		?>
 		<form method="post" action="">
 			  <input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
@@ -465,27 +468,27 @@ function ss_force_reset_options() {
 	echo '
 		<div class="ss_admin_info_boxes_3row">
 			  <div class="ss_admin_info_boxes_3col">
-			  	<h3>' . _e( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
+			  	<h3>' . __( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
 			  	<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/restore-settings_stop-spammers_trumani.png" class="center_thumb" />
-			  	' . _e( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ) . '
+			  	' . __( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ) . '
 			  	<div class="ss_admin_button">
-			  		<a href="admin.php?page=ssp_premium">' . _e( 'RESTORE', 'stop-spammer-registrations-plugin' ) . '</a>
+			  		<a href="admin.php?page=ssp_premium">' . __( 'RESTORE', 'stop-spammer-registrations-plugin' ) . '</a>
 			  	</div>
 			  </div>
 			  <div class="ss_admin_info_boxes_3col">
-			  	<h3>' . _e( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
+			  	<h3>' . __( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
 			  	<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/import-export_stop-spammers_trumani.png" class="center_thumb" />
-			  	' . _e( 'You can download your personalized configurations and upload them to all of your other sites.', 'stop-spammer-registrations-plugin' ) . '
+			  	' . __( 'You can download your personalized configurations and upload them to all of your other sites.', 'stop-spammer-registrations-plugin' ) . '
 			  	<div class="ss_admin_button">
-			  		<a href="admin.php?page=ssp_premium">' . _e( 'IMPORT/EXPORT', 'stop-spammer-registrations-plugin' ) . '</a>
+			  		<a href="admin.php?page=ssp_premium">' . __( 'IMPORT/EXPORT', 'stop-spammer-registrations-plugin' ) . '</a>
 			  	</div>
 			  </div>
 			  <div class="ss_admin_info_boxes_3col">
-			  	<h3>' . _e( 'Export Log to Excel', 'stop-spammer-registrations-plugin' ) . '</h3>
+			  	<h3>' . __( 'Export Log to Excel', 'stop-spammer-registrations-plugin' ) . '</h3>
 			  	<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/export-to-excel_stop-spammers_trumani.png" class="center_thumb" />
-			  	' . _e( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
+			  	' . __( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
 			  	<div class="ss_admin_button">
-			  		<a href="admin.php?page=ssp_premium">' . _e( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
+			  		<a href="admin.php?page=ssp_premium">' . __( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
 			  	</div>
 			  </div>
 		</div>

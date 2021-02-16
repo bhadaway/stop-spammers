@@ -97,6 +97,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 * [Update] Safety checks for WooCommerce
 * [Enhanced] When approving allow requests, the email address is now whitelisted
 * [Enhanced] Code audit and cleanup
+* [Fix] "Clear the Requests" toggles off other settings
 * [Fix] Too many periods feature
 
 = 2021.1 =

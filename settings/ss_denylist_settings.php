@@ -202,8 +202,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<div class="mainsection"><?php _e( 'Blocked TLDs', 'stop-spammer-registrations-plugin' ); ?>
 	<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blockedtlds" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup></div>					
 			<?php _e( '
-			<p>Enter the TLD name including the '.' e.g. .XXX
-			 A TLD is the last part of a domain like .COM or .NET.</p>
+			<p>Enter the TLD name including the period (for example .xxx).
+			 A TLD is the last part of a domain like .com or .net.</p>
 			', 'stop-spammer-registrations-plugin' ); ?>
 			<textarea name="badTLDs" cols="40" rows="8"><?php
 				foreach ( $badTLDs as $p ) {

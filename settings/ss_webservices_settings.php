@@ -73,9 +73,9 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		extract( $options ); // extract again to get the new options
 	}
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
+		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . ' Need a firewall, themable login, honeypot for Divi / Elementor / CF7 / bbPress? — <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
-		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
+		$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 }
 $nonce = wp_create_nonce( 'ss_stopspam_update' );

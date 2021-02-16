@@ -83,9 +83,9 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		extract( $options ); // extract again to get the new options
 	}
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . ' Add Cracking Defense with Brute Force Protection <strong><a href="https://stopspammers.io/documentation/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
+		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . ' Add Cracking Defense with Brute Force Protection <strong><a href="https://stopspammers.io/documentation/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
 	} else {
-		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated!', 'stop-spammer-registrations-plugin' ) . '</p></div>';
+		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 }
 
@@ -150,7 +150,7 @@ ss_show_option();
 		  <small><span style="font-size:16px!important;"><?php _e( 'Notify Web Admin when a user requests to be added to the Allow List', 'stop-spammer-registrations-plugin' ); ?></span></small></label></div>
 			<br />
 			<span id="ss_show_notify" style="margin-left:30px;margin-bottom:15px;display:none"><?php _e( '(Optional) Specify where email requests are sent:', 'stop-spammer-registrations-plugin' ); ?>
-			<input id="myInput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
+			<input id="ssinput" size="48" name="wlreqmail" type="text" value="<?php echo $wlreqmail; ?>" /></span>
 <script>
 function ss_show_notify() {
   var checkBox = document.getElementById("notify");
