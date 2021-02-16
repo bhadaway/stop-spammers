@@ -36,7 +36,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$stats['wlrequests'] = $wlrequests;
 		ss_set_stats( $stats );
 	}
-	if ( array_key_exists( 'wlist', $_POST ) and ! array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
+	if ( array_key_exists( 'wlist', $_POST ) and !array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
 		$wlist  = $_POST['wlist'];
 		$wlist  = explode( "\n", $wlist );
 		$tblist = array();
@@ -47,7 +47,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['wlist'] = $tblist;
-		$wlist			= $tblist;
+		$wlist			  = $tblist;
 	}
 	if ( ! array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
 		$optionlist = array(
@@ -122,7 +122,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			// use the be_load to get badips
 			$options = ss_get_options();
 			$stats   = ss_get_stats();
-			$show	= be_load( 'ss_get_alreq', 'x', $stats, $options );
+			$show	 = be_load( 'ss_get_alreq', 'x', $stats, $options );
 			echo $show;
 			?>
 		</tbody>
