@@ -14,8 +14,10 @@ class chkperiods extends be_module {
 				$domain = $this->remove_tld( $domain );
 				if ( substr_count( $domain, "." ) >= 1 ) {
 					_e( 'Too many periods in: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					return true;
 				} else if ( substr_count( $text, "." ) >= 2 ) {
 					_e( 'Too many periods in: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					return true;
 				}
 			}
 		}
@@ -26,8 +28,10 @@ class chkperiods extends be_module {
 				$domain = $this->remove_tld( $domain );
 				if ( substr_count( $domain, "." ) >= 2 ) {
 					_e( 'Too many periods in: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					return true;
 				} else if ( substr_count( $text, "." ) >= 2 ) {
 					_e( 'Too many periods in: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					return true;
 				}
 			}
 		}
