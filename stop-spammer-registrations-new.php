@@ -713,11 +713,6 @@ function ss_user_reg_filter( $user_login ) {
 		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
-	// check periods
-	$reason = be_load( 'chkperiods', ss_get_ip(), $stats, $options, $post );
-	if ( $reason !== false ) { 
-		wp_die( 'Registration Access Denied', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
-	}
 	// check the whitelist
 	$reason = ss_check_white();
 	sfs_errorsonoff();
