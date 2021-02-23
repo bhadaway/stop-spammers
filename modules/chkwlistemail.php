@@ -13,9 +13,8 @@ class chkwlistemail extends be_module { // change name
 			$this->searchname = 'Allow List Email';
 			$gcache		      = $options['wlist_email'];
 			return $this->searchList( $current_user->user_email, $gcache );
-		} else {
-			return;
 		}
+		return false;
 	}
 }
 
