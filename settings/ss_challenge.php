@@ -180,6 +180,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				echo '<span style="color:red;font-size:1.2em">' . $msg . '</span>';
 			}
 			?>
+			<br />
 			<input type="radio" value="N" name="chkcaptcha" <?php if ( $chkcaptcha == 'N' ) { echo 'checked="checked"'; } ?> />
 			<?php _e( 'No CAPTCHA (default)', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="G" name="chkcaptcha" <?php if ( $chkcaptcha == 'G' ) { echo 'checked="checked"'; } ?> />
