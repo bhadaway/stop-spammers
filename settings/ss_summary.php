@@ -453,7 +453,7 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 				<div class="ss_admin_info_boxes_1col" >
 					<h3>' . __( 'Add a server-side firewall and themeable login, protect Divi / Elementor / CF7 / bbPress with our honeypot, export logs to excel, restore options, and transfer settings.', 'stop-spammer-registrations-plugin' ) . '</h3>
 					<div class="ss_admin_button">
-						<a href="https://stopspammers.io/downloads/stop-spammers-premium/">' . __( 'Go Premium', 'stop-spammer-registrations-plugin' ) . '</a>
+						<a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">' . __( 'Go Premium', 'stop-spammer-registrations-plugin' ) . '</a>
 					</div>
 				</div>
 			</div>

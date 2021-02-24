@@ -140,7 +140,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<form method="post" action="">
 		<input type="hidden" name="action" value="update" />
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-		<div class="mainsection"><?php _e( 'Personalised Block List', 'stop-spammer-registrations-plugin' ); ?>
+		<div class="mainsection"><?php _e( 'Personalized Block List', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blocklist" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<p><?php _e( 'Add IP addresses or emails here that you want blocked.', 'stop-spammer-registrations-plugin' ); ?></p>

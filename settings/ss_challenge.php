@@ -82,11 +82,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_options( $options );
 		extract( $options ); // extract again to get the new options
 	}
-	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . ' Add Cracking Defense with Brute Force Protection <strong><a href="https://stopspammers.io/documentation/downloads/stop-spammers-premium/" target="_blank">Try Premium</a></strong></p></div>';
-	} else {
-		$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
-	}
+	$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 }
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
