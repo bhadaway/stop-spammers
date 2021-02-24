@@ -5,7 +5,7 @@ Plugin URI: https://stopspammers.io/
 Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Version: 2021.2
+Version: 2021.2.1
 Tested up to: 5.6
 License: https://www.gnu.org/licenses/gpl.html
 
