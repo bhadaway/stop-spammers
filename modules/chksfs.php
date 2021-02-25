@@ -51,7 +51,7 @@ class chksfs extends be_module {
 			if ( ( $frequency >= $sfsfreq ) && ( strtotime( $lastseen ) > ( time() - ( 60 * 60 * 24 * $sfsage ) ) ) ) {
 				// frequency we got from the db, sfsfreq is the min we'll accept (default 0)
 				// sfsage is the age in days - we get lastscene from
-				__( 'SFS Last Seen = ' . $lastseen . ', Frequency = ' . $frequency . '', 'stop-spammer-registrations-plugin' );
+				return __( 'SFS Last Seen = ' . $lastseen . ', Frequency = ' . $frequency . '', 'stop-spammer-registrations-plugin' );
 			}
 		}
 		return false;

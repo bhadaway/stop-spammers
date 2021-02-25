@@ -3129,7 +3129,7 @@ class chkdisp {
 		if ( count( $emdomain ) == 2 && in_array( strtolower( $emdomain[1] ), $disposables ) ) {
 			// the email is a disposable email address
 			// do you really want this guy?
-			__( 'Disposable Email: ', 'stop-spammer-registrations-plugin' ) . $options['em'];
+			return __( 'Disposable Email: ', 'stop-spammer-registrations-plugin' ) . $options['em'];
 		}
 		return false;
 	}

@@ -10,11 +10,11 @@ class chkscripts extends be_module {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		$sname = $this->getSname();
 		if ( strpos( $sname, 'wp-cron.php' ) !== false ) {
-			__( 'allow wp-cron', 'stop-spammer-registrations-plugin' );
+			return __( 'allow wp-cron', 'stop-spammer-registrations-plugin' );
 		}
 		// if( strpos( $sname, 'admin.php?' ) !== false ) return "allow admin.php?";
 		if ( strpos( $sname, 'admin-ajax.php' ) !== false ) {
-			__( 'allow admin-ajax.php', 'stop-spammer-registrations-plugin' );
+			return __( 'allow admin-ajax.php', 'stop-spammer-registrations-plugin' );
 		} // necessary?
 		return false;
 	}

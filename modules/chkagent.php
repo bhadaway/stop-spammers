@@ -19,7 +19,7 @@ class chkagent extends be_module {
 			$agent = $_SERVER['HTTP_USER_AGENT'];
 		}
 		if ( empty( $agent ) ) {
-			__( 'Missing User Agent', 'stop-spammer-registrations-plugin' );
+			return __( 'Missing User Agent', 'stop-spammer-registrations-plugin' );
 		}
 		// user agent can be spoofed - move these exclusions to a better test when finished
 		if ( stripos( $agent, 'docs.google.com/viewer' ) !== false ) {
@@ -33,7 +33,7 @@ class chkagent extends be_module {
 		} // fix this?
 		foreach ( $badagents as $a ) {
 			if ( stripos( $agent, $a ) !== false ) {
-				__( 'Deny List User Agent: ', 'stop-spammer-registrations-plugin' ) . $a;
+				return __( 'Deny List User Agent: ', 'stop-spammer-registrations-plugin' ) . $a;
 			}
 		}
 		return false;
