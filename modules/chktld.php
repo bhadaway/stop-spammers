@@ -34,7 +34,7 @@ class chktld { // change name
 				// if ( empty( $ft ) ) continue;
 				// echo "2 $key, $value, $ft<br />";
 				$t  = explode( '.', $value );
-				$tt = implode( array_slice( $t, count( $t ) - $dlvl, $dlvl ), '.' );
+				$tt = implode( '.', array_slice( $t, count( $t ) - $dlvl, $dlvl ) );
 				$tt = '.' . trim( strtolower( $tt ) );
 				if ( $ft == $tt ) {
 					_e( 'TLD Blocked: ' . $key . ': ' . $value . ': ' . $ft . '', 'stop-spammer-registrations-plugin' );

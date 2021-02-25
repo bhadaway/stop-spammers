@@ -105,7 +105,7 @@ class chkvalidip {
 		// check for IPv6
 		$lip = "127.0.0.1";
 		if ( substr( $ip, 0, 2 ) == 'FB' || substr( $ip, 0, 2 ) == 'fb' ) {
-			__( 'Local IP Address: ', 'stop-spammer-registrations-plugin' ) . $ip;
+			_e( 'Local IP Address: ', 'stop-spammer-registrations-plugin' ) . $ip;
 		}
 		// see if server and browser are running on same server
 		if ( array_key_exists( 'SERVER_ADDR', $_SERVER ) ) {

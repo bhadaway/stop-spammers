@@ -5,7 +5,7 @@ Plugin URI: https://stopspammers.io/
 Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Version: 2021.2.1
+Version: 2021.3
 Tested up to: 5.6
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -90,8 +90,12 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
-= 2021.2 =
-* [Fix] login issue
+
+= 2021.3 =
+* [Fix] Error fixes
+
+= 2021.2.1 =
+* [Fix] Login issue
 
 = 2021.2 =
 * [New] Strings are now translation-ready
