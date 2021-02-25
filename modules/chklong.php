@@ -12,7 +12,7 @@ class chklong { // change name
 			$email = $post['email'];
 			if ( !empty( $email ) ) {
 				if ( strlen( $email ) > 64 ) {
-					_e( 'Email Too Long: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					__( 'Email Too Long: ' . $email . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
@@ -20,7 +20,7 @@ class chklong { // change name
 			if ( !empty( $post['author'] ) ) {
 				$author = $post['author'];
 				if ( strlen( $post['author'] ) > 64 ) {
-					_e( 'Author Too Long: ' . $author . '', 'stop-spammer-registrations-plugin' );
+					__( 'Author Too Long: ' . $author . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
@@ -28,7 +28,7 @@ class chklong { // change name
 			if ( !empty( $post['psw'] ) ) {
 				$psw = $post['psw'];
 				if ( strlen( $post['psw'] ) > 32 ) {
-					_e( 'Password Too Long: ' . $psw . '', 'stop-spammer-registrations-plugin' );
+					__( 'Password Too Long: ' . $psw . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}

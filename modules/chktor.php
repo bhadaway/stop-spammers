@@ -1944,7 +1944,7 @@ class chktor extends be_module {
 			'97.74.237.196'
 		);
 		if ( in_array( $ip, $torlist ) ) {
-			_e( 'Tor Exit Node', 'stop-spammer-registrations-plugin' );
+			__( 'Tor Exit Node: ', 'stop-spammer-registrations-plugin' );
 		}
 		return false;
 		// return false if OK, return a reason if not

@@ -7,7 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkrecurly extends be_module {
-	public $searchname = 'chkrecurly';
+	public $searchname = 'Recurly';
 	public $searchlist = array(
 			// IP addresses
 			'35.233.168.62',

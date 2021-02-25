@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 // last updated from https://stripe.com/docs/ips on 12/22/20
 class chkstripe extends be_module {
-	public $searchname = 'stripe';
+	public $searchname = 'Stripe';
 	public $searchlist = array(
 			'13.112.224.240',
 			'13.115.13.148',

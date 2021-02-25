@@ -10,7 +10,7 @@ class chkaccept {
 		if ( array_key_exists( 'HTTP_ACCEPT', $_SERVER ) ) {
 			return false;
 		} // real browsers send HTTP_ACCEPT
-		_e( 'No Accept Header;', 'stop-spammer-registrations-plugin' );
+		__( 'No Accept Header: ', 'stop-spammer-registrations-plugin' );
 	}
 }
 

@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 // last updated from https://support.authorize.net/s/article/Authorize-Net-Domains-and-IP-Addresses on 12/22/20
 class chkauthorizenet extends be_module {
-	public $searchname = 'authorizenet';
+	public $searchname = 'Authorize.net';
 	public $searchlist = array(
 			'198.241.206.38',
 			'198.241.207.38',

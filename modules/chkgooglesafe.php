@@ -57,7 +57,7 @@ class chkgooglesafe extends be_module {
 				$r	   = $this->getafile( $query );
 				if ( !empty( $r ) ) {
 					if ( strpos( $r, 'phishing' ) !== false || strpos( $r, 'malware' ) !== false ) {
-						_e( 'Google Safe: ', 'stop-spammer-registrations-plugin' ) . $r;
+						__( 'Google Safe: ', 'stop-spammer-registrations-plugin' ) . $r;
 					}
 				}
 			}

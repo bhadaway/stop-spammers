@@ -261,7 +261,7 @@ class ss_get_stats {
 		}
 		$ansa['version'] = SS_VERSION;
 		ss_set_stats( $ansa );
-		// sfs_debug_msg( "in get ansa\r\n".print_r( $ansa, true ) );
+		// sfs_debug_msg( "in get ansa\r\n" . print_r( $ansa, true ) );
 		return $ansa;
 	}
 }

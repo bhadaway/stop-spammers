@@ -12,7 +12,7 @@ class chkshort { // change name
 			$email = $post['email'];
 			if ( !empty( $email ) ) {
 				if ( strlen( $email ) < 5 ) {
-					_e( 'Email Too Short: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					__( 'Email Too Short: ' . $email . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
@@ -21,7 +21,7 @@ class chkshort { // change name
 				$author = $post['author'];
 				// short author is OK?
 				if ( strlen( $post['author'] ) < 3 ) {
-					_e( 'Author Too Short: ' . $author . '', 'stop-spammer-registrations-plugin' );
+					__( 'Author Too Short: ' . $author . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}

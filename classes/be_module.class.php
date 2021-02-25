@@ -48,7 +48,7 @@ class be_module {
 		}
 		if ( empty( $sname ) ) {
 			$_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'];
-			$sname				  = $_SERVER["SCRIPT_NAME"];
+			$sname				    = $_SERVER["SCRIPT_NAME"];
 			if ( $_SERVER['QUERY_STRING'] ) {
 				$_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
 			}

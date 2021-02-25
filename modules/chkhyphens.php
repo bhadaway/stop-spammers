@@ -12,7 +12,7 @@ class chkhyphens  extends be_module {
 			if ( !empty( $email ) ) {
 				$email = substr( $email, 0, strpos( $email, '@' ) );
 				if ( substr_count( $email, "-" ) > 1 ) {
-					_e( 'Too many hyphens in: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					__( 'Too many hyphens in: ' . $email . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
@@ -21,7 +21,7 @@ class chkhyphens  extends be_module {
 			if ( !empty( $email ) ) {
 				$email = substr( $email, 0, strpos( $email, '@' ) );
 				if ( substr_count( $email, "-" ) > 1 ) {
-					_e( 'Too many hyphens in: ' . $email . '', 'stop-spammer-registrations-plugin' );
+					__( 'Too many hyphens in: ' . $email . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}
