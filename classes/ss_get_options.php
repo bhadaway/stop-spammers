@@ -1430,7 +1430,7 @@ class ss_get_options {
 			if ( array_key_exists( $key, $ansa ) ) {
 				$ansa[ $key ] = $options[ $key ];
 			} else {
-			// sfs_debug_msg("option $key missing from $options");
+			// sfs_debug_msg( "option $key missing from $options" );
 			}
 		}
 		$ansa['version'] = SS_VERSION;
@@ -1476,7 +1476,7 @@ class ss_get_options {
 		}
 		$ansa['chkcloudflare'] = 'Y'; // force it true for now
 		ss_set_options( $ansa ); // new version, need to set the new options
-		// sfs_debug_msg( "in get options\r\n".print_r( $ansa, true ) );		
+		// sfs_debug_msg( "in get options\r\n" . print_r( $ansa, true ) );		
 		return $ansa;
 	}
 }

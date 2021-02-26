@@ -66,7 +66,7 @@ class ss_check_white extends be_module {
 					return $reason;
 				}
 			} else {
-			// sfs_debug_msg( 'no wl check '.$chk );
+			// sfs_debug_msg( 'no wl check ' .$chk );
 			}
 		}
 		// these are the allow after addons

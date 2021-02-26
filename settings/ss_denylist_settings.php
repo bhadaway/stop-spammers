@@ -147,7 +147,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkbluserid">
 				<input class="ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-		  		<small><span style="font-size:16px!important"><?php _e( 'Enable Block by User ID', 'stop-spammer-registrations-plugin' ); ?></span></small>
+		  		<small><span style="font-size:16px!important"><?php _e( 'Enable Block by Username', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />

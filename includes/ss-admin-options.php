@@ -89,7 +89,7 @@ function ss_row( $actions, $comment ) {
 	// $action.="<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
 	// add the network check
 	$whois	  = SS_PLUGIN_URL . 'images/whois.png';
-	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
+	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
 	$stophand = SS_PLUGIN_URL . 'images/stop.png';
 	$stop	  = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" height=\"16px\" /> </a>";
 	$action  .= " $who $stop";
@@ -464,7 +464,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 			$stopper	 = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" height=\"16px\" /></a>";
 			$honeysearch = "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" height=\"16px\" /></a>";
 			$botsearch   = "<a title=\"" . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" height=\"16px\" /></a>";
-			$who		 = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://lacnic.net/cgi-bin/lacnic/whois?lg=EN&query=$signup_ip\"><img src=\"$whois\" height=\"16px\" /></a>";
+			$who		 = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$signup_ip\"><img src=\"$whois\" height=\"16px\" /></a>";
 			$action	     = " $who $stopper $honeysearch $botsearch";
 			$options	 = ss_get_options();
 			$apikey	     = $options['apikey'];

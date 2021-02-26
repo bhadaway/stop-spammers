@@ -142,7 +142,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkwluserid">
 				<input class="ss_toggle" type="checkbox" id="chkwluserid" name="chkwluserid" value="Y" <?php if ( $chkwluserid == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-		  		<small><span style="font-size:16px!important;"><?php _e( 'Enable Allow by User ID (not recommended)', 'stop-spammer-registrations-plugin' ); ?></span></small>
+		  		<small><span style="font-size:16px!important;"><?php _e( 'Enable Allow by Username (not recommended)', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
