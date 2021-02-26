@@ -54,7 +54,7 @@ function ss_read_filex( $filename ) {
 	if ( file_exists( $file ) ) {
 		return file_get_contents( $file );
 	}
-	_e( 'File Not Found', 'stop-spammer-registrations-plugin' );
+	return __( 'File Not Found', 'stop-spammer-registrations-plugin' );
 }
 
 function ss_file_exists( $filename ) {
@@ -134,7 +134,7 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 	$m1  = memory_get_usage( true );
 	$m2  = memory_get_peak_usage( true );
 	$ip  = ss_get_ip();
-	$msg = _e( '
+	$msg = __( '
 Time: ' . $now . '
 Error Number: ' . $errno . '
 Error Type: ' . $serrno . '

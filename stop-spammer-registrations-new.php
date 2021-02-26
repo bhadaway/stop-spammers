@@ -758,7 +758,7 @@ function check_for_premium() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
 		function ss_upgrade_link( $links ) {
-			$links = array_merge( array( '<a href="https://stopspammers.io/" title="' . esc_attr( 'Get Maximum Dynamic Security', 'stop-spammer-registrations-plugin' ) . '" target="_blank" style="font-weight:bold">' . __( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a>' ), $links );
+			$links = array_merge( array( '<a href="https://stopspammers.io/" title="' . esc_attr__( 'Get Maximum Dynamic Security', 'stop-spammer-registrations-plugin' ) . '" target="_blank" style="font-weight:bold">' . __( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a>' ), $links );
 			return $links;
 		}
 	}
