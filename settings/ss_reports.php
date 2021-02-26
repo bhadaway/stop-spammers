@@ -157,7 +157,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 <td>' . $ip, $who, $stopper, $honeysearch, $botsearch . '';
 				if ( stripos( $reason, 'passed' ) !== false && ( $id == '/' || strpos( $id, 'login' ) ) !== false || strpos( $id, 'register' ) !== false && !in_array( $ip, $blist ) && !in_array( $ip, $wlist ) ) {
 					$ajaxurl = admin_url( 'admin-ajax.php' );
-					echo '<a href="" onclick="sfs_ajax_process(\'$ip\',\'log\',\'add_black\',\'$ajaxurl\');return false;" title="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '"><img src="$tdown" height="16px" /></a>';
+					echo '<a href="" onclick="sfs_ajax_process(\'$ip\',\'log\',\'add_black\',\'$ajaxurl\');return false;" title="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '"><img src="' . $tdown . '" height="16px" /></a>';
 					$options = get_option( 'ss_stop_sp_reg_options' );
 					$apikey  = $options['apikey'];
 					if ( !empty( $apikey ) && !empty( $em ) ) {
