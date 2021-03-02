@@ -367,33 +367,31 @@ $formbot
 			if ( !empty( $wlreqmail ) ) {
 				$to = $wlreqmail;
 			}
-			$subject = __( 'Allow List Request from ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
+			$subject = __( 'Allow List Request from: ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
 			$ip	     = ss_get_ip();
 			$web 	 = __( 'Approve or Deny Request: ', 'stop-spammer-registrations-plugin' ) . admin_url( 'admin.php?page=ss_allow_list' );
 
-			$message = _e( '
-Webmaster,
-
+			$message = __( "
 A request has been received from someone who has been marked as a spammer by the Stop Spammers plugin.
 
-You are being notified because you have checked off the box on the settings page indicating that you wanted this email.
+You are being notified because you have toggled on the option indicating that you wanted this email.
 
 The information from the request is:
 
-Time: ' . $now . '
-User IP: ' . $ip . '
-User Email: ' . $ke . '
-Spam Reason: ' . $kr . '
-User Message: ' . $km . '
+Time: $now
+User IP: $ip
+User Email: $ke
+Spam Reason: $kr
+User Message: $km
 
-' . $web . '
+$web
 
 Please be aware that the user has been recognized as a potential spammer.
 
 Some spam bots fill out the request form with a fake explanation.
 
 — Stop Spammers
-', 'stop-spammer-registrations-plugin' );
+", 'stop-spammer-registrations-plugin' );
 			$headers = __( 'From: ', 'stop-spammer-registrations-plugin' ) . get_option( 'admin_email' ) . "\r\n";
 			wp_mail( $to, $subject, $message, $headers );
 			$rejectmessage = __( '<h2>Email sent. Thank you.</h2>', 'stop-spammer-registrations-plugin' );
