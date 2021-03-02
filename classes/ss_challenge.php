@@ -367,7 +367,7 @@ $formbot
 			if ( !empty( $wlreqmail ) ) {
 				$to = $wlreqmail;
 			}
-			$subject = __( 'Allow List Request from: ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
+			$subject = __( 'Allow List Request from ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
 			$ip	     = ss_get_ip();
 			$web 	 = __( 'Approve or Deny Request: ', 'stop-spammer-registrations-plugin' ) . admin_url( 'admin.php?page=ss_allow_list' );
 
