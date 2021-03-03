@@ -304,7 +304,7 @@ height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
 					$seed = strtotime( $spdate );
 				}
 				$stupid = $n1 + $n2 - $seed;
-				$cap	= _e( '
+				$cap	= __( '
 <p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . ( $n1 + $n2 ) . '</span><br />
 <input name="sum" value="" type="text" />
 <input type="hidden" name="nums" value="' . $stupid . '" /><br />
