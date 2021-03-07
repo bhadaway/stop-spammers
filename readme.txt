@@ -92,8 +92,9 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2021.6 =
+* [New] Notification Control feature
 * [New] Support for Contact Form 7 and bbPress
-* [New] Users admin page sortable registered date column
+* [New] Sortable registered date column on Users page
 * [Enhanced] Code audit and cleanup
 
 = 2021.5 =

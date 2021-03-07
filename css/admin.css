@@ -133,7 +133,7 @@
 	background: #f9f9f9;
 }
 
-/* Create three equal columns that float next to each other */
+/* create three equal columns that float next to each other */
 #ss-plugin .ss_admin_info_boxes_3col {
 	float: left;
 	width: 30%;
@@ -148,14 +148,14 @@
 	background: #f9f9f9;
 }
 
-/* Clear floats after the columns */
+/* clear floats after the columns */
 #ss-plugin .ss_admin_info_boxes_3row:after {
 	content: "";
 	display: table;
 	clear: both;
 }
 
-/* Center image thumbs */
+/* center image thumbs */
 #ss-plugin .center_thumb {
 	display: block !important;
 	margin-left: auto !important;
@@ -195,7 +195,7 @@
 	background: #F1F1F1 !important;
 }
 
-/* Checkbox toggle switch */
+/* checkbox toggle switch */
 #ss-plugin div.checkbox.switcher label, #ss-plugin div.radio.switcher label {
 	padding: 0;
 }
@@ -313,7 +313,7 @@
 	line-height: 16px;
 	border-radius: 3px;
 	padding: 5px 0;
-	/* Position the tooltip */
+	/* position the tooltip */
 	position: absolute;
 	z-index: 1;
 	bottom: 100%;
@@ -365,10 +365,12 @@
 	font-size: 18px;
 	margin: 0px 0px 25px 0px;
 }
+
 .ss-hide-links {
 	text-align: right;
     margin-bottom: 10px;
 }
+
 .ss-hide-links .ss-hide-notice {
 	margin-left: 10px;
 	padding: 4px 10px;
@@ -379,6 +381,7 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+
 .update-nag.notice.notice-warning.inline .ss-hide-notices {
     margin-bottom: 10px;
 }
