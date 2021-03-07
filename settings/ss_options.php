@@ -48,8 +48,10 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'filterregistrations',
 		'chkform',
 		'ss_private_mode',
+		'ss_keep_hidden_btn',
+		'ss_hide_all_btn',
 		'chkubiquity',
-		'enable_custom_password'
+		'enable_custom_password',
 	);
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
@@ -286,6 +288,26 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<small><span style="font-size:16px!important"><?php _e( 'Check Credentials on All Login Attempts', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
+		
+		<br />
+		<div class="mainsection">
+			<?php _e( 'Notification Center', 'stop-spammer-registrations-plugin' ); ?>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#notificationcenter" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+		</div>
+		<div class="checkbox switcher">
+			<label id="ss_subhead" for="ss_keep_hidden_btn">
+				<input class="ss_toggle" type="checkbox" id="ss_keep_hidden_btn" name="ss_keep_hidden_btn" value="Y" <?php if ( $ss_keep_hidden_btn == 'Y' ) { echo 'checked="checked"'; } ?> onChange="(this.checked? '': jQuery('#ss_hide_all_btn').prop('checked', false) );"/><span><small></small></span>
+				<small><span style="font-size:16px!important"><?php _e( 'Keep hidden button', 'stop-spammer-registrations-plugin' ); ?></span></small>
+			</label>
+		</div>
+		<br />
+		<div class="checkbox switcher">
+			<label id="ss_subhead" for="ss_hide_all_btn">
+				<input class="ss_toggle" type="checkbox" id="ss_hide_all_btn" name="ss_hide_all_btn" value="Y" <?php if ( $ss_hide_all_btn == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<small><span style="font-size:16px!important"><?php _e( 'Hide all notice button', 'stop-spammer-registrations-plugin' ); ?></span></small>
+			</label>
+		</div>
+
 		<br />
 		<div class="mainsection"><?php _e( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#validaterequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>

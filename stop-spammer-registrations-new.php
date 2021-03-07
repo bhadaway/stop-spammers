@@ -54,6 +54,7 @@ function ss_notice_dismissed() {
 			add_user_meta( $user_id, 'ss_notice_dismissed_6', 'true', true );
 		}
 	}
+
 	// Notification Center: handles notices
 	add_action( 'admin_print_scripts', 'ss_replace_admin_notices', 998 );
 	add_action( 'admin_head', 'ss_show_admin_notices_func', 998 );
@@ -63,6 +64,7 @@ add_action( 'admin_init', 'ss_notice_dismissed' );
 // replace notifications with new notifications
 function ss_replace_admin_notices() { 
 	global $ss_all_notices;
+	$options = ss_get_options();
 	try {
 		$admin_notices 		= &ss_get_admin_notices( "admin_notices" );
 		$all_admin_notices 	= &ss_get_admin_notices( "all_admin_notices" );
@@ -112,9 +114,13 @@ function ss_replace_admin_notices() {
 
 			if ( isset( $ss_notice_preference[ "{$uniq_id1}_{$uniq_id2}" ] ) )
 				continue;
-
-			$hide_for_user  = "<a data-target='user' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice'>" . __( 'Hide  <b>for me</b>', 'stop-spammers' ) . "</a>";
-			$hide_for_all	= "<a data-target='all' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice' href='https://stopspammers.io/' target='_blank'>" . __( 'Hide  <b>for all</b>', 'stop-spammers' ) . "</a>";
+			
+			$hide_for_user = "";
+			$hide_for_all = "";
+			if ( $options['ss_keep_hidden_btn'] === 'Y')
+				$hide_for_user  = "<a data-target='user' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice'>" . __( 'Keep hidden', 'stop-spammers' ) . "</a>";
+			if ( $options['ss_hide_all_btn'] === 'Y')
+				$hide_for_all	= "<a data-target='all' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice' href='https://stopspammers.io/' target='_blank'>" . __( 'Hide all notices</b>', 'stop-spammers' ) . "</a>";
 
 			// Fix for Woocommerce membership and Jetpack message
 			if ( $cont != '<div class="js-wc-memberships-admin-notice-placeholder"></div>' && false === strpos( $cont, 'jetpack-jitm-message' ) ) {
