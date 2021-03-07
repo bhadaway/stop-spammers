@@ -35,7 +35,7 @@ class ss_get_options {
 			'chkbraintree'	   => 'Y',
 			'chkrecurly'	   => 'Y'
 		);
-		// Deny List Y/N settings
+		// Block List Y/N settings
 		$defaultBL = array(
 			'chk404'		=> 'Y',
 			'chkaccept'	    => 'Y',
@@ -607,7 +607,7 @@ class ss_get_options {
 				'You’re a winner',
 				'zolus'
 			),
-			'denyurlshortners' => array(
+			'blockurlshortners' => array(
 				'0rz.tw',
 				'1-url.net',
 				'126.am',
@@ -1276,7 +1276,7 @@ class ss_get_options {
 			'ss_sp_cache_em' => 4,
 			'redirurl'	     => '',
 			'logfilesize'	 => 0,
-			'rejectmessage'  => "Access Denied<br />"
+			'rejectmessage'  => "Access Blocked<br />"
 		);
 		$defaultCOUNTRY = array( // all yes - changed to no
 			'chkAD' => 'N',

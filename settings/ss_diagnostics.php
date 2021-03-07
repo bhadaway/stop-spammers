@@ -9,14 +9,14 @@ $stats   = ss_get_stats();
 $options = ss_get_options();
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
 $now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 
 // for session speed checks
-// if( !isset( $_POST ) || empty( $_POST ) ) { // no post defined
+// if ( !isset( $_POST ) || empty( $_POST ) ) { // no post defined
 // $_SESSION['ss_stop_spammers_time'] = time();
 // if ( !isset( $_COOKIE['ss_stop_spammers_time'] ) ) { // if previous set do not reset
 // setcookie( 'ss_stop_spammers_time', strtotime( "now" ), strtotime( '+1 min' ) );
@@ -114,8 +114,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chkform',
 						'chkyahoomerchant'
 					);
-					$m1		 = memory_get_usage( true );
-					$m2		 = memory_get_peak_usage( true );
+					$m1 = memory_get_usage( true );
+					$m2 = memory_get_peak_usage( true );
 					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 					_e( '<ul>Allow Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
@@ -158,10 +158,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chkubiquity',
 						'chkurlshort'
 					);
-					$m1		 = memory_get_usage( true );
-					$m2		 = memory_get_peak_usage( true );
+					$m1 = memory_get_usage( true );
+					$m2 = memory_get_peak_usage( true );
 					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
-					_e( '<ul>Deny Checks<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<ul>Block Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
@@ -172,7 +172,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					echo "</ul>";
 					$optionlist = array();
 					$a1		    = apply_filters( 'ss_addons_allow', $optionlist );
-					$a3		    = apply_filters( 'ss_addons_deny', $optionlist );
+					$a3		    = apply_filters( 'ss_addons_block', $optionlist );
 					$a5		    = apply_filters( 'ss_addons_get', $optionlist );
 					$optionlist = array_merge( $a1, $a3, $a5 );
 					if ( !empty( $optionlist ) ) {
@@ -535,26 +535,27 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		_e( '<br /><br />Testing Posts<br />', 'stop-spammer-registrations-plugin' );
 		$ptab = $pre . 'posts';
 		$sql  = "select ID,post_author,post_title,post_name,guid,post_content,post_mime_type
-from $ptab where 
-INSTR(LCASE(post_author), '<script') +
-INSTR(LCASE(post_title), '<script') +
-INSTR(LCASE(post_name), '<script') +
-INSTR(LCASE(guid), '<script') +
-INSTR(LCASE(post_author), 'eval(') +
-INSTR(LCASE(post_title), 'eval(') +
-INSTR(LCASE(post_name), 'eval(') +
-INSTR(LCASE(guid), 'eval(') +
-INSTR(LCASE(post_content), 'eval(') +
-INSTR(LCASE(post_author), 'eval (') +
-INSTR(LCASE(post_title), 'eval (') +
-INSTR(LCASE(post_name), 'eval (') +
-INSTR(LCASE(guid), 'eval (') +
-INSTR(LCASE(post_content), 'eval (') +
-INSTR(LCASE(post_content), 'document.write(unescape(') +
-INSTR(LCASE(post_content), 'try{window.onload') +
-INSTR(LCASE(post_content), 'setAttribute(\'src\'') +
-INSTR(LCASE(post_mime_type), 'script') > 0
-";
+			from $ptab where 
+			INSTR(LCASE(post_author), '<script') +
+			INSTR(LCASE(post_title), '<script') +
+			INSTR(LCASE(post_name), '<script') +
+			INSTR(LCASE(guid), '<script') +
+			INSTR(LCASE(post_author), 'eval(') +
+			INSTR(LCASE(post_title), 'eval(') +
+			INSTR(LCASE(post_name), 'eval(') +
+			INSTR(LCASE(guid), 'eval(') +
+			INSTR(LCASE(post_content), 'eval(') +
+			INSTR(LCASE(post_author), 'eval (') +
+			INSTR(LCASE(post_title), 'eval (') +
+			INSTR(LCASE(post_name), 'eval (') +
+			INSTR(LCASE(guid), 'eval (') +
+			INSTR(LCASE(post_content), 'eval (') +
+			INSTR(LCASE(post_content), 'document.write(unescape(') +
+			INSTR(LCASE(post_content), 'try{window.onload') +
+			INSTR(LCASE(post_content), 'setAttribute(\'src\'') +
+			INSTR(LCASE(post_mime_type), 'script') > 0
+		";
+		$sql = str_replace( "\t", '', $sql );
 		flush();
 		$myrows = $wpdb->get_results( $sql );
 		if ( $myrows ) {
@@ -626,28 +627,29 @@ INSTR(LCASE(post_mime_type), 'script') > 0
 		$ptab = $pre . 'comments';
 		_e( '<br /><br />Testing Comments<br />', 'stop-spammer-registrations-plugin' );
 		flush();
-		$sql	= "select comment_ID,comment_author_url,comment_agent,comment_author,comment_author_email,comment_content
-from $ptab where 
-INSTR(LCASE(comment_author_url), '<script') +
-INSTR(LCASE(comment_agent), '<script') +
-INSTR(LCASE(comment_author), '<script') +
-INSTR(LCASE(comment_author_email), '<script') +
-INSTR(LCASE(comment_author_url), 'eval(') +
-INSTR(LCASE(comment_agent), 'eval(') +
-INSTR(LCASE(comment_author), 'eval(') +
-INSTR(LCASE(comment_author_email), 'eval(') +
-INSTR(LCASE(comment_author_url), 'eval (') +
-INSTR(LCASE(comment_agent), 'eval (') +
-INSTR(LCASE(comment_author), 'eval (') +
-INSTR(LCASE(comment_author_email), 'eval (') +
-INSTR(LCASE(comment_content), '<script') +
-INSTR(LCASE(comment_content), 'eval(') +
-INSTR(LCASE(comment_content), 'eval (') +
-INSTR(LCASE(comment_content), 'document.write(unescape(') +
-INSTR(LCASE(comment_content), 'try{window.onload') +
-INSTR(LCASE(comment_content), 'setAttribute(\'src\'') +
-INSTR(LCASE(comment_author_url), 'javascript:') >0
-";
+		$sql = "select comment_ID,comment_author_url,comment_agent,comment_author,comment_author_email,comment_content
+			from $ptab where 
+			INSTR(LCASE(comment_author_url), '<script') +
+			INSTR(LCASE(comment_agent), '<script') +
+			INSTR(LCASE(comment_author), '<script') +
+			INSTR(LCASE(comment_author_email), '<script') +
+			INSTR(LCASE(comment_author_url), 'eval(') +
+			INSTR(LCASE(comment_agent), 'eval(') +
+			INSTR(LCASE(comment_author), 'eval(') +
+			INSTR(LCASE(comment_author_email), 'eval(') +
+			INSTR(LCASE(comment_author_url), 'eval (') +
+			INSTR(LCASE(comment_agent), 'eval (') +
+			INSTR(LCASE(comment_author), 'eval (') +
+			INSTR(LCASE(comment_author_email), 'eval (') +
+			INSTR(LCASE(comment_content), '<script') +
+			INSTR(LCASE(comment_content), 'eval(') +
+			INSTR(LCASE(comment_content), 'eval (') +
+			INSTR(LCASE(comment_content), 'document.write(unescape(') +
+			INSTR(LCASE(comment_content), 'try{window.onload') +
+			INSTR(LCASE(comment_content), 'setAttribute(\'src\'') +
+			INSTR(LCASE(comment_author_url), 'javascript:') >0
+		";
+		$sql = str_replace( "\t", '', $sql );
 		$myrows = $wpdb->get_results( $sql );
 		if ( $myrows ) {
 			foreach ( $myrows as $myrow ) {
@@ -721,25 +723,26 @@ INSTR(LCASE(comment_author_url), 'javascript:') >0
 		$ptab   = $pre . 'links';
 		_e( '<br /><br />Testing Links<br />', 'stop-spammer-registrations-plugin' );
 		flush();
-		$sql	= "select link_ID,link_url,link_image,link_description,link_notes
-from $ptab where 
-INSTR(LCASE(link_url), '<script') +
-INSTR(LCASE(link_image), '<script') +
-INSTR(LCASE(link_description), '<script') +
-INSTR(LCASE(link_notes), '<script') +
-INSTR(LCASE(link_rss), '<script') +
-INSTR(LCASE(link_url), 'eval(') +
-INSTR(LCASE(link_image), 'eval(') +
-INSTR(LCASE(link_description), 'eval(') +
-INSTR(LCASE(link_notes), 'eval(') +
-INSTR(LCASE(link_rss), 'eval(') +
-INSTR(LCASE(link_url), 'eval (') +
-INSTR(LCASE(link_image), 'eval (') +
-INSTR(LCASE(link_description), 'eval (') +
-INSTR(LCASE(link_notes), 'eval (') +
-INSTR(LCASE(link_rss), 'eval (') +
-INSTR(LCASE(link_url), 'javascript:') >0
-";
+		$sql = "select link_ID,link_url,link_image,link_description,link_notes
+			from $ptab where 
+			INSTR(LCASE(link_url), '<script') +
+			INSTR(LCASE(link_image), '<script') +
+			INSTR(LCASE(link_description), '<script') +
+			INSTR(LCASE(link_notes), '<script') +
+			INSTR(LCASE(link_rss), '<script') +
+			INSTR(LCASE(link_url), 'eval(') +
+			INSTR(LCASE(link_image), 'eval(') +
+			INSTR(LCASE(link_description), 'eval(') +
+			INSTR(LCASE(link_notes), 'eval(') +
+			INSTR(LCASE(link_rss), 'eval(') +
+			INSTR(LCASE(link_url), 'eval (') +
+			INSTR(LCASE(link_image), 'eval (') +
+			INSTR(LCASE(link_description), 'eval (') +
+			INSTR(LCASE(link_notes), 'eval (') +
+			INSTR(LCASE(link_rss), 'eval (') +
+			INSTR(LCASE(link_url), 'javascript:') >0
+		";
+		$sql = str_replace( "\t", '', $sql );
 		$myrows = $wpdb->get_results( $sql );
 		if ( $myrows ) {
 			foreach ( $myrows as $myrow ) {
@@ -802,26 +805,27 @@ INSTR(LCASE(link_url), 'javascript:') >0
 		$ptab = $pre . 'users';
 		_e( '<br /><br />Testing Users<br />', 'stop-spammer-registrations-plugin' );
 		flush();
-		$sql  = "select ID,user_login,user_nicename,user_email,user_url,display_name 
-from $ptab where 
-INSTR(LCASE(user_login), '<script') +
-INSTR(LCASE(user_nicename), '<script') +
-INSTR(LCASE(user_email), '<script') +
-INSTR(LCASE(user_url), '<script') +
-INSTR(LCASE(display_name), '<script') +
-INSTR(user_login, 'eval(') +
-INSTR(user_nicename, 'eval(') +
-INSTR(user_email, 'eval(') +
-INSTR(user_url, 'eval(') +
-INSTR(display_name, 'eval(') +
-INSTR(user_login, 'eval (') +
-INSTR(user_nicename, 'eval (') +
-INSTR(user_email, 'eval (') +
-INSTR(user_url, 'eval (') +
-INSTR(display_name, 'eval (') +
-INSTR(LCASE(user_url), 'javascript:') +
-INSTR(LCASE(user_email), 'javascript:')>0
-";
+		$sql = "select ID,user_login,user_nicename,user_email,user_url,display_name 
+			from $ptab where 
+			INSTR(LCASE(user_login), '<script') +
+			INSTR(LCASE(user_nicename), '<script') +
+			INSTR(LCASE(user_email), '<script') +
+			INSTR(LCASE(user_url), '<script') +
+			INSTR(LCASE(display_name), '<script') +
+			INSTR(user_login, 'eval(') +
+			INSTR(user_nicename, 'eval(') +
+			INSTR(user_email, 'eval(') +
+			INSTR(user_url, 'eval(') +
+			INSTR(display_name, 'eval(') +
+			INSTR(user_login, 'eval (') +
+			INSTR(user_nicename, 'eval (') +
+			INSTR(user_email, 'eval (') +
+			INSTR(user_url, 'eval (') +
+			INSTR(display_name, 'eval (') +
+			INSTR(LCASE(user_url), 'javascript:') +
+			INSTR(LCASE(user_email), 'javascript:')>0
+		";
+		$sql = str_replace( "\t", '', $sql );
 		$myrows = $wpdb->get_results( $sql );
 		if ( $myrows ) {
 			foreach ( $myrows as $myrow ) {
@@ -904,7 +908,7 @@ INSTR(LCASE(user_email), 'javascript:')>0
 			'w.wpquery.o'						 => __( 'Malicious jquery in bootleg plugin or theme', 'stop-spammer-registrations-plugin' ),
 			'<scr\\\'+'						     => __( 'Obfuscated script tag, usually in bootleg plugin or theme', 'stop-spammer-registrations-plugin' )
 		);
-		$sql	 = "select option_id,option_value,option_name from $ptab where";
+		$sql = "select option_id,option_value,option_name from $ptab where";
 		foreach ( $badguys as $baddie => $reas ) {
 			$sql .= "INSTR(LCASE(option_value), '$baddie') +";
 		}

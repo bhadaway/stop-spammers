@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -90,7 +90,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 
 <div id="ss-plugin" class="wrap">
-	<h1 class="ss_head">Stop Spammers — <?php _e( 'Challenge & Deny', 'stop-spammer-registrations-plugin' ); ?></h1>
+	<h1 class="ss_head">Stop Spammers — <?php _e( 'Challenge & Block', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php if ( !empty( $update ) ) {
 		echo "$update";
 	} ?>
@@ -101,22 +101,22 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 		<input type="hidden" name="action" value="update challenge" />
 		<br />
-		<div class="mainsection"><?php _e( 'Access Denied Message', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-deny/#accessdenied" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+		<div class="mainsection"><?php _e( 'Access Blocked Message', 'stop-spammer-registrations-plugin' ); ?>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#accessblocked" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
 		<br />
 		<div class="mainsection"><?php _e( 'Routing and Notifications', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-deny/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="redir">
 				<input class="ss_toggle" type="checkbox" id="redir" name="redir" value="Y" onclick="ss_show_option()" <?php if ( $redir == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-		  		<small><span style="font-size:16px!important;"><?php _e( 'Send Visitor to Another Web Page', 'stop-spammer-registrations-plugin' ); ?></span></small>
+		  		<small><span style="font-size:16px!important"><?php _e( 'Send Visitor to Another Web Page', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
-		<span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none;"><?php _e( 'Redirect URL:', 'stop-spammer-registrations-plugin' ); ?>
+		<span id="ss_show_option" style="margin-left:30px;margin-bottom:15px;display:none"><?php _e( 'Redirect URL:', 'stop-spammer-registrations-plugin' ); ?>
 		<input size="77" name="redirurl" type="text" placeholder="e.g. https://example.com/privacy-policy/" value="<?php echo $redirurl; ?>" /></span>
 		<script>
 		function ss_show_option() {
@@ -167,7 +167,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<br />
 		<div class="mainsection"><?php _e( 'CAPTCHA', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-deny/#captcha" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#captcha" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div style="margin-left:30px">
 			<small><span style="font-size:16px!important;"><?php _e( 'Second Chance CAPTCHA Challenge', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -197,17 +197,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php if ( !empty( $recaptchaapisite ) ) { ?>
 				<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 				<div class="g-recaptcha" data-sitekey="<?php echo $recaptchaapisite; ?>"></div>
-				<?php _e( 'If the reCAPTCHA form looks good, you need to enable the reCAPTCHA on the Challenge &amp; Deny options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
+				<?php _e( 'If the reCAPTCHA form looks good, you need to enable the reCAPTCHA on the Challenge &amp; Block options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
 			<?php } ?>
 			<br />
-			<small><span style="font-size:16px!important;"><?php _e( 'Solve Media CAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+			<small><span style="font-size:16px!important"><?php _e( 'Solve Media CAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="solvmediaapivchallenge" type="text" placeholder="<?php _e( 'Challenge Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $solvmediaapivchallenge; ?>" />
 			<br />
 			<input size="64" name="solvmediaapiverify" type="text" placeholder="<?php _e( 'Verification Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $solvmediaapiverify; ?>" />
 			<br />
 			<?php if ( !empty( $solvmediaapivchallenge ) ) { ?>
 				<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo $solvmediaapivchallenge; ?>"></script>
-				<?php _e( '<p>If the CAPTCHA form looks good, you need to enable the CAPTCHA on the Challenge &amp; Deny options page. (see left)</p>', 'stop-spammer-registrations-plugin' ); ?>
+				<?php _e( '<p>If the CAPTCHA form looks good, you need to enable the CAPTCHA on the Challenge &amp; Block options page. (see left)</p>', 'stop-spammer-registrations-plugin' ); ?>
 			<?php } ?>
 		</div>
 		<br />

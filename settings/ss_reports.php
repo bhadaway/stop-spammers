@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -101,7 +101,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		</form>
 		<?php
 		if ( empty( $hist ) ) {
-			_e( '<p>Nothing in logs.</p>', 'stop-spammer-registrations-plugin' );
+			_e( '<p>Nothing in the log.</p>', 'stop-spammer-registrations-plugin' );
 		} else { ?>
 		<br />
 		<input type="text" id="ssinput" onkeyup="ss_search()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
@@ -151,13 +151,13 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 				$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=' . $ip . '"><img src="' . $search . '" height="16px" /></a>';
 				$who		 = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://whois.domaintools.com/' . $ip . '"><img src="' . $whois . '" height="16px" /></a>';
 				echo '
-<tr style="background-color:white">
-<td>' . $dt . '</td>
-<td>' . $em . '</td>
-<td>' . $ip, $who, $stopper, $honeysearch, $botsearch . '';
+					<tr style="background-color:white">
+					<td>' . $dt . '</td>
+					<td>' . $em . '</td>
+					<td>' . $ip, $who, $stopper, $honeysearch, $botsearch . '';
 				if ( stripos( $reason, 'passed' ) !== false && ( $id == '/' || strpos( $id, 'login' ) ) !== false || strpos( $id, 'register' ) !== false && !in_array( $ip, $blist ) && !in_array( $ip, $wlist ) ) {
 					$ajaxurl = admin_url( 'admin-ajax.php' );
-					echo '<a href="" onclick="sfs_ajax_process(\'' . $ip . '\',\'log\',\'add_black\',\'' . $ajaxurl . '\');return false;" title="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Deny List', 'stop-spammer-registrations-plugin' ) . '"><img src="' . $tdown . '" height="16px" /></a>';
+					echo '<a href="" onclick="sfs_ajax_process(\'' . $ip . '\',\'log\',\'add_black\',\'' . $ajaxurl . '\');return false;" title="' . esc_attr__( 'Add to Block List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Block List', 'stop-spammer-registrations-plugin' ) . '"><img src="' . $tdown . '" height="16px" /></a>';
 					$options = get_option( 'ss_stop_sp_reg_options' );
 					$apikey  = $options['apikey'];
 					if ( !empty( $apikey ) && !empty( $em ) ) {
@@ -168,9 +168,9 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 					}
 				}
 				echo '
-</td><td>' . $au . '</td>
-<td>' . $id . '</td>
-<td>' . $reason . '</td>';
+					</td><td>' . $au . '</td>
+					<td>' . $id . '</td>
+					<td>' . $reason . '</td>';
 				if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 					// switch to blog and back
 					$blogname  = get_blog_option( $blog, 'blogname' );
@@ -234,7 +234,6 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 				}
 			}
 		}
-
 		function ss_search() {
 			var input, filter, table, tr, td, i, txtValue;
 			input = document.getElementById("ssinput");

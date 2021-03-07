@@ -8,17 +8,20 @@ if ( !defined( 'ABSPATH' ) ) {
 class ss_check_post extends be_module {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		// does all of the post checks
-		// these are the deny before addons
+		// these are the block before addons
 		// returns array 
-		// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
-		// [3]=addon author, [4]=addon description
+		// [0] = class location,
+		// [1] = class name (also used as counter),
+		// [2] = addon name,
+		// [3] = addon author,
+		// [4] = addon description
 		// if already in Good Cache then exit quick - prevents looking when good checking has already been done
 		$reason = be_load( 'chkgcache', ss_get_ip(), $stats, $options, $post );
 		if ( $reason !== false ) {
 			return;
 		}
 		$addons = array();
-		$addons = apply_filters( 'ss_addons_deny', $addons );
+		$addons = apply_filters( 'ss_addons_block', $addons );
 		if ( !empty( $addons ) && is_array( $addons ) ) {
 			foreach ( $addons as $add ) {
 				if ( !empty( $add ) && is_array( $add ) ) {
@@ -245,14 +248,17 @@ class ss_check_post extends be_module {
 		// sfs_debug_msg( "check post $ip, " . print_r( $post,true ) );
 		// for testing the cache without doing spam
 		if ( array_key_exists( 'email', $post ) && $post['email'] == 'email@example.com' ) {
-			$post['reason'] = __( 'Testing IP - will always be blocked', 'stop-spammer-registrations-plugin' ); // use to test plugin
+			$post['reason'] = __( 'Testing Email (will always be blocked)', 'stop-spammer-registrations-plugin' ); // use to test plugin
 			be_load( 'ss_challenge', ss_get_ip(), $stats, $options, $post );
 			return;
 		}
-		// these are the deny after addons
+		// these are the block after addons
 		// returns array 
-		// [0]=class location, [1]=class name (also used as counter), [2]=addon name,
-		// [3]=addon author, [4]=addon description
+		// [0] = class location,
+		// [1] = class name (also used as counter),
+		// [2] = addon name,
+		// [3] = addon author,
+		// [4] = addon description
 		if ( $reason === false ) {
 			return false;
 		}

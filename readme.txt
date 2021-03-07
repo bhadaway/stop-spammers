@@ -5,8 +5,8 @@ Plugin URI: https://stopspammers.io/
 Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Version: 2021.5
-Tested up to: 5.6
+Version: 2021.6
+Tested up to: 5.7
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
@@ -91,6 +91,11 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
+= 2021.6 =
+* [New] Support for Contact Form 7 and bbPress
+* [New] Users admin page sortable registered date column
+* [Enhanced] Code audit and cleanup
+
 = 2021.5 =
 * [Fix] Email fix
 
@@ -132,7 +137,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 = 2020.6 =
 * [New] Send email when allow list request is approved (community request)
-* [New] Approve or Deny action in request email with link to Allow List page (community request)
+* [New] Approve or Block action in request email with link to Allow List page (community request)
 * [Update] Update Stop Spammers menu icon to 'S' logo
 * [Fix] Conditional fields hidden on page load when option is enabled
 * [Fix] Updates to multisite (community reported)
@@ -140,10 +145,10 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 * [Fix] Wrong key used for the spam reason in the allow request email template sent to the web admin
 
 = 2020.5.1 =
-* [Fix] Deny if email has too many periods
+* [Fix] Block if email has too many periods
 
 = 2020.5 =
-* [New] Deny URL shortening service links
+* [New] Block URL shortening service links
 
 = 2020.4.5 =
 * [New] Notice
@@ -164,7 +169,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 * [New] Force username-only login
 * [New] Force email-only login
 * [New] Disable custom passwords
-* [Enhanced] 2,500+ disposable email domains added to deny list
+* [Enhanced] 2,500+ disposable email domains added to block list
 * [Update] Support notice
 
 = 2020.3 =

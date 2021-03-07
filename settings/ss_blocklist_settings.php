@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -52,24 +52,24 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['spamwords'] = $tblist;
-		$spamwords			= $tblist;
+		$spamwords			  = $tblist;
 	}
-	if ( array_key_exists( 'denyurlshortners', $_POST ) ) {
-		$denyurlshortners = $_POST['denyurlshortners'];
-		if ( empty( $denyurlshortners ) ) {
-			$denyurlshortners = array();
+	if ( array_key_exists( 'blockurlshortners', $_POST ) ) {
+		$blockurlshortners = $_POST['blockurlshortners'];
+		if ( empty( $blockurlshortners ) ) {
+			$blockurlshortners = array();
 		} else {
-			$denyurlshortners = explode( "\n", $denyurlshortners );
+			$blockurlshortners = explode( "\n", $blockurlshortners );
 		}
 		$tblist = array();
-		foreach ( $denyurlshortners as $bl ) {
+		foreach ( $blockurlshortners as $bl ) {
 			$bl = trim( $bl );
 			if ( !empty( $bl ) ) {
 				$tblist[] = $bl;
 			}
 		}
-		$options['denyurlshortners'] = $tblist;
-		$denyurlshortners			= $tblist;
+		$options['blockurlshortners'] = $tblist;
+		$blockurlshortners			  = $tblist;
 	}
 	if ( array_key_exists( 'badTLDs', $_POST ) ) {
 		$badTLDs = $_POST['badTLDs'];
@@ -103,7 +103,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			}
 		}
 		$options['badagents'] = $tblist;
-		$badagents			= $tblist;
+		$badagents			  = $tblist;
 	}
 	// check box setting
 	$optionlist = array(
@@ -184,8 +184,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br />
-		<textarea name="denyurlshortners" cols="40" rows="8"><?php
-			foreach ( $denyurlshortners as $p ) {
+		<textarea name="blockurlshortners" cols="40" rows="8"><?php
+			foreach ( $blockurlshortners as $p ) {
 				echo $p . "\r\n";
 			}
 		?></textarea>
@@ -196,7 +196,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkagent">
 				<input class="ss_toggle" type="checkbox" id="chkagent" name="chkagent" value="Y" <?php if ( $chkagent == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-		  		<small><span style="font-size:16px!important;"><?php _e( 'Check Agents', 'stop-spammer-registrations-plugin' ); ?></span></small>
+		  		<small><span style="font-size:16px!important"><?php _e( 'Check Agents', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />

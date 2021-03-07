@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
@@ -35,7 +35,7 @@ $counters = array(
 	'cntchkwlem'		  => __( 'Allow List Email', 'stop-spammer-registrations-plugin' ),
 	'cntchkuserid'		  => __( 'Allow Username', 'stop-spammer-registrations-plugin' ),
 	'cntchkwlist'		  => __( 'Pass Allow List IP', 'stop-spammer-registrations-plugin' ),
-	'cntchkyahoomerchant' => __( 'Pass Yahoo merchant', 'stop-spammer-registrations-plugin' ),
+	'cntchkyahoomerchant' => __( 'Pass Yahoo Merchant', 'stop-spammer-registrations-plugin' ),
 	'cntchk404'		      => __( '404 Exploit Attempt', 'stop-spammer-registrations-plugin' ),
 	'cntchkaccept'		  => __( 'Bad or Missing Accept Header', 'stop-spammer-registrations-plugin' ),
 	'cntchkadmin'		  => __( 'Admin Login Attempt', 'stop-spammer-registrations-plugin' ),
@@ -44,9 +44,9 @@ $counters = array(
 	'cntchkamazon'		  => __( 'Amazon AWS', 'stop-spammer-registrations-plugin' ),
 	'cntchkaws'		      => __( 'Amazon AWS Allow', 'stop-spammer-registrations-plugin' ),
 	'cntchkbcache'		  => __( 'Bad Cache', 'stop-spammer-registrations-plugin' ),
-	'cntchkblem'		  => __( 'Deny List Email', 'stop-spammer-registrations-plugin' ),
-	'cntchkuserid'		  => __( 'Deny Username', 'stop-spammer-registrations-plugin' ),
-	'cntchkblip'		  => __( 'Deny List IP', 'stop-spammer-registrations-plugin' ),
+	'cntchkblem'		  => __( 'Block List Email', 'stop-spammer-registrations-plugin' ),
+	'cntchkuserid'		  => __( 'Block Username', 'stop-spammer-registrations-plugin' ),
+	'cntchkblip'		  => __( 'Block List IP', 'stop-spammer-registrations-plugin' ),
 	'cntchkbotscout'	  => __( 'BotScout', 'stop-spammer-registrations-plugin' ),
 	'cntchkdisp'		  => __( 'Disposable Email', 'stop-spammer-registrations-plugin' ),
 	'cntchkdnsbl'		  => __( 'DNSBL Hit', 'stop-spammer-registrations-plugin' ),
@@ -290,7 +290,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	if ( empty( $sname ) ) {
 		$_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'];
-		$sname			  	  = $_SERVER["SCRIPT_NAME"];
+		$sname			  	    = $_SERVER["SCRIPT_NAME"];
 	}
 	if ( strpos( $sname, '?' ) !== false ) {
 		$sname = substr( $sname, 0, strpos( $sname, '?' ) );
@@ -300,19 +300,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	$current_user_name = wp_get_current_user()->user_login;
 	if ( $current_user_name == 'admin' ) {
-		_e( '
-<span class="notice notice-warning" style="display:block">
-SECURITY RISK: You are using the username "admin." This is 
-an invitation to hackers to try and guess your password. Please change this.
-</span>', 'stop-spammer-registrations-plugin' );
+		_e( '<span class="notice notice-warning" style="display:block">SECURITY RISK: You are using the username "admin." This is an invitation to hackers to try and guess your password. Please change this.</span>', 'stop-spammer-registrations-plugin' );
 	}
 	$showcf = false; // hide this for now
 	if ( $showcf && array_key_exists( 'HTTP_CF_CONNECTING_IP', $_SERVER ) && !function_exists( 'cloudflare_init' ) && !defined( 'W3TC' ) ) {
-		_e( '
-<span class="notice notice-warning" style="display:block">
-WARNING: Cloudflare Remote IP address detected. Please make sure to
-<a href="https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs" target="_blank">restore visitor IPs</a>.
-</span>', 'stop-spammer-registrations-plugin' );
+		_e( '<span class="notice notice-warning" style="display:block">WARNING: Cloudflare Remote IP address detected. Please make sure to <a href="https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs" target="_blank">restore visitor IPs</a>.</span>', 'stop-spammer-registrations-plugin' );
 	}
 	?>
 	<h2><?php _e( 'Summary of Spam', 'stop-spammer-registrations-plugin' ); ?></h2>
@@ -394,9 +386,9 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 		</div>
 		<div class="ss_admin_info_boxes_3col">
 			<h3><?php _e( 'BLOCK LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
-			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb"><?php _e( 'Block specified IPs and emails and deny comments with certain words and phrases that are often used by spammers.', 'stop-spammer-registrations-plugin' ); ?>
+			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb"><?php _e( 'Block specified IPs and emails and block comments with certain words and phrases that are often used by spammers.', 'stop-spammer-registrations-plugin' ); ?>
 			<div class="ss_admin_button">
-				<a href="?page=ss_deny_list"><?php _e( 'Block', 'stop-spammer-registrations-plugin' ); ?></a>
+				<a href="?page=ss_block_list"><?php _e( 'Block', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
 	</div>
@@ -410,7 +402,7 @@ WARNING: Cloudflare Remote IP address detected. Please make sure to
 		</div>
 		<div class="ss_admin_info_boxes_3col">
 			<h3><?php _e( 'APPROVE REQUESTS', 'stop-spammer-registrations-plugin' ); ?></h3>
-			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb"><?php _e( 'Review and approve or deny users who were blocked and filled out the form requesting access to your site.', 'stop-spammer-registrations-plugin' ); ?>
+			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb"><?php _e( 'Review and approve or block users who were blocked and filled out the form requesting access to your site.', 'stop-spammer-registrations-plugin' ); ?>
 			<div class="ss_admin_button">
 				<a href="?page=ss_allow_list"><?php _e( 'Approve', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>

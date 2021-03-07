@@ -7,7 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class chkshort { // change name
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
-		$this->searchname = 'Email/Author Too Short';
+		$this->searchname = 'Email/Username Too Short';
 		if ( array_key_exists( 'email', $post ) ) {
 			$email = $post['email'];
 			if ( !empty( $email ) ) {
@@ -21,7 +21,7 @@ class chkshort { // change name
 				$author = $post['author'];
 				// short author is OK?
 				if ( strlen( $post['author'] ) < 3 ) {
-					return __( 'Author Too Short: ' . $author . '', 'stop-spammer-registrations-plugin' );
+					return __( 'Username Too Short: ' . $author . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}

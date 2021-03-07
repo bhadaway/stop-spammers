@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2021.5
+Version: 2021.6
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2021.5' );
+define( 'SS_VERSION', '2021.6' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -84,7 +84,7 @@ add_action( 'init', 'ss_init', 0 );
 
 // dummy filters for addons
 add_filter( 'ss_addons_allow', 'ss_addons_d', 0 );
-add_filter( 'ss_addons_deny', 'ss_addons_d', 0 );
+add_filter( 'ss_addons_block', 'ss_addons_d', 0 );
 add_filter( 'ss_addons_get', 'ss_addons_d', 0 );
 
 // done - the reset will be done in the init event
@@ -108,7 +108,7 @@ add_filter( 'ss_addons_get', 'ss_addons_d', 0 );
  * 5) on init check for POST or GET
  * 6) on post gather post variables and check for spam, logins, or exploits
  * 7) on get check for access blocking
- * 8) on deny
+ * 8) on block
  * update counters
  * update cache
  * update log
@@ -175,11 +175,11 @@ function ss_init() {
 	}
 	// can we check for $_GET registrations?
 	if ( isset( $_POST ) && !empty( $_POST ) ) {
-		// see if we are returning from a deny
-		if ( array_key_exists( 'ss_deny', $_POST ) && array_key_exists( 'kn', $_POST ) ) {
-			// deny form hit
+		// see if we are returning from a block
+		if ( array_key_exists( 'ss_block', $_POST ) && array_key_exists( 'kn', $_POST ) ) {
+			// block form hit
 			$knonce = $_POST['kn'];
-			if ( !empty( $knonce ) && wp_verify_nonce( $knonce, 'ss_stopspam_deny' ) ) {
+			if ( !empty( $knonce ) && wp_verify_nonce( $knonce, 'ss_stopspam_block' ) ) {
 				// call the checker program
 				sfs_errorsonoff();
 				$options = ss_get_options();
@@ -506,22 +506,55 @@ function get_post_variables() {
 		return $ansa;
 	}
 	$search  = array(
-		'email'   => array( 'user_email', 'email', 'address' ),
+		'email'   => array(
+			'email',
+			'e-mail',
+			'user_email',
+			'email-address',
+			'your-email'
+		),
 		// 'input_' = WooCommerce forms
 		'author'  => array(
 			'author',
 			'name',
+			'username',
 			'user_login',
 			'signup_for',
 			'log',
 			'user',
-			'name',
-			'_id'
+			'_id',
+			'your-name'
 		),
-		'pwd'	  => array( 'psw', 'pwd', 'pass', 'secret' ),
-		'comment' => array( 'comment', 'message', 'body', 'excerpt' ),
-		'subject' => array( 'subj', 'topic' ),
-		'url'	  => array( 'url', 'blog_name', 'blogname' )
+		'pwd'	  => array(
+			'pwd',
+			'password',
+			'psw',
+			'pass',
+			'secret'
+		),
+		'comment' => array(
+			'comment',
+			'message',
+			'reply',
+			'body',
+			'excerpt',
+			'your-message'
+		),
+		'subject' => array(
+			'subject',
+			'subj',
+			'topic',
+			'your-subject'
+		),
+		'url'	  => array(
+			'url',
+			'link',
+			'site',
+			'website',
+			'blog_name',
+			'blogname',
+			'your-website'
+		)
 	);
 	$emfound = false;
 	// rewrite this
@@ -561,22 +594,22 @@ function get_post_variables() {
 	}
 	/*	
 	foreach ( $search as $var => $sa ) {
-	foreach ( $sa as $srch ) {
-	foreach ( $p as $pkey => $pval ) {
-	if ( is_string( $pval ) && !is_array( $pval ) ) { // WooCommerce fix - overkill
-	if ( strpos( $pkey, $srch ) !==false ) {
-	if ( $var=='email' && strpos( $pval, '@' ) !== false && strrpos( $pval, '.' ) > strpos( $pval, '@' ) ) { // only valid with @ before last dot sign and .
-	$ansa[$var] = $pval;
-	$emfound = true;
-	break;
-	} else { // no @ sign - save for now, hope for better
-	if ( empty( $ansa[$var] ) ) $ansa[$var] = $pval;
-	}
-	}
-	if ( $var != 'email' && $emfound ) break; // keep checking email even if we have one - look for better
-	}
-	}
-	}
+		foreach ( $sa as $srch ) {
+			foreach ( $p as $pkey => $pval ) {
+				if ( is_string( $pval ) && !is_array( $pval ) ) { // WooCommerce fix - overkill
+					if ( strpos( $pkey, $srch ) !==false ) {
+						if ( $var=='email' && strpos( $pval, '@' ) !== false && strrpos( $pval, '.' ) > strpos( $pval, '@' ) ) { // only valid with @ before last dot sign and .
+							$ansa[$var] = $pval;
+							$emfound = true;
+							break;
+						} else { // no @ sign - save for now, hope for better
+							if ( empty( $ansa[$var] ) ) $ansa[$var] = $pval;
+						}
+					}
+					if ( $var != 'email' && $emfound ) break; // keep checking email even if we have one - look for better
+				}
+			}
+		}
 	}
 	*/
 	// sanitize input - some of this is stored in history and needs to be cleaned up
@@ -657,7 +690,7 @@ function ss_new_user_ip( $user_id ) {
 }
 
 function ss_sfs_ip_column_head( $column_headers ) {
-	$column_headers['signup_ip'] = 'User IP';
+	$column_headers['signup_ip'] = 'IP Address';
 	return $column_headers;
 }
 
@@ -680,6 +713,56 @@ function ss_log_user_ip( $user_login = "", $user = "" ) {
 		update_user_meta( $user_id, 'signup_ip', $ip );
 	}
 }
+
+// add registration date column to Users admin page
+class SSRegDate {
+	public function __construct() {
+		add_action( 'init', array( &$this, 'init' ) );
+	}
+	public function init() {
+		add_filter( 'manage_users_columns', array( $this, 'users_columns' ) );
+		add_action( 'manage_users_custom_column', array( $this, 'users_custom_column' ), 10, 3 );
+		add_filter( 'manage_users_sortable_columns', array( $this, 'users_sortable_columns' ) );
+		add_filter( 'request', array( $this, 'users_orderby_column' ) );
+	}
+	public static function users_columns( $columns ) {
+		$columns['registerdate'] = _x( 'Registered', 'user', 'stop-spammer-registrations-plugin' );
+		return $columns;
+	}
+	public static function users_custom_column( $value, $column_name, $user_id ) {
+		global $mode;
+		$mode = empty( $_REQUEST['mode'] ) ? 'list' : $_REQUEST['mode'];
+		if ( 'registerdate' != $column_name ) {
+			return $value;
+		} else {
+			$user = get_userdata( $user_id );
+			if ( is_multisite() && ( 'list' == $mode ) ) {
+				$formatted_date = 'F jS, Y';
+			} else {
+				$formatted_date = 'F jS, Y \a\t g:i a';
+			}
+			$registered = strtotime( get_date_from_gmt( $user->user_registered ) );
+			$registerdate = '<span>' . date_i18n( $formatted_date, $registered ) . '</span>' ;
+			return $registerdate;
+		}
+	}
+	public static function users_sortable_columns( $columns ) {
+		$custom = array(
+			'registerdate' => 'registered',
+		);
+		return wp_parse_args( $custom, $columns );
+	}
+	public static function users_orderby_column( $vars ) {
+		if ( isset( $vars['orderby'] ) && 'registerdate' == $vars['orderby'] ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => 'registerdate',
+				'orderby' => 'meta_value'
+			) );
+		}
+		return $vars;
+	}
+}
+new SSRegDate();
 
 /***********************************
  * $user_email = apply_filters( 'user_registration_email', $user_email );
@@ -710,13 +793,13 @@ function ss_user_reg_filter( $user_login ) {
 		$post['reason'] = __( 'Failed Registration: Bad Cache', 'stop-spammer-registrations-plugin' );
 		$host['chk']	= 'chkbcache';
 		$ansa		    = be_load( 'ss_log_bad', ss_get_ip(), $stats, $options, $post );
-		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
+		wp_die( '$rejectmessage', __( 'Login Access Blocked', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
 	// check periods
 	$reason = be_load( 'chkperiods', ss_get_ip(), $stats, $options, $post );
 	if ( $reason !== false ) { 
-		wp_die( 'Registration Access Denied', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
+		wp_die( 'Registration Access Blocked', __( 'Login Access Blocked', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 	}
 	// check the whitelist
 	$reason = ss_check_white();
@@ -728,7 +811,7 @@ function ss_user_reg_filter( $user_login ) {
 		return $user_login;
 	}
 	// check the blacklist
-	// sfs_debug_msg( "Checking blacklist on registration: /r/n".print_r( $post, true ) );
+	// sfs_debug_msg( "Checking blacklist on registration: /r/n" . print_r( $post, true ) );
 	$ret			= be_load( 'ss_check_post', ss_get_ip(), $stats, $options, $post );
 	$post['reason'] = __( 'Passed Registration ', 'stop-spammer-registrations-plugin' ) . $ret;
 	$ansa		    = be_load( 'ss_log_good', ss_get_ip(), $stats, $options, $post );
@@ -736,7 +819,7 @@ function ss_user_reg_filter( $user_login ) {
 }
 
 // private mode
-function login_redirect() {
+function ss_login_redirect() {
 	global $pagenow, $post;
 	$options = ss_get_options();
 	if ( get_option( 'ssp_enable_custom_login', '' ) and $options['ss_private_mode'] == "Y" and ( !is_user_logged_in() && $post->post_name != 'login' ) ) {
@@ -745,7 +828,7 @@ function login_redirect() {
 		auth_redirect();
 	}
 }
-add_action( 'wp', 'login_redirect' );
+add_action( 'wp', 'ss_login_redirect' );
 
 // action links
 function ss_summary_link( $links ) {
@@ -754,7 +837,7 @@ function ss_summary_link( $links ) {
 }
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_summary_link' );
 
-function check_for_premium() {
+function ss_check_for_premium() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ss_upgrade_link' );
 		function ss_upgrade_link( $links ) {
@@ -763,6 +846,6 @@ function check_for_premium() {
 		}
 	}
 }
-add_action( 'admin_init', 'check_for_premium' );
+add_action( 'admin_init', 'ss_check_for_premium' );
 
 require_once( 'includes/stop-spam-utils.php' );

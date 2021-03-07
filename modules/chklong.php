@@ -7,7 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class chklong { // change name
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
-		$this->searchname = 'Email/Author/Password Too Long';
+		$this->searchname = 'Email/Username/Password Too Long';
 		if ( array_key_exists( 'email', $post ) ) {
 			$email = $post['email'];
 			if ( !empty( $email ) ) {
@@ -20,7 +20,7 @@ class chklong { // change name
 			if ( !empty( $post['author'] ) ) {
 				$author = $post['author'];
 				if ( strlen( $post['author'] ) > 64 ) {
-					return __( 'Author Too Long: ' . $author . '', 'stop-spammer-registrations-plugin' );
+					return __( 'Username Too Long: ' . $author . '', 'stop-spammer-registrations-plugin' );
 				}
 			}
 		}

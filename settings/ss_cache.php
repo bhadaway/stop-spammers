@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -69,7 +69,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<br />
 	<div class="ss_info_box">
 	<?php _e( '
-	<p>Whenever a user tries to leave a comment, register, or login, they are
+		<p>Whenever a user tries to leave a comment, register, or login, they are
 		recorded in the Good Cache if they pass or the Bad Cache if they fail.
 		If a user is blocked from access, they are added to the Bad Cache. You
 		can see the caches here. To learn more about caching, 

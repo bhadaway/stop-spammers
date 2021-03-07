@@ -6,12 +6,13 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die ( 'Access Denied' );
+	die ( 'Access Blocked' );
 }
 
 ss_fix_post_vars();
 
 ?>
+
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head">Stop Spammers — DB Cleanup</h1>
 	<?php if ( array_key_exists( 'autol', $_POST ) || array_key_exists( 'delo', $_POST ) ) {
@@ -19,9 +20,7 @@ ss_fix_post_vars();
 	}
 	?>
 	<div class="ss_info_box">
-	<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that
-		they don&acute;t autoload. Be aware that you can break some
-		plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+	<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that they don&acute;t autoload. Be aware that you can break some plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
@@ -74,7 +73,7 @@ ss_fix_post_vars();
 		'advanced_edit',
 		'avatar_default',
 		'avatar_rating',
-		'denylist_keys',
+		'blocklist_keys',
 		'blog_charset',
 		'blog_public',
 		'blogdescription',
@@ -300,11 +299,7 @@ ss_fix_post_vars();
 	$showtransients = false; // change to true to clean up transients
 	if ( $showtransients && countTransients() > 0 ) { // personal use - probably too dangerous for casual users ?>
 		<hr />
-		<p><?php _e( 'WordPress creates temporary objects in the database called
-			transients.<br />
-			WordPress is not good about cleaning them up afterwards. You can
-			clean these up safely and it might
-			speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
+		<p><?php _e( 'WordPress creates temporary objects in the database called transients.<br />WordPress is not good about cleaning them up afterwards. You can clean these up safely and it might speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<form method="post" name="DOIT2" action="">
 			<input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>" />
 			<p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
@@ -324,7 +319,9 @@ ss_fix_post_vars();
 	}
 	?>
 </div>
+
 <?php
+
 function countTransients() {
 	$blog_id = get_current_blog_id();
 	global $wpdb;
@@ -332,20 +329,22 @@ function countTransients() {
 	$table	   = $wpdb->get_blog_prefix( $blog_id ) . 'options';
 	$count	   = 0;
 	$sql	   = "
-select count(*) from $table 
-where
-option_name like '\_transient\_timeout\_%'
-or option_name like '\_site\_transient\_timeout\_%'
-or option_name like 'displayed\_galleries\_%'
-or option_name like 'displayed\_gallery\_rendering\_%'
-or t1.option_name like '\_transient\_feed\_mod_%' 
-or t1.option_name like '\_transient\__bbp\_%' 
-and option_value < '$optimeout'
-";
-	$sql	   = "
-select count(*) from $table 
-where instr(t1.option_name,'SS_SECRET_WORD')>0
-";
+		select count(*) from $table 
+		where
+		option_name like '\_transient\_timeout\_%'
+		or option_name like '\_site\_transient\_timeout\_%'
+		or option_name like 'displayed\_galleries\_%'
+		or option_name like 'displayed\_gallery\_rendering\_%'
+		or t1.option_name like '\_transient\_feed\_mod_%' 
+		or t1.option_name like '\_transient\__bbp\_%' 
+		and option_value < '$optimeout'
+	";
+	$sql = str_replace( "\t", '', $sql );
+	$sql = "
+		select count(*) from $table 
+		where instr(t1.option_name,'SS_SECRET_WORD')>0
+	";
+	$sql = str_replace( "\t", '', $sql );
 	$count	  += $wpdb->get_var( $sql );
 	if ( empty( $count ) ) {
 		$count = "0";
@@ -360,22 +359,24 @@ function deleteTransients() {
 	$optimeout = time() - 60;
 	$table	   = $wpdb->get_blog_prefix( $blog_id ) . 'options';
 	$sql	   = "
-delete from $table
-where 
-option_name like '\_transient\_timeout\_%'
-or option_name like '\_site\_transient\_timeout\_%'
-or option_name like 'displayed\_galleries\_%'
-or option_name like 'displayed\_gallery\_rendering\_%'
-or t1.option_name like '\_transient\_feed\_mod_%' 
-or t1.option_name like '\_transient\__bbp\_%' 
-or instr(t1.option_name,'SS_SECRET_WORD')>0
-and option_value < '$optimeout'
-";
+		delete from $table
+		where 
+		option_name like '\_transient\_timeout\_%'
+		or option_name like '\_site\_transient\_timeout\_%'
+		or option_name like 'displayed\_galleries\_%'
+		or option_name like 'displayed\_gallery\_rendering\_%'
+		or t1.option_name like '\_transient\_feed\_mod_%' 
+		or t1.option_name like '\_transient\__bbp\_%' 
+		or instr(t1.option_name,'SS_SECRET_WORD')>0
+		and option_value < '$optimeout'
+	";
+	$sql = str_replace( "\t", '', $sql );
 	$wpdb->query( $sql );
 	$sql = "
-select count(*) from $table 
-where instr(t1.option_name,'SS_SECRET_WORD')>0
-";
+		select count(*) from $table 
+		where instr(t1.option_name,'SS_SECRET_WORD')>0
+	";
+	$sql = str_replace( "\t", '', $sql );
 	$wpdb->query( $sql );
 }
 

@@ -9,8 +9,8 @@ if ( !defined( 'ABSPATH' ) ) {
 class chkPM extends be_module {
 	public $searchname = 'Saint Pierre and Miquelon';
 	public $searchlist = array(
-			array( '070036000000', '070036016000' )
-		);
+		array( '070036000000', '070036016000' )
+	);
 }
 
 ?>

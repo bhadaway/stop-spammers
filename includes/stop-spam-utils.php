@@ -12,7 +12,7 @@ function ss_append_file( $filename, &$content ) {
 	// this writes content to a file in the uploads director in the 'stop-spammer-registrations' directory
 	// changed to write to the current directory - content_dir is a bad place
 	$file = SS_PLUGIN_DATA . $filename;
-	$f	= @fopen( $file, 'a' );
+	$f	  = @fopen( $file, 'a' );
 	if ( !$f ) {
 		return false;
 	}
@@ -71,7 +71,7 @@ function ss_file_delete( $filename ) {
 }
 
 // debug functions
-// change the debug=false to debug=true to start debugging
+// change the debug = false to debug = true to start debugging
 // the plugin will drop a file sfs_debug_output.txt in the current directory (root, wp-admin, or network) 
 // directory must be writeable or plugin will crash
 function sfs_errorsonoff( $old = null ) {
@@ -88,7 +88,7 @@ function sfs_errorsonoff( $old = null ) {
 function sfs_debug_msg( $msg ) {
 	// used to aid debugging - adds to debug file
 	$debug = true;
-	$ip	= ss_get_ip();
+	$ip	   = ss_get_ip();
 	if ( !$debug ) {
 		return;
 	}
@@ -104,14 +104,7 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 	// if ( $errno == E_NOTICE || $errno == E_WARNING ) return false;
 	// if ( $errno == 2048 ) return; // WordPress throws deprecated all over the place
 	$serrno = "";
-	if ( ( strpos( $filename, 'ss' ) === false )
-		&& ( strpos( $filename, 'admin-options' ) === false )
-		&& ( strpos( $filename, 'mu-options' ) === false )
-		&& ( strpos( $filename, 'stop-spam' ) === false )
-		&& ( strpos( $filename, 'sfr_mu' ) === false )
-		&& ( strpos( $filename, 'settings.php' ) === false )
-		&& ( strpos( $filename, 'options-general.php' ) === false )
-	) {
+	if ( ( strpos( $filename, 'ss' ) === false ) && ( strpos( $filename, 'admin-options' ) === false ) && ( strpos( $filename, 'mu-options' ) === false ) && ( strpos( $filename, 'stop-spam' ) === false ) && ( strpos( $filename, 'sfr_mu' ) === false ) && ( strpos( $filename, 'settings.php' ) === false ) && ( strpos( $filename, 'options-general.php' ) === false ) ) {
 		return false;
 	}
 	switch ( $errno ) {
@@ -135,16 +128,17 @@ function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
 	$m2  = memory_get_peak_usage( true );
 	$ip  = ss_get_ip();
 	$msg = __( '
-Time: ' . $now . '
-Error Number: ' . $errno . '
-Error Type: ' . $serrno . '
-Error Msg: ' . $errmsg . '
-IP Address: ' . $ip . '
-File Name: ' . $filename . '
-Line Number: ' . $linenum . '
-Memory Used: ' . $m1 . ' Peak: ' . $m2 . '
----------------------
-', 'stop-spammer-registrations-plugin' );;
+		Time: ' . $now . '
+		Error Number: ' . $errno . '
+		Error Type: ' . $serrno . '
+		Error Msg: ' . $errmsg . '
+		IP Address: ' . $ip . '
+		File Name: ' . $filename . '
+		Line Number: ' . $linenum . '
+		Memory Used: ' . $m1 . ' Peak: ' . $m2 . '
+		---------------------
+	', 'stop-spammer-registrations-plugin' );
+	$msg = str_replace( "\t", '', $msg );
 	// write out the error
 	@file_put_contents( SS_PLUGIN_DATA . '.sfs_debug_output.txt', $msg, FILE_APPEND );
 	return false;

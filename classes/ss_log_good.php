@@ -28,14 +28,13 @@ class ss_log_good extends be_module {
 			$stats['cntpass'] = 1;
 		}
 		// now the cache - need to purge it for time and length
-		$ss_sp_good	 = $options['ss_sp_good'];
+		$ss_sp_good	    = $options['ss_sp_good'];
 		$goodips[ $ip ] = $now;
 		asort( $goodips );
 		while ( count( $goodips ) > $ss_sp_good ) {
 			array_shift( $goodips );
 		}
-		$nowtimeout = date( 'Y/m/d H:i:s',
-			time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $goodips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
 				unset( $goodips[ $key ] );

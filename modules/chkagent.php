@@ -33,7 +33,7 @@ class chkagent extends be_module {
 		} // fix this?
 		foreach ( $badagents as $a ) {
 			if ( stripos( $agent, $a ) !== false ) {
-				return __( 'Deny List User Agent: ', 'stop-spammer-registrations-plugin' ) . $a;
+				return __( 'Block List User Agent: ', 'stop-spammer-registrations-plugin' ) . $a;
 			}
 		}
 		return false;

@@ -37,7 +37,7 @@ class ss_get_stats {
 			'cntchkwlist'		  => 0,
 			'cntchkyahoomerchant' => 0
 		);
-		// Deny List Y/N settings
+		// Block List Y/N settings
 		$defaultsBL = array(
 			'cntchk404'		    => 0,
 			'cntchkaccept'	    => 0,
@@ -252,12 +252,10 @@ class ss_get_stats {
 			$ansa['spmcount'] = 0;
 		}
 		if ( $ansa['spcount'] == 0 ) {
-			$ansa['spdate'] = date( 'Y/m/d',
-				time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+			$ansa['spdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		}
 		if ( $ansa['spmcount'] == 0 ) {
-			$ansa['spmdate'] = date( 'Y/m/d',
-				time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+			$ansa['spmdate'] = date( 'Y/m/d', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		}
 		$ansa['version'] = SS_VERSION;
 		ss_set_stats( $ansa );

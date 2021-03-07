@@ -10,10 +10,10 @@ class chkurlshort {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		// Checks for links from common URL shortening services
 		// 'email', 'author', 'pwd', 'comment', 'subject'
-		$denyurlshortners = $options['denyurlshortners'];
+		$blockurlshortners = $options['blockurlshortners'];
 		foreach ( $post as $key => $data ) {
 			if ( !empty( $data ) ) {
-				foreach ( $denyurlshortners as $urlshort ) {
+				foreach ( $blockurlshortners as $urlshort ) {
 					if ( stripos( $data, $urlshort ) !== false and ( stripos( $data, $urlshort ) == 0 or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == " " or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "/" or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "@" or substr( $data, stripos( $data, $urlshort ) - 1, 1 ) == "." ) ) {
 						return __( 'URL Shortener: ' . $urlshort . ' in ' . $key . '', 'stop-spammer-registrations-plugin' );
 					}

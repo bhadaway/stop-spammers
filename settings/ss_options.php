@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -307,7 +307,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkdisp">
 				<input class="ss_toggle" type="checkbox" id="chkdisp" name="chkdisp" value="Y" <?php if ( $chkdisp == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Deny Disposable Email Addresses', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Block Disposable Email Addresses', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
@@ -373,14 +373,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chk404">
 				<input class="ss_toggle" type="checkbox" id="chk404" name="chk404" value="Y" <?php if ( $chk404 == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Deny 404 Exploit Probing', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Block 404 Exploit Probing', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkakismet">
 				<input class="ss_toggle" type="checkbox" id="chkakismet" name="chkakismet" value="Y" <?php if ( $chkakismet == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Deny IPs Detected by Akismet', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Block IPs Detected by Akismet', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
@@ -394,7 +394,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkadmin">
 				<input class="ss_toggle" type="checkbox" id="chkadmin" name="chkadmin" value="Y" <?php if ( $chkadmin == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Deny Login Attempts Using "admin" in Username', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Block Login Attempts Using "admin" in Username', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
@@ -426,30 +426,30 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<span id="ss_show_chkmulti" style="margin-left:30px;margin-bottom:15px;display:none">
-			<p style="margin-left:30px"><?php _e( 'Deny access when there are', 'stop-spammer-registrations-plugin' ); ?>
-					<select name="multicnt">
-						<option val="4" <?php if ( $multicnt <= 4 ) { echo 'selected="selected"'; } ?>>4</option>
-						<option val="5" <?php if ( $multicnt == 5 ) { echo 'selected="selected"'; } ?>>5</option>
-						<option val="6" <?php if ( $multicnt == 6 ) { echo 'selected="selected"'; } ?>>6</option>
-						<option val="7" <?php if ( $multicnt == 7 ) { echo 'selected="selected"'; } ?>>7</option>
-						<option val="8" <?php if ( $multicnt == 8 ) { echo 'selected="selected"'; } ?>>8</option>
-						<option val="9" <?php if ( $multicnt == 9 ) { echo 'selected="selected"'; } ?>>9</option>
-						<option val="10" <?php if ( $multicnt >= 10 ) { echo 'selected="selected"'; } ?>>10</option>
-					</select>
-					<?php _e( 'comments or logins in less than', 'stop-spammer-registrations-plugin' ); ?>
-					<select name="multitime">
-						<option val="1" <?php if ( $multitime <= 1 ) { echo 'selected="selected"'; } ?>>1</option>
-						<option val="2" <?php if ( $multitime == 2 ) { echo 'selected="selected"'; } ?>>2</option>
-						<option val="3" <?php if ( $multitime == 3 ) { echo 'selected="selected"'; } ?>>3</option>
-						<option val="4" <?php if ( $multitime == 4 ) { echo 'selected="selected"'; } ?>>4</option>
-						<option val="5" <?php if ( $multitime == 5 ) { echo 'selected="selected"'; } ?>>5</option>
-						<option val="6" <?php if ( $multitime == 6 ) { echo 'selected="selected"'; } ?>>6</option>
-						<option val="7" <?php if ( $multitime == 7 ) { echo 'selected="selected"'; } ?>>7</option>
-						<option val="8" <?php if ( $multitime == 8 ) { echo 'selected="selected"'; } ?>>8</option>
-						<option val="9" <?php if ( $multitime == 9 ) { echo 'selected="selected"'; } ?>>9</option>
-						<option val="10" <?php if ( $multitime >= 10 ) { echo 'selected="selected"'; } ?>>10</option>
-					</select>
-					<?php _e( 'minutes.', 'stop-spammer-registrations-plugin' ); ?><br />
+			<p style="margin-left:30px"><?php _e( 'Block access when there are', 'stop-spammer-registrations-plugin' ); ?>
+				<select name="multicnt">
+					<option val="4" <?php if ( $multicnt <= 4 ) { echo 'selected="selected"'; } ?>>4</option>
+					<option val="5" <?php if ( $multicnt == 5 ) { echo 'selected="selected"'; } ?>>5</option>
+					<option val="6" <?php if ( $multicnt == 6 ) { echo 'selected="selected"'; } ?>>6</option>
+					<option val="7" <?php if ( $multicnt == 7 ) { echo 'selected="selected"'; } ?>>7</option>
+					<option val="8" <?php if ( $multicnt == 8 ) { echo 'selected="selected"'; } ?>>8</option>
+					<option val="9" <?php if ( $multicnt == 9 ) { echo 'selected="selected"'; } ?>>9</option>
+					<option val="10" <?php if ( $multicnt >= 10 ) { echo 'selected="selected"'; } ?>>10</option>
+				</select>
+				<?php _e( 'comments or logins in less than', 'stop-spammer-registrations-plugin' ); ?>
+				<select name="multitime">
+					<option val="1" <?php if ( $multitime <= 1 ) { echo 'selected="selected"'; } ?>>1</option>
+					<option val="2" <?php if ( $multitime == 2 ) { echo 'selected="selected"'; } ?>>2</option>
+					<option val="3" <?php if ( $multitime == 3 ) { echo 'selected="selected"'; } ?>>3</option>
+					<option val="4" <?php if ( $multitime == 4 ) { echo 'selected="selected"'; } ?>>4</option>
+					<option val="5" <?php if ( $multitime == 5 ) { echo 'selected="selected"'; } ?>>5</option>
+					<option val="6" <?php if ( $multitime == 6 ) { echo 'selected="selected"'; } ?>>6</option>
+					<option val="7" <?php if ( $multitime == 7 ) { echo 'selected="selected"'; } ?>>7</option>
+					<option val="8" <?php if ( $multitime == 8 ) { echo 'selected="selected"'; } ?>>8</option>
+					<option val="9" <?php if ( $multitime == 9 ) { echo 'selected="selected"'; } ?>>9</option>
+					<option val="10" <?php if ( $multitime >= 10 ) { echo 'selected="selected"'; } ?>>10</option>
+				</select>
+				<?php _e( 'minutes.', 'stop-spammer-registrations-plugin' ); ?><br />
 			</p>
 		</span>
 		<script>

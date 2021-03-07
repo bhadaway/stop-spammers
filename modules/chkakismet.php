@@ -40,7 +40,7 @@ class chkakismet {
 			'comment_author_url'   => '',
 			'comment_content'	   => ''
 		);
-		$response = $this->akismet_comment_check( '123YourAPIKey', $data );
+		$response = $this->akismet_comment_check( 'YourAPIKey', $data );
 		return $response;
 	}
 	function akismet_comment_check( $key, $data ) {

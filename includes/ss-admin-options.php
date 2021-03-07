@@ -44,8 +44,7 @@ if ( function_exists( 'register_uninstall_hook' ) ) {
 // do this only if a valid IP and not Cloudflare
 add_action( 'admin_enqueue_scripts', 'sfs_handle_ajax' );
 function sfs_handle_ajax() {
-	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js',
-		false );
+	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js', false );
 }
 
 function ss_sp_plugin_action_links( $links, $file ) {
@@ -73,9 +72,9 @@ function ss_sp_rightnow() {
 		_e( '<p>Stop Spammers has prevented <strong>' . $spmcount . '</strong> spammers from registering or leaving comments.</p>', 'stop-spammer-registrations-plugin' );
 	}
 	if ( count( $wlrequests ) == 1 ) {
-		echo '<p><strong>' . count( $wlrequests ) . '</strong> ' . __( 'user has been denied access and <a href="admin.php?page=ss_allow_list">requested</a> that you add them to the Allow List.</p>', 'stop-spammer-registrations-plugin' );
+		echo '<p><strong>' . count( $wlrequests ) . '</strong> ' . __( 'user has been blocked and <a href="admin.php?page=ss_allow_list">requested</a> that you add them to the Allow List.</p>', 'stop-spammer-registrations-plugin' );
 	} else if ( count( $wlrequests ) > 0 ) {
-		echo '<p><strong>' . count( $wlrequests ) . '</strong> ' . __( 'users have been denied access and <a href="admin.php?page=ss_allow_list">requested</a> that you add them to the Allow List.</p>', 'stop-spammer-registrations-plugin' );
+		echo '<p><strong>' . count( $wlrequests ) . '</strong> ' . __( 'users have been blocked and <a href="admin.php?page=ss_allow_list">requested</a> that you add them to the Allow List.</p>', 'stop-spammer-registrations-plugin' );
 	}
 }
 
@@ -85,8 +84,8 @@ function ss_row( $actions, $comment ) {
 	$email	  = urlencode( $comment->comment_author_email );
 	$ip	      = $comment->comment_author_IP;
 	$action   = "";
-	// $action.="|";
-	// $action.="<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
+	// $action .= "|";
+	// $action .= "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
 	// add the network check
 	$whois	  = SS_PLUGIN_URL . 'images/whois.png';
 	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$ip\"><img src=\"$whois\" height=\"16px\" /></a>";
@@ -107,8 +106,7 @@ function ss_row( $actions, $comment ) {
 	if ( empty( $evidence ) ) {
 		$evidence = '';
 	}
-	preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@',
-		$content, $post, PREG_PATTERN_ORDER );
+	preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@', $content, $post, PREG_PATTERN_ORDER );
 	if ( is_array( $post ) && is_array( $post[1] ) ) {
 		$urls1 = array_unique( $post[1] );
 	} else {
@@ -139,7 +137,7 @@ function ss_row( $actions, $comment ) {
 	}
 	$ajaxurl = admin_url( 'admin-ajax.php' );
 	if ( !empty( $apikey ) ) {
-		// $target="target=\"ss_sfs_reg_if1\"";
+		// $target = "target=\"ss_sfs_reg_if1\"";
 		// make this the xlsrpc call
 		$href	 = "href=\"#\"";
 		$onclick = "onclick=\"sfs_ajax_report_spam(this,'$ID','$blog','$ajaxurl');return false;\"";
@@ -227,8 +225,7 @@ function sfs_handle_ajax_sub( $data ) {
 	if ( empty( $evidence ) ) {
 		$evidence = '';
 	}
-	preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@',
-		$content, $post, PREG_PATTERN_ORDER );
+	preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@', $content, $post, PREG_PATTERN_ORDER );
 	$urls1 = array();
 	$urls2 = array();
 	if ( is_array( $post ) && is_array( $post[1] ) ) {
@@ -385,7 +382,7 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 				be_load( 'ss_remove_bcache', $ip, $stats, $options );
 				be_load( 'ss_remove_gcache', $ip, $stats, $options );
 			}
-			be_load( 'ss_addtodenylist', $ip, $stats, $options );
+			be_load( 'ss_addtoblocklist', $ip, $stats, $options );
 			break;
 		case 'add_white':
 			if ( $container == 'badips' ) {

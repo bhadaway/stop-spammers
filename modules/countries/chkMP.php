@@ -9,8 +9,8 @@ if ( !defined( 'ABSPATH' ) ) {
 class chkMP extends be_module {
 	public $searchname = 'Northern Mariana Islands';
 	public $searchlist = array(
-			array( '210023080000', '210023096000' )
-		);
+		array( '210023080000', '210023096000' )
+	);
 }
 
 ?>

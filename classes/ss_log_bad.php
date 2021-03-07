@@ -37,8 +37,7 @@ class ss_log_bad extends be_module {
 		while ( count( $badips ) > $ss_sp_cache ) {
 			array_shift( $badips );
 		}
-		$nowtimeout = date( 'Y/m/d H:i:s',
-			time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
+		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $badips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
 				unset( $badips[ $key ] );
@@ -57,7 +56,7 @@ class ss_log_bad extends be_module {
 		while ( count( $hist ) > $ss_sp_hist ) {
 			array_shift( $hist );
 		}
-		// if ( !empty( $pwd ) ) $author=$author.'/'.$pwd; // show bad passwords?
+		// if ( !empty( $pwd ) ) $author = $author . '/' . $pwd; // show bad passwords?
 		$hist[ $now ]  = array( $ip, $email, $author, $sname, $reason, $blog );
 		$stats['hist'] = $hist;
 		if ( array_key_exists( 'addon', $post ) ) {

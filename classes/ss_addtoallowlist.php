@@ -15,7 +15,7 @@ class ss_addtoallowlist {
 		} else {
 			$wlist_email = $options['wlist_email'];
 		}
-		// $ip=ss_get_ip();
+		// $ip = ss_get_ip();
 		// add this IP to your Allow List
 		if ( !in_array( $ip, $wlist ) ) {
 			$wlist[] = $ip;
@@ -39,8 +39,7 @@ class ss_addtoallowlist {
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-		if ( isset( $_GET['func' ] ) and $_GET['func'] == 'add_white' )
-			$this->ss_send_approval_email( $ip, $stats, $options, $post );
+		if ( isset( $_GET['func' ] ) and $_GET['func'] == 'add_white' ) $this->ss_send_approval_email( $ip, $stats, $options, $post );
 		return false;
 	}
 
@@ -55,7 +54,7 @@ class ss_addtoallowlist {
 			return false;
 		}
 		$wlrequests = $stats['wlrequests'];
-		$request = array();
+		$request    = array();
 		foreach ( $wlrequests as $r ) {
 			if ( $r[0] == $_GET['ip'] ) {
 				$request = $r;
@@ -69,8 +68,8 @@ class ss_addtoallowlist {
 		if ( !is_email( $to ) ) {
 			return false;
 		}
-		$ke = sanitize_text_field( $to );
-		$blog = get_bloginfo( 'name' );
+		$ke 	 = sanitize_text_field( $to );
+		$blog    = get_bloginfo( 'name' );
 		$subject = get_bloginfo( 'name' ) . __( ': Your Request Has Been Approved', 'stop-spammer-registrations-plugin' );
 		$subject = str_replace( '&', 'and', $subject );
 		$message = __( 'Apologies for the inconvenience. You\'ve now been cleared for landing on $blog.', 'stop-spammer-registrations-plugin' );

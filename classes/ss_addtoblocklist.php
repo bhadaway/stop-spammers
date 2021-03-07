@@ -5,11 +5,10 @@ if ( !defined( 'ABSPATH' ) ) {
 	die();
 }
 
-class ss_addtodenylist {
+class ss_addtoblocklist {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
-		// adds to Deny List
-		$now = date( 'Y/m/d H:i:s',
-			time() + ( get_option( 'gmt_offset' ) * 3600 ) );
+		// adds to Block List
+		$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		$blist = $options['blist'];
 		// add this IP to your Allow List
 		if ( !in_array( $ip, $blist ) ) {

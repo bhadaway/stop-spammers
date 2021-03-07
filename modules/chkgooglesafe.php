@@ -19,8 +19,7 @@ class chkgooglesafe extends be_module {
 		$googleapi = $stats['googleapi'];
 		$content   = $stats['content'];
 		$post	   = array();
-		preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@',
-			$content, $post, PREG_PATTERN_ORDER );
+		preg_match_all( '@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@', $content, $post, PREG_PATTERN_ORDER );
 		$urls1 = array();
 		$urls2 = array();
 		$urls3 = array();
@@ -30,8 +29,7 @@ class chkgooglesafe extends be_module {
 			$urls1 = array();
 		}
 		// BBCode
-		preg_match_all( '/\[url=(.+)\]/iU', $content, $post,
-			PREG_PATTERN_ORDER );
+		preg_match_all( '/\[url=(.+)\]/iU', $content, $post, PREG_PATTERN_ORDER );
 		if ( is_array( $post ) && is_array( $post[0] ) ) {
 			$urls2 = array_unique( $post[0] );
 		} else {

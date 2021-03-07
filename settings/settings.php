@@ -58,13 +58,13 @@ function ss_admin_menu_l() {
 		__( 'Block Lists — Stop Spammers', 'stop-spammer-registrations-plugin' ), // $page_title,
 		__( 'Block Lists', 'stop-spammer-registrations-plugin' ), // $menu_title,
 		'manage_options', // $capability,
-		'ss_deny_list', // $menu_slug,
-		'ss_denylist_settings' // function
+		'ss_block_list', // $menu_slug,
+		'ss_blocklist_settings' // function
 	);
 	add_submenu_page(
 		'stop_spammers', // plugins parent
-		__( 'Challenge & Deny — Stop Spammers', 'stop-spammer-registrations-plugin' ), // $page_title,
-		__( 'Challenge & Deny', 'stop-spammer-registrations-plugin' ), // $menu_title,
+		__( 'Challenge & Block — Stop Spammers', 'stop-spammer-registrations-plugin' ), // $page_title,
+		__( 'Challenge & Block', 'stop-spammer-registrations-plugin' ), // $menu_title,
 		'manage_options', // $capability,
 		'ss_challenge', // $menu_slug,
 		'ss_challenges' // function
@@ -125,13 +125,6 @@ function ss_summary() {
 	include_setting( "ss_summary.php" );
 }
 
-if ( !function_exists( 'ss_premium.php' ) ) {
-function ss_premium( $args ) {
-  include_setting( "ss_premium.php" );
-  return array();
-  }
-}
-
 function ss_network() {
 	include_setting( "ss_network.php" );
 }
@@ -144,8 +137,8 @@ function ss_allowlist_settings() {
 	include_setting( "ss_allowlist_settings.php" );
 }
 
-function ss_denylist_settings() {
-	include_setting( "ss_denylist_settings.php" );
+function ss_blocklist_settings() {
+	include_setting( "ss_blocklist_settings.php" );
 }
 
 function ss_options() {
@@ -182,6 +175,13 @@ function ss_contribute() {
 
 function ss_diagnostics() {
 	include_setting( "ss_diagnostics.php" );
+}
+
+if ( !function_exists( 'ss_premium.php' ) ) {
+function ss_premium( $args ) {
+  include_setting( "ss_premium.php" );
+  return array();
+  }
 }
 
 function include_setting( $file ) {

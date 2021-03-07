@@ -107,7 +107,7 @@ function ssp_global_Delete( $ops ) {
 	}
 	$ssp_semaphore ++;
 	$filt = current_filter();
-	$f	= substr( $filt, strlen( 'delete_option_' ) );
+	$f	  = substr( $filt, strlen( 'delete_option_' ) );
 	switch_to_blog( 1 );
 	$ansa = delete_option( $ops );
 	restore_current_blog();

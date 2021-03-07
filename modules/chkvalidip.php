@@ -24,8 +24,7 @@ class chkvalidip {
 					// no reverse entry
 					return true;
 				} else {
-					return inet_pton( $client_ip )
-						   !== inet_pton( $record[0]['ipv6'] );
+					return inet_pton( $client_ip ) !== inet_pton( $record[0]['ipv6'] );
 				}
 			}
 		}
@@ -95,11 +94,11 @@ class chkvalidip {
 		// doesn't work on older PHPs or some servers without IPv6 support enables
 		/*
 		try {
-		if ( $this->_is_fake_ip( $ip ) ) {
-		return "Fake IP (experimental) $ip";
-		}
+			if ( $this->_is_fake_ip( $ip ) ) {
+				return "Fake IP (experimental) $ip";
+			}
 		} catch ( Exception $e ) {
-		return $e;
+			return $e;
 		}
 		*/
 		// check for IPv6

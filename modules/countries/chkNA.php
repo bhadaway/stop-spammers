@@ -9,8 +9,8 @@ if ( !defined( 'ABSPATH' ) ) {
 class chkNA extends be_module {
 	public $searchname = 'Namibia';
 	public $searchlist = array(
-			array( '197234071136', '197234071144' )
-		);
+		array( '197234071136', '197234071144' )
+	);
 }
 
 ?>

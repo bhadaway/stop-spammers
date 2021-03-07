@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( !current_user_can( 'manage_options' ) ) {
-	die( __( 'Access Denied', 'stop-spammer-registrations-plugin' ) );
+	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
 
 ss_fix_post_vars();
@@ -114,7 +114,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px;">
 			<tr bgcolor="white">
-				<td valign="top"><?php _e( 'Deny spammers found on Stop Forum Spam with more than
+				<td valign="top"><?php _e( 'Block spammers found on Stop Forum Spam with more than
 					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . $sfsfreq . '" />
 					incidents, and occurring less than
 					<input size="4" name="sfsage" type="text" class="small-text" value="' . $sfsage . '" />
@@ -132,7 +132,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
-				<td valign="top"><?php _e( 'Deny spammers found on Project HoneyPot with incidents less than
+				<td valign="top"><?php _e( 'Block spammers found on Project HoneyPot with incidents less than
 					<input size="3" name="hnyage" type="text" class="small-text" value="' . $hnyage . '" />
 					days ago, and with more than
 					<input size="4" name="hnylevel" type="text" class="small-text" value="' . $hnylevel . '" />
@@ -151,7 +151,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
-				<td valign="top"><?php _e( 'Deny spammers found on BotScout with more than
+				<td valign="top"><?php _e( 'Block spammers found on BotScout with more than
 					<input size="3" name="botfreq" type="text" class="small-text" value="' . $botfreq . '" />
 					incidents.', 'stop-spammer-registrations-plugin' ); ?>
 				</td>

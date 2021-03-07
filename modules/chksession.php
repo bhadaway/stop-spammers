@@ -13,8 +13,7 @@ class chksession {
 		// move this to main line
 		if ( !isset( $_POST ) || empty( $_POST ) ) { // no post defined
 			if ( !isset( $_COOKIE['ss_protection_time'] ) ) { // if previous set do not reset
-				setcookie( 'ss_protection_time', strtotime( "now" ),
-					strtotime( '+1 min' ) );
+				setcookie( 'ss_protection_time', strtotime( "now" ), strtotime( '+1 min' ) );
 			}
 			return false;
 		}

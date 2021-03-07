@@ -53,7 +53,7 @@ class be_module {
 				$_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
 			}
 		}
-		// echo "sname=$sname<br />";
+		// echo "sname = $sname<br />";
 		if ( empty( $sname ) ) {
 			$sname = '';
 		}
@@ -298,11 +298,11 @@ class be_module {
 		// echo "4) Bad end $num,<br />";
 		$end = ( $end + 0 ) | $num;
 		$end = $end + 1;
-		// $pend=long2ip($end);
+		// $pend = long2ip( $end );
 		// echo "3) Bad end $pend,<br />";
 		$end2 = long2ip( $end );
 		if ( $end == '128.0.0.0' ) {
-		// echo "Bad end $ip, $bits,$end, $end1, $end2, $num)<br />";
+		// echo "Bad end $ip, $bits,$end, $end1, $end2, $num )<br />";
 		}
 		$start = be_module::cidrStart2str( $start, $bits );
 		return array( $start, $end2 );

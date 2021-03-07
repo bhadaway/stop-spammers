@@ -18,9 +18,9 @@ class ss_check_404s {
 		}
 		// update log
 		ss_log_bad( $ip, $reason, 'chk404' );
-		// need to deny access
+		// need to block access
 		$rejectmessage = $options['rejectmessage'];
-		wp_die( '$rejectmessage', __( 'Login Access Denied', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
+		wp_die( '$rejectmessage', __( 'Login Access Blocked', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 		exit();
 	}
 }
