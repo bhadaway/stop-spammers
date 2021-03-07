@@ -365,6 +365,23 @@
 	font-size: 18px;
 	margin: 0px 0px 25px 0px;
 }
+.ss-hide-links {
+	text-align: right;
+    margin-bottom: 10px;
+}
+.ss-hide-links .ss-hide-notice {
+	margin-left: 10px;
+	padding: 4px 10px;
+	border: 1px solid red;
+	color: red;
+	border-radius: 5px;
+	font-size: 13px;
+	text-decoration: none;
+	cursor: pointer;
+}
+.update-nag.notice.notice-warning.inline .ss-hide-notices {
+    margin-bottom: 10px;
+}
 
 /* responsive layout */
 @media screen and (max-width: 680px) {

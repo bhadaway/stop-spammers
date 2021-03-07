@@ -54,8 +54,176 @@ function ss_notice_dismissed() {
 			add_user_meta( $user_id, 'ss_notice_dismissed_6', 'true', true );
 		}
 	}
+	// Notification Center: handles notices
+	add_action( 'admin_print_scripts', 'ss_replace_admin_notices', 998 );
+	add_action( 'admin_head', 'ss_show_admin_notices_func', 998 );
 }
 add_action( 'admin_init', 'ss_notice_dismissed' );
+
+// replace notifications with new notifications
+function ss_replace_admin_notices() { 
+	global $ss_all_notices;
+	try {
+		$admin_notices 		= &ss_get_admin_notices( "admin_notices" );
+		$all_admin_notices 	= &ss_get_admin_notices( "all_admin_notices" );
+		$wp_filter_notices	= ss_merge_notices( $admin_notices, $all_admin_notices );
+	} catch ( Exception $e ) {
+		$wp_filter_notices = array();
+	}
+	$content = array();
+	$ss_notice_preference = get_user_meta( get_current_user_id(),  'ss_notice_preference', true );
+	foreach ( (array) $wp_filter_notices as $filters ) {
+		foreach ( $filters as $callback => $callback_array ) {
+
+			if ( $callback === 'usof_hide_admin_notices_start' || $callback === 'usof_hide_admin_notices_end' ) {
+				continue;
+			}
+			
+			ob_start();
+			$args = array();
+			$accepted_args = isset( $callback_array['accepted_args'] ) && ! empty( $callback_array['accepted_args'] ) ? $callback_array['accepted_args'] : 0;
+
+			if ( $accepted_args > 0 ) {
+				for ( $i = 0; $i < (int) $accepted_args; $i ++ ) {
+					$args[] = null;
+				}
+			}
+
+			call_user_func_array( $callback_array['function'], $args );
+			$cont = ob_get_clean();
+
+			if ( empty( $cont ) ) {
+				continue;
+			}
+
+			$salt     = is_multisite() ? get_current_blog_id() : '';
+			$txt      = preg_replace( '/<(script|style)([^>]+)?>(.*?)<\/(script|style)>/is', '', $cont );
+			$uniq_id1 = md5( strip_tags( str_replace( [ "\t", "\r", "\n", " " ], "", $txt ) ) . $salt );
+			$uniq_id2 = md5( $callback . $salt );
+
+			if ( is_array( $callback_array['function'] ) && sizeof( $callback_array['function'] ) == 2 ) {
+				$class = $callback_array['function'][0];
+				if ( is_object( $class ) ) {
+					$class_name  = get_class( $class );
+					$method_name = $callback_array['function'][1];
+					$uniq_id2    = md5( $class_name . ':' . $method_name );
+				}
+			}
+
+			if ( isset( $ss_notice_preference[ "{$uniq_id1}_{$uniq_id2}" ] ) )
+				continue;
+
+			$hide_for_user  = "<a data-target='user' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice'>" . __( 'Hide  <b>for me</b>', 'stop-spammers' ) . "</a>";
+			$hide_for_all	= "<a data-target='all' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice' href='https://stopspammers.io/' target='_blank'>" . __( 'Hide  <b>for all</b>', 'stop-spammers' ) . "</a>";
+
+			// Fix for Woocommerce membership and Jetpack message
+			if ( $cont != '<div class="js-wc-memberships-admin-notice-placeholder"></div>' && false === strpos( $cont, 'jetpack-jitm-message' ) ) {
+				$cont = preg_replace( '/<(noscript|script|style)([^>]+)?>(.*?)<\/(noscript|script|style)>(<\/(noscript|script|style)>)*/is', '', $cont );
+				$cont = preg_replace( '/<!--(.*?)-->/is', '', $cont );
+				$cont = rtrim( trim( $cont ) );
+				$cont = preg_replace( '/^(<div[^>]+>)(.*?)(<\/div>)$/is', "$1<div class='ss-hide-notices'>$2</div><div class='ss-hide-links'>{$hide_for_user} {$hide_for_all}</div>$3", $cont );
+			}
+
+			if ( empty( $cont ) ) {
+				continue;
+			}
+			$content[] = $cont;
+
+		}
+		$ss_all_notices = $content;
+	}
+	ss_clear_notices( 'user_admin_notices' );
+	ss_clear_notices( 'network_admin_notices' );
+	ss_clear_notices( 'admin_notices', array( 'Learndash_Admin_Menus_Tabs', 'WC_Memberships_Admin', 'YIT_Plugin_Panel_WooCommerce' ), array( 'et_pb_export_layouts_interface' ) );
+	ss_clear_notices( 'all_admin_notices', array( 'Learndash_Admin_Menus_Tabs', 'WC_Memberships_Admin', 'YIT_Plugin_Panel_WooCommerce' ), array( 'et_pb_export_layouts_interface' ) );
+}
+
+// Get admin notifications
+function &ss_get_admin_notices( $key ) {
+	global $wp_filter;
+	$default = array();
+	
+	if ( $key === 'admin_notices' && is_multisite() && is_network_admin() )
+		$key = 'network_admin_notices';
+	
+	if ( ! isset( $wp_filter[ $key ] ) )
+		return $default;
+
+	return $wp_filter[ $key ]->callbacks;
+}
+
+// Merges admin and network notifications
+function ss_merge_notices ( $array1, $array2 ) {
+	if ( ! empty( $array2 ) ) {
+		foreach ( $array2 as $key => $value ) {
+			if ( ! isset( $array1[ $key ] ) ) {
+				$array1[ $key ] = $value;
+			} else if ( is_array( $array1[ $key ] ) ) {
+				$array1[ $key ] = $array1[ $key ] + $value;
+			}
+		}
+	}
+	return $array1;
+}
+
+// clear existing notifications so it doesn't show twice
+function ss_clear_notices ( $key, $excluded_classes = array(), $excluded_callback_names = array() ) {
+	$wp_filter = &ss_get_admin_notices( $key );
+	if ( ! empty( $wp_filter ) ) {
+		foreach ( (array) $wp_filter as $f_key => $f ) {
+			foreach ( $f as $callback => $callback_array ) {
+				if ( is_array( $callback_array['function'] ) && sizeof( $callback_array['function'] ) == 2 ) {
+					$class = $callback_array['function'][0];
+					if ( is_object( $class ) ) {
+						$class_name = get_class( $class );
+
+						if ( in_array( $class_name, $excluded_classes ) ) {
+							continue;
+						}
+					}
+				}
+				if ( in_array( $callback, $excluded_callback_names ) ) {
+					continue;
+				}
+				unset( $wp_filter[ $f_key ][ $callback ] );
+			}
+		}
+	}
+}
+// show notifications based on admin
+function ss_show_admin_notices_func() {
+	if ( is_multisite() && is_network_admin() ) {
+		add_action( 'network_admin_notices', 'ss_show_admin_notices' );
+	} else {
+		add_action( 'admin_notices', 'ss_show_admin_notices' );
+	}
+}
+
+// Show notifications
+function ss_show_admin_notices() {
+	global $ss_all_notices;
+	if ( empty( $ss_all_notices ) ) {
+		return;
+	}
+	foreach ( $ss_all_notices as $val ) {
+		echo $val;
+	}
+}
+
+// add hidden notification to user meta
+function ss_update_notice_preference() {
+	$user_id = get_current_user_id();
+	$ss_notice_preference = get_user_meta( $user_id,  'ss_notice_preference', true );
+	
+	if ( ! is_array( $ss_notice_preference ) )
+		$ss_notice_preference = array();
+
+	$notice_id = sanitize_text_field( $_POST[ 'notice_id' ] );
+	$ss_notice_preference[ $notice_id ] = $notice_id;
+	update_user_meta( $user_id,  'ss_notice_preference', $ss_notice_preference );
+	wp_die();
+}
+add_action( 'wp_ajax_ss_update_notice_preference', 'ss_update_notice_preference' );
 
 // WooCommerce warning for users
 function ss_wc_admin_notice() {

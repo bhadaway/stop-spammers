@@ -66,3 +66,16 @@ function sfs_ajax_return_spam(response) {
 	alert(response);
 	return false;
 }
+
+jQuery( function( $ ) {
+	$( '.ss-hide-notice' ).click(function() {
+		if( $(this).data('target') == 'user') {
+			$(this).parent().parent().hide();
+			var data = {
+				action: 'ss_update_notice_preference',
+				notice_id: $(this).data('notice-id')
+			};
+			$.post( ajaxurl , data);
+		}
+	});
+});
