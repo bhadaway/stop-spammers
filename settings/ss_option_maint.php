@@ -256,7 +256,7 @@ ss_fix_post_vars();
 	?>
 	<form method="post" name="DOIT2" action="">
 		<input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
-		<table width="100%" bgcolor="#b0b0b0" cellspacing='1' cellpadding="4">
+		<table id="sstable" name="sstable" cellspacing="2">
 			<thead>
 			<tr bgcolor="#fff">
 				<th class="ss_cleanup"><?php _e( 'Option', 'stop-spammer-registrations-plugin' ); ?></th>

@@ -102,7 +102,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="ss_stop_clear_wlreq" value="true" />
 		<p class="submit"><input class="button-primary" value="<?php _e( 'Clear the Requests', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 	</form>
-	<table name="sstable" id="sstable" style="width:100%;background-color:#eee" cellspacing="2">
+	<table id="sstable" name="sstable" cellspacing="2">
 		<thead>
 			<tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
 				<th><?php _e( 'Time', 'stop-spammer-registrations-plugin' ); ?></th>

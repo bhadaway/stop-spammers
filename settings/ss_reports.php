@@ -105,7 +105,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		} else { ?>
 		<br />
 		<input type="text" id="ssinput" onkeyup="ss_search()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
-		<table name="sstable" id="sstable" style="width:100%;background-color:#fff" cellspacing="2">
+		<table id="sstable" name="sstable" cellspacing="2">
 			<thead>
 				<tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
 					<th onclick="sortTable(0)" class="filterhead ss_cleanup"><?php _e( 'Date/Time', 'stop-spammer-registrations-plugin' ); ?></th>

@@ -112,7 +112,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input size="32" name="apikey" type="text" value="<?php echo $apikey; ?>" />
 		</label>
 		<br />
-		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px;">
+		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on Stop Forum Spam with more than
 					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . $sfsfreq . '" />

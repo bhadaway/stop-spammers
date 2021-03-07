@@ -46,6 +46,11 @@
 	width: 100%;
 }
 
+#ss-plugin #sstable {
+	width: 100%;
+	background-color: #eee;
+}
+
 #ss-plugin td {
 	padding: 10px;
 }
