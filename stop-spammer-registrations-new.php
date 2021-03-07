@@ -113,8 +113,8 @@ function ss_replace_admin_notices() {
 			if ( isset( $ss_notice_preference[ "{$uniq_id1}_{$uniq_id2}" ] ) )
 				continue;
 
-			$hide_for_user  = "<a data-target='user' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice'>" . __( 'Hide  <b>for me</b>', 'stop-spammers' ) . "</a>";
-			$hide_for_all	= "<a data-target='all' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice' href='https://stopspammers.io/' target='_blank'>" . __( 'Hide  <b>for all</b>', 'stop-spammers' ) . "</a>";
+			$hide_for_user  = "<a data-target='user' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice'>" . __( 'Keep Hidden</b>', 'stop-spammers' ) . "</a>";
+			$hide_for_all	= "<a data-target='all' data-notice-id='{$uniq_id1}_{$uniq_id2}' class='ss-hide-notice' href='https://stopspammers.io/' target='_blank'>" . __( 'Hide all notices', 'stop-spammers' ) . "</a>";
 
 			// Fix for Woocommerce membership and Jetpack message
 			if ( $cont != '<div class="js-wc-memberships-admin-notice-placeholder"></div>' && false === strpos( $cont, 'jetpack-jitm-message' ) ) {
