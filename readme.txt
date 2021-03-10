@@ -7,6 +7,7 @@ Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Version: 2021.6
 Tested up to: 5.7
+Stable tag: 2021.6
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.

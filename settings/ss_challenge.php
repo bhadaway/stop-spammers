@@ -27,7 +27,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		foreach ( $optionlist as $check ) {
 			$v = 'N';
 			if ( array_key_exists( $check, $_POST ) ) {
-				$v = $_POST[ $check ];
+				$v = sanitize_text_field( $_POST[ $check ] );
 				if ( $v != 'Y' ) {
 					$v = 'N';
 				}
@@ -36,36 +36,36 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		}
 		// other options
 		if ( array_key_exists( 'redirurl', $_POST ) ) {
-			$redirurl			 = trim( stripslashes( $_POST['redirurl'] ) );
+			$redirurl			 = esc_url( trim( $_POST['redirurl'] ) );
 			$options['redirurl'] = $redirurl;
 		}
 		if ( array_key_exists( 'wlreqmail', $_POST ) ) {
-			$wlreqmail			  = trim( stripslashes( $_POST['wlreqmail'] ) );
+			$wlreqmail			  = sanitize_email( trim( $_POST['wlreqmail'] ) );
 			$options['wlreqmail'] = $wlreqmail;
 		}
 		if ( array_key_exists( 'rejectmessage', $_POST ) ) {
-			$rejectmessage			  = trim( stripslashes( $_POST['rejectmessage'] ) );
+			$rejectmessage			  = sanitize_textarea_field( trim( $_POST['rejectmessage'] ) );
 			$options['rejectmessage'] = $rejectmessage;
 		}
 		if ( array_key_exists( 'chkcaptcha', $_POST ) ) {
-			$chkcaptcha			   = trim( stripslashes( $_POST['chkcaptcha'] ) );
+			$chkcaptcha			   = sanitize_text_field( trim( $_POST['chkcaptcha'] ) );
 			$options['chkcaptcha'] = $chkcaptcha;
 		}
 		// added the API key stiff for Captchas
 		if ( array_key_exists( 'recaptchaapisecret', $_POST ) ) {
-			$recaptchaapisecret			   = stripslashes( $_POST['recaptchaapisecret'] );
+			$recaptchaapisecret			   = sanitize_text_field( $_POST['recaptchaapisecret'] );
 			$options['recaptchaapisecret'] = $recaptchaapisecret;
 		}
 		if ( array_key_exists( 'recaptchaapisite', $_POST ) ) {
-			$recaptchaapisite			 = stripslashes( $_POST['recaptchaapisite'] );
+			$recaptchaapisite			 = sanitize_text_field( $_POST['recaptchaapisite'] );
 			$options['recaptchaapisite'] = $recaptchaapisite;
 		}
 		if ( array_key_exists( 'solvmediaapivchallenge', $_POST ) ) {
-			$solvmediaapivchallenge			   = stripslashes( $_POST['solvmediaapivchallenge'] );
+			$solvmediaapivchallenge			   = sanitize_text_field( $_POST['solvmediaapivchallenge'] );
 			$options['solvmediaapivchallenge'] = $solvmediaapivchallenge;
 		}
 		if ( array_key_exists( 'solvmediaapiverify', $_POST ) ) {
-			$solvmediaapiverify			   = stripslashes( $_POST['solvmediaapiverify'] );
+			$solvmediaapiverify			   = sanitize_text_field( $_POST['solvmediaapiverify'] );
 			$options['solvmediaapiverify'] = $solvmediaapiverify;
 		}
 		// validate the chkcaptcha variable

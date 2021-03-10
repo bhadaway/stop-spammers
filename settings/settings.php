@@ -196,21 +196,20 @@ function include_setting( $file ) {
 }
 
 function ss_fix_post_vars() {
-	// sanitize post
-	$p	  = $_POST;
-	$keys = array_keys( $_POST );
-	foreach ( $keys as $var ) {
-		try {
-			$val = $_POST[ $var ];
-			if ( is_string( $val ) ) {
-				if ( strpos( $val, "\n" ) !== false ) {
-					$val2 = esc_textarea( $val );
-				} else {
-					$val2 = sanitize_text_field( $val );
+	if( ! empty( $_POST ) ) {
+		$keys = isset( $_POST ) ? (array) array_keys( $_POST ) : array();
+		foreach ( $keys as $key ) {
+			try {
+				$key = sanitize_key( $key ); 
+				if ( is_string( $_POST[ $key ] ) ) {
+					if ( strpos( $_POST[ $key ], "\n" ) !== false ) {
+						$val2 = esc_textarea( $_POST[ $key ] );
+					} else {
+						$val2 = sanitize_text_field( $_POST[ $key ] );
+					}
+					$_POST[ $key ] = $val2;
 				}
-				$_POST[ $var ] = $val2;
-			}
-		} catch ( Exception $e ) {
+			} catch ( Exception $e ) {}
 		}
 	}
 }

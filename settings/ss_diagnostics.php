@@ -35,23 +35,25 @@ $subject = '';
 $body	 = '';
 
 if ( array_key_exists( 'ip', $_POST ) ) {
-	$ip = $_POST['ip'];
+	if( filter_var( $_POST['ip'], FILTER_VALIDATE_IP) ) {
+		$ip = $_POST['ip'];
+	}
 }
 
 if ( array_key_exists( 'email', $_POST ) ) {
-	$email = $_POST['email'];
+	$email = sanitize_email( $_POST['email'] );
 }
 
 if ( array_key_exists( 'author', $_POST ) ) {
-	$author = $_POST['author'];
+	$author = sanitize_text_field( $_POST['author'] );
 }
 
 if ( array_key_exists( 'subject', $_POST ) ) {
-	$subject = $_POST['subject'];
+	$subject = sanitize_text_field( $_POST['subject'] );
 }
 
 if ( array_key_exists( 'body', $_POST ) ) {
-	$body = $_POST['body'];
+	$body = sanitize_textarea_field( $_POST['body'] );
 }
 
 $nonce = wp_create_nonce( 'ss_stopspam_update' );

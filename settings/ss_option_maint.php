@@ -58,8 +58,8 @@ ss_fix_post_vars();
 			}
 		}
 		if ( array_key_exists( 'delo', $_POST ) ) {
-			$delo = $_POST['delo'];
-			foreach ( $delo as $name ) {
+			foreach ( $_POST['delo'] as $name ) {
+				$name = sanitize_key( $name );
 				_e( 'deleting ' . $name . ' <br />', 'stop-spammer-registrations-plugin' );
 				$sql = "delete from $ptab where option_name='$name'";
 				$wpdb->query( $sql );

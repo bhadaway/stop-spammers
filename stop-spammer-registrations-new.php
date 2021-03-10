@@ -458,14 +458,6 @@ function ss_set_stats( &$stats, $addon = array() ) {
 	update_option( 'ss_stop_sp_reg_stats', $stats );
 }
 
-function ss_get_now() {
-	// to use a safe date everywhere
-	if ( function_exists( 'date_default_timezone_set' ) ) {
-		date_default_timezone_set( 'UTC' ); // WP is a UTC base date - if default tz is not set this fixes it
-	}
-	$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-}
-
 function ss_get_stats() {
 	$stats = get_option( 'ss_stop_sp_reg_stats' );
 	if ( !empty( $stats ) && is_array( $stats ) && array_key_exists( 'version', $stats ) && $stats['version'] == SS_VERSION ) {
