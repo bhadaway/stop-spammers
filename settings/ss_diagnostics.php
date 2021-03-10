@@ -35,7 +35,7 @@ $subject = '';
 $body	 = '';
 
 if ( array_key_exists( 'ip', $_POST ) ) {
-	if( filter_var( $_POST['ip'], FILTER_VALIDATE_IP) ) {
+	if ( filter_var( $_POST['ip'], FILTER_VALIDATE_IP ) ) {
 		$ip = $_POST['ip'];
 	}
 }
