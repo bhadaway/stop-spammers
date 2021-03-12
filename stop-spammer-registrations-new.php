@@ -56,7 +56,8 @@ function ss_notice_dismissed() {
 	}
 	// Notification Control: handles notices
 	add_action( 'admin_print_scripts', 'ss_replace_admin_notices', 998 );
-	add_action( 'admin_head', 'ss_show_admin_notices_func', 998 );
+	if ( get_option( 'ss_hide_admin_notices', 'no' ) !== 'yes' )
+		add_action( 'admin_head', 'ss_show_admin_notices_func', 998 );
 }
 add_action( 'admin_init', 'ss_notice_dismissed' );
 

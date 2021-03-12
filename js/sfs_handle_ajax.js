@@ -78,4 +78,19 @@ jQuery(function($) {
 			$.post(ajaxurl, data);
 		}
 	});
+	$('#ss_disable_admin_emails').click(function(){
+		if( this.checked ) {
+			$( '.ss_disable_admin_emails_wraps' ).show()
+		} else {
+			$( '.ss_disable_admin_emails_wraps' ).hide()
+		}
+
+	});
+	$('#ss_hide_admin_notices').click(function(){
+		if( this.checked ) {
+			$( '.ss_reset_hidden_notice_wrap' ).hide()
+		} else {
+			$( '.ss_reset_hidden_notice_wrap' ).show()
+		}
+	});
 });
