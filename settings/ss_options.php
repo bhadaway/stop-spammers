@@ -297,14 +297,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_keep_hidden_btn">
 				<input class="ss_toggle" type="checkbox" id="ss_keep_hidden_btn" name="ss_keep_hidden_btn" value="Y" <?php if ( $ss_keep_hidden_btn == 'Y' ) { echo 'checked="checked"'; } ?> onChange="(this.checked? '': jQuery('#ss_hide_all_btn').prop('checked', false) );" /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Keep Hidden Button', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Show Keep Hidden Button', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_hide_all_btn">
 				<input class="ss_toggle" type="checkbox" id="ss_hide_all_btn" name="ss_hide_all_btn" value="Y" <?php if ( $ss_hide_all_btn == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Hide All Notices Button', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Show Hide All Notices Button', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br />
