@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2021.6
+Version: 2021.7
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2021.6' );
+define( 'SS_VERSION', '2021.7' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -56,8 +56,9 @@ function ss_notice_dismissed() {
 	}
 	// Notification Control: handles notices
 	add_action( 'admin_print_scripts', 'ss_replace_admin_notices', 998 );
-	if ( get_option( 'ss_hide_admin_notices', 'no' ) !== 'yes' )
+	if ( get_option( 'ss_hide_admin_notices', 'no' ) !== 'yes' ) {
 		add_action( 'admin_head', 'ss_show_admin_notices_func', 998 );
+	}
 }
 add_action( 'admin_init', 'ss_notice_dismissed' );
 

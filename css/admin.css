@@ -390,8 +390,12 @@
 .update-nag.notice.notice-warning.inline .ss-hide-notices {
     margin-bottom: 10px;
 }
+
 .ss_disable_admin_emails_wraps {
-	margin-left: 20px; border-bottom: 1px solid #ddd; margin-bottom: 15px; margin-top: 15px;
+	margin-left: 20px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+	margin-top: 15px;
 }
 
 /* responsive layout */
