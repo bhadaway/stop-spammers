@@ -31,12 +31,14 @@ Extremely granular control, so that any variety of website can create a special 
 * Block TLDs
 * Block countries
 * Block/allow IPs, emails, and usernames manually
+* Block admin notices permanently
 * Send email when allow list request is approved
-* Private mode
+* Members-only mode
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
 * Brute force login protection (Premium Only)
+* Notification control (Premium Only)
 * Import/export settings (Premium Only)
 * Export log to Excel (Premium Only)
 * Restore default settings (Premium Only)
