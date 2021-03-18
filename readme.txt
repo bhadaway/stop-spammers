@@ -24,16 +24,13 @@ Get even more options with <strong><a href="https://stopspammers.io/downloads/st
 Extremely granular control, so that any variety of website can create a special custom cocktail just for their particular spam issues:
 
 * <a href="https://stopspammers.io/documentation/protection-options/" target="_blank">Block suspicious behavior</a>
-* Block IPs found in public blacklists
-* Block spam words
-* Block disposable emails
-* Block URL shortening services
-* Block TLDs
+* <a href="https://stopspammers.io/documentation/protection-options/" target="_blank">Block spam words, disposable emails, URL shortener links, TLDs and more</a>
+* <a href="https://stopspammers.io/documentation/web-services/" target="_blank">Connect Third-Party Spam Defense Services</a>
 * <a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank">Block countries</a>
-* <a href="https://stopspammers.io/documentation/allow-requests-and-lists/" target="_blank">Block/allow IPs, emails, and usernames manually</a>
-* <a href="https://stopspammers.io/notification-control-stop-plugin-spam-messages" target="_blank">Block admin notices permanently</a>
-* <a href="https://stopspammers.io/documentation/challenge-and-block/">Send email when allow list request is approved</a>
-* <a href="https://stopspammers.io/stop-spammers-features/members-only-mode/" target="_blank">Members-only mode
+* <a href="https://stopspammers.io/documentation/allow-requests-and-lists/" target="_blank">Deny/allow IPs, emails, and usernames manually</a>
+* <a href="https://stopspammers.io/notification-control-stop-plugin-spam-messages" target="_blank">Hide admin notices permanently</a>
+* <a href="https://stopspammers.io/documentation/challenge-and-block/">Allow users to request access and send email when allow list request is approved</a>
+* <a href="https://stopspammers.io/stop-spammers-features/members-only-mode/" target="_blank">Members-only mode</a>
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
