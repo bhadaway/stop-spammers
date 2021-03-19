@@ -28,7 +28,7 @@ Extremely granular control, so that any variety of website can create a special 
 * <a href="https://stopspammers.io/documentation/web-services/" target="_blank">Connect Third-Party Spam Defense Services</a>
 * <a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank">Block countries</a>
 * <a href="https://stopspammers.io/documentation/allow-requests-and-lists/" target="_blank">Deny/allow IPs, emails, and usernames manually</a>
-* <a href="https://stopspammers.io/notification-control-stop-plugin-spam-messages" target="_blank">Hide admin notices permanently</a>
+* <a href="https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/" target="_blank">Hide admin notices permanently</a>
 * <a href="https://stopspammers.io/documentation/challenge-and-block/">Allow users to request access and send email when allow list request is approved</a>
 * <a href="https://stopspammers.io/stop-spammers-features/members-only-mode/" target="_blank">Members-only mode</a>
 * So much more...
