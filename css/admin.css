@@ -226,6 +226,11 @@
 	transition: all 0.3s ease-in-out;
 }
 
+#ss-plugin div.checkbox.switcher label input[disabled="disabled"] + span {
+	background: gray;
+	border-color: gray;
+}
+
 #ss-plugin div.checkbox.switcher label input + span small, #ss-plugin div.radio.switcher label input + span small {
 	position: absolute;
 	display: block;
