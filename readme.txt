@@ -5,7 +5,7 @@ Plugin URI: https://stopspammers.io/
 Contributors: trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Version: 2021.7
+Version: 2021.8
 Tested up to: 5.7
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -17,20 +17,20 @@ Stop spam emails, spam comments, spam registration, and spam bots and spammers i
 
 Stop Spammers adds security that should kill off many of your spam worries straight out-of-the-box. Because every website is different (especially if you have integrated a payment gateway), we offer dozens of features you can leverage to meet your website's specific needs. Our 50+ configuration options make personalization easy.
 
-Get even more options with <strong><a href="https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium</a></strong>.
+Get even more options with <strong>[https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium)</strong>.
 
 **Features**
 
 Extremely granular control, so that any variety of website can create a special custom cocktail just for their particular spam issues:
 
-* <a href="https://stopspammers.io/documentation/protection-options/" target="_blank">Block suspicious behavior</a>
-* <a href="https://stopspammers.io/documentation/protection-options/" target="_blank">Block spam words, disposable emails, URL shortener links, TLDs and more</a>
-* <a href="https://stopspammers.io/documentation/web-services/" target="_blank">Connect Third-Party Spam Defense Services</a>
-* <a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank">Block countries</a>
-* <a href="https://stopspammers.io/documentation/allow-requests-and-lists/" target="_blank">Deny/allow IPs, emails, and usernames manually</a>
-* <a href="https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/" target="_blank">Hide admin notices permanently</a>
-* <a href="https://stopspammers.io/documentation/challenge-and-block/">Allow users to request access and send email when allow list request is approved</a>
-* <a href="https://stopspammers.io/stop-spammers-features/members-only-mode/" target="_blank">Members-only mode</a>
+* [https://stopspammers.io/documentation/protection-options/](Block suspicious behavior)
+* [https://stopspammers.io/documentation/protection-options/](Block spam words, disposable emails, URL shortener links, TLDs and more)
+* [https://stopspammers.io/documentation/web-services/](Connect Third-Party Spam Defense Services)
+* [https://stopspammers.io/documentation/protection-options/#blockcountries](Block countries)
+* [https://stopspammers.io/documentation/allow-requests-and-lists/](Deny/allow IPs, emails, and usernames manually)
+* [https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/](Hide admin notices permanently)
+* [https://stopspammers.io/documentation/challenge-and-block/">Allow users to request access and send email when allow list request is approved)
+* [https://stopspammers.io/stop-spammers-features/members-only-mode/](Members-only mode)
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
@@ -89,6 +89,10 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2021.8 =
+* [Update] UI improvements
+* [Enhanced] Notification Control feature
 
 = 2021.7 =
 * [Update] PayPal IPs

@@ -249,7 +249,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<form method="post" action="" name="ss">
 		<input type="hidden" name="action" value="update" />
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-		<div class="mainsection"><?php _e( 'Form Checking', 'stop-spammer-registrations-plugin' ); ?>
+		<div id="formchecking" class="mainsection"><?php _e( 'Form Checking', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#formchecking" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
@@ -262,7 +262,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br />
-		<div class="mainsection"><?php _e( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
+		<div id="membersonly" class="mainsection"><?php _e( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#membersonly" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div class="checkbox switcher">
@@ -272,7 +272,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br />
-		<div class="mainsection"><?php _e( 'Prevent Lockouts', 'stop-spammer-registrations-plugin' ); ?>
+		<div id="preventlockouts" class="mainsection"><?php _e( 'Prevent Lockouts', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#preventlockouts" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div class="checkbox switcher">
@@ -290,10 +290,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		
 		<br />
-		<div class="mainsection">
+		<div id="notificationcontrol" class="mainsection">
 			<?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#notificationcontrol" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
+		<?php if ( is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
+			_e( '<p>Find the full Notification Control options on the <a href="admin.php?page=ssp_premium">Premium Features page</a>.</p>', 'stop-spammer-registrations-plugin' );
+		} else {
+			_e( '<p>This feature is extended in <a href="https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/" target="_blank">Stop Spammers Premium</a>.</p>', 'stop-spammer-registrations-plugin' );
+		} ?>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_keep_hidden_btn">
 				<input class="ss_toggle" type="checkbox" id="ss_keep_hidden_btn" name="ss_keep_hidden_btn" value="Y" <?php if ( $ss_keep_hidden_btn == 'Y' ) { echo 'checked="checked"'; } ?> onChange="(this.checked? '': jQuery('#ss_hide_all_btn').prop('checked', false) );" /><span><small></small></span>
@@ -308,7 +313,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br />
-		<div class="mainsection"><?php _e( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
+		<div id="validaterequests" class="mainsection"><?php _e( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#validaterequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div class="checkbox switcher">
@@ -502,7 +507,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br />
-		<div class="mainsection"><?php _e( 'Block Countries', 'stop-spammer-registrations-plugin' ); ?>
+		<div id="blockcountries" class="mainsection"><?php _e( 'Block Countries', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<br />
