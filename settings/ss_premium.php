@@ -44,7 +44,7 @@ if ( !current_user_can( 'manage_options' ) ) {
 		<div class="ss_admin_info_boxes_3col">
 			<h3><?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/notification-control_stop-spammers_trumani.png'; ?>" class="center_thumb">
-			<?php _e( 'Hide all admin notices, reset the keep hidden choices, update nags from WP core, plugins, and themes, and choose what automated emails are sent to the admin.', 'stop-spammer-registrations-plugin' ); ?>
+			<?php _e( 'Hide all admin notices, reset the keep hidden choices, hide update nags from WP core, plugins, and themes, and choose what automated emails are sent to the admin.', 'stop-spammer-registrations-plugin' ); ?>
 		</div>
 		<div class="ss_admin_info_boxes_3col">
 			<h3><?php _e( 'Administrative Settings', 'stop-spammer-registrations-plugin' ); ?></h3>
