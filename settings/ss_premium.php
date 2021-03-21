@@ -42,14 +42,14 @@ if ( !current_user_can( 'manage_options' ) ) {
 			<?php _e( 'A super lightweight form protected by Stop Spammers that we can style for you to match your theme.', 'stop-spammer-registrations-plugin' ); ?>
 		</div>
 		<div class="ss_admin_info_boxes_3col">
-			<h3><?php _e( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ); ?></h3>
-			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/restore-settings_stop-spammers_trumani.png'; ?>" class="center_thumb">
-			<?php _e( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ); ?>
+			<h3><?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?></h3>
+			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/notification-control_stop-spammers_trumani.png'; ?>" class="center_thumb">
+			<?php _e( 'Hide all admin notices, reset the keep hidden choices, update nags from WP core, plugins, and themes, and choose what automated emails are sent to the admin.', 'stop-spammer-registrations-plugin' ); ?>
 		</div>
 		<div class="ss_admin_info_boxes_3col">
-			<h3><?php _e( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ); ?></h3>
+			<h3><?php _e( 'Administrative Settings', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/import-export_stop-spammers_trumani.png'; ?>" class="center_thumb">
-			<?php _e( 'You can download your personalized configurations and upload them to other sites. You can also save the log report entries.', 'stop-spammer-registrations-plugin' ); ?>
+			<?php _e( 'You can download your personalized configurations and upload them to other sites. You can also save the log report entries and restore options to defaults.', 'stop-spammer-registrations-plugin' ); ?>
 		</div>
 	</div>
 	<div class="ss_admin_button">
