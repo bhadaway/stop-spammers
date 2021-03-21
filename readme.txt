@@ -17,20 +17,20 @@ Stop spam emails, spam comments, spam registration, and spam bots and spammers i
 
 Stop Spammers adds security that should kill off many of your spam worries straight out-of-the-box. Because every website is different (especially if you have integrated a payment gateway), we offer dozens of features you can leverage to meet your website's specific needs. Our 50+ configuration options make personalization easy.
 
-Get even more options with <strong>[https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium)</strong>.
+Get even more options with **[Stop Spammers Premium](https://stopspammers.io/downloads/stop-spammers-premium/)**.
 
 **Features**
 
 Extremely granular control, so that any variety of website can create a special custom cocktail just for their particular spam issues:
 
-* [https://stopspammers.io/documentation/protection-options/](Block suspicious behavior)
-* [https://stopspammers.io/documentation/protection-options/](Block spam words, disposable emails, URL shortener links, TLDs and more)
-* [https://stopspammers.io/documentation/web-services/](Connect Third-Party Spam Defense Services)
-* [https://stopspammers.io/documentation/protection-options/#blockcountries](Block countries)
-* [https://stopspammers.io/documentation/allow-requests-and-lists/](Deny/allow IPs, emails, and usernames manually)
-* [https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/](Hide admin notices permanently)
-* [https://stopspammers.io/documentation/challenge-and-block/">Allow users to request access and send email when allow list request is approved)
-* [https://stopspammers.io/stop-spammers-features/members-only-mode/](Members-only mode)
+* [Block suspicious behavior](https://stopspammers.io/documentation/protection-options/)
+* [Block spam words, disposable emails, URL shortener links, TLDs and more](https://stopspammers.io/documentation/protection-options/)
+* [Connect Third-Party Spam Defense Services](https://stopspammers.io/documentation/web-services/)
+* [Block countries](https://stopspammers.io/documentation/protection-options/#blockcountries)
+* [Deny/allow IPs, emails, and usernames manually](https://stopspammers.io/documentation/allow-requests-and-lists/)
+* [Hide admin notices permanently](https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/)
+* [Allow users to request access and send email when allow list request is approved](https://stopspammers.io/documentation/challenge-and-block/)
+* [Members-only mode](https://stopspammers.io/stop-spammers-features/members-only-mode/)
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
