@@ -239,7 +239,7 @@ class ss_challenge extends be_module {
 				<input type=\"hidden\" name=\"ka\" value=\"$ka\" />
 		";
 		$formbot = __( '
-				<p><input style="background:#007cba;padding: 10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request" /></p>
+				<p><input style="background:#007cba;padding:10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request" /></p>
 			</form>
 		', 'stop-spammer-registrations-plugin' );
 		$not	 = '';
@@ -253,9 +253,7 @@ class ss_challenge extends be_module {
 				Message<!-- not email -->:<br /><textarea name="km" placeholder="Explain what you were trying to do or if you were submitting a contact form, re-enter your message." rows="5" style="box-sizing:border-box;width:100%;padding:15px" class="large-text"></textarea>
 			', 'stop-spammer-registrations-plugin' );
 		}
-		$captop = __( '
-				<h1>Are you human?</h1>
-			', 'stop-spammer-registrations-plugin' );
+		$captop = __( '<h1>Are you human?</h1>', 'stop-spammer-registrations-plugin' );
 		$capbot = "";
 		// now the CAPTCHAs
 		$cap = '';
@@ -359,7 +357,6 @@ class ss_challenge extends be_module {
 			$subject = __( 'Allow List Request from ', 'stop-spammer-registrations-plugin' ) . get_bloginfo( 'name' );
 			$ip	     = ss_get_ip();
 			$web 	 = __( 'Approve or Block Request: ', 'stop-spammer-registrations-plugin' ) . admin_url( 'admin.php?page=ss_allow_list' );
-
 			$message = __( "
 				A request has been received from someone who has been marked as a spammer by the Stop Spammers plugin.
 

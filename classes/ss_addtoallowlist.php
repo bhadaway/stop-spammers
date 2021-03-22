@@ -70,9 +70,9 @@ class ss_addtoallowlist {
 		}
 		$ke 	 = sanitize_text_field( $to );
 		$blog    = get_bloginfo( 'name' );
-		$subject = get_bloginfo( 'name' ) . __( ': Your Request Has Been Approved', 'stop-spammer-registrations-plugin' );
+		$subject = sprintf( __( '%1$s: Your Request Has Been Approved', 'stop-spammer-registrations-plugin' ), $blog );
 		$subject = str_replace( '&', 'and', $subject );
-		$message = __( 'Apologies for the inconvenience. You\'ve now been cleared for landing on $blog.', 'stop-spammer-registrations-plugin' );
+		$message = sprintf( __( 'Apologies for the inconvenience. You\'ve now been cleared for landing on %1$s.', 'stop-spammer-registrations-plugin' ), $blog );
 		$message = str_replace( '&', 'and', $message );
 		$headers = __( 'From: ', 'stop-spammer-registrations-plugin' ) . get_option( 'admin_email' ) . "\r\n";
 		wp_mail( $to, $subject, $message, $headers );
