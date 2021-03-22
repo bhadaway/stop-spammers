@@ -93,6 +93,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 = 2021.8 =
 * [Update] UI improvements
 * [Enhanced] Notification Control feature
+* [Fix] Math question
 
 = 2021.7 =
 * [Update] PayPal IPs

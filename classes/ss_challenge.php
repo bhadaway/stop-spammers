@@ -294,7 +294,7 @@ class ss_challenge extends be_module {
 				}
 				$stupid = $n1 + $n2 - $seed;
 				$cap	= __( '
-					<p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . ( $n1 + $n2 ) . '</span><br />
+					<p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . $n1 . ' + ' . $n2 . '</span><br />
 					<input name="sum" value="" type="text" />
 					<input type="hidden" name="nums" value="' . $stupid . '" /><br />
 				', 'stop-spammer-registrations-plugin' );
