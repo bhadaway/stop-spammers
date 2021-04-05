@@ -230,14 +230,14 @@ class ss_challenge extends be_module {
 		if ( !empty( $msg ) ) {
 			$msg = "\r\n<br /><span style=\"color:red\"> $msg </span><hr />\r\n";
 		}
-		$formtop .= "
-			<form action=\"\" method=\"post\" >
-				<input type=\"hidden\" name=\"kn\" value=\"$knonce\" />
-				<input type=\"hidden\" name=\"ss_block\" value=\"$chkcaptcha\" />
-				<input type=\"hidden\" name=\"kp\" value=\"$kp\" />
-				<input type=\"hidden\" name=\"kr\" value=\"$kr\" />
-				<input type=\"hidden\" name=\"ka\" value=\"$ka\" />
-		";
+		$formtop .= '
+			<form action="" method="post">
+				<input type="hidden" name="kn" value="' . esc_attr( $knonce ) . '" />
+				<input type="hidden" name="ss_block" value="' . esc_attr( $chkcaptcha ) . '" />
+				<input type="hidden" name="kp" value="' . esc_attr( $kp ) . '" />
+				<input type="hidden" name="kr" value="' . esc_attr( $kr ) . '" />
+				<input type="hidden" name="ka" value="' . esc_attr( $ka ) . '" />
+		';
 		$formbot = __( '
 				<p><input style="background:#007cba;padding:10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request" /></p>
 			</form>
@@ -329,7 +329,7 @@ class ss_challenge extends be_module {
 		if ( !array_key_exists( 'notify', $options ) ) {
 			return false;
 		}
-		$notify	= $options['notify'];
+		$notify	   = $options['notify'];
 		$wlreqmail = $options['wlreqmail'];
 		if ( $notify == 'N' ) {
 			return false;
