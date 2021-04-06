@@ -213,7 +213,7 @@ class ss_check_post extends be_module {
 		$chk = '';
 		// start with the no IP list
 		foreach ( $noipactions as $chk ) {
-			if ( $options[ $chk ] == 'Y' ) {
+			if ( $options[$chk] == 'Y' ) {
 				$reason = be_load( $chk, ss_get_ip(), $stats, $options, $post );
 				if ( $reason !== false ) {
 					break;
@@ -237,7 +237,7 @@ class ss_check_post extends be_module {
 		}
 		if ( $reason === false ) {
 			foreach ( $actions as $chk ) {
-				if ( $options[ $chk ] == 'Y' ) {
+				if ( $options[$chk] == 'Y' ) {
 					$reason = be_load( $chk, ss_get_ip(), $stats, $options, $post );
 					if ( $reason !== false ) {
 						break;

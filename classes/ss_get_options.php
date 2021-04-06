@@ -1405,7 +1405,7 @@ class ss_get_options {
 		}
 		foreach ( $options as $key => $val ) {
 			if ( array_key_exists( $key, $ansa ) ) {
-				$ansa[ $key ] = $options[ $key ];
+				$ansa[$key] = $options[$key];
 			} else {
 			// sfs_debug_msg( "option $key missing from $options" );
 			}

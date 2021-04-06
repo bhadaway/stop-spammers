@@ -196,14 +196,14 @@ function include_setting( $file ) {
 }
 
 function ss_fix_post_vars() {
-	if( !empty( $_POST ) ) {
+	if ( !empty( $_POST ) ) {
 		$keys = isset( $_POST ) ? ( array ) array_keys( $_POST ) : array();
 		foreach ( $keys as $key ) {
 			try {
 				$key = sanitize_key( $key ); 
 				if ( is_string( $_POST[$key] ) ) {
 					if ( strpos( $_POST[$key], "\n" ) !== false ) {
-						$val2 = esc_textarea( $_POST[$key] );
+						$val2 = sanitize_textarea_field( $_POST[$key] );
 					} else {
 						$val2 = sanitize_text_field( $_POST[$key] );
 					}

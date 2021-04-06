@@ -56,12 +56,12 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
 		if ( array_key_exists( $check, $_POST ) ) {
-			$v = $_POST[ $check ];
+			$v = $_POST[$check];
 			if ( $v != 'Y' ) {
 				$v = 'N';
 			}
 		}
-		$options[ $check ] = $v;
+		$options[$check] = $v;
 	}
 	// countries
 	$optionlist = array(
@@ -209,12 +209,12 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
 		if ( array_key_exists( $check, $_POST ) ) {
-			$v = $_POST[ $check ];
+			$v = $_POST[$check];
 			if ( $v != 'Y' ) {
 				$v = 'N';
 			}
 		}
-		$options[ $check ] = $v;
+		$options[$check] = $v;
 	}
 	// text options
 	if ( array_key_exists( 'sesstime', $_POST ) ) {

@@ -15,10 +15,10 @@ class ss_remove_gcache {
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $goodips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
-				unset( $goodips[ $key ] );
+				unset( $goodips[$key] );
 			}
 			if ( $key == $ip ) {
-				unset( $goodips[ $key ] );
+				unset( $goodips[$key] );
 			}
 		}
 		$stats['goodips'] = $goodips;

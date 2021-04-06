@@ -14,10 +14,10 @@ class ss_addto_bcache {
 			array_shift( $badips );
 		}
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
-		$badips[ $ip ] = $now;
+		$badips[$ip] = $now;
 		foreach ( $badips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
-				unset( $badips[ $key ] );
+				unset( $badips[$key] );
 			}
 		}
 		$stats['badips'] = $badips;

@@ -86,11 +86,7 @@ class ss_challenge extends be_module {
 				// they submitted a CAPTCHA
 				switch ( $chkcaptcha ) {
 					case 'G':
-						if ( array_key_exists( 'recaptcha', $_POST )
-							 && !empty( $_POST['recaptcha'] )
-							 && array_key_exists( 'g-recaptcha-response',
-								$_POST )
-						) {
+						if ( array_key_exists( 'recaptcha', $_POST ) && !empty( $_POST['recaptcha'] ) && array_key_exists( 'g-recaptcha-response', $_POST ) ) {
 							// check reCAPTCHA
 							$recaptchaapisecret = $options['recaptchaapisecret'];
 							$recaptchaapisite   = $options['recaptchaapisite'];
@@ -103,7 +99,7 @@ class ss_challenge extends be_module {
 								$resp = ss_read_file( $url );
 								// sfs_debug_msg( "recaptcha '$g', '$ip' '$resp' - \r\n" . print_r( $_POST, true ) );
 								if ( strpos( $resp, '"success": true' ) !== false ) { // found success
-									// $kp=base64_encode( serialize( $_POST ) );
+									// $kp = base64_encode( serialize( $_POST ) );
 									$_POST = unserialize( base64_decode( $kp ) );
 									// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 									// success add to cache
@@ -414,7 +410,7 @@ class ss_challenge extends be_module {
 		if ( empty( $wlrequests ) || !is_array( $wlrequests ) ) {
 			$wlrequests = array();
 		}
-		$wlrequests[ $now ]  = $req;
+		$wlrequests[$now]  = $req;
 		// save stats
 		$stats['wlrequests'] = $wlrequests;
 		// sfs_debug_msg( "added request: '$ke'" );

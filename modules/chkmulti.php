@@ -34,16 +34,16 @@ class chkmulti extends be_module {
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 60 * $multitime ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $multi as $key => $data ) { // key is IP, data is array of time and count
 			if ( $data[0] < $nowtimeout ) {
-				unset( $multi[ $key ] );
+				unset( $multi[$key] );
 			}
 		}
 		$row = array( $now, 0 );
 		if ( array_key_exists( $ip, $multi ) ) {
-			$row = $multi[ $ip ];
+			$row = $multi[$ip];
 		}
 		$row[0] = $now;
 		$row[1] ++;
-		$multi[ $ip ]   = $row;
+		$multi[$ip]   = $row;
 		$stats['multi'] = $multi;
 		ss_set_stats( $stats );
 		if ( $row[1] >= $multicnt ) {

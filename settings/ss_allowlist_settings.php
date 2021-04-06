@@ -37,7 +37,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		ss_set_stats( $stats );
 	}
 	if ( array_key_exists( 'wlist', $_POST ) and !array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
-		$wlist  = $_POST['wlist'];
+		$wlist  = sanitize_textarea_field( $_POST['wlist'] );
 		$wlist  = explode( "\n", $wlist );
 		$tblist = array();
 		foreach ( $wlist as $bl ) {
@@ -49,7 +49,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$options['wlist'] = $tblist;
 		$wlist			  = $tblist;
 	}
-	if ( ! array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
+	if ( !array_key_exists( 'ss_stop_clear_wlreq', $_POST ) ) {
 		$optionlist = array(
 			'chkgoogle',
 			'chkaws',
@@ -66,12 +66,12 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		foreach ( $optionlist as $check ) {
 			$v = 'N';
 			if ( array_key_exists( $check, $_POST ) ) {
-				$v = $_POST[ $check ];
+				$v = $_POST[$check];
 				if ( $v != 'Y' ) {
 					$v = 'N';
 				}
 			}
-			$options[ $check ] = $v;
+			$options[$check] = $v;
 		}
 		ss_set_options( $options );
 	}
@@ -148,7 +148,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<textarea name="wlist" cols="40" rows="8" class="ipbox"><?php
 			for ( $k = 0; $k < count( $wlist ); $k ++ ) {
-				echo $wlist[ $k ] . "\r\n";
+				echo $wlist[$k] . "\r\n";
 			}
 		?></textarea>
 		<br />

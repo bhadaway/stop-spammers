@@ -14,9 +14,9 @@ class ss_log_good extends be_module {
 		extract( $post );
 		// reason and chk are from the post array
 		if ( array_key_exists( 'cnt' . $chk, $stats ) ) {
-			$stats[ 'cnt' . $chk ] ++;
+			$stats['cnt' . $chk] ++;
 		} else {
-			$stats[ 'cnt' . $chk ] = 1;
+			$stats['cnt' . $chk] = 1;
 		}
 		$sname = $this->getSname();
 		$now   = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
@@ -29,7 +29,7 @@ class ss_log_good extends be_module {
 		}
 		// now the cache - need to purge it for time and length
 		$ss_sp_good	    = $options['ss_sp_good'];
-		$goodips[ $ip ] = $now;
+		$goodips[$ip] = $now;
 		asort( $goodips );
 		while ( count( $goodips ) > $ss_sp_good ) {
 			array_shift( $goodips );
@@ -37,7 +37,7 @@ class ss_log_good extends be_module {
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $goodips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
-				unset( $goodips[ $key ] );
+				unset( $goodips[$key] );
 			}
 		}
 		$stats['goodips'] = $goodips;
@@ -53,7 +53,7 @@ class ss_log_good extends be_module {
 		while ( count( $hist ) > $ss_sp_hist ) {
 			array_shift( $hist );
 		}
-		$hist[ $now ]  = array( $ip, $email, $author, $sname, $reason, $blog );
+		$hist[$now]  = array( $ip, $email, $author, $sname, $reason, $blog );
 		$stats['hist'] = $hist;
 		if ( array_key_exists( 'addon', $post ) ) {
 			ss_set_stats( $stats, $post['addon'] ); // from a plugin

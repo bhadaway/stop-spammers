@@ -26,13 +26,13 @@ class ss_log_bad extends be_module {
 			$stats['spmcount'] = 1;
 		}
 		if ( array_key_exists( 'cnt' . $chk, $stats ) ) {
-			$stats[ 'cnt' . $chk ] ++;
+			$stats['cnt' . $chk] ++;
 		} else {
-			$stats[ 'cnt' . $chk ] = 1;
+			$stats['cnt' . $chk] = 1;
 		}
 		// now the cache - need to purge it for time and length
 		$ss_sp_cache   = $options['ss_sp_cache'];
-		$badips[ $ip ] = $now;
+		$badips[$ip] = $now;
 		asort( $badips );
 		while ( count( $badips ) > $ss_sp_cache ) {
 			array_shift( $badips );
@@ -40,7 +40,7 @@ class ss_log_bad extends be_module {
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $badips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
-				unset( $badips[ $key ] );
+				unset( $badips[$key] );
 			}
 		}
 		$stats['badips'] = $badips;
@@ -57,7 +57,7 @@ class ss_log_bad extends be_module {
 			array_shift( $hist );
 		}
 		// if ( !empty( $pwd ) ) $author = $author . '/' . $pwd; // show bad passwords?
-		$hist[ $now ]  = array( $ip, $email, $author, $sname, $reason, $blog );
+		$hist[$now]  = array( $ip, $email, $author, $sname, $reason, $blog );
 		$stats['hist'] = $hist;
 		if ( array_key_exists( 'addon', $post ) ) {
 			ss_set_stats( $stats, $post['addon'] );

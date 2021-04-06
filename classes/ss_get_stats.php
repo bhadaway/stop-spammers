@@ -227,7 +227,7 @@ class ss_get_stats {
 		// get rid of old values no longer used in this version_compare
 		foreach ( $ansa as $key => $val ) {
 			if ( array_key_exists( $key, $stats ) ) {
-				$ansa[ $key ] = $stats[ $key ];
+				$ansa[$key] = $stats[$key];
 			}
 		}
 		if ( !is_array( $ansa['wlrequests'] ) ) {

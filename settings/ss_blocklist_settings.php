@@ -21,7 +21,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 
 if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'blist', $_POST ) ) {
-		$blist = $_POST['blist'];
+		$blist = sanitize_textarea_field( $_POST['blist'] );
 		if ( empty( $blist ) ) {
 			$blist = array();
 		} else {
@@ -38,7 +38,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$blist			  = $tblist;
 	}
 	if ( array_key_exists( 'spamwords', $_POST ) ) {
-		$spamwords = $_POST['spamwords'];
+		$spamwords = sanitize_textarea_field( $_POST['spamwords'] );
 		if ( empty( $spamwords ) ) {
 			$spamwords = array();
 		} else {
@@ -55,7 +55,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$spamwords			  = $tblist;
 	}
 	if ( array_key_exists( 'blockurlshortners', $_POST ) ) {
-		$blockurlshortners = $_POST['blockurlshortners'];
+		$blockurlshortners = sanitize_textarea_field( $_POST['blockurlshortners'] );
 		if ( empty( $blockurlshortners ) ) {
 			$blockurlshortners = array();
 		} else {
@@ -72,7 +72,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$blockurlshortners			  = $tblist;
 	}
 	if ( array_key_exists( 'badTLDs', $_POST ) ) {
-		$badTLDs = $_POST['badTLDs'];
+		$badTLDs = sanitize_textarea_field( $_POST['badTLDs'] );
 		if ( empty( $badTLDs ) ) {
 			$badTLDs = array();
 		} else {
@@ -89,7 +89,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$badTLDs			= $tblist;
 	}
 	if ( array_key_exists( 'badagents', $_POST ) ) {
-		$badagents = $_POST['badagents'];
+		$badagents = sanitize_textarea_field( $_POST['badagents'] );
 		if ( empty( $badagents ) ) {
 			$badagents = array();
 		} else {
@@ -114,12 +114,12 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
 		if ( array_key_exists( $check, $_POST ) ) {
-			$v = $_POST[ $check ];
+			$v = $_POST[$check];
 			if ( $v != 'Y' ) {
 				$v = 'N';
 			}
 		}
-		$options[ $check ] = $v;
+		$options[$check] = $v;
 	}
 	ss_set_options( $options );
 	extract( $options );

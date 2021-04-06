@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2021.9
+Version: 2021.10
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2021.9' );
+define( 'SS_VERSION', '2021.10' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -95,7 +95,7 @@ function ss_replace_admin_notices() {
 			}
 			$salt     = is_multisite() ? get_current_blog_id() : '';
 			$txt      = preg_replace( '/<(script|style)([^>]+)?>(.*?)<\/(script|style)>/is', '', $cont );
-			$uniq_id1 = md5( strip_tags( str_replace( [ "\t", "\r", "\n", " " ], "", $txt ) ) . $salt );
+			$uniq_id1 = md5( strip_tags( str_replace( ["\t", "\r", "\n", " "], "", $txt ) ) . $salt );
 			$uniq_id2 = md5( $callback . $salt );
 			if ( is_array( $callback_array['function'] ) && sizeof( $callback_array['function'] ) == 2 ) {
 				$class = $callback_array['function'][0];
@@ -105,7 +105,7 @@ function ss_replace_admin_notices() {
 					$uniq_id2    = md5( $class_name . ':' . $method_name );
 				}
 			}
-			if ( isset( $ss_notice_preference[ "{$uniq_id1}_{$uniq_id2}" ] ) ) {
+			if ( isset( $ss_notice_preference["{$uniq_id1}_{$uniq_id2}"] ) ) {
 				continue;
 			}
 			$hide_for_user = "";
@@ -156,7 +156,7 @@ function ss_merge_notices ( $array1, $array2 ) {
 			if ( !isset( $array1[$key] ) ) {
 				$array1[$key] = $value;
 			} else if ( is_array( $array1[$key] ) ) {
-				$array1[ $key ] = $array1[$key] + $value;
+				$array1[$key] = $array1[$key] + $value;
 			}
 		}
 	}
@@ -214,7 +214,7 @@ function ss_update_notice_preference() {
 	if ( !is_array( $ss_notice_preference ) ) {
 		$ss_notice_preference = array();
 	}
-	$notice_id = sanitize_text_field( $_POST[ 'notice_id' ] );
+	$notice_id = sanitize_text_field( $_POST['notice_id'] );
 	$ss_notice_preference[$notice_id] = $notice_id;
 	update_user_meta( $user_id, 'ss_notice_preference', $ss_notice_preference );
 	wp_die();
@@ -448,12 +448,12 @@ function ss_set_stats( &$stats, $addon = array() ) {
 		}
 		$addstats = array();
 		if ( array_key_exists( $addon[1], $addonstats ) ) {
-			$addstats = $addonstats[ $addon[1] ];
+			$addstats = $addonstats[$addon[1]];
 		} else {
 			$addstats = array( 0, $addon );
 		}
 		$addstats[0] ++;
-		$addonstats[ $addon[1] ] = $addstats;
+		$addonstats[$addon[1]] = $addstats;
 		$stats['addonstats']	 = $addonstats;
 	}
 	// other checks? - I might start compressing this, since it can get large
@@ -723,15 +723,15 @@ function get_post_variables() {
 					if ( is_array( $pval ) ) {
 						$pval = print_r( $pval, true );
 					}
-					$ansa[ $var ] = $pval;
+					$ansa[$var] = $pval;
 					break;
 				}
 			}
-			if ( !empty( $ansa[ $var ] ) ) {
+			if ( !empty( $ansa[$var] ) ) {
 				break;
 			}
 		}
-		if ( empty( $ansa[ $var ] ) && $var == 'email' ) { // empty email
+		if ( empty( $ansa[$var] ) && $var == 'email' ) { // empty email
 			// did not get a hit so we need to try again and look for something that looks like an email
 			foreach ( $p as $pkey => $pval ) {
 				if ( stripos( $pkey, 'input_' ) ) {
@@ -741,7 +741,7 @@ function get_post_variables() {
 					}
 					if ( strpos( $pval, '@' ) !== false && strrpos( $pval, '.' ) > strpos( $pval, '@' ) ) {
 						// close enough
-						$ansa[ $var ] = $pval;
+						$ansa[$var] = $pval;
 						break;
 					}
 				}
@@ -823,8 +823,8 @@ function really_clean( $s ) {
 	}
 	$s = '';
 	for ( $j = 0; $j < count( $ss ); $j ++ ) {
-		if ( $ss[ $j ] < 127 && $ss[ $j ] > 31 ) {
-			$s .= pack( 'C', $ss[ $j ] );
+		if ( $ss[$j] < 127 && $ss[$j] > 31 ) {
+			$s .= pack( 'C', $ss[$j] );
 		}
 	}
 	return $s;

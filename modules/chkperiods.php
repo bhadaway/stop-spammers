@@ -44,9 +44,9 @@ class chkperiods extends be_module {
 		$tld_one = end( $domain_split );
 		// downloaded from https://raw.githubusercontent.com/fbraz3/publicsuffix-json/master/public_suffix_list.json
 		$tld_array = array_flip( json_decode( file_get_contents( __DIR__ . '/tlds/public_suffix_list.json' ) ) );
-		if ( isset( $tld_array[ $tld_two ] ) ) {
+		if ( isset( $tld_array[$tld_two] ) ) {
 			return str_replace( ".$tld_two", "", $domain );
-		} else if ( isset( $tld_array[ $tld_one ] ) ) {
+		} else if ( isset( $tld_array[$tld_one] ) ) {
 			return str_replace( ".$tld_one", "", $domain );
 		}
 	}

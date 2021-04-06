@@ -287,7 +287,7 @@ function sfs_get_urls( $content ) {
 		return array();
 	}
 	for ( $j = 0; $j < count( $urls3 ); $j ++ ) {
-		$urls3[ $j ] = urlencode( $urls3[ $j ] );
+		$urls3[$j] = urlencode( $urls3[$j] );
 	}
 	return $urls3;
 }

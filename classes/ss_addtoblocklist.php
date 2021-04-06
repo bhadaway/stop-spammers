@@ -19,12 +19,12 @@ class ss_addtoblocklist {
 		// need to remove from caches
 		$badips = $stats['badips'];
 		if ( array_key_exists( $ip, $badips ) ) {
-			unset( $badips[ $ip ] );
+			unset( $badips[$ip] );
 			$stats['badips'] = $badips;
 		}
 		$goodips = $stats['goodips'];
 		if ( array_key_exists( $ip, $goodips ) ) {
-			unset( $goodips[ $ip ] );
+			unset( $goodips[$ip] );
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );

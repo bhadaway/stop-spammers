@@ -990,14 +990,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		_e( 'Files: <ol>', 'stop-spammer-registrations-plugin' );
 		for ( $j = 0; $j < count( $phparray ); $j ++ ) {
 		// ignore my work on this subject
-			if ( strpos( $phparray[ $j ], 'threat_scan' ) === false && strpos( $phparray[ $j ], 'threat-scan' ) === false ) {
-				$ansa = ss_look_in_file( $phparray[ $j ] );
+			if ( strpos( $phparray[$j], 'threat_scan' ) === false && strpos( $phparray[$j], 'threat-scan' ) === false ) {
+				$ansa = ss_look_in_file( $phparray[$j] );
 				if ( count( $ansa ) > 0 ) {
 					$disp = true;
 					// echo "Think we got something<br />";
-					echo '<li>' . $phparray[ $j ] . ' <br /> ';
+					echo '<li>' . $phparray[$j] . ' <br /> ';
 					for ( $k = 0; $k < count( $ansa ); $k ++ ) {
-						echo $ansa[ $k ] . ' <br />';
+						echo $ansa[$k] . ' <br />';
 					}
 					echo '</li>';
 				}
@@ -1031,7 +1031,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						$phparray = ss_scan_for_eval_recurse( $dir . '/' . $file, $phparray );
 					}
 				} else if ( strpos( $file, '.php' ) > 0 ) {
-					$phparray[ count( $phparray ) ] = $dir . '/' . $file;
+					$phparray[count( $phparray )] = $dir . '/' . $file;
 				} else {
 				// echo "can't find .php in $file <br />";
 				}
@@ -1083,7 +1083,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					// bad boy
 					if ( ss_ok_list( $file, $n ) ) {
 						$line		  = ss_make_red( $baddie, $line );
-						$ansa[ $idx ] = $n . ': ' . $line;
+						$ansa[$idx] = $n . ': ' . $line;
 						$idx ++;
 					}
 				}
@@ -1120,7 +1120,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				if ( ss_ok_list( $file, $n ) ) {
 					$ll		      = substr( $line, $m, 7 );
 					$line		  = ss_make_red( $ll, $line );
-					$ansa[ $idx ] = $n . ': ' . $line;
+					$ansa[$idx] = $n . ': ' . $line;
 					$idx ++;
 				}
 			}
@@ -1276,8 +1276,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			if ( stripos( $file, $f ) !== false ) {
 				// found a file
 				for ( $j = 0; $j < count( $ln ) / 2; $j ++ ) {
-					$t1 = $ln[ $j * 2 ];
-					$t2 = $ln[ ( $j * 2 ) + 1 ];
+					$t1 = $ln[$j * 2];
+					$t2 = $ln[( $j * 2 ) + 1];
 					// echo "checking $file, $f for $line and '$ln'<br />";
 					if ( $line >= $t1 && $line <= $t2 ) {
 						return false;

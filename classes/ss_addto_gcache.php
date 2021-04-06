@@ -14,10 +14,10 @@ class ss_addto_gcache {
 			array_shift( $goodips );
 		}
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
-		$goodips[ $ip ] = $now;
+		$goodips[$ip] = $now;
 		foreach ( $goodips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
-				unset( $goodips[ $key ] );
+				unset( $goodips[$key] );
 			}
 		}
 		$stats['goodips'] = $goodips;

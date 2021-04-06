@@ -15,10 +15,10 @@ class ss_remove_bcache {
 		$nowtimeout = date( 'Y/m/d H:i:s', time() - ( 4 * 3600 ) + ( get_option( 'gmt_offset' ) * 3600 ) );
 		foreach ( $badips as $key => $data ) {
 			if ( $data < $nowtimeout ) {
-				unset( $badips[ $key ] );
+				unset( $badips[$key] );
 			}
 			if ( $key == $ip ) {
-				unset( $badips[ $key ] );
+				unset( $badips[$key] );
 			}
 		}
 		$stats['badips'] = $badips;

@@ -222,7 +222,7 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'clear', $_POST ) ) {
 		foreach ( $counters as $v1 => $v2 ) {
-			  $stats[ $v1 ] = 0;
+			  $stats[$v1] = 0;
 		}
 		$addonstats		     = array();
 		$stats['addonstats'] = $addonstats;
@@ -324,8 +324,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<?php }
 	$summary = '';
 	foreach ( $counters as $v1 => $v2 ) {
-		if ( !empty( $stats[ $v1 ] ) ) {
-			  $summary .= "<div class='stat-box'>$v2: " . $stats[ $v1 ] . "</div>";
+		if ( !empty( $stats[$v1] ) ) {
+			  $summary .= "<div class='stat-box'>$v2: " . $stats[$v1] . "</div>";
 		} else {
 		// echo "  $v1 - $v2 , ";
 		}
@@ -346,7 +346,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<?php
 	function ss_control()  {
 		// this is the display of information about the page.
-		if ( array_key_exists( 'resetOptions',$_POST ) ) {
+		if ( array_key_exists( 'resetOptions', $_POST ) ) {
 			ss_force_reset_options();
 		}
 		$ip 	 = ss_get_ip();

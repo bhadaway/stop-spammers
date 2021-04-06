@@ -23,23 +23,23 @@ class ss_addtoallowlist {
 		$options['wlist'] = $wlist;
 		// add this email to your Allow List
 		if ( isset( $_GET['email'] ) and $_GET['email'] != ''  and !in_array( $_GET['email'], $wlist_email ) ) {
-			$wlist_email[] = $_GET['email'];
+			$wlist_email[] = sanitize_email( $_GET['email'] );
 		}
 		$options['wlist_email'] = $wlist_email;
 		ss_set_options( $options );
 		// need to remove from caches
 		$badips = $stats['badips'];
 		if ( array_key_exists( $ip, $badips ) ) {
-			unset( $badips[ $ip ] );
+			unset( $badips[$ip] );
 			$stats['badips'] = $badips;
 		}
 		$goodips = $stats['goodips'];
 		if ( array_key_exists( $ip, $goodips ) ) {
-			unset( $goodips[ $ip ] );
+			unset( $goodips[$ip] );
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-		if ( isset( $_GET['func' ] ) and $_GET['func'] == 'add_white' ) $this->ss_send_approval_email( $ip, $stats, $options, $post );
+		if ( isset( $_GET['func'] ) and $_GET['func'] == 'add_white' ) $this->ss_send_approval_email( $ip, $stats, $options, $post );
 		return false;
 	}
 

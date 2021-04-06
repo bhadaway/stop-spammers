@@ -36,7 +36,7 @@ class ss_get_alreq {
 			}
 			$container = 'wlreq';
 			if ( $sw ) {
-				$nwlrequests[ $key ] = $value;
+				$nwlrequests[$key] = $value;
 				$show			    .= "<tr style=\"background-color:white\">";
 				$trsh				 = "<a href=\"\" onclick=\"sfs_ajax_process('$key','wlreq','delete_wl_row','$ajaxurl');return false;\" title=\"" . esc_attr__( 'Delete row', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Delete row', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$trash\" height=\"16px\" /></a>";
 				$addtoblock		     = "<a href=\"\"onclick=\"sfs_ajax_process('$value[0]','$container','add_black','$ajaxurl');return false;\" title=\"" . esc_attr__( 'Add ' . $value[0] . ' to Block List', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Add ' . $value[0] . ' to Block List', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$tdown\" height=\"16px\" /></a>";

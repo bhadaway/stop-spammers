@@ -150,11 +150,11 @@ class be_module {
 			PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
 		foreach ( $pattern as $key => $part ) {
 			if ( $part == '?' ) {
-				$pattern[ $key ] = '.';
+				$pattern[$key] = '.';
 			} elseif ( $part == '*' ) {
-				$pattern[ $key ] = '.*';
+				$pattern[$key] = '.*';
 			} else {
-				$pattern[ $key ] = preg_quote( $part );
+				$pattern[$key] = preg_quote( $part );
 			}
 		}
 		$pattern = implode( '', $pattern );

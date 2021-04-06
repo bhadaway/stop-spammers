@@ -43,12 +43,12 @@ class chkgooglesafe extends be_module {
 			return false;
 		}
 		for ( $j = 0; $j < count( $urls3 ); $j ++ ) {
-			$urls3[ $j ] = urlencode( $urls3[ $j ] );
+			$urls3[$j] = urlencode( $urls3[$j] );
 		}
 		// $urls3 has the list of URLs found in content
 		for ( $j = 0; $j < count( $urls3 ) && $j < 4; $j ++ ) {
 			// check Google
-			$url = $urls3[ $j ];
+			$url = $urls3[$j];
 			if ( !empty( $url ) ) {
 				$query = "https://sb-ssl.google.com/safebrowsing/api/lookup?client=stop-spammer-plugin&apikey=$googleapi&appver=9.3&pver=3.0&url=$url";
 				// using file get contents or get using the https lookup?
