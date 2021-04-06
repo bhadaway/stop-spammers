@@ -330,7 +330,7 @@ class ss_challenge extends be_module {
 			// send wp_mail to sysop
 			$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 			$ke  = sanitize_email( $_POST['ke'] );
-			if ( !is_email( $ke ) || empty( $ke )) {
+			if ( !is_email( $ke ) || empty( $ke ) ) {
 				return false;
 			}
 			$km = sanitize_text_field( $_POST['km'] );
