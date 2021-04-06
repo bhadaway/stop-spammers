@@ -50,7 +50,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		if ( array_key_exists( 'ss_stop_update_log_size', $_POST ) ) {
 			// update log size
 			if ( array_key_exists( 'ss_sp_hist', $_POST ) ) {
-				$ss_sp_hist			   = stripslashes( $_POST['ss_sp_hist'] );
+				$ss_sp_hist			   = stripslashes( sanitize_text_field( $_POST['ss_sp_hist'] ) );
 				$options['ss_sp_hist'] = $ss_sp_hist;
 				$msg				   = '<div class="notice notice-success"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 				// update the options

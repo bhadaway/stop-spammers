@@ -231,8 +231,8 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		extract( $stats ); // extract again to get the new options
 	}
 	if ( array_key_exists( 'update_total', $_POST ) ) {
-		$stats['spmcount'] = $_POST['spmcount'];
-		$stats['spmdate']  = $_POST['spmdate'];
+		$stats['spmcount'] = sanitize_text_field( $_POST['spmcount'] );
+		$stats['spmdate']  = sanitize_text_field( $_POST['spmdate'] );
 		ss_set_stats( $stats );
 		extract( $stats ); // extract again to get the new options
 	}
@@ -355,8 +355,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		extract( $options );
 	}
 	function ss_force_reset_options() {
-		$ss_opt = $_POST['ss_opt'];
-		$ss_opt = sanitize_text_field( $ss_opt );
+		$ss_opt = sanitize_text_field( $_POST['ss_opt'] );
 		if ( !wp_verify_nonce( $ss_opt, 'ss_options' ) ) {	
 			_e( 'Session Timeout — Please Refresh the Page', 'stop-spammer-registrations-plugin' );
 			exit;

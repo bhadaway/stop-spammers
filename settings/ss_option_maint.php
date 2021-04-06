@@ -25,15 +25,12 @@ ss_fix_post_vars();
 	global $wpdb;
 	$ptab  = $wpdb->options;
 	$nonce = '';
-	// echo "<!--\r\n\r\n";
-	// print_r( $_POST );
-	// echo "\r\n\r\n-->";
 	if ( array_key_exists( 'ss_opt_control', $_POST ) ) {
 		$nonce = $_POST['ss_opt_control'];
 	}
 	if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_update' ) ) {
 		if ( array_key_exists( 'view', $_POST ) ) {
-			$op = $_POST['view'];
+			$op = sanitize_text_field( $_POST['view'] );
 			$v  = get_option( $op );
 			if ( is_serialized( $v ) && @unserialize( $v ) !== false ) {
 				$v = @unserialize( $v );
@@ -43,8 +40,7 @@ ss_fix_post_vars();
 			_e( '<h2>contents of ' . $op . '</h2><pre>' . $v . '</pre>', 'stop-spammer-registrations-plugin' );
 		}
 		if ( array_key_exists( 'autol', $_POST ) ) {
-			$autol = $_POST['autol'];
-			foreach ( $autol as $name ) {
+			foreach ( $_POST['autol'] as $name ) {
 				$au = substr( $name, 0, strpos( $name, '_' ) );
 				if ( strtolower( $au ) == 'no' ) {
 					$au = 'yes';

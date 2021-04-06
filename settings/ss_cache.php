@@ -27,11 +27,11 @@ if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'update_options', $_POST ) ) {
 		if ( array_key_exists( 'ss_sp_cache', $_POST ) ) {
-			$ss_sp_cache			= stripslashes( $_POST['ss_sp_cache'] );
+			$ss_sp_cache			= stripslashes( sanitize_text_field( $_POST['ss_sp_cache'] ) );
 			$options['ss_sp_cache'] = $ss_sp_cache;
 		}
 		if ( array_key_exists( 'ss_sp_good', $_POST ) ) {
-			$ss_sp_good			= stripslashes( $_POST['ss_sp_good'] );
+			$ss_sp_good			= stripslashes( sanitize_text_field( $_POST['ss_sp_good'] ) );
 			$options['ss_sp_good'] = $ss_sp_good;
 		}
 		ss_set_options( $options );

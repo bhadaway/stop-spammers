@@ -23,46 +23,46 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'action', $_POST ) ) {
 		// other API keys
 		if ( array_key_exists( 'apikey', $_POST ) ) {
-			$apikey			   = stripslashes( $_POST['apikey'] );
+			$apikey			   = stripslashes( sanitize_text_field( $_POST['apikey'] ) );
 			$options['apikey'] = $apikey;
 		}
 		if ( array_key_exists( 'googleapi', $_POST ) ) {
-			$googleapi			  = stripslashes( $_POST['googleapi'] );
+			$googleapi			  = stripslashes( sanitize_text_field( $_POST['googleapi'] ) );
 			$options['googleapi'] = $googleapi;
 		}
 		if ( array_key_exists( 'honeyapi', $_POST ) ) {
-			$honeyapi			 = stripslashes( $_POST['honeyapi'] );
+			$honeyapi			 = stripslashes( sanitize_text_field( $_POST['honeyapi'] ) );
 			$options['honeyapi'] = $honeyapi;
 		}
 		if ( array_key_exists( 'botscoutapi', $_POST ) ) {
-			$botscoutapi			= stripslashes( $_POST['botscoutapi'] );
+			$botscoutapi			= stripslashes( sanitize_text_field( $_POST['botscoutapi'] ) );
 			$options['botscoutapi'] = $botscoutapi;
 		}
 		if ( array_key_exists( 'sfsfreq', $_POST ) ) {
-			$sfsfreq			= stripslashes( $_POST['sfsfreq'] );
+			$sfsfreq			= stripslashes( sanitize_text_field( $_POST['sfsfreq'] ) );
 			$options['sfsfreq'] = $sfsfreq;
 		}
 		if ( array_key_exists( 'sfsage', $_POST ) ) {
-			$sfsage			   = stripslashes( $_POST['sfsage'] );
+			$sfsage			   = stripslashes( sanitize_text_field( $_POST['sfsage'] ) );
 			$options['sfsage'] = $sfsage;
 		}
 		if ( array_key_exists( 'hnyage', $_POST ) ) {
-			$hnyage			   = stripslashes( $_POST['hnyage'] );
+			$hnyage			   = stripslashes( sanitize_text_field( $_POST['hnyage'] ) );
 			$options['hnyage'] = $hnyage;
 		}
 		if ( array_key_exists( 'hnylevel', $_POST ) ) {
-			$hnylevel			 = stripslashes( $_POST['hnylevel'] );
+			$hnylevel			 = stripslashes( sanitize_text_field( $_POST['hnylevel'] ) );
 			$options['hnylevel'] = $hnylevel;
 		}
 		if ( array_key_exists( 'botfreq', $_POST ) ) {
-			$botfreq			= stripslashes( $_POST['botfreq'] );
+			$botfreq			= stripslashes( sanitize_text_field( $_POST['botfreq'] ) );
 			$options['botfreq'] = $botfreq;
 		}
 		$optionlist = array( 'chksfs', 'chkdnsbl' );
 		foreach ( $optionlist as $check ) {
 			$v = 'N';
 			if ( array_key_exists( $check, $_POST ) ) {
-				$v = $_POST[$check];
+				$v = sanitize_key( $_POST[$check] );
 				if ( $v != 'Y' ) {
 					$v = 'N';
 				}

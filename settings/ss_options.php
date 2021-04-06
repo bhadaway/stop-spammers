@@ -56,7 +56,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
 		if ( array_key_exists( $check, $_POST ) ) {
-			$v = $_POST[$check];
+			$v = sanitize_key( $_POST[$check] );
 			if ( $v != 'Y' ) {
 				$v = 'N';
 			}
@@ -209,7 +209,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
 		if ( array_key_exists( $check, $_POST ) ) {
-			$v = $_POST[$check];
+			$v = sanitize_key( $_POST[$check] );
 			if ( $v != 'Y' ) {
 				$v = 'N';
 			}
@@ -218,15 +218,15 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	// text options
 	if ( array_key_exists( 'sesstime', $_POST ) ) {
-		$sesstime			 = stripslashes( $_POST['sesstime'] );
+		$sesstime			 = stripslashes( sanitize_text_field( $_POST['sesstime'] ) );
 		$options['sesstime'] = $sesstime;
 	}
 	if ( array_key_exists( 'multitime', $_POST ) ) {
-		$multitime			  = stripslashes( $_POST['multitime'] );
+		$multitime			  = stripslashes( sanitize_text_field( $_POST['multitime'] ) );
 		$options['multitime'] = $multitime;
 	}
 	if ( array_key_exists( 'multicnt', $_POST ) ) {
-		$multicnt			 = stripslashes( $_POST['multicnt'] );
+		$multicnt			 = stripslashes( sanitize_text_field( $_POST['multicnt'] ) );
 		$options['multicnt'] = $multicnt;
 	}
 	ss_set_options( $options );

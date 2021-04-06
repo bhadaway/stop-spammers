@@ -17,12 +17,12 @@ class ss_addtoallowlist {
 		}
 		// $ip = ss_get_ip();
 		// add this IP to your Allow List
-		if ( !in_array( $ip, $wlist ) ) {
+		if ( ! in_array( $ip, $wlist ) ) {
 			$wlist[] = $ip;
 		}
 		$options['wlist'] = $wlist;
 		// add this email to your Allow List
-		if ( isset( $_GET['email'] ) and $_GET['email'] != ''  and !in_array( $_GET['email'], $wlist_email ) ) {
+		if ( isset( $_GET['email'] ) and is_email( $_GET['email'] ) and ! in_array( $_GET['email'], $wlist_email ) ) {
 			$wlist_email[] = sanitize_email( $_GET['email'] );
 		}
 		$options['wlist_email'] = $wlist_email;
@@ -39,7 +39,8 @@ class ss_addtoallowlist {
 			$stats['goodips'] = $goodips;
 		}
 		ss_set_stats( $stats );
-		if ( isset( $_GET['func'] ) and $_GET['func'] == 'add_white' ) $this->ss_send_approval_email( $ip, $stats, $options, $post );
+		if ( isset( $_GET['func'] ) and $_GET['func'] == 'add_white' )
+			$this->ss_send_approval_email( $ip, $stats, $options, $post );
 		return false;
 	}
 
@@ -50,7 +51,7 @@ class ss_addtoallowlist {
 		if ( $options['emailrequest'] == 'N' ) {
 			return false;
 		}
-		if ( !isset( $_GET['ip'] ) ) {
+		if ( ! isset( $_GET['ip'] ) ) {
 			return false;
 		}
 		$wlrequests = $stats['wlrequests'];
@@ -61,7 +62,7 @@ class ss_addtoallowlist {
 				break;
 			}
 		}
-		if ( empty( $request ) or !isset( $request[1] ) ) {
+		if ( empty( $request ) or ! isset( $request[1] ) ) {
 			return false;
 		}
 		$to = $request[1];

@@ -284,13 +284,13 @@ function ss_init() {
 	remove_action( 'init', 'ss_init' );
 	add_filter( 'pre_user_login', 'ss_user_reg_filter', 1, 1 );
 	// incompatible with a Jetpack submit
-	if ( $_POST != null && array_key_exists( 'jetpack_protect_num', $_POST ) ) {
+	if ( ! empty( $_POST ) && array_key_exists( 'jetpack_protect_num', $_POST ) ) {
 		return;
 	}
 	// eMember trying to log in - disable plugin for eMember logins
 	if ( function_exists( 'wp_emember_is_member_logged_in' ) ) {
 		// only eMember function I could find after 30 seconds of Googling
-		if ( !empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
+		if ( ! empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
 			return;
 		}
 	}
@@ -338,12 +338,11 @@ function ss_init() {
 		}
 	}
 	// can we check for $_GET registrations?
-	if ( isset( $_POST ) && !empty( $_POST ) ) {
+	if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		// see if we are returning from a block
 		if ( array_key_exists( 'ss_block', $_POST ) && array_key_exists( 'kn', $_POST ) ) {
 			// block form hit
-			$knonce = $_POST['kn'];
-			if ( !empty( $knonce ) && wp_verify_nonce( $knonce, 'ss_stopspam_block' ) ) {
+			if ( ! empty( $_POST['kn'] ) && wp_verify_nonce( $_POST['kn'], 'ss_stopspam_block' ) ) {
 				// call the checker program
 				sfs_errorsonoff();
 				$options = ss_get_options();
@@ -482,8 +481,7 @@ function ss_set_options( $options ) {
 }
 
 function ss_get_ip() {
-	$ip = $_SERVER['REMOTE_ADDR'];
-	return $ip;
+	return $_SERVER['REMOTE_ADDR'];
 }
 
 function ss_admin_menu() {
@@ -649,7 +647,6 @@ function get_post_variables() {
 	// need to find: login password comment author email
 	// copied from stop spammers plugin
 	// made generic so it also checks "head" and "get" (as well as cookies)
-	$p	  = $_POST;
 	$ansa = array(
 		'email'   => '',
 		'author'  => '',
@@ -658,9 +655,10 @@ function get_post_variables() {
 		'subject' => '',
 		'url'	  => ''
 	);
-	if ( empty( $p ) || !is_array( $p ) ) {
+	if ( empty( $_POST ) || ! is_array( $_POST ) ) {
 		return $ansa;
 	}
+	$p = $_POST;
 	$search  = array(
 		'email'   => array(
 			'email',
@@ -837,7 +835,6 @@ function load_be_module() {
 }
 
 function ss_new_user_ip( $user_id ) {
-	$x  = $_SERVER['REQUEST_URI'];
 	$ip = ss_get_ip();
 	// sfs_debug_msg( "Checking reg filter login $x ( ss_user_ip ) = " . $ip . ", method = " . $_SERVER['REQUEST_METHOD'] . ", request = " . print_r( $_REQUEST, true ) );
 	// check to see if the user is OK

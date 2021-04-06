@@ -38,9 +38,8 @@ class ss_challenge extends be_module {
 		// nonce is in a field named kn - this is not to confuse with other forms that may be coming in
 		$nonce = '';
 		$msg   = ''; // this is the body message for failed CAPTCHAs, notifies and requests
-		if ( !empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
+		if ( ! empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
 			// sfs_debug_msg( 'second time' );
-			$nonce = $_POST['kn'];
 			// get the post items
 			if ( array_key_exists( 'ke', $_POST ) ) {
 				$ke = sanitize_email( $_POST['ke'] );
@@ -58,9 +57,9 @@ class ss_challenge extends be_module {
 				$ka = sanitize_text_field( $_POST['ka'] );
 			}
 			if ( array_key_exists( 'kp', $_POST ) ) {
-				$kp = $_POST['kp'];
+				$kp = sanitize_textarea_field( $_POST['kp'] );
 			} // serialized post
-			if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_block' ) ) {
+			if ( ! empty( $_POST['kn'] ) && wp_verify_nonce( $_POST['kn'], 'ss_stopspam_block' ) ) {
 				// sfs_debug_msg( 'nonce is good' );
 				// have a form return
 				// 1) to see if the allow by request has been triggered
@@ -86,14 +85,14 @@ class ss_challenge extends be_module {
 				// they submitted a CAPTCHA
 				switch ( $chkcaptcha ) {
 					case 'G':
-						if ( array_key_exists( 'recaptcha', $_POST ) && !empty( $_POST['recaptcha'] ) && array_key_exists( 'g-recaptcha-response', $_POST ) ) {
+						if ( array_key_exists( 'recaptcha', $_POST ) && ! empty( $_POST['recaptcha'] ) && array_key_exists( 'g-recaptcha-response', $_POST ) ) {
 							// check reCAPTCHA
 							$recaptchaapisecret = $options['recaptchaapisecret'];
 							$recaptchaapisite   = $options['recaptchaapisite'];
 							if ( empty( $recaptchaapisecret ) || empty( $recaptchaapisite ) ) {
 								$msg = __( 'reCAPTCHA keys are not set.', 'stop-spammer-registrations-plugin' );
 							} else {
-								$g = $_REQUEST['g-recaptcha-response'];
+								$g = sanitize_textarea_field( $_REQUEST['g-recaptcha-response'] );
 								// $url = "https://www.google.com/recaptcha/api/siteverify";
 								$url  = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaapisecret&response=$g&remoteip=$ip";
 								$resp = ss_read_file( $url );
@@ -113,12 +112,12 @@ class ss_challenge extends be_module {
 						}
 						break;
 					case 'S':
-						if ( array_key_exists( 'adcopy_challenge', $_POST ) && !empty( $_POST['adcopy_challenge'] ) ) {
+						if ( array_key_exists( 'adcopy_challenge', $_POST ) && ! empty( $_POST['adcopy_challenge'] ) ) {
 							// solve media
 							$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
 							$solvmediaapiverify	    = $options['solvmediaapiverify'];
-							$adcopy_challenge	    = $_REQUEST['adcopy_challenge'];
-							$adcopy_response		= $_REQUEST['adcopy_response'];
+							$adcopy_challenge	    = sanitize_textarea_field( $_REQUEST['adcopy_challenge'] );
+							$adcopy_response		= sanitize_textarea_field( $_REQUEST['adcopy_response'] );
 							// $ip = '127.0.0.1';
 							$postdata = http_build_query(
 								array(
@@ -167,8 +166,7 @@ class ss_challenge extends be_module {
 								// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 								// success add to cache
 								ss_log_good( $ip, __( 'Passed Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
-								do_action( 'ss_stop_spam_ok', $ip,
-									$post ); // so plugins can undo spam report
+								do_action( 'ss_stop_spam_ok', $ip, $post ); // so plugins can undo spam report
 								return false;
 							} else {
 								$msg = __( 'CAPTCHA entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
@@ -177,7 +175,7 @@ class ss_challenge extends be_module {
 						break;
 					case 'A':
 					case 'Y':
-						if ( array_key_exists( 'nums', $_POST ) && !empty( $_POST['nums'] ) ) {
+						if ( array_key_exists( 'nums', $_POST ) && ! empty( $_POST['nums'] ) ) {
 							// simple arithmetic - at least it is different for each website and changes occasionally
 							$seed   = 5;
 							$spdate = $stats['spdate'];
@@ -207,14 +205,12 @@ class ss_challenge extends be_module {
 		// sfs_debug_msg( 'leaving second time' );
 		} else {
 			// first time through
-			// print_r( $post );
-			// print_r( $_POST );
 			$ke = $post['email'];
 			$km = '';
 			$kr = "";
 			if ( array_key_exists( 'reason', $post ) )
 				$kr = $post['reason'];
-			$ka = $post['author'];
+			$ka = sanitize_user( $post['author'] );
 			$kp = base64_encode( serialize( $_POST ) );
 			// sfs_debug_msg( 'first time getting post stuff' );
 		}
@@ -322,7 +318,7 @@ class ss_challenge extends be_module {
 	}
 
 	public function ss_send_email( $options = array() ) {
-		if ( !array_key_exists( 'notify', $options ) ) {
+		if ( ! array_key_exists( 'notify', $options ) ) {
 			return false;
 		}
 		$notify	   = $options['notify'];
@@ -330,17 +326,13 @@ class ss_challenge extends be_module {
 		if ( $notify == 'N' ) {
 			return false;
 		}
-		if ( array_key_exists( 'ke', $_POST ) && !empty( $_POST['ke'] ) ) {
+		if ( array_key_exists( 'ke', $_POST ) && ! empty( $_POST['ke'] ) ) {
 			// send wp_mail to sysop
 			$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-			$ke  = $_POST['ke'];
-			if ( !is_email( $ke ) ) {
+			$ke  = sanitize_email( $_POST['ke'] );
+			if ( ! is_email( $ke ) || empty( $ke )) {
 				return false;
 			}
-			if ( empty( $ke ) ) {
-				return false;
-			}
-			$ke = sanitize_text_field( $_POST['ke'] );
 			$km = sanitize_text_field( $_POST['km'] );
 			if ( strlen( $km ) > 200 ) {
 				$km = substr( $km, 0, 197 ) . '...';
@@ -403,7 +395,7 @@ class ss_challenge extends be_module {
 			$km = substr( $km, 0, 77 ) . '...';
 		}
 		$kr  = really_clean( sanitize_text_field( $_POST['kr'] ) ); // reason
-		$ka  = really_clean( sanitize_text_field( $_POST['ka'] ) ); // author
+		$ka  = really_clean( sanitize_user( $_POST['ka'] ) ); // author
 		$req = array( $ip, $ke, $ka, $kr, $km, $sname );
 		// add to the request list
 		$wlrequests = $stats['wlrequests'];
