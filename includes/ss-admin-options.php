@@ -132,11 +132,11 @@ function ss_row( $actions, $comment ) {
 	$onclick = '';
 	$blog	 = 1;
 	global $blog_id;
-	if ( ! isset( $blog_id ) || $blog_id != 1 ) {
+	if ( !isset( $blog_id ) || $blog_id != 1 ) {
 		$blog = $blog_id;
 	}
 	$ajaxurl = admin_url( 'admin-ajax.php' );
-	if ( ! empty( $apikey ) ) {
+	if ( !empty( $apikey ) ) {
 		// $target = "target=\"ss_sfs_reg_if1\"";
 		// make this the xlsrpc call
 		$href	 = "href=\"#\"";
@@ -181,20 +181,20 @@ function sfs_handle_ajax_sub( $data ) {
 	// print_r( $options );
 	extract( $options );
 	// get the comment_id parameter	
-	$comment_id = (int) urlencode( $_GET['comment_id'] );
-	if ( empty( $comment_id ) || ! is_numeric ( $comment_id ) ) {
+	$comment_id = ( int ) urlencode( $_GET['comment_id'] );
+	if ( empty( $comment_id ) || !is_numeric ( $comment_id ) ) {
 		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
 	// need to pass the blog ID also
 	$blog = '';
-	if ( empty( $comment_id ) || ! is_numeric ( $comment_id ) ) {
+	if ( empty( $comment_id ) || !is_numeric ( $comment_id ) ) {
 		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
-	if ( isset( $_GET['blog_id'] ) and ! empty( $_GET['blog_id'] ) and is_numeric( $_GET['blog_id'] ) ) {
+	if ( isset( $_GET['blog_id'] ) and !empty( $_GET['blog_id'] ) and is_numeric( $_GET['blog_id'] ) ) {
 		if ( function_exists( 'switch_to_blog' ) ) {
-			switch_to_blog( (int) $_GET['blog_id'] );
+			switch_to_blog( ( int ) $_GET['blog_id'] );
 		}
 	}
 	// get the comment
@@ -342,7 +342,7 @@ function sfs_handle_ajax_sfs_process_watch( $data ) {
 	// anything in data? never
 	// get the things out of the get
 	// check for valid get
-	if ( ! array_key_exists( 'func', $_GET ) ) {
+	if ( !array_key_exists( 'func', $_GET ) ) {
 		_e( ' Function Not Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}

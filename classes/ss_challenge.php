@@ -38,7 +38,7 @@ class ss_challenge extends be_module {
 		// nonce is in a field named kn - this is not to confuse with other forms that may be coming in
 		$nonce = '';
 		$msg   = ''; // this is the body message for failed CAPTCHAs, notifies and requests
-		if ( ! empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
+		if ( !empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
 			// sfs_debug_msg( 'second time' );
 			// get the post items
 			if ( array_key_exists( 'ke', $_POST ) ) {
@@ -59,7 +59,7 @@ class ss_challenge extends be_module {
 			if ( array_key_exists( 'kp', $_POST ) ) {
 				$kp = sanitize_textarea_field( $_POST['kp'] );
 			} // serialized post
-			if ( ! empty( $_POST['kn'] ) && wp_verify_nonce( $_POST['kn'], 'ss_stopspam_block' ) ) {
+			if ( !empty( $_POST['kn'] ) && wp_verify_nonce( $_POST['kn'], 'ss_stopspam_block' ) ) {
 				// sfs_debug_msg( 'nonce is good' );
 				// have a form return
 				// 1) to see if the allow by request has been triggered
@@ -85,7 +85,7 @@ class ss_challenge extends be_module {
 				// they submitted a CAPTCHA
 				switch ( $chkcaptcha ) {
 					case 'G':
-						if ( array_key_exists( 'recaptcha', $_POST ) && ! empty( $_POST['recaptcha'] ) && array_key_exists( 'g-recaptcha-response', $_POST ) ) {
+						if ( array_key_exists( 'recaptcha', $_POST ) && !empty( $_POST['recaptcha'] ) && array_key_exists( 'g-recaptcha-response', $_POST ) ) {
 							// check reCAPTCHA
 							$recaptchaapisecret = $options['recaptchaapisecret'];
 							$recaptchaapisite   = $options['recaptchaapisite'];
@@ -112,7 +112,7 @@ class ss_challenge extends be_module {
 						}
 						break;
 					case 'S':
-						if ( array_key_exists( 'adcopy_challenge', $_POST ) && ! empty( $_POST['adcopy_challenge'] ) ) {
+						if ( array_key_exists( 'adcopy_challenge', $_POST ) && !empty( $_POST['adcopy_challenge'] ) ) {
 							// solve media
 							$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
 							$solvmediaapiverify	    = $options['solvmediaapiverify'];
@@ -175,7 +175,7 @@ class ss_challenge extends be_module {
 						break;
 					case 'A':
 					case 'Y':
-						if ( array_key_exists( 'nums', $_POST ) && ! empty( $_POST['nums'] ) ) {
+						if ( array_key_exists( 'nums', $_POST ) && !empty( $_POST['nums'] ) ) {
 							// simple arithmetic - at least it is different for each website and changes occasionally
 							$seed   = 5;
 							$spdate = $stats['spdate'];
@@ -318,7 +318,7 @@ class ss_challenge extends be_module {
 	}
 
 	public function ss_send_email( $options = array() ) {
-		if ( ! array_key_exists( 'notify', $options ) ) {
+		if ( !array_key_exists( 'notify', $options ) ) {
 			return false;
 		}
 		$notify	   = $options['notify'];
@@ -326,11 +326,11 @@ class ss_challenge extends be_module {
 		if ( $notify == 'N' ) {
 			return false;
 		}
-		if ( array_key_exists( 'ke', $_POST ) && ! empty( $_POST['ke'] ) ) {
+		if ( array_key_exists( 'ke', $_POST ) && !empty( $_POST['ke'] ) ) {
 			// send wp_mail to sysop
 			$now = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 			$ke  = sanitize_email( $_POST['ke'] );
-			if ( ! is_email( $ke ) || empty( $ke )) {
+			if ( !is_email( $ke ) || empty( $ke )) {
 				return false;
 			}
 			$km = sanitize_text_field( $_POST['km'] );

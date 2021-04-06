@@ -196,7 +196,7 @@ function include_setting( $file ) {
 }
 
 function ss_fix_post_vars() {
-	if ( ! empty( $_POST ) ) {
+	if ( !empty( $_POST ) ) {
 		$keys = isset( $_POST ) ? ( array ) array_keys( $_POST ) : array();
 		foreach ( $keys as $key ) {
 			try {

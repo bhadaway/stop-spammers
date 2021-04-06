@@ -82,7 +82,7 @@ function ss_replace_admin_notices() {
 			}
 			ob_start();
 			$args = array();
-			$accepted_args = isset( $callback_array['accepted_args'] ) && ! empty( $callback_array['accepted_args'] ) ? $callback_array['accepted_args'] : 0;
+			$accepted_args = isset( $callback_array['accepted_args'] ) && !empty( $callback_array['accepted_args'] ) ? $callback_array['accepted_args'] : 0;
 			if ( $accepted_args > 0 ) {
 				for ( $i = 0; $i < ( int ) $accepted_args; $i ++ ) {
 					$args[] = null;
@@ -143,7 +143,7 @@ function &ss_get_admin_notices( $key ) {
 	if ( $key === 'admin_notices' && is_multisite() && is_network_admin() ) {
 		$key = 'network_admin_notices';
 	}
-	if ( ! isset( $wp_filter[$key] ) ) {
+	if ( !isset( $wp_filter[$key] ) ) {
 		return $default;
 	}
 	return $wp_filter[$key]->callbacks;
@@ -151,7 +151,7 @@ function &ss_get_admin_notices( $key ) {
 
 // merges admin and network notifications
 function ss_merge_notices ( $array1, $array2 ) {
-	if ( ! empty( $array2 ) ) {
+	if ( !empty( $array2 ) ) {
 		foreach ( $array2 as $key => $value ) {
 			if ( !isset( $array1[$key] ) ) {
 				$array1[$key] = $value;
@@ -284,13 +284,13 @@ function ss_init() {
 	remove_action( 'init', 'ss_init' );
 	add_filter( 'pre_user_login', 'ss_user_reg_filter', 1, 1 );
 	// incompatible with a Jetpack submit
-	if ( ! empty( $_POST ) && array_key_exists( 'jetpack_protect_num', $_POST ) ) {
+	if ( !empty( $_POST ) && array_key_exists( 'jetpack_protect_num', $_POST ) ) {
 		return;
 	}
 	// eMember trying to log in - disable plugin for eMember logins
 	if ( function_exists( 'wp_emember_is_member_logged_in' ) ) {
 		// only eMember function I could find after 30 seconds of Googling
-		if ( ! empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
+		if ( !empty( $_POST ) && array_key_exists( 'login_pwd', $_POST ) ) {
 			return;
 		}
 	}
@@ -338,11 +338,11 @@ function ss_init() {
 		}
 	}
 	// can we check for $_GET registrations?
-	if ( isset( $_POST ) && ! empty( $_POST ) ) {
+	if ( isset( $_POST ) && !empty( $_POST ) ) {
 		// see if we are returning from a block
 		if ( array_key_exists( 'ss_block', $_POST ) && array_key_exists( 'kn', $_POST ) ) {
 			// block form hit
-			if ( ! empty( $_POST['kn'] ) && wp_verify_nonce( $_POST['kn'], 'ss_stopspam_block' ) ) {
+			if ( !empty( $_POST['kn'] ) && wp_verify_nonce( $_POST['kn'], 'ss_stopspam_block' ) ) {
 				// call the checker program
 				sfs_errorsonoff();
 				$options = ss_get_options();
@@ -655,7 +655,7 @@ function get_post_variables() {
 		'subject' => '',
 		'url'	  => ''
 	);
-	if ( empty( $_POST ) || ! is_array( $_POST ) ) {
+	if ( empty( $_POST ) || !is_array( $_POST ) ) {
 		return $ansa;
 	}
 	$p = $_POST;
