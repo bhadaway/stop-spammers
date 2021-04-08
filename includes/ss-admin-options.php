@@ -181,7 +181,7 @@ function sfs_handle_ajax_sub( $data ) {
 	// print_r( $options );
 	extract( $options );
 	// get the comment_id parameter	
-	$comment_id = ( int ) urlencode( $_GET['comment_id'] );
+	$comment_id = urlencode( $_GET['comment_id'] );
 	if ( empty( $comment_id ) || !is_numeric ( $comment_id ) ) {
 		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
 		exit();
