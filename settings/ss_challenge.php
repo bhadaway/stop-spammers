@@ -27,7 +27,7 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		foreach ( $optionlist as $check ) {
 			$v = 'N';
 			if ( array_key_exists( $check, $_POST ) ) {
-				$v = sanitize_text_field( $_POST[$check] );
+				$v = $_POST[$check];
 				if ( $v != 'Y' ) {
 					$v = 'N';
 				}

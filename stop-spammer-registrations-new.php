@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2021.11
+Version: 2021.12
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2021.11' );
+define( 'SS_VERSION', '2021.12' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -39,8 +39,8 @@ add_action( 'admin_print_styles', 'ss_styles' );
 function ss_admin_notice() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_7' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | Get even more options when you <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary">Upgrade to Premium</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_8' ) && current_user_can( 'manage_options' ) ) {
+			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | We need your help with testing, translation, and feedback. <a href="https://stopspammers.io/chat" target="_blank" class="button-primary">Join Chat</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
@@ -51,7 +51,7 @@ function ss_notice_dismissed() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['ss-dismiss'] ) ) {
-			add_user_meta( $user_id, 'ss_notice_dismissed_7', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_8', 'true', true );
 		}
 	}
 	// Notification Control: handles notices

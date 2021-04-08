@@ -393,7 +393,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	</div>
 	<div class="ss_admin_info_boxes_3row">
 		<div class="ss_admin_info_boxes_3col">
-			<h3><?php _e( 'CHALLENGE &amp; DENY', 'stop-spammer-registrations-plugin' ); ?></h3>
+			<h3><?php _e( 'CHALLENGE &amp; BLOCK', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb"><?php _e( 'Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.', 'stop-spammer-registrations-plugin' ); ?>
 			<div class="ss_admin_button">
 				<a href="?page=ss_challenge"><?php _e( 'Challenges', 'stop-spammer-registrations-plugin' ); ?></a>

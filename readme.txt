@@ -6,7 +6,7 @@ Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment 
 Requires PHP: 7.0
 Requires at least: 5.0
 Tested up to: 5.7
-Stable tag: 2021.11
+Stable tag: 2021.12
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
@@ -25,9 +25,9 @@ Extremely granular control, so that any variety of website can create a special 
 
 * [Block suspicious behavior](https://stopspammers.io/documentation/protection-options/)
 * [Block spam words, disposable emails, URL shortener links, TLDs and more](https://stopspammers.io/documentation/protection-options/)
-* [Connect Third-Party Spam Defense Services](https://stopspammers.io/documentation/web-services/)
+* [Connect third-party spam defense services](https://stopspammers.io/documentation/web-services/)
 * [Block countries](https://stopspammers.io/documentation/protection-options/#blockcountries)
-* [Deny/allow IPs, emails, and usernames manually](https://stopspammers.io/documentation/allow-requests-and-lists/)
+* [Block/allow IPs, emails, and usernames manually](https://stopspammers.io/documentation/allow-requests-and-lists/)
 * [Hide admin notices permanently](https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/)
 * [Allow users to request access and send email when allow list request is approved](https://stopspammers.io/documentation/challenge-and-block/)
 * [Members-only mode](https://stopspammers.io/stop-spammers-features/members-only-mode/)
@@ -89,6 +89,9 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2021.12 =
+* [Fix] Minor fixes
 
 = 2021.11 =
 * [Fix] Settings fix

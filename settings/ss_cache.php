@@ -31,7 +31,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$options['ss_sp_cache'] = $ss_sp_cache;
 		}
 		if ( array_key_exists( 'ss_sp_good', $_POST ) ) {
-			$ss_sp_good			= stripslashes( sanitize_text_field( $_POST['ss_sp_good'] ) );
+			$ss_sp_good			   = stripslashes( sanitize_text_field( $_POST['ss_sp_good'] ) );
 			$options['ss_sp_good'] = $ss_sp_good;
 		}
 		ss_set_options( $options );

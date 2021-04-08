@@ -40,7 +40,7 @@ class chksession {
 			if ( strpos( $sname, 'wp-login.php' ) === false ) {  // don't check for logins - too many failures
 				if ( isset( $_COOKIE['ss_stop_spammers_time'] ) ) {
 					$stime = $_COOKIE['ss_stop_spammers_time'];
-					$tm	= strtotime( "now" ) - $stime;
+					$tm	   = strtotime( "now" ) - $stime;
 					if ( $tm > 0 && $tm <= $sesstime ) { // zero seconds is wrong, too - it means that session was set somewhere
 						// takes longer than 2 seconds to really type a comment
 						return __( 'Session Speed — ' . $tm . ' seconds', 'stop-spammer-registrations-plugin' );

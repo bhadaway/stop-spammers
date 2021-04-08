@@ -28,7 +28,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	extract( $stats );
 	$options = ss_get_options();
 	extract( $options );
-	$ip	= $_SERVER['REMOTE_ADDR'];
+	$ip	   = $_SERVER['REMOTE_ADDR'];
 	$nonce = '';
 	$msg   = '';
 	if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
