@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	die();
 }
 
-// last updated from https://www.cloudflare.com/ips/ on 12/22/20
+// last updated from https://www.cloudflare.com/ips/ on 4/9/21
 class chkcloudflare extends be_module {
 	// if the Cloudflare plugin is not installed then the IP will be Cloudflare's - can't check this
 	// as of 6.03 can also correct it
@@ -22,27 +22,28 @@ class chkcloudflare extends be_module {
 			return false;
 		} // we would normally whitelist if Cloudflare plugin is not active and we detect Cloudflare IP - here we are fixing that
 		$ip4ranges = array(
-			'173.245.48.0/20',
 			'103.21.244.0/22',
 			'103.22.200.0/22',
 			'103.31.4.0/22',
-			'141.101.64.0/18',
+			'104.16.0.0/13',
+			'104.24.0.0/14',
 			'108.162.192.0/18',
-			'190.93.240.0/20',
-			'188.114.96.0/20',
-			'197.234.240.0/22',
-			'198.41.128.0/17',
+			'131.0.72.0/22',
+			'141.101.64.0/18',
 			'162.158.0.0/15',
-			'104.16.0.0/12',
 			'172.64.0.0/13',
-			'131.0.72.0/22'
+			'173.245.48.0/20',
+			'188.114.96.0/20',
+			'190.93.240.0/20',
+			'197.234.240.0/22',
+			'198.41.128.0/17'
 		);
 		$ip6ranges = array(
 			'2400:cb00::/32',
+			'2405:8100::/32',
+			'2405:b500::/32',
 			'2606:4700::/32',
 			'2803:f800::/32',
-			'2405:b500::/32',
-			'2405:8100::/32',
 			'2a06:98c0::/29',
 			'2c0f:f248::/32'
 		);
