@@ -181,18 +181,14 @@ function sfs_handle_ajax_sub( $data ) {
 	// print_r( $options );
 	extract( $options );
 	// get the comment_id parameter	
-	$comment_id = urlencode( $_GET['comment_id'] );
-	if ( empty( $comment_id ) || !is_numeric ( $comment_id ) ) {
+	$comment_id = sanitize_text_field( urlencode( $_GET['comment_id'] ) );
+	if ( empty( $comment_id ) ) {
 		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
 		exit();
 	}
 	// need to pass the blog ID also
 	$blog = '';
-	if ( empty( $comment_id ) || !is_numeric ( $comment_id ) ) {
-		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
-		exit();
-	}
-	if ( isset( $_GET['blog_id'] ) and !empty( $_GET['blog_id'] ) and is_numeric( $_GET['blog_id'] ) ) {
+	if ( isset( $_GET['blog_id'] ) and ! empty( $_GET['blog_id'] ) and is_numeric( $_GET['blog_id'] ) ) {
 		if ( function_exists( 'switch_to_blog' ) ) {
 			switch_to_blog( ( int ) $_GET['blog_id'] );
 		}
