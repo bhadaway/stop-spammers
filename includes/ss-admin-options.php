@@ -188,7 +188,7 @@ function sfs_handle_ajax_sub( $data ) {
 	}
 	// need to pass the blog ID also
 	$blog = '';
-	if ( isset( $_GET['blog_id'] ) and ! empty( $_GET['blog_id'] ) and is_numeric( $_GET['blog_id'] ) ) {
+	if ( isset( $_GET['blog_id'] ) and !empty( $_GET['blog_id'] ) and is_numeric( $_GET['blog_id'] ) ) {
 		if ( function_exists( 'switch_to_blog' ) ) {
 			switch_to_blog( ( int ) $_GET['blog_id'] );
 		}
