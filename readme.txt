@@ -1,4 +1,4 @@
-=== Stop Spammers ===
+=== Stop Spammers | Block Spam Users, Comments, and Emails ===
 
 Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
