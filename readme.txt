@@ -90,6 +90,9 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
+= 2021.14 =
+* [Fix] Network fix
+
 = 2021.13 =
 * [Update] Cloudflare IPs
 * [Fix] SFS report
