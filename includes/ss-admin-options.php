@@ -88,9 +88,9 @@ function ss_row( $actions, $comment ) {
 	// $action .= "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/search_ip.php?ip=$ip\">Check HoneyPot</a>";
 	// add the network check
 	$whois	  = SS_PLUGIN_URL . 'images/whois.png';
-	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$ip\"><img src=\"$whois\" width=\"16px\" height=\"16px\" /></a>";
+	$who	  = "<a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$ip\"><img src=\"$whois\" class=\"icon-action\" /></a>";
 	$stophand = SS_PLUGIN_URL . 'images/stop.png';
-	$stop	  = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" width=\"16px\" height=\"16px\" /> </a>";
+	$stop	  = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$ip\"><img src=\"$stophand\" class=\"icon-action\" /> </a>";
 	$action  .= " $who $stop";
 	// now add the report function
 	$email = urlencode( $comment->comment_author_email );
@@ -457,15 +457,15 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 			$useremail   = urlencode( $user_info->user_email ); // for reporting
 			$userurl	 = urlencode( $user_info->user_url );
 			$username	 = $user_info->display_name;
-			$stopper	 = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" width=\"16px\" height=\"16px\" /></a>";
-			$honeysearch = "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" width=\"16px\" height=\"16px\" /></a>";
-			$botsearch   = "<a title=\"" . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" width=\"16px\" height=\"16px\" /></a>";
-			$who		 = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$signup_ip\"><img src=\"$whois\" width=\"16px\" height=\"16px\" /></a>";
+			$stopper	 = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" class=\"icon-action\" /></a>";
+			$honeysearch = "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" class=\"icon-action\" /></a>";
+			$botsearch   = "<a title=\"" . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" class=\"icon-action\" /></a>";
+			$who		 = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$signup_ip\"><img src=\"$whois\" class=\"icon-action\" /></a>";
 			$action	     = " $who $stopper $honeysearch $botsearch";
 			$options	 = ss_get_options();
 			$apikey	     = $options['apikey'];
 			if ( !empty( $apikey ) ) {
-				$report  = "<a title=\"" . esc_attr__( 'Report to SFS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" width=\"16px\" height=\"16px\" /></a>";
+				$report  = "<a title=\"" . esc_attr__( 'Report to SFS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/add.php?username=$username&email=$useremail&ip_addr=$signup_ip&evidence=$userurl&api_key=$apikey\"><img src=\"$stophand\" class=\"icon-action\" /></a>";
 				$action .= $report;
 			}
 			return $ipline . $action;

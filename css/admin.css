@@ -6,6 +6,11 @@
 	padding: 7px 0 0;
 }
 
+.icon-action {
+	max-width: 16px;
+	max-height: 16px;
+}
+
 #ss-plugin, #ss-plugin * {
 	box-sizing: border-box;
 }
@@ -416,7 +421,7 @@
 }
 
 /* responsive layout */
-@media screen and (max-width: 680px) {
+@media(max-width: 680px) {
 
 	#ss-plugin .ss_admin_info_boxes_1col, #ss-plugin .ss_admin_info_boxes_2col, #ss-plugin .ss_admin_info_boxes_3col {
 		width: 94%;
