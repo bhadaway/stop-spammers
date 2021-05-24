@@ -7,7 +7,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class chkperiods extends be_module { 
 	public function process( $ip, &$stats=array(), &$options=array(), &$post=array() ) {
-		if ( array_key_exists( 'email', $post ) ) {
+		if ( array_key_exists( 'email', $post ) && $options['chkperiods'] == 'Y' ) {
 			$email = $post['email'];
 			if ( !empty( $email ) ) {
 				list( $text, $domain ) = explode( '@', $email, 2 );
@@ -21,7 +21,7 @@ class chkperiods extends be_module {
 				}
 			}
 		}
-		if ( array_key_exists( 'user_email', $post ) ) {
+		if ( array_key_exists( 'user_email', $post ) && $options['chkperiods'] == 'Y') {
 			$email = $post['user_email'];
 			if ( !empty( $email ) ) {
 				list( $text, $domain ) = explode( '@', $email, 2 );
