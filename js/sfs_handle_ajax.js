@@ -68,7 +68,7 @@ function sfs_ajax_return_spam(response) {
 }
 
 jQuery(function($) {
-	$('.ss-hide-notice').click(function() {
+	$('.ss-hide-notice').on( 'click', function() {
 		if ($(this).data('target') == 'user') {
 			$(this).parent().parent().hide();
 			var data = {
@@ -78,14 +78,14 @@ jQuery(function($) {
 			$.post(ajaxurl, data);
 		}
 	});
-	$('#ss_disable_admin_emails').click(function() {
+	$('#ss_disable_admin_emails').on( 'click',function() {
 		if (this.checked) {
 			$('.ss_disable_admin_emails_wraps').show()
 		} else {
 			$('.ss_disable_admin_emails_wraps').hide()
 		}
 	});
-	$('#ss_hide_admin_notices').click(function() {
+	$('#ss_hide_admin_notices').on( 'click',function() {
 		if (this.checked) {
 			$('.ss_reset_hidden_notice_wrap').hide()
 		} else {
