@@ -56,6 +56,10 @@ OR
 
 == Frequently Asked Questions ==
 
+= What should I expect? =
+
+See: [Breaking Down Stop Spammers](https://stopspammers.io/learning/breaking-down-stop-spammers/).
+
 = What do I do if I lock myself out of my own site? =
 
 See: [https://github.com/trumani/stop-spammers/issues/5](https://github.com/trumani/stop-spammers/issues/5).
