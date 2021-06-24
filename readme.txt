@@ -95,7 +95,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2021.16 =
-* [New] Check Square IPs
+* [New] Allow Square
 
 = 2021.15 =
 * [Fix] Checking for periods in emails
