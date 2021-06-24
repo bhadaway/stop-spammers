@@ -59,6 +59,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			'chkauthorizenet',
 			'chkbraintree',
 			'chkrecurly',
+			'chksquare',
 			'chkgenallowlist',
 			'chkmiscallowlist',
 			'chkyahoomerchant'
@@ -209,6 +210,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	  		<label id="ss_subhead" for="chkrecurly">
 				<input class="ss_toggle" type="checkbox" id="chkrecurly" name="chkrecurly" value="Y" <?php if ( $chkrecurly == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Recurly</span></small>
+			</label>
+		</div>
+		<br />
+		<div class="checkbox switcher">
+	  		<label id="ss_subhead" for="chksquare">
+				<input class="ss_toggle" type="checkbox" id="chksquare" name="chksquare" value="Y" <?php if ( $chksquare == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+		  		<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Square</span></small>
 			</label>
 		</div>
 		<br />
