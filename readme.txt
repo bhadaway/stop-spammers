@@ -9,7 +9,7 @@ Tested up to: 5.7
 Stable tag: 2021.16
 License: https://www.gnu.org/licenses/gpl.html
 
-Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
+Robust WordPress security & spam prevention with 10 years of development. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting. 10 years of development
 
 == Description ==
 
