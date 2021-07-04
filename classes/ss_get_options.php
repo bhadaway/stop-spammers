@@ -1232,6 +1232,8 @@ class ss_get_options {
 			'googleapi'			     => '',
 			'recaptchaapisecret'	 => '',
 			'recaptchaapisite'	     => '',
+			'hcaptchaapisecret'	 => '',
+			'hcaptchaapisite'	     => '',
 			'solvmediaapivchallenge' => '',
 			'solvmediaapiverify'	 => '',
 			'blogseyekey'			 => '',

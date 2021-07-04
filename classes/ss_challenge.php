@@ -111,6 +111,42 @@ class ss_challenge extends be_module {
 							}
 						}
 						break;
+					case 'H':
+						if ( array_key_exists( 'h-captcha', $_POST ) && !empty( $_POST['h-captcha'] ) && array_key_exists( 'h-captcha-response', $_POST ) ) {
+							// check HCAPTCHA
+							$hcaptchaapisecret = $options['hcaptchaapisecret'];
+							$hcaptchaapisite   = $options['hcaptchaapisite'];
+							/*print_r($hcaptchaapisecret);
+							echo "<pre>";
+							print_r($hcaptchaapisite);
+							exit;*/
+
+							if ( empty( $hcaptchaapisecret ) || empty( $hcaptchaapisite ) ) {
+								$msg = __( 'HCAPTCHA keys are not set.', 'stop-spammer-registrations-plugin' );
+							} else {
+
+								$h = sanitize_textarea_field( $_REQUEST['h-captcha-response'] );
+								// $url = "https://hcaptcha.com/siteverify";
+								$url  = "https://hcaptcha.com/siteverify?secret=$hcaptchaapisecret&response=$h&remoteip=$ip";
+								$resp = ss_read_file( $url );
+								// sfs_debug_msg( "hcaptcha '$h', '$ip' '$resp' - \r\n" . print_r( $_POST, true ) );
+
+								$response = json_decode( $resp );
+
+								if ( $response->success and $response->success == true ) { // found success
+									// $kp = base64_encode( serialize( $_POST ) );
+									$_POST = unserialize( base64_decode( $kp ) );
+									// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
+									// success add to cache
+									ss_log_good( $ip, __( 'Passed HCAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
+									do_action( 'ss_stop_spam_ok', $ip, $post ); // so plugins can undo spam report
+									return false;
+								} else {
+									$msg = __( 'HCAPTCHA entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
+								}
+							}
+						}
+						break;
 					case 'S':
 						if ( array_key_exists( 'adcopy_challenge', $_POST ) && !empty( $_POST['adcopy_challenge'] ) ) {
 							// solve media
@@ -257,6 +293,15 @@ class ss_challenge extends be_module {
 					<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>\r\n
 					<input type=\"hidden\" name=\"recaptcha\" value=\"recaptcha\" />
 					<div class=\"g-recaptcha\" data-sitekey=\"$recaptchaapisite\"></div>
+				";
+				break;
+			case 'H':
+				// HCAPTCHA
+				$hcaptchaapisite = $options['hcaptchaapisite'];
+				$cap			  = "
+					<script src=\"https://hcaptcha.com/1/api.js\" async defer></script>\r\n
+					<input type=\"hidden\" name=\"h-captcha\" value=\"h-captcha\" />
+					<div class=\"h-captcha\" data-sitekey=\"$hcaptchaapisite\"></div>
 				";
 				break;
 			case 'S':

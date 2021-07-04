@@ -60,6 +60,16 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$recaptchaapisite			 = sanitize_text_field( $_POST['recaptchaapisite'] );
 			$options['recaptchaapisite'] = $recaptchaapisite;
 		}
+
+		if ( array_key_exists( 'hcaptchaapisecret', $_POST ) ) {
+			$hcaptchaapisecret			   = sanitize_text_field( $_POST['hcaptchaapisecret'] );
+			$options['hcaptchaapisecret'] = $hcaptchaapisecret;
+		}
+		if ( array_key_exists( 'hcaptchaapisite', $_POST ) ) {
+			$hcaptchaapisite			 = sanitize_text_field( $_POST['hcaptchaapisite'] );
+			$options['hcaptchaapisite'] = $hcaptchaapisite;
+		}		
+		
 		if ( array_key_exists( 'solvmediaapivchallenge', $_POST ) ) {
 			$solvmediaapivchallenge			   = sanitize_text_field( $_POST['solvmediaapivchallenge'] );
 			$options['solvmediaapivchallenge'] = $solvmediaapivchallenge;
@@ -74,6 +84,13 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$options['chkcaptcha'] = $chkcaptcha;
 			$msg				   = __( 'You cannot use Google reCAPTCHA unless you have entered an API key.', 'stop-spammer-registrations-plugin' );
 		}
+		
+		if ( $chkcaptcha == 'H' && ( $hcaptchaapisecret == '' || $hcaptchaapisite == '' ) ) {
+			$chkcaptcha			   = 'Y';
+			$options['chkcaptcha'] = $chkcaptcha;
+			$msg				   = __( 'You cannot use HCAPTCHA unless you have entered an API key.', 'stop-spammer-registrations-plugin' );
+		}
+		
 		if ( $chkcaptcha == 'S' && ( $solvmediaapivchallenge == '' || $solvmediaapiverify == '' ) ) {
 			$chkcaptcha			   = 'Y';
 			$options['chkcaptcha'] = $chkcaptcha;
@@ -181,11 +198,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php _e( 'No CAPTCHA (default)', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="G" name="chkcaptcha" <?php if ( $chkcaptcha == 'G' ) { echo 'checked="checked"'; } ?> />
 			<?php _e( 'Google reCAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
+			<input type="radio" value="H" name="chkcaptcha" <?php if ( $chkcaptcha == 'H' ) { echo 'checked="checked"'; } ?> />
+			<?php _e( 'HCAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="S" name="chkcaptcha" <?php if ( $chkcaptcha == 'S' ) { echo 'checked="checked"'; } ?> />
 			<?php _e( 'Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="A" name="chkcaptcha" <?php if ( $chkcaptcha == 'A' ) { echo 'checked="checked"'; } ?> />
 			<?php _e( 'Arithmetic Question', 'stop-spammer-registrations-plugin' ); ?>
-			<p><?php _e( 'To use either the Solve Media or Google reCAPTCHA, you will need an API key.', 'stop-spammer-registrations-plugin' ); ?></p>
+			<p><?php _e( 'To use either the Solve Media, Google reCAPTCHA or HCAPTCHA, you will need an API key.', 'stop-spammer-registrations-plugin' ); ?></p>
 		</div>
 		<br />
 		<div style="margin-left:30px">
@@ -200,6 +219,19 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<?php _e( 'If the reCAPTCHA form looks good, you need to enable the reCAPTCHA on the Challenge &amp; Block options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
 			<?php } ?>
 			<br />
+			
+			<small><span style="font-size:16px!important;"><?php _e( 'HCAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+			<input size="64" name="hcaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $hcaptchaapisite; ?>" />
+			<br />
+			<input size="64" name="hcaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $hcaptchaapisecret; ?>" />
+			<br />
+			<?php if ( !empty( $hcaptchaapisite ) ) { ?>
+				<script src="https://hcaptcha.com/1/api.js" async defer></script>
+				<div class="h-captcha" data-sitekey="<?php echo $hcaptchaapisite; ?>"></div>
+				<?php _e( 'If the HCAPTCHA form looks good, you need to enable the HCAPTCHA on the Challenge &amp; Block options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
+			<?php } ?>
+			<br />
+			
 			<small><span style="font-size:16px!important"><?php _e( 'Solve Media CAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="solvmediaapivchallenge" type="text" placeholder="<?php _e( 'Challenge Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $solvmediaapivchallenge; ?>" />
 			<br />
