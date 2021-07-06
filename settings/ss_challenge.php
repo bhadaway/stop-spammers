@@ -208,7 +208,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br />
 		<div style="margin-left:30px">
-			<small><span style="font-size:16px!important;"><?php _e( 'Google reCAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+			<small><span style="font-size:16px!important;"><?php _e( 'Google reCAPTCHA v2 API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="recaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $recaptchaapisite; ?>" />
 			<br />
 			<input size="64" name="recaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $recaptchaapisecret; ?>" />
@@ -216,11 +216,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php if ( !empty( $recaptchaapisite ) ) { ?>
 				<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 				<div class="g-recaptcha" data-sitekey="<?php echo $recaptchaapisite; ?>"></div>
-				<?php _e( 'If the reCAPTCHA form looks good, you need to enable the reCAPTCHA on the Challenge &amp; Block options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
 			<?php } ?>
 			<br />
 			
-			<small><span style="font-size:16px!important;"><?php _e( 'HCAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+			<small><span style="font-size:16px!important;"><?php _e( 'hCAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="hcaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $hcaptchaapisite; ?>" />
 			<br />
 			<input size="64" name="hcaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $hcaptchaapisecret; ?>" />
@@ -228,7 +227,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php if ( !empty( $hcaptchaapisite ) ) { ?>
 				<script src="https://hcaptcha.com/1/api.js" async defer></script>
 				<div class="h-captcha" data-sitekey="<?php echo $hcaptchaapisite; ?>"></div>
-				<?php _e( 'If the HCAPTCHA form looks good, you need to enable the HCAPTCHA on the Challenge &amp; Block options page. (see left)', 'stop-spammer-registrations-plugin' ); ?>
 			<?php } ?>
 			<br />
 			
@@ -239,7 +237,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<br />
 			<?php if ( !empty( $solvmediaapivchallenge ) ) { ?>
 				<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo $solvmediaapivchallenge; ?>"></script>
-				<?php _e( '<p>If the CAPTCHA form looks good, you need to enable the CAPTCHA on the Challenge &amp; Block options page. (see left)</p>', 'stop-spammer-registrations-plugin' ); ?>
 			<?php } ?>
 		</div>
 		<br />
