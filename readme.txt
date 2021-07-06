@@ -1,4 +1,4 @@
-=== Stop Spammers | Block Spam Users, Comments, and Emails ===
+=== Stop Spammers | WordPress Security | Block Spam Bots from Ceating Users, Comments, Form Submissions, & More ===
 
 Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
@@ -41,6 +41,8 @@ Extremely granular control, so that any variety of website can create a special 
 * Restore default settings (Premium Only)
 * Contact Form 7 protection (Premium Only)
 * Built-in contact form (Premium Only)
+
+We sincerely thank everyone who has contributed to the project through donations, feedback, and bug reporting. Every little bit goes a long way.
 
 == Installation ==
 
