@@ -1,4 +1,4 @@
-=== Stop Spammers | WordPress Security | Block Spam Bots from Ceating Users, Comments, Form Submissions, & More ===
+=== Stop Spammers Security | Block Spam Users, Comments, Forms ===
 
 Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
