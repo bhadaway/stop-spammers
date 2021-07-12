@@ -1232,7 +1232,7 @@ class ss_get_options {
 			'googleapi'			     => '',
 			'recaptchaapisecret'	 => '',
 			'recaptchaapisite'	     => '',
-			'hcaptchaapisecret'	 => '',
+			'hcaptchaapisecret'		 => '',
 			'hcaptchaapisite'	     => '',
 			'solvmediaapivchallenge' => '',
 			'solvmediaapiverify'	 => '',

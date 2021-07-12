@@ -60,16 +60,14 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$recaptchaapisite			 = sanitize_text_field( $_POST['recaptchaapisite'] );
 			$options['recaptchaapisite'] = $recaptchaapisite;
 		}
-
 		if ( array_key_exists( 'hcaptchaapisecret', $_POST ) ) {
-			$hcaptchaapisecret			   = sanitize_text_field( $_POST['hcaptchaapisecret'] );
+			$hcaptchaapisecret			  = sanitize_text_field( $_POST['hcaptchaapisecret'] );
 			$options['hcaptchaapisecret'] = $hcaptchaapisecret;
 		}
 		if ( array_key_exists( 'hcaptchaapisite', $_POST ) ) {
-			$hcaptchaapisite			 = sanitize_text_field( $_POST['hcaptchaapisite'] );
+			$hcaptchaapisite			= sanitize_text_field( $_POST['hcaptchaapisite'] );
 			$options['hcaptchaapisite'] = $hcaptchaapisite;
-		}		
-		
+		}
 		if ( array_key_exists( 'solvmediaapivchallenge', $_POST ) ) {
 			$solvmediaapivchallenge			   = sanitize_text_field( $_POST['solvmediaapivchallenge'] );
 			$options['solvmediaapivchallenge'] = $solvmediaapivchallenge;
@@ -199,7 +197,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input type="radio" value="G" name="chkcaptcha" <?php if ( $chkcaptcha == 'G' ) { echo 'checked="checked"'; } ?> />
 			<?php _e( 'Google reCAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="H" name="chkcaptcha" <?php if ( $chkcaptcha == 'H' ) { echo 'checked="checked"'; } ?> />
-			<?php _e( 'HCAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
+			<?php _e( 'hCaptcha', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="S" name="chkcaptcha" <?php if ( $chkcaptcha == 'S' ) { echo 'checked="checked"'; } ?> />
 			<?php _e( 'Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?><br />
 			<input type="radio" value="A" name="chkcaptcha" <?php if ( $chkcaptcha == 'A' ) { echo 'checked="checked"'; } ?> />
@@ -218,8 +216,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<div class="g-recaptcha" data-sitekey="<?php echo $recaptchaapisite; ?>"></div>
 			<?php } ?>
 			<br />
-			
-			<small><span style="font-size:16px!important;"><?php _e( 'hCAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
+			<small><span style="font-size:16px!important;"><?php _e( 'hCaptcha API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="hcaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $hcaptchaapisite; ?>" />
 			<br />
 			<input size="64" name="hcaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $hcaptchaapisecret; ?>" />
@@ -229,7 +226,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<div class="h-captcha" data-sitekey="<?php echo $hcaptchaapisite; ?>"></div>
 			<?php } ?>
 			<br />
-			
 			<small><span style="font-size:16px!important"><?php _e( 'Solve Media CAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="solvmediaapivchallenge" type="text" placeholder="<?php _e( 'Challenge Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo $solvmediaapivchallenge; ?>" />
 			<br />

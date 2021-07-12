@@ -5,7 +5,7 @@ Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Requires PHP: 7.0
 Requires at least: 5.0
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 2021.17
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -96,8 +96,8 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
-= 2021.16 =
-* [New] hCAPTCHA integration
+= 2021.17 =
+* [New] hCaptcha integration
 
 = 2021.16 =
 * [New] Allow Square

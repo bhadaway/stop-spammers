@@ -39,7 +39,7 @@ add_action( 'admin_print_styles', 'ss_styles' );
 function ss_admin_notice() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_11' ) && current_user_can( 'manage_options' ) ) {
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_12' ) && current_user_can( 'manage_options' ) ) {
 			echo '<div class="notice notice-info"><p>' . __( '<big><strong>Stop Spammers</strong></big> | 💚 Help us keep the project alive! <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank" class="button-primary" style="background-color:blue">Upgrade</a> <a href="https://stopspammers.io/donate" target="_blank" class="button-primary" style="background-color:green">Donate</a> <a href="https://stopspammers.io/chat" target="_blank" class="button-primary" style="background-color:purple">Volunteer</a>', 'stop-spammers' ) . '<a href="?ss-dismiss" class="alignright">' . __( 'Dismiss', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
@@ -51,7 +51,7 @@ function ss_notice_dismissed() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['ss-dismiss'] ) ) {
-			add_user_meta( $user_id, 'ss_notice_dismissed_11', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_12', 'true', true );
 		}
 	}
 	// Notification Control: handles notices
