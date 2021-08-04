@@ -109,15 +109,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'StopForumSpam.com API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br />
-			<input size="32" name="apikey" type="text" value="<?php echo $apikey; ?>" />
+			<input size="32" name="apikey" type="text" value="<?php echo esc_attr( $apikey ); ?>" />
 		</label>
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on Stop Forum Spam with more than
-					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . $sfsfreq . '" />
+					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . esc_attr( $sfsfreq ) . '" />
 					incidents, and occurring less than
-					<input size="4" name="sfsage" type="text" class="small-text" value="' . $sfsage . '" />
+					<input size="4" name="sfsage" type="text" class="small-text" value="' . esc_attr( $sfsage ) . '" />
 					days ago.', 'stop-spammer-registrations-plugin' ); ?>
 				</td>
 			</tr>
@@ -127,15 +127,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'Project Honeypot API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br />
-			<input size="32" name="honeyapi" type="text" value="<?php echo $honeyapi; ?>" />
+			<input size="32" name="honeyapi" type="text" value="<?php echo esc_attr( $honeyapi ); ?>" />
 		</label>
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on Project HoneyPot with incidents less than
-					<input size="3" name="hnyage" type="text" class="small-text" value="' . $hnyage . '" />
+					<input size="3" name="hnyage" type="text" class="small-text" value="' . esc_attr( $hnyage ) . '" />
 					days ago, and with more than
-					<input size="4" name="hnylevel" type="text" class="small-text" value="' . $hnylevel . '" />
+					<input size="4" name="hnylevel" type="text" class="small-text" value="' . esc_attr( $hnylevel ) . '" />
 					threat level. (25 threat level is average, threat level
 					5 is fairly low.)', 'stop-spammer-registrations-plugin' ); ?>
 				</td>
@@ -146,13 +146,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'BotScout API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br />
-			<input size="32" name="botscoutapi" type="text" value="<?php echo $botscoutapi; ?>" />
+			<input size="32" name="botscoutapi" type="text" value="<?php echo esc_attr( $botscoutapi ); ?>" />
 		</label>
 		<br />
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on BotScout with more than
-					<input size="3" name="botfreq" type="text" class="small-text" value="' . $botfreq . '" />
+					<input size="3" name="botfreq" type="text" class="small-text" value="' . esc_attr( $botfreq ) . '" />
 					incidents.', 'stop-spammer-registrations-plugin' ); ?>
 				</td>
 			</tr>
@@ -162,7 +162,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'Google Safe Browsing API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br />
-			<input size="32" name="googleapi" type="text" value="<?php echo $googleapi; ?>" />
+			<input size="32" name="googleapi" type="text" value="<?php echo esc_attr( $googleapi ); ?>" />
 		</label>
 		<br />
 		<br />
