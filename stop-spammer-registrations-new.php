@@ -409,13 +409,13 @@ function ss_init() {
 
 	//captcha for forms
 	$options = ss_get_options();
-	if ( ! isset( $options['form_captcha_login'] ) and $options['form_captcha_login'] === 'Y') {
+	if ( isset( $options['form_captcha_login'] ) and $options['form_captcha_login'] === 'Y') {
 		add_action( 'login_form', 'ss_add_captcha' );
 	}
-	if ( ! isset( $options['form_captcha_registration'] ) and $options['form_captcha_registration'] === 'Y') {
+	if ( isset( $options['form_captcha_registration'] ) and $options['form_captcha_registration'] === 'Y') {
 		add_action( 'register_form', 'ss_add_captcha' );
 	}
-	if ( ! isset( $options['form_captcha_comment'] ) and $options['form_captcha_comment'] === 'Y') {
+	if ( isset( $options['form_captcha_comment'] ) and $options['form_captcha_comment'] === 'Y') {
 		add_action( 'comment_form_after_fields', 'ss_add_captcha' );
 	}
 }
