@@ -216,28 +216,28 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'No CAPTCHA (default)', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkcaptcha2">
 				<input class="ss_toggle" type="radio" id="chkcaptcha2" name="chkcaptcha" value="G" <?php if ( $chkcaptcha == 'G' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Google reCAPTCHA', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkcaptcha3">
 				<input class="ss_toggle" type="radio" id="chkcaptcha3" name="chkcaptcha" value="H" <?php if ( $chkcaptcha == 'H' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'hCaptcha', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkcaptcha4">
 				<input class="ss_toggle" type="radio" id="chkcaptcha4" name="chkcaptcha" value="S" <?php if ( $chkcaptcha == 'S' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkcaptcha5">
 				<input class="ss_toggle" type="radio" id="chkcaptcha5" name="chkcaptcha" value="A" <?php if ( $chkcaptcha == 'A' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
@@ -245,25 +245,24 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<div style="margin-left:30px">
-			<p><?php _e( 'To use either the Solve Media, Google reCAPTCHA or HCAPTCHA, you will need an API key.', 'stop-spammer-registrations-plugin' ); ?></p>
+			<p><?php _e( 'To use either the Solve Media, Google reCAPTCHA, or hCaptcha, you will need an API key.', 'stop-spammer-registrations-plugin' ); ?></p>
 		</div>
-		<hr>
-		<p><?php _e( 'CAPTCHA for Forms (Works with reCAPTCHA, hCaptcha &  Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?></p>
-		
+		<hr />
+		<p><?php _e( 'CAPTCHA for Forms (Works with reCAPTCHA, hCaptcha, and Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?></p>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="form_captcha_login">
 				<input class="ss_toggle" type="checkbox" id="form_captcha_login" name="form_captcha_login" value="Y" <?php if ( isset( $form_captcha_login ) and $form_captcha_login == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Login', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="form_captcha_registration">
 				<input class="ss_toggle" type="checkbox" id="form_captcha_registration" name="form_captcha_registration" value="Y" <?php if ( isset( $form_captcha_registration ) and $form_captcha_registration == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Registration', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="form_captcha_comment">
 				<input class="ss_toggle" type="checkbox" id="form_captcha_comment" name="form_captcha_comment" value="Y" <?php if ( isset( $form_captcha_comment ) and $form_captcha_comment == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>

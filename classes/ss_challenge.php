@@ -13,8 +13,6 @@ class ss_challenge extends be_module {
 		$stats   = ss_get_stats();
 		$options = ss_get_options();
 		// $post = get_post_variables();
-		
-
 		/*
 		page is HEADER, Allow List Request, CAPTCHAs and then a button
 		processing is
@@ -25,31 +23,15 @@ class ss_challenge extends be_module {
 		// first, check to see if they should be redirected
 		if ( $options['redir'] == 'Y' && !empty( $options['redirurl'] ) ) {
 			// sfs_debug_msg( 'Redir?' );
-			
-
-
-			if(isset($_POST["_wpcf7"]))
-			{
-				//echo json_encode($_POST);
-
-				return json_encode($_POST);
-
-			}
-			else
-			{
+			if ( isset( $_POST["_wpcf7"] ) ) {
+				// echo json_encode( $_POST );
+				return json_encode( $_POST );
+			} else {
 				header( 'HTTP/1.1 307 Moved' );
 				header( 'Status: 307 Moved' );
 				header( "location: " . $options['redirurl'] );
 				exit();
-			}
-
-			
-
-			
-
-
-			
-			
+			}	
 		}
 		extract( $options );
 		$ke = '';
@@ -64,8 +46,7 @@ class ss_challenge extends be_module {
 		if ( !empty( $_POST ) && array_key_exists( 'kn', $_POST ) ) {
 			// sfs_debug_msg( 'second time' );
 			// get the post items
-			if(isset($_POST['ke']))
-			{
+			if ( isset( $_POST['ke'] ) ) {
 				$ke = sanitize_email( $_POST['ke'] );
 			}
 			if ( array_key_exists( 'ke', $_POST ) ) {
@@ -447,7 +428,7 @@ class ss_challenge extends be_module {
 		// time, ip, email, author, reasion, info, sname
 		$sname = $this->getSname();
 		$now   = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
-		$ke	= "";
+		$ke	   = "";
 		if ( array_key_exists( 'ke', $_POST ) ) {
 			$ke = sanitize_text_field( $_POST['ke'] ); // email
 		}

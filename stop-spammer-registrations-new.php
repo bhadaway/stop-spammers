@@ -407,15 +407,15 @@ function ss_init() {
 	add_action( 'ss_stop_spam_caught', 'ss_caught_action', 10, 2 ); // hook stop spam  - for testing
 	add_action( 'ss_stop_spam_ok', 'ss_stop_spam_ok', 10, 2 ); // hook stop spam - for testing
 
-	//captcha for forms
+	// captcha for forms
 	$options = ss_get_options();
-	if ( isset( $options['form_captcha_login'] ) and $options['form_captcha_login'] === 'Y') {
+	if ( isset( $options['form_captcha_login'] ) and $options['form_captcha_login'] === 'Y' ) {
 		add_action( 'login_form', 'ss_add_captcha' );
 	}
-	if ( isset( $options['form_captcha_registration'] ) and $options['form_captcha_registration'] === 'Y') {
+	if ( isset( $options['form_captcha_registration'] ) and $options['form_captcha_registration'] === 'Y' ) {
 		add_action( 'register_form', 'ss_add_captcha' );
 	}
-	if ( isset( $options['form_captcha_comment'] ) and $options['form_captcha_comment'] === 'Y') {
+	if ( isset( $options['form_captcha_comment'] ) and $options['form_captcha_comment'] === 'Y' ) {
 		add_action( 'comment_form_after_fields', 'ss_add_captcha' );
 	}
 }
@@ -997,8 +997,7 @@ add_action( 'wp', 'ss_login_redirect' );
 
 function ss_add_captcha() {
 	$options = ss_get_options();
-	$html = '';
-
+	$html    = '';
 	switch ( $options['chkcaptcha'] ) {
 		case 'G':
 			// reCAPTCHA
@@ -1008,11 +1007,11 @@ function ss_add_captcha() {
 			$html .= '<div class="g-recaptcha" data-sitekey="$recaptchaapisite"></div>';
 		break;
 		case 'H':
-			// HCAPTCHA
+			// hCaptcha
 			$hcaptchaapisite = $options['hcaptchaapisite'];
 			$html  = '<script src="https://hcaptcha.com/1/api.js" async defer></script>';
 			$html .= '<input type="hidden" name="h-captcha" value="h-captcha" />';
-			$html .= '<div class="h-captcha" data-sitekey="'. $hcaptchaapisite .'"></div>';
+			$html .= '<div class="h-captcha" data-sitekey="' . $hcaptchaapisite . '"></div>';
 		break;
 		case 'S':
 			$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
@@ -1029,9 +1028,8 @@ function ss_add_captcha() {
 
 function ss_captcha_verify() {
 	global $wpdb;
-
 	$options = ss_get_options();
-	$ip = ss_get_ip();
+	$ip 	 = ss_get_ip();
 	switch ( $options['chkcaptcha'] ) {
 		case 'G':
 			if ( array_key_exists( 'recaptcha', $_POST ) && !empty( $_POST['recaptcha'] ) && array_key_exists( 'g-recaptcha-response', $_POST ) ) {
@@ -1041,11 +1039,10 @@ function ss_captcha_verify() {
 				if ( empty( $recaptchaapisecret ) || empty( $recaptchaapisite ) ) {
 					return __( '<strong>Error:</strong> reCAPTCHA keys are not set.', 'stop-spammer-registrations-plugin' );
 				} else { 
-					$g = sanitize_textarea_field( $_REQUEST['g-recaptcha-response'] );
+					$g    = sanitize_textarea_field( $_REQUEST['g-recaptcha-response'] );
 					$url  = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaapisecret&response=$g&remoteip=$ip";
 					$resp = ss_read_file( $url );
 					if ( strpos( $resp, '"success": true' ) === false ) {
-
 						$msg = __( '<strong>Error:</strong> Google reCAPTCHA entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
 					}
 				}
@@ -1059,12 +1056,11 @@ function ss_captcha_verify() {
 				if ( empty( $hcaptchaapisecret ) || empty( $hcaptchaapisite ) ) {
 					return __( '<strong>Error:</strong> hCaptcha keys are not set.', 'stop-spammer-registrations-plugin' );
 				} else {
-					$h = sanitize_textarea_field( $_REQUEST['h-captcha-response'] );
+					$h    = sanitize_textarea_field( $_REQUEST['h-captcha-response'] );
 					$url  = "https://hcaptcha.com/siteverify?secret=$hcaptchaapisecret&response=$h&remoteip=$ip";
 					$resp = ss_read_file( $url );
 					$response = json_decode( $resp );
-
-					if ( ! isset( $response->success ) or $response->success !== true ) { 
+					if ( !isset( $response->success ) or $response->success !== true ) { 
 						return __( '<strong>Error:</strong> hCaptcha entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
 					}
 				}
@@ -1110,7 +1106,6 @@ function ss_captcha_verify() {
 					'cookies'	  => array()
 				);
 				$url = 'https://verify.solvemedia.com/papi/verify/';
-
 				$resultarray = wp_remote_post( $url, $args );
 				$result	     = $resultarray['body'];
 				if ( strpos( $result, 'true' ) === false ) {
@@ -1119,52 +1114,47 @@ function ss_captcha_verify() {
 			}
 		break;
 	}
-
 	return true;
 }
 
-
 function ss_login_captcha_verify( $user ) {
 	$options = ss_get_options();
-	if ( ! isset( $options['form_captcha_login'] ) or $options['form_captcha_login'] !== 'Y') {
+	if ( !isset( $options['form_captcha_login'] ) or $options['form_captcha_login'] !== 'Y' ) {
 		return $user;	
 	}
 	$response = ss_captcha_verify();
 	if ( $response !== true ) {
-		return new WP_Error( 'ss_captcha_error', $response	);
+		return new WP_Error( 'ss_captcha_error', $response );
 	}
 	return $user;
 }
-add_filter( 'authenticate', 'ss_login_captcha_verify', 99);
+add_filter( 'authenticate', 'ss_login_captcha_verify', 99 );
 
 function ss_registration_captcha_verify( $errors ) {
 	$options = ss_get_options();
-	if ( ! isset( $options['form_captcha_registration'] ) or $options['form_captcha_registration'] !== 'Y') {
+	if ( !isset( $options['form_captcha_registration'] ) or $options['form_captcha_registration'] !== 'Y' ) {
 		return $errors;	
 	}
-
 	$response = ss_captcha_verify();
 	if ( $response !== true ) {
 		$errors->add( 'ss_captcha_error', $response );
 	}
 	return $errors;
 }
-add_filter( 'registration_errors', 'ss_registration_captcha_verify', 10);
+add_filter( 'registration_errors', 'ss_registration_captcha_verify', 10 );
 
 function ss_comment_captcha_verify( $approved ) {
 	$options = ss_get_options();
-	if ( ! isset( $options['form_captcha_comment'] ) or $options['form_captcha_comment'] !== 'Y') {
+	if ( !isset( $options['form_captcha_comment'] ) or $options['form_captcha_comment'] !== 'Y' ) {
 		return $approved;	
 	}
-
 	$response = ss_captcha_verify();
-
 	if ( $response !== true ) {
 		return new WP_Error( 'ss_captcha_error', $response, 403	);
 	}
 	return $approved;
 }
-add_filter( 'pre_comment_approved', 'ss_comment_captcha_verify', 99, 1);
+add_filter( 'pre_comment_approved', 'ss_comment_captcha_verify', 99, 1 );
 
 // action links
 function ss_summary_link( $links ) {

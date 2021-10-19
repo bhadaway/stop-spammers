@@ -96,9 +96,8 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
-
 = 2021.19 =
-* [New] Enable Captcha on WordPress Core forms
+* [New] Enable CAPTCHA on WordPress core forms
 
 = 2021.18 =
 * [Enhanced] Security
