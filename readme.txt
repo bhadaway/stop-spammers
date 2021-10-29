@@ -31,6 +31,7 @@ Extremely granular control, so that any variety of website can create a special 
 * [Hide admin notices permanently](https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/)
 * [Allow users to request access and send email when allow list request is approved](https://stopspammers.io/documentation/challenge-and-block/)
 * [Members-only mode](https://stopspammers.io/stop-spammers-features/members-only-mode/)
+* [Core forms captcha](https://stopspammers.io/stop-spammers-features/captcha-on-core-wordpress-forms/)
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
