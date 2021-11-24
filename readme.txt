@@ -6,7 +6,7 @@ Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment 
 Requires PHP: 7.0
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 2021.19
+Stable tag: 2021.20
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
@@ -31,7 +31,7 @@ Extremely granular control, so that any variety of website can create a special 
 * [Hide admin notices permanently](https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/)
 * [Allow users to request access and send email when allow list request is approved](https://stopspammers.io/documentation/challenge-and-block/)
 * [Members-only mode](https://stopspammers.io/stop-spammers-features/members-only-mode/)
-* [Core forms captcha](https://stopspammers.io/stop-spammers-features/captcha-on-core-wordpress-forms/)
+* [Core forms CAPTCHA](https://stopspammers.io/stop-spammers-features/captcha-on-core-wordpress-forms/)
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
@@ -96,6 +96,9 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2021.20 =
+* [Fix] PHP 8 error
 
 = 2021.19 =
 * [New] Enable CAPTCHA on WordPress core forms
