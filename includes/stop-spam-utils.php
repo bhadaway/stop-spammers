@@ -98,7 +98,7 @@ function sfs_debug_msg( $msg ) {
 	@file_put_contents( SS_PLUGIN_DATA . ".sfs_debug_output.txt", "$now: $sname, $msg, $ip \r\n", FILE_APPEND );
 }
 
-function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum, $vars ) {
+function sfs_ErrorHandler( $errno, $errmsg, $filename, $linenum ) {
 	// write the answers to the file
 	// we are only concerned with the errors and warnings, not the notices
 	// if ( $errno == E_NOTICE || $errno == E_WARNING ) return false;
