@@ -13,6 +13,8 @@ Robust WordPress security & spam prevention. Leverage our pre-defined allow/bloc
 
 == Description ==
 
+Antispam.
+
 Stop spam emails, spam comments, spam registration, and spam bots and spammers in general. Run diagnostic tests, view activity, and much more with this well-maintained, mature plugin.
 
 Stop Spammers adds security that should kill off many of your spam worries straight out-of-the-box. Because every website is different (especially if you have integrated a payment gateway), we offer dozens of features you can leverage to meet your website's specific needs. Our 50+ configuration options make personalization easy.
