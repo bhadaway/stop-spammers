@@ -15,6 +15,9 @@ $options = ss_get_options();
 extract( $options );
 $nonce   = '';
 
+$license = get_option( 'ssp_license_key' );
+$status  = get_option( 'ssp_license_status' );
+
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
@@ -109,7 +112,8 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	$optionlist = array(
 		'chkspamwords',
 		'chkbluserid',
-		'chkagent'
+		'chkagent',
+		 'chkipsync'
 	);
 	foreach ( $optionlist as $check ) {
 		$v = 'N';
@@ -157,6 +161,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			}
 		?></textarea>
 		<br />
+		<div class="checkbox switcher">
+			<label id="ss_subhead" for="chkipsync">
+				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( $chkipsync == 'Y' and $status == 'valid' ) { echo 'checked="checked"'; } ?> <?php if ( $status !== 'valid') { echo "disabled='disabled'"; } ?>/><span><small></small></span>
+		  		<small><span style="font-size:16px!important"><?php _e( 'Sync IP', 'stop-spammer-registrations-plugin' ); ?></span></small>
+			</label>
+		</div>
+	
 		<div class="mainsection"><?php _e( 'Spam Words List', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#spamwords" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>				
