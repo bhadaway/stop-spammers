@@ -99,6 +99,9 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
+= 2022 =
+* [New] Community IP block list
+
 = 2021.20 =
 * [Fix] PHP 8 error
 
