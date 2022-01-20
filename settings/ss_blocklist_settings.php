@@ -163,11 +163,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkipsync">
-				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( isset($chkipsync) && $chkipsync == 'Y' and $status == 'valid' ) { echo 'checked="checked"'; } ?> <?php if ( $status !== 'valid') { echo "disabled='disabled'"; } ?>/><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( isset( $chkipsync ) && $chkipsync == 'Y' and $status == 'valid' ) { echo 'checked="checked"'; } ?> <?php if ( $status !== 'valid' ) { echo "disabled='disabled'"; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Sync IP', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-	
+		<br />
 		<div class="mainsection"><?php _e( 'Spam Words List', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#spamwords" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>				
