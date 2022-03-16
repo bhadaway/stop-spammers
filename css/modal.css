@@ -1,0 +1,149 @@
+.modal-fader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99998;
+    background: rgba(0,0,0,0.8);
+}
+.modal-fader.active {
+    display: block;
+}
+
+.modal-window {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    top: 50px;
+}
+.modal-window.active {
+    display: block;
+}
+.modal-window h1,
+.modal-window h2,
+.modal-window h3,
+.modal-window h4,
+.modal-window h5,
+.modal-window h6 {
+    margin: 0;
+}
+
+.modal-btn {
+    background: #36a5a5;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    box-shadow: none;
+    border-radius: 3px;
+    text-decoration: none;
+}
+  .save_change {
+    position:absolute;
+    bottom:23px;
+  }
+  .close_btn {
+    float:right;
+  }
+
+
+.ss-plugin div.checkbox.switcher label, .ss-plugin div.radio.switcher label {
+    padding: 0;
+}
+
+.ss-plugin div.checkbox.switcher label *, .ss-plugin div.radio.switcher label * {
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.ss-plugin div.checkbox.switcher label input, .ss-plugin div.radio.switcher label input {
+    display: none;
+}
+
+.ss-plugin div.checkbox.switcher label input + span, div.radio.switcher label input + span {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 56px;
+    height: 28px;
+    background: #d9534f;
+    border: 1px solid #d43f3a;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+.ss-plugin div.checkbox.switcher label input[disabled="disabled"] + span {
+    background: gray;
+    border-color: gray;
+}
+
+.ss-plugin div.checkbox.switcher label input + span small, #ss-plugin div.radio.switcher label input + span small {
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    left: 0;
+}
+
+.ss-plugin div.checkbox.switcher label input + span small:before, .ss-plugin div.radio.switcher label input + span small:before {
+    content: 'Off';
+    position: absolute;
+    top: 4.5px;
+    left: 31px;
+    width: 26px;
+    height: 26px;
+    border-radius: 90px;
+    transition: 0.3s;
+    text-indent: 0;
+    color: #fff;
+}
+
+.ss-plugin div.checkbox.switcher label input:checked + span, .ss-plugin div.radio.switcher label input:checked + span {
+    background: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.ss-plugin div.checkbox.switcher label input:checked + span small, .ss-plugin div.radio.switcher label input:checked + span small {
+    left: 50%;
+}
+
+.ss-plugin div.checkbox.switcher label input:checked + span small:before, .ss-plugin div.radio.switcher label input:checked + span small:before {
+    content: 'On';
+    position: absolute;
+    top: 4.5px;
+    left: -20px;
+    width: 26px;
+    height: 26px;
+    border-radius: 90px;
+    transition: 0.3s;
+    text-indent: 0;
+    color: #fff;
+}
+
+.ss-plugin div.checkbox.switcher label input:checked + span small:after, .ss-plugin div.radio.switcher label input:checked + span small:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+.ss-plugin div.checkbox.switcher label:active:after {
+    width: 60px;
+}
+
+.ss-pluginss-plugin #ss_subhead_modal {
+    color: #333;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px !important;
+    font-weight: 500;
+    margin-left: 30px;
+}

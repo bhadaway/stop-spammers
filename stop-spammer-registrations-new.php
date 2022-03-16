@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2022' );
+define( 'SS_VERSION', '2023' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -32,6 +32,7 @@ add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 // load admin styles
 function ss_styles() {
 	wp_enqueue_style( 'ss-admin', plugin_dir_url( __FILE__ ) . 'css/admin.css' );
+	wp_enqueue_style( 'ss-modal-css', plugin_dir_url( __FILE__ ) . 'css/modal.css' );
 }
 add_action( 'admin_print_styles', 'ss_styles' );
 
@@ -1175,3 +1176,142 @@ function ss_check_for_premium() {
 add_action( 'admin_init', 'ss_check_for_premium' );
 
 require_once( 'includes/stop-spam-utils.php' );
+
+// Community IP module free
+function ssf_sync_ip_cron( $schedules ) {
+	$options = get_option( 'ss_stop_sp_reg_options' );
+	if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
+	 	return $schedules;
+	$schedules['ssf_every_ten_minutes'] = array(
+		'interval' => 300,
+		'display'  => __( 'Every 10 Minutes', 'stop-spammers-premium' )
+	);
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'ssf_sync_ip_cron' );
+
+// schedule an action if it's not already scheduled
+if ( !wp_next_scheduled( 'ssf_sync_ip_cron' ) ) {
+	  wp_schedule_event( time(), 'ssf_every_ten_minutes', 'ssf_sync_ip_cron' );
+}
+
+function ssf_sync_ip() {
+	$options = get_option( 'ss_stop_sp_reg_options' );
+	 if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] != 'Y' or get_option( 'ssp_license_status' ) != '' )
+	 	return;
+	$response = wp_remote_get( 'https://stopspammersapi.com/api/ip/free' );
+	if ( !empty ( $response ) ) {
+		$ips = json_decode( $response['body'] );
+		$options['blist'] = array_values(array_diff($options['blist'], $ips));
+		$options['blist'] = array_merge($options['blist'],$ips);
+		update_option( 'ss_stop_sp_reg_options', $options );
+	}
+}
+add_action( 'ssf_sync_ip_cron', 'ssf_sync_ip' );
+function ssf_post_ip_every_ten_minutes( $schedules ) {
+	$options = get_option( 'ss_stop_sp_reg_options' );
+	 if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
+	 	return $schedules;
+	$schedules['every_ten_minutes_sync'] = array( 'interval'  => 600, 'display' => __( 'Every 10 Minutes', 'stop-spammers-premium' ) );
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'ssf_post_ip_every_ten_minutes' );
+
+// schedule an action if it's not already scheduled
+if ( !wp_next_scheduled( 'ssf_post_ip_every_ten_minutes' ) ) {
+	wp_schedule_event( time(), 'every_ten_minutes_sync', 'ssf_post_ip_every_ten_minutes' );
+}
+
+function ssf_post_ip() {
+	 $options = get_option( 'ss_stop_sp_reg_options' );
+	 if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
+	 	return;
+
+	 $ips = implode( ',', $options['blist'] );
+	 if(  $ips !='' ) {
+		 $response = wp_remote_post( 'https://stopspammersapi.com/api/ip/store', array(
+			'method' => 'POST',
+			'timeout' => 45,
+			'redirection' => 5,
+			'httpversion' => '1.0',
+			'blocking' => true,
+			'headers' => array(),
+			'body' => array('website_name'=>site_url(),'ips'=> $ips ),
+			'cookies' => array()
+    	 ));
+    }
+}
+
+add_action( 'ssf_post_ip_every_ten_minutes', 'ssf_post_ip' );
+
+function ssf_whiltelist_ip_cron( $schedules ) {
+	$options = get_option( 'ss_stop_sp_reg_options' );
+	if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
+	 	return $schedules;
+	$schedules['ssf_every_ten_minutes'] = array(
+		'interval' => 1200,
+		'display'  => __( 'Every one hour', 'stop-spammers-premium' )
+	);
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'ssf_whiltelist_ip_cron' );
+// schedule an action if it's not already scheduled
+if ( !wp_next_scheduled( 'ssf_whiltelist_ip_cron' ) ) {
+	  wp_schedule_event( time(), 'ssf_every_ten_minutes', 'ssf_whiltelist_ip_cron' );
+}
+
+function ssf_whiltelist_ip() {
+	$options = get_option( 'ss_stop_sp_reg_options' );
+	$response = wp_remote_post( 'https://stopspammersapi.com/api/ip/whitelist', array(
+		'method' => 'POST',
+		'timeout' => 45,
+		'redirection' => 5,
+		'httpversion' => '1.0',
+		'blocking' => true,
+		'headers' => array(),
+		'body' => array(),
+		'cookies' => array()
+	));
+	$whitelist_ip = json_decode( $response['body'] );
+	$options['blist'] = array_values(array_diff($options['blist'], $whitelist_ip->whitelist_ip_list));
+	update_option( 'ss_stop_sp_reg_options', $options );	
+}
+
+add_action( 'ssf_whiltelist_ip_cron', 'ssf_whiltelist_ip' );
+$stats = get_option( 'ss_stop_sp_reg_stats' );
+
+function ss_modal() {
+
+	   if( isset($_POST['save_change']) ){
+	       $options = get_option( 'ss_stop_sp_reg_options' );
+	       $options['chkipsync'] = $_POST['chkipsync_modal'];
+	       update_option('ss_stop_sp_reg_options',$options);
+	    }
+	?>
+	<div id="modal-1" class="modal-window" style="width:30%">
+	   <h3>Please provide permission to sync IP</h3>
+	   <br>
+	   <form method="post" action="">
+	   	<div class='ss-plugin'>	   
+	   		<div class="checkbox switcher">
+	          <label id="ss_subhead_modal" for="chkipsync_modal">
+	            <input class="ss_toggle_modal" type="checkbox" id="chkipsync_modal" name="chkipsync_modal" value="Y" />
+	            <span ><small></small></span>
+	            <small><span style="font-size:16px!important"><?php _e( 'Sync IP', 'stop-spammer-registrations-plugin' ); ?></span></small>
+	      </label>
+	    </div>
+	      <br><br>
+	      <input class="button-primary save_change"  name='save_change' value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" />
+	      </form>
+	      </div>
+	     <br>
+	      <button class="modal-btn modal-hide close_btn">Close</button>
+	   </div>
+	</div>
+	<div class="modal-fader"></div>
+<?php }
+	
+function ss_upgrade_completed () {
+   add_action('admin_footer', 'ss_modal');
+}
+add_action( 'upgrader_process_complete', 'ss_upgrade_completed', 10, 2 );
