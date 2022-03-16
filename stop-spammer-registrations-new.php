@@ -1178,24 +1178,24 @@ add_action( 'admin_init', 'ss_check_for_premium' );
 require_once( 'includes/stop-spam-utils.php' );
 
 // Hivemind
-function ssf_sync_ip_cron( $schedules ) {
+function ss_sync_ip_cron( $schedules ) {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
 	 	return $schedules;
-	$schedules['ssf_every_ten_minutes'] = array(
+	$schedules['ss_every_ten_minutes'] = array(
 		'interval' => 300,
-		'display'  => __( 'Every 10 Minutes', 'stop-spammers-premium' )
+		'display'  => __( 'Every 10 Minutes', 'stop-spammer-registrations-plugin' )
 	);
 	return $schedules;
 }
-add_filter( 'cron_schedules', 'ssf_sync_ip_cron' );
+add_filter( 'cron_schedules', 'ss_sync_ip_cron' );
 
 // schedule an action if it's not already scheduled
-if ( !wp_next_scheduled( 'ssf_sync_ip_cron' ) ) {
-	  wp_schedule_event( time(), 'ssf_every_ten_minutes', 'ssf_sync_ip_cron' );
+if ( !wp_next_scheduled( 'ss_sync_ip_cron' ) ) {
+	  wp_schedule_event( time(), 'ss_every_ten_minutes', 'ss_sync_ip_cron' );
 }
 
-function ssf_sync_ip() {
+function ss_sync_ip() {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	 if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] != 'Y' or get_option( 'ssp_license_status' ) != '' )
 	 	return;
@@ -1207,23 +1207,23 @@ function ssf_sync_ip() {
 		update_option( 'ss_stop_sp_reg_options', $options );
 	}
 }
-add_action( 'ssf_sync_ip_cron', 'ssf_sync_ip' );
+add_action( 'ss_sync_ip_cron', 'ss_sync_ip' );
 
-function ssf_post_ip_every_ten_minutes( $schedules ) {
+function ss_post_ip_every_ten_minutes( $schedules ) {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	 if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
 	 	return $schedules;
-	$schedules['every_ten_minutes_sync'] = array( 'interval' => 600, 'display' => __( 'Every 10 Minutes', 'stop-spammers-premium' ) );
+	$schedules['every_ten_minutes_sync'] = array( 'interval' => 600, 'display' => __( 'Every 10 Minutes', 'stop-spammer-registrations-plugin' ) );
 	return $schedules;
 }
-add_filter( 'cron_schedules', 'ssf_post_ip_every_ten_minutes' );
+add_filter( 'cron_schedules', 'ss_post_ip_every_ten_minutes' );
 
 // schedule an action if it's not already scheduled
-if ( !wp_next_scheduled( 'ssf_post_ip_every_ten_minutes' ) ) {
-	wp_schedule_event( time(), 'every_ten_minutes_sync', 'ssf_post_ip_every_ten_minutes' );
+if ( !wp_next_scheduled( 'ss_post_ip_every_ten_minutes' ) ) {
+	wp_schedule_event( time(), 'every_ten_minutes_sync', 'ss_post_ip_every_ten_minutes' );
 }
 
-function ssf_post_ip() {
+function ss_post_ip() {
 	 $options = get_option( 'ss_stop_sp_reg_options' );
 	 if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
 	 	return;
@@ -1241,26 +1241,26 @@ function ssf_post_ip() {
     	 ));
     }
 }
-add_action( 'ssf_post_ip_every_ten_minutes', 'ssf_post_ip' );
+add_action( 'ss_post_ip_every_ten_minutes', 'ss_post_ip' );
 
-function ssf_whiltelist_ip_cron( $schedules ) {
+function ss_whiltelist_ip_cron( $schedules ) {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
 	 	return $schedules;
-	$schedules['ssf_every_ten_minutes'] = array(
+	$schedules['ss_every_ten_minutes'] = array(
 		'interval' => 1200,
-		'display'  => __( 'Every One Hour', 'stop-spammers-premium' )
+		'display'  => __( 'Every One Hour', 'stop-spammer-registrations-plugin' )
 	);
 	return $schedules;
 }
-add_filter( 'cron_schedules', 'ssf_whiltelist_ip_cron' );
+add_filter( 'cron_schedules', 'ss_whiltelist_ip_cron' );
 
 // schedule an action if it's not already scheduled
-if ( !wp_next_scheduled( 'ssf_whiltelist_ip_cron' ) ) {
-	  wp_schedule_event( time(), 'ssf_every_ten_minutes', 'ssf_whiltelist_ip_cron' );
+if ( !wp_next_scheduled( 'ss_whiltelist_ip_cron' ) ) {
+	  wp_schedule_event( time(), 'ss_every_ten_minutes', 'ss_whiltelist_ip_cron' );
 }
 
-function ssf_whiltelist_ip() {
+function ss_whiltelist_ip() {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	$response = wp_remote_post( 'https://stopspammersapi.com/api/ip/whitelist', array(
 		'method'	  => 'POST',
@@ -1276,7 +1276,7 @@ function ssf_whiltelist_ip() {
 	$options['blist'] = array_values( array_diff( $options['blist'], $whitelist_ip -> whitelist_ip_list ) );
 	update_option( 'ss_stop_sp_reg_options', $options );	
 }
-add_action( 'ssf_whiltelist_ip_cron', 'ssf_whiltelist_ip' );
+add_action( 'ss_whiltelist_ip_cron', 'ss_whiltelist_ip' );
 
 $stats = get_option( 'ss_stop_sp_reg_stats' );
 
