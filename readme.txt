@@ -3,7 +3,7 @@
 Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Requires PHP: 7.0
+Requires PHP: 7.4
 Requires at least: 5.0
 Tested up to: 5.8
 Stable tag: 2022
@@ -100,7 +100,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2022 =
-* [New] Community IP block list
+* [New] Hivemind — A community IP block list
 
 = 2021.20 =
 * [Fix] PHP 8 error

@@ -45,8 +45,7 @@ if ( function_exists( 'register_uninstall_hook' ) ) {
 add_action( 'admin_enqueue_scripts', 'sfs_handle_ajax' );
 function sfs_handle_ajax() {
 	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js', false );
-	wp_enqueue_script( 'stop-spammers-modal', SS_PLUGIN_URL . 'js/modal.js','','',true);
-  
+	wp_enqueue_script( 'stop-spammers-modal', SS_PLUGIN_URL . 'js/modal.js', '', '', true );
 }
 
 function ss_sp_plugin_action_links( $links, $file ) {
