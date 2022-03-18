@@ -1003,9 +1003,9 @@ function ss_add_captcha() {
 		case 'G':
 			// reCAPTCHA
 			$recaptchaapisite = $options['recaptchaapisite'];
-			$html  = '<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>';
+			$html  = '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
 			$html .= '<input type="hidden" name="recaptcha" value="recaptcha" />';
-			$html .= '<div class="g-recaptcha" data-sitekey="$recaptchaapisite"></div>';
+			$html .= '<div class="g-recaptcha" data-sitekey="' . $recaptchaapisite . '"></div>';
 		break;
 		case 'H':
 			// hCaptcha

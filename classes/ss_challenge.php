@@ -260,7 +260,7 @@ class ss_challenge extends be_module {
 		// this may be the second time through
 		$formtop = '';
 		if ( !empty( $msg ) ) {
-			$msg = "\r\n<br /><span style=\"color:red\"> $msg </span><hr />\r\n";
+			$msg = "\r\n<br /><span style='color:red'> $msg </span><hr />\r\n";
 		}
 		$formtop .= '
 			<form action="" method="post">
@@ -294,28 +294,28 @@ class ss_challenge extends be_module {
 				// reCAPTCHA
 				$recaptchaapisite = $options['recaptchaapisite'];
 				$cap			  = "
-					<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>\r\n
-					<input type=\"hidden\" name=\"recaptcha\" value=\"recaptcha\" />
-					<div class=\"g-recaptcha\" data-sitekey=\"$recaptchaapisite\"></div>
+					<script src='https://www.google.com/recaptcha/api.js' async defer></script>\r\n
+					<input type='hidden' name='recaptcha' value='recaptcha' />
+					<div class='g-recaptcha' data-sitekey='$recaptchaapisite'></div>
 				";
 				break;
 			case 'H':
 				// HCAPTCHA
 				$hcaptchaapisite = $options['hcaptchaapisite'];
 				$cap			  = "
-					<script src=\"https://hcaptcha.com/1/api.js\" async defer></script>\r\n
-					<input type=\"hidden\" name=\"h-captcha\" value=\"h-captcha\" />
-					<div class=\"h-captcha\" data-sitekey=\"$hcaptchaapisite\"></div>
+					<script src='https://hcaptcha.com/1/api.js' async defer></script>\r\n
+					<input type='hidden' name='h-captcha' value='h-captcha' />
+					<div class='h-captcha' data-sitekey='$hcaptchaapisite'></div>
 				";
 				break;
 			case 'S':
 				$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
 				$cap					= "
-					<script src=\"https://api-secure.solvemedia.com/papi/challenge.script?k=$solvmediaapivchallenge\"></script>
+					<script src='https://api-secure.solvemedia.com/papi/challenge.script?k=$solvmediaapivchallenge'></script>
 					<noscript>
-					<iframe src=\"https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge\" height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br />
-					<textarea name=\"adcopy_challenge\" rows=\"3\" cols=\"40\"></textarea>
-					<input type=\"hidden\" name=\"adcopy_response\" value=\"manual_challenge\" />
+					<iframe src='https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge' height='300' width='500' frameborder='0'></iframe><br />
+					<textarea name='adcopy_challenge' rows='3' cols='40'></textarea>
+					<input type='hidden' name='adcopy_response' value='manual_challenge' />
 					</noscript><br />
 				";
 				break;
