@@ -73,7 +73,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		recorded in the Good Cache if they pass or the Bad Cache if they fail.
 		If a user is blocked from access, they are added to the Bad Cache. You
 		can see the caches here. To learn more about caching, 
-		please <a href="https://stopspammers.io/ip-cache" target="_blank">review our documentation</a>.</p>
+		please <a href="https://stopspammers.io/documentation/ip-cache/" target="_blank">review our documentation</a>.</p>
 	', 'stop-spammer-registrations-plugin' ); ?>
 	<form method="post" action="">
 		<input type="hidden" name="update_options" value="update" />
