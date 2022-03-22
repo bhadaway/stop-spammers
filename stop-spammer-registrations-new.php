@@ -1177,7 +1177,7 @@ add_action( 'admin_init', 'ss_check_for_premium' );
 
 require_once( 'includes/stop-spam-utils.php' );
 
-// HiveMind
+// HiveMindᴮᴱᵀᴬ
 function ss_sync_ip_cron( $schedules ) {
 	$options = get_option( 'ss_stop_sp_reg_options' );
 	if ( !isset( $options['chkipsync'] ) or $options['chkipsync'] !== 'Y' or get_option( 'ssp_license_status' ) != '' )
@@ -1296,7 +1296,7 @@ function ss_modal() {
 				<label id="ss_subhead_modal" for="chkipsync_modal">
 					<input class="ss_toggle_modal" type="checkbox" id="chkipsync_modal" name="chkipsync_modal" value="Y" />
 					<span><small></small></span>
-					<small><span style="font-size:16px!important"><?php _e( 'HiveMind', 'stop-spammer-registrations-plugin' ); ?></span></small>
+					<small><span style="font-size:16px!important"><?php _e( 'HiveMindᴮᴱᵀᴬ', 'stop-spammer-registrations-plugin' ); ?></span></small>
 				</label>
 			</div>
 			<br />

@@ -165,7 +165,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkipsync">
 				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( isset( $chkipsync ) && $chkipsync == 'Y') { echo 'checked="checked"'; } ?> /><span><small></small></span>
-		  		<small><span style="font-size:16px!important"><?php _e( 'HiveMind', 'stop-spammer-registrations-plugin' ); ?></span></small>
+		  		<small><span style="font-size:16px!important"><?php _e( 'HiveMindᴮᴱᵀᴬ', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<em><?php _e( 'By enabling this feature, you agree to share your Block List with our external API.', 'stop-spammer-registrations-plugin' ); ?></em>
 			</label>
 		</div>
 		<br />

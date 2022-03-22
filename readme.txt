@@ -100,7 +100,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2022 =
-* [New] HiveMind — A community IP block list (limited)
+* [New] HiveMindᴮᴱᵀᴬ — A community IP block list (limited)
 
 = 2021.20 =
 * [Fix] PHP 8 error
