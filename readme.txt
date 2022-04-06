@@ -5,7 +5,7 @@ Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Requires PHP: 7.4
 Requires at least: 5.0
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 2022
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -101,6 +101,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 = 2022 =
 * [New] HiveMindᴮᴱᵀᴬ — A community IP block list (limited)
+* [Fix] CAPTCHAs
 
 = 2021.20 =
 * [Fix] PHP 8 error
