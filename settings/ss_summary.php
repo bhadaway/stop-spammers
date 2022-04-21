@@ -367,6 +367,18 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		// clear the cache
 		delete_option( 'ss_cache' );
 	} ?>
+	<?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { ?>
+	<h2 id="funding"><?php esc_html_e( 'Fundraising Campaign', 'stop-spammer-registrations-plugin' ); ?></h2>
+	<p>We're a small team with an even smaller budget. We have a list of all your requests and then some, but to put it bluntly, we simply can't afford it. However, with your help, we can get some stuff done.</p>
+	<p>If roughly only 10% of Stop Spammers users made a donation of only $1, we'd reach our funding goal.</p>
+	<p><strong>What are we planning to do with the money?</strong></p>
+	<ul>
+		<li>Get a complete third-party audit and optimization of the code, top to bottom, both for bug fixes and speed.</li>
+		<li>Add compatibility for the most popular contact form plugins: Contact Form 7, WPForms, and more.</li>
+		<li>Translate the plugin into other languages.</li>
+	</ul>
+	<div style="max-width:500px;margin:0 auto"><script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe src="https://donorbox.org/embed/stop-spammers" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width: 500px; min-width: 250px; max-height:none!important"></iframe></div>
+	<?php } ?>
 	<h2><?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 	<div class="ss_admin_info_boxes_3row">
 		<div class="ss_admin_info_boxes_3col">

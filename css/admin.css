@@ -32,6 +32,30 @@
 	margin-right: 5px;
 }
 
+#ss-plugin ul, #ss-plugin ol {
+	margin: 30px 0 30px 60px;
+}
+
+#ss-plugin ul ul, #ss-plugin ol ol, #ss-plugin ul ol, #ss-plugin ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#ss-plugin ol {
+	list-style: decimal outside;
+	list-style-type: decimal-leading-zero;
+	margin-left: 70px;
+}
+
+#ss-plugin ul li {
+	list-style-type: '— ';
+}
+
+#ss-plugin li {
+	line-height: 125%;
+	margin: 20px 0;
+}
+
 #ss-plugin input[type="text"] {
 	max-width: 400px;
 }
