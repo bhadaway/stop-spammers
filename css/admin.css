@@ -434,7 +434,7 @@
 } */
 
 .update-nag.notice.notice-warning.inline .ss-hide-notices {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .ss_disable_admin_emails_wraps {
@@ -446,12 +446,12 @@
 
 /* ssp firewall */
 .column-created, .column-duration {
-    width: 10%;
+	width: 10%;
 }
 
 .column-code, .column-created, .column-postdata, .column-state {
-    width: 8%;
-    font-family: inherit;
+	width: 8%;
+	font-family: inherit;
 }
 
 .ssp-firewall-hidden {
@@ -459,23 +459,23 @@
 }
 
 .type-ssp-firewall td {
-    height: 100%;
-    position: relative;
-    padding-bottom: 24px;
+	height: 100%;
+	position: relative;
+	padding-bottom: 24px;
 }
 
 .type-ssp-firewall .label {
-    top: -2px;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    display: inline-block;
-    position: absolute;
-    background: #0ee162;
+	top: -2px;
+	left: 0;
+	width: 4px;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	background: #0ee162;
 }
 
 .type-ssp-firewall .label.blacklisted_1 {
-    background: #d54e21;
+	background: #d54e21;
 }
 
 .type-ssp-firewall .column-state .blocked, .type-ssp-firewall .row-actions .block {
@@ -483,12 +483,12 @@
 }
 
 .type-ssp-firewall .column-state .authorized, .type-ssp-firewall .row-actions .unblock {
-    color: #006505;
+	color: #006505;
 }
 
 input#ssp-firewall_delete_all {
-    float: right;
-    margin: 1px 0 0 16px;
+	float: right;
+	margin: 1px 0 0 16px;
 }
 
 /* responsive layout */
