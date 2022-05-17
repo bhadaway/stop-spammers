@@ -14,24 +14,33 @@
         });
     });
     
-    document.querySelector(".modal-fader").addEventListener("click", function() {
-        hideAllModalWindows();
-    });
+    if (document.querySelector(".modal-fader")) {
+        document.querySelector(".modal-fader").addEventListener("click", function() {
+            hideAllModalWindows();
+        });
+    }
 })();
 
 function showModalWindow() {
     //var modalTarget = "#" + buttonEl.getAttribute("data-target");    
     //console.log(modalTarget);
-    document.querySelector(".modal-fader").className += " active";
-    document.querySelector('#modal-1').className += " active";
+    if (document.querySelector(".modal-fader")) {
+        document.querySelector(".modal-fader").className += " active";
+    }
+    if (document.querySelector('#modal-1')) {
+        document.querySelector('#modal-1').className += " active";
+    }
 }
 
 function hideAllModalWindows() {
-    var modalFader = document.querySelector(".modal-fader");
+
     var modalWindows = document.querySelectorAll(".modal-window");
     
-    if(modalFader.className.indexOf("active") !== -1) {
-        modalFader.className = modalFader.className.replace("active", "");
+    if (document.querySelector(".modal-fader")) {
+        var modalFader = document.querySelector(".modal-fader");
+        if(modalFader.className.indexOf("active") !== -1) {
+            modalFader.className = modalFader.className.replace("active", "");
+        }
     }
     
     modalWindows.forEach(function(modalWindow) {
