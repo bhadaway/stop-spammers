@@ -101,6 +101,10 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 = 2022.3 =
 * [Fix] JavaScript error
+* [Update] Thank you message
+
+= 2022.3 =
+* [Fix] JavaScript error
 
 = 2022.2 =
 * [Update] Allowing users with older versions of PHP to upgrade
