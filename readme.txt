@@ -4,7 +4,7 @@ Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
 Tested up to: 6.0
-Stable tag: 2022.3
+Stable tag: 2022.4
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
