@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2022.3' );
+define( 'SS_VERSION', '2022.4' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -43,7 +43,7 @@ function ss_admin_notice() {
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_18' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>💜 We have a generous offer from a Stop Spammers Plugin user to match donations made through the end of our donation campaign this month!</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br />' . esc_html__( 'Thanks to you, we have raised more than 1K. Learn more about our small team and roadmap.', 'stop-spammer-registrations-plugin' ) . '<br /><br /><script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe frameborder="0" height="93px" name="donorbox" scrolling="no" seamless="seamless" src="https://donorbox.org/embed/stop-spammers?donation_meter_color=%23675682&amp;only_donation_meter=true" style="max-width:500px; min-width:250px; max-height:none!important" width="100%"></iframe><br /><br /><a href="' . admin_url( 'admin.php?page=stop_spammers#funding' ) . '" class="button-primary">' . esc_html__( 'Learn More', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>We have a generous offer from a Stop Spammers Plugin user to match donations made through the end of our donation campaign this month! 💜 </strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br />' . esc_html__( 'Thanks to you, we have raised more than 1K!', 'stop-spammer-registrations-plugin' ) . <br /><br /><a href="' . admin_url( 'admin.php?page=stop_spammers#funding' ) . '" class="button-primary">' . esc_html__( 'Learn more about our small team and roadmap', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
