@@ -45,6 +45,7 @@ function ss_admin_notice() {
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_18' ) && current_user_can( 'manage_options' ) ) {
 			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>We have a generous offer from a Stop Spammers user to match donations made through the end of our donation campaign! 💜 </strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br />' . esc_html__( 'Thanks to you, we have already raised more than 1K! The campaign ends 2022.08.15.', 'stop-spammer-registrations-plugin' ) . '<br /><br /><a href="' . admin_url( 'admin.php?page=stop_spammers#funding' ) . '" class="button-primary">' . esc_html__( 'Learn more about our small team and roadmap', 'stop-spammer-registrations-plugin' ) . '</a> | <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-secondary">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 	}
+	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
 
