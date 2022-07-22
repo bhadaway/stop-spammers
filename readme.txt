@@ -100,7 +100,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2022.3 =
-* [Fix] JavaScript error
+* [New] Add IP addresses from comments to allow or block list
 * [Update] Thank you message
 
 = 2022.3 =
