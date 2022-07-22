@@ -377,8 +377,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<li>Add compatibility for the most popular contact form plugins: Contact Form 7, WPForms, and more.</li>
 		<li>Translate the plugin into other languages.</li>
 	</ul>
-	<button><a href="https://stopspammers.io/contact/contributors/" target="_blank">Meet the Team</a></button>
-	<div style="max-width:500px;margin:0 auto"><script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe src="https://donorbox.org/embed/stop-spammers" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width: 500px; min-width: 250px; max-height:none!important"></iframe></div>
+	<button class="secondary"><a href="https://stopspammers.io/contact/contributors/" target="_blank">Meet the Team</a></button>
+	<div id="donate" style="max-width:500px;margin:0 auto"><script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe src="https://donorbox.org/embed/stop-spammers" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width: 500px; min-width: 250px; max-height:none!important"></iframe></div>
 	<?php } ?>
 	<h2><?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { _e( 'Free ', 'stop-spammer-registrations-plugin' ); } ?><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 	<div class="ss_admin_info_boxes_3row">
