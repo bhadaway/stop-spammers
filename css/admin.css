@@ -503,3 +503,7 @@ input#ssp-firewall_delete_all {
 	}
 
 }
+.ss_action img {
+	width:23px;
+	cursor:pointer;
+}

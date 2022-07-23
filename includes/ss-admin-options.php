@@ -147,6 +147,11 @@ function ss_row( $actions, $comment ) {
 		$action .= "|";
 		$action .= "<a $exst title=\"" . esc_attr__( 'Report to Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" $target $href $onclick class='delete:the-comment-list:comment-$ID::delete=1 delete vim-d vim-destructive'>" . __( ' Report to SFS', 'stop-spammer-registrations-plugin' ) . "</a>";
 	}
+	$action .='<span class="ss_action"   title="' . esc_attr__( 'Add to block list', 'stop-spammer-registrations-plugin' ) . '" onclick="sfs_ajax_process(\'' . $comment->comment_author_IP . '\',\'log\',\'add_black\',\'' . $ajaxurl . '\');return false;"><img src="'.SS_PLUGIN_URL . 'images/tdown.png">|</span>';
+
+	$action .='<span class="ss_action" title="' . esc_attr__( 'Add to allow list', 'stop-spammer-registrations-plugin' ) . '" onclick="sfs_ajax_process(\'' . $comment->comment_author_IP . '\',\'log\',\'add_white\',\'' . $ajaxurl . '\');return false;"><img src="'.SS_PLUGIN_URL . 'images/tup.png">|</span>';
+
+
 	$actions['check_spam'] = $action;
 	return $actions;
 }

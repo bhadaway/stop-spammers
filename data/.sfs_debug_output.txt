@@ -1,0 +1,210 @@
+
+Time: 2022/07/13 14:00:33
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 4194304 Peak: 4194304
+---------------------
+
+Time: 2022/07/13 14:01:12
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:26:59
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 6291456 Peak: 6291456
+---------------------
+
+Time: 2022/07/15 06:27:09
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:52:25
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 23068672 Peak: 23068672
+---------------------
+
+Time: 2022/07/15 06:52:31
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 16777216 Peak: 16777216
+---------------------
+
+Time: 2022/07/15 06:52:59
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 10485760 Peak: 10485760
+---------------------
+
+Time: 2022/07/15 06:53:17
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:53:34
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:55:04
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:55:13
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:57:01
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:57:09
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 06:57:15
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Invalid argument supplied for foreach()
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\ss_blocklist_settings.php
+Line Number: 159
+Memory Used: 14680064 Peak: 14680064
+---------------------
+
+Time: 2022/07/15 06:57:27
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 8388608 Peak: 8388608
+---------------------
+
+Time: 2022/07/15 07:22:34
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 4194304 Peak: 4194304
+---------------------
+
+Time: 2022/07/15 14:33:15
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 14680064 Peak: 14680064
+---------------------
+
+Time: 2022/07/15 14:38:53
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 2097152 Peak: 2097152
+---------------------
+
+Time: 2022/07/15 14:56:16
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 14680064 Peak: 14680064
+---------------------
+
+Time: 2022/07/15 15:27:28
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 4194304 Peak: 4194304
+---------------------
+
+Time: 2022/07/20 07:24:54
+Error Number: 8
+Error Type: Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script. 
+Error Msg: Undefined index: badtlds
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers-master\settings\settings.php
+Line Number: 204
+Memory Used: 16777216 Peak: 16777216
+---------------------
