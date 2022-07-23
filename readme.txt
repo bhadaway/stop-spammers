@@ -99,7 +99,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
-= 2022.3 =
+= 2022.4 =
 * [New] Add IP addresses from comments to allow or block list
 * [Update] Thank you message
 
