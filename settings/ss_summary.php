@@ -373,7 +373,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<p>If roughly only 10% of Stop Spammers users made a donation of only $1, we'd reach our funding goal.</p>
 	<p><strong>What are we planning to do with the donations?</strong></p>
 	<ul>
-		<li>Get a complete third-party audit and optimization of the code, top to bottom, both for bug fixes and speed.</li>
+		<li>Get a complete third-party audit and optimization of the code, top-to-bottom, both for bug fixes and speed.</li>
 		<li>Add compatibility for the most popular contact form plugins: Contact Form 7, WPForms, and more.</li>
 		<li>Translate the plugin into other languages.</li>
 	</ul>

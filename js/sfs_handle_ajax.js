@@ -92,18 +92,16 @@ jQuery(function($) {
 			$('.ss_reset_hidden_notice_wrap').show()
 		}
 	});
-
 	$('.ss_action').on('click', function() {
 		var data = {
-				action: 'ss_allow_block_ip',
-				type:$(this).data('type'),
-				ip: $(this).data('ip')
-			};
-			$.post(ajaxurl, data).then(data =>{
-				alert('Successfully Added')
-			});
+			action: 'ss_allow_block_ip',
+			type: $(this).data('type'),
+			ip: $(this).data('ip')
+		};
+		$.post(ajaxurl, data).then(data => {
+			alert('Successfully Added')
+		});
 	});
-
 	$('.ss_action').click(function(){
 		$(this).hide();
        $(this).next().hide();

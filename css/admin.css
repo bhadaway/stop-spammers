@@ -32,6 +32,11 @@
 	margin-right: 5px;
 }
 
+.ss_action img {
+	width: 23px;
+	cursor: pointer;
+}
+
 #ss-plugin ul, #ss-plugin ol {
 	margin: 30px 0 30px 60px;
 }
@@ -502,8 +507,4 @@ input#ssp-firewall_delete_all {
 		top: 48px;
 	}
 
-}
-.ss_action img {
-	width:23px;
-	cursor:pointer;
 }
