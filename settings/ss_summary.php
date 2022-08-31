@@ -368,10 +368,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		delete_option( 'ss_cache' );
 	} ?>
 	<?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { ?>
-	<h2 id="funding"><?php esc_html_e( 'Fundraising Campaign', 'stop-spammer-registrations-plugin' ); ?></h2>
-	<p>We're not a company. We're a small team with an even smaller budget. We have a list of all your requests and then some, but to put it bluntly, we simply can't afford it. However, with your help, we can get some stuff done.</p>
-	<p>If roughly only 10% of Stop Spammers users made a donation of only $1, we'd reach our funding goal.</p>
-	<p><strong>What are we planning to do with the donations?</strong></p>
+	<h2 id="funding"><?php esc_html_e( 'Funding', 'stop-spammer-registrations-plugin' ); ?></h2>
+	<p>If we're able to eventually reach our funding goal, we'll be able to make some significant improvements.</p>
+	<p><strong>What are we planning to do if we reach our goal?</strong></p>
 	<ul>
 		<li>Get a complete third-party audit and optimization of the code, top-to-bottom, both for bug fixes and speed.</li>
 		<li>Add compatibility for the most popular contact form plugins: Contact Form 7, WPForms, and more.</li>
