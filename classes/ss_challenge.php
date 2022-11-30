@@ -107,7 +107,7 @@ class ss_challenge extends be_module {
 								// sfs_debug_msg( "recaptcha '$g', '$ip' '$resp' - \r\n" . print_r( $_POST, true ) );
 								if ( strpos( $resp, '"success": true' ) !== false ) { // found success
 									// $kp = base64_encode( serialize( $_POST ) );
-									$_POST = unserialize( base64_decode( $kp ) );
+									$_POST = unserialize( base64_decode( $kp ), ['allowed_classes' => false] );
 									// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 									// success add to cache
 									ss_log_good( $ip, __( 'Passed reCAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
@@ -139,7 +139,7 @@ class ss_challenge extends be_module {
 								$response = json_decode( $resp );
 								if ( $response->success and $response->success == true ) { // found success
 									// $kp = base64_encode( serialize( $_POST ) );
-									$_POST = unserialize( base64_decode( $kp ) );
+									$_POST = unserialize( base64_decode( $kp ), ['allowed_classes' => false] );
 									// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 									// success add to cache
 									ss_log_good( $ip, __( 'Passed hCaptcha', 'stop-spammer-registrations-plugin' ), 'pass' );
@@ -202,7 +202,7 @@ class ss_challenge extends be_module {
 							$result	     = $resultarray['body'];
 							// $result = file_get_contents( '//verify.solvemedia.com/papi/verify/', false, $context );  
 							if ( strpos( $result, 'true' ) !== false ) {
-								$_POST = unserialize( base64_decode( $kp ) );
+								$_POST = unserialize( base64_decode( $kp ), ['allowed_classes' => false] );
 								// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 								// success add to cache
 								ss_log_good( $ip, __( 'Passed Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
@@ -226,7 +226,7 @@ class ss_challenge extends be_module {
 							$nums += $seed;
 							$sum   = really_clean( sanitize_text_field( $_POST['sum'] ) );
 							if ( $sum == $nums ) {
-								$_POST = unserialize( base64_decode( $kp ) );
+								$_POST = unserialize( base64_decode( $kp ), ['allowed_classes' => false] );
 								// sfs_debug_msg( "trying to return the post to the comments program" . print_r( $_POST, true ) );
 								// success add to cache
 								ss_log_good( $ip, __( 'Passed Simple Arithmetic CAPTCHA', 'stop-spammer-registrations-plugin' ), 'pass' );
