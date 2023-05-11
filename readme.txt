@@ -99,6 +99,9 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
+= 2022.7 =
+* [Enhanced] Additional security updates
+
 = 2022.6 =
 * [Enhanced] Security
 

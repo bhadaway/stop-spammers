@@ -1,0 +1,20 @@
+
+Time: 2023/05/10 06:42:30
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Undefined variable $
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers\settings\ss_diagnostics.php
+Line Number: 78
+Memory Used: 92274688 Peak: 94371840
+---------------------
+
+Time: 2023/05/10 06:43:00
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Undefined variable $
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress\wp-content\plugins\stop-spammers\settings\ss_diagnostics.php
+Line Number: 78
+Memory Used: 92274688 Peak: 96468992
+---------------------

@@ -70,16 +70,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 			</div>
 			<?php _e( '<p>Run the settings against an IP address to see the results.</p>IP Address:<br />', 'stop-spammer-registrations-plugin' ); ?>
-			<input id="ssinput" name="ip" type="text" value="<?php echo $ip; ?>">
+			<input id="ssinput" name="ip" type="text" value="<?php  echo esc_attr($ip,'stop-spammer-registrations-plugin'); ?>">
 			<?php _e( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br /><br />
 			<?php _e( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br />
-			<input id="ssinput" name="email" type="text" value="<?php echo $email; ?>" /><br /><br />
+			<input id="ssinput" name="email" type="text" value="<?php echo esc_attr($email,'stop-spammer-registrations-plugin'); ?>" /><br /><br />
 			<?php _e( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br />
-			<input id="ssinput" name="author" type="text" value="<?php echo $author; ?>" /><br /><br />
+			<input id="ssinput" name="author" type="text" value="<?php echo esc_attr($author,'stop-spammer-registrations-plugin'); ?>" /><br /><br />
 			<?php _e( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br />
-			<input id="ssinput" name="subject" type="text" value="<?php echo $subject; ?>" /><br /><br />
+			<input id="ssinput" name="subject" type="text" value="<?php echo esc_attr($subject,'stop-spammer-registrations-plugin'); ?>" /><br /><br />
 			<?php _e( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br />
-			<textarea name="body"><?php echo $body; ?></textarea><br />
+			<textarea name="body"><?php  _e($body,'stop-spammer-registrations-plugin'); ?></textarea><br />
 			<div style="width:50%;float:left">
 				<p class="submit"><input name="testopt" class="button-primary" value="<?php _e( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 			</div>
