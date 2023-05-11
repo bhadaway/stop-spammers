@@ -273,32 +273,32 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<hr>
 		<div style="margin-left:30px">
 			<small><span style="font-size:16px!important;"><?php _e( 'Google reCAPTCHA v2 API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
-			<input size="64" name="recaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr($recaptchaapisite,'stop-spammer-registrations-plugin'); ?>" />
+			<input size="64" name="recaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $recaptchaapisite ); ?>" />
 			<br />
-			<input size="64" name="recaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr($recaptchaapisecret,'stop-spammer-registrations-plugin'); ?>" />
+			<input size="64" name="recaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $recaptchaapisecret ); ?>" />
 			<br />
 			<?php if ( !empty( $recaptchaapisite ) ) { ?>
 				<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-				<div class="g-recaptcha" data-sitekey="<?php echo esc_attr($recaptchaapisite , 'stop-spammer-registrations-plugin'); ?>"></div>
+				<div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $recaptchaapisite ); ?>"></div>
 			<?php } ?>
 			<br />
 			<small><span style="font-size:16px!important;"><?php _e( 'hCaptcha API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
-			<input size="64" name="hcaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr($hcaptchaapisite,'stop-spammer-registrations-plugin'); ?>" />
+			<input size="64" name="hcaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $hcaptchaapisite ); ?>" />
 			<br />
-			<input size="64" name="hcaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr($hcaptchaapisecret,'stop-spammer-registrations-plugin'); ?>" />
+			<input size="64" name="hcaptchaapisecret" type="text" placeholder="<?php _e( 'Secret Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $hcaptchaapisecret ); ?>" />
 			<br />
 			<?php if ( !empty( $hcaptchaapisite ) ) { ?>
 				<script src="https://hcaptcha.com/1/api.js" async defer></script>
-				<div class="h-captcha" data-sitekey="<?php echo esc_attr($hcaptchaapisite,'stop-spammer-registrations-plugin'); ?>"></div>
+				<div class="h-captcha" data-sitekey="<?php echo esc_attr( $hcaptchaapisite ); ?>"></div>
 			<?php } ?>
 			<br />
 			<small><span style="font-size:16px!important"><?php _e( 'Solve Media CAPTCHA API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
-			<input size="64" name="solvmediaapivchallenge" type="text" placeholder="<?php _e( 'Challenge Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr($solvmediaapivchallenge,'stop-spammer-registrations-plugin'); ?>" />
+			<input size="64" name="solvmediaapivchallenge" type="text" placeholder="<?php _e( 'Challenge Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $solvmediaapivchallenge ); ?>" />
 			<br />
-			<input size="64" name="solvmediaapiverify" type="text" placeholder="<?php _e( 'Verification Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr($solvmediaapiverify,'stop-spammer-registrations-plugin'); ?>" />
+			<input size="64" name="solvmediaapiverify" type="text" placeholder="<?php _e( 'Verification Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $solvmediaapiverify ); ?>" />
 			<br />
 			<?php if ( !empty( $solvmediaapivchallenge ) ) { ?>
-				<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo esc_url($solvmediaapivchallenge,'stop-spammer-registrations-plugin'); ?>"></script>
+				<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo esc_url( $solvmediaapivchallenge ); ?>"></script>
 			<?php } ?>
 		</div>
 		<br />

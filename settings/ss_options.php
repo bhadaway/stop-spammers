@@ -381,7 +381,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<span id="ss_show_quick" style="margin-left:30px;margin-bottom:15px;display:none">
 			<p style="margin-left:30px"><?php _e( 'Response Timeout Value: ', 'stop-spammer-registrations-plugin' ); ?>
-			<input name="sesstime" type="text" value="<?php echo esc_attr($sesstime,'stop-spammer-registrations-plugin'); ?>" size="2"/><br /></p>
+			<input name="sesstime" type="text" value="<?php echo esc_attr( $sesstime ); ?>" size="2" /><br /></p>
 		</span>
 		<script>
 		function ss_show_quick() {
