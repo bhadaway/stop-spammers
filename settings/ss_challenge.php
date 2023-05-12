@@ -298,7 +298,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input size="64" name="solvmediaapiverify" type="text" placeholder="<?php _e( 'Verification Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $solvmediaapiverify ); ?>" />
 			<br />
 			<?php if ( !empty( $solvmediaapivchallenge ) ) { ?>
-				<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo esc_url( $solvmediaapivchallenge ); ?>"></script>
+				<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=<?php echo esc_attr( $solvmediaapivchallenge ); ?>"></script>
 			<?php } ?>
 		</div>
 		<br />
