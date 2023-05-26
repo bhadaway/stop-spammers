@@ -295,7 +295,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div class="checkbox switcher">
-			<label id="" for="new_user_notification_to_admin">
+			<label id="ss_subhead" for="new_user_notification_to_admin">
 				<input class="ss_toggle" type="checkbox" id="new_user_notification_to_admin" name="new_user_notification_to_admin" value="Y" <?php if ( isset( $new_user_notification_to_admin ) and $new_user_notification_to_admin == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'New user notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -305,7 +305,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		
 		<br />
 		<div class="checkbox switcher">
-			<label id="" for="ss_password_change_notification_to_admin">
+			<label id="ss_subhead" for="ss_password_change_notification_to_admin">
 				<input class="ss_toggle" type="checkbox" id="ss_password_change_notification_to_admin" name="ss_password_change_notification_to_admin" value="Y" <?php if ( isset( $ss_password_change_notification_to_admin ) and $ss_password_change_notification_to_admin == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Password change notification to admin', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -313,7 +313,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
          </br>
          <div class="checkbox switcher">
-			<label id="" for="ss_auto_core_update_send_email">
+			<label id="ss_subhead" for="ss_auto_core_update_send_email">
 				<input class="ss_toggle" type="checkbox" id="ss_auto_core_update_send_email" name="ss_auto_core_update_send_email" value="Y" <?php if ( isset( $ss_auto_core_update_send_email ) and $ss_auto_core_update_send_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress core update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -322,7 +322,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 
      </br>
          <div class="checkbox switcher">
-			<label id="" for="ss_auto_plugin_update_send_email">
+			<label id="ss_subhead" for="ss_auto_plugin_update_send_email">
 				<input class="ss_toggle" type="checkbox" id="ss_auto_plugin_update_send_email" name="ss_auto_plugin_update_send_email" value="Y" <?php if ( isset( $ss_auto_plugin_update_send_email ) and $ss_auto_plugin_update_send_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress plugin update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -331,7 +331,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 
 </br>
          <div class="checkbox switcher">
-			<label id="" for="ss_auto_theme_update_send_email">
+			<label id="ss_subhead" for="ss_auto_theme_update_send_email">
 				<input class="ss_toggle" type="checkbox" id="ss_auto_theme_update_send_email" name="ss_auto_theme_update_send_email" value="Y" <?php if ( isset( $ss_auto_theme_update_send_email ) and $ss_auto_theme_update_send_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress theme update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -345,14 +345,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 
 		<div class="checkbox switcher">
-			<label id="" for="ss_new_user_notification_to_user">
+			<label id="ss_subhead" for="ss_new_user_notification_to_user">
 				<input class="ss_toggle" type="checkbox" id="ss_new_user_notification_to_user" name="ss_new_user_notification_to_user" value="Y" <?php if ( isset( $ss_new_user_notification_to_user ) and $ss_new_user_notification_to_user == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'New user notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div><br/>
 		<div class="checkbox switcher">
-			<label id="" for="ss_wp_notify_post_author">
+			<label id="ss_subhead" for="ss_wp_notify_post_author">
 				<input class="ss_toggle" type="checkbox" id="ss_wp_notify_post_author" name="ss_wp_notify_post_author" value="Y" <?php if ( isset( $ss_wp_notify_post_author ) and $ss_wp_notify_post_author == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Notify Postauthor', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -360,7 +360,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br/>
 		<div class="checkbox switcher">
-			<label id="" for="ss_wp_notify_moderator">
+			<label id="ss_subhead" for="ss_wp_notify_moderator">
 				<input class="ss_toggle" type="checkbox" id="ss_wp_notify_moderator" name="ss_wp_notify_moderator" value="Y" <?php if ( isset( $ss_wp_notify_moderator ) and $ss_wp_notify_moderator == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Notify Moderator', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -368,7 +368,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br/>
 		<div class="checkbox switcher">
-			<label id="" for="ss_password_change_notification_to_user">
+			<label id="ss_subhead" for="ss_password_change_notification_to_user">
 				<input class="ss_toggle" type="checkbox" id="ss_password_change_notification_to_user" name="ss_password_change_notification_to_user" value="Y" <?php if ( isset( $ss_password_change_notification_to_user ) and $ss_password_change_notification_to_user == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Password change notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -376,7 +376,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 	 </br>
         <div class="checkbox switcher">
-			<label id="" for="ss_send_email_change_email">
+			<label id="ss_subhead" for="ss_send_email_change_email">
 				<input class="ss_toggle" type="checkbox" id="ss_send_email_change_email" name="ss_send_email_change_email" value="Y" <?php if ( isset( $ss_send_email_change_email ) and $ss_send_email_change_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Email address change notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
@@ -385,7 +385,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
        		<br/>
 
        <div class="checkbox switcher">
-			<label id="" for="ss_send_password_forgotten_email">
+			<label id="ss_subhead" for="ss_send_password_forgotten_email">
 				<input class="ss_toggle" type="checkbox" id="ss_send_password_forgotten_email" name="ss_send_password_forgotten_email" value="Y" <?php if ( isset( $ss_send_password_forgotten_email ) and $ss_send_password_forgotten_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Password forgotten email to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
