@@ -292,7 +292,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br />
 		<br />
 		<div class="mainsection"><?php _e( 'Options for emails to admin', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="new_user_notification_to_admin">
@@ -341,7 +341,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 
 		<hr>
           <div class="mainsection"><?php _e( 'Options for emails to users', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 
 		<div class="checkbox switcher">
