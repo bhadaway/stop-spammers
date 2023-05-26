@@ -1,0 +1,10 @@
+
+Time: 2023/05/24 07:17:16
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Undefined variable $new_user_notification_to_admin
+IP Address: 2405:201:3017:835:b135:a325:42c6:e143
+File Name: /home/u396204057/domains/anandchandwani.com/public_html/rkmrs/wp-content/plugins/stop-spammer-registrations-plugin/settings/ss_challenge.php
+Line Number: 50
+Memory Used: 6291456 Peak: 6291456
+---------------------

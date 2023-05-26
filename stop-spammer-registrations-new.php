@@ -1314,6 +1314,18 @@ function ss_blocklist_popup() {
    // check if block list popup has already shown
    if ( !isset( $options['chkpopup'] ) or $options['chkpopup'] == '' ) {
 		$options['chkpopup'] = 'Y';
+		$options['new_user_notification_to_admin'] = 'Y';
+		$options['ss_new_user_notification_to_user'] = 'Y';
+		$options['ss_password_change_notification_to_admin'] = 'Y';
+		$options['ss_send_password_forgotten_email'] = 'Y';
+		$options['ss_auto_core_update_send_email'] = 'Y';
+		$options['ss_auto_plugin_update_send_email'] = 'Y';
+		$options['ss_auto_theme_update_send_email'] = 'Y';
+		$options['ss_send_email_change_email'] = 'Y';
+		$options['ss_wp_notify_moderator'] = 'Y';
+		$options['ss_wp_notify_post_author'] = 'Y';
+        $options['ss_password_change_notification_to_user'] = 'Y';
+
 		update_option( 'ss_stop_sp_reg_options', $options );
 		add_action( 'admin_footer', 'ss_modal' );
    }
@@ -1328,3 +1340,5 @@ function ss_submit_popup() {
 	}
 }
 add_action( 'admin_init', 'ss_submit_popup' );
+require_once( 'modules/pluggable-functions.php' );
+?>
