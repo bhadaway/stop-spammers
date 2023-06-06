@@ -4,7 +4,6 @@ if ( !defined( 'ABSPATH' ) ) {
 	http_response_code( 404 );
 	die();
 }
-
 class ss_get_options {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -36,7 +35,18 @@ class ss_get_options {
 			'chkauthorizenet'    => 'Y',
 			'chkbraintree'	     => 'Y',
 			'chkrecurly'	     => 'Y',
-			'chksquare'		   	 => 'Y'
+			'chksquare'		   => 'Y',
+		    'new_user_notification_to_admin' => 'Y',
+			'ss_new_user_notification_to_user'=> 'Y',
+			'ss_password_change_notification_to_admin' => 'Y',
+			'ss_send_password_forgotten_email' => 'Y',
+			'ss_auto_core_update_send_email' => 'Y',
+			'ss_auto_plugin_update_send_email' => 'Y',
+		    'ss_auto_theme_update_send_email' => 'Y',
+		    'ss_send_email_change_email' => 'Y',
+			'ss_wp_notify_moderator' => 'Y',
+			'ss_wp_notify_post_author' => 'Y',
+	        'ss_password_change_notification_to_user' => 'Y'
 		);
 		// Block List Y/N settings
 		$defaultBL = array(
@@ -1460,5 +1470,4 @@ class ss_get_options {
 		return $ansa;
 	}
 }
-
 ?>
