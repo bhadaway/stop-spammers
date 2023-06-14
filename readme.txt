@@ -100,7 +100,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2023.2 =
-* [New] Disable WordPress admin auto emails
+* [New] Disable WordPress admin email notifications
 
 = 2023.1 =
 * [Fix] Escape code

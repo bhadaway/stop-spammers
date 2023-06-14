@@ -4,6 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	http_response_code( 404 );
 	die();
 }
+
 class ss_get_options {
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -35,7 +36,7 @@ class ss_get_options {
 			'chkauthorizenet'    => 'Y',
 			'chkbraintree'	     => 'Y',
 			'chkrecurly'	     => 'Y',
-			'chksquare'		   => 'Y',
+			'chksquare'			 => 'Y',
 		    'new_user_notification_to_admin' => 'Y',
 			'ss_new_user_notification_to_user'=> 'Y',
 			'ss_password_change_notification_to_admin' => 'Y',
@@ -105,7 +106,7 @@ class ss_get_options {
 			'filterregistrations' => 'Y'
 			// filter registration attempts - even if not from post
 		);
-		$defaultARRAY   = array(
+		$defaultARRAY = array(
 			'badagents'  => array(
 				"Abonti",
 				"aggregator",
@@ -1235,7 +1236,7 @@ class ss_get_options {
 				'zzb.bz'
 			)
 		);
-		$defaultSVC	 = array(
+		$defaultSVC = array(
 			'apikey'				 => '',
 			'honeyapi'			     => '',
 			'botscoutapi'			 => '',
@@ -1466,8 +1467,9 @@ class ss_get_options {
 		}
 		$ansa['chkcloudflare'] = 'Y'; // force it true for now
 		ss_set_options( $ansa ); // new version, need to set the new options
-		// sfs_debug_msg( "in get options\r\n" . print_r( $ansa, true ) );		
+		// sfs_debug_msg( "in get options\r\n" . print_r( $ansa, true ) );
 		return $ansa;
 	}
 }
+
 ?>

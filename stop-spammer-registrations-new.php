@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2023.1' );
+define( 'SS_VERSION', '2023.2' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -42,7 +42,7 @@ function ss_admin_notice() {
 		$user_id = get_current_user_id();
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_22' ) && current_user_can( 'manage_options' ) ) {
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_23' ) && current_user_can( 'manage_options' ) ) {
 			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Thank you for using Stop Spammers! 💜</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br /><a href="' . admin_url( 'admin.php?page=stop_spammers#funding' ) . '" class="button-primary">' . esc_html__( 'About', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
@@ -54,7 +54,7 @@ function ss_notice_dismissed() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['dismiss'] ) ) {
-			add_user_meta( $user_id, 'ss_notice_dismissed_22', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_23', 'true', true );
 		}
 	}
 	// Notification Control: handles notices
@@ -1325,7 +1325,6 @@ function ss_blocklist_popup() {
 		$options['ss_wp_notify_moderator'] = 'Y';
 		$options['ss_wp_notify_post_author'] = 'Y';
         $options['ss_password_change_notification_to_user'] = 'Y';
-
 		update_option( 'ss_stop_sp_reg_options', $options );
 		add_action( 'admin_footer', 'ss_modal' );
    }
@@ -1340,5 +1339,7 @@ function ss_submit_popup() {
 	}
 }
 add_action( 'admin_init', 'ss_submit_popup' );
+
 require_once( 'modules/pluggable-functions.php' );
+
 ?>
