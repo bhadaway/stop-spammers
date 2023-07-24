@@ -11,16 +11,23 @@ if ( !current_user_can( 'manage_options' ) ) {
 
 ss_fix_post_vars();
 
+$active_tab  = ! empty( $_GET['tab'] ) ? $_GET['tab'] : 'disable_users';  		
 ?>
 
+
 <div id="ss-plugin" class="wrap">
-	<h1 class="ss_head">Stop Spammers — DB Cleanup</h1>
+	<h1 class="ss_head">Stop Spammers — Cleanup</h1>
 	<?php if ( array_key_exists( 'autol', $_POST ) || array_key_exists( 'delo', $_POST ) ) {
 		echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
 	}
 	?>
 	<div class="ss_info_box">
-	<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that they don&acute;t autoload. Be aware that you can break some plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+	<h2 class="nav-tab-wrapper">
+        <a href="<?php echo esc_url( admin_url( 'admin.php?page=ss_option_maint&tab=disable_users' ) ); ?>" class="nav-tab <?php echo 'disable_users' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Disable User', 'stop-spammer-registrations-plugin' ); ?></a>
+        <a href="<?php echo esc_url( admin_url( 'admin.php?page=ss_option_maint&tab=delete_comments' ) ); ?>" class="nav-tab <?php echo 'delete_comments' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Delete Comments', 'stop-spammer-registrations-plugin' ); ?></a>
+           <a href="<?php echo esc_url( admin_url( 'admin.php?page=ss_option_maint&tab=db-cleaup' ) ); ?>" class="nav-tab <?php echo 'db-cleaup' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Database Cleanup', 'stop-spammer-registrations-plugin' ); ?></a>
+    </h2><br>
+
 	<?php
 	global $wpdb;
 	$ptab  = $wpdb->options;
@@ -61,7 +68,18 @@ ss_fix_post_vars();
 				$wpdb->query( $sql );
 			}
 		}
+        	
+	    
 	}
+    $magic_string = __( "I am sure I want to delete all pending comments and realize this can't be undone", 'stop-spammer-registrations-plugin' );	
+	if( isset( $_POST['ss_delete_pending_comment'] ) and  stripslashes ( $_POST['ss_delete_pending_comment_confirmation_text'] )  == $magic_string ){
+	         if ( ! current_user_can( 'manage_options' ) ) {
+					return;
+			 }
+           $wpdb->query( "DELETE FROM $wpdb->comments WHERE comment_approved = 0" );
+           _e( 'Comments','stop-spammer-registrations-plugin' );
+         
+	    }
 	$sysops = array(
 		'_transient_',
 		'active_plugins',
@@ -251,8 +269,56 @@ ss_fix_post_vars();
 	$nonce = wp_create_nonce( 'ss_update' );
 	?>
 	<form method="post" name="DOIT2" action="">
-		<input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" />
-		<table id="sstable" name="sstable" cellspacing="2">
+		<!-- <input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" /> -->
+		<?php if (!isset($_GET['tab']) or  $_GET['tab'] == 'disable_users'):?>
+	    	<?php include_once 'ss_user_filter_list.php' ?>
+        <?php endif;?>
+       <?php
+		$pending_comment_ids    = $wpdb->get_col( "SELECT comment_ID FROM $wpdb->comments WHERE comment_approved = 0" );
+		$pending_comments_count = count( $pending_comment_ids );
+
+      if (isset ($_GET['tab']) and  $_GET['tab'] == 'delete_comments'){
+		if ( $pending_comments_count > 0 ) {
+			?>
+			<p>
+				<?php
+				printf(
+					_n(
+						'You have %s pending comment in your site. Do you want to delete it?',
+						'You have %s pending comments in your site. Do you want to delete all of them?',
+						$pending_comments_count,
+						'stop-spammer-registrations-plugin'
+					),
+					number_format_i18n( $pending_comments_count )
+				);
+				?>
+			</p>
+
+
+			<p>
+				<?php _e( 'You have to type the following text into the textbox to delete all the pending comments:', 'stop-spammer-registrations-plugin' ); ?>
+			</p>
+
+			<blockquote>
+				<em>
+					<?php echo $magic_string ?>
+				</em>
+			</blockquote>
+			 <textarea name="ss_delete_pending_comment_confirmation_text"></textarea>
+	         <button name="ss_delete_pending_comment" class="button-primary"><?php _e( 'Delete', 'stop-spammer-registrations-plugin' );?></button>
+     	
+				<?php
+		} else {
+			?>
+			<p>
+				<?php _e( 'There are no pending or spam comments in your site.', 'stop-spammer-registrations-plugin' ); ?>
+			</p>
+			<?php
+		}
+	  }
+		?>
+       <?php if (isset ($_GET['tab']) and  $_GET['tab'] == 'db-cleaup'):?>	<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that they don&acute;t autoload. Be aware that you can break some plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p></div>
+	    <table id="sstable" name="sstable" cellspacing="2">
 			<thead>
 			<tr bgcolor="#fff">
 				<th class="ss_cleanup"><?php _e( 'Option', 'stop-spammer-registrations-plugin' ); ?></th>
@@ -284,6 +350,7 @@ ss_fix_post_vars();
 			?>
 		</table>
 		<p class="submit"><input class="button-primary" value="<?php _e( 'Update', 'stop-spammer-registrations-plugin' ); ?>" type="submit" onclick="return confirm('Are you sure? These changes are permenant.');"></p>
+	<?php endif;?>
 	</form>
 	<?php
 	$m1 = memory_get_usage();
