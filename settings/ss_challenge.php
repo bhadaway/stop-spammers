@@ -291,6 +291,18 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br />
 		<br />
+
+		<hr>
+		<div id="autoemails" class="mainsection"><?php _e( 'Options for emails to admin', 'stop-spammer-registrations-plugin' ); ?>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+		</div>
+		<div class="checkbox switcher">
+			<label id="" for="new_user_notification_to_admin">
+				<input class="ss_toggle" type="checkbox" id="new_user_notification_to_admin" name="new_user_notification_to_admin" value="Y" <?php if ( isset( $new_user_notification_to_admin ) and $new_user_notification_to_admin == 'Y' ) { echo 'checked="checked"'; }?> 
+				/><span><small></small></span>
+		  		<small><span style="font-size:16px!important"><?php _e( 'New user notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
+			</label>
+		</div>
 	<div class="checkbox switcher">
 			<label id="" for="ss_password_change_notification_to_admin">
 				<input class="ss_toggle" type="checkbox" id="ss_password_change_notification_to_admin" name="ss_password_change_notification_to_admin" value="Y" <?php if ( isset( $ss_password_change_notification_to_admin ) and $ss_password_change_notification_to_admin == 'Y' ) { echo 'checked="checked"'; }?> 
@@ -449,20 +461,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Comment', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br />
-		<hr>
-		<div id="autoemails" class="mainsection"><?php _e( 'Options for emails to admin', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
-		</div>
-		<div class="checkbox switcher">
-			<label id="" for="new_user_notification_to_admin">
-				<input class="ss_toggle" type="checkbox" id="new_user_notification_to_admin" name="new_user_notification_to_admin" value="Y" <?php if ( isset( $new_user_notification_to_admin ) and $new_user_notification_to_admin == 'Y' ) { echo 'checked="checked"'; }?> 
-				/><span><small></small></span>
-		  		<small><span style="font-size:16px!important"><?php _e( 'New user notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
-			</label>
-		</div>
-
-		
+	
 		<br />
 		<hr>
 		<div style="margin-left:30px">
