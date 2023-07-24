@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2023.2
+Version: 2023.3
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -11,8 +11,9 @@ Domain Path: /languages
 Text Domain: stop-spammer-registrations-plugin
 */
 
+
 // networking requires a couple of globals
-define( 'SS_VERSION', '2023.2' );
+define( 'SS_VERSION', '2023.3' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -43,7 +44,7 @@ function ss_admin_notice() {
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_23' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Thank you for using Stop Spammers! 💜</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br /><a href="' . admin_url( 'admin.php?page=stop_spammers#funding' ) . '" class="button-primary">' . esc_html__( 'About', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Thanks to your support, we have made several huge updates 💜</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br />			<a href="' . admin_url( 'admin.php?page=ss_challenge#autoemails' ) . '" class="button-primary">' . esc_html__( 'Control WordPress Emails', 'stop-spammer-registrations-plugin' ) . '</a> 			<a href="' . admin_url( 'admin.php?page=ss_option_maint' ) . '" class="button-primary">' . esc_html__( 'Disable Spam Users', 'stop-spammer-registrations-plugin' ) . '</a>			<a href="' . admin_url( 'admin.php?page=ss_option_maint&tab=delete_comments' ) . '" class="button-primary">' . esc_html__( 'Mass Delete Pending Comments', 'stop-spammer-registrations-plugin' ) . '</a>			<a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
@@ -1314,17 +1315,8 @@ function ss_blocklist_popup() {
    // check if block list popup has already shown
    if ( !isset( $options['chkpopup'] ) or $options['chkpopup'] == '' ) {
 		$options['chkpopup'] = 'Y';
-		$options['new_user_notification_to_admin'] = 'Y';
-		$options['ss_new_user_notification_to_user'] = 'Y';
-		$options['ss_password_change_notification_to_admin'] = 'Y';
-		$options['ss_send_password_forgotten_email'] = 'Y';
-		$options['ss_auto_core_update_send_email'] = 'Y';
-		$options['ss_auto_plugin_update_send_email'] = 'Y';
-		$options['ss_auto_theme_update_send_email'] = 'Y';
-		$options['ss_send_email_change_email'] = 'Y';
-		$options['ss_wp_notify_moderator'] = 'Y';
-		$options['ss_wp_notify_post_author'] = 'Y';
-        $options['ss_password_change_notification_to_user'] = 'Y';
+		
+
 		update_option( 'ss_stop_sp_reg_options', $options );
 		add_action( 'admin_footer', 'ss_modal' );
    }
@@ -1339,7 +1331,18 @@ function ss_submit_popup() {
 	}
 }
 add_action( 'admin_init', 'ss_submit_popup' );
-
 require_once( 'modules/pluggable-functions.php' );
 
+
+add_filter( 'authenticate', 'ss_authenticate_hook', 30, 3 );
+
+function ss_authenticate_hook($user, $username, $password) {
+    if ($user instanceof \WP_User) {
+      $tm = get_user_meta($user->ID, '_IUD_userBlockedTime', true);
+      if ($tm) {
+        return new \WP_Error( 'account_is_blocked', __( '<strong>ERROR</strong>: Given account is blocked.' ) );
+      }
+    }
+    return $user;
+  }
 ?>
