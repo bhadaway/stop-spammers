@@ -410,6 +410,10 @@
 	margin: 0px 0px 25px 0px;
 }
 
+#ss-plugin .center {
+	text-align: center;
+}
+
 .wrap > div.notice {
 	margin-bottom: 30px;
 }

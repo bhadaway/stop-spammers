@@ -512,5 +512,5 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		';
 	}
 	?>
-	<a href="https://stopspammers.io/contact/contributors/" target="_blank" class="button-secondary">Meet the Team</a>
+	<p class="center"><a href="https://stopspammers.io/contact/contributors/" target="_blank" class="button-secondary">Meet the Team</a></p>
 </div>
