@@ -14,7 +14,6 @@ $now	 = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
 $nonce   = '';
-
 $license = get_option( 'ssp_license_key' );
 $status  = get_option( 'ssp_license_status' );
 

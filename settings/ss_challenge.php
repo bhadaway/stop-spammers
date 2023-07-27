@@ -1,4 +1,5 @@
 <?php
+
 if ( !defined( 'ABSPATH' ) ) {
 	http_response_code( 404 );
 	die();
@@ -7,6 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( !current_user_can( 'manage_options' ) ) {
 	die( __( 'Access Blocked', 'stop-spammer-registrations-plugin' ) );
 }
+
 ss_fix_post_vars();
 $now	 = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
@@ -14,9 +16,11 @@ extract( $options );
 // $ip = ss_get_ip();
 $nonce   = '';
 $msg	 = '';
+
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
 }
+
 if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	if ( array_key_exists( 'action', $_POST ) ) {
 		$optionlist = array( 'redir', 'notify', 'emailrequest', 'wlreq' );
@@ -35,105 +39,82 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$redirurl			 = esc_url( trim( $_POST['redirurl'] ) );
 			$options['redirurl'] = $redirurl;
 		}
-
 		if ( array_key_exists( 'wlreqmail', $_POST ) ) {
 			$wlreqmail			  = sanitize_email( trim( $_POST['wlreqmail'] ) );
 			$options['wlreqmail'] = $wlreqmail;
 		}
-		if ( array_key_exists( 'new_user_notification_to_admin', $_POST ) ) {
-			 
-			$new_user_notification_to_admin			 = sanitize_text_field( trim( $_POST['new_user_notification_to_admin'] ) );
+		if ( array_key_exists( 'new_user_notification_to_admin', $_POST ) ) {	 
+			$new_user_notification_to_admin			   = sanitize_text_field( trim( $_POST['new_user_notification_to_admin'] ) );
 			$options['new_user_notification_to_admin'] = $new_user_notification_to_admin;
 		}
 		else {
 			$options['new_user_notification_to_admin'] = 'N';
 		}
-
 		if ( array_key_exists( 'ss_new_user_notification_to_user', $_POST ) ) {
-			 
 			$ss_new_user_notification_to_user			 = sanitize_text_field( trim( $_POST['ss_new_user_notification_to_user'] ) );
 			$options['ss_new_user_notification_to_user'] = $ss_new_user_notification_to_user;
 		}
 		else {
 			$options['ss_new_user_notification_to_user'] = 'N';
 		}
-
-        
         if ( array_key_exists( 'ss_send_email_change_email', $_POST ) ) {
-			 
 			$ss_send_email_change_email	= sanitize_text_field( trim( $_POST['ss_send_email_change_email'] ) );
 			$options['ss_send_email_change_email'] = $ss_send_email_change_email;
 		}
 		else {
 			$options['ss_send_email_change_email'] = 'N';
 		}
-
-		
 		if ( array_key_exists( 'ss_send_password_forgotten_email', $_POST ) ) {	 
-			$ss_send_password_forgotten_email = sanitize_text_field( trim( $_POST['ss_send_password_forgotten_email'] ) );
+			$ss_send_password_forgotten_email			 = sanitize_text_field( trim( $_POST['ss_send_password_forgotten_email'] ) );
 			$options['ss_send_password_forgotten_email'] = $ss_send_password_forgotten_email;
 		}
 		else {
 			$options['ss_send_password_forgotten_email'] = 'N';
 		}
-
-		if ( array_key_exists( 'ss_wp_notify_moderator', $_POST ) ) {
-			 
-			$ss_wp_notify_moderator			 = sanitize_text_field( trim( $_POST['ss_wp_notify_moderator'] ) );
+		if ( array_key_exists( 'ss_wp_notify_moderator', $_POST ) ) { 
+			$ss_wp_notify_moderator			   = sanitize_text_field( trim( $_POST['ss_wp_notify_moderator'] ) );
 			$options['ss_wp_notify_moderator'] = $ss_wp_notify_moderator;
 		}
 		else {
 			$options['ss_wp_notify_moderator'] = 'N';
 		}
-
-		 
         if ( array_key_exists( 'ss_wp_notify_post_author', $_POST ) ) {
-			 
-			$ss_wp_notify_post_author	= sanitize_text_field( trim( $_POST['ss_wp_notify_post_author'] ) );
+			$ss_wp_notify_post_author			 = sanitize_text_field( trim( $_POST['ss_wp_notify_post_author'] ) );
 			$options['ss_wp_notify_post_author'] = $ss_wp_notify_post_author;
 		}
 		else {
 			$options['ss_wp_notify_post_author'] = 'N';
 		}
-
-       if ( array_key_exists( 'ss_password_change_notification_to_admin', $_POST ) ) {
-			 
-			$ss_password_change_notification_to_admin		= sanitize_text_field( trim( $_POST['ss_password_change_notification_to_admin'] ) );
+		if ( array_key_exists( 'ss_password_change_notification_to_admin', $_POST ) ) {
+			$ss_password_change_notification_to_admin			 = sanitize_text_field( trim( $_POST['ss_password_change_notification_to_admin'] ) );
 			$options['ss_password_change_notification_to_admin'] = $ss_password_change_notification_to_admin;
 		}
 		else {
 			$options['ss_password_change_notification_to_admin'] = 'N';
 		}
-
 		if ( array_key_exists( 'ss_password_change_notification_to_user', $_POST ) ) {
-			 
-			$ss_password_change_notification_to_user = sanitize_text_field( trim( $_POST['ss_password_change_notification_to_user'] ) );
+			$ss_password_change_notification_to_user			= sanitize_text_field( trim( $_POST['ss_password_change_notification_to_user'] ) );
 			$options['ss_password_change_notification_to_user'] = $ss_password_change_notification_to_user;
 		}
 		else {
 			$options['ss_password_change_notification_to_user'] = 'N';
 		}
-
 		if ( array_key_exists( 'ss_auto_core_update_send_email', $_POST ) ) {
-			 
-			$ss_auto_core_update_send_email			 = sanitize_text_field( trim( $_POST['ss_auto_core_update_send_email'] ) );
+			$ss_auto_core_update_send_email			   = sanitize_text_field( trim( $_POST['ss_auto_core_update_send_email'] ) );
 			$options['ss_auto_core_update_send_email'] = $ss_auto_core_update_send_email;
 		}
 		else {
 			$options['ss_auto_core_update_send_email'] = 'N';
 		}
 		if ( array_key_exists( 'ss_auto_plugin_update_send_email', $_POST ) ) {
-			 
 			$ss_auto_plugin_update_send_email			 = sanitize_text_field( trim( $_POST['ss_auto_plugin_update_send_email'] ) );
 			$options['ss_auto_plugin_update_send_email'] = $ss_auto_plugin_update_send_email;
 		}
 		else {
 			$options['ss_auto_plugin_update_send_email'] = 'N';
 		}
-
         if ( array_key_exists( 'ss_auto_theme_update_send_email', $_POST ) ) {
-			 
-			$ss_auto_theme_update_send_email			 = sanitize_text_field( trim( $_POST['ss_auto_core_update_send_email'] ) );
+			$ss_auto_theme_update_send_email			= sanitize_text_field( trim( $_POST['ss_auto_core_update_send_email'] ) );
 			$options['ss_auto_theme_update_send_email'] = $ss_auto_theme_update_send_email;
 		}
 		else {
@@ -148,19 +129,19 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$options['chkcaptcha'] = $chkcaptcha;
 		}
 		if ( array_key_exists( 'form_captcha_login', $_POST ) and ( $chkcaptcha == 'G' or $chkcaptcha == 'H' or $chkcaptcha == 'S' ) ) {
-			$form_captcha_login = sanitize_text_field( trim( $_POST['form_captcha_login'] ) );
+			$form_captcha_login			   = sanitize_text_field( trim( $_POST['form_captcha_login'] ) );
 			$options['form_captcha_login'] = $form_captcha_login;
 		} else {
 			$options['form_captcha_login'] = 'N';
 		}
 		if ( array_key_exists( 'form_captcha_registration', $_POST ) and ( $chkcaptcha == 'G' or $chkcaptcha == 'H' or $chkcaptcha == 'S' ) ) {
-			$form_captcha_login = sanitize_text_field( trim( $_POST['form_captcha_registration'] ) );
+			$form_captcha_login					  = sanitize_text_field( trim( $_POST['form_captcha_registration'] ) );
 			$options['form_captcha_registration'] = $form_captcha_login;
 		} else {
 			$options['form_captcha_registration'] = 'N';
 		}
 		if ( array_key_exists( 'form_captcha_comment', $_POST ) and ( $chkcaptcha == 'G' or $chkcaptcha == 'H' or $chkcaptcha == 'S' ) ) {
-			$form_captcha_login = sanitize_text_field( trim( $_POST['form_captcha_comment'] ) );
+			$form_captcha_login				 = sanitize_text_field( trim( $_POST['form_captcha_comment'] ) );
 			$options['form_captcha_comment'] = $form_captcha_login;
 		} else {
 			$options['form_captcha_comment'] = 'N';
@@ -196,7 +177,6 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 			$options['chkcaptcha'] = $chkcaptcha;
 			$msg				   = __( 'You cannot use Google reCAPTCHA unless you have entered an API key.', 'stop-spammer-registrations-plugin' );
 		}
-		
 		if ( $chkcaptcha == 'H' && ( $hcaptchaapisecret == '' || $hcaptchaapisite == '' ) ) {
 			$chkcaptcha			   = 'Y';
 			$options['chkcaptcha'] = $chkcaptcha;
@@ -212,8 +192,11 @@ if ( wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	$update = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
  }
+
 $nonce = wp_create_nonce( 'ss_stopspam_update' );
+
 ?>
+
 <div id="ss-plugin" class="wrap">
 	<h1 class="ss_head">Stop Spammers — <?php _e( 'Challenge & Block', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<?php if ( !empty( $update ) ) {
@@ -290,7 +273,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br />
-		<hr>
+		<hr />
 		<div id="autoemails" class="mainsection"><?php _e( 'Options for emails to admin', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
@@ -301,54 +284,51 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'New user notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		 </br>
-	<div class="checkbox switcher">
+		<br />
+		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_password_change_notification_to_admin">
 				<input class="ss_toggle" type="checkbox" id="ss_password_change_notification_to_admin" name="ss_password_change_notification_to_admin" value="Y" <?php if ( isset( $ss_password_change_notification_to_admin ) and $ss_password_change_notification_to_admin == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Password change notification to admin', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-         </br>
-         <div class="checkbox switcher">
+		<br />
+		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_auto_core_update_send_email">
 				<input class="ss_toggle" type="checkbox" id="ss_auto_core_update_send_email" name="ss_auto_core_update_send_email" value="Y" <?php if ( isset( $ss_auto_core_update_send_email ) and $ss_auto_core_update_send_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress core update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-
-     </br>
-         <div class="checkbox switcher">
+		<br />
+		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_auto_plugin_update_send_email">
 				<input class="ss_toggle" type="checkbox" id="ss_auto_plugin_update_send_email" name="ss_auto_plugin_update_send_email" value="Y" <?php if ( isset( $ss_auto_plugin_update_send_email ) and $ss_auto_plugin_update_send_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress plugin update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-
-</br>
-         <div class="checkbox switcher">
+		<br />
+		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_auto_theme_update_send_email">
 				<input class="ss_toggle" type="checkbox" id="ss_auto_theme_update_send_email" name="ss_auto_theme_update_send_email" value="Y" <?php if ( isset( $ss_auto_theme_update_send_email ) and $ss_auto_theme_update_send_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress theme update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-
-
-		<hr>
-          <div class="mainsection"><?php _e( 'Options for emails to users', 'stop-spammer-registrations-plugin' ); ?>
+		<hr />
+		<div class="mainsection"><?php _e( 'Options for emails to users', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
-
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_new_user_notification_to_user">
 				<input class="ss_toggle" type="checkbox" id="ss_new_user_notification_to_user" name="ss_new_user_notification_to_user" value="Y" <?php if ( isset( $ss_new_user_notification_to_user ) and $ss_new_user_notification_to_user == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'New user notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
-		</div><br/>
+		</div>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_wp_notify_post_author">
 				<input class="ss_toggle" type="checkbox" id="ss_wp_notify_post_author" name="ss_wp_notify_post_author" value="Y" <?php if ( isset( $ss_wp_notify_post_author ) and $ss_wp_notify_post_author == 'Y' ) { echo 'checked="checked"'; }?> 
@@ -356,7 +336,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Notify Postauthor', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br/>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_wp_notify_moderator">
 				<input class="ss_toggle" type="checkbox" id="ss_wp_notify_moderator" name="ss_wp_notify_moderator" value="Y" <?php if ( isset( $ss_wp_notify_moderator ) and $ss_wp_notify_moderator == 'Y' ) { echo 'checked="checked"'; }?> 
@@ -364,7 +344,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Notify Moderator', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br/>
+		<br />
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_password_change_notification_to_user">
 				<input class="ss_toggle" type="checkbox" id="ss_password_change_notification_to_user" name="ss_password_change_notification_to_user" value="Y" <?php if ( isset( $ss_password_change_notification_to_user ) and $ss_password_change_notification_to_user == 'Y' ) { echo 'checked="checked"'; }?> 
@@ -372,7 +352,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Password change notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-	 </br>
+		<br />
         <div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_send_email_change_email">
 				<input class="ss_toggle" type="checkbox" id="ss_send_email_change_email" name="ss_send_email_change_email" value="Y" <?php if ( isset( $ss_send_email_change_email ) and $ss_send_email_change_email == 'Y' ) { echo 'checked="checked"'; }?> 
@@ -380,17 +360,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Email address change notification to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-       		<br/>
-
-       <div class="checkbox switcher">
+		<br />
+		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_send_password_forgotten_email">
 				<input class="ss_toggle" type="checkbox" id="ss_send_password_forgotten_email" name="ss_send_password_forgotten_email" value="Y" <?php if ( isset( $ss_send_password_forgotten_email ) and $ss_send_password_forgotten_email == 'Y' ) { echo 'checked="checked"'; }?> 
 				/><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Password forgotten email to user', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br/>
-		<br/>
+		<br />
+		<br />
 		<div class="mainsection"><?php _e( 'CAPTCHA', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#captcha" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
@@ -463,7 +442,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br />		
 		<br />
-		<hr>
+		<hr />
 		<div style="margin-left:30px">
 			<small><span style="font-size:16px!important;"><?php _e( 'Google reCAPTCHA v2 API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br />
 			<input size="64" name="recaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $recaptchaapisite ); ?>" />

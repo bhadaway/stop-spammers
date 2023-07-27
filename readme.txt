@@ -3,7 +3,7 @@
 Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Tested up to: 6.2
+Tested up to: 6.3
 Stable tag: 2023.3
 License: https://www.gnu.org/licenses/gpl.html
 
@@ -99,9 +99,8 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
-
 = 2023.3 =
-* [New] User filter/lookup to find spam registrations based on email top level domain, where first name = last name, and comment history.
+* [New] User filter/lookup to find spam registrations based on email top level domain, where first name = last name, and comment history
 * [New] Mass disable users
 * [New] Mass delete pending comments
 
