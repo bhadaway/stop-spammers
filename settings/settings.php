@@ -103,8 +103,8 @@ function ss_admin_menu_l() {
 	);
 	add_submenu_page(
 		'stop_spammers', // plugins parent
-		__( 'Beta: DB Cleanup — Stop Spammers', 'stop-spammer-registrations-plugin' ), // $page_title,
-		__( 'Beta: DB Cleanup', 'stop-spammer-registrations-plugin' ), // $menu_title,
+		__( 'Cleanup — Stop Spammers', 'stop-spammer-registrations-plugin' ), // $page_title,
+		__( 'Cleanup', 'stop-spammer-registrations-plugin' ), // $menu_title,
 		'manage_options', // $capability,
 		'ss_option_maint', // $menu_slug,
 		'ss_option_maint' // function
