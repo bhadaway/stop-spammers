@@ -12,10 +12,10 @@
 			<?php _( 'Show in list if... ' ) ?>
 			<select name="flagsCND">
 				<option value="intersept" <?php echo !empty( $_POST[ 'flagsCND'] ) &&$_POST[ 'flagsCND'] == 'intersept' ? 'selected' : '' ?>>
-					<?php __( 'all conditions are true : AND CASE' ) ?>
+					<?php echo __( 'all conditions are true : AND CASE' ) ?>
 				</option>
 				<option value="add" <?php echo !empty( $_POST[ 'flagsCND'] ) && $_POST['flagsCND'] == 'add' ? 'selected' : '' ?>>
-					<?php __( 'any conditions are true : OR CASE' ) ?>
+					<?php echo __( 'any conditions are true : OR CASE' ) ?>
 				</option>
 			</select>
 		</td>
@@ -32,15 +32,15 @@
 		<td align="left" width="250">
 			<label for="flag_approve_no">
 				<input id="flag_approve_no" type="radio" name="f_approve" value="no" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'no' ) { echo 'checked'; } ?> />
-				<?php __( 'No' ) ?>
+				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="flag_approve_yes">
 				<input id="flag_approve_yes" type="radio" name="f_approve" value="yes" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'yes' ) { echo 'checked'; } ?> />
-				<?php __( 'Yes' ) ?>
+				<?php echo __( 'Yes' ) ?>
 			</label>
 			<label for="flag_approve_nomatter">
 				<input id="flag_approve_nomatter" type="radio" name="f_approve" value="0" <?php echo empty( $_POST[ 'f_approve'] ) ? 'checked' : '' ?> />
-				<?php __( 'Ignore' ) ?>
+				<?php echo __( 'Ignore' ) ?>
 			</label>
 		</td>
 	</tr>
@@ -52,15 +52,15 @@
 		<td align="left">
 			<label for="flag_has_spam_no">
 				<input id="flag_has_spam_no" type="radio" name="has_spam" value="no" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam']==='no' ) { echo 'checked'; } ?> />
-				<?php __( 'No' ) ?>
+				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="flag_has_spam_yes">
 				<input id="flag_has_spam_yes" type="radio" name="has_spam" value="yes" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam'] === 'yes' ) { echo 'checked'; } ?> />
-				<?php __( 'Yes' ) ?>
+				<?php echo __( 'Yes' ) ?>
 			</label>
 			<label for="flag_has_spam_nomatter">
 				<input id="flag_has_spam_nomatter" type="radio" name="has_spam" value="0" <?php echo empty( $_POST[ 'has_spam'] ) ? 'checked' : '' ?> />
-				<?php __( 'Ignore' ) ?>
+				<?php echo __( 'Ignore' ) ?>
 			</label>
 		</td>
 	</tr>
@@ -71,11 +71,11 @@
 		<td align="left" width="250">
 			<label for="ss_check_name_no">
 				<input id="ss_domain_no" type="radio" name="ss_check_name" value="no" <?php echo empty( $_POST[ 'ss_check_name'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked';} ?> />
-				<?php __( 'No' ) ?>
+				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="ss_check_name_yes">
 				<input id="ss_check_name_yes" type="radio" name="ss_check_name" value="yes" <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_check_name'] === 'yes' ) { echo 'checked';} ?> />
-				<?php __( 'Yes' ) ?>
+				<?php echo __( 'Yes' ) ?>
 			</label>
 		</td>
 	</tr>
@@ -86,11 +86,11 @@
 		<td align="left" width="250">
 			<label for="ss_domain_no">
 				<input id="ss_domain_no" type="radio" name="ss_domain" value="no" <?php echo empty( $_POST[ 'ss_domain'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked'; } ?> />
-				<?php __( 'No' ) ?>
+				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="ss_domain_yes">
 				<input id="ss_domain_yes" type="radio" name="ss_domain" value="yes" <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'yes' ) { echo 'checked'; } ?> />
-				<?php __( 'Yes' ) ?>
+				<?php echo __( 'Yes' ) ?>
 			</label>
 		</td>
 		<td>
