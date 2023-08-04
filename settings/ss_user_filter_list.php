@@ -5,95 +5,94 @@
 		<td colspan="2">
 			<h3>
 				<div class="section-title">
-					<?php __( 'Flags' ) ?>
+					<?php _e( 'Flags' ) ?>
 				</div>
 			</h3>
-			<hr width="50%" align="left" />
-			<?php _( 'Show in list if... ' ) ?>
+			<hr width="50%" align="left">
+			<br>
+			<?php echo _( 'Show in list if... ' ) ?>
 			<select name="flagsCND">
 				<option value="intersept" <?php echo !empty( $_POST[ 'flagsCND'] ) &&$_POST[ 'flagsCND'] == 'intersept' ? 'selected' : '' ?>>
-					<?php echo __( 'all conditions are true : AND CASE' ) ?>
+					<?php _e( 'ALL are true' ) ?>
 				</option>
 				<option value="add" <?php echo !empty( $_POST[ 'flagsCND'] ) && $_POST['flagsCND'] == 'add' ? 'selected' : '' ?>>
-					<?php echo __( 'any conditions are true : OR CASE' ) ?>
+					<?php _e( 'ANY are true' ) ?>
 				</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<?php _( 'User has ...' ) ?>
+			<?php echo _( 'User has...' ) ?>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<?php echo __( '... approved comments.' ) ?>
+			<?php _e( 'Approved Comments' ) ?>
 		</td>
 		<td align="left" width="250">
 			<label for="flag_approve_no">
+				<?php _e( 'No' ) ?>
 				<input id="flag_approve_no" type="radio" name="f_approve" value="no" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'no' ) { echo 'checked'; } ?> />
-				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="flag_approve_yes">
+				<?php _e( 'Yes' ) ?>
 				<input id="flag_approve_yes" type="radio" name="f_approve" value="yes" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'yes' ) { echo 'checked'; } ?> />
-				<?php echo __( 'Yes' ) ?>
 			</label>
 			<label for="flag_approve_nomatter">
+				<?php _e( 'Ignore' ) ?>
 				<input id="flag_approve_nomatter" type="radio" name="f_approve" value="0" <?php echo empty( $_POST[ 'f_approve'] ) ? 'checked' : '' ?> />
-				<?php echo __( 'Ignore' ) ?>
 			</label>
 		</td>
 	</tr>
 	<tr>
 	<?php // if ( !isset( $_POST[ 'has_spam'] ) ) $_POST[ 'has_spam'] = 'yes'; ?>
 		<td>
-			<?php echo __( '... spam comments.' ) ?>
+			<?php _e( 'Spam Comments' ) ?>
 		</td>
 		<td align="left">
 			<label for="flag_has_spam_no">
+				<?php _e( 'No' ) ?>
 				<input id="flag_has_spam_no" type="radio" name="has_spam" value="no" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam']==='no' ) { echo 'checked'; } ?> />
-				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="flag_has_spam_yes">
+				<?php _e( 'Yes' ) ?>
 				<input id="flag_has_spam_yes" type="radio" name="has_spam" value="yes" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam'] === 'yes' ) { echo 'checked'; } ?> />
-				<?php echo __( 'Yes' ) ?>
 			</label>
 			<label for="flag_has_spam_nomatter">
+				<?php _e( 'Ignore' ) ?>
 				<input id="flag_has_spam_nomatter" type="radio" name="has_spam" value="0" <?php echo empty( $_POST[ 'has_spam'] ) ? 'checked' : '' ?> />
-				<?php echo __( 'Ignore' ) ?>
 			</label>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<?php echo __( '... the same first and last name.' ) ?>
+			<?php _e( 'Same First/Last Name' ) ?>
 		</td>
 		<td align="left" width="250">
 			<label for="ss_check_name_no">
+				<?php _e( 'No' ) ?>
 				<input id="ss_domain_no" type="radio" name="ss_check_name" value="no" <?php echo empty( $_POST[ 'ss_check_name'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked';} ?> />
-				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="ss_check_name_yes">
+				<?php _e( 'Yes' ) ?>
 				<input id="ss_check_name_yes" type="radio" name="ss_check_name" value="yes" <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_check_name'] === 'yes' ) { echo 'checked';} ?> />
-				<?php echo __( 'Yes' ) ?>
 			</label>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<?php echo __( '... specified top level domain(s). [Separate TLDs by a comma]' ) ?>
+			<?php _e( 'Specific TLD (e.g. .xxx, .blog)' ) ?>
 		</td>
 		<td align="left" width="250">
 			<label for="ss_domain_no">
+				<?php _e( 'No' ) ?>
 				<input id="ss_domain_no" type="radio" name="ss_domain" value="no" <?php echo empty( $_POST[ 'ss_domain'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked'; } ?> />
-				<?php echo __( 'No' ) ?>
 			</label>
 			<label for="ss_domain_yes">
+				<?php _e( 'Yes' ) ?>
 				<input id="ss_domain_yes" type="radio" name="ss_domain" value="yes" <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'yes' ) { echo 'checked'; } ?> />
-				<?php echo __( 'Yes' ) ?>
 			</label>
-		</td>
-		<td>
 			<textarea cols="100" rows="2" name="ss_domain_text">
 				<?php echo isset( $_POST[ 'ss_domain_text'] ) ? htmlspecialchars( $_POST['ss_domain_text'] ) : '' ?>
 			</textarea>
@@ -103,72 +102,73 @@
 		<td colspan="2">
 			<h3>
 				<div class="section-title">
-					<?php __( 'Filters' ) ?>
+					<?php _e( 'Filters' ) ?>
 				</div>
 			</h3>
-			<hr width="50%" align="left" />
+			<hr width="50%" align="left">
+			<br>
 			<label for="usernameFilter">
-				<?php echo __( 'Username' ) ?>
+				<?php _e( 'Username' ) ?>
 			</label>
 			<input type="text" size="15" name="ss_username" value="<?php echo isset( $_POST['ss_username'] ) ? htmlspecialchars( $_POST['ss_username'] ) : '' ?>" id="usernameFilter" />
-			<br />
+			<br>
 			<small>
-				<?php echo __( 'Refine list by a username (e.g. test, example, etc.)' ) ?>
+				<?php _e( 'Refine list by a username (e.g. test, example, etc.).' ) ?>
 			</small>
 		</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="2">
 			<label for="flag_daysleft">
-			<?php echo __( 'User was created' ) ?>
+			<?php _e( 'User was created' ) ?>
 				<select name="f_daysleft">
 				<?php if ( !isset( $_POST[ 'f_daysleft'] ) ) $_POST[ 'f_daysleft'] = 1; ?>
 					<option value="1" <?php !empty( $_POST[ 'f_daysleft'] ) ? 'selected' : '' ?>>
-						<?php __( 'more' ) ?>
+						<?php _e( 'more' ) ?>
 					</option>
 					<option value="0" <?php empty( $_POST[ 'f_daysleft'] ) ? 'selected' : '' ?>>
-						<?php __( 'less' ) ?>
+						<?php _e( 'less' ) ?>
 					</option>
 				</select>
-				<?php __( 'than' ) ?>
+				<?php _e( 'than' ) ?>
 				<input type="text" size="4" name="daysleft" value="<?php echo isset( $_POST['daysleft'] ) ? intval( $_POST['daysleft'] ) : 7 ?>" />
-				<?php echo __( 'days ago.' ) ?>
+				<?php _e( 'days ago.' ) ?>
 			</label>
-			<br />
+			<br>
 			<small>
-				<?php echo __( 'Users need time to begin commenting. This filter can show recent registrations.' ) ?>
+				<?php _e( 'Users need time to begin commenting. This filter can show recent registrations.' ) ?>
 			</small>
 		</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="2">
 			<label for="f_lastlogin">
-			<?php echo __( 'Last time user logged in is more than' ) ?>
+			<?php _e( 'Last time user logged in is more than' ) ?>
 				<select name="f_lastlogin">
 					<option value="0">
-						-- no filter --
+						<?php _e( 'No Filter' ) ?>
 					</option>
 					<?php $columns = array( 15, 30, 60, 90, 180, 360, 720 ); foreach ( $columns as $v ) { print '<option value="' . $v . '" ' . ( $_POST[ 'f_lastlogin'] == $v ? 'selected' : '' ) . '>' . $v . '</option>'; } ?>
 				</select>
-				<?php echo __( 'days ago.' ) ?>
+				<?php _e( 'days ago.' ) ?>
 			</label>
-			<br />
+			<br>
 			<small>
-				<?php echo __( 'Search by last login.' ) ?>
+				<?php _e( 'Search by last login.' ) ?>
 			</small>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
 			<label for="user_role">
-				<?php echo __( 'User role ' ) ?>
+				<?php _e( 'User role ' ) ?>
 			</label>
 			<select name="user_role">
-				<?php global $wp_roles; $roles = array( '' => '-- Any --' ) + $wp_roles->get_names(); foreach ( $roles as $roleId => $roleName ) { print '<option value="' . $roleId . '" ' . ($_POST['user_role'] == $roleId ? 'selected ' : ' ' ) . '>' . $roleName . '</option>'; } ?>
+				<?php global $wp_roles; $roles = array( '' => 'Any Role' ) + $wp_roles->get_names(); foreach ( $roles as $roleId => $roleName ) { print '<option value="' . $roleId . '" ' . ($_POST['user_role'] == $roleId ? 'selected ' : ' ' ) . '>' . $roleName . '</option>'; } ?>
 			</select>
-			<br />
+			<br>
 			<small>
-				<?php echo __( 'Filter by user role' ) ?>
+				<?php _e( 'Filter by user role.' ) ?>
 			</small>
 		</td>
 	</tr>
@@ -176,30 +176,31 @@
 		<td align="left" colspan="2">
 			<h3>
 				<div class="section-title">
-					<?php __( 'Table formatting' ) ?>
+					<?php _e( 'Table Formatting' ) ?>
 				</div>
 			</h3>
-			<hr width="50%" align="left" />
+			<hr width="50%" align="left">
+			<br>
 			<label for="sort_order">
-				<?php echo __( 'Show' ) ?>
+				<?php _e( 'Show' ) ?>
 			</label>
 			<select id="max_size_output" name="max_size_output" />
-			<?php $columns = array( '150', '300', '500', '1000', '3000', 'all' ); foreach ( $columns as $v ) {
+			<?php $columns = array( '150', '300', '500', '1000', '3000', 'All' ); foreach ( $columns as $v ) {
 				print '<option value="' . $v . '" ' . ( $_POST['max_size_output'] == $v ? 'selected' : '' ) . '>' . $v . '</option>';
 			} ?>
 			</select>
-			<?php echo __( 'records' ) ?>
-			<br />
+			<?php _e( 'records' ) ?>
+			<br>
 			<small>
-				<?php echo __( 'Max sent allowed is' ) . ' ' . ini_get( 'max_input_vars' ) . ' ' . __( 'input vars.' ) ?>
+				<?php _e( 'Max sent allowed is' ) . ' ' . ini_get( 'max_input_vars' ) . ' ' . __( 'input vars.' ) ?>
 			</small>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input class="button-primary" type="submit" value="<?php echo __( 'Search' ) ?>" name="ss_search" />
-			<button class="button-primary" onclick=" window.open( '<?php echo admin_url( " admin-ajax.php " ) ?>' + '?action=iud_getCsvUserList&' + jQuery('#inactive-user-deleter-form').serialize()); return false;">
-				<?php echo __( 'Export to CSV' ) ?>
+			<input class="button-primary" type="submit" value="<?php _e( 'Search' ) ?>" name="ss_search" />
+			<button class="button-primary" onclick="window.open('<?php echo admin_url( "admin-ajax.php" ) ?>' + '?action=iud_getCsvUserList&' + jQuery('#inactive-user-deleter-form').serialize()); return false;">
+				<?php _e( 'Export to CSV' ) ?>
 			</button>
 		</td>
 	</tr>
@@ -216,7 +217,7 @@ if ( isset( $_POST['ss_search'] ) ) {
 		$user_list = $userListObject->rows;
 		$total = $userListObject->total;
 		if ( empty( $userListObject->rows ) ) {
-			echo __( '<p><b>No users are found.</b></p>' );
+			echo __( '<p><strong>No users are found.</strong></p>' );
 		} else {
 			include_once 'ss_user_list.php';
 		}
@@ -226,11 +227,11 @@ if ( isset( $_POST['ss_search'] ) ) {
 function ss_isVIPUser( $userID ) {
 	global $user_ID;
 	if ( $userID == $user_ID ) {
-		// i never will delete current-user
-		return __( 'I can\'t to delete your profile !' );
+		// i never will delete current user
+		return __( 'I can\'t delete your profile!' );
 	}
 	if ( $userID == 1 ) {
-		return __( 'I will never delete the super-user !' );
+		return __( 'I will never delete the super user!' );
 	}
 	return false;
 }
@@ -422,7 +423,7 @@ if ( isset( $_POST['op'] ) ) {
 	switch ( $_POST['op'] ) {
 		case 'disable':
 		// disable accounts
-		echo __( 'Disabling...' ) . '<br />';
+		echo __( 'Disabling...' ) . '<br>';
 		$cnt_disabled = 0;
 		foreach ( $_POST['f_users'] as $user_id_to_disable ) {
 			$result = ss_isVIPUser( $user_id_to_disable );
@@ -433,7 +434,7 @@ if ( isset( $_POST['op'] ) ) {
 					$cnt_disabled++;
 				}
 			} else {
-				echo $result . '<br />';
+				echo $result . '<br>';
 			}
 		}
 		// output actions status
@@ -445,7 +446,7 @@ if ( isset( $_POST['op'] ) ) {
 		break;
 		case 'activate':
 		// enable accounts
-		echo __( 'Enabling accounts...' ) . '<br />';
+		echo __( 'Enabling accounts...' ) . '<br>';
 		$cnt_enabled = 0;
 		foreach ( $_POST['f_users'] as $user_id_to_enable ) {
 			$tm = get_user_meta( $user_id_to_enable, '_IUD_userBlockedTime', true );

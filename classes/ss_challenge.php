@@ -78,12 +78,12 @@ class ss_challenge extends be_module {
 					$allowset = $this->ss_add_allow( $ip, $options, $stats, $post, $post );
 				}
 				// now the CAPTCHA settings
-				$msg = __( 'Thank you,<br />', 'stop-spammer-registrations-plugin' );
+				$msg = __( 'Thank you,<br>', 'stop-spammer-registrations-plugin' );
 				if ( $emailsent ) {
-					$msg .= __( 'The webmaster has been notified by email.<br />', 'stop-spammer-registrations-plugin' );
+					$msg .= __( 'The webmaster has been notified by email.<br>', 'stop-spammer-registrations-plugin' );
 				}
 				if ( $allowset ) {
-					$msg .= __( 'Your request has been recorded.<br />', 'stop-spammer-registrations-plugin' );
+					$msg .= __( 'Your request has been recorded.<br>', 'stop-spammer-registrations-plugin' );
 				}
 				if ( empty( $chkcaptcha ) || $chkcaptcha == 'N' ) {
 					// send out the thank you message
@@ -260,7 +260,7 @@ class ss_challenge extends be_module {
 		// this may be the second time through
 		$formtop = '';
 		if ( !empty( $msg ) ) {
-			$msg = "\r\n<br /><span style='color:red'> $msg </span><hr />\r\n";
+			$msg = "\r\n<br><span style='color:red'> $msg </span><hr>\r\n";
 		}
 		$formtop .= '
 			<form action="" method="post">
@@ -281,8 +281,8 @@ class ss_challenge extends be_module {
 				<h1>Allow Request</h1>
 				<p>You have been blocked from entering information on this site. In order to prevent this from happening in the future, complete the request below to have the admin add your IP to a list that allows you full access.</p>
 				<p>Please enter your <strong>e</strong><strong>ma</strong><strong>il</strong> <strong>add</strong><strong>re</strong><strong>ss</strong> and a short note requesting access here.</p>
-				Email Address (required)<!-- not the message -->: <input type="text" value="" name="ke" style="padding:5px" class="regular-text" /><br />
-				Message<!-- not email -->:<br /><textarea name="km" placeholder="Explain what you were trying to do or if you were submitting a contact form, re-enter your message." rows="5" style="box-sizing:border-box;width:100%;padding:15px" class="large-text"></textarea>
+				Email Address (required)<!-- not the message -->: <input type="text" value="" name="ke" style="padding:5px" class="regular-text" /><br>
+				Message<!-- not email -->:<br><textarea name="km" placeholder="Explain what you were trying to do or if you were submitting a contact form, re-enter your message." rows="5" style="box-sizing:border-box;width:100%;padding:15px" class="large-text"></textarea>
 			', 'stop-spammer-registrations-plugin' );
 		}
 		$captop = __( '<h1>Are you human?</h1>', 'stop-spammer-registrations-plugin' );
@@ -313,10 +313,10 @@ class ss_challenge extends be_module {
 				$cap					= "
 					<script src='https://api-secure.solvemedia.com/papi/challenge.script?k=$solvmediaapivchallenge'></script>
 					<noscript>
-					<iframe src='https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge' height='300' width='500' frameborder='0'></iframe><br />
+					<iframe src='https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge' height='300' width='500' frameborder='0'></iframe><br>
 					<textarea name='adcopy_challenge' rows='3' cols='40'></textarea>
 					<input type='hidden' name='adcopy_response' value='manual_challenge' />
-					</noscript><br />
+					</noscript><br>
 				";
 				break;
 			case 'A':
@@ -333,9 +333,9 @@ class ss_challenge extends be_module {
 				}
 				$stupid = $n1 + $n2 - $seed;
 				$cap	= __( '
-					<p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . $n1 . ' + ' . $n2 . '</span><br />
+					<p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . $n1 . ' + ' . $n2 . '</span><br>
 					<input name="sum" value="" type="text" />
-					<input type="hidden" name="nums" value="' . $stupid . '" /><br />
+					<input type="hidden" name="nums" value="' . $stupid . '" /><br>
 				', 'stop-spammer-registrations-plugin' );
 				break;
 			case 'F':

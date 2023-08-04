@@ -66,7 +66,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	if ( !empty( $msg ) ) {
 		echo $msg;
 	} ?>
-	<br />
+	<br>
 	<div class="ss_info_box">
 	<?php _e( '
 		<p>Whenever a user tries to leave a comment, register, or login, they are
@@ -80,7 +80,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 		<label class="keyhead">
 			<?php _e( 'Bad IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
-			<br />
+			<br>
 			<select name="ss_sp_cache">
 				<option value="0" <?php if ( $ss_sp_cache == '0' ) { echo 'selected="true"'; } ?>>0</option>
 				<option value="10" <?php if ( $ss_sp_cache == '10' ) { echo 'selected="true"'; } ?>>10</option>
@@ -91,11 +91,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<option value="200" <?php if ( $ss_sp_cache == '200' ) { echo 'selected="true"'; } ?>>200</option>
 			</select>
 		</label>
-		<br />
-		<br />
+		<br>
+		<br>
 		<label class="keyhead">
 			<?php _e( 'Good IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
-			<br />
+			<br>
 			<select name="ss_sp_good">
 				<option value="1" <?php if ( $ss_sp_good == '1' ) { echo 'selected="true"'; } ?>>1</option>
 				<option value="2" <?php if ( $ss_sp_good == '2' ) { echo 'selected="true"'; } ?>>2</option>
@@ -109,7 +109,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<option value="200" <?php if ( $ss_sp_good == '200' ) { echo 'selected="true"'; } ?>>200</option>
 			</select>
 		</label>
-		<br />
+		<br>
 		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 	</form>
 	<?php

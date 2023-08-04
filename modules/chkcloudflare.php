@@ -57,7 +57,7 @@ class chkcloudflare extends be_module {
 				$mask = - 1 << ( 32 - $bits );
 				$ipt = $ipl & $mask;
 				$ipr = $ipr & $mask;
-				// echo "$ipr - $ipl <br />";
+				// echo "$ipr - $ipl <br>";
 				if ( $ipt == $ipr ) {
 					// goto is not supported in older versions of PHP
 					// goto cf_true; // I love it!I haven't coded a goto in over 25 years.

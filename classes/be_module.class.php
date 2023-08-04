@@ -53,7 +53,7 @@ class be_module {
 				$_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
 			}
 		}
-		// echo "sname = $sname<br />";
+		// echo "sname = $sname<br>";
 		if ( empty( $sname ) ) {
 			$sname = '';
 		}
@@ -255,7 +255,7 @@ class be_module {
 					if ( $ipt >= $ips && $ipt <= $ipe ) {
 						if ( is_array( $ip ) ) {
 							_e( 'Array in IP: ', 'stop-spammer-registrations-plugin' ) . print_r( $ip, true )
-								 . "<br />";
+								 . "<br>";
 							$ip = $ip[0];
 						}
 						return $this->searchname . ': ' . $ip;
@@ -284,9 +284,9 @@ class be_module {
 			return false;
 		}
 		list( $ip, $bits ) = explode( '/', $cidr );
-		// echo "1) Bad end $ip, $bits,<br />";
+		// echo "1) Bad end $ip, $bits,<br>";
 		$ip = be_module::fixip( $ip ); // in case the wrong number of dots
-		// echo "2) Bad end $ip, $bits,<br />";
+		// echo "2) Bad end $ip, $bits,<br>";
 		if ( $ip === false ) {
 			return false;
 		}
@@ -295,14 +295,14 @@ class be_module {
 		$end   = sprintf( "%u", $end );
 		$end1  = $end + 0;
 		$num   = pow( 2, 32 - $bits ) - 1;
-		// echo "4) Bad end $num,<br />";
+		// echo "4) Bad end $num,<br>";
 		$end = ( $end + 0 ) | $num;
 		$end = $end + 1;
 		// $pend = long2ip( $end );
-		// echo "3) Bad end $pend,<br />";
+		// echo "3) Bad end $pend,<br>";
 		$end2 = long2ip( $end );
 		if ( $end == '128.0.0.0' ) {
-		// echo "Bad end $ip, $bits,$end, $end1, $end2, $num )<br />";
+		// echo "Bad end $ip, $bits,$end, $end1, $end2, $num )<br>";
 		}
 		$start = be_module::cidrStart2str( $start, $bits );
 		return array( $start, $end2 );
@@ -334,13 +334,13 @@ class be_module {
 		$ipl = ip2long( $ipl );
 		$ipl = sprintf( "%u", $ipl );
 		$num = pow( 2, 32 - $bits ) - 1;
-		// echo decbin( $num ) . '<br />';
+		// echo decbin( $num ) . '<br>';
 		$ipl = $ipl + 0;
-		// echo decbin( $ipl ) . '<br />';
+		// echo decbin( $ipl ) . '<br>';
 		$z = pow( 2, 33 ) - 1;
-		// echo 'z' . decbin( $z ) . '<br />';
+		// echo 'z' . decbin( $z ) . '<br>';
 		$z = $num ^ $z; // 10000000000000000000000000000 xor 0000000000000000000011111 = 011111111111111111111111100000
-		// echo 'z2' . decbin( $z ) . '<br />';
+		// echo 'z2' . decbin( $z ) . '<br>';
 		$ipl = $ipl & $z;
 		return long2ip( $ipl );
 	}

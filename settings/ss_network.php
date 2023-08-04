@@ -42,7 +42,7 @@ ss_fix_post_vars();
 			_e( '<h2>Options Updated</h2>', 'stop-spammer-registrations-plugin' );
 		}
 	} else {
-	// echo "no nonce<br />";
+	// echo "no nonce<br>";
 	}
 	$nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
@@ -51,9 +51,9 @@ ss_fix_post_vars();
 		<input type="hidden" name="action" value="update mu settings" />
 		<span style="font-weight:bold;font-size:1.2em"><?php _e( 'Network Blog Option', 'stop-spammer-registrations-plugin' ); ?></span>
 		<p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) { echo 'checked="true"'; } ?> />
-		<br />
+		<br>
 		<?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) { echo 'checked="true"'; } ?> />
-		<br />
+		<br>
 		<?php _e( 'If you are running WPMU and want to control options and history through the main login admin panel, select ON. If you select OFF, each blog will have to configure the plugin separately, and each blog will have a separte history.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 	</form>

@@ -463,7 +463,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 			$stopper	 = "<a title=\"" . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.stopforumspam.com/search.php?q=$signup_ip\"><img src=\"$stophand\" class=\"icon-action\" /></a>";
 			$honeysearch = "<a title=\"" . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://www.projecthoneypot.org/ip_$signup_ip\"><img src=\"$search\" class=\"icon-action\" /></a>";
 			$botsearch   = "<a title=\"" . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://botscout.com/search.htm?stype=q&sterm=$signup_ip\"><img src=\"$search\" class=\"icon-action\" /></a>";
-			$who		 = "<br /><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$signup_ip\"><img src=\"$whois\" class=\"icon-action\" /></a>";
+			$who		 = "<br><a title=\"" . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . "\" target=\"_stopspam\" href=\"https://whois.domaintools.com/$signup_ip\"><img src=\"$whois\" class=\"icon-action\" /></a>";
 			$action	     = " $who $stopper $honeysearch $botsearch";
 			$options	 = ss_get_options();
 			$apikey	     = $options['apikey'];

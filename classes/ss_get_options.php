@@ -1267,7 +1267,7 @@ class ss_get_options {
 			'ss_sp_cache_em' => 4,
 			'redirurl'	     => '',
 			'logfilesize'	 => 0,
-			'rejectmessage'  => "Access Blocked<br />"
+			'rejectmessage'  => "Access Blocked<br>"
 		);
 		$defaultCOUNTRY = array( // all yes - changed to no
 			'chkAD' => 'N',

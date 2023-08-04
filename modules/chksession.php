@@ -31,7 +31,7 @@ class chksession {
 		} else if ( array_key_exists( "PHP_SELF", $_SERVER ) ) {
 			$sname = substr( $_SERVER['PHP_SELF'], 1 );
 		}
-		// echo "Testing Session '$sname'<br />";
+		// echo "Testing Session '$sname'<br>";
 		if ( empty( $sname ) ) {
 			return false;
 		}

@@ -69,7 +69,7 @@ function ssp_global_add( $option, $value ) {
 	$f	  = substr( $filt, strlen( 'add_option_' ) );
 	// now add to list of options we are hooking
 	switch_to_blog( 1 );
-	// echo '<br />Updating $f, $value <br />';
+	// echo '<br>Updating $f, $value <br>';
 	$ansa = update_option( $f, $value );
 	restore_current_blog();
 	$ssp_semaphore --;

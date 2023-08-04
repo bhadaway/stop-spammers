@@ -30,7 +30,7 @@ class ss_get_bcache {
 			$onclick = "onclick=\"sfs_ajax_process('$key','$container','add_white','$ajaxurl');return false;\"";
 			$show   .= " <a href=\"\" $onclick title=\"" . esc_attr__( 'Add to $key Allow List', 'stop-spammer-registrations-plugin' ) . "\" alt=\"" . esc_attr__( 'Add to Allow List', 'stop-spammer-registrations-plugin' ) . "\" ><img src=\"$tup\" class=\"icon-action\" /></a>";
 			$show   .= $who;
-			$show   .= "<br />";
+			$show   .= "<br>";
 		}
 		return $show;
 	}

@@ -19,7 +19,7 @@ class chktld { // change name
 		// look in tlds for the tld in the email
 		foreach ( $post as $key => $value ) {
 			foreach ( $tld as $ft ) {
-				// echo "1 $key, $value, $ft<br />";
+				// echo "1 $key, $value, $ft<br>";
 				if ( empty( $key ) ) {
 					continue;
 				}
@@ -32,7 +32,7 @@ class chktld { // change name
 					continue;
 				}
 				// if ( empty( $ft ) ) continue;
-				// echo "2 $key, $value, $ft<br />";
+				// echo "2 $key, $value, $ft<br>";
 				$t  = explode( '.', $value );
 				$tt = implode( '.', array_slice( $t, count( $t ) - $dlvl, $dlvl ) );
 				$tt = '.' . trim( strtolower( $tt ) );

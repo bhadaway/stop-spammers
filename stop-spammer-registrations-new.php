@@ -43,7 +43,7 @@ function ss_admin_notice() {
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_24' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Thanks to your support, we are adding several updates 💜</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br /><br /><a href="' . admin_url( 'admin.php?page=ss_challenge#autoemails' ) . '" class="button-primary">' . esc_html__( 'Control WordPress Emails', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_option_maint' ) . '" class="button-primary">' . esc_html__( 'Disable Spam Users', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_option_maint&tab=delete_comments' ) . '" class="button-primary">' . esc_html__( 'Mass Delete Pending Comments', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Buy Premium Half Off', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Thanks to your support, we are adding several updates 💜</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br><a href="' . admin_url( 'admin.php?page=ss_challenge#autoemails' ) . '" class="button-primary">' . esc_html__( 'Control WordPress Emails', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_option_maint' ) . '" class="button-primary">' . esc_html__( 'Disable Spam Users', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_option_maint&tab=delete_comments' ) . '" class="button-primary">' . esc_html__( 'Mass Delete Pending Comments', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Buy Premium Half Off', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
@@ -632,7 +632,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 	$fd	= $ppath . $file . '.php';
 	$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	if ( !file_exists( $fd ) ) {
-		// echo "<br /><br />Missing $file $fd<br /><br />";
+		// echo "<br><br>Missing $file $fd<br><br>";
 		$ppath = plugin_dir_path( __FILE__ ) . 'modules/';
 		$fd	= $ppath . $file . '.php';
 		$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
@@ -643,7 +643,7 @@ function be_load( $file, $ip, &$stats = array(), &$options = array(), &$post = a
 		$fd	= str_replace( "/", DIRECTORY_SEPARATOR, $fd ); // Windows fix
 	}
 	if ( !file_exists( $fd ) ) {
-		_e( '<br /><br />Missing ' . $file, $fd . '<br /><br />', 'stop-spammer-registrations-plugin' );
+		_e( '<br><br>Missing ' . $file, $fd . '<br><br>', 'stop-spammer-registrations-plugin' );
 		return false;
 	}
 	require_once( $fd );
@@ -1020,7 +1020,7 @@ function ss_add_captcha() {
 			$solvmediaapivchallenge = $options['solvmediaapivchallenge'];
 			$html   = '<script src="https://api-secure.solvemedia.com/papi/challenge.script?k=' . $solvmediaapivchallenge . '"></script>';
 			$html  .= '<noscript>';
-			$html  .= '<iframe src="https://api-secure.solvemedia.com/papi/challenge.noscript?k=' . $solvmediaapivchallenge . '" height="300" width="500" frameborder="0"></iframe><br />';
+			$html  .= '<iframe src="https://api-secure.solvemedia.com/papi/challenge.noscript?k=' . $solvmediaapivchallenge . '" height="300" width="500" frameborder="0"></iframe><br>';
 			$html  .= '<textarea name="adcopy_challenge" rows="3" cols="40"></textarea>';
 			$html  .= '<input type="hidden" name="adcopy_response" value="manual_challenge" />';
 			$html  .= '</noscript>';
@@ -1286,8 +1286,8 @@ add_action( 'ss_whitelist_ip_cron', 'ss_whitelist_ip' );
 function ss_modal() { ?>
 	<div id="modal-1" class="modal-window" style="width:30%">
 		<h3><?php _e( 'By enabling this feature, you agree to share your Block List with our external API.', 'stop-spammer-registrations-plugin' ); ?> <a href="https://stopspammers.io/stop-spammers-features/hivemind-community-sourced-allow-and-block-lists/" target="_blank"><?php _e( 'Learn More', 'stop-spammer-registrations-plugin' ); ?></a></h3>
-		<br />
-		<br />
+		<br>
+		<br>
 		<form method="post" action="">
 			<div class='ss-plugin'>	   
 				<div class="checkbox switcher">
@@ -1297,11 +1297,11 @@ function ss_modal() { ?>
 						<small><span style="font-size:16px!important"><?php _e( 'HiveMind', 'stop-spammer-registrations-plugin' ); ?></span></small>
 					</label>
 				</div>
-				<br />
-				<br />
+				<br>
+				<br>
 				<input class="button-primary save_change"  name='ss_save_change' value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" />
 			</div>
-			<br />
+			<br>
 			<?php wp_nonce_field( 'ss_save_hive_settings', 'ss_popup_hive' ); ?>
 			<button class="modal-btn modal-hide close_btn"><?php _e( 'Close', 'stop-spammer-registrations-plugin' ); ?></button>
 		</form>

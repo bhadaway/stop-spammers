@@ -10,7 +10,7 @@ if ( !current_user_can( 'manage_options' ) ) {
 }
 
 if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'protect' ) ) {
-	_e( '<div>Jetpack Protect has been detected. Because of a conflict, Stop Spammers has disabled itself.<br />You do not need to disable Jetpack, just the Protect feature.</div>', 'stop-spammer-registrations-plugin' );
+	_e( '<div>Jetpack Protect has been detected. Because of a conflict, Stop Spammers has disabled itself.<br>You do not need to disable Jetpack, just the Protect feature.</div>', 'stop-spammer-registrations-plugin' );
 	return;
 }
 
@@ -243,7 +243,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 ?>
 
 <div id="ss-plugin" class="wrap">
-	<h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br />
+	<h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-icon.png'; ?>" class="ss_icon" ><?php _e( 'Stop Spammers — Summary', 'stop-spammers' ); ?></h1><br>
 	<?php _e( 'Version', 'stop-spammer-registrations-plugin' ); ?> <strong><?php echo SS_VERSION; ?></strong>
 	<?php if ( !empty( $summary ) ) { ?>
 	<?php }
@@ -263,7 +263,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	}
 	if ( $ansa !== false ) { ?>
 		<p><?php _e( 'This address is invalid for testing for the following reason:
-			  <span style="font-weight:bold;font-size:1.2em">' . $ansa . '</span>.<br />
+			  <span style="font-weight:bold;font-size:1.2em">' . $ansa . '</span>.<br>
 			  If you working on a local installation of WordPress, this might be
 			  OK. However, if the plugin reports that your
 			  IP is invalid it may be because you are using Cloudflare or a proxy
@@ -272,11 +272,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			  go to the Stop Spammers Testing page in
 			  order to test all possible reasons that your IP is not appearing as
 			  the IP of the machine that your using to
-			  browse this site.<br />
+			  browse this site.<br>
 			  It is possible to use the plugin if this problem appears, but most
 			  checking functions will be turned off. The
 			  plugin will still perform spam checks which do not require an
-			  IP.<br />
+			  IP.<br>
 			  If the error says that this is a Cloudflare IP address, you can fix
 			  this by installing the Cloudflare plugin. If
 			  you use Cloudflare to protect and speed up your site then you MUST
@@ -368,8 +368,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		delete_option( 'ss_cache' );
 	} ?>
 	<?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { ?>
-	<br />
-	<br />
+	<br>
+	<br>
 	<div id="donate" style="max-width:500px;margin:0 auto"><script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe src="https://donorbox.org/embed/stop-spammers" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width: 500px; min-width: 250px; max-height:none!important"></iframe></div>
 	<?php } ?>
 	<h2><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
@@ -378,7 +378,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'PROTECTION OPTIONS', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/protection.png'; ?>" class="center_thumb" /><?php _e( 'All options related to checking spam and logins. You can also block whole countries.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_options"><?php _e( 'Protection', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -386,7 +386,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'ALLOW LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/allow-list.png'; ?>" class="center_thumb"><?php _e( 'Specify IP addresses always allowed without being checked and whitelist gateways such as PayPal.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_allow_list"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -394,7 +394,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'BLOCK LISTS', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/block-list.png'; ?>" class="center_thumb"><?php _e( 'Block specified IPs and emails and block comments with certain words and phrases that are often used by spammers.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_block_list"><?php _e( 'Block', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -404,7 +404,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'CHALLENGE &amp; BLOCK', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/challenge.png'; ?>" class="center_thumb"><?php _e( 'Enable reCAPTCHA and notification options. You can give real users who trigger the spam defender a second chance.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_challenge"><?php _e( 'Challenges', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -412,7 +412,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'APPROVE REQUESTS', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/approve-requests.png'; ?>" class="center_thumb"><?php _e( 'Review and approve or block users who were blocked and filled out the form requesting access to your site.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_allow_list"><?php _e( 'Approve', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -420,7 +420,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'WEB SERVICES', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/web-services.png'; ?>" class="center_thumb"><?php _e( 'Connect to StopForumSpam.com and other services for more sophisticated protection and the ability to report spam.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_webservices_settings"><?php _e( 'Web Services', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -430,7 +430,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'CACHE', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/cache.png'; ?>" class="center_thumb"><?php _e( 'Shows the cache of recently detected events.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_cache"><?php _e( 'Cache', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -438,7 +438,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'LOG REPORT', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/log-report.png'; ?>" class="center_thumb"><?php _e( 'Details the most recent events detected by Stop Spammers.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_reports"><?php _e( 'Log Report', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -446,7 +446,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'DIAGNOSTICS', 'stop-spammer-registrations-plugin' ); ?></h3>
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/diagnostics.png'; ?>" class="center_thumb"><?php _e( 'Test an IP, email, or comment against all of the options to shed light about why an IP address might fail.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_diagnostics"><?php _e( 'Diagnostics', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>
@@ -457,7 +457,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'CLEANUP', 'stop-spammer-registrations-plugin' ); ?></h3>			
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/database-cleanup.png'; ?>" class="center_thumb" ><?php _e( 'Delete leftover crumbs from bygone plugins or anything that appears suspicious. Lookup/disable spammy users. Mass delete pending comments.', 'stop-spammer-registrations-plugin' ); ?>
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_option_maint"><?php _e( 'Cleanup', 'stop-spammer-registrations-plugin' ); ?></a>
 			</div>
 		</div>	     		
@@ -465,7 +465,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<h3><?php _e( 'THREAT SCAN', 'stop-spammer-registrations-plugin' ); ?></h3>			
 			<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/threat-scan.png'; ?>" class="center_thumb" ><?php _e( 'A simple scan to find possibly malicious code.', 'stop-spammer-registrations-plugin' ); ?> 
 			<div>
-				<br />
+				<br>
 				<a class="button-primary" href="?page=ss_diagnostics"><?php _e( 'Scan', 'stop-spammer-registrations-plugin' ); ?></a></input>
 			</div>
 		</div>

@@ -82,7 +82,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
 		<input type="hidden" name="ss_stop_update_log_size" value="true" />
 		<h2><?php _e( 'History Size', 'stop-spammer-registrations-plugin' ); ?></h2>
-		<?php _e( 'Select the number of events to save in the history.', 'stop-spammer-registrations-plugin' ); ?><br />
+		<?php _e( 'Select the number of events to save in the history.', 'stop-spammer-registrations-plugin' ); ?><br>
 		<p class="submit">
 			<select name="ss_sp_hist">
 				<option value="10" <?php if ( $ss_sp_hist == '10' ) { echo 'selected="true"'; } ?>>10</option>
@@ -103,7 +103,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 		if ( empty( $hist ) ) {
 			_e( '<p>Nothing in the log.</p>', 'stop-spammer-registrations-plugin' );
 		} else { ?>
-		<br />
+		<br>
 		<input type="text" id="ssinput" onkeyup="ss_search()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
 		<table id="sstable" name="sstable" cellspacing="2">
 			<thead>
@@ -149,7 +149,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 				$stopper	 = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=' . $ip . '"><img src="' . $stophand . '" class="icon-action" /></a>';
 				$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_' . $ip . '"><img src="' . $search . '" class="icon-action" /></a>';
 				$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=' . $ip . '"><img src="' . $search . '" class="icon-action" /></a>';
-				$who		 = '<br /><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://whois.domaintools.com/' . $ip . '"><img src="' . $whois . '" class="icon-action" /></a>';
+				$who		 = '<br><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://whois.domaintools.com/' . $ip . '"><img src="' . $whois . '" class="icon-action" /></a>';
 				echo '
 					<tr style="background-color:white">
 					<td>' . $dt . '</td>

@@ -110,7 +110,7 @@ class chk404 extends be_module {
 			if ( stripos( $sname, $bad ) !== false ) {
 				return __( '404 on Exploit Attempt: ' . $sname, $bad . '', 'stop-spammer-registrations-plugin' );
 			} else {
-			// echo "$sname, $bad<br />";
+			// echo "$sname, $bad<br>";
 			}
 		}
 		return false;

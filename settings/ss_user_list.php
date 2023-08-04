@@ -1,35 +1,22 @@
 <p><strong>
 <?php
 echo count( $user_list );
-echo __( 'record(s) are shown.' );
+echo __( ' record(s) are shown.' );
 if ( $total > count( $user_list ) ) {
 	echo ' ' . $total . ' ' . __( 'are found total.' );
 }
 ?>
 </strong></p>
 
-<hr />
+<hr>
 
-<?php echo __( '' ) ?>.
 <input type="button" value="<?php echo __( 'Select all' ) ?>" onclick="ss_markALL(this.form['f_users[]']);" />
 <input type="button" value="<?php echo __( 'Deselect all' ) ?>" onclick="ss_unmarkALL(this.form['f_users[]']);" />
-<?php echo __( '' ) ?> -
-<input type="button" class="button-secondary-red" value="<?php echo __( 'Disable users' ) ?>" onclick="
-	if (confirm('Yes, disable all marked users.')) {
-		this.form.op.value='disable';
-		this.form.submit();
-	}
-" />
-<input type="button" class="button-primary" value="<?php echo __('Enable users') ?>" onclick="
-	if (confirm('Yes, activate all marked users.')) {
-		this.form.op.value='activate';
-		this.form.submit();
-	}
-" />
+<input type="button" class="button-secondary-red" value="<?php echo __( 'Disable users' ) ?>" onclick="if(confirm('Yes, disable all marked users.')){this.form.op.value='disable';this.form.submit();}" />
+<input type="button" class="button-primary" value="<?php echo __( 'Enable users' ) ?>" onclick="if(confirm('Yes, activate all marked users.')){this.form.op.value='activate';this.form.submit();}" />
 
 <table cellpadding="3"><tr>
 	<th>No.</th>
-	<th><?php echo	__('') ?></th>
 	<th class="clickable header sort" width="150" align="left" onclick="jQuery('#sort_order').val('login'); jQuery('#inactive-user-deleter-form').submit();"><?php echo __( 'Username' ) ?></th>
 	<th class="clickable header sort" align="left" onclick="jQuery('#sort_order').val('mail'); jQuery('#inactive-user-deleter-form').submit();"><?php echo	__( 'Email' ) ?></th>
 	<th class="clickable header sort" align="left" onclick="jQuery('#sort_order').val('disabled'); jQuery('#inactive-user-deleter-form').submit();"><?php echo	__( 'Status' ) ?></th>
@@ -64,25 +51,25 @@ if ( $total > count( $user_list ) ) {
 				. ( isset( $_POST['f_users'] ) && in_array( $UR['ID'], $_POST['f_users'] ) ? 'checked' : '' )
 				. ">";
 			}
-		//last_login_classipress date preferable
-		$last_login = $UR['last_login_classipress'] ? strtotime( $UR['last_login_classipress'] ) : $UR['last_login'];
-		$status = $UR['disabled_time'] ? __( 'blocked' ) . date( ' [d M Y]', $UR['disabled_time'] ) : __( 'active' );
-		echo "</td>\n<td align=\"left\">{$login}</td>"
-		. "<td align=\"left\">$UR[mail]</td>"
-		. "<td align=\"left\">{$status}</td>"
-		. "<td align=\"left\">$UR[first_name]</td>"
-		. "<td align=\"left\">$UR[last_name]</td>"
-		. "</td><td>" . ( is_array( $UR['USL'] ) && !empty( $UR['USL'] ) ? implode( ', ', array_keys( $UR['USL'] ) ) : '-' ) . "</td><td>"
-		. date( 'd M Y', strtotime( $UR['dt_reg'] ) ) . "</td>"
-		. '<td>' . ( $last_login ? date( 'd M Y', $last_login ) : '?' ) . "</td>"
-		. '<td>' . ( $UR['recs'] ? $UR['recs'] : '-' )
-		. "</td><td>"
-		. ( $UR['spam'] ? $UR['spam'] : '-' )
-		. "</td><td>"
-		. ( $UR['approved'] ? $UR['approved'] : '-' )
-		. "</td></tr>\n";
-	}
-?>
+			//last_login_classipress date preferable
+			$last_login = $UR['last_login_classipress'] ? strtotime( $UR['last_login_classipress'] ) : $UR['last_login'];
+			$status = $UR['disabled_time'] ? __( 'blocked' ) . date( ' [d M Y]', $UR['disabled_time'] ) : __( 'active' );
+			echo "</td>\n<td align=\"left\">{$login}</td>"
+			. "<td align=\"left\">$UR[mail]</td>"
+			. "<td align=\"left\">{$status}</td>"
+			. "<td align=\"left\">$UR[first_name]</td>"
+			. "<td align=\"left\">$UR[last_name]</td>"
+			. "</td><td>" . ( is_array( $UR['USL'] ) && !empty( $UR['USL'] ) ? implode( ', ', array_keys( $UR['USL'] ) ) : '-' ) . "</td><td>"
+			. date( 'd M Y', strtotime( $UR['dt_reg'] ) ) . "</td>"
+			. '<td>' . ( $last_login ? date( 'd M Y', $last_login ) : '?' ) . "</td>"
+			. '<td>' . ( $UR['recs'] ? $UR['recs'] : '-' )
+			. "</td><td>"
+			. ( $UR['spam'] ? $UR['spam'] : '-' )
+			. "</td><td>"
+			. ( $UR['approved'] ? $UR['approved'] : '-' )
+			. "</td></tr>\n";
+		}
+	?>
 </table>
 
 <?php

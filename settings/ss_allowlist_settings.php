@@ -89,8 +89,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<?php if ( !empty( $msg ) ) {
 		echo $msg;
 	} ?>
-	<br />
-	<br />
+	<br>
+	<br>
 	<div class="mainsection"><?php _e( 'Allow List Requests', 'stop-spammer-registrations-plugin' ); ?>
 		<sup class="ss_sup"><a href="https://stopspammers.io/documentation/allow-requests-and-lists/#allowrequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 	</div>
@@ -146,94 +146,94 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Enable Allow by Username (not recommended)', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<textarea name="wlist" cols="40" rows="8" class="ipbox"><?php
 			for ( $k = 0; $k < count( $wlist ); $k ++ ) {
 				echo $wlist[$k] . "\r\n";
 			}
 		?></textarea>
-		<br />
+		<br>
 		<div class="mainsection"><?php _e( 'Allow Options', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/allow-requests-and-lists/#allowoptions" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkgoogle">
 				<input class="ss_toggle" type="checkbox" id="chkgoogle" name="chkgoogle" value="Y" <?php if ( $chkgoogle == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Google (keep enabled under most circumstances)', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkgenallowlist">
 				<input class="ss_toggle" type="checkbox" id="chkgenallowlist" name="chkgenallowlist" value="Y" <?php if ( $chkgenallowlist == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Generated Allow List', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkmiscallowlist">
 				<input class="ss_toggle" type="checkbox" id="chkmiscallowlist" name="chkmiscallowlist" value="Y" <?php if ( $chkmiscallowlist == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Other Allow Lists', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkpaypal">
 				<input class="ss_toggle" type="checkbox" id="chkpaypal" name="chkpaypal" value="Y" <?php if ( $chkpaypal == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> PayPal</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkstripe">
 				<input class="ss_toggle" type="checkbox" id="chkstripe" name="chkstripe" value="Y" <?php if ( $chkstripe == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Stripe</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkauthorizenet">
 				<input class="ss_toggle" type="checkbox" id="chkauthorizenet" name="chkauthorizenet" value="Y" <?php if ( $chkauthorizenet == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Authorize.Net</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkbraintree">
 				<input class="ss_toggle" type="checkbox" id="chkbraintree" name="chkbraintree" value="Y" <?php if ( $chkbraintree == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Braintree</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkrecurly">
 				<input class="ss_toggle" type="checkbox" id="chkrecurly" name="chkrecurly" value="Y" <?php if ( $chkrecurly == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Recurly</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chksquare">
 				<input class="ss_toggle" type="checkbox" id="chksquare" name="chksquare" value="Y" <?php if ( $chksquare == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Square</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkyahoomerchant">
 				<input class="ss_toggle" type="checkbox" id="chkyahoomerchant" name="chkyahoomerchant" value="Y" <?php if ( $chkyahoomerchant == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Yahoo Merchant Services</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkaws">
 				<input class="ss_toggle" type="checkbox" id="chkaws" name="chkaws" value="Y" <?php if ( $chkaws == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Allow', 'stop-spammer-registrations-plugin' ); ?> Amazon Cloud</span></small>
 			</label>
 		</div>
-		<br />
+		<br>
 		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 	</form>
 </div>
