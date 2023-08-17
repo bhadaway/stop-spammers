@@ -205,11 +205,11 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
 		<br />
 		<br />
-		<div class="checkbox switcher">
+		<div id="chkurls" class="checkbox switcher">
 			<label id="ss_subhead" for="chkurls">
 				<input class="ss_toggle" type="checkbox" id="chkurls" name="chkurls" value="Y" <?php if ( $chkurls == 'Y' ) { echo 'checked="checked"'; } ?> />
 				<span><small></small></span>
-				<small><span id="chkurls" style="font-size:16px!important"><?php _e( 'Check for any URLs', 'stop-spammer-registrations-plugin' ); ?> <a href="https://stopspammers.io/updates/check-for-any-url-in-comments/" target="_blank"><i class="fa fa-question-circle fa-2x" style="font-size:24px;"></i></a></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Check for any URLs', 'stop-spammer-registrations-plugin' ); ?> <a href="https://stopspammers.io/updates/check-for-any-url-in-comments/" target="_blank"><i class="fa fa-question-circle fa-2x" style="font-size:24px;"></i></a></span></small>
 			</label>
 		</div>
 		<br />
