@@ -53,6 +53,7 @@ class ss_check_post extends be_module {
 			'chktld',
 			'chkaccept',
 			'chkadmin',
+			'chkurls'
 		);
 		$actions = array( // these require an IP that can be trusted
 			'chkamazon',

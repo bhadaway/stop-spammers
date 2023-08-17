@@ -69,17 +69,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<div class="mainsection"><?php _e( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
 				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 			</div>
-			<?php _e( '<p>Run the settings against an IP address to see the results.</p>IP Address:<br>', 'stop-spammer-registrations-plugin' ); ?>
+			<?php _e( '<p>Run the settings against an IP address to see the results.</p>IP Address:<br />', 'stop-spammer-registrations-plugin' ); ?>
 			<input id="ssinput" name="ip" type="text" value="<?php echo esc_attr( $ip ); ?>">
-			<?php _e( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br><br>
-			<?php _e( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<input id="ssinput" name="email" type="text" value="<?php echo esc_attr( $email ); ?>" /><br><br>
-			<?php _e( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<input id="ssinput" name="author" type="text" value="<?php echo esc_attr( $author ); ?>" /><br><br>
-			<?php _e( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<input id="ssinput" name="subject" type="text" value="<?php echo esc_attr( $subject ); ?>" /><br><br>
-			<?php _e( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<textarea name="body"><?php _e( $body ); ?></textarea><br>
+			<?php _e( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br /><br />
+			<?php _e( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br />
+			<input id="ssinput" name="email" type="text" value="<?php echo esc_attr( $email ); ?>" /><br /><br />
+			<?php _e( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br />
+			<input id="ssinput" name="author" type="text" value="<?php echo esc_attr( $author ); ?>" /><br /><br />
+			<?php _e( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br />
+			<input id="ssinput" name="subject" type="text" value="<?php echo esc_attr( $subject ); ?>" /><br /><br />
+			<?php _e( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br />
+			<textarea name="body"><?php _e( $body ); ?></textarea><br />
 			<div style="width:50%;float:left">
 				<p class="submit"><input name="testopt" class="button-primary" value="<?php _e( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
 			</div>
@@ -118,14 +118,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					);
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br>Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br>', 'stop-spammer-registrations-plugin' );
-					_e( '<ul>Allow Checks<br>', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<ul>Allow Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
 							$ansa = 'OK';
 						}
-						echo "$chk: $ansa<br>";
+						echo "$chk: $ansa<br />";
 					}
 					echo "</ul>";
 					$optionlist = array(
@@ -158,18 +158,19 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 						'chkspamwords',
 						'chktld',
 						'chkubiquity',
-						'chkurlshort'
+						'chkurlshort',
+						'chkurls'
 					);
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br>Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br>', 'stop-spammer-registrations-plugin' );
-					_e( '<ul>Block Checks<br>', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
+					_e( '<ul>Block Checks<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
 							$ansa = 'OK';
 						}
-						echo "$chk: $ansa<br>";
+						echo "$chk: $ansa<br />";
 					}
 					echo "</ul>";
 					$optionlist = array();
@@ -178,20 +179,20 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					$a5		    = apply_filters( 'ss_addons_get', $optionlist );
 					$optionlist = array_merge( $a1, $a3, $a5 );
 					if ( !empty( $optionlist ) ) {
-						echo "<ul>Add-on Checks<br>";
+						echo "<ul>Add-on Checks<br />";
 						foreach ( $optionlist as $chk ) {
 							$ansa = be_load( $chk, $ip, $stats, $options, $post );
 							if ( empty( $ansa ) ) {
 								$ansa = 'OK';
 							}
 							$nm = $chk[1];
-							echo "$nm: $ansa<br>";
+							echo "$nm: $ansa<br />";
 						}
 						echo "</ul>";
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br>Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br>', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 				}
 				if ( array_key_exists( 'testcountry', $_POST ) ) {
 					$optionlist = array(
@@ -341,17 +342,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					// SC - Seychelles
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br>Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br>', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 					foreach ( $optionlist as $chk ) {
 						$ansa = be_load( $chk, $ip, $stats, $options, $post );
 						if ( empty( $ansa ) ) {
 							$ansa = 'OK';
 						}
-						echo "$chk: $ansa<br>";
+						echo "$chk: $ansa<br />";
 					}
 					$m1 = memory_get_usage( true );
 					$m2 = memory_get_peak_usage( true );
-					_e( '<br>Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br>', 'stop-spammer-registrations-plugin' );
+					_e( '<br />Memory Used: ' . $m1 . ' Peak: ' . $m2 . '<br />', 'stop-spammer-registrations-plugin' );
 				}
 			}
 			?>
@@ -529,12 +530,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	</div>
 	<?php if ( $runscan ) { ?>
 		<h2><?php _e( 'A clean scan does not mean you are safe. Please keep regular backups and ensure your installation up-to-date!', 'stop-spammer-registrations-plugin' ); ?></h2>
-		<hr>
+		<hr />
 		<?php
 		$disp = false;
 		flush();
 		// lets try the posts - looking for script tags in data
-		_e( '<br><br>Testing Posts<br>', 'stop-spammer-registrations-plugin' );
+		_e( '<br /><br />Testing Posts<br />', 'stop-spammer-registrations-plugin' );
 		$ptab = $pre . 'posts';
 		$sql  = "select ID,post_author,post_title,post_name,guid,post_content,post_mime_type
 			from $ptab where 
@@ -618,16 +619,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				if ( strpos( strtolower( $myrow->post_mime_type ), 'script' ) !== false ) {
 					$reason .= "post_mime_type:script ";
 				}
-				_e( 'found possible problems in post (' . $reason . ') ID: ', 'stop-spammer-registrations-plugin' ) . $myrow->ID . '<br>';
+				_e( 'found possible problems in post (' . $reason . ') ID: ', 'stop-spammer-registrations-plugin' ) . $myrow->ID . '<br />';
 			}
 		} else {
-			_e( '<br>Nothing found in posts.<br>', 'stop-spammer-registrations-plugin' );
+			_e( '<br />Nothing found in posts.<br />', 'stop-spammer-registrations-plugin' );
 			$disp = false;
 		}
-		echo '<hr>';
+		echo '<hr />';
 		// comments: comment_ID: author_url, comment_agent, comment_author, comment_email
 		$ptab = $pre . 'comments';
-		_e( '<br><br>Testing Comments<br>', 'stop-spammer-registrations-plugin' );
+		_e( '<br /><br />Testing Comments<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$sql = "select comment_ID,comment_author_url,comment_agent,comment_author,comment_author_email,comment_content
 			from $ptab where 
@@ -714,16 +715,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				if ( strpos( strtolower( $myrow->comment_content ), 'javascript:' ) !== false ) {
 					$reason .= "comment_content:javascript: ";
 				}
-				_e( 'found possible problems in comment (' . $reason . ') ID', 'stop-spammer-registrations-plugin' ) . $myrow->comment_ID . '<br>';
+				_e( 'found possible problems in comment (' . $reason . ') ID', 'stop-spammer-registrations-plugin' ) . $myrow->comment_ID . '<br />';
 			}
 		} else {
-			_e( '<br>Nothing found in comments.<br>', 'stop-spammer-registrations-plugin' );
+			_e( '<br />Nothing found in comments.<br />', 'stop-spammer-registrations-plugin' );
 		}
 		flush();
-		echo '<hr>';
+		echo '<hr />';
 		// links: links_id: link_url, link_image, link_description, link_notes, link_rss,link_rss
 		$ptab   = $pre . 'links';
-		_e( '<br><br>Testing Links<br>', 'stop-spammer-registrations-plugin' );
+		_e( '<br /><br />Testing Links<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$sql = "select link_ID,link_url,link_image,link_description,link_notes
 			from $ptab where 
@@ -797,15 +798,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				if ( strpos( strtolower( $myrow->link_url ), 'javascript:' ) !== false ) {
 					$reason .= "link_url:javascript: ";
 				}
-				_e( 'found possible problems in links (' . $reason . ') ID:', 'stop-spammer-registrations-plugin' ) . $myrow->link_ID . '<br>';
+				_e( 'found possible problems in links (' . $reason . ') ID:', 'stop-spammer-registrations-plugin' ) . $myrow->link_ID . '<br />';
 			}
 		} else {
-			_e( '<br>Nothing found in links.<br>', 'stop-spammer-registrations-plugin' );
+			_e( '<br />Nothing found in links.<br />', 'stop-spammer-registrations-plugin' );
 		}
-		echo '<hr>';
+		echo '<hr />';
 		// users: ID: user_login, user_nicename, user_email, user_url, display_name
 		$ptab = $pre . 'users';
-		_e( '<br><br>Testing Users<br>', 'stop-spammer-registrations-plugin' );
+		_e( '<br /><br />Testing Users<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$sql = "select ID,user_login,user_nicename,user_email,user_url,display_name 
 			from $ptab where 
@@ -884,16 +885,16 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				if ( strpos( strtolower( $myrow->user_url ), 'javascript:' ) !== false ) {
 					$reason .= "user_url:javascript: ";
 				}
-				_e( 'found possible problems in Users (' . $reason . ') ID:', 'stop-spammer-registrations-plugin' ) . $myrow->ID . '<br>';
+				_e( 'found possible problems in Users (' . $reason . ') ID:', 'stop-spammer-registrations-plugin' ) . $myrow->ID . '<br />';
 			}
 		} else {
-			_e( '<br>Nothing found in users.<br>', 'stop-spammer-registrations-plugin' );
+			_e( '<br />Nothing found in users.<br />', 'stop-spammer-registrations-plugin' );
 		}
-		echo '<hr>';
+		echo '<hr />';
 		// options: option_id option_value, option_name
 		// I may have to update this as new websites show up
 		$ptab = $pre . 'options';
-		_e( '<br><br>Testing Options Table for HTML<br>', 'stop-spammer-registrations-plugin' );
+		_e( '<br /><br />Testing Options Table for HTML<br />', 'stop-spammer-registrations-plugin' );
 		flush();
 		$badguys = array(
 			'eval('							     => __( 'eval function found', 'stop-spammer-registrations-plugin' ),
@@ -936,12 +937,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 					}
 				}
 				_e( '<strong>Found possible problems in Option $name (' . $reason . ')</strong> option_id:', 'stop-spammer-registrations-plugin' )
-					 . $myrow->option_id . ', value: $line<br><br>';
+					 . $myrow->option_id . ', value: $line<br /><br />';
 			}
 		} else {
-			_e( '<br>Nothing found in options.<br>', 'stop-spammer-registrations-plugin' );
+			_e( '<br />Nothing found in options.<br />', 'stop-spammer-registrations-plugin' );
 		}
-		echo '<hr>';
+		echo '<hr />';
 		_e( '<h2>Scanning Themes and Plugins for eval</h2>', 'stop-spammer-registrations-plugin' );
 		flush();
 		if ( ss_scan_for_eval() ) {
@@ -994,10 +995,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				$ansa = ss_look_in_file( $phparray[$j] );
 				if ( count( $ansa ) > 0 ) {
 					$disp = true;
-					// echo "Think we got something<br>";
-					echo '<li>' . $phparray[$j] . ' <br> ';
+					// echo "Think we got something<br />";
+					echo '<li>' . $phparray[$j] . ' <br /> ';
 					for ( $k = 0; $k < count( $ansa ); $k ++ ) {
-						echo $ansa[$k] . ' <br>';
+						echo $ansa[$k] . ' <br />';
 					}
 					echo '</li>';
 				}
@@ -1033,7 +1034,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				} else if ( strpos( $file, '.php' ) > 0 ) {
 					$phparray[count( $phparray )] = $dir . '/' . $file;
 				} else {
-				// echo "can't find .php in $file <br>";
+				// echo "can't find .php in $file <br />";
 				}
 			}
 			closedir( $dh );
@@ -1278,7 +1279,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				for ( $j = 0; $j < count( $ln ) / 2; $j ++ ) {
 					$t1 = $ln[$j * 2];
 					$t2 = $ln[( $j * 2 ) + 1];
-					// echo "checking $file, $f for $line and '$ln'<br>";
+					// echo "checking $file, $f for $line and '$ln'<br />";
 					if ( $line >= $t1 && $line <= $t2 ) {
 						return false;
 					}
