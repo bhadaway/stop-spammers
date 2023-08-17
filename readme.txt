@@ -26,7 +26,7 @@ Get even more options with **[Stop Spammers Premium](https://stopspammers.io/dow
 Extremely granular control, so that any variety of website can create a special custom cocktail just for their particular spam issues:
 
 * [Block suspicious behavior](https://stopspammers.io/documentation/protection-options/)
-* [Block spam words, disposable emails, URL shortener links, TLDs and more](https://stopspammers.io/documentation/protection-options/)
+* [Block spam words, disposable emails, URL shortener links, all URLs TLDs and more](https://stopspammers.io/documentation/protection-options/)
 * [Connect third-party spam defense services](https://stopspammers.io/documentation/web-services/)
 * [Block countries](https://stopspammers.io/documentation/protection-options/#blockcountries)
 * [Block/allow IPs, emails, and usernames manually](https://stopspammers.io/documentation/allow-requests-and-lists/)
@@ -34,6 +34,8 @@ Extremely granular control, so that any variety of website can create a special 
 * [Allow users to request access and send email when allow list request is approved](https://stopspammers.io/documentation/challenge-and-block/)
 * [Members-only mode](https://stopspammers.io/stop-spammers-features/members-only-mode/)
 * [Core forms CAPTCHA](https://stopspammers.io/stop-spammers-features/captcha-on-core-wordpress-forms/)
+* [Mass lookup and disable registered users and pending comments](https://stopspammers.io/updates/mass-functions-d…ng-spam-comments/)
+* [Disable WordPress automated emails](https://stopspammers.io/updates/disable-wordpress-email-notifications/)
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
