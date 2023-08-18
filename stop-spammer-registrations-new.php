@@ -42,8 +42,8 @@ function ss_admin_notice() {
 		$user_id = get_current_user_id();
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_24' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers — Thanks to your support, we are adding several updates. Check out the latest. 💜</strong></big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br> <a href="' . admin_url( 'admin.php?page=ss_block_list#chkurls' ) . '" class="button-primary">' . esc_html__( 'Check for any URLs in Comments', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Buy Premium Half Off', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_25' ) && current_user_can( 'manage_options' ) ) {
+			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thanks to your support, we are adding several updates. Check out the latest. 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br><a href="' . admin_url( 'admin.php?page=ss_block_list#chkurls' ) . '" class="button-primary">' . esc_html__( 'Check for URLs', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Premium 50% Off', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
@@ -54,7 +54,7 @@ function ss_notice_dismissed() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['dismiss'] ) ) {
-			add_user_meta( $user_id, 'ss_notice_dismissed_24', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_25', 'true', true );
 		}
 	}
 	// Notification Control: handles notices
