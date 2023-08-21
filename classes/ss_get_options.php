@@ -76,6 +76,7 @@ class ss_get_options {
 			'chksfs'		=> 'Y',
 			'chkspamwords'  => 'Y',
 			'chkurlshort'   => 'Y',
+			'chkurls'       => 'Y',
 			'chktld'		=> 'Y',
 			'chkubiquity'   => 'Y',
 			'chkakismet'	=> 'Y',

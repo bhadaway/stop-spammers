@@ -1,0 +1,20 @@
+
+Time: 2023/08/21 13:02:53
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Undefined array key "badtlds"
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress_test\wp-content\plugins\stop-spammers\settings\settings.php
+Line Number: 204
+Memory Used: 33554432 Peak: 33554432
+---------------------
+
+Time: 2023/08/21 13:03:00
+Error Number: 2
+Error Type: Run-time warnings (non-fatal errors). Execution of the script is not halted. 
+Error Msg: Undefined array key "badtlds"
+IP Address: ::1
+File Name: D:\xampp\htdocs\wordpress_test\wp-content\plugins\stop-spammers\settings\settings.php
+Line Number: 204
+Memory Used: 33554432 Peak: 33554432
+---------------------
