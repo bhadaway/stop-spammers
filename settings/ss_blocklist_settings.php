@@ -204,7 +204,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
 		<br>
 		<br>
-		<div id="chkurls" class="checkbox switcher">
+		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkurls">
 				<input class="ss_toggle" type="checkbox" id="chkurls" name="chkurls" value="Y" <?php if ( $chkurls == 'Y' ) { echo 'checked="checked"'; } ?> />
 				<span><small></small></span>
