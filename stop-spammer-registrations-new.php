@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2023.4
+Version: 2023.4.1
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -43,7 +43,7 @@ function ss_admin_notice() {
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
 		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_25' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thanks to your support, we are adding several updates. Check out the latest. 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br><a href="' . admin_url( 'admin.php?page=ss_block_list#chkurls' ) . '" class="button-primary">' . esc_html__( 'Check for URLs', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Premium 50% Off', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+			// echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thanks to your support, we are adding several updates. Check out the latest. 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br><a href="' . admin_url( 'admin.php?page=ss_block_list#chkurls' ) . '" class="button-primary">' . esc_html__( 'Check for URLs', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Premium 50% Off', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
