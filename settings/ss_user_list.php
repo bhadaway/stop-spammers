@@ -17,7 +17,7 @@ if ( $total > count( $user_list ) ) {
 
 <table cellpadding="3"><tr>
 	<th>No.</th>
-	<th>Mark</th>
+	<th>Check</th>
 	<th class="clickable header sort" width="150" align="left" onclick="jQuery('#sort_order').val('login'); jQuery('#inactive-user-deleter-form').submit();"><?php echo __( 'Username' ) ?></th>
 	<th class="clickable header sort" align="left" onclick="jQuery('#sort_order').val('mail'); jQuery('#inactive-user-deleter-form').submit();"><?php echo	__( 'Email' ) ?></th>
 	<th class="clickable header sort" align="left" onclick="jQuery('#sort_order').val('disabled'); jQuery('#inactive-user-deleter-form').submit();"><?php echo	__( 'Status' ) ?></th>
