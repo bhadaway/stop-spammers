@@ -28,6 +28,9 @@ class ss_get_options {
 			'chkscripts'	     => 'Y',
 			'chkvalidip'	     => 'Y',
 			'chkwlem'		     => 'Y',
+			'chkwooform'         => 'N',
+            'chkgvform'          => 'N',
+
 			'chkwluserid'	     => 'N',
 			'chkwlist'		     => 'Y',
 			'chkwlistemail'	     => 'Y',
