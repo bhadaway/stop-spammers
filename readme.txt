@@ -39,7 +39,7 @@ Extremely granular control, so that any variety of website can create a special 
 * So much more...
 * Server-level firewall protection (Premium Only)
 * Themed registration/login pages and menu links (Premium Only)
-* WooCommerce and Gravty Forms protection (Premium Only)
+* WooCommerce and Gravity Forms protection (Premium Only)
 * Brute force login protection (Premium Only)
 * Notification control (Premium Only)
 * Import/export settings (Premium Only)
