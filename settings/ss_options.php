@@ -220,16 +220,15 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	}
 	$license = get_option( 'ssp_license_key' );
 	$status  = get_option( 'ssp_license_status' );
-	if ( $status !== false && $status == 'valid' ) { 
-       $options = ss_get_options();
-       $options['chkwooform'] = 'Y';
-       $options['chkwooform'] = 'Y';   
-	
-   }
-   else {
-   	    $options['chkgvfor'] = 'Y\N';
-   	    $options['chkwooform'] = 'N';
-   }
+	if ( $status !== false && $status == 'valid' ) {
+		$options = ss_get_options();
+		$options['chkwooform'] = 'Y';
+		$options['chkwooform'] = 'Y';   
+	}
+	else {
+		$options['chkgvfor'] = 'Y\N';
+		$options['chkwooform'] = 'N';
+	}
 	// text options
 	if ( array_key_exists( 'sesstime', $_POST ) ) {
 		$sesstime			 = stripslashes( sanitize_text_field( $_POST['sesstime'] ) );
@@ -269,11 +268,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 			_e( '<p><span style="color:purple">WooCommerce detected. We recommend keeping this option enabled to avoid blocking customers.</span></p>', 'stop-spammer-registrations-plugin' );
 		} ?>
-				<?php 
-		        $license = trim( get_option( 'ssp_license_key' ) );
-            	$status  = get_option( 'ssp_license_status' );
+		<?php 
+			$license = trim( get_option( 'ssp_license_key' ) );
+			$status  = get_option( 'ssp_license_status' );
 		?>
-        
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkform">
 				<input class="ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
@@ -283,22 +281,17 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkwooform">
-				<input class="ss_toggle" type="checkbox" readonly id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; }  ?>
-                 <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; }?>
-				 /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" readonly id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'WooCommerce Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 	 	<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkgvform">
-				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; }  ?>
-                 <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; }  ?>
-				 /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?> /><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Gravity Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-	
 		<div id="membersonly" class="mainsection"><?php _e( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#membersonly" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
@@ -325,7 +318,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<small><span style="font-size:16px!important"><?php _e( 'Check Credentials on All Login Attempts', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		
 		<br>
 		<div id="notificationcontrol" class="mainsection">
 			<?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?>

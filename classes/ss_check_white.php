@@ -42,7 +42,6 @@ class ss_check_white extends be_module {
 			'chkcloudflare',
 			'chkgvform',
 			'chkwooform',
-			
 			// moved back as first check because it fixes the IP if it is Cloudflare
 			'chkadminlog',
 			'chkaws',

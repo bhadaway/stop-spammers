@@ -6,12 +6,11 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 class chkgvform extends be_module {
-
 	public function process( $ip, &$stats = array(), &$options = array(), &$post = array() ) {
-      	if ( isset( $_POST["gform_submit"] ) ) {
-		     return false;  
-		  }	
+		if ( isset( $_POST["gform_submit"] ) ) {
+			return false;
+		}
 	}
- }
+}
 
 ?>

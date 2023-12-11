@@ -3,8 +3,8 @@
 Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
 Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
-Tested up to: 6.3
-Stable tag: 2023.5
+Tested up to: 6.4
+Stable tag: 2024
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
@@ -78,7 +78,7 @@ Yes. But, you may need to restore visitor IPs: [https://support.cloudflare.com/h
 
 = Can I use Stop Spammers with WooCommerce (and other ecommerce plugins)? =
 
-Yes. But, in some configurations, you may need to go to Stop Spammers > Protection Options > Toggle on the option for "Only Use the Plugin for Standard WordPress Forms" > Save if you're running into any issues. Premium offers supported WooCommerce checks.
+Yes. But, in some configurations, you may need to go to Stop Spammers > Protection Options > Toggle on the option for "Only Use the Plugin for Standard WordPress Forms" > Save if you're running into any issues. Premium now supports WooCommerce checks.
 
 = Can I use Stop Spammers with Akismet? =
 
@@ -102,8 +102,8 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
-= 2023.5 =
-* [Update] Arithmetic captcha fix
+= 2024 =
+* [Fix] Arithmetic captcha
 
 = 2023.4.1 =
 * [Update] Toggle hotfix

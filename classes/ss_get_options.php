@@ -30,7 +30,6 @@ class ss_get_options {
 			'chkwlem'		     => 'Y',
 			'chkwooform'         => 'N',
             'chkgvform'          => 'N',
-
 			'chkwluserid'	     => 'N',
 			'chkwlist'		     => 'Y',
 			'chkwlistemail'	     => 'Y',

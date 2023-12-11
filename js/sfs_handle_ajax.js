@@ -104,24 +104,21 @@ jQuery(function($) {
 	});
 	$('.ss_action').click(function(){
 		$(this).hide();
-       $(this).next().hide();
-	})
-	function checkFormStatus() {
-	    if($('#chkform').is(':checked')){
-	    	$('#chkwooform').attr("disabled",true);
-	    	$('#chkgvform').attr("disabled",true);
-	    }
-	    else {
-	        $('#chkwooform').attr("disabled",false);
-	    	$('#chkgvform').attr("disabled",false);	
-	    }
-   }
-
-    $('#chkform').change(function(){
-    	if($('#chkform').data('status') == 'valid'){
-		 checkFormStatus();
-    	}
+		$(this).next().hide();
 	});
-
+	function checkFormStatus() {
+		if ($('#chkform').is(':checked')){
+			$('#chkwooform').attr("disabled",true);
+			$('#chkgvform').attr("disabled",true);
+		}
+		else {
+			$('#chkwooform').attr("disabled",false);
+			$('#chkgvform').attr("disabled",false);	
+		}
+	}
+	$('#chkform').change(function(){
+		if ($('#chkform').data('status') == 'valid'){
+			checkFormStatus();
+		}
+	});
 });
-
