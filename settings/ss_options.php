@@ -286,7 +286,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<input class="ss_toggle" type="checkbox" readonly id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; }  ?>
                  <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; }?>
 				 /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'WooCommerce Forms', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'WooCommerce Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 	 	<br>
@@ -295,7 +295,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; }  ?>
                  <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; }  ?>
 				 /><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Gravity Forms', 'stop-spammer-registrations-plugin' ); ?></span></small>
+				<small><span style="font-size:16px!important"><?php _e( 'Gravity Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 	
