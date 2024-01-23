@@ -15,7 +15,7 @@ if ( !current_user_can( 'manage_options' ) ) {
 	<h1 class="ss_head"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'images/stop-spammers-premium.png'; ?>" class="ss_icon">Stop Spammers — <?php _e( 'Premium Options', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<br>
 	<span class="notice notice-warning" style="display:block">
-		<p><?php _e( 'Use coupon code <strong>THANKYOU50</strong> for a limited time only to get 50% off <a href="https://stopspammers.io/downloads/stop-spammers-premium/">Stop Spammers Premium</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
+		<p><?php _e( 'Upgrade to <a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">Stop Spammers Premium</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
 	</span>
 	<br>
 	<div class="ss_admin_info_boxes_3row">
