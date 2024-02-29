@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	die();
 }
 
-// last updated from https://www.cloudflare.com/ips/ on 4/9/21
+// last updated from https://www.cloudflare.com/ips/ on 2/29/24
 class chkcloudflare extends be_module {
 	// if the Cloudflare plugin is not installed then the IP will be Cloudflare's - can't check this
 	// as of 6.03 can also correct it

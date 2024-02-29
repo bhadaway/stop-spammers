@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
-Version: 2024.1
+Version: 2024.2
 Author: Trumani
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2024.1' );
+define( 'SS_VERSION', '2024.2' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -42,7 +42,7 @@ function ss_admin_notice() {
 		$user_id = get_current_user_id();
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_27' ) && current_user_can( 'manage_options' ) ) {
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_28' ) && current_user_can( 'manage_options' ) ) {
 			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thank you for fighting spam with us! 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br><a href="' . admin_url( 'admin.php?page=ss_premium' ) . '" class="button-primary" style="border-color:green;background:green">' . esc_html__( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a> <a href="' . admin_url( 'admin.php?page=stop_spammers#donate' ) . '" class="button-primary" style="border-color:purple;background:purple">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
@@ -54,7 +54,7 @@ function ss_notice_dismissed() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['dismiss'] ) ) {
-			add_user_meta( $user_id, 'ss_notice_dismissed_27', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_28', 'true', true );
 		}
 	}
 	// Notification Control: handles notices
@@ -1006,14 +1006,14 @@ function ss_add_captcha() {
 			// reCAPTCHA
 			$recaptchaapisite = $options['recaptchaapisite'];
 			$html  = '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
-			$html .= '<input type="hidden" name="recaptcha" value="recaptcha" />';
+			$html .= '<input type="hidden" name="recaptcha" value="recaptcha">';
 			$html .= '<div class="g-recaptcha" data-sitekey="' . $recaptchaapisite . '"></div>';
 		break;
 		case 'H':
 			// hCaptcha
 			$hcaptchaapisite = $options['hcaptchaapisite'];
 			$html  = '<script src="https://hcaptcha.com/1/api.js" async defer></script>';
-			$html .= '<input type="hidden" name="h-captcha" value="h-captcha" />';
+			$html .= '<input type="hidden" name="h-captcha" value="h-captcha">';
 			$html .= '<div class="h-captcha" data-sitekey="' . $hcaptchaapisite . '"></div>';
 		break;
 		case 'S':
@@ -1022,7 +1022,7 @@ function ss_add_captcha() {
 			$html  .= '<noscript>';
 			$html  .= '<iframe src="https://api-secure.solvemedia.com/papi/challenge.noscript?k=' . $solvmediaapivchallenge . '" height="300" width="500" frameborder="0"></iframe><br>';
 			$html  .= '<textarea name="adcopy_challenge" rows="3" cols="40"></textarea>';
-			$html  .= '<input type="hidden" name="adcopy_response" value="manual_challenge" />';
+			$html  .= '<input type="hidden" name="adcopy_response" value="manual_challenge">';
 			$html  .= '</noscript>';
 		break;
 	}
@@ -1292,14 +1292,14 @@ function ss_modal() { ?>
 			<div class='ss-plugin'>	   
 				<div class="checkbox switcher">
 					<label id="ss_subhead_modal" for="chkipsync_modal">
-						<input class="ss_toggle_modal" type="checkbox" id="chkipsync_modal" name="chkipsync_modal" value="Y" />
+						<input class="ss_toggle_modal" type="checkbox" id="chkipsync_modal" name="chkipsync_modal" value="Y">
 						<span><small></small></span>
 						<small><span style="font-size:16px!important"><?php _e( 'HiveMind', 'stop-spammer-registrations-plugin' ); ?></span></small>
 					</label>
 				</div>
 				<br>
 				<br>
-				<input class="button-primary save_change"  name='ss_save_change' value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" />
+				<input class="button-primary save_change"  name='ss_save_change' value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit">
 			</div>
 			<br>
 			<?php wp_nonce_field( 'ss_save_hive_settings', 'ss_popup_hive' ); ?>

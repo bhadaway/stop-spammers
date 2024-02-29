@@ -47,14 +47,14 @@ ss_fix_post_vars();
 	$nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
 	<form method="post" action="">
-		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-		<input type="hidden" name="action" value="update mu settings" />
+		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
+		<input type="hidden" name="action" value="update mu settings">
 		<span style="font-weight:bold;font-size:1.2em"><?php _e( 'Network Blog Option', 'stop-spammer-registrations-plugin' ); ?></span>
-		<p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) { echo 'checked="true"'; } ?> />
+		<p><?php _e( 'Networked ON:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='Y' <?php if ( $muswitch == 'Y' ) { echo 'checked="true"'; } ?>>
 		<br>
-		<?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) { echo 'checked="true"'; } ?> />
+		<?php _e( 'Networked OFF:', 'stop-spammer-registrations-plugin' ); ?> <input name="muswitch" type="radio" value='N' <?php if ( $muswitch != 'Y' ) { echo 'checked="true"'; } ?>>
 		<br>
 		<?php _e( 'If you are running WPMU and want to control options and history through the main login admin panel, select ON. If you select OFF, each blog will have to configure the plugin separately, and each blog will have a separte history.', 'stop-spammer-registrations-plugin' ); ?></p>
-		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 	</form>
 </div>

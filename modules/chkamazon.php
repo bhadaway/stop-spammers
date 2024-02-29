@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	die();
 }
 
-// last updated from https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html on 12/22/20
+// last updated from https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html on 12/22/20
 class chkamazon extends be_module {
 	public $searchname = 'Amazon AWS Server';
 	public $searchlist = array(

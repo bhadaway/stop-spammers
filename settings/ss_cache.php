@@ -76,8 +76,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		please <a href="https://stopspammers.io/documentation/ip-cache/" target="_blank">review our documentation</a>.</p>
 	', 'stop-spammer-registrations-plugin' ); ?>
 	<form method="post" action="">
-		<input type="hidden" name="update_options" value="update" />
-		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+		<input type="hidden" name="update_options" value="update">
+		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<label class="keyhead">
 			<?php _e( 'Bad IP Cache Size', 'stop-spammer-registrations-plugin' ); ?>
 			<br>
@@ -110,7 +110,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</select>
 		</label>
 		<br>
-		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 	</form>
 	<?php
 	if ( count( $badips ) == 0 && count( $goodips ) == 0 ) {
@@ -119,9 +119,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?>
 		<h2><?php _e( 'Cached Values', 'stop-spammer-registrations-plugin' ); ?></h2>
 		<form method="post" action="">
-			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-			<input type="hidden" name="ss_stop_clear_cache" value="true" />
-			<p class="submit"><input class="button-primary" value="<?php _e( 'Clear the Cache', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
+			<input type="hidden" name="ss_stop_clear_cache" value="true">
+			<p class="submit"><input class="button-primary" value="<?php _e( 'Clear the Cache', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 		</form>
 		<table>
 			<tr>

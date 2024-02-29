@@ -264,14 +264,14 @@ class ss_challenge extends be_module {
 		}
 		$formtop .= '
 			<form action="" method="post">
-				<input type="hidden" name="kn" value="' . esc_attr( $knonce ) . '" />
-				<input type="hidden" name="ss_block" value="' . esc_attr( $chkcaptcha ) . '" />
-				<input type="hidden" name="kp" value="' . esc_attr( $kp ) . '" />
-				<input type="hidden" name="kr" value="' . esc_attr( $kr ) . '" />
-				<input type="hidden" name="ka" value="' . esc_attr( $ka ) . '" />
+				<input type="hidden" name="kn" value="' . esc_attr( $knonce ) . '">
+				<input type="hidden" name="ss_block" value="' . esc_attr( $chkcaptcha ) . '">
+				<input type="hidden" name="kp" value="' . esc_attr( $kp ) . '">
+				<input type="hidden" name="kr" value="' . esc_attr( $kr ) . '">
+				<input type="hidden" name="ka" value="' . esc_attr( $ka ) . '">
 		';
 		$formbot = __( '
-				<p><input style="background:#007cba;padding:10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request" /></p>
+				<p><input style="background:#007cba;padding:10px 15px;border:none;border-radius:3px;color:white;cursor:pointer" type="submit" value="Submit Request"></p>
 			</form>
 		', 'stop-spammer-registrations-plugin' );
 		$not	 = '';
@@ -281,7 +281,7 @@ class ss_challenge extends be_module {
 				<h1>Allow Request</h1>
 				<p>You have been blocked from entering information on this site. In order to prevent this from happening in the future, complete the request below to have the admin add your IP to a list that allows you full access.</p>
 				<p>Please enter your <strong>e</strong><strong>ma</strong><strong>il</strong> <strong>add</strong><strong>re</strong><strong>ss</strong> and a short note requesting access here.</p>
-				Email Address (required)<!-- not the message -->: <input type="text" value="" name="ke" style="padding:5px" class="regular-text" /><br>
+				Email Address (required)<!-- not the message -->: <input type="text" value="" name="ke" style="padding:5px" class="regular-text"><br>
 				Message<!-- not email -->:<br><textarea name="km" placeholder="Explain what you were trying to do or if you were submitting a contact form, re-enter your message." rows="5" style="box-sizing:border-box;width:100%;padding:15px" class="large-text"></textarea>
 			', 'stop-spammer-registrations-plugin' );
 		}
@@ -295,7 +295,7 @@ class ss_challenge extends be_module {
 				$recaptchaapisite = $options['recaptchaapisite'];
 				$cap			  = "
 					<script src='https://www.google.com/recaptcha/api.js' async defer></script>\r\n
-					<input type='hidden' name='recaptcha' value='recaptcha' />
+					<input type='hidden' name='recaptcha' value='recaptcha'>
 					<div class='g-recaptcha' data-sitekey='$recaptchaapisite'></div>
 				";
 				break;
@@ -304,7 +304,7 @@ class ss_challenge extends be_module {
 				$hcaptchaapisite = $options['hcaptchaapisite'];
 				$cap			  = "
 					<script src='https://hcaptcha.com/1/api.js' async defer></script>\r\n
-					<input type='hidden' name='h-captcha' value='h-captcha' />
+					<input type='hidden' name='h-captcha' value='h-captcha'>
 					<div class='h-captcha' data-sitekey='$hcaptchaapisite'></div>
 				";
 				break;
@@ -315,7 +315,7 @@ class ss_challenge extends be_module {
 					<noscript>
 					<iframe src='https://api-secure.solvemedia.com/papi/challenge.noscript?k=$solvmediaapivchallenge' height='300' width='500' frameborder='0'></iframe><br>
 					<textarea name='adcopy_challenge' rows='3' cols='40'></textarea>
-					<input type='hidden' name='adcopy_response' value='manual_challenge' />
+					<input type='hidden' name='adcopy_response' value='manual_challenge'>
 					</noscript><br>
 				";
 				break;
@@ -334,8 +334,8 @@ class ss_challenge extends be_module {
 				$stupid = $n1 + $n2 - $seed;
 				$cap	= __( '
 					<p>Enter the SUM of these two numbers: <span style="size:4em;font-weight:bold">' . $n1 . ' + ' . $n2 . '</span><br>
-					<input name="sum" value="" type="text" />
-					<input type="hidden" name="nums" value="' . $stupid . '" /><br>
+					<input name="sum" value="" type="text">
+					<input type="hidden" name="nums" value="' . $stupid . '"><br>
 				', 'stop-spammer-registrations-plugin' );
 				break;
 			case 'F':

@@ -142,15 +142,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		echo $msg;
 	} ?>
 	<form method="post" action="">
-		<input type="hidden" name="action" value="update" />
-		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+		<input type="hidden" name="action" value="update">
+		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<div class="mainsection"><?php _e( 'Personalized Block List', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blocklist" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 		</div>
 		<p><?php _e( 'Add IP addresses or emails here that you want blocked.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkbluserid">
-				<input class="ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkbluserid" name="chkbluserid" value="Y" <?php if ( $chkbluserid == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Enable Block by Username', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
@@ -164,7 +164,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkipsync">
-				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( isset( $chkipsync ) && $chkipsync == 'Y') { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( isset( $chkipsync ) && $chkipsync == 'Y') { echo 'checked="checked"'; } ?>><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'HiveMindᴮᴱᵀᴬ', 'stop-spammer-registrations-plugin' ); ?></span></small>
 				<em><?php _e( 'By enabling this feature, you agree to share your Block List with our external API.', 'stop-spammer-registrations-plugin' ); ?></em>
 			</label>
@@ -175,7 +175,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>				
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkspamwords">
-				<input class="ss_toggle" type="checkbox" id="chkspamwords" name="chkspamwords" value="Y" <?php if ( $chkspamwords == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkspamwords" name="chkspamwords" value="Y" <?php if ( $chkspamwords == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check Spam Words', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
@@ -191,7 +191,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>			
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkurlshort">
-				<input class="ss_toggle" type="checkbox" id="chkurlshort" name="chkurlshort" value="Y" <?php if ( $chkurlshort == 'Y' ) { echo 'checked="checked"'; } ?> />
+				<input class="ss_toggle" type="checkbox" id="chkurlshort" name="chkurlshort" value="Y" <?php if ( $chkurlshort == 'Y' ) { echo 'checked="checked"'; } ?>>
 				<span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check URL Shorteners', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
@@ -206,7 +206,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkurls">
-				<input class="ss_toggle" type="checkbox" id="chkurls" name="chkurls" value="Y" <?php if ( $chkurls == 'Y' ) { echo 'checked="checked"'; } ?> />
+				<input class="ss_toggle" type="checkbox" id="chkurls" name="chkurls" value="Y" <?php if ( $chkurls == 'Y' ) { echo 'checked="checked"'; } ?>>
 				<span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Check for any URLs', 'stop-spammer-registrations-plugin' ); ?> <a href="https://stopspammers.io/updates/check-for-any-url-in-comments/" target="_blank"><i class="fa fa-question-circle fa-2x" style="font-size:24px"></i></a></span></small>
 			</label>
@@ -217,7 +217,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>	
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkagent">
-				<input class="ss_toggle" type="checkbox" id="chkagent" name="chkagent" value="Y" <?php if ( $chkagent == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkagent" name="chkagent" value="Y" <?php if ( $chkagent == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
 		  		<small><span style="font-size:16px!important"><?php _e( 'Check Agents', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
@@ -240,6 +240,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
 		<br>
 		<br>
-		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 	</form>
 </div>

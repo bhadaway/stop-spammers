@@ -89,18 +89,18 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	</div>
 	<br>
 	<form method="post" action="">
-		<input type="hidden" name="action" value="update" />
-		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+		<input type="hidden" name="action" value="update">
+		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chkdnsbl">
-				<input class="ss_toggle" type="checkbox" id="chkdnsbl" name="chkdnsbl" value="Y" <?php if ( $chkdnsbl == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkdnsbl" name="chkdnsbl" value="Y" <?php if ( $chkdnsbl == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
 		  		<small><span style="font-size:16px!important;"><?php _e( 'Check Against DNSBL Lists Such as Spamhaus.org', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>	  
 		<br>		
 		<div class="checkbox switcher">
 	  		<label id="ss_subhead" for="chksfs">
-				<input class="ss_toggle" type="checkbox" id="chksfs" name="chksfs" value="Y" <?php if ( $chksfs == 'Y' ) { echo 'checked="checked"'; } ?> /><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chksfs" name="chksfs" value="Y" <?php if ( $chksfs == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
 		  		<small><span style="font-size:16px!important;"><?php _e( 'Enable Stop Forum Spam Lookups', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
@@ -108,15 +108,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'StopForumSpam.com API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br>
-			<input size="32" name="apikey" type="text" value="<?php echo esc_attr( $apikey ); ?>" />
+			<input size="32" name="apikey" type="text" value="<?php echo esc_attr( $apikey ); ?>">
 		</label>
 		<br>
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on Stop Forum Spam with more than
-					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . esc_attr( $sfsfreq ) . '" />
+					<input size="3" name="sfsfreq" type="text" class="small-text" value="' . esc_attr( $sfsfreq ) . '">
 					incidents, and occurring less than
-					<input size="4" name="sfsage" type="text" class="small-text" value="' . esc_attr( $sfsage ) . '" />
+					<input size="4" name="sfsage" type="text" class="small-text" value="' . esc_attr( $sfsage ) . '">
 					days ago.', 'stop-spammer-registrations-plugin' ); ?>
 				</td>
 			</tr>
@@ -126,15 +126,15 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'Project Honeypot API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br>
-			<input size="32" name="honeyapi" type="text" value="<?php echo esc_attr( $honeyapi ); ?>" />
+			<input size="32" name="honeyapi" type="text" value="<?php echo esc_attr( $honeyapi ); ?>">
 		</label>
 		<br>
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on Project HoneyPot with incidents less than
-					<input size="3" name="hnyage" type="text" class="small-text" value="' . esc_attr( $hnyage ) . '" />
+					<input size="3" name="hnyage" type="text" class="small-text" value="' . esc_attr( $hnyage ) . '">
 					days ago, and with more than
-					<input size="4" name="hnylevel" type="text" class="small-text" value="' . esc_attr( $hnylevel ) . '" />
+					<input size="4" name="hnylevel" type="text" class="small-text" value="' . esc_attr( $hnylevel ) . '">
 					threat level. (25 threat level is average, threat level
 					5 is fairly low.)', 'stop-spammer-registrations-plugin' ); ?>
 				</td>
@@ -145,13 +145,13 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'BotScout API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br>
-			<input size="32" name="botscoutapi" type="text" value="<?php echo esc_attr( $botscoutapi ); ?>" />
+			<input size="32" name="botscoutapi" type="text" value="<?php echo esc_attr( $botscoutapi ); ?>">
 		</label>
 		<br>
 		<table cellspacing="1" style="background-color:#ccc;font-size:0.9em;margin-left:30px">
 			<tr bgcolor="white">
 				<td valign="top"><?php _e( 'Block spammers found on BotScout with more than
-					<input size="3" name="botfreq" type="text" class="small-text" value="' . esc_attr( $botfreq ) . '" />
+					<input size="3" name="botfreq" type="text" class="small-text" value="' . esc_attr( $botfreq ) . '">
 					incidents.', 'stop-spammer-registrations-plugin' ); ?>
 				</td>
 			</tr>
@@ -161,10 +161,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<label class="keyhead">
 			<?php _e( 'Google Safe Browsing API Key', 'stop-spammer-registrations-plugin' ); ?>
 			<br>
-			<input size="32" name="googleapi" type="text" value="<?php echo esc_attr( $googleapi ); ?>" />
+			<input size="32" name="googleapi" type="text" value="<?php echo esc_attr( $googleapi ); ?>">
 		</label>
 		<br>
 		<br>
-		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 	</form>
 </div>

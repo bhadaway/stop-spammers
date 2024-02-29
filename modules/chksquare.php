@@ -6,7 +6,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	die();
 }
 
-// last updated from https://squareup.com/help/us/en/article/6537-square-terminal-troubleshooting on 06/24/21
+// last updated from https://squareup.com/help/us/en/article/6537-square-terminal-troubleshooting on 2/29/24
 class chkpaypal extends be_module {
 	public $searchname = 'Square';
 	public $searchlist = array(

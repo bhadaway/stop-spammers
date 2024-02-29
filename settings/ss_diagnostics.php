@@ -64,8 +64,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<h1 class="ss_head">Stop Spammers — <?php _e( 'Diagnostics & Threat Scan', 'stop-spammer-registrations-plugin' ); ?></h1>
 	<form method="post" action="">
 		<div class="ss_info_box">
-			<input type="hidden" name="action" value="update" />
-			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
+			<input type="hidden" name="action" value="update">
+			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 			<div class="mainsection"><?php _e( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
 				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
 			</div>
@@ -73,20 +73,20 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input id="ssinput" name="ip" type="text" value="<?php echo esc_attr( $ip ); ?>">
 			<?php _e( '(Your server address is', 'stop-spammer-registrations-plugin' ); ?> <?php echo $hip; ?>)<br><br>
 			<?php _e( 'Email:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<input id="ssinput" name="email" type="text" value="<?php echo esc_attr( $email ); ?>" /><br><br>
+			<input id="ssinput" name="email" type="text" value="<?php echo esc_attr( $email ); ?>"><br><br>
 			<?php _e( 'Author/User:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<input id="ssinput" name="author" type="text" value="<?php echo esc_attr( $author ); ?>" /><br><br>
+			<input id="ssinput" name="author" type="text" value="<?php echo esc_attr( $author ); ?>"><br><br>
 			<?php _e( 'Subject:', 'stop-spammer-registrations-plugin' ); ?><br>
-			<input id="ssinput" name="subject" type="text" value="<?php echo esc_attr( $subject ); ?>" /><br><br>
+			<input id="ssinput" name="subject" type="text" value="<?php echo esc_attr( $subject ); ?>"><br><br>
 			<?php _e( 'Comment:', 'stop-spammer-registrations-plugin' ); ?><br>
 			<textarea name="body"><?php _e( $body ); ?></textarea><br>
 			<div style="width:50%;float:left">
-				<p class="submit"><input name="testopt" class="button-primary" value="<?php _e( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<p class="submit"><input name="testopt" class="button-primary" value="<?php _e( 'Test Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</div>
 			<div style="width:50%;float:right">
-				<p class="submit"><input name="testcountry" class="button-primary" value="<?php _e( 'Test Countries', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<p class="submit"><input name="testcountry" class="button-primary" value="<?php _e( 'Test Countries', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</div>
-			<br style="clear:both" />
+			<br style="clear:both">
 			<?php
 
 			$nonce = '';
@@ -364,14 +364,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<div style="width:50%;float:left">
 				<h2><?php _e( 'Display All Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 				<p><?php _e( 'You can dump all options here (useful for debugging):', 'stop-spammer-registrations-plugin' ); ?></p>
-				<p class="submit"><input name="dumpoptions" class="button-primary" value="<?php _e( 'Dump Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<p class="submit"><input name="dumpoptions" class="button-primary" value="<?php _e( 'Dump Options', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</div>
 			<div style="width:50%;float:right">
 				<h2><?php _e( 'Display All Stats', 'stop-spammer-registrations-plugin' ); ?></h2>
 				<p><?php _e( 'You can dump all stats here: ', 'stop-spammer-registrations-plugin' ); ?></p>
-				<p class="submit"><input name="dumpstats" class="button-primary" value="<?php _e( 'Dump Stats', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<p class="submit"><input name="dumpstats" class="button-primary" value="<?php _e( 'Dump Stats', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</div>
-			<br style="clear:both" />
+			<br style="clear:both">
 			<?php
 			if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 				$nonce = $_POST['ss_stop_spammers_control'];
@@ -454,19 +454,19 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?>
 		<div style="width:50%;float:left">
 			<form method="post" action="">
-				<input type="hidden" name="update_options" value="update" />
-				<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-				<p class="submit"><input class="button-primary" name="showdebug" value="<?php _e( 'Show Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<input type="hidden" name="update_options" value="update">
+				<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
+				<p class="submit"><input class="button-primary" name="showdebug" value="<?php _e( 'Show Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</form>
 		</div>
 		<div style="width:50%;float:right">
 			<form method="post" action="">
-				<input type="hidden" name="update_options" value="update" />
-				<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-				<p class="submit"><input class="button-primary" name="killdebug" value="<?php _e( 'Delete Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<input type="hidden" name="update_options" value="update">
+				<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
+				<p class="submit"><input class="button-primary" name="killdebug" value="<?php _e( 'Delete Debug File', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</form>
 		</div>
-	<br style="clear:both" />
+	<br style="clear:both">
 	</div>
 	<?php
 	$ini  = '';
@@ -523,14 +523,14 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<?php _e( '<p>A very simple scan that looks for things out of place in the content directory as well as the database.</p>', 'stop-spammer-registrations-plugin' ); ?>
 		<form method="post" action="">
-			<input type="hidden" name="update_options" value="update" />
-			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-			<p class="submit"><input class="button-primary" value="<?php _e( 'Run Scan', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+			<input type="hidden" name="update_options" value="update">
+			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
+			<p class="submit"><input class="button-primary" value="<?php _e( 'Run Scan', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 		</form>
 	</div>
 	<?php if ( $runscan ) { ?>
 		<h2><?php _e( 'A clean scan does not mean you are safe. Please keep regular backups and ensure your installation up-to-date!', 'stop-spammer-registrations-plugin' ); ?></h2>
-		<hr />
+		<hr>
 		<?php
 		$disp = false;
 		flush();
@@ -625,7 +625,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			_e( '<br>Nothing found in posts.<br>', 'stop-spammer-registrations-plugin' );
 			$disp = false;
 		}
-		echo '<hr />';
+		echo '<hr>';
 		// comments: comment_ID: author_url, comment_agent, comment_author, comment_email
 		$ptab = $pre . 'comments';
 		_e( '<br><br>Testing Comments<br>', 'stop-spammer-registrations-plugin' );
@@ -721,7 +721,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			_e( '<br>Nothing found in comments.<br>', 'stop-spammer-registrations-plugin' );
 		}
 		flush();
-		echo '<hr />';
+		echo '<hr>';
 		// links: links_id: link_url, link_image, link_description, link_notes, link_rss,link_rss
 		$ptab   = $pre . 'links';
 		_e( '<br><br>Testing Links<br>', 'stop-spammer-registrations-plugin' );
@@ -803,7 +803,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		} else {
 			_e( '<br>Nothing found in links.<br>', 'stop-spammer-registrations-plugin' );
 		}
-		echo '<hr />';
+		echo '<hr>';
 		// users: ID: user_login, user_nicename, user_email, user_url, display_name
 		$ptab = $pre . 'users';
 		_e( '<br><br>Testing Users<br>', 'stop-spammer-registrations-plugin' );
@@ -890,7 +890,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		} else {
 			_e( '<br>Nothing found in users.<br>', 'stop-spammer-registrations-plugin' );
 		}
-		echo '<hr />';
+		echo '<hr>';
 		// options: option_id option_value, option_name
 		// I may have to update this as new websites show up
 		$ptab = $pre . 'options';
@@ -942,7 +942,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		} else {
 			_e( '<br>Nothing found in options.<br>', 'stop-spammer-registrations-plugin' );
 		}
-		echo '<hr />';
+		echo '<hr>';
 		_e( '<h2>Scanning Themes and Plugins for eval</h2>', 'stop-spammer-registrations-plugin' );
 		flush();
 		if ( ss_scan_for_eval() ) {

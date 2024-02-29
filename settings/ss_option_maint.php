@@ -266,7 +266,7 @@ $active_tab = !empty( $_GET['tab'] ) ? $_GET['tab'] : 'disable_users';
 		$nonce = wp_create_nonce( 'ss_update' );
 		?>
 		<form method="post" name="DOIT2" action="">
-			<!-- <input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>" /> -->
+			<!-- <input type="hidden" name="ss_opt_control" value="<?php echo $nonce; ?>"> -->
 			<?php if ( !isset( $_GET['tab'] ) or $_GET['tab'] == 'disable_users' ): ?>
 				<?php include_once 'ss_user_filter_list.php' ?>
 			<?php endif; ?>
@@ -357,8 +357,8 @@ $active_tab = !empty( $_GET['tab'] ) ? $_GET['tab'] : 'disable_users';
 			<hr>
 			<p><?php _e( 'WordPress creates temporary objects in the database called transients.<br>WordPress is not good about cleaning them up afterwards. You can clean these up safely and it might speed things up.', 'stop-spammer-registrations-plugin' ); ?></p>
 			<form method="post" name="DOIT2" action="">
-				<input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>" />
-				<p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit" /></p>
+				<input type="hidden" name="ss_opt_tdel" value="<?php echo $nonce; ?>">
+				<p class="submit"><input class="button-primary" value="<?php _e( 'Delete Transients', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 			</form>
 			<?php
 			$nonce = '';

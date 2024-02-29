@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://unpkg.com/browse/font-awesome@latest/css/font-awesome.min.css');
 
 #toplevel_page_stop_spammers .wp-menu-image img, #oam_toplevel_page_stop_spammers .wp-menu-image {
 	max-height: 20px;
@@ -16,7 +15,7 @@
 }
 
 #ss-plugin .ss_head {
-	font-family: 'Roboto Slab', -apple-system,BlinkMacSystemFont, Roboto, sans-serif;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	font-size: 30px;
 }
 

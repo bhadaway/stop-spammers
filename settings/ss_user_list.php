@@ -10,10 +10,10 @@ if ( $total > count( $user_list ) ) {
 
 <hr>
 
-<input type="button" value="<?php echo __( 'Select all' ) ?>" onclick="ss_markALL(this.form['f_users[]']);" />
-<input type="button" value="<?php echo __( 'Deselect all' ) ?>" onclick="ss_unmarkALL(this.form['f_users[]']);" />
-<input type="button" class="button-secondary-red" value="<?php echo __( 'Disable users' ) ?>" onclick="if(confirm('Yes, disable all marked users.')){this.form.op.value='disable';this.form.submit();}" />
-<input type="button" class="button-primary" value="<?php echo __( 'Enable users' ) ?>" onclick="if(confirm('Yes, activate all marked users.')){this.form.op.value='activate';this.form.submit();}" />
+<input type="button" value="<?php echo __( 'Select all' ) ?>" onclick="ss_markALL(this.form['f_users[]']);">
+<input type="button" value="<?php echo __( 'Deselect all' ) ?>" onclick="ss_unmarkALL(this.form['f_users[]']);">
+<input type="button" class="button-secondary-red" value="<?php echo __( 'Disable users' ) ?>" onclick="if(confirm('Yes, disable all marked users.')){this.form.op.value='disable';this.form.submit();}">
+<input type="button" class="button-primary" value="<?php echo __( 'Enable users' ) ?>" onclick="if(confirm('Yes, activate all marked users.')){this.form.op.value='activate';this.form.submit();}">
 
 <table cellpadding="3"><tr>
 	<th>No.</th>

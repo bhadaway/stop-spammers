@@ -79,8 +79,8 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 	}, 10000);
 	</script> -->
 	<form method="post" action="">
-		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>" />
-		<input type="hidden" name="ss_stop_update_log_size" value="true" />
+		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
+		<input type="hidden" name="ss_stop_update_log_size" value="true">
 		<h2><?php _e( 'History Size', 'stop-spammer-registrations-plugin' ); ?></h2>
 		<?php _e( 'Select the number of events to save in the history.', 'stop-spammer-registrations-plugin' ); ?><br>
 		<p class="submit">
@@ -104,7 +104,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 			_e( '<p>Nothing in the log.</p>', 'stop-spammer-registrations-plugin' );
 		} else { ?>
 		<br>
-		<input type="text" id="ssinput" onkeyup="ss_search()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>" />
+		<input type="text" id="ssinput" onkeyup="ss_search()" placeholder="<?php _e( 'Date Search', 'stop-spammer-registrations-plugin' ); ?>" title="<?php _e( 'Filter by a Value', 'stop-spammer-registrations-plugin' ); ?>">
 		<table id="sstable" name="sstable" cellspacing="2">
 			<thead>
 				<tr style="background-color:#675682;color:white;text-align:center;text-transform:uppercase;font-weight:600">
@@ -146,10 +146,10 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 				if ( empty( $reason ) ) {
 					$reason = "passed";
 				}
-				$stopper	 = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=' . $ip . '"><img src="' . $stophand . '" class="icon-action" /></a>';
-				$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_' . $ip . '"><img src="' . $search . '" class="icon-action" /></a>';
-				$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=' . $ip . '"><img src="' . $search . '" class="icon-action" /></a>';
-				$who		 = '<br><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://whois.domaintools.com/' . $ip . '"><img src="' . $whois . '" class="icon-action" /></a>';
+				$stopper	 = '<a title="' . esc_attr__( 'Check Stop Forum Spam (SFS)', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.stopforumspam.com/search.php?q=' . $ip . '"><img src="' . $stophand . '" class="icon-action"></a>';
+				$honeysearch = '<a title="' . esc_attr__( 'Check Project HoneyPot', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://www.projecthoneypot.org/ip_' . $ip . '"><img src="' . $search . '" class="icon-action"></a>';
+				$botsearch   = '<a title="' . esc_attr__( 'Check BotScout', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://botscout.com/search.htm?stype=q&sterm=' . $ip . '"><img src="' . $search . '" class="icon-action"></a>';
+				$who		 = '<br><a title="' . esc_attr__( 'Look Up WHOIS', 'stop-spammer-registrations-plugin' ) . '" target="_stopspam" href="https://whois.domaintools.com/' . $ip . '"><img src="' . $whois . '" class="icon-action"></a>';
 				echo '
 					<tr style="background-color:white">
 					<td>' . $dt . '</td>
@@ -157,7 +157,7 @@ $now	  = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 					<td>' . $ip, $who, $stopper, $honeysearch, $botsearch . '';
 				if ( stripos( $reason, 'passed' ) !== false && ( $id == '/' || strpos( $id, 'login' ) ) !== false || strpos( $id, 'register' ) !== false && !in_array( $ip, $blist ) && !in_array( $ip, $wlist ) ) {
 					$ajaxurl = admin_url( 'admin-ajax.php' );
-					echo '<a href="" onclick="sfs_ajax_process(\'' . $ip . '\',\'log\',\'add_black\',\'' . $ajaxurl . '\');return false;" title="' . esc_attr__( 'Add to Block List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Block List', 'stop-spammer-registrations-plugin' ) . '"><img src="' . $tdown . '" class="icon-action" /></a>';
+					echo '<a href="" onclick="sfs_ajax_process(\'' . $ip . '\',\'log\',\'add_black\',\'' . $ajaxurl . '\');return false;" title="' . esc_attr__( 'Add to Block List', 'stop-spammer-registrations-plugin' ) . '" alt="' . esc_attr__( 'Add to Block List', 'stop-spammer-registrations-plugin' ) . '"><img src="' . $tdown . '" class="icon-action"></a>';
 					$options = get_option( 'ss_stop_sp_reg_options' );
 					$apikey  = $options['apikey'];
 					if ( !empty( $apikey ) && !empty( $em ) ) {

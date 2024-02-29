@@ -1,4 +1,4 @@
-<input type="hidden" name="op" value="search_users" />
+<input type="hidden" name="op" value="search_users">
 
 <table>
 	<tr>
@@ -33,15 +33,15 @@
 		<td align="left" width="250">
 			<label for="flag_approve_no">
 				<?php _e( 'No' ) ?>
-				<input id="flag_approve_no" type="radio" name="f_approve" value="no" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'no' ) { echo 'checked'; } ?> />
+				<input id="flag_approve_no" type="radio" name="f_approve" value="no" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'no' ) { echo 'checked'; } ?>>
 			</label>
 			<label for="flag_approve_yes">
 				<?php _e( 'Yes' ) ?>
-				<input id="flag_approve_yes" type="radio" name="f_approve" value="yes" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'yes' ) { echo 'checked'; } ?> />
+				<input id="flag_approve_yes" type="radio" name="f_approve" value="yes" <?php if ( isset( $_POST[ 'f_approve'] ) and $_POST[ 'f_approve'] === 'yes' ) { echo 'checked'; } ?>>
 			</label>
 			<label for="flag_approve_nomatter">
 				<?php _e( 'Ignore' ) ?>
-				<input id="flag_approve_nomatter" type="radio" name="f_approve" value="0" <?php echo empty( $_POST[ 'f_approve'] ) ? 'checked' : '' ?> />
+				<input id="flag_approve_nomatter" type="radio" name="f_approve" value="0" <?php echo empty( $_POST[ 'f_approve'] ) ? 'checked' : '' ?>>
 			</label>
 		</td>
 	</tr>
@@ -53,15 +53,15 @@
 		<td align="left">
 			<label for="flag_has_spam_no">
 				<?php _e( 'No' ) ?>
-				<input id="flag_has_spam_no" type="radio" name="has_spam" value="no" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam']==='no' ) { echo 'checked'; } ?> />
+				<input id="flag_has_spam_no" type="radio" name="has_spam" value="no" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam']==='no' ) { echo 'checked'; } ?>>
 			</label>
 			<label for="flag_has_spam_yes">
 				<?php _e( 'Yes' ) ?>
-				<input id="flag_has_spam_yes" type="radio" name="has_spam" value="yes" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam'] === 'yes' ) { echo 'checked'; } ?> />
+				<input id="flag_has_spam_yes" type="radio" name="has_spam" value="yes" <?php if ( isset( $_POST[ 'has_spam'] ) and $_POST[ 'has_spam'] === 'yes' ) { echo 'checked'; } ?>>
 			</label>
 			<label for="flag_has_spam_nomatter">
 				<?php _e( 'Ignore' ) ?>
-				<input id="flag_has_spam_nomatter" type="radio" name="has_spam" value="0" <?php echo empty( $_POST[ 'has_spam'] ) ? 'checked' : '' ?> />
+				<input id="flag_has_spam_nomatter" type="radio" name="has_spam" value="0" <?php echo empty( $_POST[ 'has_spam'] ) ? 'checked' : '' ?>>
 			</label>
 		</td>
 	</tr>
@@ -72,11 +72,11 @@
 		<td align="left" width="250">
 			<label for="ss_check_name_no">
 				<?php _e( 'No' ) ?>
-				<input id="ss_domain_no" type="radio" name="ss_check_name" value="no" <?php echo empty( $_POST[ 'ss_check_name'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked';} ?> />
+				<input id="ss_domain_no" type="radio" name="ss_check_name" value="no" <?php echo empty( $_POST[ 'ss_check_name'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked';} ?>>
 			</label>
 			<label for="ss_check_name_yes">
 				<?php _e( 'Yes' ) ?>
-				<input id="ss_check_name_yes" type="radio" name="ss_check_name" value="yes" <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_check_name'] === 'yes' ) { echo 'checked';} ?> />
+				<input id="ss_check_name_yes" type="radio" name="ss_check_name" value="yes" <?php if ( isset( $_POST[ 'ss_check_name'] ) and $_POST[ 'ss_check_name'] === 'yes' ) { echo 'checked';} ?>>
 			</label>
 		</td>
 	</tr>
@@ -87,11 +87,11 @@
 		<td align="left" width="250">
 			<label for="ss_domain_no">
 				<?php _e( 'No' ) ?>
-				<input id="ss_domain_no" type="radio" name="ss_domain" value="no" <?php echo empty( $_POST[ 'ss_domain'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked'; } ?> />
+				<input id="ss_domain_no" type="radio" name="ss_domain" value="no" <?php echo empty( $_POST[ 'ss_domain'] ) ? 'checked' : '' ?> <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'no' ) { echo 'checked'; } ?>>
 			</label>
 			<label for="ss_domain_yes">
 				<?php _e( 'Yes' ) ?>
-				<input id="ss_domain_yes" type="radio" name="ss_domain" value="yes" <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'yes' ) { echo 'checked'; } ?> />
+				<input id="ss_domain_yes" type="radio" name="ss_domain" value="yes" <?php if ( isset( $_POST[ 'ss_domain'] ) and $_POST[ 'ss_domain'] === 'yes' ) { echo 'checked'; } ?>>
 			</label>
 			<textarea cols="100" rows="2" name="ss_domain_text">
 				<?php echo isset( $_POST[ 'ss_domain_text'] ) ? htmlspecialchars( $_POST['ss_domain_text'] ) : '' ?>
@@ -110,7 +110,7 @@
 			<label for="usernameFilter">
 				<?php _e( 'Username' ) ?>
 			</label>
-			<input type="text" size="15" name="ss_username" value="<?php echo isset( $_POST['ss_username'] ) ? htmlspecialchars( $_POST['ss_username'] ) : '' ?>" id="usernameFilter" />
+			<input type="text" size="15" name="ss_username" value="<?php echo isset( $_POST['ss_username'] ) ? htmlspecialchars( $_POST['ss_username'] ) : '' ?>" id="usernameFilter">
 			<br>
 			<small>
 				<?php _e( 'Refine list by a username (e.g. test, example, etc.).' ) ?>
@@ -131,7 +131,7 @@
 					</option>
 				</select>
 				<?php _e( 'than' ) ?>
-				<input type="text" size="4" name="daysleft" value="<?php echo isset( $_POST['daysleft'] ) ? intval( $_POST['daysleft'] ) : 7 ?>" />
+				<input type="text" size="4" name="daysleft" value="<?php echo isset( $_POST['daysleft'] ) ? intval( $_POST['daysleft'] ) : 7 ?>">
 				<?php _e( 'days ago.' ) ?>
 			</label>
 			<br>
@@ -184,7 +184,7 @@
 			<label for="sort_order">
 				<?php _e( 'Show' ) ?>
 			</label>
-			<select id="max_size_output" name="max_size_output" />
+			<select id="max_size_output" name="max_size_output">
 			<?php $columns = array( '150', '300', '500', '1000', '3000', 'All' ); foreach ( $columns as $v ) {
 				print '<option value="' . $v . '" ' . ( $_POST['max_size_output'] == $v ? 'selected' : '' ) . '>' . $v . '</option>';
 			} ?>
@@ -198,7 +198,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input class="button-primary" type="submit" value="<?php _e( 'Search' ) ?>" name="ss_search" />
+			<input class="button-primary" type="submit" value="<?php _e( 'Search' ) ?>" name="ss_search">
 			<button class="button-primary" onclick="window.open('<?php echo admin_url( "admin-ajax.php" ) ?>' + '?action=iud_getCsvUserList&' + jQuery('#inactive-user-deleter-form').serialize()); return false;">
 				<?php _e( 'Export to CSV' ) ?>
 			</button>
