@@ -210,12 +210,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update challenge">
 		<br>
 		<div class="mainsection"><?php _e( 'Access Blocked Message', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#accessblocked" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#accessblocked" target="_blank">?</a></sup>
 		</div>
 		<textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
 		<br>
 		<div class="mainsection"><?php _e( 'Routing and Notifications', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="redir">
@@ -273,9 +273,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br>
-		<hr>
 		<div id="autoemails" class="mainsection"><?php _e( 'Options for emails to admin', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="new_user_notification_to_admin">
@@ -316,9 +315,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Automatic WordPress theme update email', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<hr>
+		<br>
 		<div class="mainsection"><?php _e( 'Options for emails to users', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank">?</a></sup>
 		</div>
 		<br>
 		<div class="checkbox switcher">
@@ -369,9 +368,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br>
-		<br>
 		<div class="mainsection"><?php _e( 'CAPTCHA', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#captcha" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#captcha" target="_blank">?</a></sup>
 		</div>
 		<p><?php _e( 'Second Chance CAPTCHA Challenge', 'stop-spammer-registrations-plugin' ); ?></p>
 		<div style="margin-left:30px">
@@ -418,8 +416,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<div style="margin-left:30px">
 			<p><?php _e( 'To use either the Solve Media, Google reCAPTCHA, or hCaptcha, you will need an API key.', 'stop-spammer-registrations-plugin' ); ?></p>
 		</div>
-		<hr>
-		<p><?php _e( 'CAPTCHA for Forms (Works with reCAPTCHA, hCaptcha, and Solve Media CAPTCHA', 'stop-spammer-registrations-plugin' ); ?></p>
+		<p><?php _e( 'CAPTCHA for Forms (works with reCAPTCHA, hCaptcha, and Solve Media CAPTCHA)', 'stop-spammer-registrations-plugin' ); ?></p>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="form_captcha_login">
 				<input class="ss_toggle" type="checkbox" id="form_captcha_login" name="form_captcha_login" value="Y" <?php if ( isset( $form_captcha_login ) and $form_captcha_login == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
@@ -440,9 +437,8 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		  		<small><span style="font-size:16px!important"><?php _e( 'Comment', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
-		<br>		
 		<br>
-		<hr>
+		<br>
 		<div style="margin-left:30px">
 			<small><span style="font-size:16px!important;"><?php _e( 'Google reCAPTCHA v2 API Key', 'stop-spammer-registrations-plugin' ); ?></span></small><br>
 			<input size="64" name="recaptchaapisite" type="text" placeholder="<?php _e( 'Site Key', 'stop-spammer-registrations-plugin' ); ?>" value="<?php echo esc_attr( $recaptchaapisite ); ?>">

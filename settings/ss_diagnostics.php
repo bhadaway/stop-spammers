@@ -67,7 +67,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<input type="hidden" name="action" value="update">
 			<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 			<div class="mainsection"><?php _e( 'Option Testing', 'stop-spammer-registrations-plugin' ); ?>
-				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#optiontesting" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#optiontesting" target="_blank">?</a></sup>
 			</div>
 			<?php _e( '<p>Run the settings against an IP address to see the results.</p>IP Address:<br>', 'stop-spammer-registrations-plugin' ); ?>
 			<input id="ssinput" name="ip" type="text" value="<?php echo esc_attr( $ip ); ?>">
@@ -359,7 +359,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<div class="ss_info_box">
 			<div class="mainsection"><?php _e( 'Information Display', 'stop-spammer-registrations-plugin' ); ?>
-				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#infodisplay" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+				<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#infodisplay" target="_blank">?</a></sup>
 			</div>
 			<div style="width:50%;float:left">
 				<h2><?php _e( 'Display All Options', 'stop-spammer-registrations-plugin' ); ?></h2>
@@ -519,7 +519,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
 	<div class="ss_info_box">
 		<div class="mainsection"><?php _e( 'Threat Scan', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#threats" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/diagnostics-and-threat-scan/#threats" target="_blank">?</a></sup>
 		</div>
 		<?php _e( '<p>A very simple scan that looks for things out of place in the content directory as well as the database.</p>', 'stop-spammer-registrations-plugin' ); ?>
 		<form method="post" action="">

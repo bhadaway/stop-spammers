@@ -53,6 +53,6 @@ if ( !current_user_can( 'manage_options' ) ) {
 		</div>
 	</div>
 	<div class="ss_admin_button">
-		<a href="https://stopspammers.io/downloads/stop-spammers-premium/"><?php _e( 'Get Premium', 'stop-spammer-registrations-plugin' ); ?></a>
+		<p class="center"><a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank"><?php _e( 'Get Premium', 'stop-spammer-registrations-plugin' ); ?></a></p>
 	</div>
 </div>

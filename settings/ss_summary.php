@@ -253,6 +253,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<?php
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		echo ' | ';
+		echo '<a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">' . __( 'Upgrade to Premium', 'stop-spammer-registrations-plugin' ) . '</a>';
 	} 
 	?>
 	<?php
@@ -367,11 +368,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		// clear the cache
 		delete_option( 'ss_cache' );
 	} ?>
-	<?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) { ?>
-	<br>
-	<br>
-	<div id="donate" style="max-width:500px;margin:0 auto"><script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe src="https://donorbox.org/embed/stop-spammers" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width: 500px; min-width: 250px; max-height:none!important"></iframe></div>
-	<?php } ?>
 	<h2><?php _e( 'Options', 'stop-spammer-registrations-plugin' ); ?></h2>
 	<div class="ss_admin_info_boxes_3row">
 		<div class="ss_admin_info_boxes_3col">

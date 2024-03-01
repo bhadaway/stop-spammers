@@ -263,7 +263,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<div id="formchecking" class="mainsection"><?php _e( 'Form Checking', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#formchecking" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#formchecking" target="_blank">?</a></sup>
 		</div>
 		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 			_e( '<p><span style="color:purple">WooCommerce detected. We recommend keeping this option enabled to avoid blocking customers.</span></p>', 'stop-spammer-registrations-plugin' );
@@ -281,19 +281,20 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkwooform">
-				<input class="ss_toggle" type="checkbox" readonly id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" readonly id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y' OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'WooCommerce Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 	 	<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkgvform">
-				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y'  OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
+				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y' OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Gravity Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
+		<br>
 		<div id="membersonly" class="mainsection"><?php _e( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#membersonly" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#membersonly" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_private_mode">
@@ -303,7 +304,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div id="preventlockouts" class="mainsection"><?php _e( 'Prevent Lockouts', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#preventlockouts" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#preventlockouts" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="addtoallowlist">
@@ -321,7 +322,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div id="notificationcontrol" class="mainsection">
 			<?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#notificationcontrol" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#notificationcontrol" target="_blank">?</a></sup>
 		</div>
 		<?php if ( is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 			_e( '<p>Find the full Notification Control options on the <a href="admin.php?page=ssp_premium">Premium Features page</a>.</p>', 'stop-spammer-registrations-plugin' );
@@ -343,7 +344,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div id="validaterequests" class="mainsection"><?php _e( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#validaterequests" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#validaterequests" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkaccept">
@@ -536,8 +537,9 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			</label>
 		</div>
 		<br>
+		<br>
 		<div id="blockcountries" class="mainsection"><?php _e( 'Block Countries', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank"><i class="fa fa-question-circle fa-2x tooltip"></i></a></sup>
+			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank">?</a></sup>
 		</div>
 		<br>
 		<div class="checkbox switcher">
