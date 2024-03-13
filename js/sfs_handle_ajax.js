@@ -110,10 +110,12 @@ jQuery(function($) {
 		if ($('#chkform').is(':checked')){
 			$('#chkwooform').attr("disabled",true);
 			$('#chkgvform').attr("disabled",true);
+			$('#chkwpform').attr("disabled",true);
 		}
 		else {
 			$('#chkwooform').attr("disabled",false);
 			$('#chkgvform').attr("disabled",false);	
+			$('#chkwpform').attr("disabled",false);	
 		}
 	}
 	$('#chkform').change(function(){

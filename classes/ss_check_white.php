@@ -40,8 +40,6 @@ class ss_check_white extends be_module {
 		// if Cloudflare or IP is local then the block tests for IPs are not done
 		$actions = array(
 			'chkcloudflare',
-			'chkgvform',
-			'chkwooform',
 			// moved back as first check because it fixes the IP if it is Cloudflare
 			'chkadminlog',
 			'chkaws',
@@ -51,6 +49,9 @@ class ss_check_white extends be_module {
 			'chkmiscallowlist',
 			'chkpaypal',
 			'chkform',
+			'chkwooform',
+			'chkgvform',
+			'chkwpform',
 			'chkscripts',
 			// 'chkvalidip', // handled in block testing
 			'chkwlem',
