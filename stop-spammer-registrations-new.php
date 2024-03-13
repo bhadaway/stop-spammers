@@ -42,8 +42,8 @@ function ss_admin_notice() {
 		$user_id = get_current_user_id();
 		$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$param = ( count( $_GET ) ) ? '&' : '?';
-		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_28' ) && current_user_can( 'manage_options' ) ) {
-			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thank you for fighting spam with us! 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<br><br><a href="https://stopspammers.io/downloads/stop-spammers-premium/" class="button-primary" style="border-color:green;background:green" target="_blank">' . esc_html__( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a> <a href="https://stopspammers.io/donate" class="button-primary" style="border-color:purple;background:purple" target="_blank">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+		if ( !get_user_meta( $user_id, 'ss_notice_dismissed_29' ) && current_user_can( 'manage_options' ) ) {
+			echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — We need your help! 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<p>We\'re making a big push to audit Stop Spammers for stability — now\'s the time to report errors or contribute fixes: <a href="mailto:help@stopspammers.io">help@stopspammers.io</a>.</p><a href="https://stopspammers.io/downloads/stop-spammers-premium/" class="button-primary" style="border-color:green;background:green" target="_blank">' . esc_html__( 'Upgrade', 'stop-spammer-registrations-plugin' ) . '</a> <a href="https://stopspammers.io/donate" class="button-primary" style="border-color:purple;background:purple" target="_blank">' . esc_html__( 'Donate', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 		}
 	}
 }
@@ -54,7 +54,7 @@ function ss_notice_dismissed() {
 	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
 		$user_id = get_current_user_id();
 		if ( isset( $_GET['dismiss'] ) ) {
-			add_user_meta( $user_id, 'ss_notice_dismissed_28', 'true', true );
+			add_user_meta( $user_id, 'ss_notice_dismissed_29', 'true', true );
 		}
 	}
 	// Notification Control: handles notices
