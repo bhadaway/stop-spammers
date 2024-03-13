@@ -49,6 +49,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'chkform',
 		'chkwooform',
 		'chkgvform',
+		'chkwpform',
 		'ss_private_mode',
 		'ss_keep_hidden_btn',
 		'ss_hide_all_btn',
@@ -221,14 +222,18 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 	$license = get_option( 'ssp_license_key' );
 	$status  = get_option( 'ssp_license_status' );
 	if ( $status !== false && $status == 'valid' ) {
-		$options = ss_get_options();
-		$options['chkwooform'] = 'Y';
-		$options['chkwooform'] = 'Y';   
+		//$options = ss_get_options();
+		$options['chkwooform'] = $_POST['chkwooform'];
+		$options['chkgvfor'] = $_POST['chkwooform'];
+		$options['chkwpform'] = $_POST['chkwpform'];
+		//$options['chkwooform'] = 'Y';   
 	}
 	else {
-		$options['chkgvfor'] = 'Y\N';
+		$options['chkgvfor'] = 'N';
 		$options['chkwooform'] = 'N';
+		$options['chkwpform'] = 'N';
 	}
+
 	// text options
 	if ( array_key_exists( 'sesstime', $_POST ) ) {
 		$sesstime			 = stripslashes( sanitize_text_field( $_POST['sesstime'] ) );
@@ -242,6 +247,7 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$multicnt			 = stripslashes( sanitize_text_field( $_POST['multicnt'] ) );
 		$options['multicnt'] = $multicnt;
 	}
+	
 	ss_set_options( $options );
 	extract( $options ); // extract again to get the new options
 	$msg = '<div class="notice notice-success is-dismissible"><p>' . __( 'Options Updated', 'stop-spammer-registrations-plugin' ) . '</p></div>';
@@ -281,15 +287,22 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkwooform">
-				<input class="ss_toggle" type="checkbox" readonly id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y' OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
+				<input class="ss_toggle" type="checkbox" id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'WooCommerce Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 	 	<br>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkgvform">
-				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $chkform == 'Y' OR $status == false OR $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
+				<input class="ss_toggle" type="checkbox"   id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Gravity Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
+			</label>
+		</div>
+		<br>
+		<div class="checkbox switcher">
+			<label id="ss_subhead" for="chkwpform">
+				<input class="ss_toggle" type="checkbox"   id="chkwpform" name="chkwpform" value="Y" <?php if ( $chkwpform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $status != 'valid') { echo 'disabled="disabled"'; } ?>><span><small></small></span>
+				<small><span style="font-size:16px!important"><?php _e( 'WP Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br>
