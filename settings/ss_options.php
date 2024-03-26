@@ -268,7 +268,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#formchecking" target="_blank">?</a></sup>
 		</div>
 		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-			_e( '<p><span style="color:purple">WooCommerce detected. We recommend keeping this option enabled to avoid blocking customers.</span></p>', 'stop-spammer-registrations-plugin' );
+			_e( '<p><span style="color:purple">WooCommerce detected. If you experience any issues using WooCommerce and Stop Spammers together, you may need to adjust these settings.</span></p>', 'stop-spammer-registrations-plugin' );
 		} ?>
 		<?php 
 			$license = trim( get_option( 'ssp_license_key' ) );
