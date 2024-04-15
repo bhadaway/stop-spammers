@@ -8,7 +8,8 @@ function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
 		email: email,
 		cont: contx,
 		func: sfunc,
-		ajax_url: url
+		ajax_url: url,
+		nonce: mynonce,
 	};
 	jQuery.get(ajaxurl, data, sfs_ajax_return_process);
 }
@@ -40,6 +41,7 @@ function sfs_ajax_report_spam(t, id, blog, url, email, ip, user) {
 		blog_id: blog,
 		comment_id: id,
 		ajax_url: url,
+		
 		email: email,
 		ip: ip,
 		user: user
