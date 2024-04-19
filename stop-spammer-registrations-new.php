@@ -3,8 +3,8 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately.
-Version: 2024.4
-Author: Trumani
+Version: 2024.3
+Author: Stop Spammers
 Author URI: https://stopspammers.io/
 License: https://www.gnu.org/licenses/gpl.html
 Domain Path: /languages
