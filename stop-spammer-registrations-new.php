@@ -2,7 +2,7 @@
 /*
 Plugin Name: Stop Spammers
 Plugin URI: https://stopspammers.io/
-Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately. Enhance your visitors' UX with 50+ configurable options, an allow access form, and a testing tool.
+Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately.
 Version: 2024.4
 Author: Trumani
 Author URI: https://stopspammers.io/

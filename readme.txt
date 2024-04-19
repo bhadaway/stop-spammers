@@ -1,13 +1,13 @@
-=== Stop Spammers Security | Block Spam Users, Comments, Forms ===
+=== Anti-Spam: Spam Protection | Block Spam Users, Comments, Forms ===
 
-Contributors: blockspam, trumani, bhadaway, hiteshchandwani, Keith Graham
+Contributors: mcitar, bhadaway
 Donate link: https://stopspammers.io/donate
-Tags: spam, security, anti-spam, spam blocker, block spam, signup spam, comment spam, spam filter, registration spam, spammer, spammers, spamming, xss, malware, virus, captcha, comment, comments, login, protection, user registration spam
+Tags: spam, security, anti-spam, spam protection, no spam
 Tested up to: 6.5
 Stable tag: 2024.4
 License: https://www.gnu.org/licenses/gpl.html
 
-Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more. Manage custom lists for IPs, emails, usernames, and spam words. Run diagnostic testing and log reporting.
+Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more.
 
 == Description ==
 
