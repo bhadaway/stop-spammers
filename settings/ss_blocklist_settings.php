@@ -107,23 +107,6 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		$options['badagents'] = $tblist;
 		$badagents			  = $tblist;
 	}
-	if ( array_key_exists( 'blocklist', $_POST ) ) {
-		$blocklist = sanitize_textarea_field( $_POST['blocklist'] );
-		if ( empty( $blocklist ) ) {
-			$blocklist = array();
-		} else {
-			$blocklist = explode( "\n", $blocklist );
-		}
-		$tblist = array();
-		foreach ( $blocklist as $bl ) {
-			$bl = trim( $bl );
-			if ( !empty( $bl ) ) {
-				$tblist[] = $bl;
-			}
-		}
-		$options['blocklist'] = $tblist;
-		$blocklist			  = $tblist;
-	}
 	// check box setting
 	$optionlist = array(
 		'chkspamwords',
@@ -246,14 +229,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
 		<br>
 		<br>
-		<h2>Block Ip Address</h2>
-		<textarea name="blocklist" cols="40" rows="8"><?php
-			foreach ( $blocklist as $p ) {
-				echo $p . "\r\n";
-			}
-		?></textarea>
-		<br>
-		<br>
 		<div class="mainsection"><?php _e( 'Blocked TLDs', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blockedtlds" target="_blank">?</a></sup>
 		</div>					
@@ -267,5 +242,4 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<p class="submit"><input class="button-primary" value="<?php _e( 'Save Changes', 'stop-spammer-registrations-plugin' ); ?>" type="submit"></p>
 	</form>
-	
 </div>

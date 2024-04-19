@@ -1,8 +1,5 @@
 <?php
-function my_admin_scripts() {
-    wp_localize_script('my-ajax-script', 'my_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
-}
-add_action('admin_enqueue_scripts', 'my_admin_scripts');
+
 if ( !defined( 'ABSPATH' ) ) {
 	http_response_code( 404 );
 	die();
@@ -47,12 +44,7 @@ if ( function_exists( 'register_uninstall_hook' ) ) {
 // do this only if a valid IP and not Cloudflare
 add_action( 'admin_enqueue_scripts', 'sfs_handle_ajax' );
 function sfs_handle_ajax() {
-
-     echo "<script> var mynonce = '" . wp_create_nonce( 'love-nonce' ) ."';
-     var admin-ajax = '" . admin_url('admin-ajax.php') ."';</script>";
-     
 	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js', false );
-	
 	wp_enqueue_script( 'stop-spammers-modal', SS_PLUGIN_URL . 'js/modal.js', '', '', true );
 }
 
@@ -340,9 +332,6 @@ function sfs_handle_ajax_sfs_process( $data ) {
 	if ( !current_user_can( 'manage_options' ) ) {
 		return;
 	}
-if ( ! wp_verify_nonce( $_REQUEST['nonce'], 'love-nonce' ) ) {
-         return;
-     }
 	sfs_errorsonoff();
 	sfs_handle_ajax_sfs_process_watch( $data );
 	sfs_errorsonoff( 'off' );
@@ -488,104 +477,5 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 	}
 	return $value;
 }
-
-
-// Step 1: Connect to the WordPress database
-global $wpdb;
-
-// Step 2: Create a table if it doesn't exist
-$table_name = $wpdb->prefix . 'blocked_ips';
-
-$sql = "CREATE TABLE IF NOT EXISTS $table_name (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ip_address VARCHAR(45) NOT NULL,
-    reason TEXT,
-    blocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)";
-
-require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-dbDelta($sql);
-
-// Step 3: Insert blocked IP address
-function block_ip_address($ip_address, $reason = '') {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'blocked_ips';
-
-    $wpdb->insert(
-        $table_name,
-        array(
-            'ip_address' => $ip_address,
-            'reason' => $reason
-        )
-    );
-}
-
-// Step 4: Retrieve blocked IP addresses
-function get_blocked_ips() {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'blocked_ips';
-
-    $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-    return $results;
-}
-
-// Create an admin page to manage blocked IPs
-add_action('admin_menu', 'custom_blocked_ips_menu');
-
-function custom_blocked_ips_menu() {
-    add_submenu_page(
-        'options-general.php',
-        'Blocked IPs',
-        'Blocked IPs',
-        'manage_options',
-        'custom-blocked-ips',
-        'custom_blocked_ips_page'
-    );
-}
-
-// Define the content for the blocked IPs page
-function custom_blocked_ips_page() {
-    // Handle form submission
-    if (isset($_POST['submit_ip'])) {
-        $submitted_ip = sanitize_text_field($_POST['user_ip']);
-        block_ip_address($submitted_ip);
-    }
-    ?>
-    <div class="wrap">
-        <h1>Manage Blocked IPs</h1>
-        <form method="post" action="">
-            <label for="user_ip">Enter IP Address to Block:</label>
-            <input type="text" name="user_ip" id="user_ip" required>
-            <input type="submit" name="submit_ip" value="Block IP">
-        </form>
-        <h2>Blocked IP Addresses</h2>
-        <table class="widefat">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>IP Address</th>
-                    <th>Reason</th>
-                    <th>Blocked At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $blocked_ips = get_blocked_ips();
-                foreach ($blocked_ips as $blocked_ip) {
-                    echo "<tr>";
-                    echo "<td>{$blocked_ip['id']}</td>";
-                    echo "<td>{$blocked_ip['ip_address']}</td>";
-                    echo "<td>{$blocked_ip['reason']}</td>";
-                    echo "<td>{$blocked_ip['blocked_at']}</td>";
-                    echo "</tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-    <?php
-}
-
-
 
 ?>

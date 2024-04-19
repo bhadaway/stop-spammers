@@ -28,22 +28,6 @@ function ss_load_plugin_textdomain() {
 	load_plugin_textdomain( 'stop-spammer-registrations-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
-// function ss_load_plugin_script( $hook ) {
-//   wp_localize_script('ss_ajax', 'ajax_var', array(
-//          'url' => admin_url('admin-ajax.php'),
-//          'nonce' => wp_create_nonce('ajax-nonce')
-//      ));
-// }
-// add_action( 'admin_enqueue_scripts', 'ss_load_plugin_script' );
-// function myplugin_localize_admin_scripts() {
-//     $data = array(
-//         'ajax_url' => admin_url( 'admin-ajax.php' ),
-//         'nonce' => wp_create_nonce( 'myplugin_nonce' ),
-//     );
-//     wp_localize_script( 'myplugin-admin-script', 'myPluginData', $data );
-// }
-// add_action( 'admin_enqueue_scripts', 'myplugin_localize_admin_scripts' );
-
 
 // load admin styles
 function ss_styles() {
@@ -1356,59 +1340,5 @@ function ss_authenticate_hook( $user, $username, $password ) {
 	return $user;
 }
 add_filter( 'authenticate', 'ss_authenticate_hook', 30, 3 );
-
-// function restrict_form_submission() {
-//     $blocked_ips = array(
-//         '106.221.137.102',
-//         '38.137.33.101',
-//     );
-
-//     $user_ip = $_SERVER['REMOTE_ADDR'];
-
-//     if (in_array($user_ip, $blocked_ips)) {
-//         wp_die('Your IP address has been blocked from submitting forms on this website.');
-//     }
-// }
-// add_action('init', 'restrict_form_submission');
-
-
-
-// Add this code to your theme's functions.php file
-
-function restrict_form_submission() {
-    // Retrieve the list of blocked IP addresses from the textarea field
-    if (isset($_POST['blocklist'])) {
-        $blocklist = sanitize_textarea_field($_POST['blocklist']);
-        $blocked_ips = array_map('trim', explode("\n", $blocklist));
-    } else {
-        $blocked_ips = array(); // Default to an empty array if blocklist is not provided
-    }
-
-    $user_ip = $_SERVER['REMOTE_ADDR'];
-
-    if (in_array($user_ip, $blocked_ips)) {
-        die();
-    }
-}
-add_action('init', 'restrict_form_submission');
-
-
-
-// function restrict_form_submission() {
-//     if (isset($_POST['blocklist'])) {
-//         $blocklist = sanitize_textarea_field($_POST['blocklist']);
-//         $blocked_ips = array_map('trim', explode("\n", $blocklist));
-//     } else {
-//         $blocked_ips = array();
-//     }
-
-//     $user_ip = $_SERVER['REMOTE_ADDR'];
-
-//     if (in_array($user_ip, $blocked_ips)) {
-//         wp_die('Your IP address has been blocked from submitting forms on this website.');
-//     }
-// }
-// add_action('template_redirect', 'restrict_form_submission');
-
 
 ?>
