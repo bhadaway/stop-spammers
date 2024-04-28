@@ -251,12 +251,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	?>
 	| <?php _e( 'Your current IP address is', 'stop-spammer-registrations-plugin' ); ?>: <strong><?php echo $ip; ?></strong>
 	<?php
-	if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		echo ' | ';
-		echo '<a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">' . __( 'Upgrade to Premium', 'stop-spammer-registrations-plugin' ) . '</a>';
-	} 
-	?>
-	<?php
 	// check the IP to see if we are local
 	$ansa = be_load( 'chkvalidip', ss_get_ip() );
 	if ( $ansa == false ) {
@@ -465,48 +459,5 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 				<a class="button-primary" href="?page=ss_diagnostics"><?php _e( 'Scan', 'stop-spammer-registrations-plugin' ); ?></a></input>
 			</div>
 		</div>
-	<?php if ( !is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-		echo '
-			<div class="ss_admin_info_boxes_3col">
-				<h3>' . __( 'ENHANCED SECURITY', 'stop-spammer-registrations-plugin' ) . '</h3>
-				<p>' . __( 'Add a server-side firewall and themeable login, protect Divi / Elementor / CF7 / bbPress with our honeypot, export logs to excel, restore options, and transfer settings.', 'stop-spammer-registrations-plugin' ) . '</p>
-				<div class="ss_admin_button">
-					<a href="https://stopspammers.io/downloads/stop-spammers-premium/" target="_blank">' . __( 'Go Premium', 'stop-spammer-registrations-plugin' ) . '</a>
-				</div>
-			</div>
-		</div>
-		';
-	} else {
-		echo '
-			</div>
-			<div class="ss_admin_info_boxes_3row">
-				<div class="ss_admin_info_boxes_3col">
-					<h3>' . __( 'Restore Default Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
-					<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/restore-settings_stop-spammers_trumani.png" class="center_thumb">
-					' . __( 'Too fargone? Revert to the out-of-the box configurations.', 'stop-spammer-registrations-plugin' ) . '
-					<div class="ss_admin_button">
-						<a href="admin.php?page=ssp_premium">' . __( 'RESTORE', 'stop-spammer-registrations-plugin' ) . '</a>
-					</div>
-				</div>
-				<div class="ss_admin_info_boxes_3col">
-					<h3>' . __( 'Import/Export Settings', 'stop-spammer-registrations-plugin' ) . '</h3>
-					<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/import-export_stop-spammers_trumani.png" class="center_thumb">
-					' . __( 'You can download your personalized configurations and upload them to all of your other sites.', 'stop-spammer-registrations-plugin' ) . '
-					<div class="ss_admin_button">
-						<a href="admin.php?page=ssp_premium">' . __( 'IMPORT/EXPORT', 'stop-spammer-registrations-plugin' ) . '</a>
-					</div>
-				</div>
-				<div class="ss_admin_info_boxes_3col">
-					<h3>' . __( 'Export Log to Excel', 'stop-spammer-registrations-plugin' ) . '</h3>
-					<img src="' . plugin_dir_url( dirname( __FILE__ ) ) . 'images/export-to-excel_stop-spammers_trumani.png" class="center_thumb">
-					' . __( 'Save the log report returns for future reference.', 'stop-spammer-registrations-plugin' ) . '
-					<div class="ss_admin_button">
-						<a href="admin.php?page=ssp_premium">' . __( 'EXPORT LOG', 'stop-spammer-registrations-plugin' ) . '</a>
-					</div>
-				</div>
-			</div>
-		';
-	}
-	?>
-	<p class="center"><a href="https://stopspammers.io/contact/contributors/" target="_blank" class="button-secondary">Meet the Team</a></p>
+	</div>
 </div>

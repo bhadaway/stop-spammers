@@ -1,10 +1,9 @@
 === Anti-Spam: Spam Protection | Block Spam Users, Comments, Forms ===
 
 Contributors: mcitar, bhadaway
-Donate link: https://stopspammers.io/donate
 Tags: spam, security, anti-spam, spam protection, no spam
 Tested up to: 6.5
-Stable tag: 2024.3
+Stable tag: 2024.4
 License: https://www.gnu.org/licenses/gpl.html
 
 Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more.
@@ -13,40 +12,25 @@ Robust WordPress security & spam prevention. Leverage our pre-defined allow/bloc
 
 Antispam.
 
-Quick Links: [Upgrade](https://stopspammers.io/downloads/stop-spammers-premium/) | [Support](https://stopspammers.io/contact/) | [Funding](https://donorbox.org/stop-spammers)
-
 Stop spam emails, spam comments, spam registration, and spam bots and spammers in general. Run diagnostic tests, view activity, and much more with this well-maintained, mature plugin.
 
 Stop Spammers adds security that should kill off many of your spam worries straight out-of-the-box. Because every website is different (especially if you have integrated a payment gateway), we offer dozens of features you can leverage to meet your website's specific needs. Our 50+ configuration options make personalization easy.
-
-Get even more options with **[Stop Spammers Premium](https://stopspammers.io/downloads/stop-spammers-premium/)**.
 
 **Features**
 
 Extremely granular control, so that any variety of website can create a special custom cocktail just for their particular spam issues:
 
-* [Block suspicious behavior](https://stopspammers.io/documentation/protection-options/)
-* [Block spam words, disposable emails, URL shortener links, all URLs TLDs and more](https://stopspammers.io/documentation/protection-options/)
-* [Connect third-party spam defense services](https://stopspammers.io/documentation/web-services/)
-* [Block countries](https://stopspammers.io/documentation/protection-options/#blockcountries)
-* [Block/allow IPs, emails, and usernames manually](https://stopspammers.io/documentation/allow-requests-and-lists/)
-* [Hide admin notices permanently](https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/)
-* [Allow users to request access and send email when allow list request is approved](https://stopspammers.io/documentation/challenge-and-block/)
-* [Members-only mode](https://stopspammers.io/stop-spammers-features/members-only-mode/)
-* [Core forms CAPTCHA](https://stopspammers.io/stop-spammers-features/captcha-on-core-wordpress-forms/)
-* [Mass lookup and disable registered users and pending comments](https://stopspammers.io/updates/mass-functions-d…ng-spam-comments/)
-* [Disable WordPress automated emails](https://stopspammers.io/updates/disable-wordpress-email-notifications/)
-* So much more...
-* Server-level firewall protection (Premium Only)
-* Themed registration/login pages and menu links (Premium Only)
-* WooCommerce and Gravity Forms protection (Premium Only)
-* Brute force login protection (Premium Only)
-* Notification control (Premium Only)
-* Import/export settings (Premium Only)
-* Export log to Excel (Premium Only)
-* Restore default settings (Premium Only)
-* Contact Form 7 protection (Premium Only)
-* Built-in contact form (Premium Only)
+* Block suspicious behavior
+* Block spam words, disposable emails, URL shortener links, all URLs TLDs and more
+* Connect third-party spam defense services
+* Block countries
+* Block/allow IPs, emails, and usernames manually
+* Hide admin notices permanently
+* Allow users to request access and send email when allow list request is approved
+* Members-only mode
+* Core forms CAPTCHA
+* Mass lookup and disable registered users and pending comments
+* Disable WordPress automated emails
 
 We sincerely thank everyone who has contributed to the project through donations, feedback, and bug reporting. Every little bit goes a long way.
 
@@ -64,21 +48,13 @@ OR
 
 == Frequently Asked Questions ==
 
-= What should I expect? =
-
-See: [Breaking Down Stop Spammers](https://stopspammers.io/learning/breaking-down-stop-spammers/).
-
-= What do I do if I lock myself out of my own site? =
-
-See: [https://github.com/trumani/stop-spammers/issues/5](https://github.com/trumani/stop-spammers/issues/5).
-
 = Can I use Stop Spammers with Cloudflare? =
 
 Yes. But, you may need to restore visitor IPs: [https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs](https://support.cloudflare.com/hc/sections/200805497-Restoring-Visitor-IPs).
 
 = Can I use Stop Spammers with WooCommerce (and other ecommerce plugins)? =
 
-Yes. But, in some configurations, you may need to go to Stop Spammers > Protection Options > Toggle on the option for "Only Use the Plugin for Standard WordPress Forms" > Save if you're running into any issues. Premium now supports WooCommerce checks.
+Yes. But, in some configurations, you may need to go to Stop Spammers > Protection Options > Toggle on the option for "Only Use the Plugin for Standard WordPress Forms" > Save if you're running into any issues.
 
 = Can I use Stop Spammers with Akismet? =
 
@@ -101,6 +77,10 @@ Toggle off the "Check Credentials on All Login Attempts" option and try again.
 Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging](https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-consent-requirement-for-ip-logging). Stop Spammers does not collect any data for any other purpose (like marketing or tracking). It is purely for legitimate security purposes only. Additionally, if any of your users ever requested it, all data can be deleted.
 
 == Changelog ==
+
+= 2024.4 =
+* [Notice] Premium has been discontinued
+* [Notice] HiveMind API has been discontinued
 
 = 2024.3 =
 * [Notice] We're making a big push to audit Stop Spammers — now's the time to jump in if you know how to code and can contribute fixes: help@stopspammers.io.
@@ -307,4 +287,4 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 * [Update] Admin UI enhancements
 
 = 2019.6 =
-* [New owner](https://github.com/trumani/stop-spammers/issues/145)
+* New owner

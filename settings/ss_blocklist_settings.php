@@ -14,8 +14,6 @@ $now	 = date( 'Y/m/d H:i:s', time() + ( get_option( 'gmt_offset' ) * 3600 ) );
 $options = ss_get_options();
 extract( $options );
 $nonce   = '';
-$license = get_option( 'ssp_license_key' );
-$status  = get_option( 'ssp_license_status' );
 
 if ( array_key_exists( 'ss_stop_spammers_control', $_POST ) ) {
 	$nonce = $_POST['ss_stop_spammers_control'];
@@ -161,14 +159,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			}
 		?></textarea>
 		<br>
-		<br>
-		<div class="checkbox switcher">
-			<label id="ss_subhead" for="chkipsync">
-				<input class="ss_toggle" type="checkbox" id="chkipsync" name="chkipsync" value="Y" <?php if ( isset( $chkipsync ) && $chkipsync == 'Y') { echo 'checked="checked"'; } ?>><span><small></small></span>
-		  		<small><span style="font-size:16px!important"><?php _e( 'HiveMindᴮᴱᵀᴬ', 'stop-spammer-registrations-plugin' ); ?></span></small>
-				<em><?php _e( 'By enabling this feature, you agree to share your Block List with our external API.', 'stop-spammer-registrations-plugin' ); ?></em>
-			</label>
-		</div>
 		<br>
 		<div class="mainsection"><?php _e( 'Spam Words List', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#spamwords" target="_blank">?</a></sup>

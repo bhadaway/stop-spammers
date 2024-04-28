@@ -13,7 +13,6 @@ class be_module {
 	public $searchlist = array();
 
 	// most common use is as a country lookup - this does the base country lookup if there is no process
-
 	public static function getafile( $f, $method = 'GET' ) {
 		// try this using Wp_Http
 		if ( !class_exists( 'WP_Http' ) ) {

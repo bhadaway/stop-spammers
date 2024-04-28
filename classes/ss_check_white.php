@@ -49,9 +49,6 @@ class ss_check_white extends be_module {
 			'chkmiscallowlist',
 			'chkpaypal',
 			'chkform',
-			'chkwooform',
-			'chkgvform',
-			'chkwpform',
 			'chkscripts',
 			// 'chkvalidip', // handled in block testing
 			'chkwlem',

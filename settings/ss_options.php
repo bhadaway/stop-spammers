@@ -47,9 +47,6 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		'chkakismet',
 		'filterregistrations',
 		'chkform',
-		'chkwooform',
-		'chkgvform',
-		'chkwpform',
 		'ss_private_mode',
 		'ss_keep_hidden_btn',
 		'ss_hide_all_btn',
@@ -219,18 +216,6 @@ if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'ss_stopspam_update' ) ) {
 		}
 		$options[$check] = $v;
 	}
-	$license = get_option( 'ssp_license_key' );
-	$status  = get_option( 'ssp_license_status' );
-	if ( $status !== false && $status == 'valid' ) {
-		$options['chkwooform'] = $_POST['chkwooform'];
-		$options['chkgvfor']   = $_POST['chkwooform'];
-		$options['chkwpform']  = $_POST['chkwpform'];
-	}
-	else {
-		$options['chkwooform'] = 'N';
-		$options['chkgvfor']   = 'N';
-		$options['chkwpform']  = 'N';
-	}
 	// text options
 	if ( array_key_exists( 'sesstime', $_POST ) ) {
 		$sesstime			 = stripslashes( sanitize_text_field( $_POST['sesstime'] ) );
@@ -270,35 +255,10 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 			_e( '<p><span style="color:purple">WooCommerce detected. If you experience any issues using WooCommerce and Stop Spammers together, you may need to adjust these settings.</span></p>', 'stop-spammer-registrations-plugin' );
 		} ?>
-		<?php 
-			$license = trim( get_option( 'ssp_license_key' ) );
-			$status  = get_option( 'ssp_license_status' );
-		?>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkform">
 				<input class="ss_toggle" type="checkbox" id="chkform" name="chkform" value="Y" <?php if ( $chkform == 'Y' ) { echo 'checked="checked"'; } ?>><span><small></small></span>
 				<small><span style="font-size:16px!important"><?php _e( 'Only Use the Plugin for Standard WordPress Forms', 'stop-spammer-registrations-plugin' ); ?></span></small>
-			</label>
-		</div>
-		<br>
-		<div class="checkbox switcher">
-			<label id="ss_subhead" for="chkwooform">
-				<input class="ss_toggle" type="checkbox" id="chkwooform" name="chkwooform" value="Y" <?php if ( $chkwooform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $status != 'valid' ) { echo 'disabled="disabled"'; } ?>><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'WooCommerce Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
-			</label>
-		</div>
-	 	<br>
-		<div class="checkbox switcher">
-			<label id="ss_subhead" for="chkgvform">
-				<input class="ss_toggle" type="checkbox" id="chkgvform" name="chkgvform" value="Y" <?php if ( $chkgvform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $status != 'valid' ) { echo 'disabled="disabled"'; } ?>><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'Gravity Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
-			</label>
-		</div>
-		<br>
-		<div class="checkbox switcher">
-			<label id="ss_subhead" for="chkwpform">
-				<input class="ss_toggle" type="checkbox" id="chkwpform" name="chkwpform" value="Y" <?php if ( $chkwpform == 'Y' ) { echo 'checked="checked"'; } ?> <?php if ( $status != 'valid' ) { echo 'disabled="disabled"'; } ?>><span><small></small></span>
-				<small><span style="font-size:16px!important"><?php _e( 'WP Forms - Premium Only', 'stop-spammer-registrations-plugin' ); ?></span></small>
 			</label>
 		</div>
 		<br>
@@ -333,11 +293,6 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			<?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?>
 			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#notificationcontrol" target="_blank">?</a></sup>
 		</div>
-		<?php if ( is_plugin_active( 'stop-spammers-premium/stop-spammers-premium.php' ) ) {
-			_e( '<p>Find the full Notification Control options on the <a href="admin.php?page=ssp_premium">Premium Features page</a>.</p>', 'stop-spammer-registrations-plugin' );
-		} else {
-			_e( '<p>This feature is extended in <a href="https://stopspammers.io/updates/notification-control-stop-admin-spam-messages/" target="_blank">Stop Spammers Premium</a>.</p>', 'stop-spammer-registrations-plugin' );
-		} ?>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_keep_hidden_btn">
 				<input class="ss_toggle" type="checkbox" id="ss_keep_hidden_btn" name="ss_keep_hidden_btn" value="Y" <?php if ( $ss_keep_hidden_btn == 'Y' ) { echo 'checked="checked"'; } ?> onChange="(this.checked? '': jQuery('#ss_hide_all_btn').prop('checked', false) );"><span><small></small></span>
