@@ -209,7 +209,7 @@ function ss_show_admin_notices() {
 // add hidden notification to user meta
 function ss_update_notice_preference() {
 	if ( ! check_ajax_referer( 'ss_update_notice_preference_nonce', false, false ) ) {
-		return;
+		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
 	}
 
 	$user_id = get_current_user_id();

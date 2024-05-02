@@ -188,11 +188,11 @@ function ipChkk() {
 
 function sfs_handle_ajax_sub( $data ) {
 	if ( ! ss_ajax_action_allowed_for_user() ) {
-		return;
+		wp_send_json_error( __( 'Forbidden', 'stop-spammer-registrations-plugin' ), 403 );
 	}
 
 	if ( ! check_ajax_referer( 'sfs_sub_nonce', false, false ) ) {
-		return;
+		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
 	}
 
 	// suddenly loading before 'init' has loaded things?
@@ -350,11 +350,11 @@ function sfs_handle_ajax_check( $data ) {
 
 function sfs_handle_ajax_sfs_process( $data ) {
 	if ( ! ss_ajax_action_allowed_for_user() ) {
-		return;
+		wp_send_json_error( __( 'Forbidden', 'stop-spammer-registrations-plugin' ), 403 );
 	}
 
 	if ( ! check_ajax_referer( 'sfs_process_nonce', false, false ) ) {
-		return;
+		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
 	}
 
 	sfs_errorsonoff();
