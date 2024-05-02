@@ -187,13 +187,14 @@ function ipChkk() {
 }
 
 function sfs_handle_ajax_sub( $data ) {
-	// check to see if it user can manage options
-	if ( !is_user_logged_in() ) {
+	if ( ! ss_ajax_action_allowed_for_user() ) {
 		return;
 	}
-	if ( !current_user_can( 'manage_options' ) ) {
+
+	if ( ! check_ajax_referer( 'sfs_sub_nonce', false, false ) ) {
 		return;
 	}
+
 	// suddenly loading before 'init' has loaded things?
 	// get the stuff from the $_GET and call stop forum spam
 	// this tages the stuff from the get and uses it to do the get from SFS
