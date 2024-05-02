@@ -28,11 +28,11 @@ add_action( 'network_admin_menu', 'ss_admin_menu' );
 
 add_filter( 'comment_row_actions', 'ss_row', 1, 2 );
 
-// add_action( 'wp_ajax_nopriv_sfs_sub', 'sfs_handle_ajax_sub' );	
+// add_action( 'wp_ajax_nopriv_sfs_sub', 'sfs_handle_ajax_sub' );
 add_action( 'wp_ajax_sfs_sub', 'sfs_handle_ajax_sub' );
 
 // new replacement for multiple AJAX hooks
-// add_action( 'wp_ajax_nopriv_sfs_process', 'sfs_handle_ajax_sfs_process' );	
+// add_action( 'wp_ajax_nopriv_sfs_process', 'sfs_handle_ajax_sfs_process' );
 add_action( 'wp_ajax_sfs_process', 'sfs_handle_ajax_sfs_process' );
 add_action( 'manage_users_custom_column', 'ss_sfs_ip_column', 10, 3 );
 // the uninstall hook only gets set if user is logged in and can manage options (plugins)
@@ -46,6 +46,28 @@ add_action( 'admin_enqueue_scripts', 'sfs_handle_ajax' );
 function sfs_handle_ajax() {
 	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js', false );
 	wp_enqueue_script( 'stop-spammers-modal', SS_PLUGIN_URL . 'js/modal.js', '', '', true );
+
+	wp_add_inline_script(
+	    'stop-spammers',
+	    'const StopSpammersAjaxConfig = ' . json_encode( array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'actions' => array(
+				'sfs_process' => wp_create_nonce( 'sfs_process_nonce' ),
+				'sfs_sub' => wp_create_nonce( 'sfs_sub_nonce' ),
+				'ss_update_notice_preference' => wp_create_nonce( 'ss_update_notice_preference_nonce' ),
+				'ss_allow_block_ip' => wp_create_nonce( 'ss_allow_block_ip_nonce' ),
+			),
+	    ) ),
+	    'before'
+	);
+}
+
+function ss_ajax_action_allowed_for_user( $user = null ) {
+	if ( ! is_a( $user, 'WP_User' ) ) {
+		$user = wp_get_current_user();
+	}
+
+	return $user->exists() && user_can( $user, 'manage_options' );
 }
 
 function ss_sp_plugin_action_links( $links, $file ) {
@@ -165,13 +187,14 @@ function ipChkk() {
 }
 
 function sfs_handle_ajax_sub( $data ) {
-	// check to see if it user can manage options
-	if ( !is_user_logged_in() ) {
-		return;
+	if ( ! ss_ajax_action_allowed_for_user() ) {
+		wp_send_json_error( __( 'Forbidden', 'stop-spammer-registrations-plugin' ), 403 );
 	}
-	if ( !current_user_can( 'manage_options' ) ) {
-		return;
+
+	if ( ! check_ajax_referer( 'sfs_sub_nonce', false, false ) ) {
+		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
 	}
+
 	// suddenly loading before 'init' has loaded things?
 	// get the stuff from the $_GET and call stop forum spam
 	// this tages the stuff from the get and uses it to do the get from SFS
@@ -183,7 +206,7 @@ function sfs_handle_ajax_sub( $data ) {
 	}
 	// print_r( $options );
 	extract( $options );
-	// get the comment_id parameter	
+	// get the comment_id parameter
 	$comment_id = sanitize_text_field( urlencode( $_GET['comment_id'] ) );
 	if ( empty( $comment_id ) ) {
 		_e( ' No Comment ID Found', 'stop-spammer-registrations-plugin' );
@@ -326,12 +349,14 @@ function sfs_handle_ajax_check( $data ) {
 }
 
 function sfs_handle_ajax_sfs_process( $data ) {
-	if ( !is_user_logged_in() ) {
-		return;
+	if ( ! ss_ajax_action_allowed_for_user() ) {
+		wp_send_json_error( __( 'Forbidden', 'stop-spammer-registrations-plugin' ), 403 );
 	}
-	if ( !current_user_can( 'manage_options' ) ) {
-		return;
+
+	if ( ! check_ajax_referer( 'sfs_process_nonce', false, false ) ) {
+		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
 	}
+
 	sfs_errorsonoff();
 	sfs_handle_ajax_sfs_process_watch( $data );
 	sfs_errorsonoff( 'off' );
@@ -455,7 +480,7 @@ function ss_sfs_ip_column( $value, $column_name, $user_id ) {
 		$ipline	 = "";
 		if ( !empty( $signup_ip ) ) {
 			$ipline = apply_filters( 'ip2link', $signup_ip2 ); // if the ip2link plugin is installed
-			// now add the check 
+			// now add the check
 			$user_info   = get_userdata( $user_id );
 			$useremail   = urlencode( $user_info->user_email ); // for reporting
 			$userurl	 = urlencode( $user_info->user_url );

@@ -62,7 +62,7 @@ function ss_notice_dismissed() {
 add_action( 'admin_init', 'ss_notice_dismissed' );
 
 // replace notifications with new notifications
-function ss_replace_admin_notices() { 
+function ss_replace_admin_notices() {
 	global $ss_all_notices;
 	$options = ss_get_options();
 	try {
@@ -208,6 +208,10 @@ function ss_show_admin_notices() {
 
 // add hidden notification to user meta
 function ss_update_notice_preference() {
+	if ( ! check_ajax_referer( 'ss_update_notice_preference_nonce', false, false ) ) {
+		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
+	}
+
 	$user_id = get_current_user_id();
 	$ss_notice_preference = get_user_meta( $user_id, 'ss_notice_preference', true );
 	if ( !is_array( $ss_notice_preference ) ) {
@@ -379,7 +383,7 @@ function ss_init() {
 		$addons = array();
 		$addons = apply_filters( 'ss_addons_get', $addons );
 		// these are the allow before addons
-		// returns array 
+		// returns array
 		// [0] = class location
 		// [1] = class name (also used as counter)
 		// [2] = addon name
@@ -757,7 +761,7 @@ function get_post_variables() {
 			}
 		}
 	}
-	/*	
+	/*
 	foreach ( $search as $var => $sa ) {
 		foreach ( $sa as $srch ) {
 			foreach ( $p as $pkey => $pval ) {
@@ -949,7 +953,7 @@ function ss_user_reg_filter( $user_login ) {
 		return $user_login;
 	}
 	// if the suspect is already in the Bad Cache he does not get a second chance?
-	// prevents looping	
+	// prevents looping
 	$reason = be_load( 'chkbcache', ss_get_ip(), $stats, $options, $post );
 	sfs_errorsonoff();
 	if ( $reason !== false ) {
@@ -962,7 +966,7 @@ function ss_user_reg_filter( $user_login ) {
 	}
 	// check periods
 	$reason = be_load( 'chkperiods', ss_get_ip(), $stats, $options, $post );
-	if ( $reason !== false ) { 
+	if ( $reason !== false ) {
 		wp_die( 'Registration Access Blocked', __( 'Login Access Blocked', 'stop-spammer-registrations-plugin' ), array( 'response' => 403 ) );
 	}
 	// check the whitelist
@@ -1037,7 +1041,7 @@ function ss_captcha_verify() {
 				$recaptchaapisite   = $options['recaptchaapisite'];
 				if ( empty( $recaptchaapisecret ) || empty( $recaptchaapisite ) ) {
 					return __( '<strong>Error:</strong> reCAPTCHA keys are not set.', 'stop-spammer-registrations-plugin' );
-				} else { 
+				} else {
 					$g    = sanitize_textarea_field( $_REQUEST['g-recaptcha-response'] );
 					$url  = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaapisecret&response=$g&remoteip=$ip";
 					$resp = ss_read_file( $url );
@@ -1059,7 +1063,7 @@ function ss_captcha_verify() {
 					$url  = "https://hcaptcha.com/siteverify?secret=$hcaptchaapisecret&response=$h&remoteip=$ip";
 					$resp = ss_read_file( $url );
 					$response = json_decode( $resp );
-					if ( !isset( $response->success ) or $response->success !== true ) { 
+					if ( !isset( $response->success ) or $response->success !== true ) {
 						return __( '<strong>Error:</strong> hCaptcha entry does not match. Try again.', 'stop-spammer-registrations-plugin' );
 					}
 				}
@@ -1119,7 +1123,7 @@ function ss_captcha_verify() {
 function ss_login_captcha_verify( $user ) {
 	$options = ss_get_options();
 	if ( !isset( $options['form_captcha_login'] ) or $options['form_captcha_login'] !== 'Y' ) {
-		return $user;	
+		return $user;
 	}
 	$response = ss_captcha_verify();
 	if ( $response !== true ) {
@@ -1132,7 +1136,7 @@ add_filter( 'authenticate', 'ss_login_captcha_verify', 99 );
 function ss_registration_captcha_verify( $errors ) {
 	$options = ss_get_options();
 	if ( !isset( $options['form_captcha_registration'] ) or $options['form_captcha_registration'] !== 'Y' ) {
-		return $errors;	
+		return $errors;
 	}
 	$response = ss_captcha_verify();
 	if ( $response !== true ) {
@@ -1145,7 +1149,7 @@ add_filter( 'registration_errors', 'ss_registration_captcha_verify', 10 );
 function ss_comment_captcha_verify( $approved ) {
 	$options = ss_get_options();
 	if ( !isset( $options['form_captcha_comment'] ) or $options['form_captcha_comment'] !== 'Y' ) {
-		return $approved;	
+		return $approved;
 	}
 	$response = ss_captcha_verify();
 	if ( $response !== true ) {

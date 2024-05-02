@@ -8,9 +8,10 @@ function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
 		email: email,
 		cont: contx,
 		func: sfunc,
-		ajax_url: url
+		ajax_url: url,
+    _ajax_nonce: StopSpammersAjaxConfig.actions.sfs_process,
 	};
-	jQuery.get(ajaxurl, data, sfs_ajax_return_process);
+	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_process);
 }
 
 function sfs_ajax_return_process(response) {
@@ -42,9 +43,10 @@ function sfs_ajax_report_spam(t, id, blog, url, email, ip, user) {
 		ajax_url: url,
 		email: email,
 		ip: ip,
-		user: user
+		user: user,
+    _ajax_nonce: StopSpammersAjaxConfig.actions.sfs_sub,
 	};
-	jQuery.get(ajaxurl, data, sfs_ajax_return_spam);
+	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_spam);
 }
 
 function sfs_ajax_return_spam(response) {
@@ -73,9 +75,10 @@ jQuery(function($) {
 			$(this).parent().parent().hide();
 			var data = {
 				action: 'ss_update_notice_preference',
-				notice_id: $(this).data('notice-id')
+				notice_id: $(this).data('notice-id'),
+        _ajax_nonce: StopSpammersAjaxConfig.actions.ss_update_notice_preference,
 			};
-			$.post(ajaxurl, data);
+			$.post(StopSpammersAjaxConfig.ajax_url, data);
 		}
 	});
 	$('#ss_disable_admin_emails').on('click', function() {
@@ -96,9 +99,10 @@ jQuery(function($) {
 		var data = {
 			action: 'ss_allow_block_ip',
 			type: $(this).data('type'),
-			ip: $(this).data('ip')
+			ip: $(this).data('ip'),
+      _ajax_nonce: StopSpammersAjaxConfig.actions.ss_allow_block_ip,
 		};
-		$.post(ajaxurl, data).then(data => {
+		$.post(StopSpammersAjaxConfig.ajax_url, data).then(data => {
 			alert('Successfully Added')
 		});
 	});
@@ -114,8 +118,8 @@ jQuery(function($) {
 		}
 		else {
 			$('#chkwooform').attr("disabled",false);
-			$('#chkgvform').attr("disabled",false);	
-			$('#chkwpform').attr("disabled",false);	
+			$('#chkgvform').attr("disabled",false);
+			$('#chkwpform').attr("disabled",false);
 		}
 	}
 	$('#chkform').change(function(){
