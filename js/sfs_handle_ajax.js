@@ -9,7 +9,7 @@ function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
 		cont: contx,
 		func: sfunc,
 		ajax_url: url,
-    _ajax_nonce: StopSpammersAjaxConfig.actions.sfs_process,
+		_ajax_nonce: StopSpammersAjaxConfig.actions.sfs_process,
 	};
 	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_process);
 }
@@ -44,7 +44,7 @@ function sfs_ajax_report_spam(t, id, blog, url, email, ip, user) {
 		email: email,
 		ip: ip,
 		user: user,
-    _ajax_nonce: StopSpammersAjaxConfig.actions.sfs_sub,
+		_ajax_nonce: StopSpammersAjaxConfig.actions.sfs_sub,
 	};
 	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_spam);
 }
@@ -76,7 +76,7 @@ jQuery(function($) {
 			var data = {
 				action: 'ss_update_notice_preference',
 				notice_id: $(this).data('notice-id'),
-        _ajax_nonce: StopSpammersAjaxConfig.actions.ss_update_notice_preference,
+				_ajax_nonce: StopSpammersAjaxConfig.actions.ss_update_notice_preference,
 			};
 			$.post(StopSpammersAjaxConfig.ajax_url, data);
 		}
@@ -100,7 +100,7 @@ jQuery(function($) {
 			action: 'ss_allow_block_ip',
 			type: $(this).data('type'),
 			ip: $(this).data('ip'),
-      _ajax_nonce: StopSpammersAjaxConfig.actions.ss_allow_block_ip,
+			_ajax_nonce: StopSpammersAjaxConfig.actions.ss_allow_block_ip,
 		};
 		$.post(StopSpammersAjaxConfig.ajax_url, data).then(data => {
 			alert('Successfully Added')

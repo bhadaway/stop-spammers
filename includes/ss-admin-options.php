@@ -46,10 +46,9 @@ add_action( 'admin_enqueue_scripts', 'sfs_handle_ajax' );
 function sfs_handle_ajax() {
 	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js', false );
 	wp_enqueue_script( 'stop-spammers-modal', SS_PLUGIN_URL . 'js/modal.js', '', '', true );
-
 	wp_add_inline_script(
-	    'stop-spammers',
-	    'const StopSpammersAjaxConfig = ' . json_encode( array(
+		'stop-spammers',
+		'const StopSpammersAjaxConfig = ' . json_encode( array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 			'actions' => array(
 				'sfs_process' => wp_create_nonce( 'sfs_process_nonce' ),
@@ -57,16 +56,15 @@ function sfs_handle_ajax() {
 				'ss_update_notice_preference' => wp_create_nonce( 'ss_update_notice_preference_nonce' ),
 				'ss_allow_block_ip' => wp_create_nonce( 'ss_allow_block_ip_nonce' ),
 			),
-	    ) ),
-	    'before'
+		) ),
+		'before'
 	);
 }
 
 function ss_ajax_action_allowed_for_user( $user = null ) {
-	if ( ! is_a( $user, 'WP_User' ) ) {
+	if ( !is_a( $user, 'WP_User' ) ) {
 		$user = wp_get_current_user();
 	}
-
 	return $user->exists() && user_can( $user, 'manage_options' );
 }
 

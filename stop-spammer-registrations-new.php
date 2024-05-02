@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://www.calculator.io/no-spam/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately.
-Version: 2024.4
+Version: 2024.5
 Author: Stop SPAM
 Author URI: https://www.calculator.io/no-spam/
 License: https://www.gnu.org/licenses/gpl.html
@@ -12,7 +12,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2024.4' );
+define( 'SS_VERSION', '2024.5' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -41,8 +41,8 @@ function ss_admin_notice() {
 	$user_id = get_current_user_id();
 	$admin_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$param = ( count( $_GET ) ) ? '&' : '?';
-	if ( !get_user_meta( $user_id, 'ss_notice_dismissed_31' ) && current_user_can( 'manage_options' ) ) {
-		echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thank you! 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<p><a href="https://github.com/Trumani/stop-spammers/issues" class="button-primary" style="border-color:purple;background:purple" target="_blank">' . esc_html__( 'Get Support', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
+	if ( !get_user_meta( $user_id, 'ss_notice_dismissed_32' ) && current_user_can( 'manage_options' ) ) {
+		echo '<div class="notice notice-info"><p><a href="' . $admin_url, $param . 'dismiss" class="alignright" style="text-decoration:none"><big>' . esc_html__( 'Ⓧ', 'stop-spammer-registrations-plugin' ) . '</big></a>' . wp_kses_post( __( '<big><strong>Stop Spammers</strong> — Thank you! 💜</big>', 'stop-spammer-registrations-plugin' ) ) . '<p><a href="https://github.com/bhadaway/stop-spammers/issues" class="button-primary" style="border-color:purple;background:purple" target="_blank">' . esc_html__( 'Get Support', 'stop-spammer-registrations-plugin' ) . '</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'ss_admin_notice' );
@@ -51,7 +51,7 @@ add_action( 'admin_notices', 'ss_admin_notice' );
 function ss_notice_dismissed() {
 	$user_id = get_current_user_id();
 	if ( isset( $_GET['dismiss'] ) ) {
-		add_user_meta( $user_id, 'ss_notice_dismissed_31', 'true', true );
+		add_user_meta( $user_id, 'ss_notice_dismissed_32', 'true', true );
 	}
 	// Notification Control: handles notices
 	add_action( 'admin_print_scripts', 'ss_replace_admin_notices', 998 );
@@ -208,10 +208,9 @@ function ss_show_admin_notices() {
 
 // add hidden notification to user meta
 function ss_update_notice_preference() {
-	if ( ! check_ajax_referer( 'ss_update_notice_preference_nonce', false, false ) ) {
+	if ( !check_ajax_referer( 'ss_update_notice_preference_nonce', false, false ) ) {
 		wp_send_json_error( __( 'Unauthorized', 'stop-spammer-registrations-plugin' ), 401 );
 	}
-
 	$user_id = get_current_user_id();
 	$ss_notice_preference = get_user_meta( $user_id, 'ss_notice_preference', true );
 	if ( !is_array( $ss_notice_preference ) ) {
