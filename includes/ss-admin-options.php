@@ -349,12 +349,14 @@ function sfs_handle_ajax_check( $data ) {
 }
 
 function sfs_handle_ajax_sfs_process( $data ) {
-	if ( !is_user_logged_in() ) {
+	if ( ! ss_ajax_action_allowed_for_user() ) {
 		return;
 	}
-	if ( !current_user_can( 'manage_options' ) ) {
+
+	if ( ! check_ajax_referer( 'sfs_process_nonce', false, false ) ) {
 		return;
 	}
+
 	sfs_errorsonoff();
 	sfs_handle_ajax_sfs_process_watch( $data );
 	sfs_errorsonoff( 'off' );
