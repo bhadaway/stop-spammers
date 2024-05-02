@@ -53,6 +53,9 @@ function sfs_handle_ajax() {
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 			'actions' => array(
 				'sfs_process' => wp_create_nonce( 'sfs_process_nonce' ),
+				'sfs_sub' => wp_create_nonce( 'sfs_sub_nonce' ),
+				'ss_update_notice_preference' => wp_create_nonce( 'ss_update_notice_preference_nonce' ),
+				'ss_allow_block_ip' => wp_create_nonce( 'ss_allow_block_ip_nonce' ),
 			),
 	    ) ),
 	    'before'
