@@ -11,7 +11,7 @@ function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
 		ajax_url: url,
     _ajax_nonce: StopSpammersAjaxConfig.actions.sfs_process,
 	};
-	jQuery.get(ajaxurl, data, sfs_ajax_return_process);
+	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_process);
 }
 
 function sfs_ajax_return_process(response) {
@@ -46,7 +46,7 @@ function sfs_ajax_report_spam(t, id, blog, url, email, ip, user) {
 		user: user,
     _ajax_nonce: StopSpammersAjaxConfig.actions.sfs_sub,
 	};
-	jQuery.get(ajaxurl, data, sfs_ajax_return_spam);
+	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_spam);
 }
 
 function sfs_ajax_return_spam(response) {
@@ -78,7 +78,7 @@ jQuery(function($) {
 				notice_id: $(this).data('notice-id'),
         _ajax_nonce: StopSpammersAjaxConfig.actions.ss_update_notice_preference,
 			};
-			$.post(ajaxurl, data);
+			$.post(StopSpammersAjaxConfig.ajax_url, data);
 		}
 	});
 	$('#ss_disable_admin_emails').on('click', function() {
@@ -102,7 +102,7 @@ jQuery(function($) {
 			ip: $(this).data('ip'),
       _ajax_nonce: StopSpammersAjaxConfig.actions.ss_allow_block_ip,
 		};
-		$.post(ajaxurl, data).then(data => {
+		$.post(StopSpammersAjaxConfig.ajax_url, data).then(data => {
 			alert('Successfully Added')
 		});
 	});
