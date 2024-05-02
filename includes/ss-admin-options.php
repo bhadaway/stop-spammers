@@ -62,6 +62,14 @@ function sfs_handle_ajax() {
 	);
 }
 
+function ss_ajax_action_allowed_for_user( $user = null ) {
+	if ( ! is_a( $user, 'WP_User' ) ) {
+		$user = wp_get_current_user();
+	}
+
+	return $user->exists() && user_can( $user, 'manage_options' );
+}
+
 function ss_sp_plugin_action_links( $links, $file ) {
 	// get the links
 	if ( strpos( $file, 'stop-spammer' ) === false ) {
