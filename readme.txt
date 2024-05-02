@@ -1,12 +1,16 @@
 === Anti-Spam: Spam Protection | Block Spam Users, Comments, Forms ===
 
 Contributors: mcitar, bhadaway
+Donate link: https://calmestghost.com/donate
 Tags: spam, security, anti-spam, spam protection, no spam
 Tested up to: 6.5
+Requires at least: 3.0
+Requires PHP: 5.0
 Stable tag: 2024.5
-License: https://www.gnu.org/licenses/gpl.html
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl.html
 
-Robust WordPress security & spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable security settings on hyphens, periods, too many hits, quick responses, & much more.
+Robust security and spam prevention. Leverage our pre-defined allow/block lists. Adjust configurable settings on too many hits, quick responses, etc.
 
 == Description ==
 

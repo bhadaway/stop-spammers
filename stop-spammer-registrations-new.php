@@ -4,9 +4,12 @@ Plugin Name: Stop Spammers
 Plugin URI: https://www.calculator.io/no-spam/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately.
 Version: 2024.5
+Requires at least: 3.0
+Requires PHP: 5.0
 Author: Stop SPAM
 Author URI: https://www.calculator.io/no-spam/
-License: https://www.gnu.org/licenses/gpl.html
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl.html
 Domain Path: /languages
 Text Domain: stop-spammer-registrations-plugin
 */
