@@ -3,7 +3,7 @@
 Plugin Name: Stop Spammers
 Plugin URI: https://www.calculator.io/no-spam/
 Description: Secure your WordPress sites and stop spam dead in its tracks. Designed to secure your website immediately.
-Version: 2024.5
+Version: 2024.6
 Requires at least: 3.0
 Requires PHP: 5.0
 Author: Stop SPAM
@@ -15,7 +15,7 @@ Text Domain: stop-spammer-registrations-plugin
 */
 
 // networking requires a couple of globals
-define( 'SS_VERSION', '2024.5' );
+define( 'SS_VERSION', '2024.6' );
 define( 'SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SS_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 define( 'SS_PLUGIN_DATA', plugin_dir_path( __FILE__ ) . 'data/' );
@@ -32,10 +32,27 @@ function ss_load_plugin_textdomain() {
 }
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 
+function ss_assets_version() {
+	return defined( 'WP_DEBUG' ) && WP_DEBUG ? (string) time() : SS_VERSION;
+}
+
 // load admin styles
 function ss_styles() {
-	wp_enqueue_style( 'ss-admin', plugin_dir_url( __FILE__ ) . 'css/admin.css' );
-	wp_enqueue_style( 'ss-modal-css', plugin_dir_url( __FILE__ ) . 'css/modal.css' );
+	$version = ss_assets_version();
+
+	wp_enqueue_style(
+		'ss-admin',
+		plugin_dir_url( __FILE__ ) . 'css/admin.css',
+		array(),
+		$version
+	);
+
+	wp_enqueue_style(
+		'ss-modal-css',
+		plugin_dir_url( __FILE__ ) . 'css/modal.css',
+		array(),
+		$version
+	);
 }
 add_action( 'admin_print_styles', 'ss_styles' );
 

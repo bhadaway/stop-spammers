@@ -82,6 +82,10 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
+= 2024.6 =
+* [Fix] Ajax script json error handling
+* [New] Added version numbering to enqueued script and style files
+
 = 2024.5 =
 * [Enhanced] Security
 
