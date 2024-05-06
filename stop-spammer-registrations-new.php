@@ -38,8 +38,21 @@ function ss_assets_version() {
 
 // load admin styles
 function ss_styles() {
-	wp_enqueue_style( 'ss-admin', plugin_dir_url( __FILE__ ) . 'css/admin.css' );
-	wp_enqueue_style( 'ss-modal-css', plugin_dir_url( __FILE__ ) . 'css/modal.css' );
+	$version = ss_assets_version();
+
+	wp_enqueue_style(
+		'ss-admin',
+		plugin_dir_url( __FILE__ ) . 'css/admin.css',
+		array(),
+		$version
+	);
+
+	wp_enqueue_style(
+		'ss-modal-css',
+		plugin_dir_url( __FILE__ ) . 'css/modal.css',
+		array(),
+		$version
+	);
 }
 add_action( 'admin_print_styles', 'ss_styles' );
 
