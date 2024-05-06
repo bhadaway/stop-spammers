@@ -11,11 +11,33 @@ function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
 		ajax_url: url,
 		_ajax_nonce: StopSpammersAjaxConfig.actions.sfs_process,
 	};
-	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_process);
+	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_process)
+    .fail(sfs_ajax_error_handler);
+}
+
+function sfs_ajax_error_handler(xhr, status, error) {
+  try {
+    var response = JSON.parse(xhr.responseText);
+
+    if (response.data) {
+      alert(response.data);
+    }
+  } catch (exception) {
+    alert(error);
+  }
 }
 
 function sfs_ajax_return_process(response) {
 	var el = "";
+
+  if (response.data) {
+    if (! response.success) {
+      alert(response.data);
+    }
+
+    return false;
+  }
+
 	if (response == "OK") {
 		return false;
 	}
@@ -46,7 +68,8 @@ function sfs_ajax_report_spam(t, id, blog, url, email, ip, user) {
 		user: user,
 		_ajax_nonce: StopSpammersAjaxConfig.actions.sfs_sub,
 	};
-	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_spam);
+	jQuery.get(StopSpammersAjaxConfig.ajax_url, data, sfs_ajax_return_spam)
+    .fail(sfs_ajax_error_handler);
 }
 
 function sfs_ajax_return_spam(response) {
@@ -78,7 +101,8 @@ jQuery(function($) {
 				notice_id: $(this).data('notice-id'),
 				_ajax_nonce: StopSpammersAjaxConfig.actions.ss_update_notice_preference,
 			};
-			$.post(StopSpammersAjaxConfig.ajax_url, data);
+			$.post(StopSpammersAjaxConfig.ajax_url, data)
+        .fail(sfs_ajax_error_handler);
 		}
 	});
 	$('#ss_disable_admin_emails').on('click', function() {
