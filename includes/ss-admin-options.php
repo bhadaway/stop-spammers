@@ -44,8 +44,23 @@ if ( function_exists( 'register_uninstall_hook' ) ) {
 // do this only if a valid IP and not Cloudflare
 add_action( 'admin_enqueue_scripts', 'sfs_handle_ajax' );
 function sfs_handle_ajax() {
-	wp_enqueue_script( 'stop-spammers', SS_PLUGIN_URL . 'js/sfs_handle_ajax.js', false );
-	wp_enqueue_script( 'stop-spammers-modal', SS_PLUGIN_URL . 'js/modal.js', '', '', true );
+	$version = ss_assets_version();
+
+	wp_enqueue_script(
+		'stop-spammers',
+		SS_PLUGIN_URL . 'js/sfs_handle_ajax.js',
+		array( 'jquery' ),
+		$version
+	);
+
+	wp_enqueue_script(
+		'stop-spammers-modal',
+		SS_PLUGIN_URL . 'js/modal.js',
+		array(),
+		$version,
+		true
+	);
+
 	wp_add_inline_script(
 		'stop-spammers',
 		'const StopSpammersAjaxConfig = ' . json_encode( array(
