@@ -32,6 +32,10 @@ function ss_load_plugin_textdomain() {
 }
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 
+function ss_assets_version() {
+	return defined( 'WP_DEBUG' ) && WP_DEBUG ? (string) time() : SS_VERSION;
+}
+
 // load admin styles
 function ss_styles() {
 	wp_enqueue_style( 'ss-admin', plugin_dir_url( __FILE__ ) . 'css/admin.css' );
