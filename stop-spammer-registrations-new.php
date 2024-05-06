@@ -33,20 +33,18 @@ function ss_load_plugin_textdomain() {
 add_action( 'plugins_loaded', 'ss_load_plugin_textdomain' );
 
 function ss_assets_version() {
-	return defined( 'WP_DEBUG' ) && WP_DEBUG ? (string) time() : SS_VERSION;
+	return defined( 'WP_DEBUG' ) && WP_DEBUG ? ( string ) time() : SS_VERSION;
 }
 
 // load admin styles
 function ss_styles() {
 	$version = ss_assets_version();
-
 	wp_enqueue_style(
 		'ss-admin',
 		plugin_dir_url( __FILE__ ) . 'css/admin.css',
 		array(),
 		$version
 	);
-
 	wp_enqueue_style(
 		'ss-modal-css',
 		plugin_dir_url( __FILE__ ) . 'css/modal.css',

@@ -16,28 +16,24 @@ function sfs_ajax_process(sip, contx, sfunc, url, email = '') {
 }
 
 function sfs_ajax_error_handler(xhr, status, error) {
-  try {
-    var response = JSON.parse(xhr.responseText);
-
-    if (response.data) {
-      alert(response.data);
-    }
-  } catch (exception) {
-    alert(error);
-  }
+	try {
+		var response = JSON.parse(xhr.responseText);
+		if (response.data) {
+			alert(response.data);
+		}
+	} catch (exception) {
+		alert(error);
+	}
 }
 
 function sfs_ajax_return_process(response) {
 	var el = "";
-
-  if (response.data) {
-    if (! response.success) {
-      alert(response.data);
-    }
-
-    return false;
-  }
-
+	if (response.data) {
+		if (! response.success) {
+			alert(response.data);
+		}
+		return false;
+	}
 	if (response == "OK") {
 		return false;
 	}

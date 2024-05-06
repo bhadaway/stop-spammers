@@ -6,7 +6,7 @@ Tags: spam, security, anti-spam, spam protection, no spam
 Tested up to: 6.5
 Requires at least: 3.0
 Requires PHP: 5.0
-Stable tag: 2024.5
+Stable tag: 2024.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -83,7 +83,7 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 == Changelog ==
 
 = 2024.6 =
-* [Fix] Ajax script json error handling
+* [Fix] AJAX script JSON error handling
 * [New] Added version numbering to enqueued script and style files
 
 = 2024.5 =
