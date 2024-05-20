@@ -92,7 +92,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	<br>
 	<br>
 	<div class="mainsection"><?php _e( 'Allow List Requests', 'stop-spammer-registrations-plugin' ); ?>
-		<sup class="ss_sup"><a href="https://stopspammers.io/documentation/allow-requests-and-lists/#allowrequests" target="_blank">?</a></sup>
+		<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Allow-Requests-&-Lists#allow-requests" target="_blank">?</a></sup>
 	</div>
 	<?php
 	if ( count( $wlrequests ) == 0 ) {
@@ -133,7 +133,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<div class="mainsection"><?php _e( 'Personalized Allow List', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/allow-requests-and-lists/#allowlists" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Allow-Requests-&-Lists#personalized-allow-list" target="_blank">?</a></sup>
 		</div>
 		<?php _e( '
 			<p>Put IP addresses or emails here that you don\'t want blocked.
@@ -154,7 +154,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
 		<br>
 		<div class="mainsection"><?php _e( 'Allow Options', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/allow-requests-and-lists/#allowoptions" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Allow-Requests-&-Lists#allow-options" target="_blank">?</a></sup>
 		</div>
 		<br>
 		<div class="checkbox switcher">

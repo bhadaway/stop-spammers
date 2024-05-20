@@ -310,7 +310,7 @@ $active_tab = !empty( $_GET['tab'] ) ? $_GET['tab'] : 'disable_users';
 			}
 			?>
 			<?php if ( isset ( $_GET['tab'] ) and $_GET['tab'] == 'db-cleaup' ): ?>
-			<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that they don&acute;t autoload. Be aware that you can break some plugins by deleting their options. Before making updates, please <a href="https://stopspammers.io/documentation/database-cleanup/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
+			<p><?php _e( 'Inspect and delete orphan or suspicious options or change plugin options so that they don&acute;t autoload. Be aware that you can break some plugins by deleting their options. Before making updates, please <a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Database-Cleanup" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
 			<table id="sstable" name="sstable" cellspacing="2">
 				<thead>
 					<tr bgcolor="#fff">

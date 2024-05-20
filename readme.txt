@@ -6,7 +6,7 @@ Tags: spam, security, anti-spam, spam protection, no spam
 Tested up to: 6.5
 Requires at least: 3.0
 Requires PHP: 5.0
-Stable tag: 2024.6
+Stable tag: 2024.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -82,6 +82,9 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 
 == Changelog ==
 
+= 2024.7 =
+* [Fix] Documentation has been restored (but probably needs work https://github.com/bhadaway/stop-spammers/wiki)
+
 = 2024.6 =
 * [Fix] AJAX script JSON error handling
 * [New] Added version numbering to enqueued script and style files
@@ -90,14 +93,15 @@ Yes. See: [https://law.stackexchange.com/questions/28603/how-to-satisfy-gdprs-co
 * [Enhanced] Security
 
 = 2024.4 =
+* [Notice] New owner (https://github.com/bhadaway/stop-spammers/issues/188)
 * [Notice] Premium has been discontinued
 * [Notice] HiveMind API has been discontinued
 
 = 2024.3 =
-* [Notice] We're making a big push to audit Stop Spammers — now's the time to jump in if you know how to code and can contribute fixes: help@stopspammers.io.
+* [Notice] We're making a big push to audit Stop Spammers — now's the time to jump in if you know how to code and can contribute fixes: https://github.com/bhadaway/stop-spammers.
 
 = 2024.2 =
-* [Notice] We're making a big push to audit Stop Spammers — now's the time to jump in if you know how to code and can contribute fixes: help@stopspammers.io.
+* [Notice] We're making a big push to audit Stop Spammers — now's the time to jump in if you know how to code and can contribute fixes: https://github.com/bhadaway/stop-spammers.
 
 = 2024.1 =
 * [Update] readme

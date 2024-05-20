@@ -85,7 +85,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 	} ?>
 	<br>
 	<div class="ss_info_box">
-		<p><?php _e( 'Below are several services that can be enabled to check for spam or protect your website against spammers. To learn more about each service and find links to create keys, please <a href="https://stopspammers.io/documentation/web-services/" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
+		<p><?php _e( 'Below are several services that can be enabled to check for spam or protect your website against spammers. To learn more about each service and find links to create keys, please <a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Web-Services" target="_blank">review our documentation</a>.', 'stop-spammer-registrations-plugin' ); ?></p>
 	</div>
 	<br>
 	<form method="post" action="">

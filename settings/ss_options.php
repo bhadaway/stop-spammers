@@ -250,7 +250,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<div id="formchecking" class="mainsection"><?php _e( 'Form Checking', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#formchecking" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Protection-Options#form-checking" target="_blank">?</a></sup>
 		</div>
 		<?php if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 			_e( '<p><span style="color:purple">WooCommerce detected. If you experience any issues using WooCommerce and Stop Spammers together, you may need to adjust these settings.</span></p>', 'stop-spammer-registrations-plugin' );
@@ -263,7 +263,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div id="membersonly" class="mainsection"><?php _e( 'Members-only Mode', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#membersonly" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Protection-Options#members-only-mode" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_private_mode">
@@ -273,7 +273,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div id="preventlockouts" class="mainsection"><?php _e( 'Prevent Lockouts', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#preventlockouts" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Protection-Options#prevent-lockouts" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="addtoallowlist">
@@ -291,7 +291,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<div id="notificationcontrol" class="mainsection">
 			<?php _e( 'Notification Control', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#notificationcontrol" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Protection-Options#notification-control" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="ss_keep_hidden_btn">
@@ -308,7 +308,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div id="validaterequests" class="mainsection"><?php _e( 'Validate Requests', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#validaterequests" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Protection-Options#validate-requests" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkaccept">
@@ -503,7 +503,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<br>
 		<div id="blockcountries" class="mainsection"><?php _e( 'Block Countries', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/protection-options/#blockcountries" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Protection-Options#block-countries" target="_blank">?</a></sup>
 		</div>
 		<br>
 		<div class="checkbox switcher">

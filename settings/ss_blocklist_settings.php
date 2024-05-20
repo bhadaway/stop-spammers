@@ -143,7 +143,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="ss_stop_spammers_control" value="<?php echo $nonce; ?>">
 		<div class="mainsection"><?php _e( 'Personalized Block List', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blocklist" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Block-Lists#personalized-block-list" target="_blank">?</a></sup>
 		</div>
 		<p><?php _e( 'Add IP addresses or emails here that you want blocked.', 'stop-spammer-registrations-plugin' ); ?></p>
 		<div class="checkbox switcher">
@@ -161,7 +161,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<br>
 		<div class="mainsection"><?php _e( 'Spam Words List', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#spamwords" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Block-Lists#spam-words-list" target="_blank">?</a></sup>
 		</div>				
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkspamwords">
@@ -177,7 +177,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		?></textarea>
 		<br>
 		<div class="mainsection"><?php _e( 'URL Shortening Services List', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#urlshortening" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Block-Lists#check-url-shorteners" target="_blank">?</a></sup>
 		</div>			
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkurlshort">
@@ -193,7 +193,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 			}
 		?></textarea>
 		<div class="mainsection"><?php _e( 'Check for URLs', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/updates/check-for-any-url-in-comments/" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Block-Lists#check-for-urls-in-comments" target="_blank">?</a></sup>
 		</div>	
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkurls">
@@ -203,7 +203,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div class="mainsection"><?php _e( 'Bad User Agents List', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#badagents" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Block-Lists#check-agents" target="_blank">?</a></sup>
 		</div>	
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="chkagent">
@@ -220,7 +220,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<br>
 		<br>
 		<div class="mainsection"><?php _e( 'Blocked TLDs', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/block-list/#blockedtlds" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Block-Lists#blocked-tlds" target="_blank">?</a></sup>
 		</div>					
 		<?php _e( '<p>Enter the TLD name including the period (for example .xxx). A TLD is the last part of a domain like .com or .net.</p>', 'stop-spammer-registrations-plugin' ); ?>
 		<textarea name="badTLDs" cols="40" rows="8"><?php

@@ -210,12 +210,12 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		<input type="hidden" name="action" value="update challenge">
 		<br>
 		<div class="mainsection"><?php _e( 'Access Blocked Message', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#accessblocked" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Challenge-&-Block#access-blocked-message" target="_blank">?</a></sup>
 		</div>
 		<textarea id="rejectmessage" name="rejectmessage" cols="40" rows="5"><?php echo $rejectmessage; ?></textarea>
 		<br>
 		<div class="mainsection"><?php _e( 'Routing and Notifications', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#visitorexp" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Challenge-&-Block#send-visitor-to-another-web-page" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="redir">
@@ -274,7 +274,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div id="autoemails" class="mainsection"><?php _e( 'Options for emails to admin', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Challenge-&-Block#notify-web-admin-when-a-user-requests-to-be-added-to-the-allow-list" target="_blank">?</a></sup>
 		</div>
 		<div class="checkbox switcher">
 			<label id="ss_subhead" for="new_user_notification_to_admin">
@@ -317,7 +317,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div class="mainsection"><?php _e( 'Options for emails to users', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#notifications" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Challenge-&-Block#notify-requester-when-a-web-admin-has-approved-their-request-to-be-added-to-the-allow-list" target="_blank">?</a></sup>
 		</div>
 		<br>
 		<div class="checkbox switcher">
@@ -369,7 +369,7 @@ $nonce = wp_create_nonce( 'ss_stopspam_update' );
 		</div>
 		<br>
 		<div class="mainsection"><?php _e( 'CAPTCHA', 'stop-spammer-registrations-plugin' ); ?>
-			<sup class="ss_sup"><a href="https://stopspammers.io/documentation/challenge-and-block/#captcha" target="_blank">?</a></sup>
+			<sup class="ss_sup"><a href="https://github.com/bhadaway/stop-spammers/wiki/Docs:-Challenge-&-Block#captcha" target="_blank">?</a></sup>
 		</div>
 		<p><?php _e( 'Second Chance CAPTCHA Challenge', 'stop-spammer-registrations-plugin' ); ?></p>
 		<div style="margin-left:30px">
